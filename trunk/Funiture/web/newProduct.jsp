@@ -1,10 +1,18 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : newProduct
     Created on : 8 พ.ย. 2554, 23:33:48
     Author     : Achilles
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<sql:query var="query" dataSource="webdb">
+    SELECT * FROM menu_product_setup mps
+         join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
+         where mps.Menu_Code = '012'
+    order by mps.Menu_code,mps.Product_Code
+</sql:query>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,11 +28,10 @@
             <div id="tS3" class="jThumbnailScroller" style="margin-top:50px;">
                 <div class="jTscrollerContainer">
                     <div class="jTscroller">
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb1_7.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb1_8.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb1_9.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb1_10.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb1_11.jpg" /></a>
+                        <c:forEach var="newProduct" items="${query.rows}">
+                        <a href="products_detail.html"><img src="${newProduct.Product_D_Logo}" /></a>			
+                        </c:forEach>
+                        
                     </div>
                 </div>
                 <a href="#" class="jTscrollerPrevButton"></a>
