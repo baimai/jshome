@@ -1,9 +1,16 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : hotProduct
     Created on : 8 พ.ย. 2554, 23:32:05
     Author     : Achilles
 --%>
-
+<sql:query var="query" dataSource="webdb">
+    SELECT * FROM menu_product_setup mps
+         join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
+         where mps.Menu_Code = '011'
+    order by mps.Menu_code,mps.Product_Code
+</sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +19,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+    
+    
     <tr>
         <td><div align="center"><img src="jshome/images/hot.jpg" width="953" height="27" /></div></td>
     </tr>
@@ -20,13 +29,12 @@
             <div id="tS2" class="jThumbnailScroller" style="margin-top:50px;">
                 <div class="jTscrollerContainer">
                     <div class="jTscroller">
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb2_1.jpg" width="" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb2_2.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb2_3.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb2_4.jpg" /></a>
-                        <a href="products_detail.html"><img src="jshome/images/thumb/smallpost_thumb2_5.jpg" /></a>
-                    </div>
+                        <c:forEach var="hotProduct" items="${query.rows}">
+                        <a href="products_detail.html"><img src="${hotProduct.Product_D_Logo}" /></a>			
+                        </c:forEach>
+                        </div>
                 </div>
+                
                 <a href="#" class="jTscrollerPrevButton"></a>
                 <a href="#" class="jTscrollerNextButton"></a>
             </div>
