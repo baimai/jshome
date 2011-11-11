@@ -5,9 +5,7 @@
     Created on : 8 พ.ย. 2554, 23:20:19
     Author     : Achilles
 --%>
-<sql:query var="query" dataSource="webdb">
-    select * from menu_group_master order by Menu_Group
-</sql:query>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
