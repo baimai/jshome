@@ -35,7 +35,7 @@
     <!-- thumbnail scroller stylesheet -->
 <link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
 <!-- jquery -->
-<script src="jshome/js/jquery-1.5.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <!-- jquery ui custom build (for animation easing) -->
 <script src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
     <style type="text/css">
@@ -59,12 +59,7 @@ jQuery.noConflict();
 </script>
  <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />
         <script type="text/javascript" src="js/top_menu.js"></script>
-   <script src="jshome/js/jquery-1.4.1.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min"></script>
-       
-        <script type="text/javascript">
-            $('#nav').spasticNav();
-        </script>      
+        
     </head>
     <body>
         
@@ -113,6 +108,11 @@ jQuery.noConflict();
     </div>
     </td>
   </tr>
- 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/top_menu.js"></script>
+        <script type="text/javascript">
+            $('#nav').spasticNav();
+        </script>
     </body>
 </html>
