@@ -18,7 +18,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <!--menu-->
-<link href="jshome/css/black-style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="jshome/css/default/default.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="jshome/css/pascal/pascal.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="jshome/css/orman/orman.css" type="text/css" media="screen" />
@@ -32,7 +31,8 @@
         $('#slider').nivoSlider();
     });
     </script>
-   
+    <!-- thumbnail scroller stylesheet -->
+<link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
 <!-- jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <!-- jquery ui custom build (for animation easing) -->
@@ -47,6 +47,15 @@ body {
 }
 -->
 </style>
+<script>
+/* jQuery.noConflict() for using the plugin along with other libraries. 
+   You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
+   if you include jQuery before other libraries in yourdocument's head tag. 
+   [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
+jQuery.noConflict(); 
+/* calling thumbnailScroller function with options as parameters */
+
+</script>
 
     </head>
     <body>
@@ -61,26 +70,7 @@ body {
             </tr>
     </c:forEach>  
      <tr>
-                <td height="41"><div id="navigation">
-                        <div id="nav-lt-curve"><img src="jshome/black-images/black-lt-curve.png" alt="lt-curve" width="28" height="40" /></div>
-                        <div id="navigation-mid">
-                            <ul>
-                                 <c:forEach var="topmenu" items="${query2.rows}">
-                                     <li><a href="#">${topmenu.Menu_G_Name_T}</a></li>
-                                 </c:forEach>
-                                
-                                
-                               
-                            </ul>
-
-                        </div>
-                        <div id="ser-panel">
-                            <div class="ser-inn-panel">
-                                <input name="" type="button" class="btn-ser" />
-                            </div>
-                        </div>
-                        <div id="nav-rt-curve"><img src="jshome/black-images/black-rt-curve.png" alt="rt-curve" width="14" height="40" /></div>
-                    </div>
+                <td height="41">
                 </td>
             </tr> 
             
@@ -90,7 +80,7 @@ body {
     
         <a href="http://dev7studios.com" id="dev7link" title="Go to dev7studios">dev7studios</a>
 
-        <div class="slider-wrapper theme-default">
+        <div class="p-wrapper theme-default">
             <div class="ribbon"></div>
             <div id="slider" class="nivoSlider">
                 <img src="jshome/images/slideshow/slide-05.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-06.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-07.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-08.jpg" alt="" title="This is an example of a caption" />
