@@ -32,8 +32,7 @@
         $('#slider').nivoSlider();
     });
     </script>
-    <!-- thumbnail scroller stylesheet -->
-<link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
+   
 <!-- jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <!-- jquery ui custom build (for animation easing) -->
@@ -48,62 +47,7 @@ body {
 }
 -->
 </style>
-<script>
-/* jQuery.noConflict() for using the plugin along with other libraries. 
-   You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
-   if you include jQuery before other libraries in yourdocument's head tag. 
-   [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
-jQuery.noConflict(); 
-/* calling thumbnailScroller function with options as parameters */
-(function($){
-window.onload=function(){ 
-	$("#tS2").thumbnailScroller({ 
-		scrollerType:"hoverPrecise", 
-		scrollerOrientation:"horizontal", 
-		scrollSpeed:2, 
-		scrollEasing:"easeOutCirc", 
-		scrollEasingAmount:600, 
-		acceleration:4, 
-		scrollSpeed:800, 
-		noScrollCenterSpace:10, 
-		autoScrolling:0, 
-		autoScrollingSpeed:2000, 
-		autoScrollingEasing:"easeInOutQuad", 
-		autoScrollingDelay:500 
-	});
-	$("#tS3").thumbnailScroller({ 
-		scrollerType:"hoverPrecise", 
-		scrollerOrientation:"horizontal", 
-		scrollSpeed:2, 
-		scrollEasing:"easeOutCirc", 
-		scrollEasingAmount:600, 
-		acceleration:4, 
-		scrollSpeed:800, 
-		noScrollCenterSpace:10, 
-		autoScrolling:0, 
-		autoScrollingSpeed:2000, 
-		autoScrollingEasing:"easeInOutQuad", 
-		autoScrollingDelay:500 
-	});
-	$("#tS4").thumbnailScroller({ 
-		scrollerType:"hoverPrecise", 
-		scrollerOrientation:"horizontal", 
-		scrollSpeed:2, 
-		scrollEasing:"easeOutCirc", 
-		scrollEasingAmount:600, 
-		acceleration:4, 
-		scrollSpeed:800, 
-		noScrollCenterSpace:10, 
-		autoScrolling:0, 
-		autoScrollingSpeed:2000, 
-		autoScrollingEasing:"easeInOutQuad", 
-		autoScrollingDelay:500 
-	});
-}
-})(jQuery);
-</script>
-<!-- thumbnailScroller script -->
-<script src="jshome/js/jquery.thumbnailScroller.js"></script>
+
     </head>
     <body>
         
