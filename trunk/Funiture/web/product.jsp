@@ -9,22 +9,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>       
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+
         
+        
+        
+        <!-- thumbnailScroller script -->
     </head>
-    <body>
-       <table width="1000" border="1" align="center" background="jshome/images/background.jpg"  >
-    <jsp:include page="header.jsp"/>
-     <tr>
-         <td><jsp:include page="menu_left.jsp" flush="false"/></td>
-      
-     </tr>
-    <tr>
-    <td></td>
-  </tr>
-  
-  
-   
-</table>
+    <body >
+        <div id="art-main">
+            <div class="art-sheet">
+                <div class="art-sheet-bl"></div>
+                <div class="art-sheet-br"></div>
+                <div class="art-sheet-bc"></div>
+                <div class="art-sheet-cl"></div>
+                <div class="art-sheet-cr"></div>
+                <div class="art-sheet-cc"></div>
+                <div class="art-sheet-body">
+                    <jsp:include page="head.jsp"/>
+                    <table border="0" cellspacing="0" cellpadding="0" >
+                        <tr>
+                            <td valign="top">
+                                <br/><br/><br/><br/>
+                                <jsp:include page="menu_left.jsp" />
+                            </td>
+                            <td ><jsp:include page="example.jsp" /></td>
+                        </tr>
+                    </table>
+
+                    <br/><br/>
+                    <jsp:include page="footer.jsp" />
+                    <br/><br/>
+                </div>
+
+
+            </div>
+            <div class="cleared"></div>
+        </div>
+
+        <div class="cleared"></div>
+        <p class="art-page-footer"><a href="http://www.2createawebsite.com/artisteer">Website Template created with Artisteer</a>.</p>
+
     </body>
 </html>

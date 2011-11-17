@@ -16,7 +16,7 @@
 
 <body>
 
-<table width="1000" border="1" align="center" background="jshome/images/background.jpg"  >
+    <table width="1000" border="1" align="center" background="jshome/images/background.jpg" >
     <jsp:include page="header.jsp"/>
     
   
