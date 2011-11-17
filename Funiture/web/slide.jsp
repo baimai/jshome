@@ -4,12 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<!--menu-->
-
+<title>slide</title>
 <link rel="stylesheet" href="jshome/css/default/default.css" type="text/css" media="screen" />
-
+    <link rel="stylesheet" href="jshome/css/pascal/pascal.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="jshome/css/orman/orman.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="jshome/css/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="jshome/css/style.css" type="text/css" media="screen" />
+
    <script type="text/javascript" src="jshome/js/jquery-1.6.1.min.js"></script>
     <script type="text/javascript" src="jshome/js/jquery.nivo.slider.pack.js"></script>
     <script type="text/javascript">
@@ -17,11 +18,6 @@
         $('#slider').nivoSlider();
     });
     </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script>
-jQuery.noConflict(); 
-</script>
-
 
 </head>
 

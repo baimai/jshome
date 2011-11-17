@@ -17,10 +17,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+          <link rel="stylesheet" href="jshome/css/style_3.css" type="text/css" media="screen" />
         <!--menu-->
 <link rel="stylesheet" href="jshome/css/default/default.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="jshome/css/pascal/pascal.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="jshome/css/orman/orman.css" type="text/css" media="screen" />
+   
     <link rel="stylesheet" href="jshome/css/nivo-slider.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="jshome/css/style.css" type="text/css" media="screen" />
 
@@ -31,35 +31,25 @@
     $(window).load(function() {
         $('#slider').nivoSlider();
     });
+	 
     </script>
     <!-- thumbnail scroller stylesheet -->
-<link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
-<!-- jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<!--<link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
+ --><!-- jquery -->
+<script src="jshome/js/jquery-1.5.min.js"></script>
 <!-- jquery ui custom build (for animation easing) -->
 <script src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
-    <style type="text/css">
-<!--
+  <!--  <style type="text/css">  
+
 body {
 	margin-left: 0px;
 	/*margin-top: 40px;*/
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
--->
-</style>
-<script>
-/* jQuery.noConflict() for using the plugin along with other libraries. 
-   You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
-   if you include jQuery before other libraries in yourdocument's head tag. 
-   [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
-jQuery.noConflict(); 
-/* calling thumbnailScroller function with options as parameters */
 
-</script>
- <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />
-        <script type="text/javascript" src="js/top_menu.js"></script>
-        
+</style> --> 
+
     </head>
     <body>
         
@@ -85,13 +75,13 @@ jQuery.noConflict();
                             </c:forEach>
 
                         </ul>
-                    </div>
+                    </div> 
                 </td>
             </tr> 
             
             <tr background="" >
     <td height="418">
-     <div id="wrapper">
+    <div id="wrapper">
     
         <a href="http://dev7studios.com" id="dev7link" title="Go to dev7studios">dev7studios</a>
 
@@ -105,14 +95,19 @@ jQuery.noConflict();
             </div>
         </div>
 
-    </div>
+    </div> 
     </td>
   </tr>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/top_menu.js"></script>
-        <script type="text/javascript">
-            $('#nav').spasticNav();
-        </script>
+  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>	
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="jshome/js/jquery.spasticNav.js"></script>	
+
+<script type="text/javascript">
+$('#nav').spasticNav();
+</script>
+        
     </body>
 </html>

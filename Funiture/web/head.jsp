@@ -15,26 +15,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="jshome/css/default/default.css" type="text/css" media="screen" />
-
-    <link rel="stylesheet" href="jshome/css/nivo-slider.css" type="text/css" media="screen" />
-   <script type="text/javascript" src="jshome/js/jquery-1.6.1.min.js"></script>
-    <script type="text/javascript" src="jshome/js/jquery.nivo.slider.pack.js"></script>
-    <script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider();
-    });
-    </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script>
-jQuery.noConflict(); 
-</script>
-        <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />   
-        <script src="jshome/js/jquery-1.6.1.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
+           <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="jshome/js/jquery-1.4.1.min.js"></script>
+         <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
     </head>
     <body>
-        <table border="0" bordercolor="black" cellpadding="0" cellspacing="0" >
+        <table border="0" bordercolor="black" cellpadding="0" cellspacing="0"width="940px" >
             <tr bgcolor="#A03700" >
                 <td ><img src="images/head.jpg" width="940px" height="100px"/></td>
             </tr>
@@ -61,6 +47,6 @@ jQuery.noConflict();
             $('#nav').spasticNav();
         </script>
         
-        <jsp:include page="slide.jsp"/>
+      
     </body>
 </html>

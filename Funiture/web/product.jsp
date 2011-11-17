@@ -11,7 +11,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-
+ <style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	/*margin-top: 40px;*/
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
         
         
         
@@ -28,7 +37,8 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                    <table border="0" cellspacing="0" cellpadding="0" >
+                     <jsp:include page="slide.jsp"/>
+                    <table border="0" cellspacing="0" cellpadding="0" width="940px">
                         <tr>
                             <td valign="top">
                                 <br/><br/><br/><br/>
