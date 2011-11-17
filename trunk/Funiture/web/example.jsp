@@ -11,12 +11,10 @@
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>Free CSS template by ChocoTemplates.com</title>
         <link rel="stylesheet" href="jshome/css/style_1.css" type="text/css" media="all" />
-        <%-- ตัวนี้ทำ error --%>
-        <script src="jshome/js/jquery-1.4.1.min.js" type="text/javascript"></script>
-        <%--   --%>
-        <script src="jshome/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
-        <script src="jshome/js/jquery.slide.js" type="text/javascript"></script>
-        <script src="jshome/js/jquery-func.js" type="text/javascript"></script>
+
+	<script src="jshome/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+	<script src="jshome/js/jquery.slide.js" type="text/javascript"></script>
+	<script src="jshome/js/jquery-func.js" type="text/javascript"></script>
 
     </head>
     <body>
@@ -132,7 +130,7 @@
 							    		Brand Name: <span>Adidas Shoes</span><br />
                                                 Product name : <br />
                                             </p><p class="price"> Price: <strong>53 USD</strong><a href="#"><img src="images/cart_add.png" alt="" /></a></p>
-                                            <p class="price">Price: <strong>53 USD</strong></p>
+                                           
                                         </li>
                                         <li>
                                             <div class="image">
