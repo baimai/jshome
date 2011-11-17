@@ -29,6 +29,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
+                     <jsp:include page="slide.jsp"/>
                     <jsp:include page="HotNewProProduct.jsp" />
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
