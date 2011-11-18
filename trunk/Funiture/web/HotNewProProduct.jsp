@@ -90,7 +90,7 @@ window.onload=function(){
         
     </head>
     <body>
-        <div align="center"><img src="jshome/images/hot.jpg" width="940" height="27" /></div>
+        <div align="center"><img src="jshome/images/hot.jpg" width="935" height="27" /></div>
         <div id="tS2" class="jThumbnailScroller" style="margin-top:50px;">
             <div class="jTscrollerContainer">
                 <div class="jTscroller">
@@ -103,7 +103,7 @@ window.onload=function(){
             <a href="#" class="jTscrollerPrevButton"></a>
             <a href="#" class="jTscrollerNextButton"></a>
         </div>
-        <div align="center"><img src="jshome/images/new.jpg" width="940" height="27" /></div>
+        <div align="center"><img src="jshome/images/new.jpg" width="935" height="27" /></div>
 
         <div id="tS3" class="jThumbnailScroller" style="margin-top:50px;">
             <div class="jTscrollerContainer">
@@ -117,7 +117,7 @@ window.onload=function(){
             <a href="#" class="jTscrollerPrevButton"></a>
             <a href="#" class="jTscrollerNextButton"></a>
         </div>
-        <div align="center"><img src="jshome/images/promotion.jpg" width="940" height="27" /></div>
+        <div align="center"><img src="jshome/images/promotion.jpg" width="935" height="27" /></div>
             <div id="tS4" class="jThumbnailScroller" style="margin-top:50px;">
                 <div class="jTscrollerContainer">
                     <div class="jTscroller">

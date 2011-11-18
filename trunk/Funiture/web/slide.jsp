@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="jshome/css/pascal/pascal.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="jshome/css/orman/orman.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="jshome/css/nivo-slider.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="jshome/css/style.css" type="text/css" media="screen" />
+  
 
    <script type="text/javascript" src="jshome/js/jquery-1.6.1.min.js"></script>
     <script type="text/javascript" src="jshome/js/jquery.nivo.slider.pack.js"></script>
