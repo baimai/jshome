@@ -4,6 +4,14 @@
         <description>ServletContextListener</description>
         <listener-class>listener.init</listener-class>
     </listener>
+    <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <servlet-class>controller.addProduct</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/addProduct.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
