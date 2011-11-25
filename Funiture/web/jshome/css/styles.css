@@ -478,7 +478,7 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 
 
 /* Header ================================================================================ */
-.logo { float:left; }
+/*.logo { float:left; }
 .header-container { }
 .header {margin:0 auto; padding:0px; text-align:left; position:relative; z-index:1000; }
 .header .logo { float:left; text-decoration:none !important; }
@@ -506,7 +506,7 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 .header .links li {}
 .header .links a {  }
 .header-container .top-container { clear:both; text-align:right; }
-.header-container .top-container a { font-size:11px;  }
+.header-container .top-container a { font-size:11px;  }*/
 
 /********** < Navigation */
 /*---.nav-container { }
