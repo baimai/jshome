@@ -18,10 +18,6 @@
            <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />
         <script type="text/javascript" src="jshome/js/jquery-1.4.1.min.js"></script>
          <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
-     <script type="text/javascript" src="js/top_menu.js"></script>
-        <script type="text/javascript">
-            $('#nav').spasticNav();
-        </script>
     </head>
     <body>
         <table border="0" bordercolor="black" cellpadding="0" cellspacing="0"width="940px" >
@@ -46,7 +42,10 @@
             
         </table>
        
-       
+        <script type="text/javascript" src="js/top_menu.js"></script>
+        <script type="text/javascript">
+            $('#nav').spasticNav();
+        </script>
         
        
     </body>
