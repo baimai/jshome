@@ -8,9 +8,25 @@
         <servlet-name>addProduct</servlet-name>
         <servlet-class>controller.addProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>datagrid</servlet-name>
+        <servlet-class>controller.datagrid</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>productSetup</servlet-name>
+        <servlet-class>controller.productSetup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>datagrid</servlet-name>
+        <url-pattern>/datagrid.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>productSetup</servlet-name>
+        <url-pattern>/productSetup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
