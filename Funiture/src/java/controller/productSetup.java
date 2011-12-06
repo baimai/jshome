@@ -6,10 +6,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Database;
+import model.entity.menuProductSetup;
+import model.menuProductSetupTable;
 
 /**
  *
@@ -29,17 +33,42 @@ public class productSetup extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet productSetup</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet productSetup at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
+            if (request.getParameter("action") != null) {
+                Database db = new Database();
+                menuProductSetupTable mpst = new menuProductSetupTable(db);
+                menuProductSetup mps = new menuProductSetup();
+                if (request.getParameter("menuCode") != null) {
+                    mps.setMenuCode(request.getParameter("menuCode"));
+                }
+                if (request.getParameter("productCode") != null) {
+                    mps.setProductCode(request.getParameter("productCode"));
+                }
+                if (request.getParameter("productRemarkT") != null) {
+                    mps.setProductRemarkT(request.getParameter("productRemarkT"));
+                }
+                if (request.getParameter("productRemarkE") != null) {
+                    mps.setProductRemarkE(request.getParameter("productRemarkE"));
+                }
+                if (request.getParameter("createDate") == null || request.getParameter("createDate").equals("")) {
+                    mps.setCreateDate(Timestamp.valueOf(db.getNow()));
+                } else {
+                    mps.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
+                }
+                if (request.getParameter("updateDate") == null || request.getParameter("updateDate").equals("")) {
+                    mps.setCreateDate(Timestamp.valueOf(db.getNow()));
+                } else {
+                    mps.setUpdateDate(Timestamp.valueOf(request.getParameter("updateDate")));
+                }
+                if (request.getParameter("action").equals("Add")) {
+                    mpst.add(mps);
+                } else if (request.getParameter("action").equals("Edit")) {
+                    mpst.update(mps);
+                } else if (request.getParameter("action").equals("Del")) {
+                    mpst.remove(mps);
+                }
+                db.close();
+            }
+        } finally {
             out.close();
         }
     }
