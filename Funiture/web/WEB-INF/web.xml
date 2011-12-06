@@ -22,11 +22,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>datagrid</servlet-name>
-        <url-pattern>/datagrid.do</url-pattern>
+        <url-pattern>/admin/datagrid.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>productSetup</servlet-name>
-        <url-pattern>/productSetup</url-pattern>
+        <url-pattern>/productSetup.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
