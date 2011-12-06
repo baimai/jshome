@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+import model.entity.menuProductSetup;
 import model.entity.productDetailMaster;
+import model.menuProductSetupTable;
 import model.productDetailMasterTable;
 import util.Default;
 
@@ -36,19 +38,36 @@ public class datagrid extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
-             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");                
+
+            if (request.getParameter("action").equals("fetchData")) {
+                response.setContentType("text/xml;charset=UTF-8");
 
                 String status = request.getParameter("status");
-
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                
+                String productCode = null;
+                String sField = null, sValue = null, sOper = null;
+                /*
+                if (request.getParameter("menuCode") != null ) {
+                menuCode = request.getParameter("menuCode");
+                }
+                 */
+                if (request.getParameter("productCode") != null) {
+                    productCode = request.getParameter("productCode");
+                }
+                if (request.getParameter("searchField") != null) {
+                    sField = request.getParameter("searchField");
+                }
+                if (request.getParameter("searchString") != null) {
+                    sValue = request.getParameter("searchString");
+                }
+                if (request.getParameter("searchOper") != null) {
+                    sOper = request.getParameter("searchOper");
+                }
 
                 int totalPages = 0;
-                int totalCount = 15;
-                
+                int totalCount = 2;
+
                 if (totalCount > 0) {
                     if (totalCount % Integer.parseInt(rows) == 0) {
                         totalPages = totalCount / Integer.parseInt(rows);
@@ -59,43 +78,65 @@ public class datagrid extends HttpServlet {
                 } else {
                     totalPages = 0;
                 }
-                
-                Database db = new Database();
-                productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList list = pdm.search();
-                db.close();
-                
-                out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                out.print("<rows>");
-                out.print("<page>" + request.getParameter("page") + "</page>");
 
-                out.print("<total>" + totalPages + "</total>");
-                out.print("<records>" + 15 + "</records>");
-                int srNo = 1;
-                
-                for (int i=0;i<list.size();i++) {
-                   productDetailMaster data = (productDetailMaster)list.get(i);
-                    out.print("<row id='" + data.getProductCode() + "'>");
-                    out.print("<cell>"+data.getProductGroup()+"</cell>");
-                    out.print("<cell>" + data.getProductCode() + "</cell>");
-                    out.print("<cell>"+data.getProductDNameT()+"</cell>");                    
-                    out.print("<cell>"+data.getProductPrice1()+"</cell>");
-                    out.print("<cell>"+data.getProductSpect1_T()+"</cell>");
-                    out.print("<cell>"+data.getProductSpect2_T()+"</cell>");
-                    out.print("<cell>"+data.getProductSpect3_T()+"</cell>");
-                    out.print("<cell>"+data.getProductSpect4_T()+"</cell>");
-                    out.print("<cell>"+data.getProductSpect5_T()+"</cell>");
-                    out.print("<cell>"+data.getProductSpect6_T()+"</cell>");
-                    out.print("<cell>"+data.getUserId() +"</cell>");
-                    out.print("</row>");
-                    srNo++;                
+                Database db = new Database();
+                menuProductSetupTable mps = new menuProductSetupTable(db);
+                productDetailMasterTable pdm = new productDetailMasterTable(db);
+                ArrayList listp = pdm.search(productCode,""); 
+                //ArrayList list = mps.search(menuCode,productCode);
+                ArrayList list = mps.search(sField, sValue, sOper, productCode);
+                db.close();
+                if (request.getParameter("q").equals("1")) {
+                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
+                    out.print("<rows>");
+                    out.print("<page>" + request.getParameter("page") + "</page>");
+
+                    out.print("<total>" + totalPages + "</total>");
+                    out.print("<records>" + list.size() + "</records>");
+                    int srNo = 1;
+
+                    for (int i = 0; i < list.size(); i++) {
+                        menuProductSetup data = (menuProductSetup) list.get(i);
+                        out.print("<row id='" + data.getProductCode() + "'>");
+                        out.print("<cell>" + i + "</cell>");
+                        out.print("<cell>" + data.getMenuCode() + "</cell>");
+                        out.print("<cell>" + data.getProductCode() + "</cell>");
+                        out.print("<cell>" + data.getProductRemarkT() + "</cell>");
+                        out.print("<cell>" + data.getCreateDate() + "</cell>");
+                        out.print("<cell>" + data.getUpdateDate() + "</cell>");
+                        out.print("<cell>" + data.getUserId() + "</cell>");
+                        out.print("</row>");
+                        srNo++;
+                    }
+                    out.print("</rows>");
+                } else if (request.getParameter("q").equals("2")) {
+                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
+                    out.print("<rows>");
+                    out.print("<page>" + request.getParameter("page") + "</page>");
+
+                    out.print("<total>" + totalPages + "</total>");
+                    out.print("<records>" + listp.size() + "</records>");
+                    int srNo = 1;
+
+                    for (int i = 0; i < listp.size(); i++) {
+                        productDetailMaster data = (productDetailMaster) listp.get(i);
+                        out.print("<row id='" + data.getProductCode() + "'>");
+                       // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
+                        out.print("<cell>" + data.getProductDNameT()+ "</cell>");
+                        out.print("<cell>" + data.getProductPrice1()+ "</cell>");
+                        out.print("<cell>" + data.getProductSpect1_T()+ "</cell>");
+                        out.print("<cell>" + data.getProductSpect2_T()+ "</cell>");
+                        out.print("<cell>" + data.getProductDRemarkT() + "</cell>");                       
+                        out.print("</row>");
+                        srNo++;
+                    }
+                    out.print("</rows>");
                 }
-                out.print("</rows>");
             }
-            
+
         } catch (Exception ex) {
             ex.printStackTrace(out);
-        } finally {            
+        } finally {
             out.close();
         }
     }
