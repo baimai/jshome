@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : detail
     Created on : 17 พ.ย. 2554, 10:44:34
@@ -11,8 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
 
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
         <%--<script type="text/javascript" src="jshome/js/jquery-1.6.1.min.js"></script> --%>
 
         <script>
@@ -214,7 +215,14 @@
                         </div>
                         <input type="hidden" id="count" value="0" />
                         <div class="block-content" id="add_cart">
-                            <div class="empty" style="display:inline-block">You have no items in your shopping cart.</div>
+                            <div class="empty" style="display:inline-block" id="productList">
+                                <c:if test="${sessionScope.productList == null}">
+                                    You have no items in your shopping cart.
+                                </c:if>
+                                <c:if test="${sessionScope.productList != null}">
+                                   gg
+                                </c:if>
+                            </div>
                             
                         </div>
                     </div>
