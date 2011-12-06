@@ -26,7 +26,7 @@
 /* Reset ================================================================================= */
 * { margin:0; padding:0; }
 
-body          { font:12px/1.55 Arial, Helvetica, sans-serif; color:#2f2f2f; text-align:center; }
+body          { font:12px/1.55  Tahoma,MS Sans Serif,Arial,Thonburi; color:#2f2f2f; text-align:center; }
 
 img           { border:0; vertical-align:top; }
 
@@ -135,7 +135,7 @@ ul,ol         { list-style:none; }
 
 /* Global Styles ========================================================================= */
 /* Form Elements */
-input,select,textarea,button { font:12px/15px Arial, Helvetica, sans-serif; vertical-align:middle; color:#2f2f2f; }
+input,select,textarea,button { font:12px/15px Tahoma,MS Sans Serif,Arial,Thonburi; vertical-align:middle; color:#2f2f2f; }
 input.input-text,select,textarea { background:#fff; border:1px solid #b6b6b6; }
 input.input-text,textarea { padding:2px; }
 select { padding:1px; }
@@ -461,7 +461,18 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 .link-print {  padding:2px 0 2px 25px;*/ font-weight:bold;  }
 .link-rss { background:url(../images/i_rss.gif) 0 2px no-repeat; padding-left:18px; line-height:14px; white-space:nowrap; }
 .btn-remove { display:block; width:11px; height:11px; font-size:0; line-height:0; background:url(../images/btn_remove.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden; }
-.btn-remove2 { display:block; width:16px; height:16px; font-size:0; line-height:0; background:url(../images/btn_trash.gif) 0 0 no-repeat; text-indent:-999em; overflow:hidden; }
+.btn-remove2 {
+	display:block;
+	width:16px;
+	height:16px;
+	font-size:0;
+	line-height:0;
+	text-indent:-999em;
+	overflow:hidden;
+	background-image: url(../images/btn_trash.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
 
 .separator { margin:0 3px; }
 
