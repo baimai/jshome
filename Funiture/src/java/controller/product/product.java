@@ -4,14 +4,17 @@
  */
 package controller.product;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Achilles
  */
 public class product {
-    
+    private String productGroup;
     private String productName;
     private String productCode;
+    private double productPrice;
     private int amount;
 
     /**
@@ -55,5 +58,37 @@ public class product {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+ 
+
+    /**
+     * @return the productGroup
+     */
+    public String getProductGroup() {
+        return productGroup;
+    }
+
+    /**
+     * @param productGroup the productGroup to set
+     */
+    public void setProductGroup(String productGroup) {
+        this.productGroup = productGroup;
+    }
+
+    /**
+     * @return the productPrice
+     */
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    /**
+     * @param productPrice the productPrice to set
+     */
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+
     
 }
