@@ -16,6 +16,14 @@
         <servlet-name>productSetup</servlet-name>
         <servlet-class>controller.productSetup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>xmlProductGroup</servlet-name>
+        <servlet-class>controller.xmlProductGroup</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>productGroup</servlet-name>
+        <servlet-class>controller.productGroup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -26,7 +34,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>productSetup</servlet-name>
-        <url-pattern>/productSetup.do</url-pattern>
+        <url-pattern>/admin/productSetup.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlProductGroup</servlet-name>
+        <url-pattern>/admin/xmlProductGroup.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>productGroup</servlet-name>
+        <url-pattern>/admin/productGroup.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
