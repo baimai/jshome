@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
     </head>
     <body>
        <div id="art-main">
@@ -23,7 +24,8 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                    <jsp:include page="category_detail.jsp" />
+                    <jsp:include page="category_detail2.jsp" />
+                     
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
