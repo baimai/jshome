@@ -1,14 +1,14 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <sql:query var="query" dataSource="webdb">
-    SELECT count(*) as count,menu_c_name_t,menu_c_name_e,md.menu_code FROM menu_product_setup me
-    join menu_detail_master md on me.menu_code = md.menu_code
-    group by me.menu_code
+    SELECT count(*) as count,md.*,me.* FROM pic_product_setup me
+    join menu_detail_master md on me.pic_code = md.pic_code
+    group by me.pic_code
 </sql:query>
 
 <sql:query var="query2" dataSource="webdb">
-    SELECT count(*) as count , 'ทั้งหมด' as T,'All' as E FROM menu_product_setup me
-    join menu_detail_master md on me.menu_code = md.menu_code
+    SELECT count(*) as count , 'ทั้งหมด' as T,'All' as E FROM pic_product_setup me
+    join menu_detail_master md on me.pic_code = md.pic_code
 </sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
