@@ -7,7 +7,9 @@ package controller;
 import controller.product.product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +37,15 @@ public class addProduct extends HttpServlet {
             HttpSession s = request.getSession();
             String productCode = request.getParameter("productCode");
             String productName = request.getParameter("productName");
+            String productGroup = request.getParameter("productGroup");
+            
             int amount = 0;
+            double productPrice = 0.00;
             ArrayList list = null;
-            if (request.getParameter("amount") != null && !request.getParameter("amount").equals("")) {
+            if (request.getParameter("amount") != null && !request.getParameter("amount").equals("")
+                    &&request.getParameter("productPrice")!=null&&!request.getParameter("productPrice").equals("")) {
                 amount = Integer.parseInt(request.getParameter("amount"));
+                productPrice = Double.parseDouble(request.getParameter("productPrice"));
             }
             int flag = 0;
             String status = request.getParameter("status");
@@ -50,14 +57,14 @@ public class addProduct extends HttpServlet {
                             product chkPro = (product) list.get(i);
                             //เพิ่ม,ลด จำนวนสินค้า
                             if (chkPro.getProductCode().equals(productCode)) {
-                                if (chkPro.getAmount() - amount <= 0 && status.equals("-")) {
+                                if (chkPro.getAmount() - amount <= 0 && status.equals("minus")) {
                                     //ถ้าสินค้าลดลงต่ำกว่าศูนย์
                                     list.remove(i);
                                     if (list.isEmpty()) {
                                         list = null;
                                     }
                                 } else {
-                                    if (status.equals("+")) {
+                                    if (status.equals("plus")) {
                                         //ถ้ามีการเพิ่มสินค้า
                                         chkPro.setAmount(chkPro.getAmount() + amount);
                                     } else {
@@ -74,18 +81,22 @@ public class addProduct extends HttpServlet {
                                 pro.setAmount(amount);
                                 pro.setProductCode(productCode);
                                 pro.setProductName(productName);
+                                pro.setProductGroup(productGroup);
+                                pro.setProductPrice(productPrice);
                                 list.add(pro);
                             }
                         }
                     }
                 } else {
                     //ถ้ายังไม่มีสินค้าในลิสก็เพิ่มเข้าไป
-                    if (status.equals("+")) {
+                    if (status.equals("plus")) {
                         list = new ArrayList();
                         product pro = new product();
                         pro.setAmount(amount);
                         pro.setProductCode(productCode);
                         pro.setProductName(productName);
+                        pro.setProductGroup(productGroup);
+                        pro.setProductPrice(productPrice);
                         list.add(pro);
                     }
                 }
@@ -93,7 +104,9 @@ public class addProduct extends HttpServlet {
             if (list != null) {
                 s.setAttribute("productList", list);
             }
-            response.sendRedirect("product_detail_1.jsp?productCode="+productCode);
+            RequestDispatcher obj = request.getRequestDispatcher("myCart.jsp");
+             obj.forward(request, response);
+
         } catch (Exception ex) {
             ex.printStackTrace(out);
         } finally {

@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.entity.menuProductSetup;
-import model.menuProductSetupTable;
+import model.entity.productGroupMaster;
+import model.productGroupMasterTable;
 
 /**
  *
  * @author Achilles
  */
-public class productSetup extends HttpServlet {
+public class productGroup extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,42 +35,45 @@ public class productSetup extends HttpServlet {
         try {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
-                menuProductSetupTable mpst = new menuProductSetupTable(db);
-                menuProductSetup mps = new menuProductSetup();
-                if (request.getParameter("menuCode") != null) {
-                    mps.setMenuCode(request.getParameter("menuCode"));
+                productGroupMasterTable pgmt = new productGroupMasterTable(db);
+                productGroupMaster pgm = new productGroupMaster();
+                if (request.getParameter("productGroup") != null) {
+                    pgm.setProductGroup(request.getParameter("productGroup"));
                 }
-                if (request.getParameter("productCode") != null) {
-                    mps.setProductCode(request.getParameter("productCode"));
+                if (request.getParameter("productGNameT") != null) {
+                    pgm.setProductGNameT(request.getParameter("productGNameT"));
+                }
+                if (request.getParameter("productGNameE") != null) {
+                    pgm.setProductGNameE(request.getParameter("productGNameE"));
                 }
                 if (request.getParameter("productRemarkT") != null) {
-                    mps.setProductRemarkT(request.getParameter("productRemarkT"));
+                    pgm.setProductRemarkT(request.getParameter("productRemarkT"));
                 }
                 if (request.getParameter("productRemarkE") != null) {
-                    mps.setProductRemarkE(request.getParameter("productRemarkE"));
+                    pgm.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
                 if (request.getParameter("createDate") == null || request.getParameter("createDate").equals("")) {
-                    mps.setCreateDate(Timestamp.valueOf(db.getNow()));
+                    pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 } else {
-                    mps.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
+                    pgm.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
                 }
                 if (request.getParameter("updateDate") == null || request.getParameter("updateDate").equals("")) {
-                    mps.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                    pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 } else {
-                    mps.setUpdateDate(Timestamp.valueOf(request.getParameter("updateDate")));
+                    pgm.setUpdateDate(Timestamp.valueOf(request.getParameter("updateDate")));
                 }
                 if (request.getParameter("action").equals("Add")) {
-                    mpst.add(mps);
+                    pgmt.add(pgm);
                 } else if (request.getParameter("action").equals("Edit")) {
-                    mpst.update(mps);
+                    pgmt.update(pgm);
                 } else if (request.getParameter("action").equals("Del")) {
-                    mpst.remove(mps);
+                    //pgmt.remove(pgm);
                 }
                 db.close();
             }
         }catch(Exception ex){
                 ex.printStackTrace(out);
-        }finally {
+        } finally {            
             out.close();
         }
     }
