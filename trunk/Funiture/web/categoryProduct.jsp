@@ -9,35 +9,35 @@
 
 <c:if test="${param.menuCode == 'all'}">
     <sql:query var="query" dataSource="webdb">
-        SELECT * FROM menu_product_setup me
-        join menu_detail_master md on me.menu_code = md.menu_code
+        SELECT * FROM pic_product_setup me
+        join menu_detail_master md on me.pic_code = md.pic_code
     </sql:query>    
     <sql:query var="query2" dataSource="webdb">
-        SELECT count(*) as count FROM menu_product_setup me
-        join menu_detail_master md on me.menu_code = md.menu_code
+        SELECT count(*) as count FROM pic_product_setup me
+        join menu_detail_master md on me.pic_code = md.pic_code
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
-        SELECT * FROM menu_product_setup mps
+        SELECT * FROM pic_product_setup mps
         join product_detail_master pdm on mps.product_code = pdm.product_code
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query> 
 </c:if>
 <c:if test="${param.menuCode != 'all'}">        
     <sql:query var="query" dataSource="webdb">
-        SELECT * FROM menu_product_setup mps
-        join menu_detail_master mdm on mdm.menu_code = mps.menu_code
-        where mdm.menu_code = '${param.menuCode}'
+        SELECT * FROM pic_product_setup mps
+        join menu_detail_master mdm on mdm.pic_code = mps.pic_code
+        where mdm.pic_code = '${param.menuCode}'
     </sql:query>
     <sql:query var="query2" dataSource="webdb">
-        SELECT count(*) as count FROM menu_product_setup mps
-        join menu_detail_master mdm on mdm.menu_code = mps.menu_code
-        where mdm.menu_code = '${param.menuCode}'
+        SELECT count(*) as count FROM pic_product_setup mps
+        join menu_detail_master mdm on mdm.pic_code = mps.pic_code
+        where mdm.pic_code = '${param.menuCode}'
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
-        SELECT * FROM menu_product_setup mps
+        SELECT * FROM pic_product_setup mps
         join product_detail_master pdm on pdm.product_code = mps.product_code
-        join menu_detail_master mdm on mdm.menu_code = mps.menu_code
-        where mdm.menu_code = '${param.menuCode}'
+        join menu_detail_master mdm on mdm.pic_code = mps.pic_code
+        where mdm.pic_code = '${param.menuCode}'
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query>
 </c:if>
