@@ -32,13 +32,16 @@
                 jQuery("#rowed1").jqGrid({        
                     url:'datagrid.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','menuCode', 'productCode', 'Remark Thai',/*'Remark Eng',*/'Create Date','Update Date','User'],
+                    colNames:['No','CompanyCode','PicCode', 'productCode','Product Name','Product Name E', 'Remark Thai','Remark Eng','Create Date','Update Date','User'],
                     colModel:[
                         {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'menuCode',index:'menuCode', width:80,editable:true,editoptions:{size:10}},
-                        {name:'productCode',index:'productCode', width:90,editable:true,editoptions:{size:10}},
-                        {name:'productRemarkT',index:'productRemarkT', width:305, align:"right",editable:true,editoptions:{size:25}},
-                        //{name:'productRemarkE',index:'productRemarkE', width:60, align:"right",editable:true,editoptions:{size:25}},		
+                        {name:'companyCode',index:'companyCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'picCode',index:'picCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'productCode',index:'productCode', width:90,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'picNameT',index:'picNameT', width:220,editable:true,editoptions:{size:10}},
+                        {name:'picNameE',index:'picNameE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'productRemarkT',index:'productRemarkT', width:225, align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},		
                         {name:'createDate',index:'createDate', width:132,align:"left",editable:false},
                         {name:'updateDate',index:'updateDate',width:132,align:'left',editable:false},
                         {name:'userId',index:'userId',width:70, editable: true,editoptions:{size:10}}		
@@ -69,8 +72,8 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:220,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:220,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:300,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:300,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
                 {} // search options                
             );
