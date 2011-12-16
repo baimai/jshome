@@ -6,22 +6,22 @@
     Author     : Achilles
 --%>
 <sql:query var="query" dataSource="webdb">
-    SELECT * FROM menu_product_setup mps
+    SELECT * FROM pic_product_setup mps
     join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-    where mps.Menu_Code = '011'
-    order by mps.Menu_code,mps.Product_Code
+    where mps.Pic_Code = '011'
+    order by mps.Pic_code,mps.Product_Code
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
-    SELECT * FROM menu_product_setup mps
+    SELECT * FROM pic_product_setup mps
     join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-    where mps.Menu_Code = '012'
-    order by mps.Menu_code,mps.Product_Code
+    where mps.Pic_Code = '012'
+    order by mps.Pic_code,mps.Product_Code
 </sql:query>
 <sql:query var="query3" dataSource="webdb">
-    SELECT * FROM menu_product_setup mps
+    SELECT * FROM pic_product_setup mps
     join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-    where mps.Menu_Code = '013'
-    order by mps.Menu_code,mps.Product_Code
+    where mps.pic_Code = '013'
+    order by mps.pic_code,mps.Product_Code
 </sql:query>    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
