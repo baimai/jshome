@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<p><img src="images/banner.png" width="900px" height="150px" /></p>
+<p><img src="images/head.jpg"  /></p>
 <style type="text/css">
 * { margin:0;
     padding:0;
@@ -42,58 +42,23 @@ div#copyright { display: none; }
 <div id="menu">
     <ul class="menu">
      <li class="last"><a href="company.html"><span>ข้อมูลบริษัท</span></a></li>
-        <li><a href="#" class="parent"><span>จัดการเมนู</span></a>
+        <li><a href="#" class="parent"><span>จัดการเมนู</span></a>                         
+        </li>
+        <li><a href="addProductSetup.jsp" class="parent"><span>จัดการสินค้า</span></a>
             <div><ul>
-                <li><a href="#" class="parent"><span>Sub Item 1</span></a>
-                    <div><ul>
-                        <li><a href="#" class="parent"><span>Sub Item 1.1</span></a>
-                            <div><ul>
-                                <li><a href="#"><span>Sub Item 1.1.1</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.1.2</span></a></li>
-                            </ul></div>
-                        </li>
-                        <li><a href="#"><span>Sub Item 1.2</span></a></li>
-                        <li><a href="#"><span>Sub Item 1.3</span></a></li>
-                        <li><a href="#"><span>Sub Item 1.4</span></a></li>
-                        <li><a href="#"><span>Sub Item 1.5</span></a></li>
-                        <li><a href="#"><span>Sub Item 1.6</span></a></li>
-                        <li><a href="#" class="parent"><span>Sub Item 1.7</span></a>
-                            <div><ul>
-                                <li><a href="#"><span>Sub Item 1.7.1</span></a></li>
-                                <li><a href="#"><span>Sub Item 1.7.2</span></a></li>
-                            </ul></div>
-                        </li>
-                    </ul></div>
+                <li><a href="addProductGroup.jsp" class="parent"><span>ประเภทสินค้า</span></a>
+                    
                 </li>
-                <li><a href="#"><span>Sub Item 2</span></a></li>
-                <li><a href="#"><span>Sub Item 3</span></a></li>
+                <li><a href="mangeProductDetail.jsp" class="parent"><span>รายการสินค้า</span></a>
+                   
+                </li>
+              
             </ul></div>
         </li>
-        <li><a href="#" class="parent"><span>จัดการสินค้า</span></a>
-            <div><ul>
-                <li><a href="#" class="parent"><span>Sub Item 1</span></a>
-                    <div><ul>
-                        <li><a href="#"><span>Sub Item 1.1</span></a></li>
-                        <li><a href="#"><span>Sub Item 1.2</span></a></li>
-                    </ul></div>
-                </li>
-                <li><a href="#" class="parent"><span>Sub Item 2</span></a>
-                    <div><ul>
-                        <li><a href="#"><span>Sub Item 2.1</span></a></li>
-                        <li><a href="#"><span>Sub Item 2.2</span></a></li>
-                    </ul></div>
-                </li>
-                <li><a href="#"><span>Sub Item 3</span></a></li>
-                <li><a href="#"><span>Sub Item 4</span></a></li>
-                <li><a href="#"><span>Sub Item 5</span></a></li>
-                <li><a href="#"><span>Sub Item 6</span></a></li>
-                <li><a href="#"><span>Sub Item 7</span></a></li>
-            </ul></div>
-        </li>
-        <li><a href="#"class="parent"><span>จัดการลูกค้า</span></a>
+        <li><a href="#"class="parent"><span>จัดการสมาชิก</span></a>
         <div><ul>
-                        <li><a href="#"><span>ข้อมูลลูกค้า</span></a></li>
-                        <li><a href="#"><span>รายละเอียดลูกค้า</span></a></li>
+                        <li><a href="#"><span>ข้อมูลสมาชิก</span></a></li>
+                        <li><a href="#"><span>รายละเอียดสมาชิก</span></a></li>
                     </ul></div></li>
         <li class="last"><a href="#"><span>จัดการใบสั่งซื้อ</span></a></li>
         
