@@ -24,6 +24,11 @@
         <servlet-name>productGroup</servlet-name>
         <servlet-class>controller.productGroup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -44,19 +49,25 @@
         <servlet-name>productGroup</servlet-name>
         <url-pattern>/admin/productGroup.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>faces/index.jsp</welcome-file>
     </welcome-file-list>
     <resource-ref>
-        <description>jdbc:mysql://localhost:3306/webdb</description>
+        <!--<description>jdbc:mysql://192.168.0.15:3306/webdb</description>-->
+         <description>jdbc:mysql://localhost:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
-    </resource-ref>
+    
+        -</resource-ref>
 </web-app>

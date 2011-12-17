@@ -7,21 +7,21 @@
 --%>
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-    where mps.Pic_Code = '011'
-    order by mps.Pic_code,mps.Product_Code
+    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
+    where mps.Pic_Code = '00010'
+    order by mps.Pic_code
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-    where mps.Pic_Code = '012'
-    order by mps.Pic_code,mps.Product_Code
+    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
+    where mps.Pic_Code = '00020'
+    order by mps.Pic_code
 </sql:query>
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-    where mps.pic_Code = '013'
-    order by mps.pic_code,mps.Product_Code
+    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
+    where mps.pic_Code = '00030'
+    order by mps.pic_code
 </sql:query>    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,6 +32,9 @@
         <link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
 <script>
 /* jQuery.noConflict() for using the plugin along with other libraries. 
    You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
@@ -90,7 +93,18 @@ window.onload=function(){
         
     </head>
     <body>
-        <div align="center"><img src="jshome/images/hot.jpg" width="935" height="27" /></div>
+          <div class="wrapper">
+
+            <div class="page">
+
+
+            </div>
+        </div>        <div class="main-container col3-layout">
+
+
+            <div class="main">
+                <div class="col-wrapper">
+        <div align="center"><img src="jshome/images/hot.jpg" width="925" height="27" /></div>
         <div id="tS2" class="jThumbnailScroller" style="margin-top:50px;">
             <div class="jTscrollerContainer">
                 <div class="jTscroller">
@@ -103,7 +117,7 @@ window.onload=function(){
             <a href="#" class="jTscrollerPrevButton"></a>
             <a href="#" class="jTscrollerNextButton"></a>
         </div>
-        <div align="center"><img src="jshome/images/new.jpg" width="935" height="27" /></div>
+        <div align="center"><img src="jshome/images/new.jpg" width="925" height="27" /></div>
 
         <div id="tS3" class="jThumbnailScroller" style="margin-top:50px;">
             <div class="jTscrollerContainer">
@@ -117,7 +131,8 @@ window.onload=function(){
             <a href="#" class="jTscrollerPrevButton"></a>
             <a href="#" class="jTscrollerNextButton"></a>
         </div>
-        <div align="center"><img src="jshome/images/promotion.jpg" width="935" height="27" /></div>
+        <div align="center">
+            <img src="jshome/images/promotion.jpg" width="925" height="27" /></div>
             <div id="tS4" class="jThumbnailScroller" style="margin-top:50px;">
                 <div class="jTscrollerContainer">
                     <div class="jTscroller">
@@ -130,5 +145,8 @@ window.onload=function(){
                 <a href="#" class="jTscrollerPrevButton"></a>
                 <a href="#" class="jTscrollerNextButton"></a>
             </div>
+         </div>
+
+        </div>
     </body>
 </html>

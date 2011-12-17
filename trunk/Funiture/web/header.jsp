@@ -39,22 +39,24 @@
 <script src="jshome/js/jquery-1.5.min.js"></script>
 <!-- jquery ui custom build (for animation easing) -->
 <script src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
-  <!--  <style type="text/css">  
+  <style type="text/css">  
 
 body {
-	margin-left: 0px;
-	/*margin-top: 40px;*/
-	margin-right: 0px;
-	margin-bottom: 0px;
+	/*margin-left: 0px;*/
+	margin-top: 40px;
+	/*margin-right: 0px;
+	margin-bottom: 0px;*/
 }
 
-</style> --> 
+</style> 
 
     </head>
-    <body>
+    <body >
         
     <c:forEach var="query" items="${head.rows}">
-    
+      <tr bordercolordark="#000000" >
+                <td bgcolor="#000000" width="10px" align="left"> Login </td>
+            </tr>
             <tr >
                 <td ><div align="center"><img src="${query.Header_Logo}" width="950" height="100" /></div></td>
             </tr>

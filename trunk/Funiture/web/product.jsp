@@ -39,10 +39,10 @@
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
                     <jsp:include page="slide.jsp"/>
-                    <table border="0" cellspacing="0" cellpadding="0" width="940px">
+                    <table  cellspacing="0" cellpadding="0" width="940px">
                         <tr>
-                            <td valign="top">
-                                <br/><br/><br/><br/>
+                            <td valign="top"><br>
+                                
                                 <jsp:include page="menuLeft.jsp" />
                             </td>
                             <td ><jsp:include page="productTab.jsp" /></td>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="cleared"></div>
-        <p class="art-page-footer"><a href="http://www.2createawebsite.com/artisteer">Website Template created with Artisteer</a>.</p>
+        <p class="art-page-footer"></p>
 
     </body>
 </html>
