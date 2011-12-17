@@ -58,7 +58,7 @@
             }
         </script>
   
-        <!--<script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script -->></head>
+        <!--<script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script --></head>
     <body class=" catalog-category-view categorypath-electronics-computers-html category-computers" onload="setProduct('all','9','1');" >
         <input type="hidden" value="" id="menuCode"/>
         <input type="hidden" value="9" id="navShow"/>

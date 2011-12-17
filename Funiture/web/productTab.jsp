@@ -17,11 +17,11 @@
 	<script src="jshome/js/jquery-func.js" type="text/javascript"></script>
 
     </head>
-    <body>
+    <body >
 
         <!-- Main -->
-        <div id="main">
-            <div class="shell">
+        <div id="main" >
+            <div class="shell" >
 
 
                 <!-- Content -->

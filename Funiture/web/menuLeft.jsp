@@ -32,7 +32,7 @@
         <li class="drawer">
             <div class="drawer-handle">โต๊ะกลาง</div>
             <ul>
-                <li><a title="iTunes 7.5" href="http://www.apple.com/itunes/download/">โต๊กลางหิน 8 รุ่น</a></li>
+                <li><a title="iTunes 7.5" href="http://www.apple.com/itunes/download/">โต๊ะกลางหิน 8 รุ่น</a></li>
                 <li><a title="QuickTime 7.3.1" href="http://www.apple.com/quicktime/download/">โต๊ะกลางกระจก CP28</a></li>
                 <li><a title="Safari 3 Public Beta" href="http://www.apple.com/safari/download/">โต๊ะกลางกระจก Temper glass</a></li>
                 <li><a title="MacPool" href="/downloads/macosx/games/simulation_and_sports/macpool.html">โต๊ะกลางกระจกโทนิก,ดูม</a></li>
