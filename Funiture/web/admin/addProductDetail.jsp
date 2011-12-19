@@ -9,7 +9,7 @@
 
 <c:if test="${param.productCode!=null}">
     <sql:query var="query3" dataSource="webdb">
-        SELECT *  FROM product_detail_master where product_code=${param.productCode}
+        SELECT *  FROM product_detail_master where product_code like '${param.productCode}'
     </sql:query>  
 </c:if>
 
@@ -134,7 +134,7 @@
                     <c:forEach var="product" items="${query3.rows}" >
                         <tr>
                             <td align="right" width="300">Product Group</td>
-                            <td><input type="text" size="10" value="${product.product_group}"/></td>
+                            <td><input type="text" size="10" value="${product.product_group_id}"/></td>
                         </tr>
                         <tr>
                             <td align="right">Product Code</td>
