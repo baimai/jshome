@@ -18,7 +18,7 @@
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
         SELECT * FROM pic_product_setup mps
-        join product_detail_master pdm on mps.product_code = pdm.product_code
+        join product_detail_master pdm on mps.product_detail_id = pdm.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query> 
 </c:if>
@@ -35,7 +35,7 @@
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
         SELECT * FROM pic_product_setup mps
-        join product_detail_master pdm on pdm.product_code = mps.product_code
+       join product_detail_master pdm on mps.product_detail_id = pdm.product_detail_id
         join menu_detail_master mdm on mdm.pic_code = mps.pic_code
         where mdm.pic_code = '${param.menuCode}'
         limit ${(param.page-1)*param.show},${param.show}
