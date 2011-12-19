@@ -41,7 +41,7 @@ public class xmlProductGroup extends HttpServlet {
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String productGroup = null;
+                String productGroup = null, Edit = null,Del=null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
@@ -50,6 +50,12 @@ public class xmlProductGroup extends HttpServlet {
                  */
                 if (request.getParameter("productGroup") != null) {
                     productGroup = request.getParameter("productGroup");
+                }
+                if (request.getParameter("Edit") != null) {
+                    Edit = request.getParameter("Edit");
+                }
+                if (request.getParameter("Del") != null) {
+                    Del = request.getParameter("Del");
                 }
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
@@ -78,7 +84,7 @@ public class xmlProductGroup extends HttpServlet {
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList listp = pdm.search("",productGroup); 
+                ArrayList listp = pdm.search("", productGroup);
                 ArrayList list = pgmt.search(sField, sValue, sOper, productGroup);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
@@ -92,9 +98,9 @@ public class xmlProductGroup extends HttpServlet {
 
                     for (int i = 0; i < list.size(); i++) {
                         productGroupMaster data = (productGroupMaster) list.get(i);
-                        out.print("<row id='" + data.getProductGroup() + "'>");
+                        out.print("<row id='" + data.getProductGroupCode() + "'>");
                         out.print("<cell>" + i + "</cell>");
-                        out.print("<cell>" + data.getProductGroup() + "</cell>");
+                        out.print("<cell>" + data.getProductGroupCode() + "</cell>");
                         out.print("<cell>" + data.getProductGNameT() + "</cell>");
                         out.print("<cell>" + data.getProductGNameE() + "</cell>");
                         out.print("<cell>" + data.getProductRemarkT() + "</cell>");
@@ -102,6 +108,7 @@ public class xmlProductGroup extends HttpServlet {
                         out.print("<cell>" + data.getCreateDate() + "</cell>");
                         out.print("<cell>" + data.getUpdateDate() + "</cell>");
                         out.print("<cell>" + data.getUserId() + "</cell>");
+
                         out.print("</row>");
                         srNo++;
                     }
@@ -118,21 +125,28 @@ public class xmlProductGroup extends HttpServlet {
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMaster data = (productDetailMaster) listp.get(i);
                         out.print("<row id='" + data.getProductCode() + "'>");
-                       // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
-                        out.print("<cell>" + data.getProductDNameT()+ "</cell>");
-                        out.print("<cell>" + data.getProductPrice1()+ "</cell>");
-                        out.print("<cell>" + data.getProductSpect1_T()+ "</cell>");
-                        out.print("<cell>" + data.getProductSpect2_T()+ "</cell>");
-                        out.print("<cell>" + data.getProductDRemarkT() + "</cell>");                       
+                        // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
+                        out.print("<cell>" + data.getProductCode() + "</cell>");
+                        out.print("<cell>" + data.getProductDNameT() + "</cell>");
+                        out.print("<cell>" + data.getProductPrice1() + "</cell>");
+                        out.print("<cell>" + data.getProductSpect1_T() + "</cell>");
+                        out.print("<cell>" + data.getProductSpect2_T() + "</cell>");
+                        out.print("<cell>" + data.getProductDRemarkT() + "</cell>");
+                        if (Edit != null) {
+                            out.print("<cell>"+data.getProductCode()+"</cell>");
+                        }
+                        if (Del != null) {
+                            out.print("<cell>"+data.getProductCode()+"</cell>");
+                        }
                         out.print("</row>");
                         srNo++;
                     }
                     out.print("</rows>");
                 }
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace(out);
-        } finally {            
+        } finally {
             out.close();
         }
     }
