@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.entity.menuProductSetup;
-import model.menuProductSetupTable;
+import model.companyMasterTable;
+import model.entity.picProductSetup;
+import model.picProductSetupTable;
+import model.productDetailMasterTable;
 
 /**
  *
@@ -35,13 +37,30 @@ public class productSetup extends HttpServlet {
         try {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
-                menuProductSetupTable mpst = new menuProductSetupTable(db);
-                menuProductSetup mps = new menuProductSetup();
-                if (request.getParameter("menuCode") != null) {
-                    mps.setMenuCode(request.getParameter("menuCode"));
+                picProductSetupTable mpst = new picProductSetupTable(db);
+                productDetailMasterTable pdmt = new productDetailMasterTable(db);
+                companyMasterTable cmt = new companyMasterTable(db);
+                picProductSetup mps = new picProductSetup();
+                if (request.getParameter("picCode") != null) {
+                    mps.setPicCode(request.getParameter("picCode"));
+                }
+                if (request.getParameter("companyCode") != null) {
+                    int i = cmt.getCompanyId(request.getParameter("companyCode"));
+                    if (i != 0) {
+                        mps.setCompanyId(i);
+                    }
                 }
                 if (request.getParameter("productCode") != null) {
-                    mps.setProductCode(request.getParameter("productCode"));
+                    int i = pdmt.getProductId(request.getParameter("productCode"));
+                    if (i != 0) {
+                        mps.setProductId(i);
+                    }
+                }
+                if (request.getParameter("picNameT") != null) {
+                    mps.setPicNameT(request.getParameter("picNameT"));
+                }
+                if (request.getParameter("picNameE") != null) {
+                    mps.setPicNameE(request.getParameter("picNameE"));
                 }
                 if (request.getParameter("productRemarkT") != null) {
                     mps.setProductRemarkT(request.getParameter("productRemarkT"));
@@ -49,16 +68,7 @@ public class productSetup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     mps.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-                if (request.getParameter("createDate") == null || request.getParameter("createDate").equals("")) {
-                    mps.setCreateDate(Timestamp.valueOf(db.getNow()));
-                } else {
-                    mps.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                }
-                if (request.getParameter("updateDate") == null || request.getParameter("updateDate").equals("")) {
-                    mps.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                } else {
-                    mps.setUpdateDate(Timestamp.valueOf(request.getParameter("updateDate")));
-                }
+
                 if (request.getParameter("action").equals("Add")) {
                     mpst.add(mps);
                 } else if (request.getParameter("action").equals("Edit")) {
@@ -68,9 +78,9 @@ public class productSetup extends HttpServlet {
                 }
                 db.close();
             }
-        }catch(Exception ex){
-                ex.printStackTrace(out);
-        }finally {
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
+        } finally {
             out.close();
         }
     }

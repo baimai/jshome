@@ -38,7 +38,7 @@ public class productGroup extends HttpServlet {
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productGroupMaster pgm = new productGroupMaster();
                 if (request.getParameter("productGroup") != null) {
-                    pgm.setProductGroup(request.getParameter("productGroup"));
+                    pgm.setProductGroupCode(request.getParameter("productGroup"));
                 }
                 if (request.getParameter("productGNameT") != null) {
                     pgm.setProductGNameT(request.getParameter("productGNameT"));

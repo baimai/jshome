@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.entity.menuProductSetup;
+import model.entity.picProductSetup;
 import model.entity.productDetailMaster;
-import model.menuProductSetupTable;
+import model.picProductSetupTable;
 import model.productDetailMasterTable;
 import util.Default;
 
@@ -80,11 +80,11 @@ public class datagrid extends HttpServlet {
                 }
 
                 Database db = new Database();
-                menuProductSetupTable mps = new menuProductSetupTable(db);
+                picProductSetupTable mps = new picProductSetupTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
                 ArrayList listp = pdm.search(productCode,""); 
                 //ArrayList list = mps.search(menuCode,productCode);
-                ArrayList list = mps.search(sField, sValue, sOper, productCode);
+                ArrayList list = mps.search(sField, sValue, sOper);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");
@@ -94,14 +94,18 @@ public class datagrid extends HttpServlet {
                     out.print("<total>" + totalPages + "</total>");
                     out.print("<records>" + list.size() + "</records>");
                     int srNo = 1;
-
+                    
                     for (int i = 0; i < list.size(); i++) {
-                        menuProductSetup data = (menuProductSetup) list.get(i);
+                        picProductSetup data = (picProductSetup) list.get(i);
                         out.print("<row id='" + data.getProductCode() + "'>");
                         out.print("<cell>" + i + "</cell>");
-                        out.print("<cell>" + data.getMenuCode() + "</cell>");
+                         out.print("<cell>" + data.getCompanyCode() + "</cell>");
+                        out.print("<cell>" + data.getPicCode() + "</cell>");
                         out.print("<cell>" + data.getProductCode() + "</cell>");
+                         out.print("<cell>" + data.getPicNameT() + "</cell>");
+                         out.print("<cell>" + data.getPicNameE() + "</cell>");
                         out.print("<cell>" + data.getProductRemarkT() + "</cell>");
+                        out.print("<cell>" + data.getProductRemarkE() + "</cell>");
                         out.print("<cell>" + data.getCreateDate() + "</cell>");
                         out.print("<cell>" + data.getUpdateDate() + "</cell>");
                         out.print("<cell>" + data.getUserId() + "</cell>");
