@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  */
 public class productDetailMaster {
     
-    private String productGroup;
+    private int productGroupId;
     private String productCode;
     private String productDNameT;
     private String productDNameE;
@@ -30,29 +30,18 @@ public class productDetailMaster {
     private String productSpect4_E;
     private String productSpect5_E;
     private String productSpect6_E;
-    private String productDLink;
-    private String productDLogo;
-    private BigDecimal productDIcon;
+    private String productDPicLoc;
+    private String productDIconLoc;
     private String productDRemarkT;
     private String productDRemarkE;
-    private boolean productDDisplayFlag;
+    private String productDDisplayFlag;
     private Timestamp createDate;
     private Timestamp updtaeDate;
     private String userId;
-
-    /**
-     * @return the productGroup
-     */
-    public String getProductGroup() {
-        return productGroup;
-    }
-
-    /**
-     * @param productGroup the productGroup to set
-     */
-    public void setProductGroup(String productGroup) {
-        this.productGroup = productGroup;
-    }
+    private int ProductColorId;
+    private int companyId;
+    private int productDetailId;
+ 
 
     /**
      * @return the productCode
@@ -309,44 +298,7 @@ public class productDetailMaster {
     /**
      * @return the productDLink
      */
-    public String getProductDLink() {
-        return productDLink;
-    }
-
-    /**
-     * @param productDLink the productDLink to set
-     */
-    public void setProductDLink(String productDLink) {
-        this.productDLink = productDLink;
-    }
-
-    /**
-     * @return the productDLogo
-     */
-    public String getProductDLogo() {
-        return productDLogo;
-    }
-
-    /**
-     * @param productDLogo the productDLogo to set
-     */
-    public void setProductDLogo(String productDLogo) {
-        this.productDLogo = productDLogo;
-    }
-
-    /**
-     * @return the productDIcon
-     */
-    public BigDecimal getProductDIcon() {
-        return productDIcon;
-    }
-
-    /**
-     * @param productDIcon the productDIcon to set
-     */
-    public void setProductDIcon(BigDecimal productDIcon) {
-        this.productDIcon = productDIcon;
-    }
+    
 
     /**
      * @return the productDRemarkT
@@ -376,19 +328,7 @@ public class productDetailMaster {
         this.productDRemarkE = productDRemarkE;
     }
 
-    /**
-     * @return the productDDisplayFlag
-     */
-    public boolean isProductDDisplayFlag() {
-        return productDDisplayFlag;
-    }
 
-    /**
-     * @param productDDisplayFlag the productDDisplayFlag to set
-     */
-    public void setProductDDisplayFlag(boolean productDDisplayFlag) {
-        this.productDDisplayFlag = productDDisplayFlag;
-    }
 
     /**
      * @return the createDate
@@ -431,4 +371,108 @@ public class productDetailMaster {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+
+    /**
+     * @return the productDPicLoc
+     */
+    public String getProductDPicLoc() {
+        return productDPicLoc;
+    }
+
+    /**
+     * @param productDPicLoc the productDPicLoc to set
+     */
+    public void setProductDPicLoc(String productDPicLoc) {
+        this.productDPicLoc = productDPicLoc;
+    }
+
+    /**
+     * @return the productDIconLoc
+     */
+    public String getProductDIconLoc() {
+        return productDIconLoc;
+    }
+
+    /**
+     * @param productDIconLoc the productDIconLoc to set
+     */
+    public void setProductDIconLoc(String productDIconLoc) {
+        this.productDIconLoc = productDIconLoc;
+    }
+
+
+
+    /**
+     * @return the companyId
+     */
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    /**
+     * @param companyId the companyId to set
+     */
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    /**
+     * @return the productDetailId
+     */
+    public int getProductDetailId() {
+        return productDetailId;
+    }
+
+    /**
+     * @param productDetailId the productDetailId to set
+     */
+    public void setProductDetailId(int productDetailId) {
+        this.productDetailId = productDetailId;
+    }
+
+    /**
+     * @return the productDDisplayFlag
+     */
+    public String getProductDDisplayFlag() {
+        return productDDisplayFlag;
+    }
+
+    /**
+     * @param productDDisplayFlag the productDDisplayFlag to set
+     */
+    public void setProductDDisplayFlag(String productDDisplayFlag) {
+        this.productDDisplayFlag = productDDisplayFlag;
+    }
+
+    /**
+     * @return the productGroupId
+     */
+    public int getProductGroupId() {
+        return productGroupId;
+    }
+
+    /**
+     * @param productGroupId the productGroupId to set
+     */
+    public void setProductGroupId(int productGroupId) {
+        this.productGroupId = productGroupId;
+    }
+
+    /**
+     * @return the ProductColorId
+     */
+    public int getProductColorId() {
+        return ProductColorId;
+    }
+
+    /**
+     * @param ProductColorId the ProductColorId to set
+     */
+    public void setProductColorId(int ProductColorId) {
+        this.ProductColorId = ProductColorId;
+    }
+
+
+ 
 }
