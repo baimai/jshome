@@ -75,8 +75,8 @@
             <option value=""> ทั้งหมด </option>
             <c:forEach items="${query3.rows}" var="group">
 
-                <option value="${group.product_group}" 
-                        <c:if test="${param.productGroup == group.product_group && param.productGroup != null}">
+                <option value="${group.product_group_code}" 
+                        <c:if test="${param.productGroup == group.product_group_code && param.productGroup != null}">
                             selected
                         </c:if>
                         >${group.product_g_name_t}</option>
