@@ -88,7 +88,7 @@
                                         <li><a href="#" onclick="setProduct('all',document.getElementById('navShow').value,'1');">${all.T}</a> (${all.count})</li>
                                     </c:forEach>        
                                     <c:forEach var="menu" items="${query.rows}">
-                                        <li><a href="#" onclick="setProduct('${menu.menu_code}',document.getElementById('navShow').value,'1');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                        <li><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1');">${menu.menu_c_name_t}</a> (${menu.count})</li>
                                     </c:forEach>
                                 </ul>
 
