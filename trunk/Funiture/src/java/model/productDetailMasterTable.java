@@ -24,13 +24,17 @@ public class productDetailMasterTable {
     }
 
     public void add(productDetailMaster pdm) {
-        String sql = "insert into product_detail_master values("
-                + "?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?"
-                + ")";
+        String sql = "insert into product_detail_master "
+                + "(Company_Id,Product_Group_Id,Product_Code,Product_D_Name_T,Product_D_Name_E,"
+                + " Product_Price1,Product_Price2,Product_Price3,"
+                + " Product_Spec1_T,Product_Spec2_T,Product_Spec3_T,Product_Spec4_T,Product_Spec5_T,Product_Spec6_T,"
+                + " Product_Spec1_E,Product_Spec2_E,Product_Spec3_E,Product_Spec4_E,Product_Spec5_E,Product_Spec6_E,"
+                + " Product_D_Pic_Loc,Product_D_Icon_Loc,Product_D_Remark_T,Product_D_Remark_E,Product_D_Display_Flag,"
+                + " Create_Date,User_Id,Product_Color_Id)"
+                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         db.add(sql,
-                pdm.getProductGroup(),
+                pdm.getCompanyId(),
+                pdm.getProductGroupId(),
                 pdm.getProductCode(),
                 pdm.getProductDNameT(),
                 pdm.getProductDNameE(),
@@ -49,31 +53,31 @@ public class productDetailMasterTable {
                 pdm.getProductSpect4_E(),
                 pdm.getProductSpect5_E(),
                 pdm.getProductSpect6_E(),
-                pdm.getProductDLink(),
-                pdm.getProductDLogo(),
-                pdm.getProductDIcon(),
+                pdm.getProductDPicLoc(),
+                pdm.getProductDIconLoc(),
                 pdm.getProductDRemarkT(),
                 pdm.getProductDRemarkE(),
-                pdm.isProductDDisplayFlag(),
+                pdm.getProductDDisplayFlag(),
                 pdm.getCreateDate(),
-                pdm.getUpdtaeDate(),
-                pdm.getUserId());
+                pdm.getUserId(),
+                pdm.getProductColorId());
     }
 
     public void update(productDetailMaster pdm) {
-        String sql = "update product_detail_master set Product_Group = ?,Product_Code = ?,"
+        String sql = "update product_detail_master set Company_Id = ?,Product_Group_Id = ?,Product_Code = ?,"
                 + "Product_D_Name_T = ?,Product_D_Name_E = ?,"
                 + "Product_Price1 = ?,Product_Price2 = ?,Product_Price3 = ?,"
                 + "Product_Spec1_T = ?,Product_Spec2_T = ?,Product_Spec3_T = ?,"
                 + "Product_Spec4_T = ?,Product_Spec5_T = ?,Product_Spec6_T = ?,"
                 + "Product_Spec1_E = ?,Product_Spec2_E = ?,Product_Spec3_E = ?,"
                 + "Product_Spec4_E = ?,Product_Spec5_E = ?,Product_Spec6_E = ?,"
-                + "Product_D_Link = ?,Product_D_Logo = ?,Product_D_Icon = ?,"
-                + "Product_D_Remark_T = ?,Product_D_Remark_E = ?,Product_D_Display_flag = ?,"
-                + "Create_date = ?,Updtae_date = ?,User_Id = ?"
-                + " where User_Id = ? ";
+                + "Product_D_Pic_Loc = ?,Product_D_Icon_Loc = ?,"
+                + "Product_D_Remark_T = ?,Product_D_Remark_E = ?,Product_D_Display_Flag = ?,"
+                + "Updtae_date = ?,Product_Color_Id = ? "
+                + "where Product_Detail_Id = ? ";
         db.add(sql,
-                pdm.getProductGroup(),
+                pdm.getCompanyId(),
+                pdm.getProductGroupId(),
                 pdm.getProductCode(),
                 pdm.getProductDNameT(),
                 pdm.getProductDNameE(),
@@ -92,29 +96,30 @@ public class productDetailMasterTable {
                 pdm.getProductSpect4_E(),
                 pdm.getProductSpect5_E(),
                 pdm.getProductSpect6_E(),
-                pdm.getProductDLink(),
-                pdm.getProductDLogo(),
-                pdm.getProductDIcon(),
+                pdm.getProductDPicLoc(),
+                pdm.getProductDIconLoc(),
                 pdm.getProductDRemarkT(),
                 pdm.getProductDRemarkE(),
-                pdm.isProductDDisplayFlag(),
-                pdm.getCreateDate(),
+                pdm.getProductDDisplayFlag(),
                 pdm.getUpdtaeDate(),
-                pdm.getUserId());
+                pdm.getProductColorId(),
+                pdm.getProductDetailId());
     }
 
-    public ArrayList search(String productCode,String productGroup) {
-        String sql = "SELECT * FROM product_detail_master where Product_Code like '%"+Default.Str(productCode)+"%' and Product_Group like '%"+Default.Str(productGroup)+"%'";
+    public ArrayList search(String productCode, String productGroupCode) {
+        String sql = "SELECT * FROM product_detail_master pdm"
+                + " join product_group_master pgm on pgm.Product_Group_Id = pdm.Product_Group_Id "
+                + " where pdm.Product_Code like '%" + Default.Str(productCode) + "%' and pgm.Product_Group_Code like '%" + Default.Str(productGroupCode) + "%'";
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
         if (result != null) {
             for (int i = 0; i < result.size(); i++) {
                 productDetailMaster pdm = new productDetailMaster();
-                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
-                pdm.setProductDLogo(Default.Str(result.get(i).get("Product_D_Logo")));
-                pdm.setProductGroup(Default.Str(result.get(i).get("Product_Group")));
+                pdm.setCompanyId((int)(result.get(i).get("Company_Id")));
+                pdm.setProductGroupId((int)result.get(i).get("Product_Group_Id"));
+                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));                            
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
-                pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))) );
+                pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));
                 pdm.setProductPrice1(Default.BigDecimal(result.get(i).get("Product_Price1")));
                 pdm.setProductPrice2(Default.BigDecimal(result.get(i).get("Product_Price2")));
                 pdm.setProductPrice3(Default.BigDecimal(result.get(i).get("Product_Price3")));
@@ -130,15 +135,31 @@ public class productDetailMasterTable {
                 pdm.setProductSpect4_E(Default.Str(result.get(i).get("Product_Spec4_E")));
                 pdm.setProductSpect5_E(Default.Str(result.get(i).get("Product_Spec5_E")));
                 pdm.setProductSpect6_E(Default.Str(result.get(i).get("Product_Spec6_E")));
+                pdm.setProductDPicLoc(Default.Str(result.get(i).get("Product_D_Pic_Loc")));
+                pdm.setProductDIconLoc(Default.Str(result.get(i).get("Product_D_Icon_Loc")));
                 pdm.setProductDRemarkT(Default.Str(result.get(i).get("Product_D_Remark_T")));
                 pdm.setProductDRemarkE(Default.Str(result.get(i).get("Product_D_Remark_E")));
+                pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
                 pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
-                
+                pdm.setProductDetailId((int)result.get(i).get("Product_Detail_Id"));
+                pdm.setProductColorId((int)result.get(i).get("Product_Color_Id"));
+
                 list.add(pdm);
             }
             return list;
         } else {
             return null;
+        }
+
+    }
+
+    public int getProductId(String productCode) {
+        String sql = "select * from product_detail_master where Product_Code = ?";
+        List<Map<String, Object>> result = db.queryList(sql, productCode);
+        if (result != null) {
+            return (int) result.get(0).get("Product_Detail_Id");
+        } else {
+            return 0;
         }
 
     }
