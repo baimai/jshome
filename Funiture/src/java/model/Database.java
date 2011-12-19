@@ -14,15 +14,16 @@ import java.util.logging.Logger;
  * @author Achilles
  */
 public class Database {
+
     private Connection connect;
 
     public Database() {
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://localhost/webdb?user=root&password=1234");
+            connect = DriverManager.getConnection("jdbc:mysql://192.168.0.15/webdb?user=jshome&password=jshome");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public void close() {
@@ -32,7 +33,7 @@ public class Database {
             } catch (SQLException ex) {
                 Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
 
@@ -63,8 +64,8 @@ public class Database {
             for (int i = 0; i < args.length; i++) {
                 pstmt.setObject(i + 1, args[i]);
             }
-
-            return pstmt.executeUpdate();
+            int i = pstmt.executeUpdate();
+            return i;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
@@ -82,7 +83,7 @@ public class Database {
                 pstmt.setObject(i + 1, args[i]);
             }
             ResultSet rs = pstmt.executeQuery();
-            ResultSetMetaData md = rs.getMetaData();
+            ResultSetMetaData md = rs.getMetaData();            
             if (rs.next()) {
                 Map<String, Object> map;
                 map = new HashMap<String, Object>();
@@ -102,11 +103,11 @@ public class Database {
             return null;
         }
     }
-    
+
     public List<Map<String, Object>> queryList(String sql, Object... args) {
         try {
-            List<Map<String,Object>> list;
-            list = new ArrayList<Map<String,Object>>();
+            List<Map<String, Object>> list;
+            list = new ArrayList<Map<String, Object>>();
             PreparedStatement pstmt = connect.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
                 pstmt.setObject(i + 1, args[i]);
@@ -122,30 +123,32 @@ public class Database {
                 list.add(map);
             }
             pstmt.close();
-            rs.close();           
+            rs.close();
             return list;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-    
+
     //Transaction
-    public void beginTransaction(){
+    public void beginTransaction() {
         try {
             connect.setAutoCommit(false);
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void commit(){
+
+    public void commit() {
         try {
             connect.commit();
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void rollback(){
+
+    public void rollback() {
         try {
             connect.rollback();
         } catch (SQLException ex) {
@@ -153,7 +156,7 @@ public class Database {
         }
     }
     //End Transaction
-    
+
     public String getNow() {
         try {
             Statement stmt;
