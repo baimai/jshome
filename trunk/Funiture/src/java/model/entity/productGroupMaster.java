@@ -25,6 +25,8 @@ public class productGroupMaster {
     private String userId;
     private int companyId;
     private int productGroupId;
+    private String companyCode;
+    
  
 
     /**
@@ -208,5 +210,19 @@ public class productGroupMaster {
      */
     public void setProductGroupId(int productGroupId) {
         this.productGroupId = productGroupId;
+    }
+
+    /**
+     * @return the companyCode
+     */
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    /**
+     * @param companyCode the companyCode to set
+     */
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
     }
 }
