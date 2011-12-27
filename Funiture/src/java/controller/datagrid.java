@@ -82,7 +82,7 @@ public class datagrid extends HttpServlet {
                 Database db = new Database();
                 picProductSetupTable mps = new picProductSetupTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList listp = pdm.search(productCode,""); 
+                ArrayList listp = pdm.search(productCode); 
                 //ArrayList list = mps.search(menuCode,productCode);
                 ArrayList list = mps.search(sField, sValue, sOper);
                 db.close();

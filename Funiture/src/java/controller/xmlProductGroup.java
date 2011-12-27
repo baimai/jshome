@@ -41,15 +41,15 @@ public class xmlProductGroup extends HttpServlet {
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String productGroup = null, Edit = null,Del=null;
+                String productGroupId = null, Edit = null,Del=null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
                 menuCode = request.getParameter("menuCode");
                 }
                  */
-                if (request.getParameter("productGroup") != null) {
-                    productGroup = request.getParameter("productGroup");
+                if (request.getParameter("productGroupId") != null) {
+                    productGroupId = request.getParameter("productGroupId");
                 }
                 if (request.getParameter("Edit") != null) {
                     Edit = request.getParameter("Edit");
@@ -84,8 +84,8 @@ public class xmlProductGroup extends HttpServlet {
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList listp = pdm.search("", productGroup);
-                ArrayList list = pgmt.search(sField, sValue, sOper, productGroup);
+                ArrayList listp = pdm.search(productGroupId);
+                ArrayList list = pgmt.search(sField, sValue, sOper);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");
@@ -98,17 +98,15 @@ public class xmlProductGroup extends HttpServlet {
 
                     for (int i = 0; i < list.size(); i++) {
                         productGroupMaster data = (productGroupMaster) list.get(i);
-                        out.print("<row id='" + data.getProductGroupCode() + "'>");
+                        out.print("<row id='" + data.getProductGroupId() + "'>");
                         out.print("<cell>" + i + "</cell>");
                         out.print("<cell>" + data.getProductGroupCode() + "</cell>");
                         out.print("<cell>" + data.getProductGNameT() + "</cell>");
                         out.print("<cell>" + data.getProductGNameE() + "</cell>");
                         out.print("<cell>" + data.getProductRemarkT() + "</cell>");
                         out.print("<cell>" + data.getProductRemarkE() + "</cell>");
-                        out.print("<cell>" + data.getCreateDate() + "</cell>");
-                        out.print("<cell>" + data.getUpdateDate() + "</cell>");
-                        out.print("<cell>" + data.getUserId() + "</cell>");
-
+                        out.print("<cell>" + data.getProductGroupId() + "</cell>");
+                        out.print("<cell>" + data.getCompanyCode() + "</cell>");
                         out.print("</row>");
                         srNo++;
                     }
@@ -128,16 +126,18 @@ public class xmlProductGroup extends HttpServlet {
                         // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
                         out.print("<cell>" + data.getProductCode() + "</cell>");
                         out.print("<cell>" + data.getProductDNameT() + "</cell>");
+                        out.print("<cell>" + data.getProductDNameE() + "</cell>");
                         out.print("<cell>" + data.getProductPrice1() + "</cell>");
-                        out.print("<cell>" + data.getProductSpect1_T() + "</cell>");
-                        out.print("<cell>" + data.getProductSpect2_T() + "</cell>");
                         out.print("<cell>" + data.getProductDRemarkT() + "</cell>");
+                        out.print("<cell>" + data.getProductDRemarkE() + "</cell>");
+                        
                         if (Edit != null) {
-                            out.print("<cell>"+data.getProductCode()+"</cell>");
+                            out.print("<cell>"+data.getProductDetailId()+"</cell>");
                         }
                         if (Del != null) {
-                            out.print("<cell>"+data.getProductCode()+"</cell>");
+                            out.print("<cell>"+data.getProductDetailId()+"</cell>");
                         }
+                        
                         out.print("</row>");
                         srNo++;
                     }

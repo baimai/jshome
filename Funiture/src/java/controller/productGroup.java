@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+import model.companyMasterTable;
 import model.entity.productGroupMaster;
 import model.productGroupMasterTable;
 
@@ -36,9 +37,19 @@ public class productGroup extends HttpServlet {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
+                companyMasterTable cmt = new companyMasterTable(db);
                 productGroupMaster pgm = new productGroupMaster();
-                if (request.getParameter("productGroup") != null) {
-                    pgm.setProductGroupCode(request.getParameter("productGroup"));
+                if (request.getParameter("companyCode") != null) {
+                    int i = cmt.getCompanyId(request.getParameter("companyCode"));
+                    if(i!=0){
+                        pgm.setCompanyId(i);
+                    }                 
+                }
+                if (request.getParameter("productGroupId") != null&&request.getParameter("action").equals("Edit")) {
+                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
+                }
+                if (request.getParameter("productGroupCode") != null) {
+                    pgm.setProductGroupCode(request.getParameter("productGroupCode"));
                 }
                 if (request.getParameter("productGNameT") != null) {
                     pgm.setProductGNameT(request.getParameter("productGNameT"));
@@ -52,16 +63,10 @@ public class productGroup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     pgm.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-                if (request.getParameter("createDate") == null || request.getParameter("createDate").equals("")) {
-                    pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
-                } else {
-                    pgm.setCreateDate(Timestamp.valueOf(request.getParameter("createDate")));
-                }
-                if (request.getParameter("updateDate") == null || request.getParameter("updateDate").equals("")) {
+                
+                    pgm.setCreateDate(Timestamp.valueOf(db.getNow()));             
                     pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                } else {
-                    pgm.setUpdateDate(Timestamp.valueOf(request.getParameter("updateDate")));
-                }
+                
                 if (request.getParameter("action").equals("Add")) {
                     pgmt.add(pgm);
                 } else if (request.getParameter("action").equals("Edit")) {
@@ -69,6 +74,7 @@ public class productGroup extends HttpServlet {
                 } else if (request.getParameter("action").equals("Del")) {
                     //pgmt.remove(pgm);
                 }
+                    System.out.print("test");
                 db.close();
             }
         }catch(Exception ex){
