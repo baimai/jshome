@@ -106,18 +106,25 @@ public class productDetailMasterTable {
                 pdm.getProductDetailId());
     }
 
-    public ArrayList search(String productCode, String productGroupCode) {
-        String sql = "SELECT * FROM product_detail_master pdm"
-                + " join product_group_master pgm on pgm.Product_Group_Id = pdm.Product_Group_Id "
-                + " where pdm.Product_Code like '%" + Default.Str(productCode) + "%' and pgm.Product_Group_Code like '%" + Default.Str(productGroupCode) + "%'";
-        List<Map<String, Object>> result = db.queryList(sql);
+    public ArrayList search(String productGroupId) {
+        List<Map<String, Object>> result = null;
+        if (productGroupId == null) {
+            String sql = "SELECT * FROM product_detail_master pdm";
+            result = db.queryList(sql);
+        } else {
+            String sql = "SELECT * FROM product_detail_master pdm"
+                    + " where  pdm.Product_Group_Id = ? ";
+            result = db.queryList(sql, productGroupId);
+        }
+
+
         ArrayList list = new ArrayList();
         if (result != null) {
             for (int i = 0; i < result.size(); i++) {
                 productDetailMaster pdm = new productDetailMaster();
-                pdm.setCompanyId((int)(result.get(i).get("Company_Id")));
-                pdm.setProductGroupId((int)result.get(i).get("Product_Group_Id"));
-                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));                            
+                pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
+                pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
+                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));
                 pdm.setProductPrice1(Default.BigDecimal(result.get(i).get("Product_Price1")));
@@ -141,9 +148,10 @@ public class productDetailMasterTable {
                 pdm.setProductDRemarkE(Default.Str(result.get(i).get("Product_D_Remark_E")));
                 pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
                 pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
-                pdm.setProductDetailId((int)result.get(i).get("Product_Detail_Id"));
-                pdm.setProductColorId((int)result.get(i).get("Product_Color_Id"));
-
+                pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
+                if (result.get(i).get("Product_Color_Id") != null) {
+                    pdm.setProductColorId((Integer) result.get(i).get("Product_Color_Id"));
+                }
                 list.add(pdm);
             }
             return list;
@@ -157,7 +165,7 @@ public class productDetailMasterTable {
         String sql = "select * from product_detail_master where Product_Code = ?";
         List<Map<String, Object>> result = db.queryList(sql, productCode);
         if (result != null) {
-            return (int) result.get(0).get("Product_Detail_Id");
+            return Integer.parseInt((String) result.get(0).get("Product_Detail_Id"));
         } else {
             return 0;
         }
