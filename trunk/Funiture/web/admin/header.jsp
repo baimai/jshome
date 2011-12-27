@@ -19,17 +19,9 @@
 <body>
 <p><img src="images/head.jpg"  /></p>
 <style type="text/css">
-* { margin:0;
-    padding:0;
-}
-html { background:#ffff; }
-body {
-    margin:0px ;
-    height:auto;
-   /* background:#222;*/
-   position: absolute;
-    overflow:hidden;
-}
+
+
+
 div#menu {
     top:0px;
     left:0px;
