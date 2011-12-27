@@ -28,8 +28,8 @@ public class productGroupMasterTable {
     public void add(productGroupMaster pgm) {
         String sql = "insert into product_group_master "
                 + "( Company_Id,Product_Group_Code,Product_G_Name_T,Product_G_Name_E,Product_Pic_Loc,Product_Icon_Loc,"
-                + "  Product_Remark_T,Product_Remark_E,Product_G_Display_Flag,Create_Date,User_Id,Product_Group_Id )"
-                + "  values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "  Product_Remark_T,Product_Remark_E,Product_G_Display_Flag,Create_Date,User_Id )"
+                + "  values(?,?,?,?,?,?,?,?,?,?,?)";
 
         db.add(sql,
                 pgm.getCompanyId(),
@@ -42,8 +42,7 @@ public class productGroupMasterTable {
                 pgm.getProductRemarkE(),
                 pgm.getProductGDisplayFlag(),
                 pgm.getCreateDate(),
-                pgm.getUserId(),
-                0);
+                pgm.getUserId());
     }
 
     public void update(productGroupMaster pgm) {
@@ -67,11 +66,12 @@ public class productGroupMasterTable {
                 pgm.getProductGroupId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper, String productGroupCode) {
-        String sql = "SELECT * FROM product_group_master where product_group_Code like '%" + Default.Str(productGroupCode) + "%'";
+    public ArrayList search(String sField, String sValue, String sOper) {
+        String sql = "SELECT * FROM product_group_master pgm"+
+                     " join Company_Master cm on cm.Company_Id = pgm.Company_Id";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql +" where "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
@@ -83,6 +83,8 @@ public class productGroupMasterTable {
                 pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
                 pgm.setProductRemarkT(Default.Str(result.get(i).get("Product_Remark_T")));
                 pgm.setProductRemarkE(Default.Str(result.get(i).get("Product_Remark_E")));
+                pgm.setProductGroupId((Integer)result.get(i).get("Product_Group_Id"));
+                pgm.setCompanyCode(Default.Str(result.get(i).get("Company_Code")));
                 list.add(pgm);
             }
             return list;
