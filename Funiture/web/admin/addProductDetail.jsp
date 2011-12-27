@@ -7,11 +7,17 @@
     Author     : Achilles
 --%>
 
-<c:if test="${param.productCode!=null}">
+<c:if test="${param.productDetailId!=null}">
     <sql:query var="query3" dataSource="webdb">
-        SELECT *  FROM product_detail_master where product_code like '${param.productCode}'
+        SELECT *  FROM product_detail_master where product_detail_id =  ${param.productDetailId}
     </sql:query>  
 </c:if>
+<sql:query var="query1" dataSource="webdb">
+    SELECT pgm.product_g_name_t as groupName,pgm.product_group_id FROM product_group_master pgm
+</sql:query>
+<sql:query var="query2" dataSource="webdb">
+    SELECT cc.color_name_t as colorName,cc.color_id FROM color_code_master cc
+</sql:query>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,228 +27,268 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <form action="">
 
-            <table border="0" width="900px" >
+        <form action="productDetail.do">
+
+            <table border="0" width="700px" >
                 <tr>
-                    <td colspan="2" align="center"><h1> Add Product</h1></td>
+                    <td colspan="4" align="center"><h1> Add Product</h1></td>
                 </tr>
-                <c:if test="${param.productCode==null}" >
+                <c:if test="${param.productDetailId==null}" >
+                    <input type="hidden" name="action" value="Add" />
                     <tr>
-                        <td align="right" width="300">Product Group</td>
-                        <td><input type="text" size="10"/></td>
+                        <td colspan="2" align="right" >Product Group</td>
+                        <td colspan="2">
+                            <select name="productGroupId">
+                                <c:forEach items="${query1.rows}" var="group">
+                                    <c:if test="${param.productGroupId != group.product_group_id}">
+                                        <option value="${group.product_group_id}" >${group.product_g_name_t}</option>
+                                    </c:if>
+                                    <c:if test="${param.productGroupId == group.product_group_id}">
+                                        <option value="${group.product_group_id}" selected>${group.product_g_name_t}</option>
+                                    </c:if>
+                                </c:forEach>
+
+                            </select>
+                        </td>
                     </tr>
                     <tr>
-                        <td align="right">Product Code</td>
-                        <td><input name="productCode" type="text" size="10"/></td>
+                        <td colspan="2"align="right">Product Code</td>
+                        <td colspan="2"><input name="productCode" id="productCode" type="text" size="10"/></td>
                     </tr>
                     <tr>
-                        <td align="right">Product Name (Thai)</td>
-                        <td><input name="nameTh" type="text" size="30"/></td>
+                        <td colspan="2"align="right">Company Code</td>
+                        <td colspan="2"><input name="companyCode" type="text" size="10"/></td>
                     </tr>
                     <tr>
-                        <td align="right">Product Name (Eng)</td>
-                        <td><input name="nameEn" type="text" size="30"/></td>
+                        <td colspan="2"align="right">Color</td>
+                        <td colspan="2">
+                            <select name="colorId">
+                                <c:forEach items="${query.rows}" var="color" >
+                                    <option value="${color.Color_Id}">${color.colorName}</option>
+                                </c:forEach>
+                            </select></td>
                     </tr>
                     <tr>
-                        <td align="right">Price 1</td>
-                        <td><input name="price1" type="text" size="10"/> Baht</td>
+                        <td colspan="2" align="right">Price 1</td>
+                        <td colspan="2"><input name="price1" type="text" size="10"/> Baht</td>
                     </tr>
                     <tr>
-                        <td align="right">Price 2</td>
-                        <td><input name="price2" type="text" size="10"/> Baht</td>
+                        <td colspan="2"align="right">Price 2</td>
+                        <td colspan="2"><input name="price2" type="text" size="10"/> Baht</td>
                     </tr>
                     <tr>
-                        <td align="right">Price 3</td>
-                        <td><input name="price3" type="text" size="10"/> Baht</td>
+                        <td colspan="2"align="right">Price 3</td>
+                        <td colspan="2"><input name="price3" type="text" size="10"/> Baht</td>
                     </tr>
                     <tr>
-                        <td align="right">Product Spect 1 (Thai)</td>
-                        <td><textarea name="spect1Th" cols="25" rows="2"></textarea></td>
+                        <td colspan="2" align="right">Product Image</td>
+                        <td colspan="2" ><input name="picLoc" type="text" size="5"/></td>
                     </tr>
                     <tr>
-                        <td align="right">Product Spect 2 (Thai)</td>
-                        <td><textarea name="spect2Th" cols="25" rows="2"></textarea></td>
+                        <td colspan="2"align="right">Product Icon</td>
+                        <td colspan="2"><input name="iconLoc" type="text" size="5"/></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="right">Product Display</td>
+                        <td colspan="2"><input name="display" type="radio"/>Yes<input name="display" type="radio"/>No</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4">
+                            <table width="100%" border="1" cellspacing="0" cellpadding="5">
+                                <tr>
+                                    <td colspan="2" align="center" bgcolor="blue">  Thai</td>
+                                    <td colspan="2" align="center" bgcolor="yellow">  English</td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Name </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><input name="nameTh" type="text" size="23"/></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Name </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><input name="nameEn" type="text" size="23"/></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 1 </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect1Th" cols="25" rows="2"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 1 </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect1En" cols="25" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 2 </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect2Th" cols="25" rows="2"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 2 </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect2En" cols="25" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 3 </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect3Th" cols="25" rows="2"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 3 </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect3En" cols="25" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 4 </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect4Th" cols="25" rows="2"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;"align="right">Product Spect 4 </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect4En" cols="25" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 5 </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect5Th" cols="25" rows="2"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 5 </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect5En" cols="25" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 6 </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect6Th" cols="25" rows="2"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 6 </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect6En" cols="25" rows="2"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="lightblue" style="border-right: none;" align="right">Remark </td>
+                                    <td bgcolor="lightblue" style="border-left: none;"><textarea name="remarkTh" cols="25" rows="3"></textarea></td>
+                                    <td bgcolor="lightyellow" style="border-right: none;" align="right">Remark </td>
+                                    <td bgcolor="lightyellow" style="border-left: none;"><textarea name="remarkEn" cols="25" rows="3"></textarea></td>
+                                </tr>
+                            </table>
+                        </td>
                     </tr>
                     <tr>
-                        <td align="right">Product Spect 3 (Thai)</td>
-                        <td><textarea name="spect3Th" cols="25" rows="2"></textarea></td>
+                        <td colspan="2" align="right"><input type="submit" value="Add/Edit"></td>
+                        <td colspan="2"><input type="reset" value="Reset"></td>
                     </tr>
-                    <tr>
-                        <td align="right">Product Spect 4 (Thai)</td>
-                        <td><textarea name="spect4Th" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 5 (Thai)</td>
-                        <td><textarea name="spect5Th" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 6 (Thai)</td>
-                        <td><textarea name="spect6Th" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 1 (Eng)</td>
-                        <td><textarea name="spect1En" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 2 (Eng)</td>
-                        <td><textarea name="spect2En" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 3 (Eng)</td>
-                        <td><textarea name="spect3En" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 4 (Eng)</td>
-                        <td><textarea name="spect4En" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 5 (Eng)</td>
-                        <td><textarea name="spect5En" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Spect 6 (Eng)</td>
-                        <td><textarea name="spect6En" cols="25" rows="2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Image</td>
-                        <td><input name="image" type="text" size="5"/></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Icon</td>
-                        <td><input name="icon" type="text" size="5"/></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Remark (Thai)</td>
-                        <td><textarea name="remarkTh" cols="25" rows="3"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Remark (Eng)</td>
-                        <td><textarea name="remarkEn" cols="25" rows="3"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Product Display</td>
-                        <td><input name="display" type="radio"/>Yes<input name="display" type="radio"/>No</td>
-                    </tr>
-                    <tr>
-                        <td align="right"><input type="submit" value="Add/Edit"></td>
-                        <td><input type="reset" value="Reset"></td>
-                    </tr>
+
                 </c:if>
-                <c:if test="${param.productCode!=null}" >
+                <c:if test="${param.productDetailId!=null}" >
+                    <input type="hidden" name="action" value="Edit" />
                     <c:forEach var="product" items="${query3.rows}" >
                         <tr>
-                            <td align="right" width="300">Product Group</td>
-                            <td><input type="text" size="10" value="${product.product_group_id}"/></td>
+                            <td colspan="2" align="right" >Product Group</td>
+                            <td colspan="2">
+                                <select name="productGroupId">
+                                    <c:forEach items="${query1.rows}" var="group">
+                                        <c:if test="${group.product_Group_Id == product.product_Group_Id }" >
+                                            <option value="${group.product_group_id}" selected>${group.product_g_name_t}</option>
+                                        </c:if>
+                                        <c:if test="${group.product_Group_Id != product.product_Group_Id }" >
+                                            <option value="${group.product_group_id}" >${group.product_g_name_t}</option>
+                                        </c:if>
+                                    </c:forEach>
+
+                                </select>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right">Product Code</td>
-                            <td><input name="productCode" type="text" size="10" value="${product.product_code}"/></td>
+                            <td colspan="2"align="right">Product Code</td>
+                            <td colspan="2"><input name="productCode" type="text" size="10"/></td>
                         </tr>
                         <tr>
-                            <td align="right">Product Name (Thai)</td>
-                            <td><input name="nameTh" type="text" size="30" value="${product.product_d_name_t}"/></td>
+                            <td colspan="2"align="right">Company Code</td>
+                            <td colspan="2"><input name="companyCode" type="text" size="10"/></td>
                         </tr>
                         <tr>
-                            <td align="right">Product Name (Eng)</td>
-                            <td><input name="nameEn" type="text" size="30" value="${product.product_d_name_e}"/></td>
+                            <td colspan="2"align="right">Color</td>
+                            <td colspan="2">
+                                <select name="colorId">
+                                    <c:forEach items="${query.rows}" var="color" >
+                                        <c:if test="${color.color_Id == product.product_color_Id }" >
+                                            <option value="${color.Color_Id}">${color.colorName}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select></td>
                         </tr>
                         <tr>
-                            <td align="right">Price 1</td>
-                            <td><input name="price1" type="text" size="10" value="${product.product_price1}"/> Baht</td>
+                            <td colspan="2" align="right">Price 1</td>
+                            <td colspan="2"><input name="price1" type="text" size="10" value="${product.product_Price1}"/> Baht</td>
                         </tr>
                         <tr>
-                            <td align="right">Price 2</td>
-                            <td><input name="price2" type="text" size="10" value="${product.product_price2}"/> Baht</td>
+                            <td colspan="2"align="right">Price 2</td>
+                            <td colspan="2"><input name="price2" type="text" size="10" value="${product.product_Price2}"/> Baht</td>
                         </tr>
                         <tr>
-                            <td align="right">Price 3</td>
-                            <td><input name="price3" type="text" size="10" value="${product.product_price3}"/> Baht</td>
+                            <td colspan="2"align="right">Price 3</td>
+                            <td colspan="2"><input name="price3" type="text" size="10" value="${product.product_Price3}"/> Baht</td>
                         </tr>
                         <tr>
-                            <td align="right">Product Spect 1 (Thai)</td>
-                            <td><textarea name="spect1Th" cols="25" rows="2" value="${product.product_spect1_t}"></textarea></td>
+                            <td colspan="2" align="right">Product Image</td>
+                            <td colspan="2" ><input name="picLoc" type="text" size="5"/></td>
                         </tr>
                         <tr>
-                            <td align="right">Product Spect 2 (Thai)</td>
-                            <td><textarea name="spect2Th" cols="25" rows="2" value="${product.product_spect2_t}"></textarea></td>
+                            <td colspan="2"align="right">Product Icon</td>
+                            <td colspan="2"><input name="iconLoc" type="text" size="5"/></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" align="right">Product Display</td>
+                            <td colspan="2"><input name="display" type="radio"/>Yes<input name="display" type="radio"/>No</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="4">
+                                <table width="100%" border="1" cellspacing="0" cellpadding="5">
+                                    <tr>
+                                        <td colspan="2" align="center" bgcolor="blue">  Thai</td>
+                                        <td colspan="2" align="center" bgcolor="yellow">  English</td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Name </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><input name="nameTh" type="text" size="23" value="${product.product_d_name_t}"/></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Name </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><input name="nameEn" type="text" size="23" value="${product.product_d_name_e}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 1 </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect1Th" cols="25" rows="2" >${product.product_spec1_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 1 </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect1En" cols="25" rows="2">${product.product_spec1_e}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 2 </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect2Th" cols="25" rows="2">${product.product_spec2_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 2 </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect2En" cols="25" rows="2">${product.product_spec2_e}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 3 </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect3Th" cols="25" rows="2">${product.product_spec3_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 3 </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect3En" cols="25" rows="2">${product.product_spec3_e}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 4 </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect4Th" cols="25" rows="2">${product.product_spec4_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;"align="right">Product Spect 4 </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect4En" cols="25" rows="2">${product.product_spec4_e}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 5 </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect5Th" cols="25" rows="2">${product.product_spec5_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 5 </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect5En" cols="25" rows="2">${product.product_spec5_e}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 6 </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect6Th" cols="25" rows="2">${product.product_spec6_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 6 </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect6En" cols="25" rows="2">${product.product_spec6_e}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Remark </td>
+                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="remarkTh" cols="25" rows="3">${product.product_d_remark_t}</textarea></td>
+                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Remark </td>
+                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="remarkEn" cols="25" rows="3">${product.product_d_remark_e}</textarea></td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
                         <tr>
-                            <td align="right">Product Spect 3 (Thai)</td>
-                            <td><textarea name="spect3Th" cols="25" rows="2" value="${product.product_spect3_t}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 4 (Thai)</td>
-                            <td><textarea name="spect4Th" cols="25" rows="2" value="${product.product_spect4_t}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 5 (Thai)</td>
-                            <td><textarea name="spect5Th" cols="25" rows="2" value="${product.product_spect5_t}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 6 (Thai)</td>
-                            <td><textarea name="spect6Th" cols="25" rows="2" value="${product.product_spect6_t}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 1 (Eng)</td>
-                            <td><textarea name="spect1En" cols="25" rows="2" value="${product.product_spect1_e}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 2 (Eng)</td>
-                            <td><textarea name="spect2En" cols="25" rows="2" value="${product.product_spect2_e}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 3 (Eng)</td>
-                            <td><textarea name="spect3En" cols="25" rows="2" value="${product.product_spect3_e}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 4 (Eng)</td>
-                            <td><textarea name="spect4En" cols="25" rows="2" value="${product.product_spect4_e}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 5 (Eng)</td>
-                            <td><textarea name="spect5En" cols="25" rows="2" value="${product.product_spect5_e}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Spect 6 (Eng)</td>
-                            <td><textarea name="spect6En" cols="25" rows="2" value="${product.product_spect6_e}"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Image</td>
-                            <td><input name="image" type="text" size="5"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Icon</td>
-                            <td><input name="icon" type="text" size="5"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Remark (Thai)</td>
-                            <td><textarea name="remarkTh" cols="25" rows="3">${product.product_d_remark_t}</textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Remark (Eng)</td>
-                            <td><textarea name="remarkEn" cols="25" rows="3">${product.product_d_remark_e}</textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Product Display</td>
-                            <c:if test="${product.product_d_display_flag == null}">
-                                <td><input name="display" type="radio"/>Yes<input name="display" type="radio"/>No</td>
-                                </c:if>
-                                <c:if test="${product.product_d_display_flag == true}">
-                                <td><input name="display" type="radio" value="1" checked />Yes<input name="display" type="radio" value="0" />No</td>
-                                </c:if>
-                                <c:if test="${product.product_d_display_flag == false}">
-                                <td><input name="display" type="radio" value="1"  />Yes<input name="display" type="radio" value="0" checked />No</td>
-                                </c:if>
-                        </tr>
-                        <tr>
-                            <td align="right"><input type="submit" value="Add/Edit"></td>
-                            <td><input type="reset" value="Reset"></td>
+                            <td colspan="2" align="right"><input type="submit" value="Add/Edit"  ></td>
+                            <td colspan="2"><input type="reset" value="Reset"></td>
                         </tr>
                     </c:forEach>
                 </c:if>
             </table>
         </form>
+
     </body>
 </html>

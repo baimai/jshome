@@ -8,11 +8,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:if test="${param.productGroup != null || param.productGroup != ''}">
-    <c:set var="productGroup" value="&productGroup=${param.productGroup}" />
+<c:if test="${param.productGroupId != null || param.productGroupId != ''}">
+    <c:set var="productGroupId" value="&productGroupId=${param.productGroupId}" />
 </c:if>
-<c:if test="${param.productGroup == null || param.productGroup == ''}">
-    <c:set var="productGroup" value="" />
+<c:if test="${param.productGroupId == null || param.productGroupId == ''}">
+    <c:set var="productGroupId" value="" />
 </c:if>
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM product_group_master
@@ -39,18 +39,18 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({        
-                    url:'xmlProductGroup.do?action=fetchData&rows=3&page=1&q=2&Edit=1&Del=1${productGroup}',
+                    url:'xmlProductGroup.do?action=fetchData&rows=3&page=1&q=2&Edit=1&Del=1${productGroupId}',
                     datatype: "xml",
-                    colNames:['Code','product Name', 'Price', 'Spect','Spect 2','remark','Edit','Delete'],
+                    colNames:['Product Code','Name Th', 'Name En', 'Price','Remark Th','Remark En','Edit','Delete'],
                     colModel:[
-                        {name:'productCode',index:'No', width:55},
-                        {name:'productName',index:'productName', width:215},
-                        {name:'price',index:'price', width:90,align:"right"},
-                        {name:'Spect',index:'Spect', width:215,align:"center"},
-                        {name:'Spect 2',index:'Spect 2', width:215,align:"center",hidden:true},
-                        {name:'productRemarkE',index:'productRemarkE', width:185,align:"center"},		
-                        {name:'Edit',index:'Edit', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productCode="+cellvalue+"\">Edit</a>"}},
-                       	{name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productCode="+cellvalue+"\">Del</a>"}}
+                        {name:'Code',index:'Code',editoptions:"", width:100,align:"right"},
+                        {name:'nameTh',index:'nameTh', width:215,align:"right"},
+                        {name:'nameEn',index:'nameEn', width:215, align:"right"},
+                        {name:'price',index:'price', width:60, align:"right"},
+                        {name:'remarkTh',index:'remarkTh', width:140,align:"right", sortable:false, search:false},
+                        {name:'remarkEn',index:'remarkEn', width:140,align:"right", sortable:false, search:false},
+                        {name:'Edit',index:'Edit', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productDetailId="+cellvalue+"\">Edit</a>"}},
+                       	{name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productDetailId="+cellvalue+"\">Del</a>"}}
                     ],
                     height:200,
                     sortname: 'id',
@@ -71,12 +71,12 @@
         <jsp:include page="header.jsp"/> 
     <center>
         <br/>
-        <select onchange="window.location='manageProductDetail.jsp?productGroup='+this.value;">
+        <select onchange="window.location='manageProductDetail.jsp?productGroupId='+this.value;">
             <option value=""> ทั้งหมด </option>
             <c:forEach items="${query3.rows}" var="group">
 
-                <option value="${group.product_group_code}" 
-                        <c:if test="${param.productGroup == group.product_group_code && param.productGroup != null}">
+                <option value="${group.product_group_Id}"
+                        <c:if test="${param.productGroupId == group.product_group_Id && param.productGroupId != null}">
                             selected
                         </c:if>
                         >${group.product_g_name_t}</option>
@@ -87,6 +87,7 @@
         <table id="rowed1"></table>
         <br/>
         <form action="addProductDetail.jsp" >
+            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
             <div align="left"> <input type="submit" value="Add" /></div>
         </form>
         
