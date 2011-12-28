@@ -50,7 +50,7 @@
                         {name:'remarkTh',index:'remarkTh', width:140,align:"right", sortable:false, search:false},
                         {name:'remarkEn',index:'remarkEn', width:140,align:"right", sortable:false, search:false},
                         {name:'Edit',index:'Edit', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productDetailId="+cellvalue+"\">Edit</a>"}},
-                       	{name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productDetailId="+cellvalue+"\">Del</a>"}}
+                       	{name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"productDetail.do?productDetailId="+cellvalue+"&action=Del\">Del</a>"}}
                     ],
                     height:200,
                     sortname: 'id',
