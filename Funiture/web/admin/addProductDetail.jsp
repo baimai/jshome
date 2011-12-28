@@ -9,7 +9,11 @@
 
 <c:if test="${param.productDetailId!=null}">
     <sql:query var="query3" dataSource="webdb">
-        SELECT *  FROM product_detail_master where product_detail_id =  ${param.productDetailId}
+        SELECT pdm.*,cm.company_code,pgm.product_group_code,ccm.color_code  FROM product_detail_master pdm
+        left join company_master cm on cm.company_id = pdm.company_id
+        left join product_group_master pgm on pgm.product_group_id = pdm.product_group_id
+        left join color_code_master ccm on ccm.color_id = pdm.product_color_id
+        where product_detail_id =  ${param.productDetailId}
     </sql:query>  
 </c:if>
 <sql:query var="query1" dataSource="webdb">
@@ -28,7 +32,7 @@
     </head>
     <body>
 
-        <form action="productDetail.do">
+        <form action="productDetail.do" method="post" enctype="multipart/form-data" >
 
             <table border="0" width="700px" >
                 <tr>
@@ -54,7 +58,7 @@
                     </tr>
                     <tr>
                         <td colspan="2"align="right">Product Code</td>
-                        <td colspan="2"><input name="productCode" id="productCode" type="text" size="10"/></td>
+                        <td colspan="2"><input name="productCode" id="productCode" type="text" size="10" /></td>
                     </tr>
                     <tr>
                         <td colspan="2"align="right">Company Code</td>
@@ -83,7 +87,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="right">Product Image</td>
-                        <td colspan="2" ><input name="picLoc" type="text" size="5"/></td>
+                        <td colspan="2" ><input type="file" name="upload" /></td>
                     </tr>
                     <tr>
                         <td colspan="2"align="right">Product Icon</td>
@@ -160,8 +164,10 @@
 
                 </c:if>
                 <c:if test="${param.productDetailId!=null}" >
-                    <input type="hidden" name="action" value="Edit" />
+                    
                     <c:forEach var="product" items="${query3.rows}" >
+                        <input type="hidden" name="action" value="Edit" />
+                    <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
                         <tr>
                             <td colspan="2" align="right" >Product Group</td>
                             <td colspan="2">
@@ -180,11 +186,11 @@
                         </tr>
                         <tr>
                             <td colspan="2"align="right">Product Code</td>
-                            <td colspan="2"><input name="productCode" type="text" size="10"/></td>
+                            <td colspan="2"><input name="productCode" type="text" size="10" value="${product.product_code}"/></td>
                         </tr>
                         <tr>
                             <td colspan="2"align="right">Company Code</td>
-                            <td colspan="2"><input name="companyCode" type="text" size="10"/></td>
+                            <td colspan="2"><input name="companyCode" type="text" size="10"  value="${product.company_code}"/></td>
                         </tr>
                         <tr>
                             <td colspan="2"align="right">Color</td>
