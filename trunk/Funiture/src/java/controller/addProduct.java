@@ -33,6 +33,7 @@ public class addProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
         try {
             HttpSession s = request.getSession();
             String productCode = request.getParameter("productCode");
