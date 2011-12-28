@@ -106,6 +106,11 @@ public class productDetailMasterTable {
                 pdm.getProductDetailId());
     }
 
+    public void remove (productDetailMaster pdm){
+        String sql="delete from product_detail_master where product_detail_id = ?";
+        db.add(sql,pdm.getProductDetailId());
+    }
+
     public ArrayList search(String productGroupId) {
         List<Map<String, Object>> result = null;
         if (productGroupId == null) {
