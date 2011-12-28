@@ -21,6 +21,10 @@
         <servlet-class>controller.xmlProductGroup</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>colorMaster</servlet-name>
+        <servlet-class>controller.colorMaster</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>productGroup</servlet-name>
         <servlet-class>controller.productGroup</servlet-class>
     </servlet>
@@ -32,6 +36,10 @@
         <servlet-name>productDetail</servlet-name>
         <servlet-class>controller.productDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>upload</servlet-name>
+        <servlet-class>controller.upload</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -39,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>datagrid</servlet-name>
         <url-pattern>/admin/datagrid.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>colorMaster</servlet-name>
+        <url-pattern>/admin/colorMaster.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>productSetup</servlet-name>
@@ -59,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>productDetail</servlet-name>
         <url-pattern>/admin/productDetail.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/upload.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
