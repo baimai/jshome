@@ -15,7 +15,7 @@ public class colorCodeMaster {
 private String colorCode;
     private String colorNameE;
     private String colorNameT;
-    private int colorId;
+    private Integer colorId;
     private String userId;
     private Timestamp createDate;
     private Timestamp updateDate;
@@ -62,19 +62,7 @@ private String colorCode;
         this.colorNameT = colorNameT;
     }
 
-    /**
-     * @return the colorId
-     */
-    public int getColorId() {
-        return colorId;
-    }
 
-    /**
-     * @param colorId the colorId to set
-     */
-    public void setColorId(int colorId) {
-        this.colorId = colorId;
-    }
 
     /**
      * @return the userId
@@ -116,5 +104,19 @@ private String colorCode;
      */
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
+    }
+
+    /**
+     * @return the colorId
+     */
+    public Integer getColorId() {
+        return colorId;
+    }
+
+    /**
+     * @param colorId the colorId to set
+     */
+    public void setColorId(Integer colorId) {
+        this.colorId = colorId;
     }
 }

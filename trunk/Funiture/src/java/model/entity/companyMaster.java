@@ -14,6 +14,7 @@ public class companyMaster {
     private String companyCode;
     private String companyNameT;
     private String companyNameE;
+    private String companyAbbr;
     private String companyLogoLoc;
     private String companyAddrT;
     private String companyAddrE;
@@ -37,10 +38,11 @@ public class companyMaster {
     private String companyEmail2;
     private String companyEmail3;
     private String languageFlag;
-    private int picId;
+    private String picCode;
     private Timestamp createDate;
-    private Timestamp updtaeDate;
+     private Timestamp updateDate;
     private int companyId;
+    private String userId;
 
     /**
      * @return the companyCode
@@ -406,19 +408,7 @@ public class companyMaster {
         this.languageFlag = languageFlag;
     }
 
-    /**
-     * @return the picId
-     */
-    public int getPicId() {
-        return picId;
-    }
-
-    /**
-     * @param picId the picId to set
-     */
-    public void setPicId(int picId) {
-        this.picId = picId;
-    }
+    
 
     /**
      * @return the createDate
@@ -434,19 +424,7 @@ public class companyMaster {
         this.createDate = createDate;
     }
 
-    /**
-     * @return the updtaeDate
-     */
-    public Timestamp getUpdtaeDate() {
-        return updtaeDate;
-    }
-
-    /**
-     * @param updtaeDate the updtaeDate to set
-     */
-    public void setUpdtaeDate(Timestamp updtaeDate) {
-        this.updtaeDate = updtaeDate;
-    }
+    
 
     /**
      * @return the companyId
@@ -460,5 +438,61 @@ public class companyMaster {
      */
     public void setCompanyId(int companyId) {
         this.companyId = companyId;
+    }
+
+    /**
+     * @return the companyAbbr
+     */
+    public String getCompanyAbbr() {
+        return companyAbbr;
+    }
+
+    /**
+     * @param companyAbbr the companyAbbr to set
+     */
+    public void setCompanyAbbr(String companyAbbr) {
+        this.companyAbbr = companyAbbr;
+    }
+
+    /**
+     * @return the picCode
+     */
+    public String getPicCode() {
+        return picCode;
+    }
+
+    /**
+     * @param picCode the picCode to set
+     */
+    public void setPicCode(String picCode) {
+        this.picCode = picCode;
+    }
+
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return the updateDate
+     */
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    /**
+     * @param updateDate the updateDate to set
+     */
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 }
