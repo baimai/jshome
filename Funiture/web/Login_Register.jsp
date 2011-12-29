@@ -14,8 +14,19 @@
 <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
 <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
 <script type="text/javascript" src="jshome/js/varien/form.js"></script>
+<script type="text/javascript" src="jshome/js/varien/js.js"></script>
+<script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
+<script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
+<script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
+<script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
+<script type="text/javascript">
+function popupwnd(url, toolbar, menubar, locationbar, resize, scrollbars, statusbar, left, top, width, height)
+{
+   //var popupwindow = this.open(url, '', 'toolbar=' + toolbar + ',menubar=' + menubar + ',location=' + locationbar + ',scrollbars=' + scrollbars + ',resizable=' + resize + ',status=' + statusbar + ',left=' + left + ',top=' + top + ',width=' + width + ',height=' + height);
+	window.showModalDialog(url,"name","dialogWidth:1200px;dialogHeight:500px");
 
-
+}
+</script>
 </head>
 <body class=" customer-account-login">
 <div class="wrapper">
@@ -73,7 +84,7 @@
         <div class="col2-set">
             <div class="col-1 new-users">
                 <div class="buttons-set">
-                    <button type="button" title="Create an Account" class="button" onclick="window.location='register.jsp';"><span><span>Create an Account</span></span></button>
+                    <button type="button" title="Create an Account" class="button" onclick="javascript:popupwnd('member.jsp','no','no','no','yes','yes','no','300','70','800','440')"> <span><span>Create an Account</span></span></button>
                 </div>
             </div>
             <div class="col-2 registered-users">
