@@ -75,14 +75,14 @@ optionalZipCountries = [];
              <li>
                         <label for="login" class="required"><em>*</em>login</label>
                         <div class="input-box">
-                            <input type="text" name="Member_Login" id="member_login" title="member_login" class="input-text required-entry validate-Login" />
+                            <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login" />
                         </div>
                     </li>
                 <li class="fields">
                     <div class="field">
                         <label for="password" class="required"><em>*</em>Password</label>
                         <div class="input-box">
-                            <input type="password" name="password" id="password" title="Password" class="input-text required-entry validate-password" />
+                            <input type="password" name="memberPassword" id="password" title="Password" class="input-text required-entry validate-password" />
                         </div>
                     </div>
                     <div class="field">
@@ -104,29 +104,36 @@ optionalZipCountries = [];
     <div class="field name-firstname">
         <label for="firstname" >First Name</label>
         <div class="input-box">
-            <input type="text" id="firstname" name="firstname" value="" title="First Name" class="input-text required-entry"  />
+            <input type="text" id="firstname" name="memberName" value="" title="First Name"class="input-text"   />
         </div>
     </div>
     <div class="field name-lastname">
         <label for="lastname" >Last Name</label>
         <div class="input-box">
-            <input type="text" id="lastname" name="lastname" value="" title="Last Name" class="input-text required-entry"  />
+            <input type="text" id="lastname" name="memberSurName" value="" title="Last Name" class="input-text" />
         </div>
     </div>
 </div>
                 </li>
                 <li class="fields">
-                 <div class="field name-lastname">
+                 <div class="field email-address">
                     <label for="email_address" class="required"><em>*</em>Email Address</label>
                     <div class="input-box">
-                        <input type="text" name="email" id="email_address" value="" title="Email Address" class="input-text validate-email required-entry" />
+                        <input type="text" name="memberEmail1" id="memberEmail1" value="" title="Email Address" class="input-text validate-email required-entry" />
                     </div>
                     </div>
-                
-                <div class="field name-lastname">
-                    <label for="email_address">Company Name</label>
+                </li>
+                 <li class="fields">
+                <div class="field company-name">
+                    <label for="memberComName">Company Name</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Com_name" id="email_address" value="" title="Email Address" class="input-text validate-email required-entry" />
+                        <input type="text" name="memberComName" id="memberComName" value="" title="Company Name"class="input-text"  />
+                    </div>
+                    </div>
+                     <div class="field company-name">
+                    <label for="memberNameAbbr">Company Name Abbr</label>
+                    <div class="input-box">
+                        <input type="text" name="memberNameAbbr" id="memberNameAbbr" value="" title="Company Name Abbr"class="input-text"  />
                     </div>
                     </div>
                 </li>                 
@@ -134,13 +141,13 @@ optionalZipCountries = [];
                 <div class="field name-lastname">
                     <label for="Adress1" >Adress1</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Addr1" id="Adress1" value="" title="Adress1" class="input-text validate-Adress1 required-entry" />
+                        <input type="text" name="memberAddr1" id="Adress1" value="" title="Adress1" class="input-text " />
                     </div>
                 </div>
                   <div class="field name-lastname">
                     <label for="Adress2" >Adress2</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Addr1" id="Adress2" value="" title="Adress2" class="input-text validate-Adress2 required-entry" />
+                        <input type="text" name="memberAddr2" id="Adress2" value="" title="Adress2" class="input-text " />
                     </div>
                       </div>
                 </li>                  
@@ -148,27 +155,27 @@ optionalZipCountries = [];
                  <div class="field name-lastname">
                     <label for="Distinct" >Distinct</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Distinct" id="Distinct" value="" title="Distinct" class="input-text validate-Distinct required-entry" />
+                        <input type="text" name="memberDistinct" id="Distinct" value="" title="Distinct" class="input-text " />
                     </div>
                      </div>
                 
                 <div class="field name-lastname">
                     <label for="Amphur" >Amphur</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Amphur" id="Amphur" value="" title="Amphur" class="input-text validate-Amphur required-entry" />
+                        <input type="text" name="memberAmphur" id="Amphur" value="" title="Amphur" class="input-text " />
                     </div>
                      </div>
                 </li><li class="fields">
                  <div class="field name-lastname">
                     <label for="Province" >Province</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Province" id="Province" value="" title="Province" class="input-text validate-Province required-entry" />
+                        <input type="text" name="memberProvince" id="Province" value="" title="Province" class="input-text " />
                     </div>
                 </div>
                  <div class="field name-lastname">
                     <label for="Postcode" >Postcode</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Pstcode" id="Postcode" value="" title="Postcode" class="input-text validate-Postcode required-entry" />
+                        <input type="text" name="memberPstcode" id="Postcode" value="" title="Postcode" class="input-text " />
                     </div>
                     </div>
                 </li>   
@@ -176,13 +183,13 @@ optionalZipCountries = [];
                   <div class="field name-lastname">
                     <label for="Tel1" >Tel1</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Tel1" id="Tel1" value="" title="Tel1" class="input-text validate-Tel1 required-entry" />
+                        <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text " />
                     </div>
                      </div>
                <div class="field name-lastname">
                     <label for="Tel2" >Tel2</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Tel2" id="Tel2" value="" title="Tel2" class="input-text validate-Tel2 required-entry" />
+                        <input type="text" name="memberTel2" id="Tel2" value="" title="Tel2" class="input-text " />
                     </div>
                      </div>
                 </li>  
@@ -190,13 +197,13 @@ optionalZipCountries = [];
                  <div class="field name-lastname">
                     <label for="Mobile1" >Mobile</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Mobile1" id="Mobile1" value="" title="Mobile1" class="input-text validate-Mobile1 required-entry" />
+                        <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text " />
                     </div>
                      </div>
                 <div class="field name-lastname">
                     <label for="Mobile2" >Mobile2</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Mobile2" id="Mobile2" value="" title="Mobile2" class="input-text validate-Mobile2 required-entry" />
+                        <input type="text" name="memberMobile2" id="Mobile2" value="" title="Mobile2" class="input-text " />
                     </div>
                      </div>
                 </li>    
@@ -204,10 +211,16 @@ optionalZipCountries = [];
                  
                     <label for="Fax" >Fax</label>
                     <div class="input-box">
-                        <input type="text" name="Member_Fax" id="Fax" value="" title="Fax" class="input-text validate-Fax required-entry" />
+                        <input type="text" name="memberFax1" id="Fax" value="" title="Fax" class="input-text " />
                     </div>
                 </li>     
-                 
+                 <li>
+
+                    <label for="Fax" >Fax</label>
+                    <div class="input-box">
+                        <input type="text" name="memberFax2" id="Fax" value="" title="Fax" class="input-text " />
+                    </div>
+                </li>
                                                   </ul>
         </div>
             
@@ -228,6 +241,6 @@ optionalZipCountries = [];
         </div>
        
 </div>         
-</div>
+
 </body>
 </html>
