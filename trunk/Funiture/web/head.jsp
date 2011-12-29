@@ -7,7 +7,9 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <sql:query var="query2" dataSource="webdb">
-    select * from menu_group_master order by Menu_Group_Id
+   select * from menu_group_master mg
+where mg.menu_permission='U'
+order by mg.Menu_Group_Id
 </sql:query>
 
 <!DOCTYPE html>

@@ -173,31 +173,24 @@
                         <c:if test="${(counter.count mod 3) == 1}">
                             <ul class="products-grid">
                                 <li class="item first">
-                                    <a href="http://freedemo.templates-master.com/f002/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen Flat-Panel LCD Monitor" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="19&quot; Widescreen Flat-Panel LCD Monitor" /></a>
-                                    <h2 class="product-name"><a href="http://freedemo.templates-master.com/f002/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen Flat-Panel LCD Monitor">${product.product_d_name_t}</a></h2>
-
-
-
-                                    <div class="price-box">
+                                    <a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <h2 class="product-name"><a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
+                                      <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
-                                            <span class="price">${product.product_price1}</span>                </span>
-
+                                            <span class="price">${product.product_price1}</span></span>
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="Add to Cart" class="button btn-cart" onclick="addToCart('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Add to Cart</span></span></button>
-                                        <ul class="add-to-links">
-                                            <li><a href="http://freedemo.templates-master.com/f002/wishlist/index/add/product/156/" class="link-wishlist">Add to Wishlist</a></li>
-
-                                        </ul>
+                                        <button type="button" title="Order" class="button btn-cart" onclick="Order('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Order</span></span></button>
+                                        
                                     </div>
                                 </li>
 
                             </c:if>
                             <c:if test="${(counter.count mod 3) == 2}">
                                 <li class="item">
-                                    <a href="http://freedemo.templates-master.com/f002/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen Flat-Panel LCD Monitor" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="19&quot; Widescreen Flat-Panel LCD Monitor" /></a>
-                                    <h2 class="product-name"><a href="http://freedemo.templates-master.com/f002/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen Flat-Panel LCD Monitor">${product.product_d_name_t}</a></h2>
+                                    <a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <h2 class="product-name"><a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
 
 
 
@@ -208,19 +201,16 @@
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="Add to Cart" class="button btn-cart" onclick="addToCart('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Add to Cart</span></span></button>
-                                        <ul class="add-to-links">
-                                            <li><a href="http://freedemo.templates-master.com/f002/wishlist/index/add/product/156/" class="link-wishlist">Add to Wishlist</a></li>
-
-                                        </ul>
+                                        <button type="button" title="Order" class="button btn-cart" onclick="Order('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Order</span></span></button>
+                                        
                                     </div>
                                 </li>
 
                             </c:if>
                             <c:if test="${(counter.count mod 3) == 0}">
                                 <li class="item last">
-                                    <a href="http://freedemo.templates-master.com/f002/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen Flat-Panel LCD Monitor" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="19&quot; Widescreen Flat-Panel LCD Monitor" /></a>
-                                    <h2 class="product-name"><a href="http://freedemo.templates-master.com/f002/19-widescreen-flat-panel-lcd-monitor.html" title="19&quot; Widescreen Flat-Panel LCD Monitor">${product.product_d_name_t}</a></h2>
+                                    <a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <h2 class="product-name"><a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
 
 
 
@@ -231,11 +221,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="Add to Cart" class="button btn-cart" onclick="addToCart('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Add to Cart</span></span></button>
-                                        <ul class="add-to-links">
-                                            <li><a href="http://freedemo.templates-master.com/f002/wishlist/index/add/product/156/" class="link-wishlist">Add to Wishlist</a></li>
-
-                                        </ul>
+                                        <button type="button" title="Order" class="button btn-cart" onclick="Order('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Order</span></span></button>
+                                        
                                     </div>
                                 </li>
                             </ul>
