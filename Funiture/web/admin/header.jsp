@@ -33,7 +33,7 @@ div#copyright { display: none; }
 
 <div id="menu">
     <ul class="menu">
-     <li class="last"><a href="company.html"><span>ข้อมูลบริษัท</span></a></li>
+     <li class="last"><a href="companyMaster.jsp"><span>ข้อมูลบริษัท</span></a></li>
         <li><a href="#" class="parent"><span>จัดการเมนู</span></a>                         
         </li>
         <li><a href="addProductSetup.jsp" class="parent"><span>จัดการสินค้า</span></a>
