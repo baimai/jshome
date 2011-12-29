@@ -1,6 +1,6 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <sql:query var="queryProduct" dataSource="webdb">
-    SELECT * FROM product_detail_master where product_detail_Id = ${param.product_detail_Id}
+    SELECT * FROM product_detail_master where product_detail_Id = ${param.productDetailId}
 </sql:query>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.util.ArrayList"%>

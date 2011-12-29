@@ -50,7 +50,7 @@
         </div>
 
         <div class="cleared"></div>
-        <p class="art-page-footer"><a href="http://www.2createawebsite.com/artisteer">Website Template created with Artisteer</a>.</p>
+        <p class="art-page-footer"></p>
 
     </body>
 </html>
