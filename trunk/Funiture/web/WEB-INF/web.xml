@@ -29,16 +29,20 @@
         <servlet-class>controller.productGroup</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>controller.test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>productDetail</servlet-name>
         <servlet-class>controller.productDetail</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>upload</servlet-name>
         <servlet-class>controller.upload</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>companyMaster</servlet-name>
+        <servlet-class>controller.companyMasterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xmlColorMaster</servlet-name>
+        <servlet-class>controller.xmlColorMaster</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
@@ -65,16 +69,20 @@
         <url-pattern>/admin/productGroup.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>productDetail</servlet-name>
         <url-pattern>/admin/productDetail.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>upload</servlet-name>
         <url-pattern>/upload.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>companyMaster</servlet-name>
+        <url-pattern>/admin/companyMasterController.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlColorMaster</servlet-name>
+        <url-pattern>/admin/xmlColorMaster.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
