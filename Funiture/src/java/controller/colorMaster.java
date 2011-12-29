@@ -39,6 +39,9 @@ public class colorMaster extends HttpServlet {
             Database db = new Database();
             colorCodeMaster cm = new colorCodeMaster();
             colorMasterTable cmt = new colorMasterTable(db);
+             if (request.getParameter("colorId") != null&&request.getParameter("action").equals("Edit")) {
+                    cm.setColorId(Integer.parseInt(request.getParameter("colorId")));
+                }
             if (request.getParameter("colorCode") != null) {
                 cm.setColorCode(request.getParameter("colorCode"));
             }
@@ -48,11 +51,18 @@ public class colorMaster extends HttpServlet {
             if (request.getParameter("colorNameE") != null) {
                 cm.setColorNameT(request.getParameter("colorNameE"));
             }
+            cm.setCreateDate(Timestamp.valueOf(db.getNow()));
             if (request.getParameter("action").equals("Add")) {
-                cm.setCreateDate(Timestamp.valueOf(db.getNow()));
+                
                 cmt.add(cm);
-            }
-            out.print("xxx"+request.getParameter("colorCode"));
+
+            } else if (request.getParameter("action").equals("Edit")) {
+                    cmt.update(cm);
+                } else if (request.getParameter("action").equals("Del")) {
+                    //pgmt.remove(pgm);
+                }
+          
+              
             db.close();
 
         } catch (Exception ex) {
