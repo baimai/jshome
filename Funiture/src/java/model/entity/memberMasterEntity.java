@@ -10,11 +10,11 @@ import java.util.Date;
 
 /**
  *
- * @author Jik
+ * @author Baimai
  */
 public class memberMasterEntity {
-private int companyId;
-    private Integer member_Id;
+    private int companyId;
+    private Integer memberId;
     private Date memberRegDate;
     private String memberName;
     private String memberSurName;
@@ -61,15 +61,15 @@ private int companyId;
     /**
      * @return the member_Id
      */
-    public Integer getMember_Id() {
-        return member_Id;
+    public Integer getMemberId() {
+        return memberId;
     }
 
     /**
      * @param member_Id the member_Id to set
      */
-    public void setMember_Id(Integer member_Id) {
-        this.member_Id = member_Id;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 
     /**
