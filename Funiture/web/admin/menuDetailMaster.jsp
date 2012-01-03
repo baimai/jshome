@@ -1,7 +1,7 @@
 <%-- 
-    Document   : mastercollor
-    Created on : Dec 27, 2011, 2:37:34 PM
-    Author     : Baimai
+    Document   : menuDetailMaster
+    Created on : Jan 3, 2012, 7:41:39 PM
+    Author     : Jik
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 
 <html>
     <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jqGrid Demos</title>
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
@@ -29,16 +29,17 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlColorMaster.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'xmlMenuDetailMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','Color Code', 'Color Name T ', 'Color Name E ','Color Id' ],
+                    colNames:['No','เมนู', 'MenuGroup', 'Permission','company Id' ],
                     colModel:[
                         {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'colorCode',index:'colorCode', width:80,editable:true,editoptions:{size:10}},
-                        {name:'colorNameT',index:'colorNameT', width:248,editable:true,editoptions:{size:25}},
-                        {name:'colorNameE',index:'colorNameE', width:248,editable:true,editoptions:{size:25}},
-                        {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
-                       
+                        {name:'menuGNameT',index:'menuGNameT', width:80,editable:true,editoptions:{size:10}},
+                        {name:'menuGNameE',index:'menuGNameE', width:248,editable:true,editoptions:{size:25}},
+                        {name:'menuPermission',index:'menuPermission', width:248,editable:true,editoptions:{size:25}},
+                        {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
+
 
                     ],
                     rowNum:10,
@@ -48,8 +49,8 @@
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"Search Example",
-                    editurl:"colorMaster.do"
-                   
+                    editurl:"menuDetailMaster.do"
+
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
@@ -59,7 +60,7 @@
                 {} // search options
             );
 
-               
+
 
 
             });
@@ -72,7 +73,7 @@
         <table id="rowed1"></table>
         <div id="prowed1"></div>
         <br />
-       
+
     </center>
     <br/><br/><br/>
     </body>

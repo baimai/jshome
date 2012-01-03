@@ -44,6 +44,18 @@
         <servlet-name>xmlColorMaster</servlet-name>
         <servlet-class>controller.xmlColorMaster</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>memberMaster</servlet-name>
+        <servlet-class>controller.memberMaster</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xmlMenuGroupMaster</servlet-name>
+        <servlet-class>controller.xmlMenuGroupMaster</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>menuGroupMaster</servlet-name>
+        <servlet-class>controller.menuGroupMaster</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -83,6 +95,18 @@
     <servlet-mapping>
         <servlet-name>xmlColorMaster</servlet-name>
         <url-pattern>/admin/xmlColorMaster.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>memberMaster</servlet-name>
+        <url-pattern>/admin/memberMaster.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlMenuGroupMaster</servlet-name>
+        <url-pattern>/admin/xmlMenuGroupMaster</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menuGroupMaster</servlet-name>
+        <url-pattern>/admin/menuGroupMaster</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
