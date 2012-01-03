@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author Jikng
+ * @author Baimai
  */
 public class colorCodeMaster {
 private String colorCode;
