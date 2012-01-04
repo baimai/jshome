@@ -36,7 +36,7 @@ public class productDetailMaster {
     private String productDRemarkE;
     private String productDDisplayFlag;
     private Timestamp createDate;
-    private Timestamp updtaeDate;
+    private Timestamp updateDate;
     private String userId;
     private int ProductColorId;
     private int companyId;
@@ -344,19 +344,7 @@ public class productDetailMaster {
         this.createDate = createDate;
     }
 
-    /**
-     * @return the updtaeDate
-     */
-    public Timestamp getUpdtaeDate() {
-        return updtaeDate;
-    }
-
-    /**
-     * @param updtaeDate the updtaeDate to set
-     */
-    public void setUpdtaeDate(Timestamp updtaeDate) {
-        this.updtaeDate = updtaeDate;
-    }
+   
 
     /**
      * @return the userId
@@ -471,6 +459,20 @@ public class productDetailMaster {
      */
     public void setProductColorId(int ProductColorId) {
         this.ProductColorId = ProductColorId;
+    }
+
+    /**
+     * @return the updateDate
+     */
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    /**
+     * @param updateDate the updateDate to set
+     */
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
     }
 
 

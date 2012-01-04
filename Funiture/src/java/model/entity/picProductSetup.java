@@ -14,7 +14,7 @@ public class picProductSetup {
     
     private String picCode;
     private int picId;
-    private int productId;
+    private int productDetailId;
     private String companyCode;
     private int companyId;
     private String picNameT;
@@ -180,19 +180,7 @@ public class picProductSetup {
         this.picId = picId;
     }
 
-    /**
-     * @return the productId
-     */
-    public int getProductId() {
-        return productId;
-    }
-
-    /**
-     * @param productId the productId to set
-     */
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+  
 
     /**
      * @return the companyId
@@ -206,6 +194,20 @@ public class picProductSetup {
      */
     public void setCompanyId(int companyId) {
         this.companyId = companyId;
+    }
+
+    /**
+     * @return the productDetailId
+     */
+    public int getProductDetailId() {
+        return productDetailId;
+    }
+
+    /**
+     * @param productDetailId the productDetailId to set
+     */
+    public void setProductDetailId(int productDetailId) {
+        this.productDetailId = productDetailId;
     }
     
 }
