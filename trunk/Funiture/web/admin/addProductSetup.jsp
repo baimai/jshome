@@ -32,28 +32,28 @@
                 jQuery("#rowed1").jqGrid({        
                     url:'datagrid.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','CompanyCode','PicCode', 'productCode','Product Name','Product Name E', 'Remark Thai','Remark Eng','Create Date','Update Date','User'],
+                    colNames:['No','Company Code','Pic Code', 'productCode','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng'],
                     colModel:[
                         {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
                         {name:'companyCode',index:'companyCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'picCode',index:'picCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'productCode',index:'productCode', width:90,editable:true,editoptions:{size:10},editrules:{required:true}},
-                        {name:'picNameT',index:'picNameT', width:220,editable:true,editoptions:{size:10}},
-                        {name:'picNameE',index:'picNameE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'picNameT',index:'picNameT', width:225, align:"right",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'picNameE',index:'picNameE', width:225, align:"right",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT', width:225, align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},		
-                        {name:'createDate',index:'createDate', width:132,align:"left",editable:false},
-                        {name:'updateDate',index:'updateDate',width:132,align:'left',editable:false},
-                        {name:'userId',index:'userId',width:70, editable: true,editoptions:{size:10}}		
+                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}}		
+                        
+                        		
                     ],
-                    rowNum:10,
-                    rowList:[10,20,30,40,80,160,320,500,1000],
+                    rowNum:20,
+                    height:400,
+                    rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption:"Search Example",
-                    editurl:"productSetup.do",
+                    caption:"Product Setup",
+                    editurl:"productSetup.do"/*,
                     onSelectRow: function(ids) {
                         if(ids == null) {
                             ids=0;
@@ -68,26 +68,23 @@
                             jQuery("#rowed2").jqGrid('setCaption',"Product Detail: "+ids)
                             .trigger('reloadGrid');			
                         }
-                    }
+                    }*/
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:300,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:300,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
                 {} // search options                
             );
                 
-                jQuery("#rowed2").jqGrid({
+               /* jQuery("#rowed2").jqGrid({
                     height: 100,
                     url:'datagrid.do?action=fetchData&rows=1&page=1&q=2',
                     datatype: "xml",
                     colNames:['Name','Price', 'Spect', 'Spect2','Remark'],
                     colModel:[
-                        {name:'Name',index:'Name',editoptions:"", width:200/*,edittype:"image",
-                            formatter:function(cellV,Option,Row){
-                                return "<img src=\"jshome/images/thumb/smallpost_thumb2_1.jpg\" width=\"200\" height=\"140\" />";
-                            }*/},
+                        {name:'Name',index:'Name',editoptions:"", width:200},
                         {name:'Price',index:'Price', width:50,align:"right"},
                         {name:'Spect',index:'Spect', width:220, align:"right"},
                         {name:'Spect2',index:'Spect2', width:220, align:"right"},		
@@ -99,20 +96,21 @@
                     viewrecords: true,
                     sortorder: "asc",
                     caption:"Product Detail"
-                });
+                }); */
                 
 
             });
         </script>
     </head>
     <body>
-
-        <jsp:include page="header.jsp"/> 
+        
+        <jsp:include page="header.jsp"/>
+        <br/>
     <center>
         <table id="rowed1"></table>
         <div id="prowed1"></div>
         <br />
-        <table id="rowed2"></table>
+      <%--  <table id="rowed2"></table> --%>
     </center>
 </body>
 </html>
