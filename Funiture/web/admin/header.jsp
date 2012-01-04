@@ -34,14 +34,23 @@ div#copyright { display: none; }
 <div id="menu">
     <ul class="menu">
      <li class="last"><a href="companyMaster.jsp"><span>ข้อมูลบริษัท</span></a></li>
-        <li><a href="#" class="parent"><span>จัดการเมนู</span></a>                         
+        <li><a href="#" class="parent"><span>จัดการเมนู</span></a>
+             <div><ul>
+                <li><a href="menuGroupMaster.jsp" class="parent"><span>ประเภทเมนู</span></a>
+
+                </li>
+                <li><a href="menuDetailMaster.jsp" class="parent"><span>รายการเมนู</span></a>
+
+                </li>
+
+            </ul></div>
         </li>
         <li><a href="addProductSetup.jsp" class="parent"><span>จัดการสินค้า</span></a>
             <div><ul>
                 <li><a href="addProductGroup.jsp" class="parent"><span>ประเภทสินค้า</span></a>
                     
                 </li>
-                <li><a href="mangeProductDetail.jsp" class="parent"><span>รายการสินค้า</span></a>
+                <li><a href="manageProductDetail.jsp" class="parent"><span>รายการสินค้า</span></a>
                    
                 </li>
               
@@ -49,11 +58,11 @@ div#copyright { display: none; }
         </li>
         <li><a href="#"class="parent"><span>จัดการสมาชิก</span></a>
         <div><ul>
-                        <li><a href="#"><span>ข้อมูลสมาชิก</span></a></li>
+                        <li><a href="memberMaster.jsp"><span>ข้อมูลสมาชิก</span></a></li>
                         <li><a href="#"><span>รายละเอียดสมาชิก</span></a></li>
                     </ul></div></li>
         <li class="last"><a href="#"><span>จัดการใบสั่งซื้อ</span></a></li>
-        
+        <li class="last"><a href="#"><span>จัดการผู้ใช้</span></a></li>
     </ul>
 </div>
 </body>

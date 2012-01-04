@@ -31,14 +31,15 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuDetailMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','เมนู', 'MenuGroup', 'Permission','company Id' ],
+                    colNames:['No','เมนู', 'Menu', 'pic','company Id','menuGroup','menucode' ],
                     colModel:[
                         {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'menuGNameT',index:'menuGNameT', width:80,editable:true,editoptions:{size:10}},
-                        {name:'menuGNameE',index:'menuGNameE', width:248,editable:true,editoptions:{size:25}},
-                        {name:'menuPermission',index:'menuPermission', width:248,editable:true,editoptions:{size:25}},
+                        {name:'menuCNameT',index:'menuCNameT', width:80,editable:true,editoptions:{size:10}},
+                        {name:'menuCNameE',index:'menuCNameE', width:248,editable:true,editoptions:{size:25}},
+                        {name:'picCode',index:'picCode', width:248,editable:true,editoptions:{size:25}},
                         {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
+                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuCodeId',index:'menuCodeId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
 
 
                     ],
