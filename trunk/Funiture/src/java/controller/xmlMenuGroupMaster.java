@@ -35,20 +35,20 @@ public class xmlMenuGroupMaster extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
           if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+              //  response.setContentType("text/xml;charset=UTF-8");
 
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String colorId = null, Edit = null,Del=null;
+                String menuGroupId = null, Edit = null,Del=null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
                 menuCode = request.getParameter("menuCode");
                 }
                  */
-                if (request.getParameter("memberGroupId") != null) {
-                    colorId = request.getParameter("memberGroupId");
+                if (request.getParameter("menuGroupId") != null) {
+                    menuGroupId = request.getParameter("menuGroupId");
                 }
                 if (request.getParameter("Edit") != null) {
                     Edit = request.getParameter("Edit");
@@ -82,8 +82,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
 
                 Database db = new Database();
                 menuGroupMasterTable mgt = new menuGroupMasterTable(db);
-              /*  productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList listp = pdm.search(productGroupId);*/
+              
                 ArrayList list = mgt.search(sField, sValue, sOper);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
@@ -102,7 +101,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
                         out.print("<cell>" + data.getMenuGNameT() + "</cell>");
                         out.print("<cell>" + data.getMenuGNameT() + "</cell>");
                         out.print("<cell>" + data.getMenuPermission() + "</cell>");
-                        out.print("<cell>" + data.getMenuGroupId() + "</cell");
+                      //  out.print("<cell>" + data.getMenuGroupId() + "</cell");
                         out.print("<cell>" + data.getCompanyId() + "</cell>");
                         out.print("</row>");
                         srNo++;

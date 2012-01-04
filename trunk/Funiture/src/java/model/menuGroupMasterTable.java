@@ -68,7 +68,7 @@ public class menuGroupMasterTable {
     }
 
     public ArrayList search(String sField, String sValue, String sOper) {
-        String sql = "SELECT * FROM product_group_master pgm"+
+        String sql = "SELECT * FROM menu_group_master pgm"+
                      " join Company_Master cm on cm.Company_Id = pgm.Company_Id";
 
         if (sOper != null && sValue != null & sField != null) {

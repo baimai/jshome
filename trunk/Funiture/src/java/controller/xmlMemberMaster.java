@@ -40,7 +40,7 @@ public class xmlMemberMaster extends HttpServlet {
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String colorId = null, Edit = null,Del=null;
+                String memberId = null, Edit = null,Del=null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
@@ -48,7 +48,7 @@ public class xmlMemberMaster extends HttpServlet {
                 }
                  */
                 if (request.getParameter("memberId") != null) {
-                    colorId = request.getParameter("memberId");
+                    memberId = request.getParameter("memberId");
                 }
                 if (request.getParameter("Edit") != null) {
                     Edit = request.getParameter("Edit");
@@ -97,7 +97,7 @@ public class xmlMemberMaster extends HttpServlet {
 
                     for (int i = 0; i < list.size(); i++) {
                         memberMasterEntity data = (memberMasterEntity) list.get(i);
-                        out.print("<row id='" + data.getMemberLogin() + "'>");
+                        out.print("<row id='" + data.getMemberId() + "'>");
                         out.print("<cell>" + i + "</cell>");
                         out.print("<cell>" + data.getMemberName() + "</cell>");
                         out.print("<cell>" + data.getMemberSurName() + "</cell>");
