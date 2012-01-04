@@ -73,7 +73,7 @@ public class productDetailMasterTable {
                 + "Product_Spec4_E = ?,Product_Spec5_E = ?,Product_Spec6_E = ?,"
                 + "Product_D_Pic_Loc = ?,Product_D_Icon_Loc = ?,"
                 + "Product_D_Remark_T = ?,Product_D_Remark_E = ?,Product_D_Display_Flag = ?,"
-                + "Updtae_date = ?,Product_Color_Id = ? "
+                + "Update_date = ?,Product_Color_Id = ? "
                 + "where Product_Detail_Id = ? ";
         db.add(sql,
                 pdm.getCompanyId(),
@@ -101,7 +101,7 @@ public class productDetailMasterTable {
                 pdm.getProductDRemarkT(),
                 pdm.getProductDRemarkE(),
                 pdm.getProductDDisplayFlag(),
-                pdm.getUpdtaeDate(),
+                pdm.getUpdateDate(),
                 pdm.getProductColorId(),
                 pdm.getProductDetailId());
     }
@@ -166,11 +166,11 @@ public class productDetailMasterTable {
 
     }
 
-    public int getProductId(String productCode) {
+    public Integer getProductId(String productCode) {
         String sql = "select * from product_detail_master where Product_Code = ?";
         List<Map<String, Object>> result = db.queryList(sql, productCode);
         if (result != null) {
-            return Integer.parseInt((String) result.get(0).get("Product_Detail_Id"));
+            return (Integer) result.get(0).get("Product_Detail_Id");
         } else {
             return 0;
         }
