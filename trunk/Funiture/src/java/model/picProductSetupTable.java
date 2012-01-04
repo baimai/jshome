@@ -24,21 +24,21 @@ public class picProductSetupTable {
     }
 
     public void add(picProductSetup mps) {
-        String sql = "insert into pic_product_setup values(?,?,?,?,?,?,?,?,?,?,0)";
-        db.add(sql, mps.getCompanyId(), mps.getPicCode(), mps.getProductId(), mps.getPicNameT(), mps.getPicNameE(), mps.getProductRemarkT(), mps.getProductRemarkE(),
-                Timestamp.valueOf(db.getNow()), mps.getUpdateDate(), mps.getUserId());
+        String sql = "insert into pic_product_setup (Company_Id,Pic_Code,Product_Detail_Id,Pic_Name_T,Pic_Name_E,Product_Remark_T,Product_Remark_E,Create_Date,User_Id)values(?,?,?,?,?,?,?,?,?)";
+        db.add(sql, mps.getCompanyId(), mps.getPicCode(), mps.getProductDetailId(), mps.getPicNameT(), mps.getPicNameE(), mps.getProductRemarkT(), mps.getProductRemarkE(),
+                Timestamp.valueOf(db.getNow()), mps.getUserId());
     }
 
     public void update(picProductSetup mps) {
         String sql = "update pic_product_setup set Pic_Id = ?,Product_Id = ?,Company_Id = ?,Product_remark_T = ?,Product_remark_E = ?,"
                 + " Update_Date = ?,User_Id = ? "
                 + " where Product_Id = ? and Pic_Id = ?";
-        db.update(sql, mps.getPicId(), mps.getProductId(),mps.getCompanyId(), mps.getProductRemarkT(), mps.getProductRemarkE(),
-                Timestamp.valueOf(db.getNow()), mps.getUserId(), mps.getProductId(), mps.getPicId());
+        db.update(sql, mps.getPicId(), mps.getProductDetailId(),mps.getCompanyId(), mps.getProductRemarkT(), mps.getProductRemarkE(),
+                Timestamp.valueOf(db.getNow()), mps.getUserId(), mps.getProductDetailId(), mps.getPicId());
     }
 
     public void remove(picProductSetup mps) {
-        String sql = "delete from menu_product_setup where menu_code = ? and product_code = ?";
+        String sql = "delete from pic_product_setup where pic_code = ? and product_code = ?";
         db.update(sql, mps.getPicCode(), mps.getProductCode());
     }
 
