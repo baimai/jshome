@@ -54,9 +54,10 @@ public class productSetup extends HttpServlet {
                 if (request.getParameter("productCode") != null) {
                     int i = pdmt.getProductId(request.getParameter("productCode"));
                     if (i != 0) {
-                        mps.setProductId(i);
+                        mps.setProductDetailId(i);
                     }
                 }
+                /*
                 if (request.getParameter("picNameT") != null) {
                     mps.setPicNameT(request.getParameter("picNameT"));
                 }
@@ -69,7 +70,7 @@ public class productSetup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     mps.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-
+                */
                 if (request.getParameter("action").equals("Add")) {
                     mpst.add(mps);
                 } else if (request.getParameter("action").equals("Edit")) {
@@ -77,6 +78,8 @@ public class productSetup extends HttpServlet {
                 } else if (request.getParameter("action").equals("Del")) {
                     mpst.remove(mps);
                 }
+                out.println(mps.getCompanyId());
+                out.println(mps.getProductDetailId());
                 db.close();
             }
         } catch (Exception ex) {
