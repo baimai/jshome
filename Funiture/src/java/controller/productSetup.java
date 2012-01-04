@@ -57,7 +57,7 @@ public class productSetup extends HttpServlet {
                         mps.setProductDetailId(i);
                     }
                 }
-                /*
+                
                 if (request.getParameter("picNameT") != null) {
                     mps.setPicNameT(request.getParameter("picNameT"));
                 }
@@ -70,7 +70,7 @@ public class productSetup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     mps.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-                */
+                
                 if (request.getParameter("action").equals("Add")) {
                     mpst.add(mps);
                 } else if (request.getParameter("action").equals("Edit")) {
