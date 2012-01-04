@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Hashtable;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javazoom.upload.MultipartFormDataRequest;
 import javazoom.upload.UploadBean;
 import javazoom.upload.UploadException;
+import javazoom.upload.UploadFile;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.productDetailMaster;
@@ -41,8 +44,12 @@ public class productDetail extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             request.setCharacterEncoding("utf-8");
+            int uploadlimit = 1024 * 1024 * 1024;
+            Vector listeners = null; // No upload listeners
+            String parser = MultipartFormDataRequest.COSPARSER; // Cos parser
+            String encoding = "iso-8859-1";
             MultipartFormDataRequest mr;
-            mr = new MultipartFormDataRequest(request);
+            mr = new MultipartFormDataRequest(request, listeners, uploadlimit, parser, encoding);
 
             try {
                 //productCode=&companyCode=&price1=500.00&price2=400.00&price3=300.00&picLoc=&iconLoc=&nameTh=กกกก&nameEn=ssss&spec1Th=1&spec1En=a&spec2Th=2&spec2En=b&spec3Th=3&spec3En=c&spec4Th=4&spec4En=d&spec5Th=5&spec5En=e&spec6Th=6&spec6En=f&remarkTh=gg&remarkEn=fff
@@ -53,15 +60,18 @@ public class productDetail extends HttpServlet {
                         companyMasterTable cmt = new companyMasterTable(db);
                         productDetailMaster pdm = new productDetailMaster();
 
+                        Hashtable files = mr.getFiles();
+                        UploadFile upFile = (UploadFile) files.get("upload");
+                        UploadBean u = new UploadBean();
+                        if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
+                            u.setFolderstore(request.getRealPath("upload"));
+                        }
+                        u.store(mr, "upload");
 
-                        
-                            UploadBean u = new UploadBean();
-                            u.setFolderstore("c:/pic");
-                            u.store(mr, "upload");
-                        
 
-
-                        //
+                        if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
+                            pdm.setProductDPicLoc(request.getRealPath("upload") + "\\" + upFile.getFileName());
+                        }
                         if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
                             pdm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
                         }
@@ -139,13 +149,13 @@ public class productDetail extends HttpServlet {
                             pdmt.add(pdm);
                         }
                         if (mr.getParameter("action").equals("Edit")) {
-                            pdm.setUpdtaeDate(Timestamp.valueOf(db.getNow()));
+                            pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                             pdmt.update(pdm);
                         }
                         if (mr.getParameter("action").equals("Del")) {
                             pdmt.remove(pdm);
                         }
-                        response.sendRedirect("manageProductDetail.jsp");
+                        //response.sendRedirect("manageProductDetail.jsp");
                     }
                 }
             } catch (Exception ex) {
