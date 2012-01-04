@@ -48,10 +48,11 @@
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
+                    height:400,
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"Search Example",
-                    editurl:"productGroup.do",
+                    editurl:"productGroup.do"/*,
                     onSelectRow: function(ids) {
                         if(ids == null) {
                             ids=0;
@@ -66,7 +67,7 @@
                             jQuery("#rowed2").jqGrid('setCaption',"Product Detail: "+ids)
                             .trigger('reloadGrid');			
                         }
-                    }
+                    }*/
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
@@ -76,7 +77,7 @@
                 {} // search options                
             );
                 
-                jQuery("#rowed2").jqGrid({
+               /* jQuery("#rowed2").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&rows=1&page=1&q=2',
                     datatype: "xml",
                     colNames:['Product Code','Name Th', 'Name En', 'Price','Remark Th','Remark En'],
@@ -93,20 +94,21 @@
                     viewrecords: true,
                     sortorder: "asc",
                     caption:"Product Detail"
-                });
+                });*/
                 
 
             });
         </script>
     </head>
     <body >
-
-        <jsp:include page="header.jsp"/> 
+        
+        <jsp:include page="header.jsp"/>
+        <br />
     <center>
         <table id="rowed1"></table>
         <div id="prowed1"></div>
         <br />
-        <table id="rowed2"></table>
+       <%-- <table id="rowed2"></table> --%>
     </center>
     <br/><br/><br/>
 </body>
