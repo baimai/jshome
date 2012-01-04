@@ -29,16 +29,22 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlMenuGrouMaster.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','เมนู', 'MenuGroup', 'Permission','company Id' ],
+                    colNames:['No','เมนู', 'MenuGroup', 'Permission','company Id','menuGroupId','showListMenu','chkLoginSts','menuGRemarkT','menuGRemarkE','menuGPicLoc','menuGIconLog' ],
                     colModel:[
                         {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
                         {name:'menuGNameT',index:'menuGNameT', width:80,editable:true,editoptions:{size:10}},
                         {name:'menuGNameE',index:'menuGNameE', width:248,editable:true,editoptions:{size:25}},
                         {name:'menuPermission',index:'menuPermission', width:248,editable:true,editoptions:{size:25}},
-                        {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
+                        {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
+                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
+                        {name:'showListMenu',index:'showListMenu',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'chkLoginSts',index:'chkLoginSts',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGRemarkT',index:'menuGRemarkT',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGRemarkE',index:'menuGRemarkE',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGPicLoc',index:'menuGPicLoc',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGIconLog',index:'menuGIconLog',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
 
 
                     ],

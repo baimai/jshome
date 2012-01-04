@@ -31,7 +31,7 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','ชื่อ', 'firtName', 'LastName','Company','Status','Approve','Register',],
+                    colNames:['No','Login', 'firtName', 'LastName','Company','Status','Register','Approve','memberId','companyId'],
                     colModel:[
                         {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
                         {name:'memberLogin',index:'memberLogin', width:80,editable:true,editoptions:{size:10}},
