@@ -344,9 +344,10 @@ public class productDetailMaster {
         this.createDate = createDate;
     }
 
-   
 
+    
     /**
+
      * @return the userId
      */
     public String getUserId() {

@@ -19,7 +19,7 @@ public class Database {
 
     public Database() {
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://192.168.0.18/webdb?user=jshome&password=jshome");
+            connect = DriverManager.getConnection("jdbc:mysql://192.168.0.15/webdb?user=jshome&password=jshome");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
