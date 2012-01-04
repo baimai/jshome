@@ -56,6 +56,10 @@
         <servlet-name>menuGroupMaster</servlet-name>
         <servlet-class>controller.menuGroupMaster</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>menuDetailMaster</servlet-name>
+        <servlet-class>controller.menuDetailMaster</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -102,11 +106,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>xmlMenuGroupMaster</servlet-name>
-        <url-pattern>/admin/xmlMenuGroupMaster</url-pattern>
+        <url-pattern>/admin/xmlMenuGroupMaster.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>menuGroupMaster</servlet-name>
         <url-pattern>/admin/menuGroupMaster</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menuDetailMaster</servlet-name>
+        <url-pattern>/admin/menuDetailMaster.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -114,7 +122,7 @@
         </session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://192.168.0.18:3306/webdb</description>
+        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
