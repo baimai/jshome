@@ -52,7 +52,7 @@ public class login extends HttpServlet {
             }
              ArrayList list =  mmt.chkUserPass(mm);
              db.close();
-            if (!list.isEmpty()) {
+            if (list!=null) {
                 memberMasterEntity data = (memberMasterEntity) list.get(0);
                 lc.setMemberLogin(request.getParameter("memberLogin"));
                 lc.setLang(request.getParameter("lang"));

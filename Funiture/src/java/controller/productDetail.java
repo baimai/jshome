@@ -59,7 +59,7 @@ public class productDetail extends HttpServlet {
                         productDetailMasterTable pdmt = new productDetailMasterTable(db);
                         companyMasterTable cmt = new companyMasterTable(db);
                         productDetailMaster pdm = new productDetailMaster();
-
+                        int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
                         UploadBean u = new UploadBean();
@@ -84,12 +84,8 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("productDetailId") != null && !mr.getParameter("productDetailId").equals("")) {
                             pdm.setProductDetailId(Integer.parseInt(mr.getParameter("productDetailId")));
                         }
-                        if (mr.getParameter("companyCode") != null && !mr.getParameter("companyCode").equals("")) {
-                            int i = cmt.getCompanyId(request.getParameter("companyCode"));
-                            if(i!=0){
-                                pdm.setCompanyId(i);
-                            }                            
-                        }
+                        pdm.setCompanyId(Company_Id);
+
                         if (mr.getParameter("price1") != null && !mr.getParameter("price1").equals("")) {
                             pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price1"))));
                         }
