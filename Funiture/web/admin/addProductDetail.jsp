@@ -61,10 +61,6 @@
                         <td colspan="2"><input name="productCode" id="productCode" type="text" size="10" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2"align="right">Company Code</td>
-                        <td colspan="2"><input name="companyCode" type="text" size="10"/></td>
-                    </tr>
-                    <tr>
                         <td colspan="2"align="right">Color</td>
                         <td colspan="2">
                             <select name="colorId">
