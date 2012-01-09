@@ -35,7 +35,7 @@
                     colNames:['No','Company Code','Pic Code', 'productCode','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng'],
                     colModel:[
                         {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'companyCode',index:'companyCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'companyCode',index:'companyCode', width:80,editable:false,editoptions:{size:10}},
                         {name:'picCode',index:'picCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'productCode',index:'productCode', width:90,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'picNameT',index:'picNameT', width:225, align:"right",editrules:{edithidden:true},editable:true,editoptions:{size:25}},

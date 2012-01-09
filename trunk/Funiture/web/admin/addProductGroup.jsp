@@ -41,7 +41,7 @@
                         {name:'productRemarkT',index:'productRemarkT', width:125, align:"right",editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE', width:125, align:"right",editable:true,editoptions:{size:25}},
                         {name:'productGroupId',index:'productGroupId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'companyCode',index:'companyCode', align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:10}}
+                        {name:'companyCode',index:'companyCode', align:"right",hidden:true,editrules:{ edithidden:true},editable:false,editoptions:{size:10}}
                         
                     ],
                     rowNum:20,
