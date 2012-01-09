@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.ArrayList;
@@ -19,7 +18,8 @@ import util.Operation;
  * @author Jik
  */
 public class memberMasterTable {
-private Database db;
+
+    private Database db;
 
     public memberMasterTable(Database db) {
         this.db = db;
@@ -29,12 +29,12 @@ private Database db;
 
         String sql = "insert into member_master "
                 + "( Member_Login,Member_Password,Member_Reg_Date,Member_Name,"
-                + "  Member_SurName,Member_Com_Name,Member_Name_Abbr,Member_Addr1"
-                + "  ,Member_Addr2,Member_Distinct,Member_Amphur,Member_Province"
-                + " ,Member_Pstcode,Member_Tel1,Member_Tel2,Member_Fax1"
-                + ", Member_Fax2,Member_Mobile1,Member_Mobile2,Member_Email1"
-                + " ,Member_Email2,Member_Grade,Member_logo_loc,Member_Status"
-                + "  Create_Date,User_Id )"
+                + "  Member_SurName,Member_Com_Name,Member_Name_Abbr,Member_Addr1,"
+                + "  Member_Addr2,Member_Distinct,Member_Amphur,Member_Province,"
+                + "  Member_Pstcode,Member_Tel1,Member_Tel2,Member_Fax1,"
+                + "  Member_Fax2,Member_Mobile1,Member_Mobile2,Member_Email1,"
+                + "  Member_Email2,Member_Grade,Member_logo_loc,Member_Status,"
+                + "  Create_Date,User_Id,Company_Id )"
                 + "  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         db.add(sql,
@@ -62,12 +62,13 @@ private Database db;
                 mb.getMemberGrade(),
                 mb.getMemberlogoloc(),
                 mb.getMemberStatus(),
-                mb.getMemberAppdate(),
                 mb.getCreateDate(),
-                mb.getUserId());
+                mb.getUserId(),
+                mb.getCompanyId());
     }
+
     public void update(memberMasterEntity mb) {
-         String sql = "update member_master set "
+        String sql = "update member_master set "
                 + "( Member_Login=?,Member_Password=?,Member_Reg_Date=?,Member_Name=?,"
                 + "  Member_SurName=?,Member_Com_Name=?,Member_Name_Abbr=?,Member_Addr1=?"
                 + " ,Member_Addr2=?,Member_Distinct=?,Member_Amphur=?,Member_Province=?"
@@ -106,12 +107,13 @@ private Database db;
                 mb.getCreateDate(),
                 mb.getMemberId());
     }
-     public ArrayList search(String sField, String sValue, String sOper) {
-        String sql = "SELECT * FROM member_master mb"+
-                     " join Company_Master cm on cm.Company_Id = mb.Company_Id";
+
+    public ArrayList search(String sField, String sValue, String sOper) {
+        String sql = "SELECT * FROM member_master mb"
+                + " join Company_Master cm on cm.Company_Id = mb.Company_Id";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" where "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
@@ -122,10 +124,10 @@ private Database db;
                 mb.setMemberName(Default.Str(result.get(i).get("Member_Name")));
                 mb.setMemberSurName(Default.Str(result.get(i).get("Member_SurName")));
                 mb.setMemberComName(Default.Str(result.get(i).get("Member_Com_Name")));
-                mb.setMemberAppdate((Date)result.get(i).get("Member_App_Date"));
-                mb.setMemberRegDate((Date)result.get(i).get("Member_Reg_Date"));
-                mb.setMemberId((Integer)result.get(i).get("Member_Id"));
-                mb.setCompanyId((Integer)result.get(i).get("Company_Id"));
+                mb.setMemberAppdate((Date) result.get(i).get("Member_App_Date"));
+                mb.setMemberRegDate((Date) result.get(i).get("Member_Reg_Date"));
+                mb.setMemberId((Integer) result.get(i).get("Member_Id"));
+                mb.setCompanyId((Integer) result.get(i).get("Company_Id"));
                 list.add(mb);
             }
             return list;
@@ -133,5 +135,44 @@ private Database db;
             return null;
         }
 
+    }
+
+    public Integer getMemberId(String memberLogin) {
+        String sql = "select * from member_master where member_login = ?";
+        List<Map<String, Object>> result = db.queryList(sql, memberLogin);
+        if (result != null) {
+            return (Integer) result.get(0).get("Member_Login");
+        } else {
+            return 0;
+        }
+    }
+
+    public Boolean chkMemberLogin(String memberLogin) {
+        String sql = "select * from member_master where member_login = ?";
+        List<Map<String, Object>> result = db.queryList(sql, memberLogin);
+        if (result.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public ArrayList chkUserPass(memberMasterEntity mm) {
+        String sql = "select * from member_master where member_login = ? and member_password = ?";
+        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword());
+        ArrayList list = new ArrayList();
+        if (result.size() == 1) {
+            memberMasterEntity mb = new memberMasterEntity();
+            mb.setMemberLogin(Default.Str(result.get(0).get("Member_Login")));
+            mb.setMemberName(Default.Str(result.get(0).get("Member_Name")));
+            mb.setMemberSurName(Default.Str(result.get(0).get("Member_SurName")));
+            mb.setMemberComName(Default.Str(result.get(0).get("Member_Com_Name")));
+            mb.setMemberNameAbbr(Default.Str(result.get(0).get("Member_Name_Abbr")));
+            mb.setMemberId((Integer) result.get(0).get("Member_Id"));
+            list.add(mb);
+            return list;
+        }else{
+            return null;
+        }
     }
 }
