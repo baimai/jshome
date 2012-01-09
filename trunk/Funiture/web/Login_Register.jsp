@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -51,7 +52,7 @@ function popupwnd(url, toolbar, menubar, locationbar, resize, scrollbars, status
     <div class="page-title">
         <h1>Login or Create an Account</h1>
     </div>
-        <form action="http://freedemo.templates-master.com/f002/customer/account/loginPost/" method="post" id="login-form">
+        <form action="login.do" method="get" id="login-form">
         <div class="col2-set">
             <div class="col-1 new-users">
                 <div class="content">
@@ -65,15 +66,29 @@ function popupwnd(url, toolbar, menubar, locationbar, resize, scrollbars, status
                     <p>If you have an account with us, please log in.</p>
                     <ul class="form-list">
                         <li>
+                            <c:if test="${requestScope.invalid !=null}" >
+                                <div style="color: red">${requestScope.invalid}</div>
+                            </c:if>
+                        </li>
+                        <li>
                             <label for="email" class="required"><em>*</em>Email Address</label>
                             <div class="input-box">
-                                <input type="text" name="login[username]" value="" id="email" class="input-text required-entry validate-email" title="Email Address" />
+                                <input type="text" name="memberLogin" value="${param.memberLogin}" id="memberLogin" class="input-text required-entry validate-email" title="Email Address" />
                             </div>
                         </li>
                         <li>
                             <label for="pass" class="required"><em>*</em>Password</label>
                             <div class="input-box">
-                                <input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="Password" />
+                                <input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="Password" />
+                            </div>
+                        </li>
+                        <li>
+                            <label for="pass" class="required">Language</label>
+                            <div class="input-box">
+                                <select name="lang" id="lang" style="width: 80px">
+                                    <option value="Th">Thai</option>
+                                    <option value="En">English</option>
+                                </select>
                             </div>
                         </li>
                     </ul>
