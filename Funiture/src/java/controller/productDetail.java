@@ -85,7 +85,10 @@ public class productDetail extends HttpServlet {
                             pdm.setProductDetailId(Integer.parseInt(mr.getParameter("productDetailId")));
                         }
                         if (mr.getParameter("companyCode") != null && !mr.getParameter("companyCode").equals("")) {
-                            pdm.setCompanyId(cmt.getCompanyId(mr.getParameter("companyCode")));
+                            int i = cmt.getCompanyId(request.getParameter("companyCode"));
+                            if(i!=0){
+                                pdm.setCompanyId(i);
+                            }                            
                         }
                         if (mr.getParameter("price1") != null && !mr.getParameter("price1").equals("")) {
                             pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price1"))));

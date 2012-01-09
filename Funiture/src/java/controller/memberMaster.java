@@ -16,7 +16,6 @@ import model.Database;
 import model.companyMasterTable;
 import model.entity.memberMasterEntity;
 import model.memberMasterTable;
-
 /**
  *
  * @author Jik
@@ -34,6 +33,7 @@ public class memberMaster extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
         try {
            if (request.getParameter("action") != null) {
                 Database db = new Database();
@@ -46,11 +46,17 @@ public class memberMaster extends HttpServlet {
                         mb.setCompanyId(i);
                     }
                 }
-                if (request.getParameter("memberId") != null&&request.getParameter("action").equals("Edit")) {
-                    mb.setMemberId(Integer.parseInt(request.getParameter("memberId")));
+                if (request.getParameter("memberLogin") != null&&request.getParameter("action").equals("Edit")) {
+                    int i = mbt.getMemberId(request.getParameter("memberLogin"));
+                    if(i!=0){
+                        mb.setMemberId(i);
+                    }
                 }
                 if (request.getParameter("memberLogin") != null) {
                     mb.setMemberLogin(request.getParameter("memberLogin"));
+                }
+                if (request.getParameter("memberPassword") != null) {
+                    mb.setMemberPassword(request.getParameter("memberPassword"));
                 }
                 if (request.getParameter("memberName") != null) {
                     mb.setMemberName(request.getParameter("memberName"));
@@ -77,55 +83,59 @@ public class memberMaster extends HttpServlet {
                     mb.setMemberAmphur(request.getParameter("memberAmphur"));
                 }
                 if (request.getParameter("memberProvince") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberProvince"));
+                    mb.setMemberProvince(request.getParameter("memberProvince"));
                 }
                 if (request.getParameter("memberPstcode") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberPstcode"));
+                    mb.setMemberPstcode(request.getParameter("memberPstcode"));
                 }
                  if (request.getParameter("memberTel1") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberTel1"));
+                    mb.setMemberTel1(request.getParameter("memberTel1"));
                 }
                  if (request.getParameter("memberTel2") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberTel2"));
+                    mb.setMemberTel2(request.getParameter("memberTel2"));
                 }
                  if (request.getParameter("memberFax1") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberFax1"));
+                    mb.setMemberFax1(request.getParameter("memberFax1"));
                 }
                  if (request.getParameter("memberFax2") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberFax2"));
+                    mb.setMemberFax2(request.getParameter("memberFax2"));
                 }
                 if (request.getParameter("memberEmail1") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberEmail1"));
+                    mb.setMemberEmail1(request.getParameter("memberEmail1"));
                 }
                  if (request.getParameter("memberEmail2") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberEmail2"));
+                    mb.setMemberEmail2(request.getParameter("memberEmail2"));
                 }
-                 if (request.getParameter("memberEmail3") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberEmail3"));
-                }
+               
                  if (request.getParameter("memberGrade") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberGrade"));
+                    mb.setMemberGrade(request.getParameter("memberGrade"));
                 }
                  if (request.getParameter("memberlogoloc") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberlogoloc"));
+                    mb.setMemberlogoloc(request.getParameter("memberlogoloc"));
                 }
-                 if (request.getParameter("memberAppdate") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberAppdate"));
-                }
+                 
                  if (request.getParameter("memberStatus") != null) {
-                    mb.setMemberAmphur(request.getParameter("memberStatus"));
+                    mb.setMemberStatus(request.getParameter("memberStatus"));
+                }
+                if (request.getParameter("memberMobile1") != null) {
+                    mb.setMemberMobile1(request.getParameter("memberMobile1"));
+                }
+                if (request.getParameter("memberMobile2") != null) {
+                    mb.setMemberMobile2(request.getParameter("memberMobile2"));
                 }
                     mb.setCreateDate(Timestamp.valueOf(db.getNow()));
                     mb.setUpdateDate(Timestamp.valueOf(db.getNow()));
+               
 
-                if (request.getParameter("action").equals("Add")) {
+                if (request.getParameter("action").equals("Submit")) {
                     mbt.add(mb);
+
                 } else if (request.getParameter("action").equals("Edit")) {
                    // mbt.update(mb);
                 } else if (request.getParameter("action").equals("Del")) {
                     //mbt.remove(mb);
                 }
-                    System.out.print("test");
+                   
                 db.close();
             }
         }catch(Exception ex){
