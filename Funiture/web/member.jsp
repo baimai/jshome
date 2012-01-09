@@ -41,13 +41,12 @@
         <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
 
-        <!--[if lt IE 8]>
+
         <link rel="stylesheet" type="text/css" href="http://freedemo.templates-master.com/skin/frontend/default/f002/css/styles-ie.css" media="all" />
-        <![endif]-->
-        <!--[if lt IE 7]>
+
         <script type="text/javascript" src="http://freedemo.templates-master.com/js/lib/ds-sleight.js"></script>
         <script type="text/javascript" src="http://freedemo.templates-master.com/skin/frontend/base/default/js/ie6.js"></script>
-        <![endif]-->
+
         <script type="text/javascript">
 
 
@@ -111,7 +110,7 @@
                             <div class="page-title">
                                 <h1>Create an Account</h1>
                             </div>
-                            <form action="admin/memberMaster.do" method="post" id="form-validate">
+                            <form action="admin/memberMaster.do" method="post" id="form-validate" >
                                 <div class="fieldset">
                                     <h2 class="legend">Login Information</h2>
                                     <ul class="form-list">
@@ -282,7 +281,7 @@
                                 <div class="buttons-set">
                                     <p class="required">* Required Fields</p>
 
-                                    <button name="action" value="Submit" >Submit</button>
+                                    <button name="action" value="Submit" class="button" onclick="checkout.setMethod()">Submit</button>
                                 </div>
                             </form>
                             <script type="text/javascript">
