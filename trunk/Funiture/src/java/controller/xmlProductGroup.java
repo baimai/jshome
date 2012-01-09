@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+import model.companyMasterTable;
 import model.entity.productDetailMaster;
 import model.entity.productGroupMaster;
 import model.productDetailMasterTable;
@@ -44,11 +45,8 @@ public class xmlProductGroup extends HttpServlet {
                 String page = request.getParameter("page");
                 String productGroupId = null, Edit = null,Del=null;
                 String sField = null, sValue = null, sOper = null;
-                /*
-                if (request.getParameter("menuCode") != null ) {
-                menuCode = request.getParameter("menuCode");
-                }
-                 */
+
+
                 if (request.getParameter("productGroupId") != null) {
                     productGroupId = request.getParameter("productGroupId");
                 }
@@ -85,8 +83,10 @@ public class xmlProductGroup extends HttpServlet {
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
+                companyMasterTable cmt = new companyMasterTable(db);
+                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
                 ArrayList listp = pdm.search(productGroupId);
-                ArrayList list = pgmt.search(sField, sValue, sOper);
+                ArrayList list = pgmt.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");

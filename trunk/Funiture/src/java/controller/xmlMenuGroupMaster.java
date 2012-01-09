@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+import model.companyMasterTable;
 import model.entity.menuGroupMasterEntity;
 import model.menuGroupMasterTable;
 
@@ -82,8 +83,9 @@ public class xmlMenuGroupMaster extends HttpServlet {
 
                 Database db = new Database();
                 menuGroupMasterTable mgt = new menuGroupMasterTable(db);
-              
-                ArrayList list = mgt.search(sField, sValue, sOper);
+                companyMasterTable cmt = new companyMasterTable(db);
+                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
+                ArrayList list = mgt.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");

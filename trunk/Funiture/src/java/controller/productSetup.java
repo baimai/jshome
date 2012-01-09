@@ -41,16 +41,12 @@ public class productSetup extends HttpServlet {
                 picProductSetupTable mpst = new picProductSetupTable(db);
                 productDetailMasterTable pdmt = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
+                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
                 picProductSetup mps = new picProductSetup();
                 if (request.getParameter("picCode") != null) {
                     mps.setPicCode(request.getParameter("picCode"));
                 }
-                if (request.getParameter("companyCode") != null) {
-                    int i = cmt.getCompanyId(request.getParameter("companyCode"));
-                    if (i != 0) {
-                        mps.setCompanyId(i);
-                    }
-                }
+                mps.setCompanyId(Company_Id);
                 if (request.getParameter("productCode") != null) {
                     int i = pdmt.getProductId(request.getParameter("productCode"));
                     if (i != 0) {
@@ -78,8 +74,7 @@ public class productSetup extends HttpServlet {
                 } else if (request.getParameter("action").equals("Del")) {
                     mpst.remove(mps);
                 }
-                out.println(mps.getCompanyId());
-                out.println(mps.getProductDetailId());
+
                 db.close();
             }
         } catch (Exception ex) {

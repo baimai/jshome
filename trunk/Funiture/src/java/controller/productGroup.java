@@ -40,13 +40,10 @@ public class productGroup extends HttpServlet {
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 productGroupMaster pgm = new productGroupMaster();
-                if (request.getParameter("companyCode") != null) {
-                    int i = cmt.getCompanyId(request.getParameter("companyCode"));
-                    if(i!=0){
-                        pgm.setCompanyId(i);
-                    }                 
-                }
-                if (request.getParameter("productGroupId") != null&&request.getParameter("action").equals("Edit")) {
+                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
+                pgm.setCompanyId(Company_Id);
+
+                if (request.getParameter("productGroupId") != null && request.getParameter("action").equals("Edit")) {
                     pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
                 }
                 if (request.getParameter("productGroupCode") != null) {
@@ -64,10 +61,10 @@ public class productGroup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     pgm.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-                
-                    pgm.setCreateDate(Timestamp.valueOf(db.getNow()));             
-                    pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                
+
+                pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
+                pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+
                 if (request.getParameter("action").equals("Add")) {
                     pgmt.add(pgm);
                 } else if (request.getParameter("action").equals("Edit")) {
@@ -75,12 +72,12 @@ public class productGroup extends HttpServlet {
                 } else if (request.getParameter("action").equals("Del")) {
                     //pgmt.remove(pgm);
                 }
-                    System.out.print("test");
+                System.out.print("test");
                 db.close();
             }
-        }catch(Exception ex){
-                ex.printStackTrace(out);
-        } finally {            
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
+        } finally {
             out.close();
         }
     }
