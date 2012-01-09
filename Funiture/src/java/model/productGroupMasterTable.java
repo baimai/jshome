@@ -66,14 +66,15 @@ public class productGroupMasterTable {
                 pgm.getProductGroupId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper) {
+    public ArrayList search(String sField, String sValue, String sOper,int Company_Id) {
         String sql = "SELECT * FROM product_group_master pgm"+
-                     " join Company_Master cm on cm.Company_Id = pgm.Company_Id";
+                     " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
+                     " where cm.Company_Id = ? ";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" where "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql);
+        List<Map<String, Object>> result = db.queryList(sql,Company_Id);
         ArrayList list = new ArrayList();
         if (result != null) {
             for (int i = 0; i < result.size(); i++) {
