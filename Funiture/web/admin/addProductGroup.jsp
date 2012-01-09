@@ -44,8 +44,8 @@
                         {name:'companyCode',index:'companyCode', align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:10}}
                         
                     ],
-                    rowNum:10,
-                    rowList:[10,20,30,40,80,160,320,500,1000],
+                    rowNum:20,
+                    rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
                     height:400,
