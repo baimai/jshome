@@ -21,8 +21,8 @@ public class companyMasterTable {
     }
 
     public Integer getCompanyId(String companyCode) {
-        String sql = "select * from company_master where company_code = ?";
-        List<Map<String, Object>> result = db.queryList(sql,companyCode);
+        String sql = "select * from company_master where company_code = 'JSH'";
+        List<Map<String, Object>> result = db.queryList(sql);
         if (result != null) {
             return (Integer) result.get(0).get("Company_Id");
         } else {
