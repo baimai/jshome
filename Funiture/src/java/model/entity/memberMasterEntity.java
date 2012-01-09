@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class memberMasterEntity {
     private int companyId;
-    private Integer memberId;
+    private int memberId;
     private Date memberRegDate;
     private String memberName;
     private String memberSurName;
@@ -61,14 +61,14 @@ public class memberMasterEntity {
     /**
      * @return the member_Id
      */
-    public Integer getMemberId() {
+    public int getMemberId() {
         return memberId;
     }
 
     /**
      * @param member_Id the member_Id to set
      */
-    public void setMemberId(Integer memberId) {
+    public void setMemberId(int memberId) {
         this.memberId = memberId;
     }
 
