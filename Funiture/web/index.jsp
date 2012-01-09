@@ -51,6 +51,5 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
     </body>
 </html>
