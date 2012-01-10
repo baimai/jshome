@@ -76,7 +76,7 @@ public class memberMasterTable {
                 + ", Member_Fax2=?,Member_Mobile1=?,Member_Mobile2=?,Member_Email1=?"
                 + " ,Member_Email2=?,Member_Grade=?,Member_logo_loc=?,Member_Status=?"
                 + "  Create_Date=? )"
-                + " where Member_Id_Id = ? ";
+                + " where Member_Id = ? ";
 
         db.add(sql,
                 mb.getMemberLogin(),
@@ -108,12 +108,13 @@ public class memberMasterTable {
                 mb.getMemberId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper) {
+    public ArrayList search(String sField, String sValue, String sOper,int Company_Id) {
         String sql = "SELECT * FROM member_master mb"
-                + " join Company_Master cm on cm.Company_Id = mb.Company_Id";
+                + " join Company_Master cm on cm.Company_Id = mb.Company_Id"+
+                  " where cm.Company_Id = ?";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
@@ -137,9 +138,9 @@ public class memberMasterTable {
 
     }
 
-    public Integer getMemberId(String memberLogin) {
-        String sql = "select * from member_master where member_login = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberLogin);
+    public Integer getMemberId(String memberLogin,int Company_Id) {
+        String sql = "select * from member_master where member_login = ? and Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, memberLogin,Company_Id);
         if (result != null) {
             return (Integer) result.get(0).get("Member_Login");
         } else {
@@ -147,9 +148,9 @@ public class memberMasterTable {
         }
     }
 
-    public Boolean chkMemberLogin(String memberLogin) {
-        String sql = "select * from member_master where member_login = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberLogin);
+    public Boolean chkMemberLogin(String memberLogin,int Company_Id) {
+        String sql = "select * from member_master where member_login = ? and Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, memberLogin,Company_Id);
         if (result.isEmpty()) {
             return false;
         } else {
@@ -157,9 +158,9 @@ public class memberMasterTable {
         }
     }
 
-    public ArrayList chkUserPass(memberMasterEntity mm) {
-        String sql = "select * from member_master where member_login = ? and member_password = ?";
-        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword());
+    public ArrayList chkUserPass(memberMasterEntity mm,int Company_Id) {
+        String sql = "select * from member_master where member_login = ? and member_password = ? and Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword(),Company_Id);
         ArrayList list = new ArrayList();
         if (result.size() == 1) {
             memberMasterEntity mb = new memberMasterEntity();

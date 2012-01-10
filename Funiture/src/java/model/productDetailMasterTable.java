@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.entity.productDetailMaster;
+import model.entity.productDetailMasterEntity;
 import util.Default;
 
 /**
@@ -23,7 +23,7 @@ public class productDetailMasterTable {
         this.db = db;
     }
 
-    public void add(productDetailMaster pdm) {
+    public void add(productDetailMasterEntity pdm) {
         String sql = "insert into product_detail_master "
                 + "(Company_Id,Product_Group_Id,Product_Code,Product_D_Name_T,Product_D_Name_E,"
                 + " Product_Price1,Product_Price2,Product_Price3,"
@@ -63,7 +63,7 @@ public class productDetailMasterTable {
                 pdm.getProductColorId());
     }
 
-    public void update(productDetailMaster pdm) {
+    public void update(productDetailMasterEntity pdm) {
         String sql = "update product_detail_master set Company_Id = ?,Product_Group_Id = ?,Product_Code = ?,"
                 + "Product_D_Name_T = ?,Product_D_Name_E = ?,"
                 + "Product_Price1 = ?,Product_Price2 = ?,Product_Price3 = ?,"
@@ -106,27 +106,26 @@ public class productDetailMasterTable {
                 pdm.getProductDetailId());
     }
 
-    public void remove (productDetailMaster pdm){
-        String sql="delete from product_detail_master where product_detail_id = ?";
-        db.add(sql,pdm.getProductDetailId());
+    public void remove(productDetailMasterEntity pdm) {
+        String sql = "delete from product_detail_master where product_detail_id = ?";
+        db.add(sql, pdm.getProductDetailId());
     }
 
-    public ArrayList search(String productGroupId) {
+    public ArrayList search(String productGroupId, int Company_Id) {
         List<Map<String, Object>> result = null;
+        String sql = "SELECT * FROM product_detail_master pdm where pdm.Company_Id = ? ";
         if (productGroupId == null) {
-            String sql = "SELECT * FROM product_detail_master pdm";
-            result = db.queryList(sql);
+            result = db.queryList(sql, Company_Id);
         } else {
-            String sql = "SELECT * FROM product_detail_master pdm"
-                    + " where  pdm.Product_Group_Id = ? ";
-            result = db.queryList(sql, productGroupId);
+            sql = sql + " and  pdm.Product_Group_Id = ? ";
+            result = db.queryList(sql, Company_Id, productGroupId);
         }
 
 
         ArrayList list = new ArrayList();
         if (result != null) {
             for (int i = 0; i < result.size(); i++) {
-                productDetailMaster pdm = new productDetailMaster();
+                productDetailMasterEntity pdm = new productDetailMasterEntity();
                 pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
                 pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
@@ -166,9 +165,9 @@ public class productDetailMasterTable {
 
     }
 
-    public Integer getProductId(String productCode) {
-        String sql = "select * from product_detail_master where Product_Code = ?";
-        List<Map<String, Object>> result = db.queryList(sql, productCode);
+    public Integer getProductId(String productCode, int Company_Id) {
+        String sql = "select * from product_detail_master pdm where pdm.Product_Code = ? and pdm.Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, productCode, Company_Id);
         if (result != null) {
             return (Integer) result.get(0).get("Product_Detail_Id");
         } else {

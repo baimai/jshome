@@ -6,7 +6,7 @@ package model;
 
 import java.util.List;
 import java.util.Map;
-import model.entity.companyMaster;
+import model.entity.companyMasterEntity;
 
 /**
  *
@@ -30,7 +30,7 @@ public class companyMasterTable {
         }
 
     }
-     public void add(companyMaster cpm) {
+     public void add(companyMasterEntity cpm) {
         String sql = "insert into company_master "
                 + "( Company_Code,Company_Name_T,Company_Name_E,"
                 + "  Company_Name_Abbr,Company_Logo_Loc,"
