@@ -22,7 +22,7 @@ import javazoom.upload.UploadException;
 import javazoom.upload.UploadFile;
 import model.Database;
 import model.companyMasterTable;
-import model.entity.productDetailMaster;
+import model.entity.productDetailMasterEntity;
 import model.productDetailMasterTable;
 
 /**
@@ -58,8 +58,8 @@ public class productDetail extends HttpServlet {
                         Database db = new Database();
                         productDetailMasterTable pdmt = new productDetailMasterTable(db);
                         companyMasterTable cmt = new companyMasterTable(db);
-                        productDetailMaster pdm = new productDetailMaster();
-                        int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
+                        productDetailMasterEntity pdm = new productDetailMasterEntity();
+                         int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
                         UploadBean u = new UploadBean();
@@ -154,8 +154,10 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("action").equals("Del")) {
                             pdmt.remove(pdm);
                         }
+                         db.close();
                         //response.sendRedirect("manageProductDetail.jsp");
                     }
+
                 }
             } catch (Exception ex) {
                 ex.printStackTrace(out);

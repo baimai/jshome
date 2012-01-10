@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package controller;
 
 import java.io.IOException;
@@ -10,16 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Database;
-import model.companyMasterTable;
-import model.memberMasterTable;
 
 /**
  *
  * @author Achilles
  */
-public class chkValidate extends HttpServlet {
-
+public class defaultCompany extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -28,38 +26,22 @@ public class chkValidate extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        request.setCharacterEncoding("utf-8");
-
         try {
-            Database db = new Database();
-            memberMasterTable mmt = new memberMasterTable(db);
-            companyMasterTable cmt = new companyMasterTable(db);
-            int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-            if (request.getParameter("memberLogin") != null) {
-                if (request.getParameter("memberLogin").equals("")) {
-                    out.print("กรุณากรอกข้อมูลล็อกอิน");
-                } else {
-                    Boolean chk = mmt.chkMemberLogin(request.getParameter("memberLogin"),Company_Id);
-                    if (request.getParameter("memberLogin").length() <= 6) {
-                        out.print("จำนวนตัวอักษรต้องมากกว่า6");
-                    } else {
-                        if (chk == true) {
-                            out.print("มีข้อมูลล็อกอินอยู่ในระบบนี้แล้ว");
-                        } else {
-                            out.print("ข้อมูลล็อกอินนี้สามารถใช้ได้");
-                        }
-                    }
 
-                }
+            if(request.getParameter("CompanyId")!=null&&!request.getParameter("CompanyId").equals("")){
+                getServletContext().setAttribute("Company_Id",Integer.parseInt(request.getParameter("CompanyId")));
             }
-            db.close();
+            response.sendRedirect("defaultCompany.jsp");
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
+
         } finally {
             out.close();
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -71,9 +53,9 @@ public class chkValidate extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -84,7 +66,7 @@ public class chkValidate extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -96,4 +78,5 @@ public class chkValidate extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

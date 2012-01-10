@@ -38,7 +38,8 @@ public class memberMaster extends HttpServlet {
            if (request.getParameter("action") != null) {
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
+               companyMasterTable cmt = new companyMasterTable(db);
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 memberMasterEntity mb = new memberMasterEntity();
                 if (request.getParameter("companyCode") != null) {
                     int i = cmt.getCompanyId(request.getParameter("companyCode"));
@@ -47,7 +48,7 @@ public class memberMaster extends HttpServlet {
                     }
                 }
                 if (request.getParameter("memberLogin") != null&&request.getParameter("action").equals("Edit")) {
-                    int i = mbt.getMemberId(request.getParameter("memberLogin"));
+                    int i = mbt.getMemberId(request.getParameter("memberLogin"),Company_Id);
                     if(i!=0){
                         mb.setMemberId(i);
                     }
@@ -137,6 +138,57 @@ public class memberMaster extends HttpServlet {
                 }
                    
                 db.close();
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title></title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<script type=\"text/javascript\">");
+                out.println("var wait_time=8;");
+                out.println("window.onload=function(){");
+                out.println("var vela=setInterval(\"decrease_num()\",1000);");
+                out.println("setTimeout(\"clearInterval(\"+vela+\")\",(wait_time+1)*1000);");
+                out.println("}");
+                out.println("function decrease_num(){");
+                out.println("if(wait_time>0){");
+                out.println("var show_place=document.getElementById('show_text');");
+                out.println("show_place.innerHTML=\"wait... \"+wait_time+\"  sec\";");
+                out.println("wait_time--;");
+                out.println("if(wait_time==0){location.href='../Login.jsp'}");
+                out.println(" }else{");
+                out.println("if(wait_time==0){");
+                out.println("alert(\"Go!!\");");
+                out.println("}");
+                out.println("}");
+                out.println("}");
+                out.println(" </script>");
+                out.println("<center><br/><br/><br/><h1> <div style=\"color:blue\">Thank You For Register</div> </h1><br/><br/><br/>");
+                out.println("<h3><span id=\"show_text\"></span></h3></center>");
+                
+                
+                out.println("");
+                out.println("");
+                out.println("</body>");
+                out.println("</html>");
+                
+                
+                  // กำหนดเวลาให้รอ เป็นวินาที
+                
+               
+                
+                
+                
+                
+                
+                
+                
+               
+		
+			
+                
+               
+                
+                //response.sendRedirect("Lo");
             }
         }catch(Exception ex){
                 ex.printStackTrace(out);

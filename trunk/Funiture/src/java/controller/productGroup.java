@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
-import model.entity.productGroupMaster;
+import model.entity.productGroupMasterEntity;
 import model.productGroupMasterTable;
 
 /**
@@ -39,8 +39,8 @@ public class productGroup extends HttpServlet {
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
-                productGroupMaster pgm = new productGroupMaster();
-                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
+                productGroupMasterEntity pgm = new productGroupMasterEntity();
+                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 pgm.setCompanyId(Company_Id);
 
                 if (request.getParameter("productGroupId") != null && request.getParameter("action").equals("Edit")) {
