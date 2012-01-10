@@ -99,7 +99,8 @@ function popupwnd(url, toolbar, menubar, locationbar, resize, scrollbars, status
         <div class="col2-set">
             <div class="col-1 new-users">
                 <div class="buttons-set">
-                    <button type="button" title="Create an Account" class="button" onclick="javascript:popupwnd('member.jsp','no','no','no','yes','yes','no','300','70','800','440')"> <span><span>Create an Account</span></span></button>
+                    <%--<button type="button" title="Create an Account" class="button" onclick="javascript:popupwnd('member.jsp','no','no','no','yes','yes','no','300','70','800','440')"> <span><span>Create an Account</span></span></button>--%>
+                    <button type="button" title="Create an Account" class="button" onclick="javascript:location.href='member.jsp'"> <span><span>Create an Account</span></span></button>
                 </div>
             </div>
             <div class="col-2 registered-users">

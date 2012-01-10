@@ -46,7 +46,7 @@
 
         <script type="text/javascript" src="http://freedemo.templates-master.com/js/lib/ds-sleight.js"></script>
         <script type="text/javascript" src="http://freedemo.templates-master.com/skin/frontend/base/default/js/ie6.js"></script>
-
+       <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
         <script type="text/javascript">
 
 
@@ -74,20 +74,28 @@
             function showDistinct(text){
                 document.getElementById("showDistinct").innerHTML=text;
             }
-           function checkBeforeSubmit(){
-               if(document.getElementById("chkValidate").innerHTML!="ข้อมูลล็อกอินนี้สามารถใช้ได้"){
-                   
+            function checkBeforeSubmit(){
+                if(document.getElementById("chkValidate").innerHTML!="ข้อมูลล็อกอินนี้สามารถใช้ได้"){
+                    alert("กรุณาเช็คข้อมูลล็อกอิน");
+                    return false;
                 }else{
-                    alert("ขอคุณสำหรับการลงทะเบียน");
-                   // window.close();
+                    return true;
+                    // window.close();
                 }
-           }
+            }
 
         </script>
         <script type="text/javascript">
-            //<![CDATA[
-            optionalZipCountries = [];
-            //]]>
+            $(document).ready(function() {
+                $('#memberLogin').keyup(function() {
+                    checkMemberLogin($('#memberLogin').val());
+                })
+                $('#memberLogin').change(function() {
+                    checkMemberLogin($('#memberLogin').val());
+                })
+                
+            });
+
         </script>
         <script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script></head>
     <body class=" customer-account-create" onload="changeCommonProvince(2,1);changeCommonProvince(3,77)">
@@ -117,7 +125,7 @@
                                         <li>   <div class="field">
                                                 <label for="login" class="required"><em>*</em>login</label>
                                                 <div class="input-box">
-                                                    <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login" onkeyup="checkMemberLogin(this.value)" on/>
+                                                    <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login"   />
                                                 </div>
                                             </div>
                                             <div class="field">
@@ -281,7 +289,7 @@
                                 <div class="buttons-set">
                                     <p class="required">* Required Fields</p>
 
-                                    <button name="action" value="Submit" class="button" onclick="checkout.setMethod()">Submit</button>
+                                    <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()">Submit</button>
                                 </div>
                             </form>
                             <script type="text/javascript">
