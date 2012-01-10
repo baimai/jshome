@@ -108,17 +108,12 @@
                 <p class="no-rating"><a href="http://freedemo.templates-master.com/f002/review/product/list/id/41/category/23/#review-form">Be the first to review this product</a></p>
                         
     <p class="availability in-stock">Availability: <span>In stock</span></p>
-
-                                        <ul class="add-to-links">
-                                            <li><a href="http://freedemo.templates-master.com/f002/wishlist/index/add/product/41/" class="link-wishlist">Add to Wishlist</a></li>
-                                            <li><span class="separator">|</span> <a href="http://freedemo.templates-master.com/f002/catalog/product_compare/add/product/41/uenc/aHR0cDovL2ZyZWVkZW1vLnRlbXBsYXRlcy1tYXN0ZXIuY29tL2YwMDIvZnVybml0dXJlL2JlZHJvb20vYWtpby1kcmVzc2VyLmh0bWw_X19fU0lEPVU,/" class="link-compare">Add to Compare</a></li>
-                                        </ul>
                                     </div>
 
 
 
                                     <div class="short-description">
-                                        <h2>Quick Overview</h2>
+                                        <h2>&nbsp;</h2>
                                         <div class="std">Our Akio dresser has a solid hardwood frame.  </div>
                                     </div>
 
