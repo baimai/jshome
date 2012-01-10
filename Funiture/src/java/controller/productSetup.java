@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
-import model.entity.picProductSetup;
+import model.entity.picProductSetupEntity;
 import model.picProductSetupTable;
 import model.productDetailMasterTable;
 
@@ -41,14 +41,14 @@ public class productSetup extends HttpServlet {
                 picProductSetupTable mpst = new picProductSetupTable(db);
                 productDetailMasterTable pdmt = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
-                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
-                picProductSetup mps = new picProductSetup();
+                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                picProductSetupEntity mps = new picProductSetupEntity();
                 if (request.getParameter("picCode") != null) {
                     mps.setPicCode(request.getParameter("picCode"));
                 }
                 mps.setCompanyId(Company_Id);
                 if (request.getParameter("productCode") != null) {
-                    int i = pdmt.getProductId(request.getParameter("productCode"));
+                    int i = pdmt.getProductId(request.getParameter("productCode"),Company_Id);
                     if (i != 0) {
                         mps.setProductDetailId(i);
                     }

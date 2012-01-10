@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+import model.companyMasterTable;
 import model.entity.memberMasterEntity;
 import model.memberMasterTable;
 
@@ -82,9 +83,11 @@ public class xmlMemberMaster extends HttpServlet {
 
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
+                companyMasterTable cmt = new companyMasterTable(db);
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
               /*  productDetailMasterTable pdm = new productDetailMasterTable(db);
                 ArrayList listp = pdm.search(productGroupId);*/
-                ArrayList list = mbt.search(sField, sValue, sOper);
+                ArrayList list = mbt.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");

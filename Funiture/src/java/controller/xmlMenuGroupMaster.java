@@ -84,7 +84,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
                 Database db = new Database();
                 menuGroupMasterTable mgt = new menuGroupMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
-                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 ArrayList list = mgt.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {

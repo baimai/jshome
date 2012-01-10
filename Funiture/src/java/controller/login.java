@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
+import model.companyMasterTable;
 import model.entity.memberMasterEntity;
 import model.memberMasterTable;
 
@@ -41,6 +42,8 @@ public class login extends HttpServlet {
             Database db = new Database();
             memberMasterEntity mm = new memberMasterEntity();
             memberMasterTable mmt = new memberMasterTable(db);
+            companyMasterTable cmt = new companyMasterTable(db);
+            int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
             loginClass lc = new loginClass();
 
             if (request.getParameter("memberLogin") != null) {
@@ -50,7 +53,7 @@ public class login extends HttpServlet {
             if (request.getParameter("memberPassword") != null) {
                 mm.setMemberPassword(request.getParameter("memberPassword"));
             }
-             ArrayList list =  mmt.chkUserPass(mm);
+             ArrayList list =  mmt.chkUserPass(mm,Company_Id);
              db.close();
             if (list!=null) {
                 memberMasterEntity data = (memberMasterEntity) list.get(0);

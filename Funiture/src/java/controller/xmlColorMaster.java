@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.colorMasterTable;
-import model.entity.colorCodeMaster;
+import model.entity.colorCodeMasterEntity;
 /**
  *
  * @author Jik
@@ -95,7 +95,7 @@ public class xmlColorMaster extends HttpServlet {
                     int srNo = 1;
 
                     for (int i = 0; i < list.size(); i++) {
-                        colorCodeMaster data = (colorCodeMaster) list.get(i);
+                        colorCodeMasterEntity data = (colorCodeMasterEntity) list.get(i);
                         out.print("<row id='" + data.getColorCode() + "'>");
                         out.print("<cell>" + i + "</cell>");
                         out.print("<cell>" + data.getColorCode() + "</cell>");

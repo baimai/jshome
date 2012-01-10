@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.entity.picProductSetup;
-import model.entity.productDetailMaster;
+import model.companyMasterTable;
+import model.entity.picProductSetupEntity;
+import model.entity.productDetailMasterEntity;
 import model.picProductSetupTable;
 import model.productDetailMasterTable;
 import util.Default;
@@ -83,9 +84,10 @@ public class datagrid extends HttpServlet {
                 Database db = new Database();
                 picProductSetupTable mps = new picProductSetupTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList listp = pdm.search(productCode); 
-                //ArrayList list = mps.search(menuCode,productCode);
-                ArrayList list = mps.search(sField, sValue, sOper);
+                companyMasterTable cmt = new companyMasterTable(db);
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                ArrayList listp = pdm.search(productCode,Company_Id);
+                ArrayList list = mps.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");
@@ -97,7 +99,7 @@ public class datagrid extends HttpServlet {
                     int srNo = 1;
                     
                     for (int i = 0; i < list.size(); i++) {
-                        picProductSetup data = (picProductSetup) list.get(i);
+                        picProductSetupEntity data = (picProductSetupEntity) list.get(i);
                         out.print("<row id='" + data.getProductCode() + "'>");
                         out.print("<cell>" + i + "</cell>");
                          out.print("<cell>" + data.getCompanyCode() + "</cell>");
@@ -124,7 +126,7 @@ public class datagrid extends HttpServlet {
                     int srNo = 1;
 
                     for (int i = 0; i < listp.size(); i++) {
-                        productDetailMaster data = (productDetailMaster) listp.get(i);
+                        productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
                         out.print("<row id='" + data.getProductCode() + "'>");
                        // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
                         out.print("<cell>" + data.getProductDNameT()+ "</cell>");

@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
 import model.colorMasterTable;
-import model.entity.colorCodeMaster;
-import model.entity.companyMaster;
+import model.entity.colorCodeMasterEntity;
+import model.entity.companyMasterEntity;
 import model.entity.menuGroupMasterEntity;
 import model.menuGroupMasterTable;
 
@@ -44,7 +44,8 @@ public class menuGroupMaster extends HttpServlet {
             Database db = new Database();
             menuGroupMasterEntity mg = new menuGroupMasterEntity();
             menuGroupMasterTable mgt = new menuGroupMasterTable(db);
-            companyMaster cm         = new companyMaster();
+            companyMasterEntity cm         = new companyMasterEntity();
+             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
              if (request.getParameter("menuGroupId") != null&&request.getParameter("action").equals("Edit")) {
                     mg.setMenuGroupId(Integer.parseInt(request.getParameter("menuGroupId")));
                 }
@@ -70,6 +71,7 @@ public class menuGroupMaster extends HttpServlet {
                 mg.setMenuGRemarkE(request.getParameter("menuGRemarkE"));
             }
             mg.setCreateDate(Timestamp.valueOf(db.getNow()));
+            mg.setCompanyId(Company_Id);
             if (request.getParameter("action").equals("Add")) {
 
                 mgt.add(mg);

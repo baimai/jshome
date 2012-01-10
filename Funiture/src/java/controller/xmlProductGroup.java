@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
-import model.entity.productDetailMaster;
-import model.entity.productGroupMaster;
+import model.entity.productDetailMasterEntity;
+import model.entity.productGroupMasterEntity;
 import model.productDetailMasterTable;
 import model.productGroupMasterTable;
 
@@ -84,8 +84,8 @@ public class xmlProductGroup extends HttpServlet {
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
-                int Company_Id = cmt.getCompanyId(getServletContext().getAttribute("Company_Code").toString());
-                ArrayList listp = pdm.search(productGroupId);
+                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                ArrayList listp = pdm.search(productGroupId,Company_Id);
                 ArrayList list = pgmt.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
@@ -98,7 +98,7 @@ public class xmlProductGroup extends HttpServlet {
                     int srNo = 1;
 
                     for (int i = 0; i < list.size(); i++) {
-                        productGroupMaster data = (productGroupMaster) list.get(i);
+                        productGroupMasterEntity data = (productGroupMasterEntity) list.get(i);
                         out.print("<row id='" + data.getProductGroupId() + "'>");
                         out.print("<cell>" + i + "</cell>");
                         out.print("<cell>" + data.getProductGroupCode() + "</cell>");
@@ -122,7 +122,7 @@ public class xmlProductGroup extends HttpServlet {
                     int srNo = 1;
 
                     for (int i = 0; i < listp.size(); i++) {
-                        productDetailMaster data = (productDetailMaster) listp.get(i);
+                        productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
                         out.print("<row id='" + data.getProductCode() + "'>");
                         // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
                         out.print("<cell>" + data.getProductCode() + "</cell>");

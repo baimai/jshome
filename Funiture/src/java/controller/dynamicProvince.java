@@ -65,6 +65,7 @@ public class dynamicProvince extends HttpServlet {
                 out.println("</select>");
 
             }
+            db.close();
 
         } finally {
             out.close();
