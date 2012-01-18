@@ -25,6 +25,7 @@ Connection conn;
         try {
             conn = getWebdb().getConnection();
             sce.getServletContext().setAttribute("Connection", conn);
+            sce.getServletContext().setAttribute("Company_Id", 0);
         } catch (NamingException ex) {
             Logger.getLogger(init.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
