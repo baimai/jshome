@@ -5,6 +5,7 @@
 
 package controller;
 
+import controller.Xml.GenerateXml;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ import model.menuGroupMasterTable;
  * @author Jik
  */
 public class xmlMenuGroupMaster extends HttpServlet {
-   
-    /** 
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -88,27 +89,16 @@ public class xmlMenuGroupMaster extends HttpServlet {
                 ArrayList list = mgt.search(sField, sValue, sOper,Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
-                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                    out.print("<rows>");
-                    out.print("<page>" + request.getParameter("page") + "</page>");
-
-                    out.print("<total>" + totalPages + "</total>");
-                    out.print("<records>" + list.size() + "</records>");
-                    int srNo = 1;
-
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         menuGroupMasterEntity data = (menuGroupMasterEntity) list.get(i);
-                        out.print("<row id='" + data.getMenuGroupId() + "'>");
-                        out.print("<cell>" + i + "</cell>");
-                        out.print("<cell>" + data.getMenuGNameT() + "</cell>");
-                        out.print("<cell>" + data.getMenuGNameT() + "</cell>");
-                        out.print("<cell>" + data.getMenuPermission() + "</cell>");
-                      //  out.print("<cell>" + data.getMenuGroupId() + "</cell");
-                        out.print("<cell>" + data.getCompanyId() + "</cell>");
-                        out.print("</row>");
-                        srNo++;
+                        xml.setRowDetail(data.getMenuGroupId(),i,data.getMenuGNameT(),data.getMenuGNameE(),
+                                data.getMenuPermission(),data.getCompanyId());
                     }
-                    out.print("</rows>");
+                    out.print(xml.getXml());
                }
             }
         } catch (Exception ex) {
@@ -119,7 +109,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -130,9 +120,9 @@ public class xmlMenuGroupMaster extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -145,7 +135,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
