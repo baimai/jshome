@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
 import model.companyMasterTable;
-import model.entity.companyMaster;
+import model.entity.companyMasterEntity;
 
 
 /**
@@ -39,7 +39,7 @@ public class companyMasterController extends HttpServlet {
 
             Database db = new Database();
             companyMasterTable cpm = new companyMasterTable(db);
-            companyMaster cp = new companyMaster();
+            companyMasterEntity cp = new companyMasterEntity();
 
             if (request.getParameter("companyCode") != null) {
                 cp.setCompanyCode(request.getParameter("companyCode"));
