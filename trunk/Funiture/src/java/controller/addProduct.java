@@ -36,9 +36,9 @@ public class addProduct extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             HttpSession s = request.getSession();
-            String productCode = request.getParameter("productCode");
+            int productDetailId = Integer.parseInt(request.getParameter("productDetailId"));
             String productName = request.getParameter("productName");
-            String productGroup = request.getParameter("productGroup");
+            //String productGroup = request.getParameter("productGroup");
             
             int amount = 0;
             double productPrice = 0.00;
@@ -57,7 +57,7 @@ public class addProduct extends HttpServlet {
                         for (int i = 0; i < list.size() && flag != 1; i++) {
                             product chkPro = (product) list.get(i);
                             //เพิ่ม,ลด จำนวนสินค้า
-                            if (chkPro.getProductCode().equals(productCode)) {
+                            if (chkPro.getProductDetailId()==productDetailId) {
                                 if (chkPro.getAmount() - amount <= 0 && status.equals("minus")) {
                                     //ถ้าสินค้าลดลงต่ำกว่าศูนย์
                                     list.remove(i);
@@ -80,9 +80,9 @@ public class addProduct extends HttpServlet {
                             if (i == (list.size() - 1)&&flag != 1) {
                                 product pro = new product();
                                 pro.setAmount(amount);
-                                pro.setProductCode(productCode);
+                                pro.setProductDetailId(productDetailId);
                                 pro.setProductName(productName);
-                                pro.setProductGroup(productGroup);
+                                //pro.setProductGroup(productDetailId);
                                 pro.setProductPrice(productPrice);
                                 list.add(pro);
                             }
@@ -94,9 +94,9 @@ public class addProduct extends HttpServlet {
                         list = new ArrayList();
                         product pro = new product();
                         pro.setAmount(amount);
-                        pro.setProductCode(productCode);
+                        pro.setProductDetailId(productDetailId);
                         pro.setProductName(productName);
-                        pro.setProductGroup(productGroup);
+                        //pro.setProductGroup(productGroup);
                         pro.setProductPrice(productPrice);
                         list.add(pro);
                     }

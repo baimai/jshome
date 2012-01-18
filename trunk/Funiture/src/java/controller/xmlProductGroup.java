@@ -4,6 +4,7 @@
  */
 package controller;
 
+import controller.Xml.GenerateXml;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class xmlProductGroup extends HttpServlet {
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String productGroupId = null, Edit = null,Del=null;
+                String productGroupId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
 
 
@@ -84,34 +85,22 @@ public class xmlProductGroup extends HttpServlet {
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
-                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = pdm.search(productGroupId,Company_Id);
-                ArrayList list = pgmt.search(sField, sValue, sOper,Company_Id);
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                ArrayList listp = pdm.search(productGroupId, Company_Id);
+                ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
-                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                    out.print("<rows>");
-                    out.print("<page>" + request.getParameter("page") + "</page>");
-
-                    out.print("<total>" + totalPages + "</total>");
-                    out.print("<records>" + list.size() + "</records>");
-                    int srNo = 1;
-
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         productGroupMasterEntity data = (productGroupMasterEntity) list.get(i);
-                        out.print("<row id='" + data.getProductGroupId() + "'>");
-                        out.print("<cell>" + i + "</cell>");
-                        out.print("<cell>" + data.getProductGroupCode() + "</cell>");
-                        out.print("<cell>" + data.getProductGNameT() + "</cell>");
-                        out.print("<cell>" + data.getProductGNameE() + "</cell>");
-                        out.print("<cell>" + data.getProductRemarkT() + "</cell>");
-                        out.print("<cell>" + data.getProductRemarkE() + "</cell>");
-                        out.print("<cell>" + data.getProductGroupId() + "</cell>");
-                        out.print("<cell>" + data.getCompanyCode() + "</cell>");
-                        out.print("</row>");
-                        srNo++;
+                        xml.setRowDetail(data.getProductGroupId(), i, data.getProductGroupCode(), data.getProductGNameT(),
+                                data.getProductGNameE(), data.getProductRemarkT(), data.getProductRemarkE(),
+                                data.getProductGroupId(), data.getCompanyCode());
                     }
-                    out.print("</rows>");
+                    out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
                     out.print("<?xml version='1.0' encoding='utf-8'?>\n");
                     out.print("<rows>");
@@ -131,14 +120,14 @@ public class xmlProductGroup extends HttpServlet {
                         out.print("<cell>" + data.getProductPrice1() + "</cell>");
                         out.print("<cell>" + data.getProductDRemarkT() + "</cell>");
                         out.print("<cell>" + data.getProductDRemarkE() + "</cell>");
-                        
+
                         if (Edit != null) {
-                            out.print("<cell>"+data.getProductDetailId()+"</cell>");
+                            out.print("<cell>" + data.getProductDetailId() + "</cell>");
                         }
                         if (Del != null) {
-                            out.print("<cell>"+data.getProductDetailId()+"</cell>");
+                            out.print("<cell>" + data.getProductDetailId() + "</cell>");
                         }
-                        
+
                         out.print("</row>");
                         srNo++;
                     }
