@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class product {
     private String productGroup;
     private String productName;
-    private String productCode;
+    private int productDetailId;
     private double productPrice;
     private int amount;
 
@@ -31,20 +31,7 @@ public class product {
         this.productName = productName;
     }
 
-    /**
-     * @return the productCode
-     */
-    public String getProductCode() {
-        return productCode;
-    }
-
-    /**
-     * @param productCode the productCode to set
-     */
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
+  
     /**
      * @return the amount
      */
@@ -87,6 +74,20 @@ public class product {
      */
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
+    }
+
+    /**
+     * @return the productDetailId
+     */
+    public int getProductDetailId() {
+        return productDetailId;
+    }
+
+    /**
+     * @param productDetailId the productDetailId to set
+     */
+    public void setProductDetailId(int productDetailId) {
+        this.productDetailId = productDetailId;
     }
 
 
