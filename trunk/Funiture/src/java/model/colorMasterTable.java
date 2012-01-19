@@ -7,7 +7,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import model.entity.colorCodeMaster;
+import model.entity.colorCodeMasterEntity;
 import util.Column;
 import util.Default;
 import util.Operation;
@@ -24,7 +24,7 @@ public class colorMasterTable {
         this.db = db;
     }
 
-    public void add(colorCodeMaster cm) {
+    public void add(colorCodeMasterEntity cm) {
 
         String sql = "insert into color_code_master "
                 + "( Color_Code,Color_Name_T,Color_Name_E,"
@@ -38,7 +38,7 @@ public class colorMasterTable {
                 cm.getCreateDate(),
                 cm.getUserId());
     }
-  public void update(colorCodeMaster cm) {
+  public void update(colorCodeMasterEntity cm) {
         String sql = "update color_code_master set Color_Code = ?,"
                 + " Color_Name_T = ?,Color_Name_E = ?,"
                 + " Update_Date = ? "
@@ -63,7 +63,7 @@ public class colorMasterTable {
         ArrayList list = new ArrayList();
         if (result != null) {
             for (int i = 0; i < result.size(); i++) {
-                colorCodeMaster cm = new colorCodeMaster();
+                colorCodeMasterEntity cm = new colorCodeMasterEntity();
                 cm.setColorCode(Default.Str(result.get(i).get("Color_Code")));
                 cm.setColorNameT(Default.Str(result.get(i).get("Color_Name_T")));
                 cm.setColorNameE(Default.Str(result.get(i).get("Color_Name_E")));
