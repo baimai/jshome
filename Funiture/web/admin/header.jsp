@@ -53,7 +53,9 @@ div#copyright { display: none; }
                 <li><a href="manageProductDetail.jsp" class="parent"><span>รายการสินค้า</span></a>
                    
                 </li>
-              
+               <li><a href="colorMaster.jsp" class="parent"><span>สีของสินค้า</span></a>
+
+                </li>
             </ul></div>
         </li>
         <li><a href="#"class="parent"><span>จัดการสมาชิก</span></a>
