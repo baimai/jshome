@@ -29,6 +29,7 @@ public class defaultCompany extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
         try {
 
             if(request.getParameter("CompanyId")!=null&&!request.getParameter("CompanyId").equals("")){

@@ -32,6 +32,7 @@ public class dynamicProvince extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
         try {
             Database db = new Database();
             commonProvinceEntity cp = new commonProvinceEntity();
