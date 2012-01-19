@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
 import model.colorMasterTable;
-import model.entity.colorCodeMaster;
+import model.entity.colorCodeMasterEntity;
 
 /**
  *
@@ -37,7 +37,7 @@ public class colorMaster extends HttpServlet {
             HttpSession s = request.getSession();
 
             Database db = new Database();
-            colorCodeMaster cm = new colorCodeMaster();
+            colorCodeMasterEntity cm = new colorCodeMasterEntity();
             colorMasterTable cmt = new colorMasterTable(db);
              if (request.getParameter("colorId") != null&&request.getParameter("action").equals("Edit")) {
                     cm.setColorId(Integer.parseInt(request.getParameter("colorId")));
