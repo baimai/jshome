@@ -31,8 +31,9 @@ public class colorMaster extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
         try {
             HttpSession s = request.getSession();
 
@@ -49,7 +50,7 @@ public class colorMaster extends HttpServlet {
                 cm.setColorNameT(request.getParameter("colorNameT"));
             }
             if (request.getParameter("colorNameE") != null) {
-                cm.setColorNameT(request.getParameter("colorNameE"));
+                cm.setColorNameE(request.getParameter("colorNameE"));
             }
             cm.setCreateDate(Timestamp.valueOf(db.getNow()));
             if (request.getParameter("action").equals("Add")) {

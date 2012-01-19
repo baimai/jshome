@@ -14,8 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+
+import model.entity.menuDetailMasterEntity;
+
 import model.companyMasterTable;
+
 import model.entity.menuGroupMasterEntity;
+import model.menuDetailMasterTable;
 import model.menuGroupMasterTable;
 
 /**
@@ -37,7 +42,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
           if (request.getParameter("action").equals("fetchData")) {
-              //  response.setContentType("text/xml;charset=UTF-8");
+                response.setContentType("text/xml;charset=UTF-8");
 
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
@@ -84,9 +89,15 @@ public class xmlMenuGroupMaster extends HttpServlet {
 
                 Database db = new Database();
                 menuGroupMasterTable mgt = new menuGroupMasterTable(db);
+
+                menuDetailMasterTable mdt = new menuDetailMasterTable(db);
+                ArrayList listp = mdt.search(menuGroupId);
+                
+
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 ArrayList list = mgt.search(sField, sValue, sOper,Company_Id);
+
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     GenerateXml xml = new GenerateXml();
@@ -95,11 +106,40 @@ public class xmlMenuGroupMaster extends HttpServlet {
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         menuGroupMasterEntity data = (menuGroupMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getMenuGroupId(),i,data.getMenuGNameT(),data.getMenuGNameE(),
+                          xml.setRowDetail(data.getMenuGroupId(),i,data.getMenuGNameT(),data.getMenuGNameE(),
                                 data.getMenuPermission(),data.getCompanyId());
+
                     }
                     out.print(xml.getXml());
-               }
+                } else if (request.getParameter("q").equals("2")) {
+                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
+                    out.print("<rows>");
+                    out.print("<page>" + request.getParameter("page") + "</page>");
+
+                    out.print("<total>" + totalPages + "</total>");
+                    out.print("<records>" + listp.size() + "</records>");
+                    int srNo = 1;
+
+                    for (int i = 0; i < listp.size(); i++) {
+                        menuDetailMasterEntity data = (menuDetailMasterEntity) listp.get(i);
+                        out.print("<row id='" + data.getMenuCodeId() + "'>");
+                        // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
+                        out.print("<cell>" + data.getMenuCNameT() + "</cell>");
+                        out.print("<cell>" + data.getMenuCNameE() + "</cell>");
+                       
+
+                        if (Edit != null) {
+                            out.print("<cell>"+data.getMenuCodeId()+"</cell>");
+                        }
+                        if (Del != null) {
+                            out.print("<cell>"+data.getMenuCodeId()+"</cell>");
+                        }
+
+                        out.print("</row>");
+                        srNo++;
+                    }
+                    out.print("</rows>");
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
