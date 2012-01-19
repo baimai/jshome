@@ -13,7 +13,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body><form action="companyMasterController.do" >
+    <body>
+         <jsp:include page="header.jsp"/>
+        <br />
+        <form action="companyMasterController.do" >
             <input type="hidden" value="Add" name="action">
       <table border="1">
 

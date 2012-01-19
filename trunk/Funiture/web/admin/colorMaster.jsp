@@ -37,7 +37,7 @@
                         {name:'colorCode',index:'colorCode', width:80,editable:true,editoptions:{size:10}},
                         {name:'colorNameT',index:'colorNameT', width:248,editable:true,editoptions:{size:25}},
                         {name:'colorNameE',index:'colorNameE', width:248,editable:true,editoptions:{size:25}},
-                        {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
+                        {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false}
                        
 
                     ],
@@ -67,7 +67,7 @@
     </head>
     <body >
 
-        <jsp:include page="header.jsp"/>
+        <jsp:include page="header.jsp"/><br>
     <center>
         <table id="rowed1"></table>
         <div id="prowed1"></div>

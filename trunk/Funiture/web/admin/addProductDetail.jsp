@@ -30,6 +30,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+     <jsp:include page="header.jsp"/>
+       
     <body>
 
         <form action="productDetail.do" method="post" enctype="multipart/form-data" >
