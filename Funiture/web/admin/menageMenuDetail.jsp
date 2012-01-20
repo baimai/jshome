@@ -37,17 +37,16 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlMenuGroup.do?action=fetchData&rows=3&page=1&q=2&Edit=1&Del=1${productGroupId}',
+                    url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=2&Edit=1&Del=1${menuGroupId}',
                     datatype: "xml",
-                    colNames:['NO', 'Name T', 'Name En','Remark Th','Remark En','Edit','Delete'],
+                    colNames:['NO', 'Name T', 'Name En','Edit','Delete'],
                     colModel:[
                         {name:'menuSeq',index:'menuSeq',editoptions:"", width:100,align:"right"},
                         {name:'menuCNameT',index:'menuCNameT', width:215,align:"right"},
                         {name:'menuCNameE',index:'menuCNameE', width:215, align:"right"},
-                        {name:'menuCRemarkT',index:'price', width:60, align:"right"},
-                        {name:'menuCRemarkE',index:'remarkTh', width:140,align:"right", sortable:false, search:false},
-                        {name:'Edit',index:'Edit', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductDetail.jsp?productDetailId="+cellvalue+"\">Edit</a>"}},
-                       	{name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"productDetail.do?productDetailId="+cellvalue+"&action=Del\">Del</a>"}}
+                       
+                        {name:'Edit',index:'Edit', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"menuDetailMaster.jsp?menuGroupId="+cellvalue+"\">Edit</a>"}},
+                       	{name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"menuDetailMaster.do?pmenuGroupId="+cellvalue+"&action=Del\">Del</a>"}}
                     ],
                     height:200,
                     sortname: 'id',
