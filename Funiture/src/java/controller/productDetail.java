@@ -47,7 +47,7 @@ public class productDetail extends HttpServlet {
             int uploadlimit = 1024 * 1024 * 1024;
             Vector listeners = null; // No upload listeners
             String parser = MultipartFormDataRequest.COSPARSER; // Cos parser
-            String encoding = "iso-8859-1";
+            String encoding = "utf-8";
             MultipartFormDataRequest mr;
             mr = new MultipartFormDataRequest(request, listeners, uploadlimit, parser, encoding);
 
@@ -155,7 +155,7 @@ public class productDetail extends HttpServlet {
                             pdmt.remove(pdm);
                         }
                          db.close();
-                        //response.sendRedirect("manageProductDetail.jsp");
+                        response.sendRedirect("addProductDetail.jsp");
                     }
 
                 }
