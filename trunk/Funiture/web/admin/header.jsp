@@ -39,10 +39,12 @@ div#copyright { display: none; }
                 <li><a href="menuGroupMaster.jsp" class="parent"><span>ประเภทเมนู</span></a>
 
                 </li>
-                <li><a href="menuDetailMaster.jsp" class="parent"><span>รายการเมนู</span></a>
+                <li><a href="menageMenuDetail.jsp" class="parent"><span>รายการเมนู</span></a>
 
                 </li>
+                <li><a href="addProductSetup.jsp" class="parent"><span>จัดการรายการเมนู</span></a>
 
+                </li>
             </ul></div>
         </li>
         <li><a href="addProductSetup.jsp" class="parent"><span>จัดการสินค้า</span></a>
