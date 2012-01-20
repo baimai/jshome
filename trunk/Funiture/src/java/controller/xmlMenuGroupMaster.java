@@ -112,34 +112,19 @@ public class xmlMenuGroupMaster extends HttpServlet {
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
-                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                    out.print("<rows>");
-                    out.print("<page>" + request.getParameter("page") + "</page>");
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(listp.size());
 
-                    out.print("<total>" + totalPages + "</total>");
-                    out.print("<records>" + listp.size() + "</records>");
-                    int srNo = 1;
-
-                    for (int i = 0; i < listp.size(); i++) {
+                     for (int i = 0; i < listp.size(); i++) {
                         menuDetailMasterEntity data = (menuDetailMasterEntity) listp.get(i);
-                        out.print("<row id='" + data.getMenuCodeId() + "'>");
-                        // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
-                        out.print("<cell>" + data.getMenuCNameT() + "</cell>");
-                        out.print("<cell>" + data.getMenuCNameE() + "</cell>");
-                       
+                          xml.setRowDetail(data.getMenuCodeId(),i,data.getMenuCNameT(),data.getMenuCNameE(),
+                                data.getCompanyId(),data.getMenuCodeId(),data.getMenuCodeId());
 
-                        if (Edit != null) {
-                            out.print("<cell>"+data.getMenuCodeId()+"</cell>");
-                        }
-                        if (Del != null) {
-                            out.print("<cell>"+data.getMenuCodeId()+"</cell>");
-                        }
-
-                        out.print("</row>");
-                        srNo++;
                     }
-                    out.print("</rows>");
-                }
+                    out.print(xml.getXml());
+            }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
