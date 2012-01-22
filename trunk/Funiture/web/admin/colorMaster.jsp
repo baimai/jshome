@@ -33,10 +33,10 @@
                     datatype: "xml",
                     colNames:['No','Color Code', 'Color Name T ', 'Color Name E ','Color Id' ],
                     colModel:[
-                        {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'colorCode',index:'colorCode', width:80,editable:true,editoptions:{size:10}},
-                        {name:'colorNameT',index:'colorNameT', width:248,editable:true,editoptions:{size:25}},
-                        {name:'colorNameE',index:'colorNameE', width:248,editable:true,editoptions:{size:25}},
+                        {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'colorCode',index:'colorCode', width:180,editable:true,editoptions:{size:10}},
+                        {name:'colorNameT',index:'colorNameT', width:288,editable:true,editoptions:{size:25}},
+                        {name:'colorNameE',index:'colorNameE', width:288,editable:true,editoptions:{size:25}},
                         {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false}
                        
 
@@ -53,8 +53,8 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:230,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
                 {} // search options
             );
@@ -67,7 +67,7 @@
     </head>
     <body >
 
-        <jsp:include page="header.jsp"/><br>
+       
     <center>
         <table id="rowed1"></table>
         <div id="prowed1"></div>

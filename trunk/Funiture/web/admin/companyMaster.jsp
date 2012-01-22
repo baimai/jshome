@@ -14,8 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <jsp:include page="header.jsp"/>
-        <br />
+       
         <form action="companyMasterController.do" >
             <input type="hidden" value="Add" name="action">
       <table border="1">

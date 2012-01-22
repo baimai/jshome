@@ -104,8 +104,7 @@
     </head>
     <body>
         
-        <jsp:include page="header.jsp"/>
-        <br/>
+       
     <center>
         <table id="rowed1"></table>
         <div id="prowed1"></div>

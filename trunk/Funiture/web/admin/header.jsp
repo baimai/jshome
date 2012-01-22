@@ -33,29 +33,29 @@ div#copyright { display: none; }
 
 <div id="menu">
     <ul class="menu">
-     <li class="last"><a href="companyMaster.jsp"><span>ข้อมูลบริษัท</span></a></li>
+     <li class="last"><a href="Company.jsp"><span>ข้อมูลบริษัท</span></a></li>
         <li><a href="#" class="parent"><span>จัดการเมนู</span></a>
              <div><ul>
-                <li><a href="menuGroupMaster.jsp" class="parent"><span>ประเภทเมนู</span></a>
+                <li><a href="MenuGroup.jsp" class="parent"><span>ประเภทเมนู</span></a>
 
                 </li>
                 <li><a href="menageMenuDetail.jsp" class="parent"><span>รายการเมนู</span></a>
 
                 </li>
-                <li><a href="addProductSetup.jsp" class="parent"><span>จัดการรายการเมนู</span></a>
+                <li><a href="ProductSetup.jsp" class="parent"><span>จัดการรายการเมนู</span></a>
 
                 </li>
             </ul></div>
         </li>
         <li><a href="addProductSetup.jsp" class="parent"><span>จัดการสินค้า</span></a>
             <div><ul>
-                <li><a href="addProductGroup.jsp" class="parent"><span>ประเภทสินค้า</span></a>
+                <li><a href="ProductGroup.jsp" class="parent"><span>ประเภทสินค้า</span></a>
                     
                 </li>
                 <li><a href="manageProductDetail.jsp" class="parent"><span>รายการสินค้า</span></a>
                    
                 </li>
-               <li><a href="colorMaster.jsp" class="parent"><span>สีของสินค้า</span></a>
+               <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a>
 
                 </li>
             </ul></div>

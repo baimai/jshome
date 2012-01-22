@@ -31,18 +31,18 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','เมนู', 'MenuGroup', 'Permission','company Id','menuGroupId','showListMenu','chkLoginSts','menuGRemarkT','menuGRemarkE','menuGPicLoc','menuGIconLog' ],
+                    colNames:['No','เมนู', 'MenuGroup', 'Permission','showListMenu','chkLoginSts','menuGRemarkT','menuGRemarkE','company Id','menuGroupId','menuGPicLoc','menuGIconLog' ],
                     colModel:[
-                        {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'menuGNameT',index:'menuGNameT', width:80,editable:true,editoptions:{size:10}},
-                        {name:'menuGNameE',index:'menuGNameE', width:248,editable:true,editoptions:{size:25}},
-                        {name:'menuPermission',index:'menuPermission', width:248,editable:true,editoptions:{size:25}},
+                        {name:'No',index:'No', width:50,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:10}},
+                        {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:25}},
+                        {name:'menuPermission',index:'menuPermission', width:80,editable:true,editoptions:{size:25}},
+                        {name:'showListMenu',index:'showListMenu',width:80,editable:true,editoptions:{size:25}},
+                        {name:'chkLoginSts',index:'chkLoginSts',width:80,editable:true,editoptions:{size:25}},
+                        {name:'menuGRemarkT',index:'menuGRemarkT',align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
+                        {name:'menuGRemarkE',index:'menuGRemarkE',align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
                         {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
                         {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
-                        {name:'showListMenu',index:'showListMenu',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'chkLoginSts',index:'chkLoginSts',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'menuGRemarkT',index:'menuGRemarkT',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'menuGRemarkE',index:'menuGRemarkE',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
                         {name:'menuGPicLoc',index:'menuGPicLoc',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
                         {name:'menuGIconLog',index:'menuGIconLog',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
 
@@ -73,8 +73,7 @@
         </script>
     </head>
     <body >
-
-        <jsp:include page="header.jsp"/>
+   
     <center>
         <table id="rowed1"></table>
         <div id="prowed1"></div>
