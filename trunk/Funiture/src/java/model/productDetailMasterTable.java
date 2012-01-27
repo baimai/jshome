@@ -107,8 +107,8 @@ public class productDetailMasterTable {
     }
 
     public void remove(productDetailMasterEntity pdm) {
-        String sql = "delete from product_detail_master where product_detail_id = ?";
-        db.add(sql, pdm.getProductDetailId());
+        String sql = "delete from product_detail_master where product_detail_id = ? and company_id = ?";
+        db.add(sql, pdm.getProductDetailId(),pdm.getCompanyId());
     }
 
     public ArrayList search(String productGroupId, int Company_Id) {
