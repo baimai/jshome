@@ -51,6 +51,7 @@ public class productDetail extends HttpServlet {
             MultipartFormDataRequest mr;
             mr = new MultipartFormDataRequest(request, listeners, uploadlimit, parser, encoding);
 
+
             try {
                 //productCode=&companyCode=&price1=500.00&price2=400.00&price3=300.00&picLoc=&iconLoc=&nameTh=กกกก&nameEn=ssss&spec1Th=1&spec1En=a&spec2Th=2&spec2En=b&spec3Th=3&spec3En=c&spec4Th=4&spec4En=d&spec5Th=5&spec5En=e&spec6Th=6&spec6En=f&remarkTh=gg&remarkEn=fff
                 if (MultipartFormDataRequest.isMultipartFormData(request)) {
@@ -59,18 +60,38 @@ public class productDetail extends HttpServlet {
                         productDetailMasterTable pdmt = new productDetailMasterTable(db);
                         companyMasterTable cmt = new companyMasterTable(db);
                         productDetailMasterEntity pdm = new productDetailMasterEntity();
-                         int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                        int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
                         UploadBean u = new UploadBean();
+
                         if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
-                            u.setFolderstore(request.getRealPath("upload"));
+                            String filename = upFile.getFileName();
+                            String filetype = filename.substring(filename.lastIndexOf("."), filename.length());
+                            if ((filetype.indexOf("gif") == -1) && (filetype.indexOf("jpeg") == -1) && (filetype.indexOf("jpg") == -1) && (filetype.indexOf("png") == -1)) {
+                            } else {
+                                if (filetype.endsWith("gif")) {
+                                    upFile.setFileName(System.currentTimeMillis() + ".gif");
+                                } else if (filetype.endsWith("jpeg")) {
+                                    upFile.setFileName(System.currentTimeMillis() + ".jpeg");
+                                } else if (filetype.endsWith("jpg")) {
+                                    upFile.setFileName(System.currentTimeMillis() + ".jpg");
+                                } else if (filetype.endsWith("png")) {
+                                    upFile.setFileName(System.currentTimeMillis() + ".png");
+                                }
+
+                                u.setFolderstore((getServletContext().getRealPath("upload\\picture")).replace("\\build\\web", ""));
+                            }
                         }
                         u.store(mr, "upload");
 
 
-                        if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
-                            pdm.setProductDPicLoc(request.getRealPath("upload") + "\\" + upFile.getFileName());
+                        if (upFile.getFileName() != null ) {
+                            if (mr.getParameter("uploadtmp") != null &&upFile.getFileName().equals("")) {
+                                pdm.setProductDPicLoc(mr.getParameter("uploadtmp"));
+                            }else if (!upFile.getFileName().equals("")){
+                                pdm.setProductDPicLoc((getServletContext().getRealPath("upload\\picture")).replace("\\build\\web", "") + "\\" + upFile.getFileName());
+                            }
                         }
                         if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
                             pdm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
@@ -90,16 +111,16 @@ public class productDetail extends HttpServlet {
                             pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price1"))));
                         }
                         if (mr.getParameter("price2") != null && !mr.getParameter("price2").equals("")) {
-                            pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price2"))));
+                            pdm.setProductPrice2(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price2"))));
                         }
                         if (mr.getParameter("price3") != null && !mr.getParameter("price3").equals("")) {
-                            pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price3"))));
+                            pdm.setProductPrice3(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price3"))));
                         }
                         if (mr.getParameter("nameTh") != null && !mr.getParameter("nameTh").equals("")) {
                             pdm.setProductDNameT(mr.getParameter("nameTh"));
                         }
                         if (mr.getParameter("nameEn") != null && !mr.getParameter("nameEn").equals("")) {
-                            pdm.setProductDNameT(mr.getParameter("nameEn"));
+                            pdm.setProductDNameE(mr.getParameter("nameEn"));
                         }
                         if (mr.getParameter("spect1Th") != null && !mr.getParameter("spect1Th").equals("")) {
                             pdm.setProductSpect1_T(mr.getParameter("spect1Th"));
@@ -154,8 +175,8 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("action").equals("Del")) {
                             pdmt.remove(pdm);
                         }
-                         db.close();
-                        response.sendRedirect("addProductDetail.jsp");
+                        db.close();
+                        response.sendRedirect("ProductDetail.jsp");
                     }
 
                 }

@@ -102,36 +102,17 @@ public class xmlProductGroup extends HttpServlet {
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
-                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                    out.print("<rows>");
-                    out.print("<page>" + request.getParameter("page") + "</page>");
-
-                    out.print("<total>" + totalPages + "</total>");
-                    out.print("<records>" + listp.size() + "</records>");
-                    int srNo = 1;
-
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(listp.size());
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-                        out.print("<row id='" + data.getProductCode() + "'>");
-                        // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
-                        out.print("<cell>" + data.getProductCode() + "</cell>");
-                        out.print("<cell>" + data.getProductDNameT() + "</cell>");
-                        out.print("<cell>" + data.getProductDNameE() + "</cell>");
-                        out.print("<cell>" + data.getProductPrice1() + "</cell>");
-                        out.print("<cell>" + data.getProductDRemarkT() + "</cell>");
-                        out.print("<cell>" + data.getProductDRemarkE() + "</cell>");
-
-                        if (Edit != null) {
-                            out.print("<cell>" + data.getProductDetailId() + "</cell>");
-                        }
-                        if (Del != null) {
-                            out.print("<cell>" + data.getProductDetailId() + "</cell>");
-                        }
-
-                        out.print("</row>");
-                        srNo++;
+                        xml.setRowDetail(data.getProductDetailId(),data.getProductDetailId(), data.getProductDNameT(),
+                                data.getProductDNameE(), data.getProductPrice1(),data.getProductDetailId(),
+                                data.getProductDetailId());
                     }
-                    out.print("</rows>");
+                     out.print(xml.getXml());
                 }
             }
         } catch (Exception ex) {
