@@ -36,78 +36,130 @@ public class addProduct extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             HttpSession s = request.getSession();
-            int productDetailId = Integer.parseInt(request.getParameter("productDetailId"));
-            String productName = request.getParameter("productName");
-            //String productGroup = request.getParameter("productGroup");
-            
-            int amount = 0;
-            double productPrice = 0.00;
-            ArrayList list = null;
-            if (request.getParameter("amount") != null && !request.getParameter("amount").equals("")
-                    &&request.getParameter("productPrice")!=null&&!request.getParameter("productPrice").equals("")) {
-                amount = Integer.parseInt(request.getParameter("amount"));
-                productPrice = Double.parseDouble(request.getParameter("productPrice"));
-            }
-            int flag = 0;
-            String status = request.getParameter("status");
-            if (amount > 0) {
-                if (s.getAttribute("productList") != null) {
-                    list = (ArrayList) s.getAttribute("productList");
-                    if (list.size() > 0) {
-                        for (int i = 0; i < list.size() && flag != 1; i++) {
-                            product chkPro = (product) list.get(i);
-                            //เพิ่ม,ลด จำนวนสินค้า
-                            if (chkPro.getProductDetailId()==productDetailId) {
-                                if (chkPro.getAmount() - amount <= 0 && status.equals("minus")) {
-                                    //ถ้าสินค้าลดลงต่ำกว่าศูนย์
-                                    list.remove(i);
-                                    if (list.isEmpty()) {
-                                        list = null;
-                                    }
-                                } else {
-                                    if (status.equals("plus")) {
-                                        //ถ้ามีการเพิ่มสินค้า
-                                        chkPro.setAmount(chkPro.getAmount() + amount);
+            if (request.getParameter("status").equals("plus")) {
+
+                int productDetailId = Integer.parseInt(request.getParameter("productDetailId"));
+                String productName = request.getParameter("productName");
+                String productPath = request.getParameter("productPath");
+                String productCode = request.getParameter("productCode");
+                int productGroupId = Integer.parseInt(request.getParameter("productGroupId"));
+
+                int amount = 0;
+                double productPrice = 0.00;
+                ArrayList list = null;
+                if (request.getParameter("amount") != null && !request.getParameter("amount").equals("")
+                        && request.getParameter("productPrice") != null && !request.getParameter("productPrice").equals("")) {
+                    amount = Integer.parseInt(request.getParameter("amount"));
+                    productPrice = Double.parseDouble(request.getParameter("productPrice"));
+                }
+                int flag = 0;
+                String status = request.getParameter("status");
+                if (amount > 0) {
+                    if (s.getAttribute("productList") != null) {
+                        list = (ArrayList) s.getAttribute("productList");
+                        if (list.size() > 0) {
+                            for (int i = 0; i < list.size() && flag != 1; i++) {
+                                product chkPro = (product) list.get(i);
+                                //เพิ่ม,ลด จำนวนสินค้า
+                                if (chkPro.getProductDetailId() == productDetailId) {
+                                    if (chkPro.getAmount() - amount <= 0 && status.equals("minus")) {
+                                        //ถ้าสินค้าลดลงต่ำกว่าศูนย์
+                                        list.remove(i);
+                                        if (list.isEmpty()) {
+                                            list = null;
+                                        }
                                     } else {
-                                        //ถ้ามีการลดสินค้า
-                                        chkPro.setAmount(chkPro.getAmount() - amount);
+                                        if (status.equals("plus")) {
+                                            //ถ้ามีการเพิ่มสินค้า
+                                            chkPro.setAmount(chkPro.getAmount() + amount);
+                                        } else {
+                                            //ถ้ามีการลดสินค้า
+                                            chkPro.setAmount(chkPro.getAmount() - amount);
+                                        }
+                                        list.set(i, chkPro);
                                     }
-                                    list.set(i, chkPro);
+                                    flag = 1;
                                 }
-                                flag = 1;
-                            }
-                            //ถ้าเป็นสิ้นค้าใหม่ก็เพิ่มเข้าไปในลิส
-                            if (i == (list.size() - 1)&&flag != 1) {
-                                product pro = new product();
-                                pro.setAmount(amount);
-                                pro.setProductDetailId(productDetailId);
-                                pro.setProductName(productName);
-                                //pro.setProductGroup(productDetailId);
-                                pro.setProductPrice(productPrice);
-                                list.add(pro);
+                                //ถ้าเป็นสิ้นค้าใหม่ก็เพิ่มเข้าไปในลิส
+                                if (i == (list.size() - 1) && flag != 1) {
+                                    product pro = new product();
+                                    pro.setAmount(amount);
+                                    pro.setProductDetailId(productDetailId);
+                                    pro.setProductName(productName);
+                                    pro.setProductPath(productPath);
+                                    pro.setProductPrice(productPrice);
+                                    pro.setProductCode(productCode);
+                                    pro.setProductGroupId(productGroupId);
+                                    list.add(pro);
+                                    flag = 1;
+                                }
                             }
                         }
-                    }
-                } else {
-                    //ถ้ายังไม่มีสินค้าในลิสก็เพิ่มเข้าไป
-                    if (status.equals("plus")) {
-                        list = new ArrayList();
-                        product pro = new product();
-                        pro.setAmount(amount);
-                        pro.setProductDetailId(productDetailId);
-                        pro.setProductName(productName);
-                        //pro.setProductGroup(productGroup);
-                        pro.setProductPrice(productPrice);
-                        list.add(pro);
+                    } else {
+                        //ถ้ายังไม่มีสินค้าในลิสก็เพิ่มเข้าไป
+                        if (status.equals("plus")) {
+                            list = new ArrayList();
+                            product pro = new product();
+                            pro.setAmount(amount);
+                            pro.setProductDetailId(productDetailId);
+                            pro.setProductName(productName);
+                            pro.setProductPath(productPath);
+                            pro.setProductPrice(productPrice);
+                            pro.setProductCode(productCode);
+                            pro.setProductGroupId(productGroupId);
+                            list.add(pro);
+                        }
                     }
                 }
-            }
-            if (list != null) {
-                s.setAttribute("productList", list);
-            }
-            RequestDispatcher obj = request.getRequestDispatcher("myCart.jsp");
-             obj.forward(request, response);
+                if (list != null&&!list.isEmpty()) {
+                    s.setAttribute("productList", list);
+                }else{
+                    s.removeAttribute("productList");
+                }
+                //RequestDispatcher obj = request.getRequestDispatcher("myCart.jsp");
+                //obj.forward(request, response);
 
+            } else if (request.getParameter("status").equals("update")) {
+                String[] amounts = request.getParameterValues("amounts");
+                ArrayList list = list = (ArrayList) s.getAttribute("productList");
+                int j = 0;
+                for (int i = 0; i < list.size(); i++, j++) {
+                    product chkPro = (product) list.get(i);
+                    if (Integer.parseInt(amounts[j]) == 0) {
+                        //ถ้าใส่จำนวนมาเป็น0ก็ลบlist
+                        list.remove(i);
+                        i = i - 1;
+                    } else {
+                        //ถ้าจำนวนมากกว่า0
+                        chkPro.setAmount(Integer.parseInt(amounts[j]));
+                        list.set(i, chkPro);
+                    }
+
+                }
+
+                if (list != null&&!list.isEmpty()) {
+                    s.setAttribute("productList", list);
+                }else{
+                    s.removeAttribute("productList");
+                }
+                response.sendRedirect("cartDetail.jsp");
+            } else if (request.getParameter("status").equals("remove")) {
+                int productDetailId = Integer.parseInt(request.getParameter("productDetailId"));
+                ArrayList list = list = (ArrayList) s.getAttribute("productList");
+                for (int i = 0; i < list.size(); i++) {
+                    product chkPro = (product) list.get(i);
+                    if (chkPro.getProductDetailId() == productDetailId) {
+                        list.remove(i);
+                    }
+                }
+                if (list != null&&!list.isEmpty()) {
+                    s.setAttribute("productList", list);
+                }else{
+                    s.removeAttribute("productList");
+                }
+
+                response.sendRedirect("cartDetail.jsp");
+            }
         } catch (Exception ex) {
             ex.printStackTrace(out);
         } finally {

@@ -47,8 +47,7 @@ public class login extends HttpServlet {
             loginClass lc = new loginClass();
 
             if (request.getParameter("memberLogin") != null) {
-                mm.setMemberLogin(request.getParameter("memberLogin"));
-                s.setAttribute("memberLogin", request.getParameter("memberLogin"));
+                mm.setMemberLogin(request.getParameter("memberLogin"));                
             }
             if (request.getParameter("memberPassword") != null) {
                 mm.setMemberPassword(request.getParameter("memberPassword"));
@@ -63,10 +62,12 @@ public class login extends HttpServlet {
                 lc.setMemberLName(data.getMemberSurName());
                 lc.setMemberComName(data.getMemberComName());
                 lc.setMemberComAbbr(data.getMemberNameAbbr());
+                lc.setMemberId(data.getMemberId());
                 s.setAttribute("loginDetail", lc);
                 response.sendRedirect("index.jsp");
             } else {
                 request.setAttribute("invalid", "Invalid Username Or Password");
+                request.setAttribute("memberLogin",request.getParameter("memberLogin"));
                 RequestDispatcher obj = request.getRequestDispatcher("Login.jsp");
                 obj.forward(request, response);
             }
