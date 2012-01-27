@@ -95,7 +95,7 @@ public class menuDetailMasterTable {
 
 
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 menuDetailMasterEntity md = new menuDetailMasterEntity();
                 md.setCompanyId((Integer) result.get(i).get("Company_Id"));
@@ -124,7 +124,7 @@ public class menuDetailMasterTable {
     public int getMenuCodeId(String menuCodeId) {
         String sql = "select * from menu_detail_master where Menu_Code_id = ?";
         List<Map<String, Object>> result = db.queryList(sql, menuCodeId);
-        if (result != null) {
+        if (!result.isEmpty()) {
             return Integer.parseInt((String) result.get(0).get("Menu_Code_Id"));
         } else {
             return 0;

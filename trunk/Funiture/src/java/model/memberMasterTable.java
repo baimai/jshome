@@ -118,7 +118,7 @@ public class memberMasterTable {
         }
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 memberMasterEntity mb = new memberMasterEntity();
                 mb.setMemberLogin(Default.Str(result.get(i).get("Member_Login")));
@@ -141,7 +141,7 @@ public class memberMasterTable {
     public Integer getMemberId(String memberLogin,int Company_Id) {
         String sql = "select * from member_master where member_login = ? and Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, memberLogin,Company_Id);
-        if (result != null) {
+        if (!result.isEmpty()) {
             return (Integer) result.get(0).get("Member_Login");
         } else {
             return 0;
@@ -162,7 +162,7 @@ public class memberMasterTable {
         String sql = "select * from member_master where member_login = ? and member_password = ? and Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword(),Company_Id);
         ArrayList list = new ArrayList();
-        if (result.size() == 1) {
+        if (!result.isEmpty()) {
             memberMasterEntity mb = new memberMasterEntity();
             mb.setMemberLogin(Default.Str(result.get(0).get("Member_Login")));
             mb.setMemberName(Default.Str(result.get(0).get("Member_Name")));

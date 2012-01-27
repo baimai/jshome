@@ -77,7 +77,7 @@ public class menuGroupMasterTable {
         }
         List<Map<String, Object>> result = db.queryList(sql,Company_Id);
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 menuGroupMasterEntity mg = new menuGroupMasterEntity();
                 mg.setMenuGNameT(Default.Str(result.get(i).get("Menu_G_Name_T")));
