@@ -116,6 +116,7 @@ public class addOrder extends HttpServlet {
             }
             db.close();
             response.sendRedirect("index.jsp");
+            
 
         } catch (Exception ex) {
             ex.printStackTrace(out);
