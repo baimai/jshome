@@ -7,7 +7,7 @@
 </sql:query>
 
 <sql:query var="query2" dataSource="webdb">
-    SELECT count(*) as count , 'ทั้งหมด' as T,'All' as E FROM pic_product_setup me
+    SELECT count(*) as count , 'ทั้งหมด' as T,'All' as E FROM (select * from pic_product_setup pps group by pps.product_detail_id) me
     join menu_detail_master md on me.pic_code = md.pic_code
 </sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,7 +35,7 @@
                 postDataReturnText("categoryProduct.jsp",param,showProduct);
                 //setTimeout("delay()",500);
                 //postDataReturnText("plus.jsp",field,displayTable);
-           
+                //$('focusHere').focus();
 
             }
             function addToCart(productCode,productName,amount,status,productGroup,productPrice){
@@ -44,7 +44,7 @@
                 //setTimeout("delay()",500);
                 //postDataReturnText("plus.jsp",field,displayTable);
            
-
+                // $('focusHere').focus();
             }
             function showCart(text){
                 document.getElementById("myCart").innerHTML=text;
@@ -56,8 +56,12 @@
             function test(){
                 alert('test');
             }
+            $(document).ready(function() {
+                // $('focusHere').focus();
+
+            });
         </script>
-  
+
         <!--<script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script --></head>
     <body class=" catalog-category-view categorypath-electronics-computers-html category-computers" onload="setProduct('all','9','1');" >
         <input type="hidden" value="" id="menuCode"/>
@@ -75,14 +79,15 @@
 
             <div class="main">
                 <div class="col-wrapper">
+
                     <div id="productList">
-                       
+
                     </div>
-                    
+
                     <div class="col-left sidebar"><div class="block block-layered-nav">
                             <div class="block-title"><strong>Products Navigation</strong></div>
                             <div class="block-content">
-                                <p class="block-subtitle">Shopping Options</p> 
+                                <p class="block-subtitle">รายการสินค้า</p>
                                 <ul>
                                     <c:forEach var="all" items="${query2.rows}">
                                         <li><a href="#" onclick="setProduct('all',document.getElementById('navShow').value,'1');">${all.T}</a> (${all.count})</li>
@@ -100,7 +105,7 @@
                                 <img src="http://freedemo.templates-master.com/skin/frontend/default/f002/images/media/col_left_callout-1.jpg" width="195" alt="Our customer service is available 24/7. Call us at (800) DEMO-NUMBER." style="display:block;" />
                                 </a>
                             </div>
-                        
+
                         <div class="block block-banner">
                                     <a href="http://freedemo.templates-master.com/f002/checkout/cart/">
                                 <img src="http://freedemo.templates-master.com/skin/frontend/default/f002/images/media/col_left_callout-2.jpg" width="195" alt="Our customer service is available 24/7. Call us at (800) DEMO-NUMBER." style="display:block;" />
@@ -108,9 +113,7 @@
                             </div> -->
                     </div>
                 </div>
-                <div id="myCart">
-                    <jsp:include page="myCart.jsp" />
-                </div>
+                <jsp:include page="myCart.jsp" />
             </div>
 
         </div>

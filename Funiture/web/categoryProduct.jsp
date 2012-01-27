@@ -9,40 +9,65 @@
 
 <c:if test="${param.menuCode == 'all'}">
     <sql:query var="query" dataSource="webdb">
-        SELECT * FROM pic_product_setup pps
+        SELECT 
+        pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
+        md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
+        FROM (select * from pic_product_setup pps group by pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
     </sql:query>    
     <sql:query var="query2" dataSource="webdb">
-        SELECT count(*) as count FROM pic_product_setup pps
+        SELECT count(*) as count FROM (select * from pic_product_setup pps group by pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
-        SELECT * FROM pic_product_setup pps
+        SELECT
+        pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
+        md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
+        FROM (select * from pic_product_setup pps group by pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query> 
 </c:if>
 <c:if test="${param.menuCode != 'all'}">        
     <sql:query var="query" dataSource="webdb">
-        SELECT * FROM pic_product_setup pps
+        SELECT * FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
         where pps.pic_code = '${param.menuCode}'
+        Group by pps.product_detail_id
     </sql:query>
     <sql:query var="query2" dataSource="webdb">
-        SELECT count(*) as count FROM pic_product_setup pps
+        SELECT count(*) as count FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
         where pps.pic_code = '${param.menuCode}'
+        Group by pps.product_detail_id
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
-        SELECT * FROM pic_product_setup pps
+        SELECT * FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
         where pps.pic_code = '${param.menuCode}'
+        Group by pps.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query>
 </c:if>
@@ -58,7 +83,7 @@
     <body >
         <div class="col-main">
             <div class="page-title category-title">
-                <h1>Computers</h1>
+                <h1>ราการสินค้า</h1>
             </div>
 
 
@@ -72,11 +97,11 @@
                     <div class="pager">
                         <table border="0">
                             <tr>
-                                <td width="34%">
-                                    Items ${((param.page-1)*param.show)+1} to 
+                                <td width="31%">
+                                    สินค้า ${((param.page-1)*param.show)+1} ถึง
                                     <c:if test="${param.page == (total/param.show) }">${total}</c:if>                 
                                     <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                                    of ${total} total    
+                                    จาก ${total} 
                                 </td>
                                 <td width="7%">
                                     <c:if test="${param.page != 1}" >
@@ -113,7 +138,7 @@
                                     </c:if>  
                                     --%>
                                 </td>
-                                <td width="7%">
+                                <td width="8%">
                                     <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
                                         <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1})" style="text-decoration: none">
                                             <img src="images/icon/00246.png" width="15" height="15" alt="next"/>
@@ -127,8 +152,8 @@
                                         <img src="images/icon/00248.png" width="15" height="15" alt="forward"/>
                                     </c:if>
                                 </td>
-                                <td width="12%" style="text-align: right;">
-                                    <input type="text" id="pageNum" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum').value)" > Go! </a>
+                                <td width="14%" style="text-align: right;">
+                                    <input type="text" id="pageNum" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum').value)" > ค้นหา! </a>
                                 </td>    
 
 
@@ -141,19 +166,18 @@
 
                     <div class="sorter">
                         <div class="sort-by" style="display: inline-block">
-                            <label>Sort By</label>
+                            <label>เรียงลำดับจาก</label>
                             <select id="sortBy">
-                                <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=position">
-                                    Position                </option>
+                                
                                 <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=name" selected="selected">
-                                    Name                </option>
+                                    ชื่อ                </option>
                                 <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=price">
-                                    Price                </option>
+                                    ราคา                </option>
                             </select>
 
                         </div>
                         <div style="display: inline-block">
-                            <label>Show</label>
+                            <label>จำนวนที่แสดง</label>
                             <select onchange="setProduct(document.getElementById('menuCode').value,this.value,1);">
                                 <c:forEach begin="9" end="30" step="3" var="show">
                                     <c:if test="${show == param.show}" >
@@ -163,7 +187,7 @@
                                         <option value="${show}"  > ${show} </option>
                                     </c:if>
                                 </c:forEach>
-                            </select> per page 
+                            </select> ต่อหน้า
                         </div>
                     </div>
                 </div>
@@ -173,15 +197,19 @@
                         <c:if test="${(counter.count mod 3) == 1}">
                             <ul class="products-grid">
                                 <li class="item first">
-                                    <a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
-                                    <h2 class="product-name"><a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
+                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="thickbox"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="Single Image" /></a>
+                                    <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
                                       <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
                                             <span class="price">${product.product_price1}</span></span>
+                                            <div style="color:#00ee00">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                                                             <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                                                             <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                            </div>
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="Order" class="button btn-cart" onclick="Order('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Order</span></span></button>
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่ม</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -189,19 +217,23 @@
                             </c:if>
                             <c:if test="${(counter.count mod 3) == 2}">
                                 <li class="item">
-                                    <a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
-                                    <h2 class="product-name"><a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
+                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
 
 
 
                                     <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
-                                            <span class="price">${product.product_price1}</span>                </span>
+                                            <span class="price">${product.product_price1}</span>
+                                        <div style="color:#00ee00">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                                                             <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                                                             <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                            </div></span>
 
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="Order" class="button btn-cart" onclick="Order('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Order</span></span></button>
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่ม</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -209,19 +241,22 @@
                             </c:if>
                             <c:if test="${(counter.count mod 3) == 0}">
                                 <li class="item last">
-                                    <a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
-                                    <h2 class="product-name"><a href="detail_B.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
+                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
 
 
 
                                     <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
                                             <span class="price">${product.product_price1}</span>                </span>
-
+                                            <div style="color:#00ee00">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                                                             <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                                                             <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                            </div>
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="Order" class="button btn-cart" onclick="Order('${product.product_code}','${product.product_d_name_t}','1','plus','${product.product_group}','${product.product_price1}')"><span><span>Order</span></span></button>
+                                       <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่ม</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -242,11 +277,11 @@
                         <div class="pager">
                             <table border="0">
                                 <tr>
-                                    <td width="34%">
-                                        Items ${((param.page-1)*param.show)+1} to 
+                                    <td width="31%">
+                                        สินค้า ${((param.page-1)*param.show)+1} ถึง
                                         <c:if test="${param.page == (total/param.show) }">${total}</c:if>                 
                                         <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                                        of ${total} total    
+                                        จาก ${total}
                                     </td>
                                     <td width="7%">
                                         <c:if test="${param.page != 1}" >
@@ -283,7 +318,7 @@
                                         </c:if>  
                                         --%>
                                     </td>
-                                    <td width="7%">
+                                    <td width="8%">
                                         <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
                                             <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1})" style="text-decoration: none">
                                                 <img src="images/icon/00246.png" width="15" height="15" alt="next"/>
@@ -297,7 +332,7 @@
                                             <img src="images/icon/00248.png" width="15" height="15" alt="forward"/>
                                         </c:if>
                                     </td>
-                                    <td width="12%" style="text-align: right;">
+                                    <td width="14%" style="text-align: right;">
                                         <input type="text" id="pageNum2" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum2').value)" > Go! </a>
                                     </td>    
 
@@ -311,19 +346,18 @@
 
                         <div class="sorter">
                             <div class="sort-by" style="display: inline-block">
-                                <label>Sort By</label>
+                                <label>เรียงลำดับจาก</label>
                                 <select id="sortBy">
-                                    <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=position">
-                                        Position                </option>
+                                    
                                     <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=name" selected="selected">
-                                        Name                </option>
+                                        ชื่อ               </option>
                                     <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=price">
-                                        Price                </option>
+                                        ราคา               </option>
                                 </select>
 
                             </div>
                             <div style="display: inline-block">
-                                <label>Show</label>
+                                <label>จำนวนที่แสดง</label>
                                 <select onchange="setProduct(document.getElementById('menuCode').value,this.value,1);">
                                     <c:forEach begin="9" end="30" step="3" var="show">
                                         <c:if test="${show == param.show}" >
@@ -333,8 +367,9 @@
                                             <option value="${show}"  > ${show} </option>
                                         </c:if>
                                     </c:forEach>
-                                </select> per page 
+                                </select> ต่อหน้า
                             </div>
+                            <br/><br/>
                         </div>
                     </div>
                 </div>

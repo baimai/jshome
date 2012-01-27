@@ -23,7 +23,6 @@ order by mg.Menu_Group_Id
     </head>
     <body>
         <table border="0" bordercolor="black" cellpadding="0" cellspacing="0"width="940px" >
-           
             <tr bgcolor="#A03700" >
                 <td ><img src="images/head.jpg" width="940px" height="100px" border="0" usemap="#Map"/></td>
             </tr>
