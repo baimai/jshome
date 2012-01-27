@@ -16,9 +16,6 @@
 
 
         <div class="col-right sidebar">
-            <div class="block block-viewed">
-
-            </div>
             <div class="block block-cart">
                 <div class="block-title">
                     <strong><span>My Cart</span></strong>
@@ -33,11 +30,7 @@
                             <c:set var="total" value="${total+price}"/>
                         </c:forEach>
                         <div class="empty"  id="totalPrice">
-                            Total :  
-
-                               ${total}
-                            
-                            Baht
+                            Total ${total} Baht
                         </div>
                     </div>
                 </c:if>
