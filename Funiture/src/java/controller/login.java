@@ -4,6 +4,7 @@
  */
 package controller;
 
+import controller.error.errorClass;
 import controller.loginDetail.loginClass;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,7 +26,9 @@ import model.memberMasterTable;
  */
 public class login extends HttpServlet {
 
-    /** 
+    
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -38,8 +41,8 @@ public class login extends HttpServlet {
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-            HttpSession s = request.getSession();
             Database db = new Database();
+            HttpSession s = request.getSession();
             memberMasterEntity mm = new memberMasterEntity();
             memberMasterTable mmt = new memberMasterTable(db);
             companyMasterTable cmt = new companyMasterTable(db);
@@ -47,14 +50,14 @@ public class login extends HttpServlet {
             loginClass lc = new loginClass();
 
             if (request.getParameter("memberLogin") != null) {
-                mm.setMemberLogin(request.getParameter("memberLogin"));                
+                mm.setMemberLogin(request.getParameter("memberLogin"));
             }
             if (request.getParameter("memberPassword") != null) {
                 mm.setMemberPassword(request.getParameter("memberPassword"));
             }
-             ArrayList list =  mmt.chkUserPass(mm,Company_Id);
-             db.close();
-            if (list!=null) {
+            ArrayList list = mmt.chkUserPass(mm, Company_Id);
+            db.close();
+            if (list != null) {
                 memberMasterEntity data = (memberMasterEntity) list.get(0);
                 lc.setMemberLogin(request.getParameter("memberLogin"));
                 lc.setLang(request.getParameter("lang"));
@@ -67,12 +70,17 @@ public class login extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } else {
                 request.setAttribute("invalid", "Invalid Username Or Password");
-                request.setAttribute("memberLogin",request.getParameter("memberLogin"));
+                request.setAttribute("memberLogin", request.getParameter("memberLogin"));
                 RequestDispatcher obj = request.getRequestDispatcher("Login.jsp");
-                obj.forward(request, response);
+                obj.forward(request, response);                
             }
         } catch (Exception ex) {
-            ex.printStackTrace(out);
+            errorClass err = new errorClass();
+            err.setErrorCode("LG00");
+            err.setHeader("ล็อกอินไอดี หรือ รหัสผ่านผิดผลาด <br/> โปรดตรวจสอบว่า ภาษาถูกต้อง หรือ กดปุ่ม CAPSLOCK ค้างไว้หรือไม่");
+            request.setAttribute("error", err);
+            RequestDispatcher obj = request.getRequestDispatcher("error.jsp");
+            obj.forward(request, response);
         } finally {
             out.close();
         }
