@@ -18,7 +18,7 @@ public class orderHeaderMasterEntity {
     private int memberId;
     private Timestamp orderDate;
     private String orderStatus;
-    private double shippingCode;
+    private double shippingCost;
     private double totalAmount;
     private Timestamp createDate;
     private Timestamp updateDate;
@@ -111,15 +111,15 @@ public class orderHeaderMasterEntity {
     /**
      * @return the shippingCode
      */
-    public double getShippingCode() {
-        return shippingCode;
+    public double getShippingCost() {
+        return shippingCost;
     }
 
     /**
      * @param shippingCode the shippingCode to set
      */
-    public void setShippingCode(double shippingCode) {
-        this.shippingCode = shippingCode;
+    public void setShippingCost(double shippingCost) {
+        this.shippingCost = shippingCost;
     }
 
     /**

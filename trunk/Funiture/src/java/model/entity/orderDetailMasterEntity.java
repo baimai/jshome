@@ -21,7 +21,7 @@ public class orderDetailMasterEntity {
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
-
+    private double shippingCost;
     /**
      * @return the companyId
      */
@@ -146,6 +146,20 @@ public class orderDetailMasterEntity {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the shippingCost
+     */
+    public double getShippingCost() {
+        return shippingCost;
+    }
+
+    /**
+     * @param shippingCost the shippingCost to set
+     */
+    public void setShippingCost(double shippingCost) {
+        this.shippingCost = shippingCost;
     }
 
 
