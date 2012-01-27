@@ -123,7 +123,7 @@ public class productDetailMasterTable {
 
 
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
@@ -168,7 +168,7 @@ public class productDetailMasterTable {
     public Integer getProductId(String productCode, int Company_Id) {
         String sql = "select * from product_detail_master pdm where pdm.Product_Code = ? and pdm.Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, productCode, Company_Id);
-        if (result != null) {
+        if (!result.isEmpty()) {
             return (Integer) result.get(0).get("Product_Detail_Id");
         } else {
             return 0;

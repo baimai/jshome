@@ -38,7 +38,7 @@ public class orderHeaderMasterTable {
     public Integer getOrderId(orderHeaderMasterEntity ohm,int Company_Id) {
         String sql = "select * from order_header_master where Member_Id = ? and Company_Id = ? and Order_Date = ?";
         List<Map<String, Object>> result = db.queryList(sql, ohm.getMemberId(),ohm.getCompanyId(),ohm.getOrderDate());
-        if (result != null) {
+        if (!result.isEmpty()) {
             return (Integer) result.get(0).get("Order_Id");
         } else {
             return 0;

@@ -62,7 +62,7 @@ public class colorMasterTable {
         }
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 colorCodeMasterEntity cm = new colorCodeMasterEntity();
                 cm.setColorCode(Default.Str(result.get(i).get("Color_Code")));

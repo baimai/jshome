@@ -76,7 +76,7 @@ public class productGroupMasterTable {
         }
         List<Map<String, Object>> result = db.queryList(sql,Company_Id);
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 productGroupMasterEntity pgm = new productGroupMasterEntity();
                 pgm.setProductGroupCode(Default.Str(result.get(i).get("Product_Group_Code")));

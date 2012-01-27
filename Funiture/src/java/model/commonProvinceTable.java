@@ -33,7 +33,7 @@ public class commonProvinceTable {
         }
         
         ArrayList list = new ArrayList();
-        if (result != null) {
+        if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 commonProvinceEntity cp = new commonProvinceEntity();
                 cp.setId((Integer)result.get(i).get("ID_"));
@@ -52,7 +52,7 @@ public class commonProvinceTable {
     public Integer getFirstAmphurId(int id) {
         String sql = "select * from common_province where upid = ?";
         List<Map<String, Object>> result = db.queryList(sql,id);
-        if (result != null) {
+        if (!result.isEmpty()) {
             return (Integer) result.get(0).get("ID_");
         } else {
             return 0;
