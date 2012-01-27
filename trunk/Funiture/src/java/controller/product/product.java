@@ -11,11 +11,13 @@ import java.math.BigDecimal;
  * @author Achilles
  */
 public class product {
-    private String productGroup;
+    private int productGroupId;
     private String productName;
+    private String productCode;
     private int productDetailId;
     private double productPrice;
     private int amount;
+    private String productPath;
 
     /**
      * @return the productName
@@ -51,15 +53,15 @@ public class product {
     /**
      * @return the productGroup
      */
-    public String getProductGroup() {
-        return productGroup;
+    public int getProductGroupId() {
+        return productGroupId;
     }
 
     /**
      * @param productGroup the productGroup to set
      */
-    public void setProductGroup(String productGroup) {
-        this.productGroup = productGroup;
+    public void setProductGroupId(int productGroupId) {
+        this.productGroupId = productGroupId;
     }
 
     /**
@@ -88,6 +90,34 @@ public class product {
      */
     public void setProductDetailId(int productDetailId) {
         this.productDetailId = productDetailId;
+    }
+
+    /**
+     * @return the productPath
+     */
+    public String getProductPath() {
+        return productPath;
+    }
+
+    /**
+     * @param productPath the productPath to set
+     */
+    public void setProductPath(String productPath) {
+        this.productPath = productPath;
+    }
+
+    /**
+     * @return the productCode
+     */
+    public String getProductCode() {
+        return productCode;
+    }
+
+    /**
+     * @param productCode the productCode to set
+     */
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
 
