@@ -43,7 +43,12 @@
 </c:if>
 <c:if test="${param.menuCode != 'all'}">        
     <sql:query var="query" dataSource="webdb">
-        SELECT * FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
+        SELECT 
+        pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
+        md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
+        FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
         left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
@@ -61,7 +66,12 @@
         Group by pps.product_detail_id
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
-        SELECT * FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
+        SELECT 
+        pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
+        md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
+        FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
         left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
