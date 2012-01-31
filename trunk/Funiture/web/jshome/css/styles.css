@@ -26,9 +26,10 @@
 /* Reset ================================================================================= */
 * { margin:0; padding:0; }
 
-body          { font:12px/1.55  Tahoma,MS Sans Serif,Arial,Thonburi; color:#2f2f2f; text-align:center; }
+body          { /*font:12px/1.55  Tahoma,MS Sans Serif,Arial,Thonburi;*/ color:#2f2f2f; text-align:center; }/*tae*/
 
-img           { border:0; vertical-align:top; }
+img           { border:0; 
+                /*vertical-align:top;*//*tae*/ }
 
 a             { text-decoration:underline; }
 a:hover       { text-decoration:none; }
@@ -51,7 +52,7 @@ legend        { display:none; }
 
 /* Table */
 table         { border:0; /*border-collapse:collapse;*/ border-spacing:0; empty-cells:show; font-size:100%; }
-caption,th,td { vertical-align:top; text-align:left; font-weight:normal; }
+caption,th,td { /*vertical-align:top;*/ text-align:left; font-weight:normal; }/*tae*/
 
 /* Content */
 p             { margin:0 0 10px; }
