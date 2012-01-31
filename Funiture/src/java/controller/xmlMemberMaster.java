@@ -37,7 +37,7 @@ public class xmlMemberMaster extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-               // response.setContentType("text/xml;charset=UTF-8");
+                response.setContentType("text/xml;charset=UTF-8");
 
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
@@ -97,9 +97,21 @@ public class xmlMemberMaster extends HttpServlet {
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         memberMasterEntity data = (memberMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getMemberId(), i, data.getMemberName(), data.getMemberSurName(),
-                                data.getMemberComName(), data.getMemberStatus(), data.getMemberRegDate(),
-                                data.getMemberAppdate(), data.getCompanyId(), data.getMemberId());
+                        String statusFull = null;
+                        if(data.getMemberStatus()==null||data.getMemberStatus().equals("N")||data.getMemberStatus().equals("")){
+                            statusFull = "InActive";
+                        }else if(data.getMemberStatus().equals("Y")){
+                            statusFull = "Active";
+                        }else if(data.getMemberStatus().equals("B")){
+                            statusFull = "Ban";
+                        }
+                        xml.setRowDetail(data.getMemberId(), i+1, data.getMemberName(), data.getMemberSurName(),
+                                data.getMemberComName(), 
+                                statusFull,
+                                data.getMemberRegDate(),
+                                data.getMemberAppdate(),
+                                data.getMemberId(),
+                                data.getMemberId());
                     }
                     out.print(xml.getXml());
                 }
