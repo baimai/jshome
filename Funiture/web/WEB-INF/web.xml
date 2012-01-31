@@ -17,10 +17,6 @@
         <servlet-class>controller.productSetup</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>controller.test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>xmlProductGroup</servlet-name>
         <servlet-class>controller.xmlProductGroup</servlet-class>
     </servlet>
@@ -151,10 +147,6 @@
     <servlet-mapping>
         <servlet-name>menuDetailMaster</servlet-name>
         <url-pattern>/admin/menuDetailMaster.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>dynamicProvince</servlet-name>
