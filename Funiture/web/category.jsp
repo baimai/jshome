@@ -12,8 +12,7 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-       <script type="text/javascript" src="js/thickbox.js"></script>
-        <link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
+       
 
     </head>
     <body >

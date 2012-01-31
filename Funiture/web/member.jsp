@@ -40,13 +40,8 @@
         <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
         <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
+        
 
-
-        <link rel="stylesheet" type="text/css" href="http://freedemo.templates-master.com/skin/frontend/default/f002/css/styles-ie.css" media="all" />
-
-        <script type="text/javascript" src="http://freedemo.templates-master.com/js/lib/ds-sleight.js"></script>
-        <script type="text/javascript" src="http://freedemo.templates-master.com/skin/frontend/base/default/js/ie6.js"></script>
-       <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
         <script type="text/javascript">
 
 
@@ -85,29 +80,11 @@
             }
 
         </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#memberLogin').keyup(function() {
-                    checkMemberLogin($('#memberLogin').val());
-                })
-                $('#memberLogin').change(function() {
-                    checkMemberLogin($('#memberLogin').val());
-                })
-                
-            });
-
-        </script>
-        <script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script></head>
+     
+    </head>
     <body class=" customer-account-create" onload="changeCommonProvince(2,1);changeCommonProvince(3,77)">
         <div class="wrapper">
-            <noscript>
-                <div class="noscript">
-                    <div class="noscript-inner">
-                        <p><strong>JavaScript seem to be disabled in your browser.</strong></p>
-                        <p>You must have JavaScript enabled in your browser to utilize the functionality of this website.</p>
-                    </div>
-                </div>
-            </noscript>
+
             <div class="page">
 
 
@@ -116,20 +93,20 @@
                     <div class="col-main">
                         <div class="account-create">
                             <div class="page-title">
-                                <h1>Create an Account</h1>
+                                <h1>สร้างบัญชีใหม่</h1>
                             </div>
                             <form action="admin/memberMaster.do" method="post" id="form-validate" >
                                 <div class="fieldset">
-                                    <h2 class="legend">Login Information</h2>
+                                    <h2 class="legend">ข้อมูลการล็อกอิน</h2>
                                     <ul class="form-list">
                                         <li>   <div class="field">
-                                                <label for="login" class="required"><em>*</em>login</label>
+                                                <label for="login" class="required"><em>*</em>ไอดี</label>
                                                 <div class="input-box">
-                                                    <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login"   />
+                                                    <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login"  onkeyup="checkMemberLogin(document.getElementById('memberLogin').value)" onchange="checkMemberLogin(document.getElementById('memberLogin').value)"/>
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <label for="chkMemberLogin" >Validate</label>
+                                                <label for="chkMemberLogin" >สถานะ</label>
                                                 <div class="input-box" id="chkValidate" style="color: red">
                                                     <em><span >กรุณากรอกข้อมูลล็อกอิน</span></em>
                                                 </div>
@@ -137,13 +114,13 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field">
-                                                <label for="password" class="required"><em>*</em>Password</label>
+                                                <label for="password" class="required"><em>*</em>รหัสผ่าน</label>
                                                 <div class="input-box">
                                                     <input type="password" name="memberPassword" id="password" title="Password" class="input-text required-entry validate-password" />
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <label for="confirmation" class="required"><em>*</em>Confirm Password</label>
+                                                <label for="confirmation" class="required"><em>*</em>ยืนยันรหัสผ่าน</label>
                                                 <div class="input-box">
                                                     <input type="password" name="confirmation" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" />
                                                 </div>
@@ -154,18 +131,18 @@
                                 <div class="fieldset">
                                     <input type="hidden" name="success_url" value="" />
                                     <input type="hidden" name="error_url" value="" />
-                                    <h2 class="legend">Personal Information</h2>
+                                    <h2 class="legend">ข้อมูลส่วนตัว</h2>
                                     <ul class="form-list">
                                         <li class="fields">
                                             <div class="customer-name">
                                                 <div class="field name-firstname">
-                                                    <label for="firstname" >First Name</label>
+                                                    <label for="firstname" >ชื่อ</label>
                                                     <div class="input-box">
                                                         <input type="text" id="firstname" name="memberName" value="" title="First Name"class="input-text"   />
                                                     </div>
                                                 </div>
                                                 <div class="field name-lastname">
-                                                    <label for="lastname" >Last Name</label>
+                                                    <label for="lastname" >นามสกุล</label>
                                                     <div class="input-box">
                                                         <input type="text" id="lastname" name="memberSurName" value="" title="Last Name" class="input-text" />
                                                     </div>
@@ -174,7 +151,7 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field email-address">
-                                                <label for="email_address" class="required"><em>*</em>Email Address</label>
+                                                <label for="email_address" class="required"><em>*</em>อีเมลล์</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberEmail1" id="memberEmail1" value="" title="Email Address" class="input-text validate-email required-entry" />
                                                 </div>
@@ -182,13 +159,13 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field company-name">
-                                                <label for="memberComName">Company Name</label>
+                                                <label for="memberComName">ชื่อบริษัท</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberComName" id="memberComName" value="" title="Company Name"class="input-text"  />
                                                 </div>
                                             </div>
                                             <div class="field company-name">
-                                                <label for="memberNameAbbr">Company Name Abbr</label>
+                                                <label for="memberNameAbbr">ชื่อย่อบริษัท</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberNameAbbr" id="memberNameAbbr" value="" title="Company Name Abbr"class="input-text"  />
                                                 </div>
@@ -196,13 +173,13 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Adress1" >Adress1</label>
+                                                <label for="Adress1" >ที่อยู่ 1</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberAddr1" id="Adress1" value="" title="Adress1" class="input-text " />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Adress2" >Adress2</label>
+                                                <label for="Adress2" >ที่อยู่ 2</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberAddr2" id="Adress2" value="" title="Adress2" class="input-text " />
                                                 </div>
@@ -210,21 +187,21 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Distinct" >Distinct</label>
+                                                <label for="Distinct" >ตำบลt</label>
                                                 <div class="input-box" id="showDistinct" >
 
                                                 </div>
                                             </div>
 
                                             <div class="field name-lastname">
-                                                <label for="Amphur" >Amphur</label>
+                                                <label for="Amphur" >อำเภอ</label>
                                                 <div class="input-box" id="showAmphur" >
 
                                                 </div>
                                             </div>
                                         </li><li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Province" >Province</label>
+                                                <label for="Province" >จังหวัด</label>
                                                 <div class="input-box" id="showProvince" >
                                                     <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" style="width:200px">
                                                         <c:forEach var="province" items="${query.rows}">
@@ -235,7 +212,7 @@
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Postcode" >Postcode</label>
+                                                <label for="Postcode" >รหัสไปรษณีย์</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberPstcode" id="Postcode" value="" title="Postcode" class="input-text " />
                                                 </div>
@@ -243,13 +220,13 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Tel1" >Tel1</label>
+                                                <label for="Tel1" >เบอร์โทรศัพท์ </label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text " />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Tel2" >Tel2</label>
+                                                <label for="Tel2" >เบอร์โทรศัพท์</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberTel2" id="Tel2" value="" title="Tel2" class="input-text " />
                                                 </div>
@@ -257,13 +234,13 @@
                                         </li>
                                         <li>
                                             <div class="field name-lastname">
-                                                <label for="Mobile1" >Mobile</label>
+                                                <label for="Mobile1" >เบอร์โทรศัพท์มือถือ</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text " />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Mobile2" >Mobile2</label>
+                                                <label for="Mobile2" >เบอร์โทรศัพท์มือถือ</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberMobile2" id="Mobile2" value="" title="Mobile2" class="input-text " />
                                                 </div>
@@ -271,14 +248,14 @@
                                         </li>
                                         <li>
 
-                                            <label for="Fax" >Fax</label>
+                                            <label for="Fax" >แฟ็กซ์</label>
                                             <div class="input-box">
                                                 <input type="text" name="memberFax1" id="Fax" value="" title="Fax" class="input-text " />
                                             </div>
                                         </li>
                                         <li>
 
-                                            <label for="Fax" >Fax</label>
+                                            <label for="Fax" >แฟ็กซ์</label>
                                             <div class="input-box">
                                                 <input type="text" name="memberFax2" id="Fax" value="" title="Fax" class="input-text " />
                                             </div>
@@ -287,9 +264,9 @@
                                 </div>
 
                                 <div class="buttons-set">
-                                    <p class="required">* Required Fields</p>
+                                    <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
 
-                                    <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()">Submit</button>
+                                    <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()">ยืนยัน</button>
                                 </div>
                             </form>
                             <script type="text/javascript">
