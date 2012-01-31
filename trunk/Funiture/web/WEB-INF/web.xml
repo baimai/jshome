@@ -57,6 +57,10 @@
         <servlet-class>controller.xmlMenuGroupMaster</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>xmlMemberMaster</servlet-name>
+        <servlet-class>controller.xmlMemberMaster</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>menuGroupMaster</servlet-name>
         <servlet-class>controller.menuGroupMaster</servlet-class>
     </servlet>
@@ -79,6 +83,14 @@
     <servlet>
         <servlet-name>defaultCompany</servlet-name>
         <servlet-class>controller.defaultCompany</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addOrder</servlet-name>
+        <servlet-class>controller.addOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>remove</servlet-name>
+        <servlet-class>controller.remove</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
@@ -129,6 +141,10 @@
         <url-pattern>/admin/xmlMenuGroupMaster.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>xmlMemberMaster</servlet-name>
+        <url-pattern>/admin/xmlMemberMaster.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>menuGroupMaster</servlet-name>
         <url-pattern>/admin/menuGroupMaster</url-pattern>
     </servlet-mapping>
@@ -155,6 +171,14 @@
     <servlet-mapping>
         <servlet-name>defaultCompany</servlet-name>
         <url-pattern>/admin/defaultCompany.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addOrder</servlet-name>
+        <url-pattern>/addOrder.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>remove</servlet-name>
+        <url-pattern>/admin/remove.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
