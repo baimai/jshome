@@ -33,7 +33,7 @@
         <div class="slider-wrapper theme-default">
             <div class="ribbon"></div>
             <div id="slider" class="nivoSlider">
-                <img src="jshome/images/slideshow/slide-05.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-06.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-07.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-08.jpg" alt="" title="This is an example of a caption" />
+                <img  src="jshome/images/slideshow/slide-05.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-06.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-07.jpg" alt="" title="This is an example of a caption" /> <img src="jshome/images/slideshow/slide-08.jpg" alt="" title="This is an example of a caption" />
           </div>
             <div id="htmlcaption" class="nivo-html-caption">
                 <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.

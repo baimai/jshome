@@ -227,7 +227,7 @@
                             </c:if>
                             <c:if test="${(counter.count mod 3) == 2}">
                                 <li class="item">
-                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
                                     <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
 
 
@@ -251,7 +251,7 @@
                             </c:if>
                             <c:if test="${(counter.count mod 3) == 0}">
                                 <li class="item last">
-                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_Logo}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
                                     <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
 
 
