@@ -81,6 +81,7 @@ public class login extends HttpServlet {
             request.setAttribute("error", err);
             RequestDispatcher obj = request.getRequestDispatcher("error.jsp");
             obj.forward(request, response);
+            ex.printStackTrace(out);
         } finally {
             out.close();
         }

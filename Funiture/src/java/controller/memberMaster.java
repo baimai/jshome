@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -16,12 +15,13 @@ import model.Database;
 import model.companyMasterTable;
 import model.entity.memberMasterEntity;
 import model.memberMasterTable;
+
 /**
  *
  * @author Jik
  */
 public class memberMaster extends HttpServlet {
-   
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,29 +30,27 @@ public class memberMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
 
         try {
-           if (request.getParameter("action") != null) {
+            if (request.getParameter("action") != null) {
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
-               companyMasterTable cmt = new companyMasterTable(db);
+                companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 memberMasterEntity mb = new memberMasterEntity();
-                if (request.getParameter("companyCode") != null) {
-                    int i = cmt.getCompanyId(request.getParameter("companyCode"));
-                    if(i!=0){
-                        mb.setCompanyId(i);
-                    }
-                }
-                if (request.getParameter("memberLogin") != null&&request.getParameter("action").equals("Edit")) {
-                    int i = mbt.getMemberId(request.getParameter("memberLogin"),Company_Id);
-                    if(i!=0){
-                        mb.setMemberId(i);
-                    }
+                mb.setCompanyId(Company_Id);
+//                if (request.getParameter("memberLogin") != null && request.getParameter("action").equals("Edit")) {
+//                    int i = mbt.getMemberId(request.getParameter("memberLogin"), Company_Id);
+//                    if (i != 0) {
+//                        mb.setMemberId(i);
+//                    }
+//                }
+                if (request.getParameter("memberId") != null) {
+                    mb.setMemberId(Integer.parseInt(request.getParameter("memberId")));
                 }
                 if (request.getParameter("memberLogin") != null) {
                     mb.setMemberLogin(request.getParameter("memberLogin"));
@@ -90,34 +88,34 @@ public class memberMaster extends HttpServlet {
                 if (request.getParameter("memberPstcode") != null) {
                     mb.setMemberPstcode(request.getParameter("memberPstcode"));
                 }
-                 if (request.getParameter("memberTel1") != null) {
+                if (request.getParameter("memberTel1") != null) {
                     mb.setMemberTel1(request.getParameter("memberTel1"));
                 }
-                 if (request.getParameter("memberTel2") != null) {
+                if (request.getParameter("memberTel2") != null) {
                     mb.setMemberTel2(request.getParameter("memberTel2"));
                 }
-                 if (request.getParameter("memberFax1") != null) {
+                if (request.getParameter("memberFax1") != null) {
                     mb.setMemberFax1(request.getParameter("memberFax1"));
                 }
-                 if (request.getParameter("memberFax2") != null) {
+                if (request.getParameter("memberFax2") != null) {
                     mb.setMemberFax2(request.getParameter("memberFax2"));
                 }
                 if (request.getParameter("memberEmail1") != null) {
                     mb.setMemberEmail1(request.getParameter("memberEmail1"));
                 }
-                 if (request.getParameter("memberEmail2") != null) {
+                if (request.getParameter("memberEmail2") != null) {
                     mb.setMemberEmail2(request.getParameter("memberEmail2"));
                 }
-               
-                 if (request.getParameter("memberGrade") != null) {
+
+                if (request.getParameter("memberGrade") != null) {
                     mb.setMemberGrade(request.getParameter("memberGrade"));
                 }
-                 if (request.getParameter("memberlogoloc") != null) {
+                if (request.getParameter("memberlogoloc") != null) {
                     mb.setMemberlogoloc(request.getParameter("memberlogoloc"));
                 }
-                 
-                 if (request.getParameter("memberStatus") != null) {
-                    mb.setMemberStatus(request.getParameter("memberStatus"));
+
+                if (request.getParameter("status") != null) {
+                    mb.setMemberStatus(request.getParameter("status"));
                 }
                 if (request.getParameter("memberMobile1") != null) {
                     mb.setMemberMobile1(request.getParameter("memberMobile1"));
@@ -125,19 +123,19 @@ public class memberMaster extends HttpServlet {
                 if (request.getParameter("memberMobile2") != null) {
                     mb.setMemberMobile2(request.getParameter("memberMobile2"));
                 }
-                    mb.setCreateDate(Timestamp.valueOf(db.getNow()));
-                    mb.setUpdateDate(Timestamp.valueOf(db.getNow()));
-               
-
+                mb.setCreateDate(Timestamp.valueOf(db.getNow()));
+                mb.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                mb.setMemberRegDate(Timestamp.valueOf(db.getNow()));
+                mb.setMemberAppdate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Submit")) {
                     mbt.add(mb);
 
                 } else if (request.getParameter("action").equals("Edit")) {
-                   // mbt.update(mb);
+                    mbt.adminUpdate(mb);
                 } else if (request.getParameter("action").equals("Del")) {
                     //mbt.remove(mb);
                 }
-                   
+
                 db.close();
                 out.println("<html>");
                 out.println("<head>");
@@ -165,34 +163,20 @@ public class memberMaster extends HttpServlet {
                 out.println(" </script>");
                 out.println("<center><br/><br/><br/><h1> <div style=\"color:blue\">Thank You For Register</div> </h1><br/><br/><br/>");
                 out.println("<h3><span id=\"show_text\"></span></h3></center>");
-                
-                
+
+
                 out.println("");
                 out.println("");
                 out.println("</body>");
                 out.println("</html>");
-                
-                
-                  // กำหนดเวลาให้รอ เป็นวินาที
-                
-               
-                
-                
-                
-                
-                
-                
-                
-               
-		
-			
-                
-               
-                
+
+
+                // กำหนดเวลาให้รอ เป็นวินาที
+
                 //response.sendRedirect("Lo");
             }
-        }catch(Exception ex){
-                ex.printStackTrace(out);
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
         } finally {
             out.close();
         }
@@ -208,9 +192,9 @@ public class memberMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -221,7 +205,7 @@ public class memberMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -233,5 +217,4 @@ public class memberMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

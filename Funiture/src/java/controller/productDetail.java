@@ -80,7 +80,7 @@ public class productDetail extends HttpServlet {
                                     upFile.setFileName(System.currentTimeMillis() + ".png");
                                 }
 
-                                u.setFolderstore((getServletContext().getRealPath("upload\\picture")).replace("\\build\\web", ""));
+                                u.setFolderstore(getServletContext().getRealPath("upload\\picture"));
                             }
                         }
                         u.store(mr, "upload");
@@ -90,7 +90,7 @@ public class productDetail extends HttpServlet {
                             if (mr.getParameter("uploadtmp") != null &&upFile.getFileName().equals("")) {
                                 pdm.setProductDPicLoc(mr.getParameter("uploadtmp"));
                             }else if (!upFile.getFileName().equals("")){
-                                pdm.setProductDPicLoc((getServletContext().getRealPath("upload\\picture")).replace("\\build\\web", "") + "\\" + upFile.getFileName());
+                                pdm.setProductDPicLoc("upload\\picture" + "\\" + upFile.getFileName());
                             }
                         }
                         if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
