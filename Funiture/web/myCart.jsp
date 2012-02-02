@@ -18,7 +18,7 @@
         <div class="col-right sidebar">
             <div class="block block-cart">
                 <div class="block-title">
-                    <strong><span>My Cart</span></strong>
+                    <strong><span>สินค้าในตะกร้า</span></strong>
                 </div>
                 <c:if test="${sessionScope.productList != null}">
                     <div class="block-content">
@@ -30,7 +30,7 @@
                             <c:set var="total" value="${total+price}"/>
                         </c:forEach>
                         <div class="empty"  id="totalPrice">
-                            Total ${total} Baht
+                            รวม ${total} บาท
                         </div>
                     </div>
                 </c:if>

@@ -45,6 +45,8 @@
                     <jsp:include page="head.jsp"/>
                     <jsp:include page="slide.jsp"/>
                     <center>
+                    <div style="width:700px">
+                    
                         <c:forEach var="company" items="${query.rows}">
                             <h1 style="color:#1c94c4;font-family: Fantasy" >ติดต่อ ${company.company_name}</h1>
 
@@ -114,8 +116,9 @@
 
                         </c:forEach>
                         <br/><br/><br/><br/>
+                    
+                    </div>
                     </center>
-
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
