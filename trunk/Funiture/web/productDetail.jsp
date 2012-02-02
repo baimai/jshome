@@ -10,8 +10,11 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <sql:query var="queryProduct" dataSource="webdb">
     SELECT *
-    FROM product_detail_master 
-    where product_detail_Id = ${param.productDetailId}
+    FROM product_detail_master pdm
+    join product_group_master pgm on pgm.product_group_id = pdm.product_group_id
+    left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
+    left join unit_master um on um.unit_id = sb.unit_id
+    where pdm.product_detail_Id = ${param.productDetailId}
 </sql:query>
 
 <!DOCTYPE html>
@@ -80,21 +83,20 @@
                                                         </div>
 
                                                         <div class="product-shop">
-                                                            <div class="product-name">
-                                                                <h1>${product.product_d_name_t}</h1>
+                                                            <div >
+                                                                <font size="6" style="font-weight: bold;"> ${product.product_d_name_t}</font>
                                                             </div>
+                                                            <br/>
 
-                                                            <p class="email-friend"><a href="http://freedemo.templates-master.com/f002/sendfriend/product/send/id/51/">Email to a Friend</a></p>
-
-                                                            <p class="no-rating"><a href="http://freedemo.templates-master.com/f002/review/product/list/id/51/#review-form">Be the first to review this product</a></p>
-
-                                                            <p class="availability in-stock">สถานะสินค้า: <span>In stock</span></p>
+                                                            <div><font size="4" color="blue">ประเภทสินค้า </font><font size="4" >${product.product_g_name_t}</font></div>
+                                                            <br/>
+                                                            <div><font size="4" color="blue">สถานะสินค้า </font> <span> : <c:if test="${product.balance != null&&product.balance !=''}"><font size="4" >${product.balance}</font></c:if></span></div>
 
 
 
                                                             <div class="price-box">
-                                                                <span class="regular-price" id="product-price-51">
-                                                                    <span class="price">${product.product_price1}</span>                </span>
+                                                               <font size="4" color="blue">ราคา</font><span class="regular-price" id="product-price-51">
+                                                                   <span class="price"><font size="4"> ${product.product_price1}</font></span> </span> 
 
                                                             </div>
 
@@ -115,19 +117,13 @@
                                                                     <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
                                                                     <button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                                                 </div>
-                                                                <span class="or">OR</span>
+                                                                
 
-                                                                <ul class="add-to-links">
-                                                                    <li><a href="http://freedemo.templates-master.com/f002/wishlist/index/add/product/51/" class="link-wishlist">Add to Wishlist</a></li>
-                                                                    <li><span class="separator">|</span> <a href="http://freedemo.templates-master.com/f002/catalog/product_compare/add/product/51/uenc/aHR0cDovL2ZyZWVkZW1vLnRlbXBsYXRlcy1tYXN0ZXIuY29tL2YwMDIvb3R0b21hbi5odG1sP19fX1NJRD1V/" class="link-compare">Add to Compare</a></li>
-                                                                </ul>
+                                                                
                                                             </div>
 
 
-                                                            <div class="short-description">
-                                                                <h2>Quick Overview</h2>
-                                                                <div class="std">With durable solid wood framing, generous padding and plush stain-resistant microfiber upholstery.</div>
-                                                            </div>
+                                                            
 
 
 

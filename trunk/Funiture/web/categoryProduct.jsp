@@ -219,7 +219,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่ม</span></span></button>
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>สั่งซื้อ</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -243,7 +243,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่ม</span></span></button>
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>สั่งซื้อ</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -266,7 +266,7 @@
                                     </div>
 
                                     <div class="actions">
-                                       <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่ม</span></span></button>
+                                       <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>สั่งซื้อ</span></span></button>
                                         
                                     </div>
                                 </li>
