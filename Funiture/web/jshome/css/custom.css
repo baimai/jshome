@@ -34,19 +34,30 @@ a:hover  img { border:0; text-decoration:none;}*/
 #header-cart .head{margin-bottom:7px; padding-right:8px}
 #header-cart .head h4{cursor:pointer; float:none; display:inline; padding-left:15px; background:url(../images/icon-cart.gif) no-repeat 0 50%}
 #header-cart .head h4,
-#header-cart .head h4 a{color:#ababab; font-size:0.95em; font-weight:normal}
+#header-cart .head h4 a{
+	color:#03C;
+	font-size:0.95em;
+	font-weight:normal
+}
 
 .header-topbar {height:26px;margin:0 auto;padding-top:5px;position:relative;width:930px;z-index:110;}
 
 .welcome-msg{float:left; font-size:0.95em}
-.quick-access { margin: 0px; text-align: left; float: left; color: #ababab;}
+.quick-access {
+	margin: 0px;
+	text-align: left;
+	float: left;
+	color: #006;
+}
 .quick-access p { margin-bottom:4px; }
 .quick-access li {display:inline; background:url(../images/blue_pipe.gif) no-repeat 100% 3px; padding-right:10px;padding-left:3px;}
 .quick-access li.first { padding-left:10px !important; }
 .quick-access li.last { padding-right:0; background:none; }
 .shop-access {float: left; }
 .shop-access a, .shop-access a:hover {text-decoration: none; color:#007ed3; font-size:11px; }
-.shop-access a:hover {color: #FFF;}
+.shop-access a:hover {
+	color: #000;
+}
 .shop-access li.last { padding-right:0; background:none; }
 
 .form-language { float: left; margin-left: 65px; display: inline; }

@@ -76,6 +76,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
+                    <br><br><br>
                     <center>
                         <table id="rowed1"></table>
                         <div id="prowed1"></div>

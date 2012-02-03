@@ -26,7 +26,7 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br><br><br>
-                    <jsp:include page="menuGroupMaster.jsp"/>
+                    <jsp:include page="menageMenuDetail.jsp"/>
 
                 </div>
 

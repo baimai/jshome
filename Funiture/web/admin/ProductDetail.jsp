@@ -41,6 +41,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
+                    <br><br><br>
                     <form action="productDetail.do" method="post" enctype="multipart/form-data" >
 
                         <table border="0" width="700px" >

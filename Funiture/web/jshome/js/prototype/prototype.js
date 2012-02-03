@@ -2492,12 +2492,13 @@ if ('outerHTML' in document.createElement('div')) {
   };
 }
 
-Element._returnOffset = function(l, t) {
+/*baimai
+*Element._returnOffset = function(l, t) {
   var result = [l, t];
   result.left = l;
   result.top = t;
   return result;
-};
+};*/
 
 Element._getContentFromAnonymousElement = function(tagName, html) {
   var div = new Element('div'), t = Element._insertionTranslations.tags[tagName];

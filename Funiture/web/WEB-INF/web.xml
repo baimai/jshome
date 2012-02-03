@@ -16,6 +16,7 @@
         <servlet-name>productSetup</servlet-name>
         <servlet-class>controller.productSetup</servlet-class>
     </servlet>
+   
     <servlet>
         <servlet-name>xmlProductGroup</servlet-name>
         <servlet-class>controller.xmlProductGroup</servlet-class>
@@ -72,6 +73,7 @@
         <servlet-name>login</servlet-name>
         <servlet-class>controller.login</servlet-class>
     </servlet>
+   
     <servlet>
         <servlet-name>chkValidate</servlet-name>
         <servlet-class>controller.chkValidate</servlet-class>
@@ -128,18 +130,19 @@
         <servlet-name>xmlColorMaster</servlet-name>
         <url-pattern>/admin/xmlColorMaster.do</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>xmlMemberMaster</servlet-name>
+        <url-pattern>/admin/xmlMemberMaster.do</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>memberMaster</servlet-name>
-        <url-pattern>/admin/memberMaster.do</url-pattern>
+        <url-pattern>/admin/memberMaster.do </url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>xmlMenuGroupMaster</servlet-name>
         <url-pattern>/admin/xmlMenuGroupMaster.do</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>xmlMemberMaster</servlet-name>
-        <url-pattern>/admin/xmlMemberMaster.do</url-pattern>
-    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>menuGroupMaster</servlet-name>
         <url-pattern>/admin/menuGroupMaster</url-pattern>
@@ -148,6 +151,7 @@
         <servlet-name>menuDetailMaster</servlet-name>
         <url-pattern>/admin/menuDetailMaster.do</url-pattern>
     </servlet-mapping>
+   
     <servlet-mapping>
         <servlet-name>dynamicProvince</servlet-name>
         <url-pattern>/dynamicProvince.do</url-pattern>

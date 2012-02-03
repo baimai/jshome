@@ -18,11 +18,42 @@ order by mg.Menu_Group_Id
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
            <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />
-       <%-- <script type="text/javascript" src="jshome/js/jquery-1.4.1.min.js"></script> --%>
+      
          <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
+           <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
+       
+       
     </head>
     <body>
-        <table border="0" bordercolor="black" cellpadding="0" cellspacing="0"width="940px" >
+       
+    <div class="header-topbar">
+        <div class="quick-access">
+            <div class="welcome-msg">Default welcome msg!</div>
+            <div class="shop-access"><ul class="links">
+            <li class="first" ><a href="#" title="My Account" >My Account</a></li>
+        
+            <li ><a href="#" title="My Cart" class="top-link-cart">My Cart</a></li>
+            <li ><a href=#" title="Checkout" class="top-link-checkout">Checkout</a></li>
+            <li class=" last" ><a href="#" title="Log In" >Log In</a></li>
+    </ul>
+</div>
+        </div>
+        <script src="http://freedemo.templates-master.com/skin/frontend/default/f002/js/dropdown.js" type="text/javascript"></script>
+<div class="box header-cart" id="header-cart">
+    <div class="head" onclick="dropdown('cart-content', 'header-cart')">
+        <h4 id="header-cart-top" >
+                    Your <a href="#">Shopping cart</a> is empty.
+                </h4>
+    </div>
+
+    <div class="content" id="cart-content" style="display: none;">
+
+            </div>
+</div>            </div>
+                     <table border="0" bordercolor="black" cellpadding="0" cellspacing="0"width="940px" >
             <tr bgcolor="#A03700" >
                 <td ><img src="images/head.jpg" width="940px" height="100px" border="0" usemap="#Map"/></td>
             </tr>
