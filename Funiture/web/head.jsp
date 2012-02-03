@@ -28,31 +28,30 @@ order by mg.Menu_Group_Id
        
     </head>
     <body>
-       
+        <c:set var="itemNum" value="0" />
+        <c:forEach items="${sessionScope.productList}" varStatus="counter">
+            <c:set var="itemNum" value="${counter.count}" />
+        </c:forEach>
     <div class="header-topbar">
         <div class="quick-access">
-            <div class="welcome-msg">Default welcome msg!</div>
+            <div class="welcome-msg">
+                <c:if test="${sessionScope.loginDetail!=null}">ยินดีต้อนรับ ${sessionScope.loginDetail.memberFName} ${sessionScope.loginDetail.memberLName}</c:if>
+                <c:if test="${sessionScope.loginDetail==null}">ยินดีต้อนรับ ลูกค้า</c:if>
+            </div>
             <div class="shop-access"><ul class="links">
             <li class="first" ><a href="#" title="My Account" >My Account</a></li>
         
-            <li ><a href="#" title="My Cart" class="top-link-cart">My Cart</a></li>
-            <li ><a href=#" title="Checkout" class="top-link-checkout">Checkout</a></li>
-            <li class=" last" ><a href="#" title="Log In" >Log In</a></li>
+            <li ><a href="#" title="My Cart" class="top-link-cart">My Cart (${itemNum} item)</a></li>
+            <li ><a href="cartDetail.jsp" title="Checkout" class="top-link-checkout">Checkout</a></li>
+            <li class=" last" >
+                <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >Log Out</a></c:if>
+                <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Log In</a></c:if>
+            </li>
     </ul>
 </div>
         </div>
         <script src="http://freedemo.templates-master.com/skin/frontend/default/f002/js/dropdown.js" type="text/javascript"></script>
-<div class="box header-cart" id="header-cart">
-    <div class="head" onclick="dropdown('cart-content', 'header-cart')">
-        <h4 id="header-cart-top" >
-                    Your <a href="#">Shopping cart</a> is empty.
-                </h4>
-    </div>
-
-    <div class="content" id="cart-content" style="display: none;">
-
-            </div>
-</div>            </div>
+           </div>
                      <table border="0" bordercolor="black" cellpadding="0" cellspacing="0"width="940px" >
             <tr bgcolor="#A03700" >
                 <td ><img src="images/head.jpg" width="940px" height="100px" border="0" usemap="#Map"/></td>
