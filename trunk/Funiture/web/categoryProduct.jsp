@@ -235,7 +235,7 @@
                                     <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
                                             <span class="price">${product.product_price1}</span>
-                                        <div style="color:#00ee00">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                        <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
                                                                              <c:if test="${product.balance !=null }">${product.balance}</c:if>
                                                                              <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
                                             </div></span>

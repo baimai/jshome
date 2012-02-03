@@ -64,7 +64,7 @@
     </head>
     <body >
 
-        <jsp:include page="header.jsp"/>
+        
     <center>
         <br/>
         <select onchange="window.location='manageMenuDetail.jsp?menuGroupId='+this.value;">

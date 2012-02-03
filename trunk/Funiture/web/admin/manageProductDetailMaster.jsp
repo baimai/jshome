@@ -85,7 +85,7 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                    <jsp:include page="header.jsp"/>
+                   
                     <center>
                         <br/>
                         <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
