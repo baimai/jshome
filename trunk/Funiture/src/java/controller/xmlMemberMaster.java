@@ -86,8 +86,7 @@ public class xmlMemberMaster extends HttpServlet {
                 memberMasterTable mbt = new memberMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                /*  productDetailMasterTable pdm = new productDetailMasterTable(db);
-                ArrayList listp = pdm.search(productGroupId);*/
+               
                 ArrayList list = mbt.search(sField, sValue, sOper, Company_Id);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
