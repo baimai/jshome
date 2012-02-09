@@ -33,16 +33,15 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id','Company Code',],
+                    colNames:['No','Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id'],
                     colModel:[
                         {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
                         {name:'productGroupCode',index:'productGroupCode', width:80,editable:true,editoptions:{size:10}},
                         {name:'productGNameT',index:'productGNameT', width:248,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', width:248,editable:true,editoptions:{size:25}},
-                        {name:'productRemarkT',index:'productRemarkT', width:125, align:"right",editable:true,editoptions:{size:25}},
-                        {name:'productRemarkE',index:'productRemarkE', width:125, align:"right",editable:true,editoptions:{size:25}},
-                        {name:'productGroupId',index:'productGroupId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'companyCode',index:'companyCode', align:"right",hidden:true,editrules:{ edithidden:true},editable:false,editoptions:{size:10}}
+                        {name:'productRemarkT',index:'productRemarkT', width:125, align:"right",editable:true,editoptions:{size:50}},
+                        {name:'productRemarkE',index:'productRemarkE', width:125, align:"right",editable:true,editoptions:{size:50}},
+                        {name:'productGroupId',index:'productGroupId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
 
                     ],
                     rowNum:20,
@@ -57,9 +56,15 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:230,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
+                {height:230,width:450,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:230,width:450,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                             productGroupId:function() {
+                                        var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                                        var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
+                                        return value;
+                                   }}}, // del options
                 {} // search options
             );               
             });
