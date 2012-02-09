@@ -30,7 +30,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
 </head>
 
 <body>
-<div><img src="images/head.jpg" width="900" height="100"> </div>
+<div><img src="images/head.jpg" width="900" height="100"/> </div>
    
 
 
@@ -55,7 +55,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
                 <li><a href="ProductGroup.jsp" class="parent"><span>ประเภทสินค้า</span></a>
                     
                 </li>
-                <li><a href="manageProductDetail.jsp" class="parent"><span>รายการสินค้า</span></a>
+                <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
                    
                 </li>
                <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a>
@@ -68,7 +68,14 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
                         <li><a href="Member.jsp"><span>ข้อมูลสมาชิก</span></a></li>
                         <li><a href="#"><span>รายละเอียดสมาชิก</span></a></li>
                     </ul></div></li>
-        <li class="last"><a href="#"><span>จัดการใบสั่งซื้อ</span></a></li>
+        <li class="last"><a href="#"><span>จัดการใบสั่งซื้อ</span></a>
+            <div>
+                <ul>
+                    <li><a href="orderHeader.jsp" class="parent"><span>รายการสั่งซื้อ</span></a></li>
+                </ul>
+            </div>
+
+        </li>
         <li class="last"><a href="#"><span>จัดการผู้ใช้</span></a></li>
   </ul>
 </div>
