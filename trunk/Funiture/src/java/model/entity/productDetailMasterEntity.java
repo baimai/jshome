@@ -18,6 +18,7 @@ public class productDetailMasterEntity {
     private BigDecimal productPrice1;
     private BigDecimal productPrice2;
     private BigDecimal productPrice3;
+    private BigDecimal productPrice4;
     private String productSpect1_T;
     private String productSpect2_T;
     private String productSpect3_T;
@@ -41,8 +42,10 @@ public class productDetailMasterEntity {
     private int ProductColorId;
     private int companyId;
     private int productDetailId;
- 
-
+    private productGroupMasterEntity productGroupMasterEntity;
+    private stockBalanceEntity stockBalanceEntity;
+    private String productModelCode;
+    private int productMaxSale;
     /**
      * @return the productCode
      */
@@ -475,6 +478,78 @@ public class productDetailMasterEntity {
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
+
+    /**
+     * @return the productGroupMasterEntity
+     */
+    public productGroupMasterEntity getProductGroupMasterEntity() {
+        return productGroupMasterEntity;
+    }
+
+    /**
+     * @param productGroupMasterEntity the productGroupMasterEntity to set
+     */
+    public void setProductGroupMasterEntity(productGroupMasterEntity productGroupMasterEntity) {
+        this.productGroupMasterEntity = productGroupMasterEntity;
+    }
+
+    /**
+     * @return the stockBalanceEntity
+     */
+    public stockBalanceEntity getStockBalanceEntity() {
+        return stockBalanceEntity;
+    }
+
+    /**
+     * @param stockBalanceEntity the stockBalanceEntity to set
+     */
+    public void setStockBalanceEntity(stockBalanceEntity stockBalanceEntity) {
+        this.stockBalanceEntity = stockBalanceEntity;
+    }
+
+    /**
+     * @return the productPrice4
+     */
+    public BigDecimal getProductPrice4() {
+        return productPrice4;
+    }
+
+    /**
+     * @param productPrice4 the productPrice4 to set
+     */
+    public void setProductPrice4(BigDecimal productPrice4) {
+        this.productPrice4 = productPrice4;
+    }
+
+    /**
+     * @return the productMaxSale
+     */
+    public int getProductMaxSale() {
+        return productMaxSale;
+    }
+
+    /**
+     * @param productMaxSale the productMaxSale to set
+     */
+    public void setProductMaxSale(int productMaxSale) {
+        this.productMaxSale = productMaxSale;
+    }
+
+    /**
+     * @return the productModelCode
+     */
+    public String getProductModelCode() {
+        return productModelCode;
+    }
+
+    /**
+     * @param productModelCode the productModelCode to set
+     */
+    public void setProductModelCode(String productModelCode) {
+        this.productModelCode = productModelCode;
+    }
+
+    
 
 
  
