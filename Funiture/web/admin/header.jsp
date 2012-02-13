@@ -13,7 +13,7 @@
 <title>Untitled Document</title>
 <link type="text/css" href="css/menu.css" rel="stylesheet" />
   
-    <script type="text/javascript" src="js/menu.js"></script>
+   <%-- <script type="text/javascript" src="js/menu.js"></script> --%>
  <style type="text/css">
 
 

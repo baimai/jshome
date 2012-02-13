@@ -81,15 +81,19 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="right">Price 1</td>
-                                    <td colspan="2"><input name="price1" type="text" size="10"/> Baht</td>
+                                    <td colspan="2"><input name="price1" type="text" size="10"/> Baht (ราคาขายส่ง)</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"align="right">Price 2</td>
-                                    <td colspan="2"><input name="price2" type="text" size="10"/> Baht</td>
+                                    <td colspan="2"><input name="price2" type="text" size="10"/> Baht (ราคาขายส่ง Promotion)</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"align="right">Price 3</td>
-                                    <td colspan="2"><input name="price3" type="text" size="10"/> Baht</td>
+                                    <td colspan="2"><input name="price3" type="text" size="10"/> Baht (ราคาขายปลีก)</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"align="right">Price 4</td>
+                                    <td colspan="2"><input name="price4" type="text" size="10"/> Baht (ราคาขายปลีก Promotion)</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="right">Product Image</td>
@@ -214,15 +218,19 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="right">Price 1</td>
-                                        <td colspan="2"><input name="price1" type="text" size="10" value="${product.product_Price1}"/> Baht</td>
+                                        <td colspan="2"><input name="price1" type="text" size="10" value="${product.product_Price1}"/> Baht (ราคาขายส่ง)</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"align="right">Price 2</td>
-                                        <td colspan="2"><input name="price2" type="text" size="10" value="${product.product_Price2}"/> Baht</td>
+                                        <td colspan="2"><input name="price2" type="text" size="10" value="${product.product_Price2}"/> Baht (ราคาขายส่ง Promotion)</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"align="right">Price 3</td>
-                                        <td colspan="2"><input name="price3" type="text" size="10" value="${product.product_Price3}"/> Baht</td>
+                                        <td colspan="2"><input name="price3" type="text" size="10" value="${product.product_Price3}"/> Baht (ราคาขายปลีก)</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"align="right">Price 4</td>
+                                        <td colspan="2"><input name="price4" type="text" size="10" value="${product.product_Price4}"/> Baht (ราคาขายปลีก Promotion)</td>
                                     </tr>
                                     <c:if test="${product.product_d_pic_loc!=null&&product.product_d_pic_loc!=''}" >
                                         <tr>

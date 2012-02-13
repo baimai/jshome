@@ -56,15 +56,15 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:230,width:450,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:230,width:450,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:230,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:230,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                              productGroupId:function() {
                                         var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
                                         var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
                                         return value;
-                                   }}}, // del options
+                 }}}, // del options
                 {} // search options
             );               
             });

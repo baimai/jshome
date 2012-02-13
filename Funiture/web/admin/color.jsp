@@ -38,11 +38,12 @@
                         {name:'colorCode',index:'colorCode', width:180,editable:true,editoptions:{size:10}},
                         {name:'colorNameT',index:'colorNameT', width:288,editable:true,editoptions:{size:25}},
                         {name:'colorNameE',index:'colorNameE', width:288,editable:true,editoptions:{size:25}},
-                        {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false}
+                        {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
 
 
                     ],
-                    rowNum:10,
+                    rowNum:20,
+                    height:400,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -56,7 +57,13 @@
                 {search:true}, //options
                 {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        colorId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'colorId');
+                            return value;
+                        }}}, // del options
                 {} // search options
             );
 
