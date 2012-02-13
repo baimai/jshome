@@ -28,6 +28,7 @@
                     <jsp:include page="head.jsp"/>
                     <jsp:include page="slide.jsp"/>
                     <jsp:include page="companyDetail.jsp"/>
+                    <br/><br/>
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
