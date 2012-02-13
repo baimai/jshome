@@ -87,25 +87,20 @@
                                                                 <font size="6" style="font-weight: bold;"> ${product.product_d_name_t}</font>
                                                             </div>
                                                             <br/>
-
-                                                            <div><font size="4" color="blue">ประเภทสินค้า </font><font size="4" >${product.product_g_name_t}</font></div>
+                                                            <div><font size="4" color="blue">รหัสสินค้า  </font><font size="4" > : ${product.product_code}</font></div>
+                                                            <br/>
+                                                            <div><font size="4" color="blue">ประเภทสินค้า </font><font size="4" > : ${product.product_g_name_t}</font></div>
                                                             <br/>
                                                             <div><font size="4" color="blue">สถานะสินค้า </font> <span> : <c:if test="${product.balance != null&&product.balance !=''}"><font size="4" >${product.balance}</font></c:if></span></div>
 
 
 
                                                             <div class="price-box">
-                                                               <font size="4" color="blue">ราคา</font><span class="regular-price" id="product-price-51">
-                                                                   <span class="price"><font size="4"> ${product.product_price1}</font></span> </span> 
+                                                                <font size="4" color="blue">ราคา</font><span class="regular-price" id="product-price-51">
+                                                                    <span class="price"><font size="4"> ${product.product_price1}</font></span> </span>
 
                                                             </div>
-
-
-
-
                                                             <div class="add-to-box">
-
-
                                                                 <div class="add-to-cart">
                                                                     <label for="qty">จำนวน:</label>
                                                                     <input type="hidden" id="productDetailId" name="productDetailId" value="${product.product_detail_id}" />
@@ -117,16 +112,7 @@
                                                                     <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
                                                                     <button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                                                 </div>
-                                                                
-
-                                                                
                                                             </div>
-
-
-                                                            
-
-
-
                                                         </div>
 
                                                         <div class="product-img-box">
@@ -142,34 +128,46 @@
                                                 </div>
 
                                                 <div class="product-collateral">
-                                                    <div class="box-collateral box-description">
-                                                        <h2>รายละเอียด</h2>
-                                                        <div class="std">
-                                                            ${product.product_d_remark_t}   </div>
-                                                    </div>
+
                                                     <div class="box-collateral box-additional">
-                                                        <h2>ข้อมูลเพิ่มเติม</h2>
+                                                        <h2>รายละเอียด</h2>
                                                         <table class="data-table" id="product-attribute-specs-table">
                                                             <col width="25%" />
                                                             <col />
                                                             <tbody>
                                                                 <tr>
-                                                                    <th class="label">Model</th>
+                                                                    <th class="label">คุณลักษณะ</th>
                                                                     <td class="data">${product.product_spec1_t}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th class="label">Finish</th>
+                                                                    <th class="label">โครงสร้าง</th>
                                                                     <td class="data">${product.product_spec2_t}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th class="label">Country of Origin</th>
+                                                                    <th class="label"></th>
                                                                     <td class="data">${product.product_spec3_t}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="label">ขนาด</th>
+                                                                    <td class="data">${product.product_spec4_t}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="label"></th>
+                                                                    <td class="data">${product.product_spec5_t}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="label">สี</th>
+                                                                    <td class="data">${product.product_spec6_t}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
 
                                                     </div>
-
+                                                    <div class="box-collateral box-description">
+                                                        <h2>ข้อมูลเพิ่มเติม</h2>
+                                                        <div class="std">
+                                                            ${product.product_d_remark_t}   </div>
+                                                    </div>
 
 
                                                 </div>

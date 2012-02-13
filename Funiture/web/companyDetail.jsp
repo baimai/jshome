@@ -120,6 +120,7 @@
                          
                   
                       </div>
-                            <jsp:include page="myCart.jsp" /> </div>  
+                            <jsp:include page="myCart.jsp" /> </div>
+    </div>
     </body>
 </html>
