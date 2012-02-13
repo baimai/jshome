@@ -41,6 +41,8 @@ public class Column {
             sField = "pps.Pic_Name_T";
         } else if (sField.equals("picNameE")) {
             sField = "pps.Pic_Name_E";
+        } else if (sField.equals("orderStatus")) {
+            sField = "ohm.Order_Status";
         }
         return sField;
     }
