@@ -91,7 +91,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
                 menuGroupMasterTable mgt = new menuGroupMasterTable(db);
 
                 menuDetailMasterTable mdt = new menuDetailMasterTable(db);
-                ArrayList listp = mdt.search(menuGroupId);
+                ArrayList listp = mdt.searchAll();
                 
 
                 companyMasterTable cmt = new companyMasterTable(db);
@@ -106,8 +106,10 @@ public class xmlMenuGroupMaster extends HttpServlet {
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         menuGroupMasterEntity data = (menuGroupMasterEntity) list.get(i);
-                          xml.setRowDetail(data.getMenuGroupId(),i,data.getMenuGNameT(),data.getMenuGNameE(),
-                                data.getMenuPermission(),data.getCompanyId());
+                          xml.setRowDetail(data.getMenuGroupId(),i+1,data.getMenuGNameT(),data.getMenuGNameE(),
+                                data.getMenuPermission(),data.getShowListMenu(),data.getChkLoginSts(),
+                                data.getMenuGRemarkT(),data.getMenuGRemarkE(),
+                                data.getMenuGroupId(),data.getMenuGPicLoc());
 
                     }
                     out.print(xml.getXml());
@@ -119,8 +121,12 @@ public class xmlMenuGroupMaster extends HttpServlet {
 
                      for (int i = 0; i < listp.size(); i++) {
                         menuDetailMasterEntity data = (menuDetailMasterEntity) listp.get(i);
-                          xml.setRowDetail(data.getMenuCodeId(),i,data.getMenuCNameT(),data.getMenuCNameE(),
-                                data.getCompanyId(),data.getMenuCodeId(),data.getMenuCodeId());
+                          xml.setRowDetail(data.getMenuCodeId(),i+1,
+                                  data.getMenuGroupMasterEntity().getMenuGNameE(),
+                                  data.getMenuCNameT(),data.getMenuCNameE(),data.getPicCode(),
+                                  data.getMenuSeq(),data.getShowListSts(),data.getMenuCodeId(),
+                                  data.getMenuCRemarkT(),data.getMenuCRemarkE()
+                               );
 
                     }
                     out.print(xml.getXml());

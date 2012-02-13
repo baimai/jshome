@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ import model.menuGroupMasterTable;
  * @author Jik
  */
 public class menuDetailMaster extends HttpServlet {
-   
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -31,28 +31,23 @@ public class menuDetailMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-             if (request.getParameter("action") != null) {
+            if (request.getParameter("action") != null) {
                 Database db = new Database();
-                
-                menuDetailMasterTable mdt = new menuDetailMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                menuDetailMasterEntity md = new menuDetailMasterEntity();
 
-                if (request.getParameter("companyCode") != null) {
-                    int i = cmt.getCompanyId(request.getParameter("companyCode"));
-                    if (i != 0) {
-                        md.setCompanyId(i);
-                    }
+                menuDetailMasterTable mdt = new menuDetailMasterTable(db);
+                menuDetailMasterEntity md = new menuDetailMasterEntity();
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                if (request.getParameter("menuCodeId") != null&& !request.getParameter("menuCodeId").equals("")) {
+                    md.setMenuCodeId(Integer.parseInt(request.getParameter("menuCodeId")));
                 }
                 if (request.getParameter("menuGroupId") != null) {
                     md.setMenuGroupId(Integer.parseInt(request.getParameter("menuGroupId")));
                 }
-
                 if (request.getParameter("menuCNameT") != null) {
                     md.setMenuCNameT(request.getParameter("menuCNameT"));
                 }
@@ -63,24 +58,27 @@ public class menuDetailMaster extends HttpServlet {
                     md.setMenuModel(request.getParameter("menuModel"));
                 }
                 if (request.getParameter("menuSeq") != null) {
-                    md.setMenuSeq(Integer.parseInt(request.getParameter("menuSeq")) );
+                    md.setMenuSeq(Integer.parseInt(request.getParameter("menuSeq")));
                 }
                 if (request.getParameter("showListSts") != null) {
-                    md.setShowListSts(request.getParameter("showListSts") );
+                    md.setShowListSts(request.getParameter("showListSts"));
                 }
 
                 if (request.getParameter("picCode") != null) {
-                    md.setPicCode(request.getParameter("picCode") );
+                    md.setPicCode(request.getParameter("picCode"));
                 }
                 if (request.getParameter("menuCIconLoc") != null) {
-                    md.setMenuCIconLoc(request.getParameter("menuCIconLoc") );
+                    md.setMenuCIconLoc(request.getParameter("menuCIconLoc"));
                 }
                 if (request.getParameter("menuCRemarkT") != null) {
-                    md.setMenuCRemarkT(request.getParameter("menuCRemarkT") );
+                    md.setMenuCRemarkT(request.getParameter("menuCRemarkT"));
                 }
-                 if (request.getParameter("menuCRemarkE") != null) {
-                    md.setMenuCRemarkE(request.getParameter("menuCRemarkE") );
+                if (request.getParameter("menuCRemarkE") != null) {
+                    md.setMenuCRemarkE(request.getParameter("menuCRemarkE"));
                 }
+                md.setCompanyId(Company_Id);
+                md.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                md.setCreateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
                     mdt.add(md);
                 } else if (request.getParameter("action").equals("Edit")) {
@@ -107,9 +105,9 @@ public class menuDetailMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -120,7 +118,7 @@ public class menuDetailMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -132,5 +130,4 @@ public class menuDetailMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

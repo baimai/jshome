@@ -64,7 +64,6 @@ public class productDetail extends HttpServlet {
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
                         UploadBean u = new UploadBean();
-
                         if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
                             String filename = upFile.getFileName();
                             String filetype = filename.substring(filename.lastIndexOf("."), filename.length());
@@ -80,7 +79,7 @@ public class productDetail extends HttpServlet {
                                     upFile.setFileName(System.currentTimeMillis() + ".png");
                                 }
 
-                                u.setFolderstore(getServletContext().getRealPath("upload\\picture"));
+                                u.setFolderstore(getServletContext().getRealPath("upload/picture"));
                             }
                         }
                         u.store(mr, "upload");
@@ -90,7 +89,7 @@ public class productDetail extends HttpServlet {
                             if (mr.getParameter("uploadtmp") != null &&upFile.getFileName().equals("")) {
                                 pdm.setProductDPicLoc(mr.getParameter("uploadtmp"));
                             }else if (!upFile.getFileName().equals("")){
-                                pdm.setProductDPicLoc("upload\\picture" + "\\" + upFile.getFileName());
+                                pdm.setProductDPicLoc("upload/picture" + "/" + upFile.getFileName());
                             }
                         }
                         if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
@@ -104,9 +103,7 @@ public class productDetail extends HttpServlet {
                         }
                         if (mr.getParameter("productDetailId") != null && !mr.getParameter("productDetailId").equals("")) {
                             pdm.setProductDetailId(Integer.parseInt(mr.getParameter("productDetailId")));
-                        }
-                        pdm.setCompanyId(Company_Id);
-
+                        }                        
                         if (mr.getParameter("price1") != null && !mr.getParameter("price1").equals("")) {
                             pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price1"))));
                         }
@@ -115,6 +112,9 @@ public class productDetail extends HttpServlet {
                         }
                         if (mr.getParameter("price3") != null && !mr.getParameter("price3").equals("")) {
                             pdm.setProductPrice3(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price3"))));
+                        }
+                        if (mr.getParameter("price4") != null && !mr.getParameter("price4").equals("")) {
+                            pdm.setProductPrice4(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price4"))));
                         }
                         if (mr.getParameter("nameTh") != null && !mr.getParameter("nameTh").equals("")) {
                             pdm.setProductDNameT(mr.getParameter("nameTh"));
@@ -164,12 +164,13 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("remarkEn") != null && !mr.getParameter("remarkEn").equals("")) {
                             pdm.setProductDRemarkE(mr.getParameter("remarkEn"));
                         }
-                        if (mr.getParameter("action").equals("Add")) {
-                            pdm.setCreateDate(Timestamp.valueOf(db.getNow()));
+                        pdm.setCompanyId(Company_Id);
+                        pdm.setCreateDate(Timestamp.valueOf(db.getNow()));
+                        pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                        if (mr.getParameter("action").equals("Add")) {                            
                             pdmt.add(pdm);
                         }
-                        if (mr.getParameter("action").equals("Edit")) {
-                            pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                        if (mr.getParameter("action").equals("Edit")) {                            
                             pdmt.update(pdm);
                         }
                         if (mr.getParameter("action").equals("Del")) {

@@ -49,79 +49,82 @@ public class companyMasterController extends HttpServlet {
                 cp.setCompanyNameT(request.getParameter("companyNameT"));
             }
             if (request.getParameter("companyNameE")!=null){
-                cp.setCompanyNameT(request.getParameter("companyNameE"));
+                cp.setCompanyNameE(request.getParameter("companyNameE"));
             }
             if (request.getParameter("companyAbbr")!=null){
-                cp.setCompanyNameT(request.getParameter("companyAbbr"));
+                cp.setCompanyAbbr(request.getParameter("companyAbbr"));
             }
             if (request.getParameter("companyLogoLoc")!=null){
-                cp.setCompanyNameT(request.getParameter("companyLogoLoc"));
+                cp.setCompanyLogoLoc(request.getParameter("companyLogoLoc"));
             }
            if (request.getParameter("companyAddrT")!=null){
-                cp.setCompanyNameT(request.getParameter("companyAddrT"));
+                cp.setCompanyAddrT(request.getParameter("companyAddrT"));
             }
             if (request.getParameter("companyAddrE")!=null){
-                cp.setCompanyNameT(request.getParameter("companyAddrE"));
+                cp.setCompanyAddrE(request.getParameter("companyAddrE"));
             }
              if (request.getParameter("companyDistrictT")!=null){
-                cp.setCompanyNameT(request.getParameter("companyDistrictT"));
+                cp.setCompanyDistrictT(request.getParameter("companyDistrictT"));
             }
             if (request.getParameter("companyDistrictE")!=null){
-                cp.setCompanyNameT(request.getParameter("companyDistrictE"));
+                cp.setCompanyDistrictE(request.getParameter("companyDistrictE"));
             }
             if (request.getParameter("companyAmphurT")!=null){
-                cp.setCompanyNameT(request.getParameter("companyAmphurT"));
+                cp.setCompanyAmphurT(request.getParameter("companyAmphurT"));
             }
             if (request.getParameter("companyAmphurE")!=null){
-                cp.setCompanyNameT(request.getParameter("companyAmphurE"));
+                cp.setCompanyAmphurE(request.getParameter("companyAmphurE"));
             }
              if (request.getParameter("companyProvinceT")!=null){
-                cp.setCompanyNameT(request.getParameter("companyProvinceT"));
+                cp.setCompanyProvinceT(request.getParameter("companyProvinceT"));
+            }
+            if (request.getParameter("companyProvinceE")!=null){
+                cp.setCompanyProvinceE(request.getParameter("companyProvinceE"));
             }
              if (request.getParameter("companyPostCode")!=null){
-                cp.setCompanyNameT(request.getParameter("companyPostCode"));
+                cp.setCompanyPostCode(request.getParameter("companyPostCode"));
             }
              if (request.getParameter("companyTel1")!=null){
-                cp.setCompanyNameT(request.getParameter("companyTel1"));
+                cp.setCompanyTel1(request.getParameter("companyTel1"));
             }
              if (request.getParameter("companyTel2")!=null){
-                cp.setCompanyNameT(request.getParameter("companyTel2"));
+                cp.setCompanyTel2(request.getParameter("companyTel2"));
             }
              if (request.getParameter("companyTel3")!=null){
-                cp.setCompanyNameT(request.getParameter("companyTel3"));
+                cp.setCompanyTel3(request.getParameter("companyTel3"));
             }
            if (request.getParameter("companyFax1")!=null){
-                cp.setCompanyNameT(request.getParameter("companyFax1"));
+                cp.setCompanyFax1(request.getParameter("companyFax1"));
             }
            if (request.getParameter("companyFax2")!=null){
-                cp.setCompanyNameT(request.getParameter("companyFax2"));
+                cp.setCompanyFax2(request.getParameter("companyFax2"));
             }
            if (request.getParameter("companyFax3")!=null){
-                cp.setCompanyNameT(request.getParameter("companyFax3"));
+                cp.setCompanyFax3(request.getParameter("companyFax3"));
             }
            if (request.getParameter("companyMobile1")!=null){
-                cp.setCompanyNameT(request.getParameter("companyMobile1"));
+                cp.setCompanyMobile1(request.getParameter("companyMobile1"));
             }
             if (request.getParameter("companyMobile2")!=null){
-                cp.setCompanyNameT(request.getParameter("companyMobile2"));
+                cp.setCompanyMobile2(request.getParameter("companyMobile2"));
             }
              if (request.getParameter("companyMobile3")!=null){
-                cp.setCompanyNameT(request.getParameter("companyMobile3"));
+                cp.setCompanyMobile3(request.getParameter("companyMobile3"));
             }
              if (request.getParameter("companyEmail1")!=null){
                 cp.setCompanyNameT(request.getParameter("companyEmail1"));
             }
              if (request.getParameter("companyEmail2")!=null){
-                cp.setCompanyNameT(request.getParameter("companyEmail2"));
+                cp.setCompanyEmail2(request.getParameter("companyEmail2"));
             }
              if (request.getParameter("companyEmail3")!=null){
-                cp.setCompanyNameT(request.getParameter("companyEmail3"));
+                cp.setCompanyEmail3(request.getParameter("companyEmail3"));
             }
              if (request.getParameter("languageFlag")!=null){
-                cp.setCompanyNameT(request.getParameter("languageFlag"));
+                cp.setLanguageFlag(request.getParameter("languageFlag"));
             }
              if (request.getParameter("picCode")!=null){
-                cp.setCompanyNameT(request.getParameter("picCode"));
+                cp.setPicCode(request.getParameter("picCode"));
             }
            cp.setCreateDate(Timestamp.valueOf(db.getNow()));
            cp.setUpdateDate(Timestamp.valueOf(db.getNow()));

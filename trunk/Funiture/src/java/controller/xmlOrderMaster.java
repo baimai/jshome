@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import controller.Xml.GenerateXml;
@@ -14,14 +13,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.colorMasterTable;
-import model.entity.colorCodeMasterEntity;
+import model.entity.orderDetailMasterEntity;
+import model.entity.orderHeaderMasterEntity;
+import model.orderDetailMasterTable;
+import model.orderHeaderMasterTable;
+
 /**
  *
- * @author Jik
+ * @author Achilles
  */
-public class xmlColorMaster extends HttpServlet {
-   
+public class xmlOrderMaster extends HttpServlet {
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,19 +32,24 @@ public class xmlColorMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-           if (request.getParameter("action").equals("fetchData")) {
+            if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
-                String status = request.getParameter("status");
+
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-
+                String orderStatus = null;
                 String sField = null, sValue = null, sOper = null;
+                int orderId = 0;
+
+                if (request.getParameter("orderStatus") != null) {
+                    orderStatus = request.getParameter("orderStatus");
+                }
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
                 }
@@ -51,6 +58,9 @@ public class xmlColorMaster extends HttpServlet {
                 }
                 if (request.getParameter("searchOper") != null) {
                     sOper = request.getParameter("searchOper");
+                }
+                if (request.getParameter("orderId") != null) {
+                    orderId = Integer.parseInt(request.getParameter("orderId"));
                 }
 
                 int totalPages = 0;
@@ -66,22 +76,53 @@ public class xmlColorMaster extends HttpServlet {
                 } else {
                     totalPages = 0;
                 }
-
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 Database db = new Database();
-                colorMasterTable cmt = new colorMasterTable(db);
-                ArrayList list = cmt.search(sField, sValue, sOper);
+                orderHeaderMasterTable ohmt = new orderHeaderMasterTable(db);
+                orderDetailMasterTable odmt = new orderDetailMasterTable(db);
+                orderHeaderMasterEntity ohm = new orderHeaderMasterEntity();
+                ohm.setCompanyId(Company_Id);
+                ohm.setOrderStatus(orderStatus);
+                ArrayList listp = odmt.searchId(orderId);
+                ArrayList list = ohmt.search(sField, sValue, sOper, ohm);
                 db.close();
-                if (request.getParameter("q").equals("1")) {                   
+                if (request.getParameter("q").equals("1")) {
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(request.getParameter("page"));
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
-                        colorCodeMasterEntity data = (colorCodeMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getColorId(), i+1, data.getColorCode(), data.getColorNameT(),data.getColorNameE(),data.getColorId());
+                        String status = null;
+                        orderHeaderMasterEntity data = (orderHeaderMasterEntity) list.get(i);
+                        if (data.getOrderStatus().equals("N")) {
+                            status = "InActive";
+                        } else if (data.getOrderStatus().equals("Y")) {
+                            status = "Active";
+                        } else if (data.getOrderStatus().equals("C")) {
+                            status = "Cancle";
+                        } else {
+                            status = "InActive";
+                        }
+                        xml.setRowDetail(data.getOrderId(), data.getOrderDate(),
+                                data.getOrderId(),
+                                data.getMemberMasterEntity().getMemberName() + " " + data.getMemberMasterEntity().getMemberSurName(),
+                                status,
+                                data.getOrderId());
                     }
                     out.print(xml.getXml());
-               }
+                } else if (request.getParameter("q").equals("2")) {
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(listp.size());
+                    for (int i = 0; i < listp.size(); i++) {
+                        orderDetailMasterEntity data = (orderDetailMasterEntity) listp.get(i);
+                        xml.setRowDetail(i,data.getOrderId(),data.getProductDetailId(),
+                                data.getProductDetailMasterEntity().getProductDNameE(),
+                                data.getProductVolumn(), data.getProductCost(),data.getProductAmount());
+                    }
+                     out.print(xml.getXml());
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
@@ -100,9 +141,9 @@ public class xmlColorMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -113,7 +154,7 @@ public class xmlColorMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -125,5 +166,4 @@ public class xmlColorMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
