@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import model.entity.productDetailMasterEntity;
+import model.entity.productGroupMasterEntity;
+import model.entity.stockBalanceEntity;
 import util.Default;
 
 /**
@@ -26,12 +28,12 @@ public class productDetailMasterTable {
     public void add(productDetailMasterEntity pdm) {
         String sql = "insert into product_detail_master "
                 + "(Company_Id,Product_Group_Id,Product_Code,Product_D_Name_T,Product_D_Name_E,"
-                + " Product_Price1,Product_Price2,Product_Price3,"
+                + " Product_Price1,Product_Price2,Product_Price3,Product_Price4,"
                 + " Product_Spec1_T,Product_Spec2_T,Product_Spec3_T,Product_Spec4_T,Product_Spec5_T,Product_Spec6_T,"
                 + " Product_Spec1_E,Product_Spec2_E,Product_Spec3_E,Product_Spec4_E,Product_Spec5_E,Product_Spec6_E,"
                 + " Product_D_Pic_Loc,Product_D_Icon_Loc,Product_D_Remark_T,Product_D_Remark_E,Product_D_Display_Flag,"
-                + " Create_Date,User_Id,Product_Color_Id)"
-                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + " Create_Date,User_Id,Product_Color_Id,Product_Model_Code,Product_Max_Sale)"
+                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         db.add(sql,
                 pdm.getCompanyId(),
                 pdm.getProductGroupId(),
@@ -41,6 +43,7 @@ public class productDetailMasterTable {
                 pdm.getProductPrice1(),
                 pdm.getProductPrice2(),
                 pdm.getProductPrice3(),
+                pdm.getProductPrice4(),
                 pdm.getProductSpect1_T(),
                 pdm.getProductSpect2_T(),
                 pdm.getProductSpect3_T(),
@@ -60,20 +63,22 @@ public class productDetailMasterTable {
                 pdm.getProductDDisplayFlag(),
                 pdm.getCreateDate(),
                 pdm.getUserId(),
-                pdm.getProductColorId());
+                pdm.getProductColorId(),
+                pdm.getProductModelCode(),
+                pdm.getProductMaxSale());
     }
 
     public void update(productDetailMasterEntity pdm) {
         String sql = "update product_detail_master set Company_Id = ?,Product_Group_Id = ?,Product_Code = ?,"
                 + "Product_D_Name_T = ?,Product_D_Name_E = ?,"
-                + "Product_Price1 = ?,Product_Price2 = ?,Product_Price3 = ?,"
+                + "Product_Price1 = ?,Product_Price2 = ?,Product_Price3 = ?,Product_Price4 = ?,"
                 + "Product_Spec1_T = ?,Product_Spec2_T = ?,Product_Spec3_T = ?,"
                 + "Product_Spec4_T = ?,Product_Spec5_T = ?,Product_Spec6_T = ?,"
                 + "Product_Spec1_E = ?,Product_Spec2_E = ?,Product_Spec3_E = ?,"
                 + "Product_Spec4_E = ?,Product_Spec5_E = ?,Product_Spec6_E = ?,"
                 + "Product_D_Pic_Loc = ?,Product_D_Icon_Loc = ?,"
                 + "Product_D_Remark_T = ?,Product_D_Remark_E = ?,Product_D_Display_Flag = ?,"
-                + "Update_date = ?,Product_Color_Id = ? "
+                + "Update_date = ?,Product_Color_Id = ?,Product_model_code,product_max_sale "
                 + "where Product_Detail_Id = ? ";
         db.add(sql,
                 pdm.getCompanyId(),
@@ -84,6 +89,7 @@ public class productDetailMasterTable {
                 pdm.getProductPrice1(),
                 pdm.getProductPrice2(),
                 pdm.getProductPrice3(),
+                pdm.getProductPrice4(),
                 pdm.getProductSpect1_T(),
                 pdm.getProductSpect2_T(),
                 pdm.getProductSpect3_T(),
@@ -103,6 +109,8 @@ public class productDetailMasterTable {
                 pdm.getProductDDisplayFlag(),
                 pdm.getUpdateDate(),
                 pdm.getProductColorId(),
+                pdm.getProductModelCode(),
+                pdm.getProductMaxSale(),
                 pdm.getProductDetailId());
     }
 
@@ -134,6 +142,7 @@ public class productDetailMasterTable {
                 pdm.setProductPrice1(Default.BigDecimal(result.get(i).get("Product_Price1")));
                 pdm.setProductPrice2(Default.BigDecimal(result.get(i).get("Product_Price2")));
                 pdm.setProductPrice3(Default.BigDecimal(result.get(i).get("Product_Price3")));
+                pdm.setProductPrice4(Default.BigDecimal(result.get(i).get("Product_Price4")));
                 pdm.setProductSpect1_T(Default.Str(result.get(i).get("Product_Spec1_T")));
                 pdm.setProductSpect2_T(Default.Str(result.get(i).get("Product_Spec2_T")));
                 pdm.setProductSpect3_T(Default.Str(result.get(i).get("Product_Spec3_T")));
@@ -172,6 +181,66 @@ public class productDetailMasterTable {
             return (Integer) result.get(0).get("Product_Detail_Id");
         } else {
             return 0;
+        }
+
+    }
+
+    public ArrayList searchAll() {
+        List<Map<String, Object>> result = null;
+        String sql = "SELECT * FROM product_detail_master pdm"+
+                     " left join product_group_master pgm on pgm.product_group_id = pdm.product_group_id"+
+                     " left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id ";
+        result = db.queryList(sql);
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            for (int i = 0; i < result.size(); i++) {
+                productDetailMasterEntity pdm = new productDetailMasterEntity();
+                productGroupMasterEntity pgm = new productGroupMasterEntity();
+                stockBalanceEntity sb = new stockBalanceEntity();
+                pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
+                pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
+                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
+                pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
+                pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));
+                pdm.setProductPrice1(Default.BigDecimal(result.get(i).get("Product_Price1")));
+                pdm.setProductPrice2(Default.BigDecimal(result.get(i).get("Product_Price2")));
+                pdm.setProductPrice3(Default.BigDecimal(result.get(i).get("Product_Price3")));
+                pdm.setProductPrice4(Default.BigDecimal(result.get(i).get("Product_Price4")));
+                pdm.setProductSpect1_T(Default.Str(result.get(i).get("Product_Spec1_T")));
+                pdm.setProductSpect2_T(Default.Str(result.get(i).get("Product_Spec2_T")));
+                pdm.setProductSpect3_T(Default.Str(result.get(i).get("Product_Spec3_T")));
+                pdm.setProductSpect4_T(Default.Str(result.get(i).get("Product_Spec4_T")));
+                pdm.setProductSpect5_T(Default.Str(result.get(i).get("Product_Spec5_T")));
+                pdm.setProductSpect6_T(Default.Str(result.get(i).get("Product_Spec6_T")));
+                pdm.setProductSpect1_E(Default.Str(result.get(i).get("Product_Spec1_E")));
+                pdm.setProductSpect2_E(Default.Str(result.get(i).get("Product_Spec2_E")));
+                pdm.setProductSpect3_E(Default.Str(result.get(i).get("Product_Spec3_E")));
+                pdm.setProductSpect4_E(Default.Str(result.get(i).get("Product_Spec4_E")));
+                pdm.setProductSpect5_E(Default.Str(result.get(i).get("Product_Spec5_E")));
+                pdm.setProductSpect6_E(Default.Str(result.get(i).get("Product_Spec6_E")));
+                pdm.setProductDPicLoc(Default.Str(result.get(i).get("Product_D_Pic_Loc")));
+                pdm.setProductDIconLoc(Default.Str(result.get(i).get("Product_D_Icon_Loc")));
+                pdm.setProductDRemarkT(Default.Str(result.get(i).get("Product_D_Remark_T")));
+                pdm.setProductDRemarkE(Default.Str(result.get(i).get("Product_D_Remark_E")));
+                pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
+                pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
+                pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
+                /////
+                pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
+                pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_T")));
+                ////
+                sb.setBalance(((BigDecimal) result.get(0).get("balance")).intValue());
+                ////
+                pdm.setProductGroupMasterEntity(pgm);
+                pdm.setStockBalanceEntity(sb);
+                if (result.get(i).get("Product_Color_Id") != null) {
+                    pdm.setProductColorId((Integer) result.get(i).get("Product_Color_Id"));
+                }
+                list.add(pdm);
+            }
+            return list;
+        } else {
+            return null;
         }
 
     }

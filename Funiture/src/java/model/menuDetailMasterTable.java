@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.Timestamp;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import model.entity.menuDetailMasterEntity;
+import model.entity.menuGroupMasterEntity;
 import util.Default;
 
 /**
@@ -17,7 +17,8 @@ import util.Default;
  * @author Baimai
  */
 public class menuDetailMasterTable {
-   private Database db;
+
+    private Database db;
 
     public menuDetailMasterTable(Database db) {
         this.db = db;
@@ -25,11 +26,11 @@ public class menuDetailMasterTable {
 
     public void add(menuDetailMasterEntity md) {
         String sql = "insert into menu_detail_master "
-                + "(Company_Id,Menu_Group_Id,Menu_Code_Id,Menu_Model,Menu_Seq,"
+                + "(Company_Id,Menu_Group_Id,Menu_Model,Menu_Seq,"
                 + " Menu_C_Name_T,Menu_C_Name_E,Show_List_Sts,Pic_Code,Menu_C_Pic_Loc,"
                 + " Menu_C_Icon_Loc,Menu_C_Remark_T,Menu_C_Remark_E,Create_Date,User_Id"
                 + " )"
-                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         db.add(sql,
                 md.getCompanyId(),
                 md.getMenuGroupId(),
@@ -50,6 +51,7 @@ public class menuDetailMasterTable {
     public void update(menuDetailMasterEntity md) {
         String sql = "update menu_detail_master set "
                 + "Company_Id = ?,"
+                + "Menu_Group_Id = ?,"
                 + "Menu_Model = ?,"
                 + "Menu_Seq = ?,"
                 + "Menu_C_Name_T = ?,"
@@ -60,43 +62,43 @@ public class menuDetailMasterTable {
                 + "Menu_C_Icon_Loc = ?,"
                 + "Menu_C_Remark_T = ?,"
                 + "Menu_C_Remark_E = ?,"
-                + "Updtae_date = ? "
-                + "where Menu_Group_Id = ? ";
+                + "Update_date = ? "
+                + "where Menu_Code_Id = ? ";
         db.add(sql,
                 md.getCompanyId(),
+                md.getMenuGroupId(),
                 md.getMenuModel(),
                 md.getMenuSeq(),
                 md.getMenuCNameT(),
                 md.getMenuCNameE(),
                 md.getShowListSts(),
                 md.getPicCode(),
+                md.getMenuCPicLoc(),
                 md.getMenuCIconLoc(),
                 md.getMenuCRemarkT(),
                 md.getMenuCRemarkE(),
                 md.getUpdateDate(),
-                md.getMenuGroupId());
+                md.getMenuCodeId());
     }
 
-    public void remove (menuDetailMasterEntity md){
-        String sql="delete from menu_detail_master where Menu_Code_Id = ?";
-        db.add(sql,md.getMenuCodeId());
+    public void remove(menuDetailMasterEntity md) {
+        String sql = "delete from menu_detail_master where Menu_Code_Id = ?";
+        db.update(sql, md.getMenuCodeId());
     }
 
-    public ArrayList search(String menuGroupId) {
+    public ArrayList searchAll() {
         List<Map<String, Object>> result = null;
-        if (menuGroupId == null) {
-            String sql = "SELECT * FROM menu_detail_master md";
+        String sql = " select * from menu_detail_master mdm "+
+                     " join menu_group_master mgm on mdm.menu_group_id = mgm.menu_group_id" ;
             result = db.queryList(sql);
-        } else {
-            String sql = "SELECT * FROM menu_detail_master md"
-                    + " where  md.Menu_Code_Id = ? ";
-            result = db.queryList(sql, menuGroupId);
-        }
+        
 
 
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
+                menuGroupMasterEntity mg = new menuGroupMasterEntity();
+                mg.setMenuGNameE(Default.Str(result.get(i).get("Menu_G_Name_E")));
                 menuDetailMasterEntity md = new menuDetailMasterEntity();
                 md.setCompanyId((Integer) result.get(i).get("Company_Id"));
                 md.setMenuGroupId((Integer) result.get(i).get("Menu_Group_Id"));
@@ -111,7 +113,7 @@ public class menuDetailMasterTable {
                 md.setMenuCRemarkE(Default.Str(result.get(i).get("Menu_C_Remark_E")));
                 md.setUserId(Default.Str(result.get(i).get("User_Id")));
                 md.setMenuCodeId((Integer) result.get(i).get("Menu_Code_Id"));
-                
+                md.setMenuGroupMasterEntity(mg);
                 list.add(md);
             }
             return list;
@@ -131,6 +133,4 @@ public class menuDetailMasterTable {
         }
 
     }
-
-
 }

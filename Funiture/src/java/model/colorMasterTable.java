@@ -53,6 +53,10 @@ public class colorMasterTable {
 
 
     }
+  public void remove(colorCodeMasterEntity cm){
+      String sql = "delete from color_code_master where color_id = ?";
+      db.update(sql,cm.getColorId());
+  }
 
   public ArrayList search(String sField, String sValue, String sOper) {
         String sql = "SELECT * FROM color_code_master cm";
@@ -68,7 +72,7 @@ public class colorMasterTable {
                 cm.setColorCode(Default.Str(result.get(i).get("Color_Code")));
                 cm.setColorNameT(Default.Str(result.get(i).get("Color_Name_T")));
                 cm.setColorNameE(Default.Str(result.get(i).get("Color_Name_E")));
-                //cm.setColorId((Integer)result.get(i).get("Color_Id"));
+                cm.setColorId((Integer) result.get(i).get("Color_Id"));
                
                 list.add(cm);
             }

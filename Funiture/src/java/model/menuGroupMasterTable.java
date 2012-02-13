@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.ArrayList;
@@ -18,7 +17,8 @@ import util.Operation;
  * @author Baimai
  */
 public class menuGroupMasterTable {
-     private Database db;
+
+    private Database db;
 
     public menuGroupMasterTable(Database db) {
         this.db = db;
@@ -28,31 +28,11 @@ public class menuGroupMasterTable {
         String sql = "insert into menu_group_master "
                 + "( Company_Id,Menu_G_Name_T,Menu_G_Name_E,Show_List_Menu,"
                 + "  Chk_Login_Sts,Menu_Permission,Menu_G_Remark_T,Menu_G_Remark_E,"
+                + "  Menu_G_Pic_Loc,"
                 + "  Create_Date,User_Id )"
-                + "  values(?,?,?,?,?,?,?,?,?,?)";
+                + "  values(?,?,?,?,?,?,?,?,?,?,?)";
 
         db.add(sql,
-                mg.getCompanyId(),
-                mg.getMenuGNameT(),
-                mg.getMenuGNameE(),
-                mg.getShowListMenu(),
-                mg.getChkLoginSts(),
-                mg.getMenuPermission(),
-                mg.getMenuGRemarkT(),
-                mg.getMenuGRemarkE(),
-                mg.getCreateDate(),
-                mg.getUserId());
-    }
-
-    public void update(menuGroupMasterEntity mg) {
-        String sql = "update menu_group_master set Company_Id = ?,"
-                + " Menu_G_Name_T = ?,Menu_G_Name_E = ?,"
-                + " Show_List_Menu = ?,Chk_Login_Sts = ?,Menu_Permission = ?"
-                + " Menu_G_Remark_T = ?,Menu_G_Remark_E = ?,Menu_G_Pic_Loc = ?,Menu_G_Icon_Loc,"
-                + " Update_Date = ? "
-                + " where Menu_Group_Id = ? ";
-        db.add(sql,
-
                 mg.getCompanyId(),
                 mg.getMenuGNameT(),
                 mg.getMenuGNameE(),
@@ -62,20 +42,45 @@ public class menuGroupMasterTable {
                 mg.getMenuGRemarkT(),
                 mg.getMenuGRemarkE(),
                 mg.getMenuGPicLoc(),
-                mg.getMenuGIconLog(),
+                mg.getCreateDate(),
+                mg.getUserId());
+    }
+
+    public void update(menuGroupMasterEntity mg) {
+        String sql = "update menu_group_master set Company_Id = ?,"
+                + " Menu_G_Name_T = ?,Menu_G_Name_E = ?,"
+                + " Show_List_Menu = ?,Chk_Login_Sts = ?,Menu_Permission = ?,"
+                + " Menu_G_Remark_T = ?,Menu_G_Remark_E = ?,Menu_G_Pic_Loc = ?,"
+                + " Update_Date = ? "
+                + " where Menu_Group_Id = ? ";
+        db.add(sql,
+                mg.getCompanyId(),
+                mg.getMenuGNameT(),
+                mg.getMenuGNameE(),
+                mg.getShowListMenu(),
+                mg.getChkLoginSts(),
+                mg.getMenuPermission(),
+                mg.getMenuGRemarkT(),
+                mg.getMenuGRemarkE(),
+                mg.getMenuGPicLoc(),
                 mg.getUpdateDate(),
                 mg.getMenuGroupId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,int Company_Id) {
-        String sql = "SELECT * FROM menu_group_master pgm"+
-                     " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
-                     " where cm.Company_Id = ?";
+    public void remove(menuGroupMasterEntity mg) {
+        String sql = "delete from menu_group_master where menu_group_id = ?";
+        db.update(sql, mg.getMenuGroupId());
+    }
+
+    public ArrayList search(String sField, String sValue, String sOper, int Company_Id) {
+        String sql = "SELECT * FROM menu_group_master pgm"
+                + " join Company_Master cm on cm.Company_Id = pgm.Company_Id"
+                + " where cm.Company_Id = ?";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql,Company_Id);
+        List<Map<String, Object>> result = db.queryList(sql, Company_Id);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -83,8 +88,13 @@ public class menuGroupMasterTable {
                 mg.setMenuGNameT(Default.Str(result.get(i).get("Menu_G_Name_T")));
                 mg.setMenuGNameE(Default.Str(result.get(i).get("Menu_G_Name_E")));
                 mg.setMenuPermission(Default.Str(result.get(i).get("Menu_Permission")));
-                mg.setMenuGroupId((Integer)result.get(i).get("Menu_Group_Id"));
-                mg.setCompanyId((Integer)result.get(i).get("Company_Id"));
+                mg.setShowListMenu(Default.Str(result.get(i).get("Show_List_Menu")));
+                mg.setMenuGroupId((Integer) result.get(i).get("Menu_Group_Id"));
+                mg.setCompanyId((Integer) result.get(i).get("Company_Id"));
+                mg.setChkLoginSts(Default.Str(result.get(i).get("Chk_Login_Sts")));
+                mg.setMenuGRemarkT(Default.Str(result.get(i).get("Menu_G_Remark_T")));
+                mg.setMenuGRemarkE(Default.Str(result.get(i).get("Menu_G_Remark_E")));
+                mg.setMenuGPicLoc(Default.Str(result.get(i).get("Menu_G_Pic_Loc")));
                 list.add(mg);
             }
             return list;
@@ -94,4 +104,20 @@ public class menuGroupMasterTable {
 
     }
 
+    public ArrayList searchAll() {
+        String sql = "select * from menu_group_master mgm ";
+        List<Map<String, Object>> result = db.queryList(sql);
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            for (int i = 0; i < result.size(); i++) {
+                menuGroupMasterEntity mgm2 = new menuGroupMasterEntity();
+                mgm2.setMenuGNameE(Default.Str(result.get(i).get("Menu_G_Name_E")));
+                mgm2.setMenuGroupId((Integer) result.get(i).get("Menu_Group_Id"));
+                list.add(mgm2);
+            }
+            return list;
+        }else{
+            return null;
+        }
+    }
 }
