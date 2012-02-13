@@ -12,10 +12,10 @@ import java.sql.Timestamp;
  * @author Baimai
  */
 public class colorCodeMasterEntity {
-private String colorCode;
+    private String colorCode;
     private String colorNameE;
     private String colorNameT;
-    private Integer colorId;
+    private int colorId;
     private String userId;
     private Timestamp createDate;
     private Timestamp updateDate;
@@ -109,14 +109,16 @@ private String colorCode;
     /**
      * @return the colorId
      */
-    public Integer getColorId() {
+    public int getColorId() {
         return colorId;
     }
 
     /**
      * @param colorId the colorId to set
      */
-    public void setColorId(Integer colorId) {
+    public void setColorId(int colorId) {
         this.colorId = colorId;
     }
+
+
 }

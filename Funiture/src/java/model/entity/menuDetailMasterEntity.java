@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * @author Baimai
  */
 public class menuDetailMasterEntity {
-private int menuCodeId;
+    private int menuCodeId;
     private int menuGroupId;
     private int companyId;
     private String menuModel;
@@ -28,7 +28,7 @@ private int menuCodeId;
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
-
+    private menuGroupMasterEntity menuGroupMasterEntity;
     /**
      * @return the menuCodeId
      */
@@ -253,6 +253,22 @@ private int menuCodeId;
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
+
+    /**
+     * @return the menuGroupMasterEntity
+     */
+    public menuGroupMasterEntity getMenuGroupMasterEntity() {
+        return menuGroupMasterEntity;
+    }
+
+    /**
+     * @param menuGroupMasterEntity the menuGroupMasterEntity to set
+     */
+    public void setMenuGroupMasterEntity(menuGroupMasterEntity menuGroupMasterEntity) {
+        this.menuGroupMasterEntity = menuGroupMasterEntity;
+    }
+
+ 
 
 
 }

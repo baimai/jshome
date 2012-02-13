@@ -5,6 +5,7 @@
 
 package model.entity;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -14,14 +15,15 @@ import java.sql.Timestamp;
 public class orderDetailMasterEntity {
     private int companyId;
     private int orderId;
-    private int productDetailI;
+    private int productDetailId;
     private int productVolumn;
-    private double productCost;
-    private double productAmount;
+    private BigDecimal productCost;
+    private BigDecimal productAmount;
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
-    private double shippingCost;
+    private BigDecimal shippingCost;
+    private productDetailMasterEntity productDetailMasterEntity;
     /**
      * @return the companyId
      */
@@ -50,19 +52,7 @@ public class orderDetailMasterEntity {
         this.orderId = orderId;
     }
 
-    /**
-     * @return the productDetailI
-     */
-    public int getProductDetailI() {
-        return productDetailI;
-    }
 
-    /**
-     * @param productDetailI the productDetailI to set
-     */
-    public void setProductDetailI(int productDetailI) {
-        this.productDetailI = productDetailI;
-    }
 
     /**
      * @return the productVolumn
@@ -78,33 +68,7 @@ public class orderDetailMasterEntity {
         this.productVolumn = productVolumn;
     }
 
-    /**
-     * @return the productCost
-     */
-    public double getProductCost() {
-        return productCost;
-    }
-
-    /**
-     * @param productCost the productCost to set
-     */
-    public void setProductCost(double productCost) {
-        this.productCost = productCost;
-    }
-
-    /**
-     * @return the productAmount
-     */
-    public double getProductAmount() {
-        return productAmount;
-    }
-
-    /**
-     * @param productAmount the productAmount to set
-     */
-    public void setProductAmount(double productAmount) {
-        this.productAmount = productAmount;
-    }
+    
 
     /**
      * @return the createDate
@@ -149,18 +113,75 @@ public class orderDetailMasterEntity {
     }
 
     /**
+     * @return the productCost
+     */
+    public BigDecimal getProductCost() {
+        return productCost;
+    }
+
+    /**
+     * @param productCost the productCost to set
+     */
+    public void setProductCost(BigDecimal productCost) {
+        this.productCost = productCost;
+    }
+
+    /**
+     * @return the productAmount
+     */
+    public BigDecimal getProductAmount() {
+        return productAmount;
+    }
+
+    /**
+     * @param productAmount the productAmount to set
+     */
+    public void setProductAmount(BigDecimal productAmount) {
+        this.productAmount = productAmount;
+    }
+
+    /**
      * @return the shippingCost
      */
-    public double getShippingCost() {
+    public BigDecimal getShippingCost() {
         return shippingCost;
     }
 
     /**
      * @param shippingCost the shippingCost to set
      */
-    public void setShippingCost(double shippingCost) {
+    public void setShippingCost(BigDecimal shippingCost) {
         this.shippingCost = shippingCost;
     }
 
+    /**
+     * @return the productDetailId
+     */
+    public int getProductDetailId() {
+        return productDetailId;
+    }
+
+    /**
+     * @param productDetailId the productDetailId to set
+     */
+    public void setProductDetailId(int productDetailId) {
+        this.productDetailId = productDetailId;
+    }
+
+    /**
+     * @return the productDetailMasterEntity
+     */
+    public productDetailMasterEntity getProductDetailMasterEntity() {
+        return productDetailMasterEntity;
+    }
+
+    /**
+     * @param productDetailMasterEntity the productDetailMasterEntity to set
+     */
+    public void setProductDetailMasterEntity(productDetailMasterEntity productDetailMasterEntity) {
+        this.productDetailMasterEntity = productDetailMasterEntity;
+    }
+
+   
 
 }

@@ -5,6 +5,7 @@
 
 package model.entity;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -18,12 +19,12 @@ public class orderHeaderMasterEntity {
     private int memberId;
     private Timestamp orderDate;
     private String orderStatus;
-    private double shippingCost;
-    private double totalAmount;
+    private BigDecimal shippingCost;
+    private BigDecimal totalAmount;
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
-
+    private memberMasterEntity memberMasterEntity;
     /**
      * @return the orderId
      */
@@ -108,33 +109,7 @@ public class orderHeaderMasterEntity {
         this.orderStatus = orderStatus;
     }
 
-    /**
-     * @return the shippingCode
-     */
-    public double getShippingCost() {
-        return shippingCost;
-    }
-
-    /**
-     * @param shippingCode the shippingCode to set
-     */
-    public void setShippingCost(double shippingCost) {
-        this.shippingCost = shippingCost;
-    }
-
-    /**
-     * @return the totalAmount
-     */
-    public double getTotalAmount() {
-        return totalAmount;
-    }
-
-    /**
-     * @param totalAmount the totalAmount to set
-     */
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
+    
 
     /**
      * @return the createDate
@@ -176,6 +151,48 @@ public class orderHeaderMasterEntity {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the shippingCost
+     */
+    public BigDecimal getShippingCost() {
+        return shippingCost;
+    }
+
+    /**
+     * @param shippingCost the shippingCost to set
+     */
+    public void setShippingCost(BigDecimal shippingCost) {
+        this.shippingCost = shippingCost;
+    }
+
+    /**
+     * @return the totalAmount
+     */
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    /**
+     * @param totalAmount the totalAmount to set
+     */
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    /**
+     * @return the memberMasterEntity
+     */
+    public memberMasterEntity getMemberMasterEntity() {
+        return memberMasterEntity;
+    }
+
+    /**
+     * @param memberMasterEntity the memberMasterEntity to set
+     */
+    public void setMemberMasterEntity(memberMasterEntity memberMasterEntity) {
+        this.memberMasterEntity = memberMasterEntity;
     }
 
 
