@@ -32,23 +32,20 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','เมนู', 'MenuGroup', 'Permission','showListMenu','chkLoginSts','menuGRemarkT','menuGRemarkE','company Id','menuGroupId','menuGPicLoc','menuGIconLog' ],
+                    colNames:['No','Menu Name TH', 'Menu Name En', 'Permission','showList','LoginSts','menuGRemarkT','menuGRemarkE','menuGroupId','menuGPicLoc' ],
                     colModel:[
-                        {name:'No',index:'No', width:50,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:10}},
+                        {name:'No',index:'No', width:50,align:"right",editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:25}},
                         {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:25}},
-                        {name:'menuPermission',index:'menuPermission', width:80,editable:true,editoptions:{size:25}},
-                        {name:'showListMenu',index:'showListMenu',width:80,editable:true,editoptions:{size:25}},
-                        {name:'chkLoginSts',index:'chkLoginSts',width:80,editable:true,editoptions:{size:25}},
-                        {name:'menuGRemarkT',index:'menuGRemarkT',align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
-                        {name:'menuGRemarkE',index:'menuGRemarkE',align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
-                        {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
-                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
-                        {name:'menuGPicLoc',index:'menuGPicLoc',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'menuGIconLog',index:'menuGIconLog',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-
-
-                    ],
+                        {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'U':'U','N':'N'}}},
+                        {name:'showListMenu',index:'showListMenu',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
+                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
+                        {name:'menuGRemarkT',index:'menuGRemarkT',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
+                        {name:'menuGRemarkE',index:'menuGRemarkE',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
+                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
+                        {name:'menuGPicLoc',index:'menuGPicLoc',width:200,align:"center",editable:true}                      
+                    ]
+                    ,
                     rowNum:20,
                     height:400,
                     rowList:[10,20,30,40,80,160,320,500,1000],
@@ -62,15 +59,17 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:230,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        menuGroupId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
+                            return value;
+                        }}}, // del options
                 {} // search options
             );
-
-
-
-
             });
         </script>
     </head>

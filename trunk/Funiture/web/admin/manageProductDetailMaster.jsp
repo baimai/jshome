@@ -39,10 +39,10 @@
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
-             function remove(productDetailId){
+            function remove(productDetailId){
                 var param = "productDetailId="+productDetailId+"&action=Del";
                 postDataReturnText("remove.do",param,test);
-               $('#rowed1').trigger("reloadGrid");
+                $('#rowed1').trigger("reloadGrid");
             }
             function test(){
 
@@ -85,7 +85,8 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                   
+                    <jsp:include page="header.jsp"/>
+                    <br><br><br>
                     <center>
                         <br/>
                         <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
@@ -103,10 +104,16 @@
                         <br/><br/>
                         <table id="rowed1"></table>
                         <br/>
-                        <form action="ProductDetail.jsp" >
-                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                            <div align="left"> <input type="submit" value="Add" /></div>
-                        </form>
+                        <table width="100%">
+                            <tr>
+                                <td width="7%"></td>
+                                <td><form action="ProductDetail.jsp" >
+                                        <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
+                                        <div align="left"> <input type="submit" value="Add" /></div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
                         <div id="prowed1"></div>
 
                     </center>
