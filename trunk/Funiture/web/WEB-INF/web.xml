@@ -13,10 +13,13 @@
         <servlet-class>controller.datagrid</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>controller.test</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>productSetup</servlet-name>
         <servlet-class>controller.productSetup</servlet-class>
     </servlet>
-   
     <servlet>
         <servlet-name>xmlProductGroup</servlet-name>
         <servlet-class>controller.xmlProductGroup</servlet-class>
@@ -73,7 +76,6 @@
         <servlet-name>login</servlet-name>
         <servlet-class>controller.login</servlet-class>
     </servlet>
-   
     <servlet>
         <servlet-name>chkValidate</servlet-name>
         <servlet-class>controller.chkValidate</servlet-class>
@@ -90,9 +92,33 @@
         <servlet-name>remove</servlet-name>
         <servlet-class>controller.remove</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sendEmail</servlet-name>
+        <servlet-class>controller.sendEmail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>controller.logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>test2</servlet-name>
+        <servlet-class>controller.test2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xmlOrderMaster</servlet-name>
+        <servlet-class>controller.xmlOrderMaster</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>manageOrder</servlet-name>
+        <servlet-class>controller.manageOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>datagrid</servlet-name>
@@ -130,7 +156,7 @@
         <servlet-name>xmlColorMaster</servlet-name>
         <url-pattern>/admin/xmlColorMaster.do</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>xmlMemberMaster</servlet-name>
         <url-pattern>/admin/xmlMemberMaster.do</url-pattern>
     </servlet-mapping>
@@ -142,16 +168,14 @@
         <servlet-name>xmlMenuGroupMaster</servlet-name>
         <url-pattern>/admin/xmlMenuGroupMaster.do</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>menuGroupMaster</servlet-name>
-        <url-pattern>/admin/menuGroupMaster</url-pattern>
+        <url-pattern>/admin/menuGroupMaster.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>menuDetailMaster</servlet-name>
         <url-pattern>/admin/menuDetailMaster.do</url-pattern>
     </servlet-mapping>
-   
     <servlet-mapping>
         <servlet-name>dynamicProvince</servlet-name>
         <url-pattern>/dynamicProvince.do</url-pattern>
@@ -175,6 +199,26 @@
     <servlet-mapping>
         <servlet-name>remove</servlet-name>
         <url-pattern>/admin/remove.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendEmail</servlet-name>
+        <url-pattern>/sendEmail.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test2</servlet-name>
+        <url-pattern>/test2.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlOrderMaster</servlet-name>
+        <url-pattern>/admin/xmlOrderMaster.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>manageOrder</servlet-name>
+        <url-pattern>/admin/manageOrder.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
