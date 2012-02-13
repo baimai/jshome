@@ -65,6 +65,10 @@ public class productGroupMasterTable {
                 pgm.getUpdateDate(),
                 pgm.getProductGroupId());
     }
+    public void remove(productGroupMasterEntity pgm){
+        String sql = "delete from product_group_master where product_group_id = ?";
+        db.remove(sql, pgm.getProductGroupId());
+    }
 
     public ArrayList search(String sField, String sValue, String sOper,int Company_Id) {
         String sql = "SELECT * FROM product_group_master pgm"+
