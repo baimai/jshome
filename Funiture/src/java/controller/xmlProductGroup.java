@@ -98,7 +98,7 @@ public class xmlProductGroup extends HttpServlet {
                         productGroupMasterEntity data = (productGroupMasterEntity) list.get(i);
                         xml.setRowDetail(data.getProductGroupId(), i, data.getProductGroupCode(), data.getProductGNameT(),
                                 data.getProductGNameE(), data.getProductRemarkT(), data.getProductRemarkE(),
-                                data.getProductGroupId(), data.getCompanyCode());
+                                data.getProductGroupId());
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {

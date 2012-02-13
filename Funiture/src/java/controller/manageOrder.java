@@ -7,20 +7,20 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.companyMasterTable;
-import model.entity.productGroupMasterEntity;
-import model.productGroupMasterTable;
+import model.entity.orderHeaderMasterEntity;
+import model.orderHeaderMasterTable;
 
 /**
  *
  * @author Achilles
  */
-public class productGroup extends HttpServlet {
+public class manageOrder extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,45 +35,20 @@ public class productGroup extends HttpServlet {
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-            if (request.getParameter("action") != null) {
-                Database db = new Database();
-                productGroupMasterTable pgmt = new productGroupMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                productGroupMasterEntity pgm = new productGroupMasterEntity();
-                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                pgm.setCompanyId(Company_Id);
-
-                if (request.getParameter("productGroupId") != null &&!request.getParameter("productGroupId").equals("")) {
-                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
+            Database db = new Database();
+            orderHeaderMasterTable ohmt = new orderHeaderMasterTable(db);
+            orderHeaderMasterEntity ohm = new orderHeaderMasterEntity();
+            if (request.getParameter("action") != null && request.getParameter("action").equals("Submit")) {
+                if (request.getParameter("orderId") != null && request.getParameter("orderStatus") != null) {
+                    ohm.setOrderId(Integer.parseInt(request.getParameter("orderId")));
+                    ohm.setOrderStatus(request.getParameter("orderStatus"));
+                    ohm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                    ohmt.updateStatus(ohm);
                 }
-                if (request.getParameter("productGroupCode") != null) {
-                    pgm.setProductGroupCode(request.getParameter("productGroupCode"));
-                }
-                if (request.getParameter("productGNameT") != null) {
-                    pgm.setProductGNameT(request.getParameter("productGNameT"));
-                }
-                if (request.getParameter("productGNameE") != null) {
-                    pgm.setProductGNameE(request.getParameter("productGNameE"));
-                }
-                if (request.getParameter("productRemarkT") != null) {
-                    pgm.setProductRemarkT(request.getParameter("productRemarkT"));
-                }
-                if (request.getParameter("productRemarkE") != null) {
-                    pgm.setProductRemarkE(request.getParameter("productRemarkE"));
-                }
-
-                pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
-                pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-
-                if (request.getParameter("action").equals("Add")) {
-                    pgmt.add(pgm);
-                } else if (request.getParameter("action").equals("Edit")) {
-                    pgmt.update(pgm);
-                } else if (request.getParameter("action").equals("Del")) {
-                    pgmt.remove(pgm);
-                }
-                db.close();
             }
+            db.close();
+            RequestDispatcher obj = request.getRequestDispatcher("orderDetail.jsp");
+            obj.forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace(out);
         } finally {

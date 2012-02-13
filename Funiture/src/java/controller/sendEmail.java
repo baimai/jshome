@@ -2,26 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Database;
-import model.colorMasterTable;
-import model.entity.colorCodeMasterEntity;
+import util.SimpleGmailSSL;
 
 /**
  *
- * @author Jik
+ * @author Achilles
  */
-public class colorMaster extends HttpServlet {
-
+public class sendEmail extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,46 +29,19 @@ public class colorMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         try {
-            Database db = new Database();
-            colorCodeMasterEntity cm = new colorCodeMasterEntity();
-            colorMasterTable cmt = new colorMasterTable(db);
-            if (request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")) {
-                cm.setColorId(Integer.parseInt(request.getParameter("colorId")));
+            try {
+                SimpleGmailSSL.send();
+            } catch (Exception ex) {
+                Logger.getLogger(sendEmail.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (request.getParameter("colorCode") != null) {
-                cm.setColorCode(request.getParameter("colorCode"));
-            }
-            if (request.getParameter("colorNameT") != null) {
-                cm.setColorNameT(request.getParameter("colorNameT"));
-            }
-            if (request.getParameter("colorNameE") != null) {
-                cm.setColorNameE(request.getParameter("colorNameE"));
-            }
-            cm.setCreateDate(Timestamp.valueOf(db.getNow()));
-            cm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-            if (request.getParameter("action").equals("Add")) {
-                cmt.add(cm);
-            } else if (request.getParameter("action").equals("Edit")) {
-                cmt.update(cm);
-            } else if (request.getParameter("action").equals("Del")) {
-                cmt.remove(cm);
-            }
-
-
-            db.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace(out);
-
-        } finally {
+        } finally { 
             out.close();
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -81,9 +53,9 @@ public class colorMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -94,7 +66,7 @@ public class colorMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -106,4 +78,5 @@ public class colorMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

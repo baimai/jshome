@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ import model.menuGroupMasterTable;
  * @author Jik
  */
 public class menuGroupMaster extends HttpServlet {
-   
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -34,21 +33,18 @@ public class menuGroupMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-            HttpSession s = request.getSession();
-
             Database db = new Database();
             menuGroupMasterEntity mg = new menuGroupMasterEntity();
             menuGroupMasterTable mgt = new menuGroupMasterTable(db);
-            companyMasterEntity cm         = new companyMasterEntity();
-             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-             if (request.getParameter("menuGroupId") != null&&request.getParameter("action").equals("Edit")) {
-                    mg.setMenuGroupId(Integer.parseInt(request.getParameter("menuGroupId")));
-                }
+            int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+            if (request.getParameter("menuGroupId") != null && !request.getParameter("menuGroupId").equals("")) {
+                mg.setMenuGroupId(Integer.parseInt(request.getParameter("menuGroupId")));
+            }
             if (request.getParameter("menuGNameT") != null) {
                 mg.setMenuGNameT(request.getParameter("menuGNameT"));
             }
@@ -61,26 +57,28 @@ public class menuGroupMaster extends HttpServlet {
             if (request.getParameter("chkLoginSts") != null) {
                 mg.setChkLoginSts(request.getParameter("chkLoginSts"));
             }
-             if (request.getParameter("menuPermission") != null) {
+            if (request.getParameter("menuPermission") != null) {
                 mg.setMenuPermission(request.getParameter("menuPermission"));
             }
-             if (request.getParameter("menuGRemarkT") != null) {
+            if (request.getParameter("menuGRemarkT") != null) {
                 mg.setMenuGRemarkT(request.getParameter("menuGRemarkT"));
             }
-             if (request.getParameter("menuGRemarkE") != null) {
+            if (request.getParameter("menuGRemarkE") != null) {
                 mg.setMenuGRemarkE(request.getParameter("menuGRemarkE"));
             }
+            if (request.getParameter("menuGPicLoc") != null) {
+                mg.setMenuGPicLoc(request.getParameter("menuGPicLoc"));
+            }
             mg.setCreateDate(Timestamp.valueOf(db.getNow()));
+            mg.setUpdateDate(Timestamp.valueOf(db.getNow()));
             mg.setCompanyId(Company_Id);
             if (request.getParameter("action").equals("Add")) {
-
                 mgt.add(mg);
-
             } else if (request.getParameter("action").equals("Edit")) {
-                    mgt.update(mg);
-                } else if (request.getParameter("action").equals("Del")) {
-                    //pgmt.remove(pgm);
-                }
+                mgt.update(mg);
+            } else if (request.getParameter("action").equals("Del")) {
+                mgt.remove(mg);
+            }
 
 
             db.close();
@@ -92,7 +90,7 @@ public class menuGroupMaster extends HttpServlet {
             out.close();
         }
 
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -104,9 +102,9 @@ public class menuGroupMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -117,7 +115,7 @@ public class menuGroupMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -129,5 +127,4 @@ public class menuGroupMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

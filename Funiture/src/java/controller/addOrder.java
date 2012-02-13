@@ -9,6 +9,7 @@ import controller.loginDetail.loginClass;
 import controller.product.product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -90,8 +91,8 @@ public class addOrder extends HttpServlet {
                 ohm.setMemberId(lc.getMemberId());
                 ohm.setOrderDate(Timestamp.valueOf(db.getNow()));
                 ohm.setOrderStatus("N");
-                ohm.setShippingCost(0);
-                ohm.setTotalAmount(total);
+                ohm.setShippingCost(BigDecimal.ZERO);
+                ohm.setTotalAmount(BigDecimal.valueOf(total));
                 ohm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 ohm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 int rowNum = ohmt.add(ohm);
@@ -101,13 +102,13 @@ public class addOrder extends HttpServlet {
                     odm.setOrderId(oid);
                     for (int i = 0; i < list.size(); i++) {
                         product p = (product) list.get(i);
-                        odm.setProductDetailI(p.getProductDetailId());
-                        odm.setProductAmount(p.getAmount() * p.getProductPrice());
+                        odm.setProductDetailId(p.getProductDetailId());
+                        odm.setProductAmount(BigDecimal.valueOf(p.getAmount() * p.getProductPrice()));
                         odm.setProductVolumn(p.getAmount());
-                        odm.setProductCost(p.getProductPrice());
+                        odm.setProductCost(BigDecimal.valueOf(p.getProductPrice()));
                         odm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         odm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        odm.setShippingCost(0);
+                        odm.setShippingCost(BigDecimal.ZERO);
                         odmt.add(odm);
                     }
                     s.removeAttribute("productList");
