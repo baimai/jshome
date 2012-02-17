@@ -101,6 +101,12 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("productCode") != null && !mr.getParameter("productCode").equals("")) {
                             pdm.setProductCode(mr.getParameter("productCode"));
                         }
+                        if (mr.getParameter("productModelCode") != null && !mr.getParameter("productModelCode").equals("")) {
+                            pdm.setProductModelCode(mr.getParameter("productModelCode"));
+                        }
+                        if (mr.getParameter("productMaxSale") != null && !mr.getParameter("productMaxSale").equals("")) {
+                            pdm.setProductMaxSale(Integer.parseInt(mr.getParameter("productMaxSale")));
+                        }
                         if (mr.getParameter("productDetailId") != null && !mr.getParameter("productDetailId").equals("")) {
                             pdm.setProductDetailId(Integer.parseInt(mr.getParameter("productDetailId")));
                         }                        
@@ -163,6 +169,9 @@ public class productDetail extends HttpServlet {
                         }
                         if (mr.getParameter("remarkEn") != null && !mr.getParameter("remarkEn").equals("")) {
                             pdm.setProductDRemarkE(mr.getParameter("remarkEn"));
+                        }
+                        if (mr.getParameter("display") != null && !mr.getParameter("display").equals("")) {
+                            pdm.setProductDDisplayFlag(mr.getParameter("display"));
                         }
                         pdm.setCompanyId(Company_Id);
                         pdm.setCreateDate(Timestamp.valueOf(db.getNow()));

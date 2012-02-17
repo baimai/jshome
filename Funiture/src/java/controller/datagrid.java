@@ -4,6 +4,7 @@
  */
 package controller;
 
+import controller.Xml.GenerateXml;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
+import model.entity.menuDetailMasterEntity;
 import model.entity.picProductSetupEntity;
 import model.entity.productDetailMasterEntity;
 import model.picProductSetupTable;
@@ -47,15 +49,15 @@ public class datagrid extends HttpServlet {
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String productCode = null;
+                String picCode = null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
                 menuCode = request.getParameter("menuCode");
                 }
                  */
-                if (request.getParameter("productCode") != null) {
-                    productCode = request.getParameter("productCode");
+                if (request.getParameter("picCode") != null) {
+                    picCode = request.getParameter("picCode");
                 }
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
@@ -80,64 +82,41 @@ public class datagrid extends HttpServlet {
                 } else {
                     totalPages = 0;
                 }
-
-                Database db = new Database();
-                picProductSetupTable mps = new picProductSetupTable(db);
-                productDetailMasterTable pdm = new productDetailMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = pdm.search(productCode,Company_Id);
-                ArrayList list = mps.search(sField, sValue, sOper,Company_Id);
+                Database db = new Database();
+                picProductSetupTable ppst = new picProductSetupTable(db);
+                picProductSetupEntity pps = new picProductSetupEntity();
+                menuDetailMasterEntity mdm = new menuDetailMasterEntity();
+                pps.setCompanyId(Company_Id);
+                pps.setPicCode(picCode);
+                ArrayList list2 = ppst.searchHeader(sField, sValue, sOper,pps);
+                ArrayList list = ppst.search(sField, sValue, sOper,pps);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
-                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                    out.print("<rows>");
-                    out.print("<page>" + request.getParameter("page") + "</page>");
-
-                    out.print("<total>" + totalPages + "</total>");
-                    out.print("<records>" + list.size() + "</records>");
-                    int srNo = 1;
-                    
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list.get(i);
-                        out.print("<row id='" + data.getProductCode() + "'>");
-                        out.print("<cell>" + i + "</cell>");
-                         out.print("<cell>" + data.getCompanyCode() + "</cell>");
-                        out.print("<cell>" + data.getPicCode() + "</cell>");
-                        out.print("<cell>" + data.getProductCode() + "</cell>");
-                         out.print("<cell>" + data.getPicNameT() + "</cell>");
-                         out.print("<cell>" + data.getPicNameE() + "</cell>");
-                        out.print("<cell>" + data.getProductRemarkT() + "</cell>");
-                        out.print("<cell>" + data.getProductRemarkE() + "</cell>");
-                        out.print("<cell>" + data.getCreateDate() + "</cell>");
-                        out.print("<cell>" + data.getUpdateDate() + "</cell>");
-                        out.print("<cell>" + data.getUserId() + "</cell>");
-                        out.print("</row>");
-                        srNo++;
+                        xml.setRowDetail(data.getPicId(), i+1,
+                               data.getPicCode(),data.getProductDetailMasterEntity().getProductDPicLoc(),
+                               data.getProductCode(),data.getPicNameT(),data.getPicNameE(),
+                               data.getProductRemarkT(),data.getProductRemarkE(),data.getPicId(),data.getPicCode());
                     }
-                    out.print("</rows>");
+                    out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
-                    out.print("<?xml version='1.0' encoding='utf-8'?>\n");
-                    out.print("<rows>");
-                    out.print("<page>" + request.getParameter("page") + "</page>");
-
-                    out.print("<total>" + totalPages + "</total>");
-                    out.print("<records>" + listp.size() + "</records>");
-                    int srNo = 1;
-
-                    for (int i = 0; i < listp.size(); i++) {
-                        productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-                        out.print("<row id='" + data.getProductCode() + "'>");
-                       // out.print("<cell><img width=\"15\" height=\"15\"  src=\"" + data.getProductDLogo() + "\"/></cell>");
-                        out.print("<cell>" + data.getProductDNameT()+ "</cell>");
-                        out.print("<cell>" + data.getProductPrice1()+ "</cell>");
-                        out.print("<cell>" + data.getProductSpect1_T()+ "</cell>");
-                        out.print("<cell>" + data.getProductSpect2_T()+ "</cell>");
-                        out.print("<cell>" + data.getProductDRemarkT() + "</cell>");                       
-                        out.print("</row>");
-                        srNo++;
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(list2.size());
+                    for (int i = 0; i < list2.size(); i++) {
+                        picProductSetupEntity data = (picProductSetupEntity) list2.get(i);
+                        xml.setRowDetail(data.getPicCode(), i+1,
+                               data.getPicCode(),data.getMenuDetailMasterEntity().getMenuCNameT(),
+                               data.getMenuDetailMasterEntity().getMenuCNameE(),data.getPicCode(),data.getPicCode());
                     }
-                    out.print("</rows>");
+                    out.print(xml.getXml());
                 }
             }
 

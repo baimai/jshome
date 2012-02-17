@@ -40,20 +40,22 @@ public class productSetup extends HttpServlet {
                 Database db = new Database();
                 picProductSetupTable mpst = new picProductSetupTable(db);
                 productDetailMasterTable pdmt = new productDetailMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 picProductSetupEntity mps = new picProductSetupEntity();
                 if (request.getParameter("picCode") != null) {
                     mps.setPicCode(request.getParameter("picCode"));
                 }
+                if (request.getParameter("picId") != null && !request.getParameter("picId").equals("")) {
+                    mps.setPicId(Integer.parseInt(request.getParameter("picId")));
+                }
                 mps.setCompanyId(Company_Id);
                 if (request.getParameter("productCode") != null) {
-                    int i = pdmt.getProductId(request.getParameter("productCode"),Company_Id);
+                    int i = pdmt.getProductId(request.getParameter("productCode"), Company_Id);
                     if (i != 0) {
                         mps.setProductDetailId(i);
                     }
                 }
-                
+
                 if (request.getParameter("picNameT") != null) {
                     mps.setPicNameT(request.getParameter("picNameT"));
                 }
@@ -66,7 +68,8 @@ public class productSetup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     mps.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-                
+                mps.setCreateDate(Timestamp.valueOf(db.getNow()));
+                mps.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
                     mpst.add(mps);
                 } else if (request.getParameter("action").equals("Edit")) {
