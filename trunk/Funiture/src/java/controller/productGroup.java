@@ -61,6 +61,9 @@ public class productGroup extends HttpServlet {
                 if (request.getParameter("productRemarkE") != null) {
                     pgm.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
+                if (request.getParameter("productGDisplayFlag") != null) {
+                    pgm.setProductGDisplayFlag(request.getParameter("productGDisplayFlag"));
+                }
 
                 pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
