@@ -24,10 +24,10 @@
 
 <body>
 
-<table width="940" border="0" bordercolor="black" cellpadding="0" cellspacing="0" >
+<table width="940" border="0"  cellpadding="0" cellspacing="0" >
  
   
-  <tr background="" >
+  <tr>
     <td height="418">
      <div id="wrapper">       
         <div class="slider-wrapper theme-default">
