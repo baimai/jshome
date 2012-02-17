@@ -88,6 +88,7 @@ public class productGroupMasterTable {
                 pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
                 pgm.setProductRemarkT(Default.Str(result.get(i).get("Product_Remark_T")));
                 pgm.setProductRemarkE(Default.Str(result.get(i).get("Product_Remark_E")));
+                pgm.setProductGDisplayFlag(Default.Str(result.get(i).get("Product_G_Display_Flag")));
                 pgm.setProductGroupId((Integer)result.get(i).get("Product_Group_Id"));
                 pgm.setCompanyCode(Default.Str(result.get(i).get("Company_Code")));
                 list.add(pgm);
