@@ -24,8 +24,10 @@ public class picProductSetupEntity {
     private String productRemarkE;
     private Timestamp createDate;
     private Timestamp updateDate;
+    private int picSeq = 0;
     private String UserId;
-
+    private productDetailMasterEntity productDetailMasterEntity;
+    private menuDetailMasterEntity menuDetailMasterEntity;
     /**
      * @return the menuCode
      */
@@ -208,6 +210,48 @@ public class picProductSetupEntity {
      */
     public void setProductDetailId(int productDetailId) {
         this.productDetailId = productDetailId;
+    }
+
+    /**
+     * @return the picSeq
+     */
+    public int getPicSeq() {
+        return picSeq;
+    }
+
+    /**
+     * @param picSeq the picSeq to set
+     */
+    public void setPicSeq(int picSeq) {
+        this.picSeq = picSeq;
+    }
+
+    /**
+     * @return the productDetailMasterEntity
+     */
+    public productDetailMasterEntity getProductDetailMasterEntity() {
+        return productDetailMasterEntity;
+    }
+
+    /**
+     * @param productDetailMasterEntity the productDetailMasterEntity to set
+     */
+    public void setProductDetailMasterEntity(productDetailMasterEntity productDetailMasterEntity) {
+        this.productDetailMasterEntity = productDetailMasterEntity;
+    }
+
+    /**
+     * @return the menuDetailMasterEntity
+     */
+    public menuDetailMasterEntity getMenuDetailMasterEntity() {
+        return menuDetailMasterEntity;
+    }
+
+    /**
+     * @param menuDetailMasterEntity the menuDetailMasterEntity to set
+     */
+    public void setMenuDetailMasterEntity(menuDetailMasterEntity menuDetailMasterEntity) {
+        this.menuDetailMasterEntity = menuDetailMasterEntity;
     }
     
 }
