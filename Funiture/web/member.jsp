@@ -100,7 +100,7 @@
                                     <h2 class="legend">ข้อมูลการล็อกอิน</h2>
                                     <ul class="form-list">
                                         <li>   <div class="field">
-                                                <label for="login" class="required"><em>*</em>ไอดี</label>
+                                                <label for="login" class="required"><em>*</em>ชื่อที่ใช้เข้าสู่ระบบ</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login"  onkeyup="checkMemberLogin(document.getElementById('memberLogin').value)" onchange="checkMemberLogin(document.getElementById('memberLogin').value)"/>
                                                 </div>

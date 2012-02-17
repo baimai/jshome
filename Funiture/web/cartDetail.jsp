@@ -109,17 +109,18 @@
                                                         <table id="shopping-cart-table" class="data-table cart-table">
                                                             <col width="1" />
                                                             <col width="1" />
-                                                            <col />
+                                                            <col width="1"/>
+                                                            <col  />
                                                             <col width="1" />
                                                             <col width="1" />
                                                             <col width="1" />
-
                                                             <thead>
                                                                 <tr>
                                                                     <th rowspan="1" class="a-center">&nbsp;</th>
                                                                     <th rowspan="1">&nbsp;</th>
+                                                                    <th rowspan="1">รหัสสินค้า</th>
                                                                     <th rowspan="1"><span class="nobr">ชื่อสินค้า</span></th>
-                                                                    <th class="a-center" colspan="1"><span class="nobr">ราคาาต่อหน่วย</span></th>
+                                                                    <th class="a-center" colspan="1"><span class="nobr">ราคา</span></th>
                                                                     <th rowspan="1" class="a-center">จำนวนชิ้น</th>
                                                                     <th class="a-center" colspan="1">ราคารวม</th>
                                                                 </tr>
@@ -138,10 +139,11 @@
 
                                                                     <tr>
                                                                         <td class="a-center"><a href="addProduct.do?productDetailId=${product.productDetailId}&status=remove" title="ลบรายการ" class="btn-remove2">ลบรายการ</a></td>
-                                                                        <td><a href="http://freedemo.templates-master.com/f002/ottoman.html" title="Ottoman"><img src="${product.productPath}" width="363" height="150" alt="Ottoman" /></a></td>
+                                                                        <td><a href="productDetail.jsp?productDetailId=${product.productDetailId}" target="_blank" title="Ottoman"><img src="${product.productPath}" width="363" height="150" alt="Ottoman" /></a></td>
+                                                                        <td>${product.productCode}</td>
                                                                         <td>
-                                                                            <h2 class="product-name">
-                                                                                <a href="http://freedemo.templates-master.com/f002/ottoman.html">${product.productName}</a>
+                                                                            <h2 class="product-name">                                                                               
+                                                                                ${product.productName}
                                                                             </h2>
                                                                         </td>
                                                                         <td class="a-right">

@@ -94,12 +94,50 @@
                                                             <div><font size="4" color="blue">สถานะสินค้า </font> <span> : <c:if test="${product.balance != null&&product.balance !=''}"><font size="4" >${product.balance}</font></c:if></span></div>
 
 
-
-                                                            <div class="price-box">
-                                                                <font size="4" color="blue">ราคา</font><span class="regular-price" id="product-price-51">
-                                                                    <span class="price"><font size="4"> ${product.product_price1}</font></span> </span>
-
-                                                            </div>
+                                                            <c:if test="${product.product_price1!=null && product.product_price1!=''}">
+                                                                <div class="price-box">
+                                                                    <table width="100%" >
+                                                                        <tr>
+                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
+                                                                            <td width="40%"><font size="4">฿ ${product.product_price1}</font></td>
+                                                                            <td><font color="red">(ขายส่ง)</font></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${product.product_price2!=null && product.product_price2!=''}">
+                                                                <div class="price-box">
+                                                                    <table width="100%" >
+                                                                        <tr>
+                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
+                                                                            <td width="40%"><font size="4">฿ ${product.product_price2}</font></td>
+                                                                            <td><font color="red">(ขายส่ง,ส่วนลด)</font></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${product.product_price3!=null && product.product_price3!=''}">
+                                                                <div class="price-box">
+                                                                    <table width="100%" >
+                                                                        <tr>
+                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
+                                                                            <td width="40%"><font size="4">฿ ${product.product_price3}</font></td>
+                                                                            <td><font color="red">(ขายปลีก)</font></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${product.product_price4!=null && product.product_price4!=''}">
+                                                                <div class="price-box">
+                                                                    <table width="100%" >
+                                                                        <tr>
+                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
+                                                                            <td width="40%"><font size="4">฿ ${product.product_price4}</font></td>
+                                                                            <td><font color="red">(ขายปลีก,ส่วนลด)</font></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </c:if>
                                                             <div class="add-to-box">
                                                                 <div class="add-to-cart">
                                                                     <label for="qty">จำนวน:</label>
@@ -135,30 +173,54 @@
                                                             <col width="25%" />
                                                             <col />
                                                             <tbody>
-                                                                <tr>
-                                                                    <th class="label">คุณลักษณะ</th>
-                                                                    <td class="data">${product.product_spec1_t}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="label">โครงสร้าง</th>
-                                                                    <td class="data">${product.product_spec2_t}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="label"></th>
-                                                                    <td class="data">${product.product_spec3_t}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="label">ขนาด</th>
-                                                                    <td class="data">${product.product_spec4_t}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="label"></th>
-                                                                    <td class="data">${product.product_spec5_t}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th class="label">สี</th>
-                                                                    <td class="data">${product.product_spec6_t}</td>
-                                                                </tr>
+                                                                <c:if test="${product.product_spec1_t != null && product.product_spec1_t != ''}">
+                                                                    <tr>
+                                                                        <th class="label">คุณลักษณะ</th>
+                                                                        <td class="data">${product.product_spec1_t}</td>
+                                                                    </tr>
+                                                                </c:if>
+                                                                <c:if test="${product.product_spec2_t != null && product.product_spec2_t != ''}">
+                                                                    <tr>
+                                                                        <th class="label">โครงสร้าง</th>
+                                                                        <td class="data">${product.product_spec2_t}</td>
+                                                                    </tr>
+                                                                </c:if>
+                                                                <c:if test="${product.product_spec3_t != null && product.product_spec3_t != ''}">
+                                                                    <tr>
+                                                                        <c:if test="${product.product_spec2_t != null && product.product_spec2_t != ''}">
+                                                                            <th class="label"></th>
+                                                                        </c:if>
+                                                                        <c:if test="${product.product_spec2_t == null || product.product_spec2_t == ''}">
+                                                                            <th class="label">โครงสร้าง</th>
+                                                                        </c:if>
+
+                                                                        <td class="data">${product.product_spec3_t}</td>
+                                                                    </tr>
+                                                                </c:if>
+                                                                <c:if test="${product.product_spec4_t != null && product.product_spec4_t != ''}">
+                                                                    <tr>
+                                                                        <th class="label">ขนาด</th>
+                                                                        <td class="data">${product.product_spec4_t}</td>
+                                                                    </tr>
+                                                                </c:if>
+                                                                <c:if test="${product.product_spec5_t != null && product.product_spec5_t != ''}">
+                                                                    <tr>
+                                                                        <c:if test="${product.product_spec4_t != null && product.product_spec4_t != ''}">
+                                                                            <th class="label"></th>
+                                                                        </c:if>
+                                                                        <c:if test="${product.product_spec4_t == null || product.product_spec4_t == ''}">
+                                                                            <th class="label">ขนาด</th>
+                                                                        </c:if>
+
+                                                                        <td class="data">${product.product_spec5_t}</td>
+                                                                    </tr>
+                                                                </c:if>
+                                                                <c:if test="${product.product_spec6_t != null && product.product_spec6_t != ''}">
+                                                                    <tr>
+                                                                        <th class="label">สี</th>
+                                                                        <td class="data">${product.product_spec6_t}</td>
+                                                                    </tr>
+                                                                </c:if>
                                                             </tbody>
                                                         </table>
 
