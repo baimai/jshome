@@ -1,13 +1,12 @@
-<%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
+<%-- 
+    Document   : productSetupHeader
+    Created on : Feb 17, 2012, 10:17:13 AM
+    Author     : Achilles
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+   "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -31,43 +30,42 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlProductGroup.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'datagrid.do?action=fetchData&rows=3&page=1&q=2',
                     datatype: "xml",
-                    colNames:['No','Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id','Display'],
+                    colNames:['No','Pic Code', 'Menu Name Th','Menu Name En','',''],
                     colModel:[
-                        {name:'No',index:'No',  align:"right",width:40,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:100,editable:true,editoptions:{size:10}},
-                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:230,editable:true,editoptions:{size:25}},
-                        {name:'productGNameE',index:'productGNameE', align:"centert", width:230,editable:true,editoptions:{size:25}},
-                        {name:'productRemarkT',index:'productRemarkT',hidden:true ,editrules:{ edithidden:true}, width:125, align:"right",editable:true,editoptions:{size:50}},
-                        {name:'productRemarkE',index:'productRemarkE',hidden:true ,editrules:{ edithidden:true},width:125, align:"right",editable:true,editoptions:{size:50}},
-                        {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:80,editable:true,editrules:{ edithidden:true},edittype:'select',editoptions:{value:{'Y':'Show','N':'Not Show','A':'Show On Slide'}}}
-
-                    ],
+                        {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},                      
+                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductSetup.jsp?picCode="+cellvalue+"\" >Edit</a>"}},
+                        {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
+                    ]
+                    ,
                     rowNum:20,
-                    rowList:[20,30,40,80,160,320,500,1000],
+                    height:200,
+                    rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
-                    height:400,
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"Search Example",
-                    editurl:"productGroup.do"
+                    editurl:"productSetup.do"
+
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:230,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:230,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {search:true,edit:false,add:false,del:false}, //options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
-                             productGroupId:function() {
-                                        var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                                        var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
-                                        return value;
-                 }}}, // del options
+                        picId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'picId');
+                            return value;
+                        }}}, // del options
                 {} // search options
-            );               
+            );
             });
         </script>
     </head>
@@ -87,13 +85,17 @@
                         <table id="rowed1"></table>
                         <div id="prowed1"></div>
                         <br />
+
                     </center>
                     <br/><br/><br/>
 
                 </div>
+
+
             </div>
             <div class="cleared"></div>
         </div>
+
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
 

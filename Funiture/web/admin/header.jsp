@@ -45,7 +45,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
                 <li><a href="MenuDetail.jsp" class="parent"><span>รายการเมนู</span></a>
 
                 </li>
-                <li><a href="ProductSetup.jsp" class="parent"><span>จัดการรายการเมนู</span></a>
+                <li><a href="ProductSetupHeader.jsp" class="parent"><span>จัดการรายการเมนู</span></a>
 
                 </li>
             </ul></div>
