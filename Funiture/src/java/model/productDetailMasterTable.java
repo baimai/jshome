@@ -78,7 +78,7 @@ public class productDetailMasterTable {
                 + "Product_Spec4_E = ?,Product_Spec5_E = ?,Product_Spec6_E = ?,"
                 + "Product_D_Pic_Loc = ?,Product_D_Icon_Loc = ?,"
                 + "Product_D_Remark_T = ?,Product_D_Remark_E = ?,Product_D_Display_Flag = ?,"
-                + "Update_date = ?,Product_Color_Id = ?,Product_model_code,product_max_sale "
+                + "Update_date = ?,Product_Color_Id = ?,Product_model_code = ?,product_max_sale = ? "
                 + "where Product_Detail_Id = ? ";
         db.add(sql,
                 pdm.getCompanyId(),
