@@ -3,8 +3,7 @@
     Created on : Jan 22, 2012, 1:44:02 PM
     Author     : Jik
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,75 +30,46 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'datagrid.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'datagrid.do?action=fetchData&rows=3&page=1&q=1&picCode=${param.picCode}',
                     datatype: "xml",
-                    colNames:['No','Company Code','Pic Code', 'productCode','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng'],
+                    colNames:['No','Pic Code','Picture','Product Code','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng','Pic Id',''],
                     colModel:[
                         {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'companyCode',index:'companyCode', width:80,editable:false,editoptions:{size:10}},
-                        {name:'picCode',index:'picCode', width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
-                        {name:'productCode',index:'productCode', width:90,editable:true,editoptions:{size:10},editrules:{required:true}},
-                        {name:'picNameT',index:'picNameT', width:225, align:"right",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'picNameE',index:'picNameE', width:225, align:"right",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'picPath',index:'picPath', align:"center",width:80,editable:false, edittype: 'image',formatter:function(cellvalue, options, rowObject){return "<img src=\"../"+cellvalue+"\" width=\"50\" height=\"50\" alt=\"Bottom_texture\"/>"}},
+                        {name:'productCode',index:'productCode', align:"center",width:110,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT', width:225, align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}}
-
-
-                    ],
+                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'picId',index:'picId', width:55,hidden:true,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'Edit',index:'Edit', width:100,hidden:true,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
+                    ]
+                    ,
                     rowNum:20,
                     height:400,
-                    rowList:[20,30,40,80,160,320,500,1000],
+                    rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption:"Product Setup",
-                    editurl:"productSetup.do"/*,
-                    onSelectRow: function(ids) {
-                        if(ids == null) {
-                            ids=0;
-                            if(jQuery("#rowed2").jqGrid('getGridParam','records') >0 )
-                            {
-                                jQuery("#rowed2").jqGrid('setGridParam',{url:"datagrid.do?action=fetchData&rows=1&page=1&q=2&productCode="+ids,page:1});
-                                jQuery("#rowed2").jqGrid('setCaption',"Product Detail: "+ids)
-                                .trigger('reloadGrid');
-                            }
-                        } else {
-                            jQuery("#rowed2").jqGrid('setGridParam',{url:"datagrid.do?action=fetchData&rows=1&page=1&q=2&productCode="+ids,page:1});
-                            jQuery("#rowed2").jqGrid('setCaption',"Product Detail: "+ids)
-                            .trigger('reloadGrid');
-                        }
-                    }*/
+                    caption:"Search Example",
+                    editurl:"productSetup.do"
+
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
+                {search:true,edit:false}, //options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        picId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'picId');
+                            return value;
+                        }}}, // del options
                 {} // search options
             );
-
-                /* jQuery("#rowed2").jqGrid({
-                    height: 100,
-                    url:'datagrid.do?action=fetchData&rows=1&page=1&q=2',
-                    datatype: "xml",
-                    colNames:['Name','Price', 'Spect', 'Spect2','Remark'],
-                    colModel:[
-                        {name:'Name',index:'Name',editoptions:"", width:200},
-                        {name:'Price',index:'Price', width:50,align:"right"},
-                        {name:'Spect',index:'Spect', width:220, align:"right"},
-                        {name:'Spect2',index:'Spect2', width:220, align:"right"},
-                        {name:'Remark',index:'Remark', width:185,align:"right", sortable:false, search:false}
-                    ],
-                    imgpath:'',
-                    height:50,
-                    rowNum:1,
-                    viewrecords: true,
-                    sortorder: "asc",
-                    caption:"Product Detail"
-                }); */
-
-
             });
         </script>
     </head>
@@ -119,9 +89,12 @@
                         <table id="rowed1"></table>
                         <div id="prowed1"></div>
                         <br />
+
                     </center>
+                    <br/><br/><br/>
 
                 </div>
+
 
 
             </div>
