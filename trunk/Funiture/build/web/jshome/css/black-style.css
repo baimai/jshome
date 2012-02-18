@@ -1,5 +1,5 @@
 *{margin-left:10; padding:0;}
-body { background:url(../images/background.jpg) repeat; background-attachment:fixed;}
+body { background:url(../images/background.jpg) repeat; background-attachment:fixed; background-position: center;  }
 
 #navigation { width:950px; margin:0 auto; height:40px; margin-left:10}
 #nav-lt-curve{width:14px; float:left; height:40px;}

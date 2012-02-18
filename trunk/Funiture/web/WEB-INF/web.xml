@@ -112,6 +112,10 @@
         <servlet-name>manageOrder</servlet-name>
         <servlet-class>controller.manageOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>stockMaster</servlet-name>
+        <servlet-class>controller.stockMaster</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -220,11 +224,15 @@
         <servlet-name>manageOrder</servlet-name>
         <url-pattern>/admin/manageOrder.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>stockMaster</servlet-name>
+        <url-pattern>/admin/stockMaster</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
+        <description>jdbc:mysql://localhost:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>

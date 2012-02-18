@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import util.SimpleGmailSSL;
+//import util.SimpleGmailSSL;// จะใช้เอาออกน่ะ
 
 /**
  *
@@ -34,7 +34,8 @@ public class sendEmail extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             try {
-                SimpleGmailSSL.send();
+                // จะใช้เอาออกน่ะ
+             //   SimpleGmailSSL.send();
             } catch (Exception ex) {
                 Logger.getLogger(sendEmail.class.getName()).log(Level.SEVERE, null, ex);
             }

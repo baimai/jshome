@@ -11,139 +11,194 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+
         <title>JSP Page</title>
     </head>
-    <body>
+    <body >
+        <div class="wrapper">
+            <div class="page">
+            </div>
+            <div class="main-container col1-layout">
+                <div class="main">
+                    <div class="col-main">
+                        <div class="account-create">
+                            <div class="page-title">
+                                <h1>ข้อมูลบริษัท</h1>
+                            </div>
+                            <form action="companyMasterController.do" >
+                                <input type="hidden" value="Add" name="action">
+                                <div class="main-container col2-right-layout">
+                                    <div class="fieldset">
+                                        <ul class="form-list">
+                                            <li class="fields">
+                                                <div class="field name-firstname">
+                                                    <label for="login">CompanyCode</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="companyCode" value="" size="10" class="input-text" />
+                                                    </div>
+                                                </div>
 
-        <form action="companyMasterController.do" >
-            <input type="hidden" value="Add" name="action">
-            <center>
-                <table border="0" width="60%" cellspacing="10">
-                    <tbody>
-                        <tr>
-                            <td align="right" width="30%">CompanyCode</td>
-                            <td><input type="text" name="companyCode" value="" size="10"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right">ชื่อย่อ</td>
-                            <td><input type="text" name="companyNameAbbr" value="" size="10"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right">ชื่อบริษัท</td>
-                            <td><input type="text" name="companyNameT" value="" size="30" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">CompanyName</td>
-                            <td><input type="text" name="companyNameE" value="" size="30"/></td>
-                        </tr>                       
-                        <tr>
-                            <td align="right">ที่อยู่</td>
-                            <td><input type="text" name="companyAddrT" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Address</td>
-                            <td><input type="text" name="companyAddrE" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">แขวง/ตำบล</td>
-                            <td><input type="text" name="companyDistrictT" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">District</td>
-                            <td><input type="text" name="companyDistrictE" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">อำเภอ</td>
-                            <td><input type="text" name="companyAmphurT" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Amphur</td>
-                            <td><input type="text" name="companyAmphurE" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">จังหวัด</td>
-                            <td><input type="text" name="companyProvinceT" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Province</td>
-                            <td><input type="text" name="companyProvinceE" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">รหัสไปรษณีย์</td>
-                            <td><input type="text" name="companyPostCode" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">โทรศัพท์ 1</td>
-                            <td><input type="text" name="companyTel1" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">โทรศัพท์ 2</td>
-                            <td><input type="text" name="companyTel2" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">โทรศัพท์ 3</td>
-                            <td><input type="text" name="companyTel3" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">โทรสาร 1</td>
-                            <td><input type="text" name="companyFax1" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">โทรสาร 2 </td>
-                            <td><input type="text" name="companyFax2" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">โทรสาร 3</td>
-                            <td><input type="text" name="companyFax3" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">มือถือ 1</td>
-                            <td><input type="text" name="companyMobile1" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">มือถือ 2</td>
-                            <td><input type="text" name="companyMobile2" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">มือถือ 3</td>
-                            <td><input type="text" name="companyMobile3" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">อีเมลล์ 1</td>
-                            <td><input type="text" name="companyEmail1" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">อีเมลล์ 2</td>
-                            <td><input type="text" name="companyEmail2" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">อีเมลล์ 3</td>
-                            <td><input type="text" name="companyEmail3" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Language</td>
-                            <td>
-                                <select name="languageFlag">
-                                    <option value="T">Thai</option>
-                                    <option value="E">English</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><select name="picCode">
-                                    <option></option>
-                                    <option></option>
-                                </select></td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th><input type="submit" value="บันทีก" /></th>
-                        </tr>
-                    </tbody>
-                </table>
-            </center>
-        </form>
-        <br/><br/><br/><br/>
+                                                <label align="right">ชื่อย่อ</label>
+                                                <div class="input-box">
+                                                    <input type="text" name="companyNameAbbr" value="" size="10"  class="input-text"/>
+                                                </div>
+                                            </li>
+                                            <li class="fields">
+                                                <label align="right">ชื่อบริษัท</label>
+                                                <div class="input-box">
+                                                    <input type="text" name="companyNameT" value="" size="30"  class="input-text" />
+                                                </div>
+
+                                                <label align="right">CompanyName</label>
+                                                <div class="input-box">
+                                                    <input type="text" name="companyNameE" value="" size="30"  class="input-text"/>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                         <ul class="form-list">
+                                        <label align="right">ที่อยู่</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyAddrT" value="" class="input-text"/>
+                                        </div>
+
+                                        <label align="right">Address</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyAddrE" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">แขวง/ตำบล</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyDistrictT" value=""  class="input-text"/>
+                                        </div>
+
+                                        <label align="right">District</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyDistrictE" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">อำเภอ</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyAmphurT" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">Amphur</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyAmphurE" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">จังหวัด</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyProvinceT" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">Province</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyProvinceE" value=""  class="input-text"/>
+                                        </div>
+
+                                        <label align="right">รหัสไปรษณีย์</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyPostCode" value=""  class="input-text" />
+                                        </div>
+                                        </ul>
+                                        <label align="right">โทรศัพท์ 1</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyTel1" value=""  class="input-text"/>
+                                        </div>
+
+                                        <label align="right">โทรศัพท์ 2</label>                                                   <td><input type="text" name="companyTel2" value="" /></div>
+                                    <div class="input-box">
+                                        <input type="text" name="companyTel2" value=""   class="input-text"/>
+                                    </div>
+                                    <label align="right">โทรศัพท์ 3</label>
+                                    <div class="input-box">
+                                        <td><input type="text" name="companyTel3" value=""  class="input-text" />
+                                    </div>
+
+                                    <label align="right">โทรสาร 1</label>
+                                    <div class="input-box">
+                                        <td><input type="text" name="companyFax1" value=""  class="input-text" />
+                                    </div>
+
+                                    <label align="right">โทรสาร 2 </label>
+                                    <div class="input-box">
+                                        <td><input type="text" name="companyFax2" value=""  class="input-text" />
+                                    </div>
+
+                                    <label align="right">โทรสาร 3</label>
+                                    <div class="input-box">
+                                        <div class="input-box">
+                                            <td><input type="text" name="companyFax3" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">มือถือ 1</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyMobile1" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">มือถือ 2</label>
+                                        <div class="input-box">
+
+                                            <input type="text" name="companyMobile2" value=""  class="input-text"/>
+                                        </div>
+
+                                        <label align="right">มือถือ 3</label>
+
+                                        <div class="input-box">
+                                            <input type="text" name="companyMobile3" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">อีเมลล์ 1</label>
+
+                                        <div class="input-box">
+                                            <input type="text" name="companyEmail1" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">อีเมลล์ 2</label>
+                                        <div class="input-box">
+                                            <input type="text" name="companyEmail2" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">อีเมลล์ 3</label>
+
+                                        <div class="input-box">
+                                            <input type="text" name="companyEmail3" value=""  class="input-text" />
+                                        </div>
+
+                                        <label align="right">Language</label>
+                                        <div class="select option">
+                                            <select name="languageFlag">
+                                                <option value="T">Thai</option>
+                                                <option value="E">English</option>
+                                            </select>
+                                        </div>
+                                        <div class="select option">
+                                            <select name="picCode">
+                                                <option></option>
+                                                <option></option>
+                                            </select>
+                                        </div>
+
+                                        <tr>
+                                            <th></th>
+                                            <th><input type="submit" value="บันทีก" /></th>
+                                        </tr>
+
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <br/><br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

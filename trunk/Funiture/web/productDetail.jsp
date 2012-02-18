@@ -83,59 +83,44 @@
                                                         </div>
 
                                                         <div class="product-shop">
-                                                            <div >
-                                                                <font size="6" style="font-weight: bold;"> ${product.product_d_name_t}</font>
+                                                            <div class="product-name">
+                                                                ${product.product_d_name_t}
                                                             </div>
-                                                            <br/>
-                                                            <div><font size="4" color="blue">รหัสสินค้า  </font><font size="4" > : ${product.product_code}</font></div>
-                                                            <br/>
-                                                            <div><font size="4" color="blue">ประเภทสินค้า </font><font size="4" > : ${product.product_g_name_t}</font></div>
-                                                            <br/>
-                                                            <div><font size="4" color="blue">สถานะสินค้า </font> <span> : <c:if test="${product.balance != null&&product.balance !=''}"><font size="4" >${product.balance}</font></c:if></span></div>
+
+                                                            <div class="product-name">รหัสสินค้า :${product.product_code}</div>
+
+                                                            <div class="product-name">ประเภทสินค้า  : ${product.product_g_name_t}</div>
+
+                                                            <div class="product-name">สถานะสินค้า  : <c:if test="${product.balance != null&&product.balance !=''}">${product.balance}</c:if></div>
 
 
                                                             <c:if test="${product.product_price1!=null && product.product_price1!=''}">
                                                                 <div class="price-box">
-                                                                    <table width="100%" >
-                                                                        <tr>
-                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
-                                                                            <td width="40%"><font size="4">฿ ${product.product_price1}</font></td>
-                                                                            <td><font color="red">(ขายส่ง)</font></td>
-                                                                        </tr>
-                                                                    </table>
+                                                                    <span class="regular-price" id="product-price-166" >
+                                                                        <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price1}" type="number" pattern="###,###,##0.00"  />(ขายส่ง)</span></span>
                                                                 </div>
                                                             </c:if>
                                                             <c:if test="${product.product_price2!=null && product.product_price2!=''}">
                                                                 <div class="price-box">
-                                                                    <table width="100%" >
-                                                                        <tr>
-                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
-                                                                            <td width="40%"><font size="4">฿ ${product.product_price2}</font></td>
-                                                                            <td><font color="red">(ขายส่ง,ส่วนลด)</font></td>
-                                                                        </tr>
-                                                                    </table>
+                                                                    <span class="regular-price" id="product-price-166">
+                                                                        <span class="price">ราคา : ฿  <fmt:formatNumber value=" ${product.product_price2}" type="number" pattern="###,###,##0.00" />
+                                                                            (ขายส่ง,ส่วนลด)</span></span>
+
                                                                 </div>
                                                             </c:if>
                                                             <c:if test="${product.product_price3!=null && product.product_price3!=''}">
                                                                 <div class="price-box">
-                                                                    <table width="100%" >
-                                                                        <tr>
-                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
-                                                                            <td width="40%"><font size="4">฿ ${product.product_price3}</font></td>
-                                                                            <td><font color="red">(ขายปลีก)</font></td>
-                                                                        </tr>
-                                                                    </table>
+                                                                    <span class="regular-price" id="product-price-166">
+                                                                        <span class="price">ราคา : ฿<fmt:formatNumber value=" ${product.product_price3}" type="number" pattern="###,###,##0.00" />
+                                                                            (ขายปลีก)</span></span>
                                                                 </div>
                                                             </c:if>
                                                             <c:if test="${product.product_price4!=null && product.product_price4!=''}">
                                                                 <div class="price-box">
-                                                                    <table width="100%" >
-                                                                        <tr>
-                                                                            <td width="15%"><font size="4" color="blue">ราคา</font></td>
-                                                                            <td width="40%"><font size="4">฿ ${product.product_price4}</font></td>
-                                                                            <td><font color="red">(ขายปลีก,ส่วนลด)</font></td>
-                                                                        </tr>
-                                                                    </table>
+                                                                    <span class="regular-price" id="product-price-166">
+                                                                        <span class="price">ราคา : ฿ <fmt:formatNumber value="${product.product_price4}" type="number" pattern="###,###,##0.00" />
+                                                                            (ขายปลีก,ส่วนลด)</span></span>
+
                                                                 </div>
                                                             </c:if>
                                                             <div class="add-to-box">

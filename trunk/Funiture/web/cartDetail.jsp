@@ -149,7 +149,7 @@
                                                                         <td class="a-right">
                                                                             <span class="cart-price">
 
-                                                                                <span class="price">${product.productPrice}</span>
+                                                                                <span class="price"><fmt:formatNumber value="${product.productPrice}" type="number"  pattern="###,###,##0.00"/></span>
                                                                             </span>
 
 
@@ -160,7 +160,7 @@
                                                                         <td class="a-right">
                                                                             <span class="cart-price">
 
-                                                                                <span class="price">${product.productPrice*product.amount}</span>
+                                                                                <span class="price"><fmt:formatNumber value="${product.productPrice*product.amount}" type="number"  pattern="###,###,##0.00"/></span>
                                                                             </span>
                                                                         </td>
                                                                     </tr>
@@ -185,11 +185,11 @@
 
                                                                                 <div class="price-box">
                                                                                     <span class="regular-price" id="product-price-42">
-                                                                                        <span class="price">฿ ${relate.product_price1}</span>                </span>
+                                                                                        <span class="price">฿ <fmt:formatNumber value="${relate.product_price1}" type="number"  pattern="###,###,##0.00"/></span>                </span>
 
                                                                                 </div>
 
-                                                                                <a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"><button type="button" title="เพิ่ม" class="button btn-cart" ><span><span>สั่งซื้อ</span></span></button></a>
+                                                                                <a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"><button type="button" title="เพิ่ม" class="button btn-cart" ><span><span>เพิ่มไปยังตะกร้า</span></span></button></a>
                                                                                 
                                                                             </div>
                                                                         </li>
@@ -240,8 +240,7 @@
                                                             <c:if test="${sessionScope.loginDetail == null}">
                                                                 <li><button type="button" title="สั่งซื้อสินค้า" class="button btn-checkout" onclick="alert('กรุณาเข้าสู่ระบบก่อน')"><span><span>สั่งซื้อสินค้า</span></span></button></li>
                                                             </c:if>
-                                                            <li><a href="http://freedemo.templates-master.com/f002/checkout/multishipping/">Checkout with Multiple Addresses</a>
-                                                            </li>
+                                                           
                                                         </ul>
                                                     </div>
                                                 </div>
