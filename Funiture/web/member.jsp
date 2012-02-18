@@ -185,25 +185,11 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="fields">
-                                            <div class="field name-lastname">
-                                                <label for="Distinct" >ตำบลt</label>
-                                                <div class="input-box" id="showDistinct" >
-
-                                                </div>
-                                            </div>
-
-                                            <div class="field name-lastname">
-                                                <label for="Amphur" >อำเภอ</label>
-                                                <div class="input-box" id="showAmphur" >
-
-                                                </div>
-                                            </div>
-                                        </li><li class="fields">
+                                      <li class="fields">
                                             <div class="field name-lastname">
                                                 <label for="Province" >จังหวัด</label>
-                                                <div class="input-box" id="showProvince" >
-                                                    <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" style="width:200px">
+                                                <div class="selected" id="showProvince" >
+                                                    <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" >
                                                         <c:forEach var="province" items="${query.rows}">
                                                             <option value="${province.id_}">${province.name_}</option>
                                                         </c:forEach>
@@ -215,6 +201,20 @@
                                                 <label for="Postcode" >รหัสไปรษณีย์</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberPstcode" id="Postcode" value="" title="Postcode" class="input-text " />
+                                                </div>
+                                            </div>
+                                        </li>
+                                          <li class="fields">
+                                               <div class="field name-lastname">
+                                                <label for="Amphur" >อำเภอ</label>
+                                                <div class="input-box" id="showAmphur"  >
+
+                                                </div>
+                                            </div>
+                                              <div class="field name-lastname">
+                                                <label for="Distinct" >ตำบล</label>
+                                                <div class="input-box" id="showDistinct" >
+
                                                 </div>
                                             </div>
                                         </li>
@@ -265,8 +265,8 @@
 
                                 <div class="buttons-set">
                                     <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
-
-                                    <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()">ยืนยัน</button>
+                                    <p class="back-link"><a href="Login.jsp" class="back-link"><small>&laquo; </small>Back</a></p>
+                                    <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()"><span><span>ยืนยัน</span></span></button>
                                 </div>
                             </form>
                             <script type="text/javascript">

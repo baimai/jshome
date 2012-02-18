@@ -12,7 +12,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <title>JSP Page</title>
+
+         <title>JSP Page</title>
     </head>
     <body>
       <div id="art-main">

@@ -7,8 +7,8 @@ package util;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.*;
-import javax.mail.internet.*;
+//import javax.mail.*;// จะใช้เอาออกน่ะ
+//import javax.mail.internet.*;
 
 
 /**
@@ -41,7 +41,7 @@ public class Email {
     public void setToAddress(String toAddress){
         this.toAddress = toAddress;
     }
-    public void send(String textMessage) {
+   /* public void send(String textMessage) {// จะใช้เอาออกน่ะ
         try {
             Session mailSession = Session.getInstance(props);
             MimeMessage message = new MimeMessage(mailSession);
@@ -53,8 +53,8 @@ public class Email {
         } catch (MessagingException ex) {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    public void send(HtmlMessage htmlMessage){
+    }*/
+    /*public void send(HtmlMessage htmlMessage){// จะใช้เอาออกน่ะ
         try {
             Session mailSession = Session.getInstance(props);
             MimeMessage message = new MimeMessage(mailSession);
@@ -67,5 +67,5 @@ public class Email {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
         }
       
-    }
+    }*/
 }

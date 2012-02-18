@@ -211,15 +211,15 @@
                                     <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
                                       <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
-                                            <span class="price">${product.product_price1}</span></span>
-                                            <div style="color:#00ee00">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                            <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span></span>
+                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
                                                                              <c:if test="${product.balance !=null }">${product.balance}</c:if>
                                                                              <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
                                             </div>
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>สั่งซื้อ</span></span></button>
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -234,7 +234,7 @@
 
                                     <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
-                                            <span class="price">${product.product_price1}</span>
+                                            <span class="price" ><fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
                                         <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
                                                                              <c:if test="${product.balance !=null }">${product.balance}</c:if>
                                                                              <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
@@ -243,7 +243,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>สั่งซื้อ</span></span></button>
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                         
                                     </div>
                                 </li>
@@ -258,15 +258,15 @@
 
                                     <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
-                                            <span class="price">${product.product_price1}</span>                </span>
-                                            <div style="color:#00ee00">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                            <span class="price" ><fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/> </span>                </span>
+                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
                                                                              <c:if test="${product.balance !=null }">${product.balance}</c:if>
                                                                              <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
                                             </div>
                                     </div>
 
                                     <div class="actions">
-                                       <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>สั่งซื้อ</span></span></button>
+                                       <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                         
                                     </div>
                                 </li>
