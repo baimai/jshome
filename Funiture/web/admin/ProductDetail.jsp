@@ -28,6 +28,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <title>JSP Page</title>
     </head>
     <body>
@@ -41,14 +45,21 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-                    <br><br><br>
+                    <br><br><div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>ข้อมูลสินค้า</h1>
+                                        </div>
                     <center>
                         <form action="productDetail.do" method="post" enctype="multipart/form-data" >
 
                             <table border="0" width="700px" >
-                                <tr>
-                                    <td colspan="4" align="center"><h1> Add Product</h1></td>
-                                </tr>
+                                
                                 <c:if test="${param.productDetailId==null}" >
                                     <input type="hidden" name="action" value="Add" />
                                     <tr>
@@ -353,8 +364,11 @@
                         </form>
                     </center>
                 </div>
-
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="cleared"></div>
         </div>

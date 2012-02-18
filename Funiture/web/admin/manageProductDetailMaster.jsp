@@ -22,6 +22,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jqGrid Demos</title>
+         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
@@ -86,38 +90,60 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-                    <br><br><br>
-                    <center>
-                        <br/>
-                        <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
-                            <option value=""> ทั้งหมด </option>
-                            <c:forEach items="${query3.rows}" var="group">
+                    <br><br>
+                    <div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>ข้อมูลรายการสินค้า</h1>
+                                        </div>
+                                        <div class="button" align="left">
+                                    <form action="ProductDetail.jsp" >
+                                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
+                                                            <div align="left"> <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button></div>
+                                                        </form>
 
-                                <option value="${group.product_group_Id}"
-                                        <c:if test="${param.productGroupId == group.product_group_Id && param.productGroupId != null}">
-                                            selected
-                                        </c:if>
-                                        >${group.product_g_name_t}</option>
 
-                            </c:forEach>
-                        </select>
-                        <br/><br/>
-                        <table id="rowed1"></table>
-                        <br/>
-                        <table width="100%">
-                            <tr>
-                                <td width="7%"></td>
-                                <td><form action="ProductDetail.jsp" >
-                                        <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                        <div align="left"> <input type="submit" value="Add" /></div>
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
-                        <div id="prowed1"></div>
+                                </div>
+                                        <center>
+                                            <br/>
+                                            <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
+                                                <option value=""> ทั้งหมด </option>
+                                                <c:forEach items="${query3.rows}" var="group">
 
-                    </center>
-                    <br/><br/><br/>
+                                                    <option value="${group.product_group_Id}"
+                                                            <c:if test="${param.productGroupId == group.product_group_Id && param.productGroupId != null}">
+                                                                selected
+                                                            </c:if>
+                                                            >${group.product_g_name_t}</option>
+
+                                                </c:forEach>
+                                            </select>
+                                            <br/><br/>
+                                            <table id="rowed1"></table>
+                                            <br/>
+                                            <!--<table width="100%">
+                                                <tr>
+                                                    <td width="7%"></td>
+                                                    <td><form action="ProductDetail.jsp" >
+                                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
+                                                            <div align="left"> <input type="submit" value="Add" /></div>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </table>-->
+                                            <div id="prowed1"></div>
+
+                                        </center>
+                                        <br/> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
