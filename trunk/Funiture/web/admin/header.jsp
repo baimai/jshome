@@ -45,7 +45,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                 </li>
-               <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a>
+               <li><a href="Color.jsp" class="parent"><span>สีของสินค้า</span></a>
 
               </li>
             </ul></div>
