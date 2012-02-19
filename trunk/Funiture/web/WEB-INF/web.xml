@@ -116,6 +116,14 @@
         <servlet-name>stockMaster</servlet-name>
         <servlet-class>controller.stockMaster</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>memberGradeMaster</servlet-name>
+        <servlet-class>controller.memberGradeMaster</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xmlMemberGradeMaster</servlet-name>
+        <servlet-class>controller.xmlMemberGradeMaster</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -227,6 +235,14 @@
     <servlet-mapping>
         <servlet-name>stockMaster</servlet-name>
         <url-pattern>/admin/stockMaster</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>memberGradeMaster</servlet-name>
+        <url-pattern>/admin/memberGradeMaster</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlMemberGradeMaster</servlet-name>
+        <url-pattern>/admin/xmlMemberGradeMaster</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

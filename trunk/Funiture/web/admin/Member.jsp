@@ -11,6 +11,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
@@ -81,18 +85,30 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-                    <br><br><br>
-                    <center>
-                        <table id="rowed1"></table>
-                        <div id="prowed1"></div>
-                        <br />
-                        <table id="rowed2"></table>
-                    </center>
-                    <br/><br/><br/>
+                    <br><br> <div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>สมาชิก</h1>
+                                        </div>
+                                        <center>
+                                            <table id="rowed1"></table>
+                                            <div id="prowed1"></div>
+                                            <br />
+                                            <table id="rowed2"></table>
+                                        </center>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>

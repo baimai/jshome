@@ -10,11 +10,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <sql:query var="query" dataSource="webdb">
-    SELECT ohm.order_id,concat(mm.member_name,' ',mm.member_surname) as name,
+    SELECT ohm.order_id,concat(mm.member_name,' ',mm.member_surname) as name,mm.Member_Com_Name,
     DATE_FORMAT(ohm.order_date, '%a %D %M %Y') as order_date,
     DATE_FORMAT(ohm.order_date, '%H:%i:%s') as order_time,
     ohm.order_status,sum(odm.product_amount) as amount,
-    concat(mm.member_addr1,' ตำบล',cm1.name_,' อำเภอ',cm2.name_,' จังหวัด',cm3.name_,' ',mm.member_pstcode) as address
+    concat(mm.member_addr1,' ตำบล',cm1.name_,' อำเภอ',cm2.name_,' จังหวัด',cm3.name_,' ',mm.member_pstcode) as address,
+    concat(mm.Member_Tel1,',',mm.Member_Tel2) as Tel,
+    concat(mm.Member_Fax1,',',mm.Member_Fax2) as Fax,
+    concat(mm.Member_Mobile1,',',mm.Member_Mobile2) as Mobile,
+    concat(mm.Member_Email1,',',mm.Member_Email2,',',mm.Member_Email3) as Email
     FROM order_header_master ohm
     join order_detail_master odm on odm.order_id = ohm.order_id
     join product_detail_master  pdm on pdm.product_detail_id = odm.product_detail_id
@@ -31,6 +35,10 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>jqGrid Demos</title>
+    <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
     <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
     <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
@@ -77,7 +85,7 @@
         });
     </script>
 </head>
-<body >
+<body class=" customer-account-login">
 
     <div id="art-main">
         <div class="art-sheet">
@@ -89,73 +97,86 @@
             <div class="art-sheet-cc"></div>
             <div class="art-sheet-body">
                 <jsp:include page="header.jsp"/>
-                <br/><br/><br/>
-                <c:forEach var="order" items="${query.rows}">
-                    <center>
-                        <table width="770px"  cellpadding="10" cellspacing="0" bgcolor="lightgray" >
-                            <tr>
-                                <td width="15%" style="font-weight: bold;text-align:right;">รหัส Order</td>
-                                <td width="35%" style="color: blue;">${order.order_id}</td>
-                                <td width="15%" style="font-weight: bold;text-align:right;">ชื่อลูกค้า</td>
-                                <td width="35%" style="color: blue;">${order.name}</td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: bold;text-align:right;">วันที่</td>
-                                <td style="color: blue;">${order.order_date}</td>
-                                <td style="font-weight: bold;text-align:right;">เวลา</td>
-                                <td style="color: blue;">${order.order_time}</td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: bold;text-align:right;">สถานะ</td>
-                                <td>
-                                    <form action="manageOrder.do">
-                                        <select name="orderStatus" style="color: blue;">
-                                            <c:if test="${order.order_status == 'Y'}">
-                                                <option value="Y" selected>Active</option>
-                                                <option value="N" >InActive</option>
-                                                <option value="C" >Cancle</option>
-                                            </c:if>
-                                            <c:if test="${order.order_status == 'N'}">
-                                                <option value="Y" >Active</option>
-                                                <option value="N" selected >InActive</option>
-                                                <option value="C" >Cancle</option>
-                                            </c:if>
-                                            <c:if test="${order.order_status == 'C'}">
-                                                <option value="Y" >Active</option>
-                                                <option value="N" >InActive</option>
-                                                <option value="C" selected>Cancle</option>
-                                            </c:if>
-                                        </select>
-                                        <input type="hidden" value="${param.orderId}" name="orderId" />
-                                        <input type="submit" value="Submit" name="action"/>
-                                    </form>
-                                </td>
-                                <td style="font-weight: bold;text-align:right;">ที่อยู่</td>
-                                <td style="color: blue;">${order.address}</td>
-                            </tr>
-                        </table>
-                        <br/>
-                        <table id="rowed1"></table>
-                        <br/>
-
-                        <div id="prowed1"></div>
-
-                    </center>
-                            <table align="right" width="100%" border="0">
-                        <tr>
-                            <td width="74%" style="font-weight: bold;text-align:right;">รวม</td>
-                            <td ><input style="color: blue;" disabled type="text" value="${order.amount}"/></td>
-                        </tr>
-                    </table>
-                </c:forEach>
-                <br/><br/><br/><br/><br/>
-
+                <br/><br/>
+               <div class="wrapper">
+            <div class="page">
             </div>
-
-
-        </div>
+        </div>        <div class="main-container col1-layout">
+            <div class="main">
+                <div class="col-main">
+                    <div class="account-login">
+                        <div class="page-title">
+                                        <h1>ใบสั่งซื้อ</h1>
+                                    </div>
+                                    <c:forEach var="order" items="${query.rows}">
+                               <div class="col2-set">
+                                <div class="col-1 new-users">
+                                    <div class="content">
+                                                <h2>รหัสใบสั่งซื้อ : ${order.order_id} </h2>
+                                                
+                                                <h2>วันที่ : ${order.order_date} เวลา : ${order.order_time}</h2>
+                                               
+                                                <h2>สถานะ :
+                                                    <form action="manageOrder.do">
+                                                        <select name="orderStatus" style="color: blue;">
+                                                            <c:if test="${order.order_status == 'Y'}">
+                                                                <option value="Y" selected>Active</option>
+                                                                <option value="N" >InActive</option>
+                                                                <option value="C" >Cancle</option>
+                                                            </c:if>
+                                                            <c:if test="${order.order_status == 'N'}">
+                                                                <option value="Y" >Active</option>
+                                                                <option value="N" selected >InActive</option>
+                                                                <option value="C" >Cancle</option>
+                                                            </c:if>
+                                                            <c:if test="${order.order_status == 'C'}">
+                                                                <option value="Y" >Active</option>
+                                                                <option value="N" >InActive</option>
+                                                                <option value="C" selected>Cancle</option>
+                                                            </c:if>
+                                                        </select>
+                                                        <input type="hidden" value="${param.orderId}" name="orderId" />
+                                                        <input type="submit" value="Submit" name="action"/>
+                                                    </form>
+                                                </h2>
+                                                </div>
+                                               
+                                              </div>
+                                                       <div class="col-2 registered-users">
+                                                     <div class="content">
+                                                <h2> ชื่อลูกค้า : ${order.name}</h2>
+                                                <h2>บริษัท  : ${order.Member_Com_Name}</h2>
+                                                <h2>ที่อยู่ : ${order.address} </h2>
+                                                <h2>เบอร์โทร : ${order.Tel} </h2>
+                                                <h2>โทรสาร : ${order.Fax} </h2>
+                                                <h2>มือถือ : ${order.Mobile} </h2>
+                                                <h2>อีเมลล์ : ${order.Email} </h2>
+                                                 </div>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <table id="rowed1"></table>
+                                        <div id="prowed1"></div>
+                                        <br>
+                                        <table align="right" width="100%" border="0">
+                                            <tr>
+                                                <td width="74%" style="font-weight: bold;text-align:right;">รวม</td>
+                                                <td ><input style="color: blue;" disabled type="text" value="${order.amount}"/></td>
+                                            </tr>
+                                        </table>
+                                    </c:forEach>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ </div>
+            
+        
         <div class="cleared"></div>
-    </div>
+   
 
     <div class="cleared"></div>
     <p class="art-page-footer"></p>

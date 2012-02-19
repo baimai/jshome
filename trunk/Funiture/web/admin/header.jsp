@@ -45,14 +45,14 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                 </li>
-               <li><a href="Color.jsp" class="parent"><span>สีของสินค้า</span></a>
+               <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a>
 
               </li>
             </ul></div>
         </li>
         <li><a href="#" class="parent"><span>จัดการเมนู</span></a>
              <div><ul>
-                <li><a href="MenuGroup.jsp" class="parent"><span>ประเภทเมนู</span></a>
+                <li><a href="MenuGroup.jsp" class="parent"><span>เมนูหลัก</span></a>
 
                 </li>
                 <li><a href="MenuDetail.jsp" class="parent"><span>รายการเมนู</span></a>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.memberMasterEntity;
+import model.memberGradeMasterTable;
 import model.memberMasterTable;
 
 /**
@@ -42,15 +43,15 @@ public class xmlMemberMaster extends HttpServlet {
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String memberId = null, Edit = null, Del = null;
+                String memberGradeId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
                 menuCode = request.getParameter("menuCode");
                 }
                  */
-                if (request.getParameter("memberId") != null) {
-                    memberId = request.getParameter("memberId");
+                if (request.getParameter("memberGradeId") != null) {
+                    memberGradeId = request.getParameter("memberGradeId");
                 }
                 if (request.getParameter("Edit") != null) {
                     Edit = request.getParameter("Edit");
@@ -85,6 +86,7 @@ public class xmlMemberMaster extends HttpServlet {
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
+                memberGradeMasterTable mgt = new memberGradeMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                
                 ArrayList list = mbt.search(sField, sValue, sOper, Company_Id);

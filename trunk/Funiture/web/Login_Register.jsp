@@ -32,10 +32,6 @@
     <body class=" customer-account-login">
         <div class="wrapper">
             <div class="page">
-
-
-
-
             </div>
         </div>        <div class="main-container col1-layout">
             <div class="main">
