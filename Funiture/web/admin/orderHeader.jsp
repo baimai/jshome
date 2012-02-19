@@ -20,17 +20,21 @@
 </c:if>
 <sql:query var="query3" dataSource="webdb">
     SELECT distinct(ohm.order_status),(case when ohm.order_status = 'N' then 'InActive'
-             when ohm.order_status = 'Y' then 'Active'
-             when ohm.order_status = 'C' then 'Cancle'
-             else 'InActive' end) as status FROM order_header_master ohm;
+    when ohm.order_status = 'Y' then 'Active'
+    when ohm.order_status = 'C' then 'Cancle'
+    else 'InActive' end) as status FROM order_header_master ohm;
 </sql:query>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jqGrid Demos</title>
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
@@ -87,34 +91,46 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                     <jsp:include page="header.jsp"/>
-                     <br/><br/><br/>
-                    <center>
-                        <br/>
-                        <select onchange="window.location='orderHeader.jsp?orderStatus='+this.value;">
-                            <option value=""> ทั้งหมด </option>
-                            <c:forEach items="${query3.rows}" var="order">
+                    <jsp:include page="header.jsp"/>
+                    <br/><br/><div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>สั่งซื้อ</h1>
+                                        </div>
+                                        <center>
+                                            <br/>
+                                            <select onchange="window.location='orderHeader.jsp?orderStatus='+this.value;">
+                                                <option value=""> ทั้งหมด </option>
+                                                <c:forEach items="${query3.rows}" var="order">
 
-                                <option value="${order.order_status}"
-                                        <c:if test="${param.orderStatus == order.order_status && param.orderStatus != null}">
-                                            selected
-                                        </c:if>
-                                        >${order.status}</option>
+                                                    <option value="${order.order_status}"
+                                                            <c:if test="${param.orderStatus == order.order_status && param.orderStatus != null}">
+                                                                selected
+                                                            </c:if>
+                                                            >${order.status}</option>
 
-                            </c:forEach>
-                        </select>
-                        <br/><br/>
-                        <table id="rowed1"></table>
-                        <br/>
-                        
-                        <div id="prowed1"></div>
+                                                </c:forEach>
+                                            </select>
+                                            <br/><br/>
+                                            <table id="rowed1"></table>
+                                            <br/>
 
-                    </center>
-                    <br/><br/><br/>
+                                            <div id="prowed1"></div>
+
+                                        </center>
+                                        <br/><br/> <br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
