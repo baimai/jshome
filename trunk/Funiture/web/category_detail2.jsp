@@ -3,13 +3,16 @@
 <sql:query var="query" dataSource="webdb">
     SELECT count(*) as count,md.*,me.* FROM pic_product_setup me
     join menu_detail_master md on me.pic_code = md.pic_code
+    join product_detail_master pdm on pdm.product_detail_id = me.product_detail_id
     group by me.pic_code
 </sql:query>
-
 <sql:query var="query2" dataSource="webdb">
-    SELECT count(*) as count , 'ทั้งหมด' as T,'All' as E FROM (select * from pic_product_setup pps group by pps.product_detail_id) me
-    join menu_detail_master md on me.pic_code = md.pic_code
+    SELECT count(pdm.product_detail_id) as count,pgm.* FROM product_group_master pgm
+    left join product_detail_master pdm on pdm.product_group_id = pgm.product_group_id
+    group by product_group_code
+    order by product_group_code
 </sql:query>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html  >
@@ -28,10 +31,11 @@
             function showProduct(text){
                 document.getElementById("productList").innerHTML=text;
             }
-            function setProduct(menuCode,pageShow,curPage){
+            function setProduct(menuCode,pageShow,curPage,menuType){
                 var param = "menuCode="+menuCode+"&show="+pageShow+"&page="+curPage
                 document.getElementById('menuCode').value = menuCode;
                 document.getElementById('navShow').value = pageShow;
+                document.getElementById('menuType').value = menuType;
                 postDataReturnText("categoryProduct.jsp",param,showProduct);
                 //setTimeout("delay()",500);
                 //postDataReturnText("plus.jsp",field,displayTable);
@@ -63,11 +67,12 @@
         </script>
 
         <!--<script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script --></head>
-    <body class=" catalog-category-view categorypath-electronics-computers-html category-computers" onload="setProduct('all','9','1');" >
+    <body class=" catalog-category-view categorypath-electronics-computers-html category-computers" onload="setProduct('00010','9','1','picCode');" >
         <input type="hidden" value="" id="menuCode"/>
         <input type="hidden" value="9" id="navShow"/>
         <input type="hidden" value="1" id="navCurPage"/>
         <input type="hidden" value="name" id="navSort"/>
+        <input type="hidden" value="picCode" id="menuType"/>
         <div class="wrapper">
 
             <div class="page">
@@ -88,12 +93,14 @@
                             <div class="block-title"><strong>Products Navigation</strong></div>
                             <div class="block-content">
                                 <p class="block-subtitle">รายการสินค้า</p>
-                                <ul>
-                                    <c:forEach var="all" items="${query2.rows}">
-                                        <li><a href="#" onclick="setProduct('all',document.getElementById('navShow').value,'1');">${all.T}</a> (${all.count})</li>
-                                    </c:forEach>        
+                                <ul>      
                                     <c:forEach var="menu" items="${query.rows}">
-                                        <li><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                        <li><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                    </c:forEach>
+                                </ul>
+                                <ul>
+                                    <c:forEach var="menu2" items="${query2.rows}">
+                                        <li><a href="#" onclick="setProduct('${menu2.pic_code}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
                                     </c:forEach>
                                 </ul>
 
