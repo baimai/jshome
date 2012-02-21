@@ -70,27 +70,11 @@ public class seqProductSetup extends HttpServlet {
                         seq[i] = pps.getPicSeq();
                     }
                     ArrayList list2 = new ArrayList();
-//                    for (int i = 0; i < list.size(); i++) {
-//                        picProductSetupEntity pps = (picProductSetupEntity) list.get(i);
-//                        int k = pps.getPicSeq();
-//                        int pointer = i;
-//                        for (int j = 0; j < list.size(); j++) {
-//                            // picProductSetupEntity pps2 = (picProductSetupEntity) list.get(j);
-//                            if (k < seq[j]) {
-//                                k = seq[j];
-//                                pointer = j;
-//                            }
-//                        }
-//                        list2.add(pps);
-//                        seq[pointer] = -1;
-//
-//                    }
                     for (int i = 0; i < seq.length; i++) {
                         if (seq[i] != -1) {
                             int k = seq[i];
                             int pointer = i;
                             for (int j = 0; j < seq.length; j++) {
-                                // picProductSetupEntity pps2 = (picProductSetupEntity) list.get(j);
                                 if (k < seq[j]) {
                                     k = seq[j];
                                     pointer = j;
@@ -102,6 +86,16 @@ public class seqProductSetup extends HttpServlet {
                         }
                     }
                     s.setAttribute("picProductList", list2);
+                    response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
+                } else if (request.getParameter("action").equals("saveSeq")) {
+                    ArrayList list = (ArrayList) s.getAttribute("picProductList");
+                    Database db = new Database();
+                    for (int i = 0; i < list.size(); i++) {
+                        picProductSetupEntity pps = (picProductSetupEntity) list.get(i);
+                        picProductSetupTable ppst = new picProductSetupTable(db);
+                        ppst.updateSeq(pps);
+                    }
+                    db.close();
                     response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
                 }
             }
