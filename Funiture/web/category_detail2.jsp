@@ -32,7 +32,7 @@
                 document.getElementById("productList").innerHTML=text;
             }
             function setProduct(menuCode,pageShow,curPage,menuType){
-                var param = "menuCode="+menuCode+"&show="+pageShow+"&page="+curPage
+                var param = "menuCode="+menuCode+"&show="+pageShow+"&page="+curPage+"&menuType="+menuType;
                 document.getElementById('menuCode').value = menuCode;
                 document.getElementById('navShow').value = pageShow;
                 document.getElementById('menuType').value = menuType;
@@ -100,7 +100,7 @@
                                 </ul>
                                 <ul>
                                     <c:forEach var="menu2" items="${query2.rows}">
-                                        <li><a href="#" onclick="setProduct('${menu2.pic_code}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
+                                        <li><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
                                     </c:forEach>
                                 </ul>
 

@@ -8,33 +8,63 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+<c:if test="${param.menuType == 'picCode'}" >
+    <sql:query var="query2" dataSource="webdb">
+        SELECT count(*) as count FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
+        join menu_detail_master md on pps.pic_code = md.pic_code
+        join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
+        where pps.pic_code = '${param.menuCode}'
+        Group by pps.product_detail_id
+    </sql:query>
+    <sql:query var="query3" dataSource="webdb">
+        SELECT
+        pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
+        md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
+        FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
+        join menu_detail_master md on pps.pic_code = md.pic_code
+        join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
+        left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
+        where pps.pic_code = '${param.menuCode}'
+        Group by pps.product_detail_id
+        limit ${(param.page-1)*param.show},${param.show}
+    </sql:query>
+    <sql:query var="query4" dataSource="webdb" >
+        select concat(menu_c_name_t) as name from menu_detail_master
+        where pic_code = '${param.menuCode}'
+    </sql:query>
+</c:if>
+<c:if test="${param.menuType == 'group'}" >
+    <sql:query var="query2" dataSource="webdb">
+        SELECT count(*) as count FROM (select * from product_group_master pgm group by pgm.product_group_id) pgm
+        join product_detail_master pdm on pgm.product_group_id = pdm.product_group_id
+        left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
+        where pdm.product_group_id = ${param.menuCode}
 
-<sql:query var="query2" dataSource="webdb">
-    SELECT count(*) as count FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
-    join menu_detail_master md on pps.pic_code = md.pic_code
-    join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
-    left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
-    left join unit_master um on um.unit_id = sb.unit_id
-    where pps.pic_code = '${param.menuCode}'
-    Group by pps.product_detail_id
-</sql:query>
-<sql:query var="query3" dataSource="webdb">
-    SELECT
-    pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
-    md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
-    pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
-    um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
-    FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
-    join menu_detail_master md on pps.pic_code = md.pic_code
-    join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
-    left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
-    left join unit_master um on um.unit_id = sb.unit_id
-    where pps.pic_code = '${param.menuCode}'
-    Group by pps.product_detail_id
-    limit ${(param.page-1)*param.show},${param.show}
-</sql:query>
-
-
+    </sql:query>
+    <sql:query var="query3" dataSource="webdb">
+        SELECT
+       pdm.product_detail_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        um.unit_name_t,pdm.product_d_name_t
+        FROM (select * from product_group_master pgm group by pgm.product_group_id) pgm
+        join product_detail_master pdm on pgm.product_group_id = pdm.product_group_id
+        left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
+        left join unit_master um on um.unit_id = sb.unit_id
+        where pdm.product_group_id = '${param.menuCode}'
+        Group by pdm.product_detail_id
+        limit ${(param.page-1)*param.show},${param.show}
+    </sql:query>
+    <sql:query var="query4" dataSource="webdb" >
+        select concat(product_g_name_t) as name from  product_group_master pgm
+       where pgm.product_group_id  = ${param.menuCode}
+    </sql:query>
+</c:if>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,7 +76,7 @@
     <body >
         <div class="col-main">
             <div class="page-title category-title">
-                <h1>ราการสินค้า</h1>
+                <h1><c:forEach items="${query4.rows}" var="head">${head.name}</c:forEach></h1>
             </div>
 
 
@@ -69,15 +99,15 @@
                                 <td width="7%">
                                     <c:if test="${param.page != 1}" >
                                         <a  href="#" title="Backward" style="text-decoration: none;"  onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
-                                            <img src="images/icon/00247.png" width="15" height="15" alt="next"/>
+                                            <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
                                         </a>
                                         <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
-                                            <img src="images/icon/00245.png" width="15" height="15" alt="back" />
+                                            <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
                                         </a>
                                     </c:if>
                                     <c:if test="${param.page == 1}" >
-                                        <img src="images/icon/00247.png" width="15" height="15" alt="next"/>
-                                        <img src="images/icon/00245.png" width="15" height="15" alt="back" />    
+                                        <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
+                                        <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
                                     </c:if>
                                 </td>
                                 <td width="40%" style="text-align:center;">
@@ -104,15 +134,15 @@
                                 <td width="8%">
                                     <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
                                         <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
-                                            <img src="images/icon/00246.png" width="15" height="15" alt="next"/>
+                                            <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
                                         </a>
                                         <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
-                                            <img src="images/icon/00248.png" width="15" height="15" alt="forward"/>
+                                            <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
                                         </a>
                                     </c:if>
                                     <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">                                   
-                                        <img src="images/icon/00246.png" width="15" height="15" alt="next"/>                                       
-                                        <img src="images/icon/00248.png" width="15" height="15" alt="forward"/>
+                                        <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                                        <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
                                     </c:if>
                                 </td>
                                 <td width="14%" style="text-align: right;">
@@ -166,10 +196,10 @@
                                         <span class="regular-price" id="product-price-156">
 
                                             <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span></span>
-                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                                                             <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                                                             <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
-                                            </div>
+                                        <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                            <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                            <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                        </div>
                                     </div>
 
                                     <div class="actions">
@@ -213,15 +243,15 @@
                                     <div class="price-box">
                                         <span class="regular-price" id="product-price-156">
                                             <span class="price" ><fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/> </span>                </span>
-                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                                                             <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                                                             <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
-                                            </div>
+                                        <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                            <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                            <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                        </div>
                                     </div>
 
                                     <div class="actions">
-                                       <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-                                       
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
+
                                     </div>
                                 </li>
                             </ul>
@@ -250,15 +280,15 @@
                                     <td width="7%">
                                         <c:if test="${param.page != 1}" >
                                             <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
-                                                <img src="images/icon/00247.png" width="15" height="15" alt="next"/>
+                                                <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
                                             </a>
                                             <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
-                                                <img src="images/icon/00245.png" width="15" height="15" alt="back" />
+                                                <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
                                             </a>
                                         </c:if>
                                         <c:if test="${param.page == 1}" >
-                                            <img src="images/icon/00247.png" width="15" height="15" alt="next"/>
-                                            <img src="images/icon/00245.png" width="15" height="15" alt="back" />    
+                                            <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
+                                            <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
                                         </c:if>
                                     </td>
                                     <td width="40%" style="text-align:center;">
@@ -285,15 +315,15 @@
                                     <td width="8%">
                                         <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
                                             <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
-                                                <img src="images/icon/00246.png" width="15" height="15" alt="next"/>
+                                                <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
                                             </a>
                                             <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
-                                                <img src="images/icon/00248.png" width="15" height="15" alt="forward"/>
+                                                <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
                                             </a>
                                         </c:if>
                                         <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">                                   
-                                            <img src="images/icon/00246.png" width="15" height="15" alt="next"/>                                       
-                                            <img src="images/icon/00248.png" width="15" height="15" alt="forward"/>
+                                            <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                                            <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
                                         </c:if>
                                     </td>
                                     <td width="14%" style="text-align: right;">
