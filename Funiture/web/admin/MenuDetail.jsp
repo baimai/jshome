@@ -47,7 +47,7 @@
                     datatype: "xml",
                     colNames:['NO', 'Group Name','Menu Name T', 'Menu Name En','Pic Code','Seq No.','Show List','Menu Code Id','Remark Th','Remark En'],
                     colModel:[
-                        {name:'No',index:'menuSeq',editoptions:"", width:60,align:"right"},
+                        {name:'No',index:'menuSeq',editoptions:"", width:60,align:"right",search:false},
                         {name:'menuGroupId',index:'menuGroupId', width:150,align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:"${listGroup}"}},
                         {name:'menuCNameT',index:'menuCNameT', width:150,align:"center",editable:true,editoptions:{size:25}},
                         {name:'menuCNameE',index:'menuCNameE', width:150, align:"center",editable:true,editoptions:{size:25}},

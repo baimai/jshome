@@ -33,7 +33,7 @@
                     datatype: "xml",
                     colNames:['No','Login', 'firtName', 'LastName','Company','Status','Register','Approve','memberId','companyId'],
                     colModel:[
-                        {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'No',index:'No', width:40,editable:false,editoptions:{readonly:true,size:10},search:false},
                         {name:'memberLogin',index:'memberLogin', width:80,editable:true,editoptions:{size:10}},
                         {name:'memberName',index:'memberName', width:248,editable:true,editoptions:{size:25}},
                         {name:'memberSurName',index:'memberSurName', width:248,editable:true,editoptions:{size:25}},

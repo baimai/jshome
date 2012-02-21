@@ -37,7 +37,7 @@
                     datatype: "xml",
                     colNames:['No','Login', 'firtName', 'LastName','Status','Register','Approve','Status','memberId'],
                     colModel:[
-                        {name:'No',index:'No', width:40,align:"right",editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'No',index:'No', width:40,align:"right",editable:false,editoptions:{readonly:true,size:10},search:false},
                         {name:'memberLogin',index:'memberLogin',align:"center", width:120,editrules:{ edithidden:false},editable:false},
                         {name:'memberName',index:'memberName',align:"center", width:180,editrules:{ edithidden:false},editable:false},
                         {name:'memberSurName',index:'memberSurName',align:"center", width:180,editrules:{ edithidden:false},editable:false},

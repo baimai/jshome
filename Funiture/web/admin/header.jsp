@@ -59,7 +59,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
 
                 </li>
 
-                <li><a href="ProductSetup.jsp" class="parent"><span>จัดการรูปแสดงสินค้า</span></a>
+                <li><a href="ProductSetupHeader.jsp" class="parent"><span>จัดการรูปแสดงสินค้า</span></a>
 
                 </li>
             </ul></div>
