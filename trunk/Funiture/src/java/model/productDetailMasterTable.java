@@ -174,9 +174,9 @@ public class productDetailMasterTable {
 
     }
 
-    public Integer getProductId(String productCode, int Company_Id) {
+    public Integer getProductId(productDetailMasterEntity pdm) {
         String sql = "select * from product_detail_master pdm where pdm.Product_Code = ? and pdm.Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, productCode, Company_Id);
+        List<Map<String, Object>> result = db.queryList(sql,pdm.getProductCode(),pdm.getCompanyId());
         if (!result.isEmpty()) {
             return (Integer) result.get(0).get("Product_Detail_Id");
         } else {

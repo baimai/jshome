@@ -40,6 +40,10 @@ public class picProductSetupTable {
         db.update(sql, mps.getPicId(), mps.getProductDetailId(), mps.getCompanyId(), mps.getProductRemarkT(), mps.getProductRemarkE(),
                 mps.getUpdateDate(), mps.getUserId(), mps.getPicSeq(), mps.getPicId());
     }
+    public void updateSeq(picProductSetupEntity pps){
+        String sql = "update pic_product_setup set pic_seq = ? where pic_id = ?";
+        db.update(sql,pps.getPicSeq(),pps.getPicId());
+    }
 
     public void remove(picProductSetupEntity mps) {
         String sql = "delete from pic_product_setup where pic_id = ?";
@@ -114,7 +118,7 @@ public class picProductSetupTable {
                 + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "
                 + " join menu_detail_master mdm on mdm.pic_code = pps.pic_code "
                 + " where pps.pic_code = ? and pps.company_id = ?"
-                + " order by pps.pic_code,pps.pic_seq ";
+                + " order by pps.pic_code,pps.pic_seq desc ";
         List<Map<String, Object>> result = db.queryList(sql,pps.getPicCode(),pps.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
