@@ -39,7 +39,7 @@
                     datatype: "xml",
                     colNames:['No','Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id','Display'],
                     colModel:[
-                        {name:'No',index:'No',  align:"right",width:40,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'No',index:'No',  align:"right",width:40,editable:false,editoptions:{readonly:true,size:10}, search:false},
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:100,editable:true,editoptions:{size:10}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:230,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:230,editable:true,editoptions:{size:25}},
@@ -97,7 +97,7 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1>
                                         </div>
-                                         
+
                                         <center>
 
                                             <table id="rowed1"></table>

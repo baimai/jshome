@@ -61,8 +61,8 @@
                         {name:'nameTh',index:'nameTh', width:225,align:"right"},
                         {name:'nameEn',index:'nameEn', width:225, align:"right"},
                         {name:'price',index:'price', width:100, align:"right"},                      
-                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductDetail.jsp?productDetailId="+cellvalue+"\">Edit</a>"}},
-                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"remove("+cellvalue+")\">Del</a>"}}
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductDetail.jsp?productDetailId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"remove("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                     ],
                     rowNum:10,
                     rowList:[10,20,30,40,80,160,320,500,1000],

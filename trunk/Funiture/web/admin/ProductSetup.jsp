@@ -38,7 +38,7 @@
                     datatype: "xml",
                     colNames:['No','Pic Code','Picture','Product Code','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng','Pic Id',''],
                     colModel:[
-                        {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10},search:false},
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'picPath',index:'picPath', align:"center",width:80,editable:false, edittype: 'image',formatter:function(cellvalue, options, rowObject){return "<img src=\"../"+cellvalue+"\" width=\"50\" height=\"50\" alt=\"Bottom_texture\"/>"}},
                         {name:'productCode',index:'productCode', align:"center",width:110,editable:true,editoptions:{size:10},editrules:{required:true}},

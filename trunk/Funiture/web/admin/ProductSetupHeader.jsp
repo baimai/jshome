@@ -34,11 +34,11 @@
                     datatype: "xml",
                     colNames:['No','Pic Code', 'Menu Name Th','Menu Name En','',''],
                     colModel:[
-                        {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10},search:false},
+                        {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true},search:false},
                         {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},                      
-                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductSetup.jsp?picCode="+cellvalue+"\" >Edit</a>"}},
+                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductSetup.jsp?picCode="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
                     ]
                     ,

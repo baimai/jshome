@@ -84,24 +84,28 @@
                             <tbody>
                                 <c:forEach var="pic" items="${picProductList}" varStatus="counter">
                                     <tr>
-                                            <td align="center" >${pic.picCode}</td>
-                                            <td align="center" >${pic.menuDetailMasterEntity.menuCNameT}</td>
-                                            <td align="center" >${pic.menuDetailMasterEntity.menuCNameE}</td>
-                                            <td align="center" >${pic.productDetailMasterEntity.productDNameT}</td>
-                                            <td align="center" >${pic.productDetailMasterEntity.productDNameE}</td>
-                                            <td align="center" ><input type="text" value="${pic.picSeq}" style="width:30px;text-align: right;" disabled/></td>
-                                            <td align="center" style="background-color:navajowhite">
-                                                <div>
-                                                    <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picCode=${pic.picCode}">   <img src="../images/icon/Up.png" width="22" height="22" alt="Up"/> </a>
-                                                </div>
-                                                <div>
-                                                    <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picCode=${pic.picCode}">  <img src="../images/icon/down.png" width="22" height="22" alt="Up"/> </a>
-                                                </div>
-                                            </td>
+                                        <td align="center" >${pic.picCode}</td>
+                                        <td align="center" >${pic.menuDetailMasterEntity.menuCNameT}</td>
+                                        <td align="center" >${pic.menuDetailMasterEntity.menuCNameE}</td>
+                                        <td align="center" >${pic.productDetailMasterEntity.productDNameT}</td>
+                                        <td align="center" >${pic.productDetailMasterEntity.productDNameE}</td>
+                                        <td align="center" ><input type="text" value="${pic.picSeq}" style="width:30px;text-align: right;" disabled/></td>
+                                        <td align="center" style="background-color:navajowhite">
+                                            <div>
+                                                <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picCode=${pic.picCode}">   <img src="../images/icon/arrow-up-blue.png" width="22" height="22" alt="Up"/> </a>
+                                            </div>
+                                            <div>
+                                                <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picCode=${pic.picCode}">  <img src="../images/icon/arrow-down-blue.png" width="22" height="22" alt="Up"/> </a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
+                        <form action="seqProductSetup.do" >
+                            <input type="submit" name="action" value="saveSeq" />
+                        </form>
+                        <br/><br/><br/>
                     </center>
 
                 </div>

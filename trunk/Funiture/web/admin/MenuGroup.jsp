@@ -38,7 +38,7 @@
                     datatype: "xml",
                     colNames:['No','Menu Name TH', 'Menu Name En', 'Permission','showList','LoginSts','menuGRemarkT','menuGRemarkE','menuGroupId','menuGPicLoc' ],
                     colModel:[
-                        {name:'No',index:'No', width:50,align:"right",editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'No',index:'No', width:50,align:"right",editable:false,editoptions:{readonly:true,size:10},search:false},
                         {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:25}},
                         {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:25}},
                         {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'U':'U','N':'N'}}},

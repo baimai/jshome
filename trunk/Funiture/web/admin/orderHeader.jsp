@@ -63,7 +63,7 @@
                         {name:'orderId',index:'orderId', width:80,align:"right"},
                         {name:'name',index:'name', width:225, align:"center"},
                         {name:'orderStatus',index:'orderStatus', width:100, align:"center"},
-                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"orderDetail.jsp?orderId="+cellvalue+"\" >Edit</a>"}}
+                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"orderDetail.jsp?orderId="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                         
                     ],
                     rowNum:10,

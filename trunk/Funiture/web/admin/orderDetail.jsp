@@ -61,10 +61,9 @@
             jQuery("#rowed1").jqGrid({
                 url:'xmlOrderMaster.do?action=fetchData&rows=3&page=1&q=2&orderId=${param.orderId}',
                 datatype: "xml",
-                colNames:['Order ID','Product ID','Product Name', 'Volumn', 'Cost','Amount'],
+                colNames:['Product Code','Product Name', 'Volumn', 'Cost','Amount'],
                 colModel:[
-                    {name:'orderId',index:'orderId',editoptions:"", width:80,align:"center"},
-                    {name:'productId',index:'productId', width:100,align:"right"},
+                    {name:'productCode',index:'productCode', width:120,align:"right"},
                     {name:'productDNameE',index:'productDNameE', width:200,align:"center"},
                     {name:'volumn',index:'volumn', width:90, align:"center"},
                     {name:'cost',index:'cost', width:130, align:"center"},
@@ -116,7 +115,7 @@
                                                 
                                                 <h2>วันที่ : ${order.order_date} เวลา : ${order.order_time}</h2>
                                                
-                                                <h2>สถานะ :
+                                                <h2>สถานะ 
                                                     <form action="manageOrder.do">
                                                         <select name="orderStatus" style="color: blue;">
                                                             <c:if test="${order.order_status == 'Y'}">
@@ -155,9 +154,10 @@
                                                  </div>
                                             </div>
                                         </div>
-                                       
+                                                 <center>
                                         <table id="rowed1"></table>
                                         <div id="prowed1"></div>
+                                                 </center>
                                         <br>
                                         <table align="right" width="100%" border="0">
                                             <tr>
