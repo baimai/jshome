@@ -50,6 +50,7 @@ public class orderDetailMasterTable {
             for (int i = 0; i < result.size(); i++) {
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 pdm.setProductDNameE(Default.Str(result.get(i).get("Product_D_Name_E")));
+                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 orderDetailMasterEntity odm2 = new orderDetailMasterEntity();
                 odm2.setOrderId((Integer) result.get(i).get("Order_Id"));
                 odm2.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
