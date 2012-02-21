@@ -23,7 +23,11 @@ import javazoom.upload.UploadFile;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.productDetailMasterEntity;
+import model.entity.stockMasterEntity;
+import model.entity.unitMasterEntity;
 import model.productDetailMasterTable;
+import model.stockMasterTable;
+import model.unitMasterTable;
 
 /**
  *
@@ -60,6 +64,10 @@ public class productDetail extends HttpServlet {
                         productDetailMasterTable pdmt = new productDetailMasterTable(db);
                         companyMasterTable cmt = new companyMasterTable(db);
                         productDetailMasterEntity pdm = new productDetailMasterEntity();
+                        stockMasterTable smt = new stockMasterTable(db);
+                        stockMasterEntity sm = new stockMasterEntity();
+                        unitMasterTable umt = new unitMasterTable(db);
+                        unitMasterEntity um = new unitMasterEntity();
                         int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
@@ -85,10 +93,10 @@ public class productDetail extends HttpServlet {
                         u.store(mr, "upload");
 
 
-                        if (upFile.getFileName() != null ) {
-                            if (mr.getParameter("uploadtmp") != null &&upFile.getFileName().equals("")) {
+                        if (upFile.getFileName() != null) {
+                            if (mr.getParameter("uploadtmp") != null && upFile.getFileName().equals("")) {
                                 pdm.setProductDPicLoc(mr.getParameter("uploadtmp"));
-                            }else if (!upFile.getFileName().equals("")){
+                            } else if (!upFile.getFileName().equals("")) {
                                 pdm.setProductDPicLoc("upload/picture" + "/" + upFile.getFileName());
                             }
                         }
@@ -109,7 +117,8 @@ public class productDetail extends HttpServlet {
                         }
                         if (mr.getParameter("productDetailId") != null && !mr.getParameter("productDetailId").equals("")) {
                             pdm.setProductDetailId(Integer.parseInt(mr.getParameter("productDetailId")));
-                        }                        
+                            sm.setProductDetailId(Integer.parseInt(mr.getParameter("productDetailId")));
+                        }
                         if (mr.getParameter("price1") != null && !mr.getParameter("price1").equals("")) {
                             pdm.setProductPrice1(BigDecimal.valueOf(Double.parseDouble(mr.getParameter("price1"))));
                         }
@@ -173,14 +182,28 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("display") != null && !mr.getParameter("display").equals("")) {
                             pdm.setProductDDisplayFlag(mr.getParameter("display"));
                         }
+                        if (mr.getParameter("qty") != null && !mr.getParameter("qty").equals("")) {
+                            sm.setQuantity(Integer.parseInt(mr.getParameter("qty")));
+                        }
                         pdm.setCompanyId(Company_Id);
                         pdm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        if (mr.getParameter("action").equals("Add")) {                            
+                        sm.setCreateDate(Timestamp.valueOf(db.getNow()));
+                        sm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                        sm.setCompanyId(Company_Id);
+                        sm.setUnitId(Integer.parseInt(mr.getParameter("unitId")));
+                        if (mr.getParameter("action").equals("Add")) {
                             pdmt.add(pdm);
+                            sm.setProductDetailId(pdmt.getProductId(pdm));
+                            smt.add(sm);
                         }
-                        if (mr.getParameter("action").equals("Edit")) {                            
+                        if (mr.getParameter("action").equals("Edit")) {
                             pdmt.update(pdm);
+                            if(smt.getAvailable(sm)==false){
+                                smt.add(sm);
+                            }else {
+                                smt.update(sm);
+                            }
                         }
                         if (mr.getParameter("action").equals("Del")) {
                             pdmt.remove(pdm);

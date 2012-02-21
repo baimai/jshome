@@ -117,7 +117,7 @@ public class xmlOrderMaster extends HttpServlet {
                     xml.setRecords(listp.size());
                     for (int i = 0; i < listp.size(); i++) {
                         orderDetailMasterEntity data = (orderDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(i,data.getOrderId(),data.getProductDetailId(),
+                        xml.setRowDetail(i,data.getProductDetailMasterEntity().getProductCode(),
                                 data.getProductDetailMasterEntity().getProductDNameE(),
                                 data.getProductVolumn(), data.getProductCost(),data.getProductAmount());
                     }

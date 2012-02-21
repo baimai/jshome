@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.picProductSetupEntity;
+import model.entity.productDetailMasterEntity;
 import model.picProductSetupTable;
 import model.productDetailMasterTable;
 
@@ -40,6 +41,7 @@ public class productSetup extends HttpServlet {
                 Database db = new Database();
                 picProductSetupTable mpst = new picProductSetupTable(db);
                 productDetailMasterTable pdmt = new productDetailMasterTable(db);
+                productDetailMasterEntity pdm = new productDetailMasterEntity();
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 picProductSetupEntity mps = new picProductSetupEntity();
                 if (request.getParameter("picCode") != null) {
@@ -50,7 +52,9 @@ public class productSetup extends HttpServlet {
                 }
                 mps.setCompanyId(Company_Id);
                 if (request.getParameter("productCode") != null) {
-                    int i = pdmt.getProductId(request.getParameter("productCode"), Company_Id);
+                    pdm.setProductCode(request.getParameter("productCode"));
+                    pdm.setCompanyId(Company_Id);
+                    int i = pdmt.getProductId(pdm);
                     if (i != 0) {
                         mps.setProductDetailId(i);
                     }
