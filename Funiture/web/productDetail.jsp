@@ -110,13 +110,13 @@
                                                             <c:if test="${product.product_price3!=null && product.product_price3!=''}">
                                                                 <div class="price-box">
                                                                     <span class="regular-price" id="product-price-166">
-                                                                        <span class="price">ราคา : ฿<fmt:formatNumber value=" ${product.product_price3}" type="number" pattern="###,###,##0.00" />(ขายปลีก)</span></span>
+                                                                        <span class="price">ราคา : ฿ <fmt:formatNumber value=" ${product.product_price3}" type="number" pattern="###,###,##0.00" />(ขายปลีก)</span></span>
                                                                 </div>
                                                             </c:if>
                                                             <c:if test="${product.product_price4!=null && product.product_price4!=''}">
                                                                 <div class="price-box">
                                                                     <span class="regular-price" id="product-price-166">
-                                                                        <span class="price">ราคา : ฿<fmt:formatNumber value="${product.product_price4}" type="number" pattern="###,###,##0.00" />(ขายปลีก,ส่วนลด)</span></span>
+                                                                        <span class="price">ราคา : ฿ <fmt:formatNumber value="${product.product_price4}" type="number" pattern="###,###,##0.00" />(ขายปลีก,ส่วนลด)</span></span>
 
                                                                 </div>
                                                             </c:if>
