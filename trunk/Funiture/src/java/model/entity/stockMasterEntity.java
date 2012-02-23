@@ -21,7 +21,7 @@ public class stockMasterEntity {
     private Timestamp updateDate;
     private String userId;
     private int unitId;
-
+    private Timestamp receiveDate;
     /**
      * @return the productDetailId
      */
@@ -134,17 +134,19 @@ public class stockMasterEntity {
         this.unitId = unitId;
     }
 
+
     /**
-     * @return the Receive_Date
+     * @return the receiveDate
      */
-    public Timestamp getReceive_Date() {
-        return Receive_Date;
+    public Timestamp getReceiveDate() {
+        return receiveDate;
     }
 
     /**
-     * @param Receive_Date the Receive_Date to set
+     * @param receiveDate the receiveDate to set
      */
-    public void setReceive_Date(Timestamp Receive_Date) {
-        this.Receive_Date = Receive_Date;
+    public void setReceiveDate(Timestamp receiveDate) {
+        this.receiveDate = receiveDate;
     }
+
 }
