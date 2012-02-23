@@ -39,9 +39,10 @@ order by mg.Menu_Group_Id
                 <c:if test="${sessionScope.loginDetail==null}">ยินดีต้อนรับ ลูกค้า</c:if>
             </div>
             <div class="shop-access"><ul class="links">
-            <li class="first" ><a href="#" title="My Account" >My Account</a></li>
+            <c:if test="${sessionScope.loginDetail!=null}"><li class="first" ><a href="profile.jsp" title="My Account" >My Account</a></li></c:if>
         
             <li ><a href="#" title="My Cart" class="top-link-cart">My Cart (${itemNum} item)</a></li>
+            <li ><a href="forgetPassword.jsp" title="My Cart" class="top-link-cart">forgot password</a></li>
             <li ><a href="cartDetail.jsp" title="Checkout" class="top-link-checkout">Checkout</a></li>
             <li class=" last" >
                 <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >Log Out</a></c:if>
