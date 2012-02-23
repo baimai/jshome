@@ -1,8 +1,10 @@
-<%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
+<%-- 
+    Document   : userSecurity
+    Created on : Feb 22, 2012, 2:22:21 PM
+    Author     : baimai
 --%>
+
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -34,21 +36,24 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlMemberMaster.do?action=fetchData&rows=3&page=1&q=2',
+                    url:'xmlUserSecurity.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','memberGradeId' ],
+                    colNames:['No','ชื่อเข้าใช้','รหัสผ่าน','ชื่อภาษาไทย ', 'ชื่อภาษาอังกฤษ ','ระดับ','สถานะ','วันที่อนุมัติ','วันที่หยุดใช้งาน' ],
                     colModel:[
-                        {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'memberGrade',index:'memberGrade', width:80,editable:true,editoptions:{size:10}},
-                        {name:'gradeNameT',index:'gradeNameT', width:100,editable:true,editoptions:{size:25}},
-                        {name:'gradeNameE',index:'gradeNameE', width:100,editable:true,editoptions:{size:25}},
-                        {name:'discountRate',index:'discountRate', width:100,editable:true,editoptions:{size:25}},
-                        {name:'paymentTerm',index:'paymentTerm', width:100,editable:true,editoptions:{size:25}},
-                        {name:'memberGradeId',index:'memberGradeId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
+                        {name:'No',index:'No', width:30,editable:false,editoptions:{readonly:true,size:5},search:false},
+                        {name:'userId',index:'userId', width:80,editable:true,editoptions:{size:10}},
+                        {name:'userPassword',index:'userPassword', hidden:true,editrules:{ edithidden:true},editable:true,edittype:"password",editoptions:{size:10}},
+                        {name:'userNameT',index:'userNameT', width:88,editable:true,editoptions:{size:15}},
+                        {name:'userNameE',index:'userNameE', width:88,editable:true,editoptions:{size:15}},
+                        {name:'userAuthoritySts',index:'userAuthoritySts', width:88,editable:true,edittype:'select',editoptions:{value:{'A':'Admin','U':'User'}}},
+                        {name:'userAliveSts',index:'userAliveSts', width:88,editable:true,edittype:'select',editoptions:{value:{'A':' Active','I':' Inactive'}}},
+                        {name:'approvedDate',index:'approvedDate', width:88,editrules:{ edithidden:true},editable:false},
+                        {name:'holdDate',index:'holdDate', width:88,editrules:{ edithidden:true},editable:false}
+
 
 
                     ],
-                    rowNum:20,
+                    rowNum:10,
                     height:400,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
@@ -56,7 +61,7 @@
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"Search Example",
-                    editurl:"memberGradeMaster.do"
+                    editurl:"userSecurity.do"
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
@@ -67,7 +72,7 @@
                     delData:{action:"Del",
                         colorId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'memberGradeId');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'userId');
                             return value;
                         }}}, // del options
                 {} // search options
@@ -98,7 +103,7 @@
                                 <div class="col-main">
                                     <div class="account-create">
                                         <div class="page-title">
-                                            <h1>ประเภทสมาชิก</h1>
+                                            <h1>ข้อมูลผู้ใช้</h1>
                                         </div>
                     <center>
                         <table id="rowed1"></table>
@@ -118,3 +123,4 @@
         <p class="art-page-footer"></p>
     </body>
 </html>
+

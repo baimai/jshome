@@ -30,7 +30,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
 </head>
 
 <body>
-<div><img src="images/head.jpg" width="900" height="100"/> </div>
+<div><img src="images/head.jpg" width="100%" height="100"/> </div>
    
 
 
@@ -68,7 +68,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
         <li><a href="#"class="parent"><span>จัดการสมาชิก</span></a>
         <div><ul>
                         <li><a href="Member.jsp"><span>ข้อมูลสมาชิก</span></a></li>
-                        <li><a href="#"><span>รายละเอียดสมาชิก</span></a></li>
+                        <li><a href="MemberGrade.jsp"><span>ประเภทสมาชิก</span></a></li>
                     </ul></div></li>
         <li class="last"><a href="#"><span>จัดการใบสั่งซื้อ</span></a>
             <div>
@@ -78,7 +78,7 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
             </div>
 
         </li>
-        <li class="last"><a href="#"><span>จัดการผู้ใช้</span></a></li>
+        <li class="last"><a href="userSecurity.jsp"><span>จัดการผู้ใช้</span></a></li>
   </ul>
 </div>
    
