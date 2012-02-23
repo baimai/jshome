@@ -55,7 +55,8 @@ public class login extends HttpServlet {
             if (request.getParameter("memberPassword") != null) {
                 mm.setMemberPassword(request.getParameter("memberPassword"));
             }
-            ArrayList list = mmt.chkUserPass(mm, Company_Id);
+            mm.setCompanyId(Company_Id);
+            ArrayList list = mmt.chkUserPass(mm);
             db.close();
             if (list != null) {
                 memberMasterEntity data = (memberMasterEntity) list.get(0);
