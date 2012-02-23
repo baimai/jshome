@@ -43,7 +43,11 @@ public class companyMasterEntity {
      private Timestamp updateDate;
     private int companyId;
     private String userId;
-
+    private String companyHeaderLoc;
+    private String companyCatalogLoc;
+    private String showStockBalanceFlag;
+    private String showPriceListFlag;
+    private String showOrderFlag;
     /**
      * @return the companyCode
      */
@@ -494,5 +498,75 @@ public class companyMasterEntity {
      */
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
+    }
+
+    /**
+     * @return the companyHeaderLoc
+     */
+    public String getCompanyHeaderLoc() {
+        return companyHeaderLoc;
+    }
+
+    /**
+     * @param companyHeaderLoc the companyHeaderLoc to set
+     */
+    public void setCompanyHeaderLoc(String companyHeaderLoc) {
+        this.companyHeaderLoc = companyHeaderLoc;
+    }
+
+    /**
+     * @return the companyCatalogLoc
+     */
+    public String getCompanyCatalogLoc() {
+        return companyCatalogLoc;
+    }
+
+    /**
+     * @param companyCatalogLoc the companyCatalogLoc to set
+     */
+    public void setCompanyCatalogLoc(String companyCatalogLoc) {
+        this.companyCatalogLoc = companyCatalogLoc;
+    }
+
+    /**
+     * @return the showStockBalanceFlag
+     */
+    public String getShowStockBalanceFlag() {
+        return showStockBalanceFlag;
+    }
+
+    /**
+     * @param showStockBalanceFlag the showStockBalanceFlag to set
+     */
+    public void setShowStockBalanceFlag(String showStockBalanceFlag) {
+        this.showStockBalanceFlag = showStockBalanceFlag;
+    }
+
+    /**
+     * @return the showPriceListFlag
+     */
+    public String getShowPriceListFlag() {
+        return showPriceListFlag;
+    }
+
+    /**
+     * @param showPriceListFlag the showPriceListFlag to set
+     */
+    public void setShowPriceListFlag(String showPriceListFlag) {
+        this.showPriceListFlag = showPriceListFlag;
+    }
+
+    /**
+     * @return the showOrderFlag
+     */
+    public String getShowOrderFlag() {
+        return showOrderFlag;
+    }
+
+    /**
+     * @param showOrderFlag the showOrderFlag to set
+     */
+    public void setShowOrderFlag(String showOrderFlag) {
+        this.showOrderFlag = showOrderFlag;
     }
 }
