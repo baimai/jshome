@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
+import model.entity.memberMasterEntity;
 import model.memberMasterTable;
 
 /**
@@ -36,13 +37,16 @@ public class chkValidate extends HttpServlet {
         try {
             Database db = new Database();
             memberMasterTable mmt = new memberMasterTable(db);
+            memberMasterEntity mm = new memberMasterEntity();
             companyMasterTable cmt = new companyMasterTable(db);
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
             if (request.getParameter("memberLogin") != null) {
                 if (request.getParameter("memberLogin").equals("")) {
                     out.print("กรุณากรอกข้อมูลล็อกอิน");
                 } else {
-                    Boolean chk = mmt.chkMemberLogin(request.getParameter("memberLogin"),Company_Id);
+                    mm.setMemberLogin(request.getParameter("memberLogin"));
+                    mm.setCompanyId(Company_Id);
+                    Boolean chk = mmt.chkMemberLogin(mm);
                     if (request.getParameter("memberLogin").length() <= 6) {
                         out.print("จำนวนตัวอักษรต้องมากกว่า6");
                     } else {
