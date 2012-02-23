@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package controller;
 
 import controller.Xml.GenerateXml;
@@ -13,19 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.companyMasterTable;
-import model.entity.memberGradeMasterEntity;
-import model.entity.memberMasterEntity;
-//import model.memberGradeMasterTable;
-import model.memberGradeMasterTable;
-import model.memberMasterTable;
+import model.entity.userSecurityEntity;
+import model.userSecurityTable;
 
 /**
  *
- * @author Baimai
+ * @author baimai
  */
-public class xmlMemberMaster extends HttpServlet {
-
+public class xmlUserSecurity extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -34,33 +31,19 @@ public class xmlMemberMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-            if (request.getParameter("action").equals("fetchData")) {
+           if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
                 String status = request.getParameter("status");
                 String rows = request.getParameter("rows");
                 String page = request.getParameter("page");
-                String memberGradeId = null, Edit = null, Del = null;
+
                 String sField = null, sValue = null, sOper = null;
-                /*
-                if (request.getParameter("menuCode") != null ) {
-                menuCode = request.getParameter("menuCode");
-                }
-                 */
-                if (request.getParameter("memberGradeId") != null) {
-                    memberGradeId = request.getParameter("memberGradeId");
-                }
-                if (request.getParameter("Edit") != null) {
-                    Edit = request.getParameter("Edit");
-                }
-                if (request.getParameter("Del") != null) {
-                    Del = request.getParameter("Del");
-                }
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
                 }
@@ -86,12 +69,8 @@ public class xmlMemberMaster extends HttpServlet {
                 }
 
                 Database db = new Database();
-                memberMasterTable mbt = new memberMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                memberGradeMasterTable mgt = new memberGradeMasterTable(db);
-                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = mgt.search(sField, sValue, sOper, Company_Id);
-                ArrayList list = mbt.search(sField, sValue, sOper, Company_Id);
+                userSecurityTable ust = new userSecurityTable(db);
+                ArrayList list = ust.search(sField, sValue, sOper);
                 db.close();
                 if (request.getParameter("q").equals("1")) {
                     GenerateXml xml = new GenerateXml();
@@ -99,40 +78,14 @@ public class xmlMemberMaster extends HttpServlet {
                     xml.setPage(request.getParameter("page"));
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
-                        memberMasterEntity data = (memberMasterEntity) list.get(i);
-                        String statusFull = null;
-                        if (data.getMemberStatus() == null || data.getMemberStatus().equals("N") || data.getMemberStatus().equals("")) {
-                            statusFull = "InActive";
-                        } else if (data.getMemberStatus().equals("Y")) {
-                            statusFull = "Active";
-                        } else if (data.getMemberStatus().equals("B")) {
-                            statusFull = "Ban";
-                        }
-                        xml.setRowDetail(data.getMemberId(), i + 1, data.getMemberName(), data.getMemberSurName(),
-                                data.getMemberComName(),
-                                statusFull,
-                                data.getMemberRegDate(),
-                                data.getMemberAppdate(),
-                                data.getMemberId(),
-                                data.getMemberId());
+                        userSecurityEntity data = (userSecurityEntity) list.get(i);
+                        xml.setRowDetail(data.getUserId(),i+1,data.getUserId(),data.getUserPassword(),
+                       data.getUserNameT(),data.getUserNameE(),data.getUserAuthoritySts()
+                      ,data.getUserAliveSts(),data.getApprovedDate(),data.getHoldDate());
                     }
                     out.print(xml.getXml());
-                } else if (request.getParameter("q").equals("2")) {
-                    GenerateXml xml = new GenerateXml();
-                    xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(listp.size());
-                    for (int i = 0; i < listp.size(); i++) {
-                        memberGradeMasterEntity data = (memberGradeMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getMemberGradeId(), i + 1, data.getMemberGrade(), data.getGradeNameT(),
-                                data.getGradeNameE(), data.getDiscountRate(), data.getPaymentTerm());
-
-                    }
-                    out.print(xml.getXml());
-                }
-
+               }
             }
-
         } catch (Exception ex) {
             ex.printStackTrace(out);
         } finally {
@@ -150,9 +103,9 @@ public class xmlMemberMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -163,7 +116,7 @@ public class xmlMemberMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -175,4 +128,5 @@ public class xmlMemberMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
