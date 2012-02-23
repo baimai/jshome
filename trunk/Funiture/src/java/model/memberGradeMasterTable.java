@@ -25,7 +25,7 @@ public class memberGradeMasterTable {
      }
      public void add(memberGradeMasterEntity mgm){
           String sql = "insert into Member_Grade_Master "
-                  + "( Member_Grade_Id,Company_Id,Member_Grade,Grade_name_t,Grade_name_e"
+                  + "( Member_Grade_Id,Company_Id,Member_Grade,Grade_name_t,Grade_name_e,"
                   + "Discount_Rate,payment_term,Create_date,user_id)"
                   + "values(?,?,?,?,?,?,?,?,?)"  ;
            db.add(sql,
@@ -42,7 +42,7 @@ public class memberGradeMasterTable {
      public void update(memberGradeMasterEntity mgm){
           String sql = "update Member_Grade_Master set  Company_Id=?,Member_Grade=?,"
                   + " Grade_name_t=? ,Grade_name_e=?,Discount_Rate=?,payment_term=?,"
-                  + "Update_date=?,user_id=?"
+                  + " Update_date=?,user_id=?"
                   + "  where Member_Grade_Id=? ";
            db.add(sql,
                    mgm.getMemberGradeId(),
@@ -74,11 +74,11 @@ public class memberGradeMasterTable {
             for (int i = 0; i < result.size(); i++) {
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
                 mgm.setMemberGrade(Default.Str(result.get(i).get("Member_Grade")));
-                mgm.setGradeNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
-                mgm.setGradeNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
-                mgm.setDiscountRate(Default.BigDecimal(result.get(i).get("Product_Amount")));
-                mgm.setPaymentTerm((Integer)result.get(i).get("Product_Amount"));
-                mgm.setMemberGradeId((Integer)result.get(i).get("Company_Code"));
+                mgm.setGradeNameT(Default.Str(result.get(i).get("Grade_name_t")));
+                mgm.setGradeNameE(Default.Str(result.get(i).get("Grade_name_e")));
+                mgm.setDiscountRate(Default.BigDecimal(result.get(i).get("Discount_Rate")));
+                mgm.setPaymentTerm((Integer)result.get(i).get("Payment_Term"));
+                mgm.setMemberGradeId((Integer)result.get(i).get("Member_Grade_Id"));
                 list.add(mgm);
             }
             return list;
@@ -87,5 +87,14 @@ public class memberGradeMasterTable {
         }
 
     }
+public Integer getMemberGradeId(String memberGradeId, int Company_Id) {
+        String sql = "select * from member_grade_master mbg where mbg.Member_Grade_Id = ? and mbg.Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, memberGradeId, Company_Id);
+        if (!result.isEmpty()) {
+            return (Integer) result.get(0).get("Member_Grade_Id");
+        } else {
+            return 0;
+        }
 
+    }
 }

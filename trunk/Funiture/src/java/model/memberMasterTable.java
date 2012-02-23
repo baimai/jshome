@@ -181,9 +181,9 @@ public class memberMasterTable {
             return null;
         }
     }
-    public Integer getMemberGradeId(String memberGrade, int Company_Id) {
-        String sql = "select * from member_grade_master mbg where mbg.Member_Grade = ? and mbg.Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberGrade, Company_Id);
+    public Integer getMemberGradeId(String memberGradeId, int Company_Id) {
+        String sql = "select * from member_grade_master mbg where mbg.Member_Grade_Id = ? and mbg.Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, memberGradeId, Company_Id);
         if (!result.isEmpty()) {
             return (Integer) result.get(0).get("Member_Id");
         } else {
