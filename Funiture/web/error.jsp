@@ -29,7 +29,7 @@
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
                     <jsp:include page="slide.jsp"/>
-
+                    <center>
                     <table width="800" align="center" >
                         <tr  style="vertical-align:text-top">
                             <td width="180px" ><h2>Eror Code</h2></td>
@@ -71,7 +71,7 @@
                             <tr><td>&nbsp;<td><td>&nbsp;<td></tr>
                             <tr><td>&nbsp;<td><td>&nbsp;<td></tr>
                     </table>
-
+                    </center>
 
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
