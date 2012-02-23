@@ -117,7 +117,8 @@ public class picProductSetupTable {
         String sql = "select * from pic_product_setup pps"
                 + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "
                 + " join menu_detail_master mdm on mdm.pic_code = pps.pic_code "
-                + " where pps.pic_code = ? and pps.company_id = ?"
+                + " where pps.pic_code = ? and pps.company_id = ? "
+                + " and (case when pps.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end )"
                 + " order by pps.pic_code,pps.pic_seq desc ";
         List<Map<String, Object>> result = db.queryList(sql,pps.getPicCode(),pps.getCompanyId());
         ArrayList list = new ArrayList();

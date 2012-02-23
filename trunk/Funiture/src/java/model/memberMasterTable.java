@@ -69,19 +69,16 @@ public class memberMasterTable {
 
     public void update(memberMasterEntity mb) {
         String sql = "update member_master set "
-                + "  Member_Login=?,Member_Password=?,Member_Reg_Date=?,Member_Name=?,"
+                + "  Member_Name=?,"
                 + "  Member_SurName=?,Member_Com_Name=?,Member_Name_Abbr=?,Member_Addr1=?,"
                 + "  Member_Addr2=?,Member_Distinct=?,Member_Amphur=?,Member_Province=?,"
                 + "  Member_Pstcode=?,Member_Tel1=?,Member_Tel2=?,Member_Fax1=?,"
                 + "  Member_Fax2=?,Member_Mobile1=?,Member_Mobile2=?,Member_Email1=?,"
                 + "  Member_Email2=?,Member_Grade=?,Member_logo_loc=?,Member_Status=?,"
-                + "  Member_App_Date=?,Create_Date=? "
+                + "  Update_Date=? "
                 + "  where Member_Id = ? ";
 
         db.add(sql,
-                mb.getMemberLogin(),
-                mb.getMemberPassword(),
-                mb.getMemberRegDate(),
                 mb.getMemberName(),
                 mb.getMemberSurName(),
                 mb.getMemberComName(),
@@ -103,14 +100,19 @@ public class memberMasterTable {
                 mb.getMemberGrade(),
                 mb.getMemberlogoloc(),
                 mb.getMemberStatus(),
-                mb.getMemberAppdate(),
-                mb.getCreateDate(),
+                mb.getUpdateDate(),
                 mb.getMemberId());
     }
     public void adminUpdate(memberMasterEntity mb){
-        String sql = " update member_master set member_status = ?"+
+        String sql = " update member_master set member_status = ?,member_app_date = ?"+
                      " where Member_Id = ?";
-        db.add(sql,mb.getMemberStatus(),mb.getMemberId());
+        db.add(sql,mb.getMemberStatus(),mb.getMemberAppdate(),mb.getMemberId());
+    }
+
+    public void editPassword(memberMasterEntity mb){
+        String sql = " update member_master set member_password = ?,Update_Date = ?"+
+                     " where Member_Id = ?";
+        db.add(sql,mb.getMemberPassword(),mb.getUpdateDate(),mb.getMemberId());
     }
 
     public ArrayList search(String sField, String sValue, String sOper,int Company_Id) {
@@ -143,9 +145,9 @@ public class memberMasterTable {
 
     }
 
-    public Integer getMemberId(String memberLogin,int Company_Id) {
+    public Integer getMemberId(memberMasterEntity mm) {
         String sql = "select * from member_master where member_login = ? and Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberLogin,Company_Id);
+        List<Map<String, Object>> result = db.queryList(sql,mm.getMemberLogin(),mm.getCompanyId());
         if (!result.isEmpty()) {
             return (Integer) result.get(0).get("Member_Login");
         } else {
@@ -153,9 +155,9 @@ public class memberMasterTable {
         }
     }
 
-    public Boolean chkMemberLogin(String memberLogin,int Company_Id) {
+    public Boolean chkMemberLogin(memberMasterEntity mm) {
         String sql = "select * from member_master where member_login = ? and Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberLogin,Company_Id);
+        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(),mm.getCompanyId());
         if (result.isEmpty()) {
             return false;
         } else {
@@ -163,9 +165,9 @@ public class memberMasterTable {
         }
     }
 
-    public ArrayList chkUserPass(memberMasterEntity mm,int Company_Id) {
+    public ArrayList chkUserPass(memberMasterEntity mm) {
         String sql = "select * from member_master where member_login = ? and member_password = ? and Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword(),Company_Id);
+        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword(),mm.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             memberMasterEntity mb = new memberMasterEntity();
@@ -190,5 +192,22 @@ public class memberMasterTable {
             return 0;
         }
 
+    }
+    public ArrayList getProvince(memberMasterEntity mm){
+        String sql = " select * "+
+                     " from member_master mm  "+
+                     " where mm.member_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql,mm.getMemberId());
+        ArrayList list = new ArrayList();
+         if (!result.isEmpty()) {
+             memberMasterEntity mm2 = new memberMasterEntity();
+             mm2.setMemberProvince(Default.Str(result.get(0).get("Member_Province")));
+             mm2.setMemberAmphur(Default.Str(result.get(0).get("Member_Amphur")));
+             mm2.setMemberDistinct(Default.Str(result.get(0).get("Member_Distinct")));
+             list.add(mm2);
+             return list;
+         }else {
+            return null;
+         }
     }
 }
