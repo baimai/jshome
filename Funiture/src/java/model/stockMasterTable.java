@@ -21,15 +21,15 @@ public class stockMasterTable {
     }
 
     public void add(stockMasterEntity sb) {
-        String sql = "insert into stock_master (Company_Id,Product_Detail_id,quantity,Create_date,User_id,Unit_Id) "
-                   + "value (?,?,?,?,?,?)";
+        String sql = "insert into stock_master (Company_Id,Product_Detail_id,quantity,Create_date,User_id,Unit_Id,Receive_Date) "
+                   + "value (?,?,?,?,?,?,?)";
         db.add(sql, sb.getCompanyId(), sb.getProductDetailId(), sb.getQuantity(),
-                sb.getCreateDate(), sb.getUserId(), sb.getUnitId());
+                sb.getCreateDate(), sb.getUserId(), sb.getUnitId(),sb.getReceiveDate());
     }
 
     public void update(stockMasterEntity sb) {
-        String sql = "update stock_master set quantity = ?,update_date = ? where product_detail_id = ?";
-        db.add(sql, sb.getQuantity(),sb.getUpdateDate(), sb.getProductDetailId());
+        String sql = "update stock_master set quantity = ?,update_date = ?,Receive_Date = ? where product_detail_id = ?";
+        db.add(sql, sb.getQuantity(),sb.getUpdateDate(),sb.getReceiveDate(), sb.getProductDetailId());
     }
 
     public Boolean getAvailable(stockMasterEntity sm) {
