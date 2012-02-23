@@ -9,6 +9,7 @@
 <sql:query var="query2" dataSource="webdb">
     SELECT count(pdm.product_detail_id) as count,pgm.* FROM product_group_master pgm
     left join product_detail_master pdm on pdm.product_group_id = pgm.product_group_id
+    where pgm.product_g_display_flag = 'Y'
     group by product_group_code
     order by product_group_code
 </sql:query>
