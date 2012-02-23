@@ -12,6 +12,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -190,6 +191,7 @@ public class productDetail extends HttpServlet {
                         pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                         sm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         sm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                        sm.setReceiveDate(Timestamp.valueOf(db.getNow()));
                         sm.setCompanyId(Company_Id);
                         sm.setUnitId(Integer.parseInt(mr.getParameter("unitId")));
                         if (mr.getParameter("action").equals("Add")) {
@@ -199,9 +201,9 @@ public class productDetail extends HttpServlet {
                         }
                         if (mr.getParameter("action").equals("Edit")) {
                             pdmt.update(pdm);
-                            if(smt.getAvailable(sm)==false){
+                            if (smt.getAvailable(sm) == false) {
                                 smt.add(sm);
-                            }else {
+                            } else {
                                 smt.update(sm);
                             }
                         }
@@ -209,7 +211,12 @@ public class productDetail extends HttpServlet {
                             pdmt.remove(pdm);
                         }
                         db.close();
-                        response.sendRedirect("ProductDetail.jsp");
+                        if (mr.getParameter("action").equals("Edit")) {
+                            response.sendRedirect("ProductDetail.jsp?productDetailId=" + pdm.getProductDetailId());
+                        } else if (mr.getParameter("action").equals("Add")) {
+                            response.sendRedirect("ProductDetail.jsp");
+                        }
+
                     }
 
                 }
