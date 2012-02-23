@@ -6,22 +6,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.companyMasterTable;
-import model.entity.memberGradeMasterEntity;
-import model.memberGradeMasterTable;
+import model.entity.userSecurityEntity;
+import model.userSecurityTable;
 
 /**
  *
- * @author Jik
+ * @author baimai
  */
-public class memberGradeMaster extends HttpServlet {
+public class userSecurity extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,45 +36,52 @@ public class memberGradeMaster extends HttpServlet {
         try {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
-                memberGradeMasterTable mgt = new memberGradeMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                memberGradeMasterEntity mgm = new memberGradeMasterEntity();
+                
+                userSecurityTable ust = new userSecurityTable(db);
+                userSecurityEntity uss = new userSecurityEntity();
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                mgm.setCompanyId(Company_Id);
+                // out.println("Company_Id"+uss.getCompany_Id());
+                if (request.getParameter("userId") != null && !request.getParameter("userId").equals("")) {
+                    uss.setUserId(request.getParameter("userId"));
+                    out.println("userId"+uss.getUserId());
+                }
+                if (request.getParameter("userPassword") != null) {
+                    uss.setUserPassword(request.getParameter("userPassword"));
+                    out.println("userPassword"+uss.getUserPassword());
+                }
+                if (request.getParameter("userNameT") != null) {
+                    uss.setUserNameT(request.getParameter("userNameT"));
+                }
+                if (request.getParameter("userNameE") != null) {
+                    uss.setUserNameE(request.getParameter("userNameE"));
+                }
+                if (request.getParameter("userAuthoritySts") != null) {
+                    uss.setUserAuthoritySts(request.getParameter("userAuthoritySts"));
+                }
+                if (request.getParameter("userAliveSts") != null) {
+                    uss.setUserAliveSts(request.getParameter("userAliveSts"));
+                }
+                uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
+                
 
-                if (request.getParameter("memberGradeId") != null && !request.getParameter("memberGradeId").equals("")) {
-                    mgm.setMemberGradeId(Integer.parseInt(request.getParameter("memberGradeId")));
+                if (request.getParameter("userAliveSts").equals("A")){
+                    uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
+                }else if (request.getParameter("userAliveSts").equals("I")){
+                    uss.setHoldDate(Timestamp.valueOf(db.getNow()));
                 }
-                if (request.getParameter("memberGrade") != null) {
-                    mgm.setMemberGrade(request.getParameter("memberGrade"));
-                   // out.println("memberGrade>>>"+mgm.getMemberGrade());
-                }
-                if (request.getParameter("gradeNameT") != null) {
-                    mgm.setGradeNameT(request.getParameter("gradeNameT"));
-                     
-                }
-                if (request.getParameter("gradeNameE") != null) {
-                    mgm.setGradeNameT(request.getParameter("gradeNameE"));
-                    
-                }
-                if (request.getParameter("discountRate") != null) {
-                    mgm.setDiscountRate(BigDecimal.valueOf(Double.parseDouble(request.getParameter("discountRate"))));
-                    
-                }
-                if (request.getParameter("paymentTerm") != null) {
-                    mgm.setPaymentTerm(Integer.parseInt(request.getParameter("paymentTerm")));
-                     
-                }
-                mgm.setCreateDate(Timestamp.valueOf(db.getNow()));
-                mgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                
+                
+                uss.setCompanyId(Company_Id);
+                out.println("CompanyId"+uss.getCompanyId());
+                uss.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                uss.setCreateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
-
-                    mgt.add(mgm);
-                    
+                    ust.add(uss);
+                    out.println("add");
                 } else if (request.getParameter("action").equals("Edit")) {
-                    mgt.update(mgm);
+                    ust.update(uss);
                 } else if (request.getParameter("action").equals("Del")) {
-                    mgt.remove(mgm);
+                    ust.remove(uss);
                 }
                 db.close();
             }
@@ -86,9 +91,9 @@ public class memberGradeMaster extends HttpServlet {
             out.close();
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
