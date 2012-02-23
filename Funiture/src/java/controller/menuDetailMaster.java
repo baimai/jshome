@@ -42,7 +42,7 @@ public class menuDetailMaster extends HttpServlet {
                 menuDetailMasterTable mdt = new menuDetailMasterTable(db);
                 menuDetailMasterEntity md = new menuDetailMasterEntity();
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                if (request.getParameter("menuCodeId") != null&& !request.getParameter("menuCodeId").equals("")) {
+                if (request.getParameter("menuCodeId") != null && !request.getParameter("menuCodeId").equals("")) {
                     md.setMenuCodeId(Integer.parseInt(request.getParameter("menuCodeId")));
                 }
                 if (request.getParameter("menuGroupId") != null) {
@@ -57,7 +57,7 @@ public class menuDetailMaster extends HttpServlet {
                 if (request.getParameter("menuModel") != null) {
                     md.setMenuModel(request.getParameter("menuModel"));
                 }
-                if (request.getParameter("menuSeq") != null) {
+                if (request.getParameter("menuSeq") != null && !request.getParameter("menuSeq").equals("")) {
                     md.setMenuSeq(Integer.parseInt(request.getParameter("menuSeq")));
                 }
                 if (request.getParameter("showListSts") != null) {
