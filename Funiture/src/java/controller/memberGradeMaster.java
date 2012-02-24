@@ -67,6 +67,11 @@ public class memberGradeMaster extends HttpServlet {
                     mgm.setPaymentTerm(Integer.parseInt(request.getParameter("paymentTerm")));
                      
                 }
+                if (request.getParameter("memberPriceFlag") != null) {
+                    mgm.setGradeNameT(request.getParameter("memberPriceFlag"));
+
+                }
+
                 mgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {

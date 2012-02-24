@@ -7,10 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Database;
+import model.entity.productDetailMasterEntity;
+import model.entity.stockMasterEntity;
+import model.productDetailMasterTable;
+import model.stockMasterTable;
 
 /**
  *
@@ -29,21 +35,50 @@ public class stockMaster extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet stockMaster</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet stockMaster at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            */
-        } finally { 
+            if (request.getParameter("action") != null) {
+                Database db = new Database();
+                stockMasterTable st = new stockMasterTable(db);
+                productDetailMasterTable pdmt = new productDetailMasterTable(db);
+                productDetailMasterEntity pdm = new productDetailMasterEntity();
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                stockMasterEntity mps = new stockMasterEntity();
+
+                if (request.getParameter("stockId") != null && !request.getParameter("stockId").equals("")) {
+                    mps.setStockId(Integer.parseInt(request.getParameter("stockId")));
+                }
+                mps.setCompanyId(Company_Id);
+                if (request.getParameter("productCode") != null) {
+                    pdm.setProductCode(request.getParameter("productCode"));
+                    pdm.setCompanyId(Company_Id);
+                    int i = pdmt.getProductId(pdm);
+                    if (i != 0) {
+                        mps.setProductDetailId(i);
+                    }
+                }
+
+                if (request.getParameter("quantity") != null) {
+                    mps.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+                }
+                if (request.getParameter("unitId") != null) {
+                    mps.setUnitId(Integer.parseInt(request.getParameter("unitId")));
+                }
+
+                mps.setCreateDate(Timestamp.valueOf(db.getNow()));
+                mps.setUpdateDate(Timestamp.valueOf(db.getNow()));
+               if (request.getParameter("action").equals("save")) {
+                    st.add(mps);
+                }
+
+                db.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace(out);
+        } finally {
             out.close();
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
