@@ -36,7 +36,7 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberMaster.do?action=fetchData&rows=3&page=1&q=2',
                     datatype: "xml",
-                    colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','memberGradeId' ],
+                    colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','ราคา','memberGradeId' ],
                     colModel:[
                         {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10}},
                         {name:'memberGrade',index:'memberGrade', width:80,editable:true,editoptions:{size:10}},
@@ -44,6 +44,7 @@
                         {name:'gradeNameE',index:'gradeNameE', width:100,editable:true,editoptions:{size:25}},
                         {name:'discountRate',index:'discountRate', width:100,editable:true,editoptions:{size:25}},
                         {name:'paymentTerm',index:'paymentTerm', width:100,editable:true,editoptions:{size:25}},
+                        {name:'memberPriceFlag',index:'memberPriceFlag', width:100,editable:true,editoptions:{size:25}},
                         {name:'memberGradeId',index:'memberGradeId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
 
 

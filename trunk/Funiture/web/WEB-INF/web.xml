@@ -120,9 +120,14 @@
         <servlet-name>memberGradeMaster</servlet-name>
         <servlet-class>controller.memberGradeMaster</servlet-class>
     </servlet>
+   
     <servlet>
-        <servlet-name>xmlMemberGradeMaster</servlet-name>
-        <servlet-class>controller.xmlMemberGradeMaster</servlet-class>
+        <servlet-name>userSecurity</servlet-name>
+        <servlet-class>controller.userSecurity</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xmlUserSecurity</servlet-name>
+        <servlet-class>controller.xmlUserSecurity</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
@@ -238,17 +243,22 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>memberGradeMaster</servlet-name>
-        <url-pattern>/admin/memberGradeMaster</url-pattern>
+        <url-pattern>/admin/memberGradeMaster.do</url-pattern>
+    </servlet-mapping>
+  
+    <servlet-mapping>
+        <servlet-name>userSecurity</servlet-name>
+        <url-pattern>/admin/userSecurity.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>xmlMemberGradeMaster</servlet-name>
-        <url-pattern>/admin/xmlMemberGradeMaster</url-pattern>
+        <servlet-name>xmlUserSecurity</servlet-name>
+        <url-pattern>/admin/xmlUserSecurity.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://localhost:3306/webdb</description>
+        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>

@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <sql:query var="query2" dataSource="webdb">
    select * from menu_group_master mg
-where mg.menu_permission='U'
+where mg.menu_permission='C'
 order by mg.Menu_Group_Id
 </sql:query>
 
@@ -62,10 +62,10 @@ order by mg.Menu_Group_Id
                         <ul id="nav">
                             <c:forEach var="topmenu" items="${query2.rows}"> 
                                 <c:if test="${topmenu.Menu_G_Name_T=='หน้าหลัก' || topmenu.Menu_G_Name_E =='Home'}">
-                                    <li id="selected"><a href="${topmenu.Menu_G_Pic_Loc}">${topmenu.Menu_G_Name_T}</a></li>
+                                    <li id="selected"><a href="${topmenu.Menu_G_Icon_Loc}">${topmenu.Menu_G_Name_T}</a></li>
                                 </c:if>
                                 <c:if test="${topmenu.Menu_G_Name_T!='หน้าหลัก' && topmenu.Menu_G_Name_E !='Home'}">
-                                    <li ><a href="${topmenu.Menu_G_Pic_Loc}">${topmenu.Menu_G_Name_T}</a></li>
+                                    <li ><a href="${topmenu.Menu_G_Icon_Loc}">${topmenu.Menu_G_Name_T}</a></li>
                                 </c:if>                
                             </c:forEach>
 
