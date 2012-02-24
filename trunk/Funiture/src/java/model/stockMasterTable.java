@@ -21,10 +21,18 @@ public class stockMasterTable {
     }
 
     public void add(stockMasterEntity sb) {
-        String sql = "insert into stock_master (Company_Id,Product_Detail_id,quantity,Create_date,User_id,Unit_Id,Receive_Date) "
+
+        String sql = "insert into stock_master (Company_Id,Product_Detail_id,quantity,Receive_Date,Create_date,User_id,Unit_Id) "
                    + "value (?,?,?,?,?,?,?)";
-        db.add(sql, sb.getCompanyId(), sb.getProductDetailId(), sb.getQuantity(),
-                sb.getCreateDate(), sb.getUserId(), sb.getUnitId(),sb.getReceiveDate());
+        db.add(sql, sb.getCompanyId(),
+                sb.getProductDetailId(),
+                sb.getQuantity(),
+                sb.getReceiveDate(),
+                sb.getCreateDate(), 
+                sb.getUserId(),
+                sb.getUnitId());
+
+
     }
 
     public void update(stockMasterEntity sb) {
@@ -42,4 +50,17 @@ public class stockMasterTable {
         }
 
     }
+    public void save(stockMasterEntity sb){
+        String sql = "insert into stock_master (Company_Id,Product_Detail_id,quantity,Receive_Date,Create_date,User_id,Unit_Id) "
+                   + "value (?,?,?,?,?,?,?)";
+        db.add(sql, sb.getCompanyId(),
+                sb.getProductDetailId(),
+                sb.getQuantity(),
+                sb.getReceiveDate(),
+                sb.getCreateDate(),
+                sb.getUserId(),
+                sb.getUnitId());
+
+    }
+    
 }
