@@ -109,7 +109,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
                           xml.setRowDetail(data.getMenuGroupId(),i+1,data.getMenuGNameT(),data.getMenuGNameE(),
                                 data.getMenuPermission(),data.getShowListMenu(),data.getChkLoginSts(),
                                 data.getMenuGRemarkT(),data.getMenuGRemarkE(),
-                                data.getMenuGroupId(),data.getMenuGPicLoc());
+                                data.getMenuGroupId(),data.getMenuGIconLog());
 
                     }
                     out.print(xml.getXml());
