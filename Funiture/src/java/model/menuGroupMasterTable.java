@@ -28,7 +28,7 @@ public class menuGroupMasterTable {
         String sql = "insert into menu_group_master "
                 + "( Company_Id,Menu_G_Name_T,Menu_G_Name_E,Show_List_Menu,"
                 + "  Chk_Login_Sts,Menu_Permission,Menu_G_Remark_T,Menu_G_Remark_E,"
-                + "  Menu_G_Pic_Loc,"
+                + "  Menu_G_Icon_Loc,"
                 + "  Create_Date,User_Id )"
                 + "  values(?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -50,7 +50,7 @@ public class menuGroupMasterTable {
         String sql = "update menu_group_master set Company_Id = ?,"
                 + " Menu_G_Name_T = ?,Menu_G_Name_E = ?,"
                 + " Show_List_Menu = ?,Chk_Login_Sts = ?,Menu_Permission = ?,"
-                + " Menu_G_Remark_T = ?,Menu_G_Remark_E = ?,Menu_G_Pic_Loc = ?,"
+                + " Menu_G_Remark_T = ?,Menu_G_Remark_E = ?,Menu_G_Icon_Loc = ?,"
                 + " Update_Date = ? "
                 + " where Menu_Group_Id = ? ";
         db.add(sql,
@@ -62,7 +62,7 @@ public class menuGroupMasterTable {
                 mg.getMenuPermission(),
                 mg.getMenuGRemarkT(),
                 mg.getMenuGRemarkE(),
-                mg.getMenuGPicLoc(),
+                mg.getMenuGIconLog(),
                 mg.getUpdateDate(),
                 mg.getMenuGroupId());
     }
@@ -94,7 +94,7 @@ public class menuGroupMasterTable {
                 mg.setChkLoginSts(Default.Str(result.get(i).get("Chk_Login_Sts")));
                 mg.setMenuGRemarkT(Default.Str(result.get(i).get("Menu_G_Remark_T")));
                 mg.setMenuGRemarkE(Default.Str(result.get(i).get("Menu_G_Remark_E")));
-                mg.setMenuGPicLoc(Default.Str(result.get(i).get("Menu_G_Pic_Loc")));
+               // mg.setMenuGPicLoc(Default.Str(result.get(i).get("Menu_G_Icon_Loc")));
                 list.add(mg);
             }
             return list;

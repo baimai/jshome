@@ -26,8 +26,8 @@ public class memberGradeMasterTable {
      public void add(memberGradeMasterEntity mgm){
           String sql = "insert into Member_Grade_Master "
                   + "( Member_Grade_Id,Company_Id,Member_Grade,Grade_name_t,Grade_name_e,"
-                  + "Discount_Rate,payment_term,Create_date,user_id)"
-                  + "values(?,?,?,?,?,?,?,?,?)"  ;
+                  + "Discount_Rate,payment_term,Member_Price_Flag,Create_date,user_id)"
+                  + "values(?,?,?,?,?,?,?,?,?,?)"  ;
            db.add(sql,
                    mgm.getMemberGradeId(),
                    mgm.getCompanyId(),
@@ -36,13 +36,14 @@ public class memberGradeMasterTable {
                    mgm.getGradeNameE(),
                    mgm.getDiscountRate(),
                    mgm.getPaymentTerm(),
+                   mgm.getMemberPriceFlag(),
                    mgm.getCreateDate(),
                    mgm.getUserId());
      }
      public void update(memberGradeMasterEntity mgm){
           String sql = "update Member_Grade_Master set  Company_Id=?,Member_Grade=?,"
                   + " Grade_name_t=? ,Grade_name_e=?,Discount_Rate=?,payment_term=?,"
-                  + " Update_date=?,user_id=?"
+                  + " Member_Price_Flag,Update_date=?,user_id=?"
                   + "  where Member_Grade_Id=? ";
            db.add(sql,
                    mgm.getMemberGradeId(),
@@ -51,6 +52,7 @@ public class memberGradeMasterTable {
                    mgm.getGradeNameE(),
                    mgm.getDiscountRate(),
                    mgm.getPaymentTerm(),
+                   mgm.getMemberPriceFlag(),
                    mgm.getUpdateDate(),
                    mgm.getUserId(),
                    mgm.getCompanyId());
@@ -78,6 +80,7 @@ public class memberGradeMasterTable {
                 mgm.setGradeNameE(Default.Str(result.get(i).get("Grade_name_e")));
                 mgm.setDiscountRate(Default.BigDecimal(result.get(i).get("Discount_Rate")));
                 mgm.setPaymentTerm((Integer)result.get(i).get("Payment_Term"));
+                mgm.setMemberPriceFlag(Default.Str(result.get(i).get("Member_Price_Flag")));
                 mgm.setMemberGradeId((Integer)result.get(i).get("Member_Grade_Id"));
                 list.add(mgm);
             }

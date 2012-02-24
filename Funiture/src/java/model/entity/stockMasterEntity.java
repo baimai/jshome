@@ -16,7 +16,7 @@ public class stockMasterEntity {
     private int companyId;
     private int stockId;
     private int quantity;
-    private Timestamp Receive_Date;
+   
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;

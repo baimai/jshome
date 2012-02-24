@@ -25,6 +25,7 @@ public class memberGradeMasterEntity {
    private Timestamp updateDate;
    private String userId;
    private int memberGradeId;
+   private String memberPriceFlag;
     /**
      * @return the companyId
      */
@@ -163,6 +164,20 @@ public class memberGradeMasterEntity {
      */
     public void setMemberGradeId(int memberGradeId) {
         this.memberGradeId = memberGradeId;
+    }
+
+    /**
+     * @return the memberPriceFlag
+     */
+    public String getMemberPriceFlag() {
+        return memberPriceFlag;
+    }
+
+    /**
+     * @param memberPriceFlag the memberPriceFlag to set
+     */
+    public void setMemberPriceFlag(String memberPriceFlag) {
+        this.memberPriceFlag = memberPriceFlag;
     }
 
     private static class DateTime {
