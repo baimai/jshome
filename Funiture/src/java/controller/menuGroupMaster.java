@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
-
-
+import model.colorMasterTable;
+import model.entity.colorCodeMasterEntity;
 import model.entity.companyMasterEntity;
 import model.entity.menuGroupMasterEntity;
 import model.menuGroupMasterTable;
@@ -66,8 +66,8 @@ public class menuGroupMaster extends HttpServlet {
             if (request.getParameter("menuGRemarkE") != null) {
                 mg.setMenuGRemarkE(request.getParameter("menuGRemarkE"));
             }
-            if (request.getParameter("menuGIconLog") != null) {
-                mg.setMenuGPicLoc(request.getParameter("menuGIconLog"));
+            if (request.getParameter("menuGPicLoc") != null) {
+                mg.setMenuGPicLoc(request.getParameter("menuGPicLoc"));
             }
             mg.setCreateDate(Timestamp.valueOf(db.getNow()));
             mg.setUpdateDate(Timestamp.valueOf(db.getNow()));
