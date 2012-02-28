@@ -109,34 +109,60 @@
 
                                                             <div class="product-name">ประเภทสินค้า  : ${product.product_g_name_t}</div>
 
-                                                            <div class="product-name">สถานะสินค้า  : <c:if test="${product.balance != null&&product.balance !=''}">${product.balance}</c:if></div>
-
-
-                                                            <c:if test="${product.product_price1!=null && product.product_price1!=''}">
-                                                                <div class="price-box">
-                                                                    <span class="regular-price" id="product-price-166" >
-                                                                        <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price1}" type="number" pattern="###,###,##0.00"  />(ขายส่ง)</span></span>
-                                                                </div>
+                                                            <div class="product-name">สถานะสินค้า  : <c:if test="${product.balance != null&&product.balance !=''}">${product.balance}</c:if></div>                                                           
+                                                            <c:if test="${product.show_price_list_flag == 'W'}">
+                                                                <c:if test="${product.product_price1 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price1}" type="number" pattern="###,###,##0.00"  />(ขายส่ง)</span></span>
+                                                                    </div>
+                                                                </c:if>
+                                                                <c:if test="${product.product_price2 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price2}" type="number" pattern="###,###,##0.00"  />(ขายส่ง,ส่วนลด)</span></span>
+                                                                    </div>
+                                                                </c:if>
                                                             </c:if>
-                                                            <c:if test="${product.product_price2!=null && product.product_price2!=''}">
-                                                                <div class="price-box">
-                                                                    <span class="regular-price" id="product-price-166">
-                                                                        <span class="price">ราคา : ฿  <fmt:formatNumber value=" ${product.product_price2}" type="number" pattern="###,###,##0.00" />(ขายส่ง,ส่วนลด)</span></span>
-
-                                                                </div>
+                                                            <c:if test="${product.show_price_list_flag == 'R'}">
+                                                                <c:if test="${product.product_price3 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price3}" type="number" pattern="###,###,##0.00"  />(ขายปลีก)</span></span>
+                                                                    </div>
+                                                                </c:if>
+                                                                <c:if test="${product.product_price4 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price4}" type="number" pattern="###,###,##0.00"  />(ขายปลีก,ส่วนลด)</span></span>
+                                                                    </div>
+                                                                </c:if>
                                                             </c:if>
-                                                            <c:if test="${product.product_price3!=null && product.product_price3!=''}">
-                                                                <div class="price-box">
-                                                                    <span class="regular-price" id="product-price-166">
-                                                                        <span class="price">ราคา : ฿ <fmt:formatNumber value=" ${product.product_price3}" type="number" pattern="###,###,##0.00" />(ขายปลีก)</span></span>
-                                                                </div>
-                                                            </c:if>
-                                                            <c:if test="${product.product_price4!=null && product.product_price4!=''}">
-                                                                <div class="price-box">
-                                                                    <span class="regular-price" id="product-price-166">
-                                                                        <span class="price">ราคา : ฿ <fmt:formatNumber value="${product.product_price4}" type="number" pattern="###,###,##0.00" />(ขายปลีก,ส่วนลด)</span></span>
-
-                                                                </div>
+                                                            <c:if test="${product.show_price_list_flag == 'A'}">
+                                                                <c:if test="${product.product_price1 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price1}" type="number" pattern="###,###,##0.00"  />(ขายส่ง)</span></span>
+                                                                    </div>
+                                                                </c:if>
+                                                                <c:if test="${product.product_price2 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price2}" type="number" pattern="###,###,##0.00"  />(ขายส่ง,ส่วนลด)</span></span>
+                                                                    </div>
+                                                                </c:if>
+                                                                <c:if test="${product.product_price3 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price3}" type="number" pattern="###,###,##0.00"  />(ขายปลีก)</span></span>
+                                                                    </div>
+                                                                </c:if>
+                                                                <c:if test="${product.product_price4 != null}">
+                                                                    <div class="price-box">
+                                                                        <span class="regular-price" id="product-price-166" >
+                                                                            <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price4}" type="number" pattern="###,###,##0.00"  />(ขายปลีก,ส่วนลด)</span></span>
+                                                                    </div>
+                                                                </c:if>
                                                             </c:if>
                                                             <div class="add-to-box">
                                                                 <div class="add-to-cart">
@@ -242,19 +268,35 @@
                                                     <strong><span>สินค้าแนะนำ</span></strong>
                                                 </div>
 
-                                                    <div class="block-content">
-                                                        <c:forEach var="relate" items="${queryRelate.rows}">
+                                                <div class="block-content">
+                                                    <c:forEach var="relate" items="${queryRelate.rows}">
 
-                                                            <div class="empty"  id="productList">
-                                                                <div><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"> <img width="160" height="80" src="${relate.product_d_pic_loc}"/></a></div>
-                                                                <div><center><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}">${relate.product_d_name_t}</a></center></div>
-                                                                <c:if test="${relate.show_price_list_flag == 'Y'}"><center>฿${relate.product_price1}</center></c:if>
-                                                                <c:if test="${relate.show_order_flag == 'Y'}"><center><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="window.location='productDetail.jsp?productDetailId=${relate.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button></center></c:if>
-                                                            </div>
-                                                            <br/>
-                                                        </c:forEach>
+                                                        <div class="empty"  id="productList">
+                                                            <div><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"> <img width="160" height="80" src="${relate.product_d_pic_loc}"/></a></div>
+                                                            <div><center><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}">${relate.product_d_name_t}</a></center></div>
+                                                            <c:if test="${relate.show_price_list_flag != 'N'}">
+                                                                <c:if test="${relate.show_price_list_flag == 'A'}">
+                                                                    <c:if test="${relate.product_price1 != null && relate.product_price1 != ''}">
+                                                                        <center>฿ ${relate.product_price1}</center>
+                                                                    </c:if>
+                                                                    <c:if test="${relate.product_price1 == null || relate.product_price1 == ''}">
+                                                                        <center>฿ ${relate.product_price3}</center>
+                                                                    </c:if>
+                                                                </c:if>
+                                                                <c:if test="${relate.show_price_list_flag == 'W'}">
+                                                                        <center>฿ ${relate.product_price1}</center>
+                                                                </c:if>
+                                                                <c:if test="${relate.show_price_list_flag == 'R'}">
+                                                                        <center>฿ ${relate.product_price3}</center>
+                                                                </c:if>
 
-                                                    </div>
+                                                            </c:if>
+                                                            <c:if test="${relate.show_order_flag == 'Y'}"><center><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="window.location='productDetail.jsp?productDetailId=${relate.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button></center></c:if>
+                                                        </div>
+                                                        <br/>
+                                                    </c:forEach>
+
+                                                </div>
 
                                             </div>
                                         </div>

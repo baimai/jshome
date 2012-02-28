@@ -194,79 +194,55 @@
                         <c:if test="${(counter.count mod 3) == 1}">
                             <ul class="products-grid">
                                 <li class="item first">
-                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="thickbox"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="Single Image" /></a>
-                                    <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
-                                    <div class="price-box">
-                                        <c:if test="${product.show_price_list_flag=='Y'}">
-                                            <span class="regular-price" id="product-price-156">
-                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
-                                            </span>
-                                        </c:if>
-                                        <c:if test="${product.show_stock_balance_flag=='Y'}">
-                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                                <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                                <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
-                                            </div>
-                                        </c:if>
-                                    </div>
-                                    <c:if test="${product.show_order_flag=='Y'}">
-                                        <div class="actions">
-                                            <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-                                        </div>
-                                    </c:if>
-                                </li>
-
-                            </c:if>
-                            <c:if test="${(counter.count mod 3) == 2}">
-                                <li class="item">
-                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
-                                    <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
-                                    <div class="price-box">
-                                        <c:if test="${product.show_price_list_flag=='Y'}">
-                                            <span class="regular-price" id="product-price-156">
-                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
-                                            </span>
-                                        </c:if>
-                                        <c:if test="${product.show_stock_balance_flag=='Y'}">
-                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                                <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                                <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
-                                            </div>
-                                        </c:if>
-                                    </div>
-                                    <c:if test="${product.show_order_flag=='Y'}">
-                                        <div class="actions">
-                                            <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-                                        </div>
-                                    </c:if>
-                                </li>
-
-                            </c:if>
-                            <c:if test="${(counter.count mod 3) == 0}">
-                                <li class="item last">
-                                    <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
-                                    <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
-                                    <div class="price-box">
-                                        <c:if test="${product.show_price_list_flag=='Y'}">
-                                            <span class="regular-price" id="product-price-156">
-                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
-                                            </span>
-                                        </c:if>
-                                        <c:if test="${product.show_stock_balance_flag=='Y'}">
-                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                                <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                                <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
-                                            </div>
-                                        </c:if>
-                                    </div>
-                                    <c:if test="${product.show_order_flag=='Y'}">
-                                        <div class="actions">
-                                            <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-                                        </div>
-                                    </c:if>
-                                </li>
-                            </ul>
                         </c:if>
+
+                                <c:if test="${(counter.count mod 3) == 2}">
+                                <li class="item">
+                                </c:if>
+
+                                <c:if test="${(counter.count mod 3) == 0}">
+                                <li class="item last">
+                                </c:if>
+                                <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
+                                <div class="price-box">
+                                    <c:if test="${product.show_price_list_flag!='N'}">
+                                        <span class="regular-price" id="product-price-156">
+                                            <c:if test="${product.show_price_list_flag =='W'}">
+                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                            </c:if>
+                                            <c:if test="${product.show_price_list_flag =='R'}">
+                                                <span class="price"  > <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></span>
+                                            </c:if>
+                                            <c:if test="${product.show_price_list_flag =='A'}">
+                                                <c:if test="${product.product_price1 == null || product.product_price1 == ''}">
+                                                    <span class="price"  > <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></span>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 != null && product.product_price1 != ''}">
+                                                    <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                                </c:if>
+                                            </c:if>
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${product.show_stock_balance_flag=='Y'}">
+                                        <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                            <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                            <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                        </div>
+                                    </c:if>
+                                </div>
+                                <c:if test="${product.show_order_flag=='Y'}">
+                                    <div class="actions">
+                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
+                                    </div>
+                                </c:if>
+                            </li>
+
+                            <c:if test="${(counter.count mod 3) == 0}">
+                            </ul>
+                            </c:if>
+
+
 
 
                     </c:forEach>
