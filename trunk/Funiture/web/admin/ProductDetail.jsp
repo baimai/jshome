@@ -141,7 +141,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2" align="right">Quatity</td>
-                                                            <td colspan="2" ><input type="text" style="text-align: right" value="0" name="qty" size="5"/>
+                                                            <td colspan="2" ><input type="text" style="text-align: right" value="0" name="qtyplus" size="5"/><input type="hidden" value="0" name="qtyminus" />
                                                                 <select name="unitId">
                                                                     <c:forEach  items="${query4.rows}" var="unit">
                                                                         <option value="${unit.unit_id}">${unit.unit_name_t}</option>
@@ -284,7 +284,7 @@
                                                             <c:if test="${product.product_d_pic_loc!=null&&product.product_d_pic_loc!=''}" >
                                                                 <tr>
                                                                     <td colspan="2" align="right">Product Image</td>
-                                                                    <td colspan="2" ><input type="text" name="uploadtmp" value="${product.product_d_pic_loc}" style="width:400px;" disabled/></td>
+                                                                    <td colspan="2" ><input type="text" name="uploadtmp" value="${product.product_d_pic_loc}" style="width:400px;" readonly/></td>
                                                                 </tr>
                                                             </c:if>
                                                             <tr>
@@ -315,17 +315,20 @@
                                                                 <td colspan="2" align="right">Quatity</td>
                                                                 <td colspan="2" >
                                                                     <c:if test="${product.balance != null && product.balance != ''}">
-                                                                        <input type="text" style="text-align: right" value="${product.balance}" name="qty" size="5"/>
+                                                                        <input type="text" style="text-align: right" value="${product.balance}" name="qtyold" size="5" disabled/>
                                                                     </c:if>
                                                                     <c:if test="${product.balance == null || product.balance == ''}">
-                                                                        <input type="text" style="text-align: right" value="0" name="qty" size="5"/>
+                                                                        <input type="text" style="text-align: right" value="0" name="qtyold" size="5" disabled/>
                                                                     </c:if>
                                                                     <select name="unitId">
                                                                         <c:forEach  items="${query4.rows}" var="unit">
                                                                             <option value="${unit.unit_id}">${unit.unit_name_t}</option>
                                                                         </c:forEach>
                                                                     </select>
+                                                                        &nbsp;&nbsp;&nbsp; เพิ่ม <input type="text" name="qtyplus" value="0" size="5"/>
+                                                                        &nbsp;&nbsp;&nbsp; ลด <input type="text" name="qtyminus" value="0" size="5"/>
                                                                 </td>
+                                                                
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="4">

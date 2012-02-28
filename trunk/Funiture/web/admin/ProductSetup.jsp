@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
-         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
@@ -46,7 +46,7 @@
                         {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT', width:225, align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'picId',index:'picId', width:55,hidden:true,editable:false,editoptions:{readonly:true,size:10}},
+                        {name:'picId',index:'picId', width:55,hidden:true,editable:true,editrules:{edithidden:true}},
                         {name:'Edit',index:'Edit', width:100,hidden:true,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
                     ]
                     ,
@@ -62,7 +62,7 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true,edit:false}, //options
+                {search:true,add:false}, //options
                 {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
@@ -98,13 +98,13 @@
                                         <div class="page-title">
                                             <h1>จัดการรูปแสดงสินค้า</h1>
                                         </div>
-                    <center>
-                        <table id="rowed1"></table>
-                        <div id="prowed1"></div>
-                        <br />
+                                        <center>
+                                            <table id="rowed1"></table>
+                                            <div id="prowed1"></div>
+                                            <br />
 
-                    </center>
-                   <br/>
+                                        </center>
+                                        <br/>
                                     </div>
                                 </div>
                             </div>
