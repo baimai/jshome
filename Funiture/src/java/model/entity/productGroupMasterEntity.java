@@ -26,7 +26,7 @@ public class productGroupMasterEntity {
     private int companyId;
     private int productGroupId;
     private String companyCode;
-    
+    private productDetailMasterEntity productDetailMasterEntity;
  
 
     /**
@@ -224,5 +224,19 @@ public class productGroupMasterEntity {
      */
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
+    }
+
+    /**
+     * @return the productDetailMasterEntity
+     */
+    public productDetailMasterEntity getProductDetailMasterEntity() {
+        return productDetailMasterEntity;
+    }
+
+    /**
+     * @param productDetailMasterEntity the productDetailMasterEntity to set
+     */
+    public void setProductDetailMasterEntity(productDetailMasterEntity productDetailMasterEntity) {
+        this.productDetailMasterEntity = productDetailMasterEntity;
     }
 }
