@@ -113,6 +113,17 @@ public class xmlProductGroup extends HttpServlet {
                                 data.getProductDetailId());
                     }
                      out.print(xml.getXml());
+                }else if (request.getParameter("q").equals("3")) {
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(request.getParameter("page"));
+                    xml.setRecords(listp.size());
+                    for (int i = 0; i < listp.size(); i++) {
+                        productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
+                        xml.setRowDetail(data.getProductDetailId(),i+1, data.getProductCode(),
+                                data.getProductDNameT(),data.getProductDNameE(),data.getProductDPicLoc());
+                    }
+                    out.print(xml.getXml());
                 }
             }
         } catch (Exception ex) {
