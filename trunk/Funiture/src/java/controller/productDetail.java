@@ -92,14 +92,11 @@ public class productDetail extends HttpServlet {
                             }
                         }
                         u.store(mr, "upload");
-
-
-                        if (upFile.getFileName() != null) {
-                            if (mr.getParameter("uploadtmp") != null && upFile.getFileName().equals("")) {
-                                pdm.setProductDPicLoc(mr.getParameter("uploadtmp"));
-                            } else if (!upFile.getFileName().equals("")) {
-                                pdm.setProductDPicLoc("upload/picture" + "/" + upFile.getFileName());
-                            }
+                        if (mr.getParameter("uploadtmp") != null) {
+                            pdm.setProductDPicLoc(mr.getParameter("uploadtmp"));
+                        }
+                        if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
+                            pdm.setProductDPicLoc("upload/picture" + "/" + upFile.getFileName());
                         }
                         if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
                             pdm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
@@ -183,9 +180,7 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("display") != null && !mr.getParameter("display").equals("")) {
                             pdm.setProductDDisplayFlag(mr.getParameter("display"));
                         }
-                        if (mr.getParameter("qty") != null && !mr.getParameter("qty").equals("")) {
-                            sm.setQuantity(Integer.parseInt(mr.getParameter("qty")));
-                        }
+                        sm.setQuantity(Integer.parseInt(mr.getParameter("qtyplus")) - Integer.parseInt(mr.getParameter("qtyminus")));
                         pdm.setCompanyId(Company_Id);
                         pdm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));

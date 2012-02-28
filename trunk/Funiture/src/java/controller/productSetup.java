@@ -83,6 +83,9 @@ public class productSetup extends HttpServlet {
                 }
 
                 db.close();
+                if (request.getParameter("action").equals("Add")) {
+                    response.sendRedirect("test.jsp");
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
