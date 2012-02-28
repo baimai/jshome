@@ -24,11 +24,7 @@
 
 <body>
 
-<table width="940" border="0"  cellpadding="0" cellspacing="0" >
- 
-  
-  <tr>
-    <td height="418">
+
      <div id="wrapper">       
         <div class="slider-wrapper theme-default">
             <div class="ribbon"></div>
@@ -41,13 +37,6 @@
         </div>
 
     </div>
-    </td>
-  </tr>
-   
-
   
- 
-</table>
-
 </body>
 </html>

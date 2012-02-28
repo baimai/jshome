@@ -34,7 +34,7 @@ body
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: top left;
-  min-width: 900px;
+  min-width: 100%;
 }
 
 .cleared
@@ -65,7 +65,7 @@ body
   margin-top: 10px;
   margin-bottom: -5px;
   cursor:auto;
-  width: 950px;
+  width: 1000px;
   z-index: 0;
   
 }

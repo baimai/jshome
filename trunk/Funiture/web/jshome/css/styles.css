@@ -26,7 +26,7 @@
 /* Reset ================================================================================= */
 * { margin:0; padding:0; }
 
-body          { /*font:12px/1.55  Tahoma,MS Sans Serif,Arial,Thonburi;*/ color:#2f2f2f; text-align:center; }/*tae*/
+body          { /*font:12px/1.55  Tahoma,MS Sans Serif,Arial,Thonburi;*/ color:#2f2f2f; text-align:center; width:100%}/*tae*/
 
 img           { border:0; 
                 /*vertical-align:top;*//*tae*/ }
@@ -98,12 +98,12 @@ ul,ol         { list-style:none; }
 .page-empty { background:#fff; padding:20px; text-align:left; }
 .page-popup { background:#fff; padding:25px 30px; text-align:left; }
 .main-container { }
-.main { width:950px; margin:0 auto; min-height:400px; padding:25px 10px; background:#fffffe; text-align:left; }
+.main { width:100%; margin:0 auto; min-height:400px; padding:10px 10px; background:#fffffe; text-align:left; }
 
 /* Base Columns */
-.col-left { float:left; width:195px; padding:0 0 1px; }
-.col-main { float:left; width:685px; padding:0 0 1px; }
-.col-right { float:right; width:195px; padding:0 0 1px; }
+.col-left { float:left; width:25%; padding:0 0 1px; }
+.col-main { float:left; width:70%; padding:0 0 1px; }
+.col-right { float:right; width:15%; padding:0 0 1px; }
 
 /* 1 Column Layout */
 .col1-layout .col-main { float:none; width:auto; }
@@ -113,8 +113,8 @@ ul,ol         { list-style:none; }
 .col2-right-layout .col-main {}
 
 /* 3 Columns Layout */
-.col3-layout .col-main { width:475px; margin-left:17px; }
-.col3-layout .col-wrapper { float:left; width:687px; }
+.col3-layout .col-main { width:70%; margin-left:17px; }
+.col3-layout .col-wrapper { float:left; width:70%; }
 .col3-layout .col-wrapper .col-main { float:right; }
 
 /* Content Columns */

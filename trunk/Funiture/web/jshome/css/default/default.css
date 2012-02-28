@@ -14,12 +14,14 @@ Author URI: http://dev7studios.com
     -webkit-box-shadow: 0px 1px 5px 0px #4a4a4a;
     -moz-box-shadow: 0px 1px 5px 0px #4a4a4a;
     box-shadow: 0px 1px 5px 0px #4a4a4a;
+	width:100%;
 }
 .theme-default .nivoSlider img {
 	position:absolute;
 	top:0px;
 	left:0px;
 	display:none;
+	width:100%;
 }
 .theme-default .nivoSlider a {
 	border:0;

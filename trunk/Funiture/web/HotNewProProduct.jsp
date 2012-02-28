@@ -37,7 +37,7 @@
         <script src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" /> 
         <script>
             /* jQuery.noConflict() for using the plugin along with other libraries.
            You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or
@@ -91,24 +91,34 @@
                     });
                 }
             })(jQuery);
+            
         </script>
         <script src="jshome/js/jquery.thumbnailScroller.js"></script>
+        <style type="text/css">
+            div.img-resize img {
+                width: 64px;
+                height: auto;
 
+            }
+          div.img-resize {
+                width: 64px;
+                height: 64px;
+                overflow: hidden;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        <div class="wrapper">
-
-            <div class="page">
-
-
-            </div>
-        </div>        <div class="main-container col3-layout">
-
-
+        <div class="main-container col1-layout">
             <div class="main">
-                <div class="col-wrapper">
-                    <div align="center"><img src="jshome/images/hot.jpg" width="925" height="27" /></div>
-                    <div id="tS2" class="jThumbnailScroller" style="margin-top:50px;">
+                <div class="col-main">
+                    <div id="messages_product_view"></div>
+                    <div class="page-title">
+                        <h1><img src="images/icon/flag-hot-red.png" width="24" height="24" alt="flag-hot-red"/>
+                            HotProduct</h1>
+                    </div>
+
+                    <div id="tS2" class="jThumbnailScroller" >
                         <div class="jTscrollerContainer">
                             <div class="jTscroller">
                                 <c:forEach var="hotProduct" items="${query.rows}">
@@ -120,7 +130,14 @@
                         <a href="#" class="jTscrollerPrevButton"></a>
                         <a href="#" class="jTscrollerNextButton"></a>
                     </div>
-                    <div align="center"><img src="jshome/images/new.jpg" width="925" height="27" /></div>
+                </div>
+                <br>
+                <div class="col-main">
+                    <div id="messages_product_view"></div>
+                    <div class="page-title">
+                        <h1><img src="images/icon/flag-new-blue.png" width="24" height="24" alt="flag-new-blue"/>
+                            New Product</h1>
+                    </div>
 
                     <div id="tS3" class="jThumbnailScroller" style="margin-top:50px;">
                         <div class="jTscrollerContainer">
@@ -134,8 +151,14 @@
                         <a href="#" class="jTscrollerPrevButton"></a>
                         <a href="#" class="jTscrollerNextButton"></a>
                     </div>
-                    <div align="center">
-                        <img src="jshome/images/promotion.jpg" width="925" height="27" /></div>
+                </div>
+                <br>
+                <div class="col-main">
+                    <div id="messages_product_view"></div>
+                    <div class="page-title">
+                        <h1><img src="images/icon/flag-popular-red.png" width="24" height="24" alt="flag-popular-red"/>
+                            Promotion</h1>
+                    </div>
                     <div id="tS4" class="jThumbnailScroller" style="margin-top:50px;">
                         <div class="jTscrollerContainer">
                             <div class="jTscroller">
@@ -149,7 +172,7 @@
                         <a href="#" class="jTscrollerNextButton"></a>
                     </div>
                 </div>
-
             </div>
+        </div>
     </body>
 </html>
