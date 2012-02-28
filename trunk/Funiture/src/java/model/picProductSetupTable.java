@@ -34,11 +34,13 @@ public class picProductSetupTable {
     }
 
     public void update(picProductSetupEntity mps) {
-        String sql = "update pic_product_setup set Pic_Code = ?,Product_Id = ?,Company_Id = ?,Product_remark_T = ?,Product_remark_E = ?,"
-                + " Update_Date = ?,User_Id = ?,Pic_Seq = ? "
+        String sql = "update pic_product_setup set Pic_Code = ?,Product_detail_Id = ?,Company_Id = ?,Product_remark_T = ?,Product_remark_E = ?,"
+                + " pic_name_t = ?,pic_name_e = ?,"
+                + " Update_Date = ?,User_Id = ?"
                 + " where Pic_Id = ?";
-        db.update(sql, mps.getPicId(), mps.getProductDetailId(), mps.getCompanyId(), mps.getProductRemarkT(), mps.getProductRemarkE(),
-                mps.getUpdateDate(), mps.getUserId(), mps.getPicSeq(), mps.getPicId());
+        db.update(sql, mps.getPicCode(), mps.getProductDetailId(), mps.getCompanyId(), mps.getProductRemarkT(), mps.getProductRemarkE(),
+                mps.getPicNameT(),mps.getPicNameE(),
+                mps.getUpdateDate(), mps.getUserId(), mps.getPicId());
     }
     public void updateSeq(picProductSetupEntity pps){
         String sql = "update pic_product_setup set pic_seq = ? where pic_id = ?";

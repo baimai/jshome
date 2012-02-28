@@ -36,7 +36,7 @@ public class stockMasterTable {
     }
 
     public void update(stockMasterEntity sb) {
-        String sql = "update stock_master set quantity = ?,update_date = ?,Receive_Date = ? where product_detail_id = ?";
+        String sql = "update stock_master set quantity = quantity+?,update_date = ?,Receive_Date = ? where product_detail_id = ?";
         db.add(sql, sb.getQuantity(),sb.getUpdateDate(),sb.getReceiveDate(), sb.getProductDetailId());
     }
 

@@ -47,6 +47,7 @@ public class companyMasterTable {
                 + " ?,?,?,?,?, "
                 + " ?,?,? )";
 
+
         db.add(sql,
                 cpm.getCompanyCode(),
                 cpm.getCompanyNameT(),
@@ -80,7 +81,12 @@ public class companyMasterTable {
                 cpm.getShowStockBalanceFlag(),
                 cpm.getShowPriceListFlag(),
                 cpm.getShowOrderFlag(),
+                cpm.getCompanyHeaderLoc(),
+                cpm.getCompanyCatalogLoc(),
                 cpm.getCreateDate(),
+                cpm.getShowStockBalanceFlag(),
+                cpm.getShowPriceListFlag(),
+                cpm.getShowOrderFlag(),
                 cpm.getUserId());
     }
      public void update(companyMasterEntity cpm) {
