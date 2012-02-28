@@ -23,12 +23,14 @@
         pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
         md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
         pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
-        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t
+        um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t,
+        cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag
         FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
         join menu_detail_master md on pps.pic_code = md.pic_code
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
         left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
+        join company_master cm on cm.company_id = pps.company_id
         where pps.pic_code = '${param.menuCode}'
         Group by pps.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
@@ -49,20 +51,22 @@
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
         SELECT
-       pdm.product_detail_id,pdm.product_group_id,pdm.product_code,
+        pdm.product_detail_id,pdm.product_group_id,pdm.product_code,
         pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
-        um.unit_name_t,pdm.product_d_name_t
+        um.unit_name_t,pdm.product_d_name_t,
+        cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag
         FROM (select * from product_group_master pgm group by pgm.product_group_id) pgm
         join product_detail_master pdm on pgm.product_group_id = pdm.product_group_id
         left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
+        join company_master cm on cm.company_id = pgm.company_id
         where pdm.product_group_id = '${param.menuCode}'
         Group by pdm.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query>
     <sql:query var="query4" dataSource="webdb" >
         select concat(product_g_name_t) as name from  product_group_master pgm
-       where pgm.product_group_id  = ${param.menuCode}
+        where pgm.product_group_id  = ${param.menuCode}
     </sql:query>
 </c:if>
 
@@ -193,19 +197,23 @@
                                     <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="thickbox"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="Single Image" /></a>
                                     <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
                                     <div class="price-box">
-                                        <span class="regular-price" id="product-price-156">
-
-                                            <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span></span>
-                                        <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                            <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                            <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                        <c:if test="${product.show_price_list_flag=='Y'}">
+                                            <span class="regular-price" id="product-price-156">
+                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                            </span>
+                                        </c:if>
+                                        <c:if test="${product.show_stock_balance_flag=='Y'}">
+                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                                <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                                <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                    <c:if test="${product.show_order_flag=='Y'}">
+                                        <div class="actions">
+                                            <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                         </div>
-                                    </div>
-
-                                    <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-
-                                    </div>
+                                    </c:if>
                                 </li>
 
                             </c:if>
@@ -213,23 +221,24 @@
                                 <li class="item">
                                     <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
                                     <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
-
-
-
                                     <div class="price-box">
-                                        <span class="regular-price" id="product-price-156">
-                                            <span class="price" ><fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                        <c:if test="${product.show_price_list_flag=='Y'}">
+                                            <span class="regular-price" id="product-price-156">
+                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                            </span>
+                                        </c:if>
+                                        <c:if test="${product.show_stock_balance_flag=='Y'}">
                                             <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
                                                 <c:if test="${product.balance !=null }">${product.balance}</c:if>
                                                 <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
-                                            </div></span>
-
+                                            </div>
+                                        </c:if>
                                     </div>
-
-                                    <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-
-                                    </div>
+                                    <c:if test="${product.show_order_flag=='Y'}">
+                                        <div class="actions">
+                                            <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
+                                        </div>
+                                    </c:if>
                                 </li>
 
                             </c:if>
@@ -237,22 +246,24 @@
                                 <li class="item last">
                                     <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
                                     <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
-
-
-
                                     <div class="price-box">
-                                        <span class="regular-price" id="product-price-156">
-                                            <span class="price" ><fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/> </span>                </span>
-                                        <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
-                                            <c:if test="${product.balance !=null }">${product.balance}</c:if>
-                                            <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                        <c:if test="${product.show_price_list_flag=='Y'}">
+                                            <span class="regular-price" id="product-price-156">
+                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                            </span>
+                                        </c:if>
+                                        <c:if test="${product.show_stock_balance_flag=='Y'}">
+                                            <div style="color:#000000">จำนวน <c:if test="${product.balance ==null }">0</c:if>
+                                                <c:if test="${product.balance !=null }">${product.balance}</c:if>
+                                                <c:if test="${product.unit_name_t !=null }">${product.unit_name_t}</c:if>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                    <c:if test="${product.show_order_flag=='Y'}">
+                                        <div class="actions">
+                                            <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                         </div>
-                                    </div>
-
-                                    <div class="actions">
-                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="location.href='productDetail.jsp?productDetailId=${product.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-
-                                    </div>
+                                    </c:if>
                                 </li>
                             </ul>
                         </c:if>
