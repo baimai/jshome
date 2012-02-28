@@ -10,21 +10,21 @@
     join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
     where mps.Pic_Code = '00010' and pdm.product_d_display_flag = 'Y'
     order by mps.Pic_code,mps.pic_seq 
-    limit 0,5
+    limit 0,6
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM pic_product_setup mps
     join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
     where mps.Pic_Code = '00020' and pdm.product_d_display_flag = 'Y'
     order by mps.Pic_code,mps.pic_seq 
-    limit 0,5
+    limit 0,6
 </sql:query>
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM pic_product_setup mps
     join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
     where mps.pic_Code = '00030' and pdm.product_d_display_flag = 'Y'
     order by mps.pic_code,mps.pic_seq 
-    limit 0,5
+    limit 0,6
 </sql:query>    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
