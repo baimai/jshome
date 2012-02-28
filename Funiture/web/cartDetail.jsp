@@ -189,7 +189,7 @@
 
                                                                                 </div>
 
-                                                                                <a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"><button type="button" title="เพิ่ม" class="button btn-cart" ><span><span>เพิ่มไปยังตะกร้า</span></span></button></a>
+                                                                                        <button type="button" title="เพิ่ม" class="button btn-cart" onclick="window.location='productDetail.jsp?productDetailId=${relate.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
                                                                                 
                                                                             </div>
                                                                         </li>
