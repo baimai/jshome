@@ -9,12 +9,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <sql:query var="queryProduct" dataSource="webdb">
-    SELECT *
+    SELECT *,cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag
     FROM product_detail_master pdm
     join product_group_master pgm on pgm.product_group_id = pdm.product_group_id
     left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
     left join unit_master um on um.unit_id = sb.unit_id
+    join company_master cm on cm.company_id = pdm.company_id
     where pdm.product_detail_Id = ${param.productDetailId}
+</sql:query>
+<sql:query var="queryRelate" dataSource="webdb">
+    select *,cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag from (
+    (select * from product_detail_master pdm
+    where pdm.product_code = (select product_code from product_detail_master where product_detail_id = ${param.productDetailId}) and
+    pdm.product_detail_id != ${param.productDetailId}
+    order by rand()
+    limit 2)
+    union all
+    (select * from product_detail_master pdm
+    where pdm.product_group_id = (select product_group_id from product_detail_master where product_detail_id =${param.productDetailId}) and
+    pdm.product_detail_id != ${param.productDetailId}
+    order by rand())
+    )tbl1
+    join company_master cm on cm.company_id = tbl1.company_id
+    order by rand()
+    limit 2
 </sql:query>
 
 <!DOCTYPE html>
@@ -130,7 +148,7 @@
                                                                     <input type="hidden" id="productPrice" name="productPrice" value="${product.product_price1}" />
                                                                     <input type="hidden" id="productPath" name="productPath" value="${product.product_d_pic_loc}"/>
                                                                     <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
-                                                                    <button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
+                                                                    <c:if test="${product.show_order_flag == 'Y'}"><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button></c:if>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -217,6 +235,30 @@
                                                 </div>
                                             </div>                </div>
                                             <jsp:include page="myCart.jsp" />
+                                            <%-- สินค้าแนะนำ --%>
+                                        <div class="col-right sidebar">
+                                            <div class="block block-cart">
+                                                <div class="block-title">
+                                                    <strong><span>สินค้าแนะนำ</span></strong>
+                                                </div>
+
+                                                    <div class="block-content">
+                                                        <c:forEach var="relate" items="${queryRelate.rows}">
+
+                                                            <div class="empty"  id="productList">
+                                                                <div><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"> <img width="160" height="80" src="${relate.product_d_pic_loc}"/></a></div>
+                                                                <div><center><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}">${relate.product_d_name_t}</a></center></div>
+                                                                <c:if test="${relate.show_price_list_flag == 'Y'}"><center>฿${relate.product_price1}</center></c:if>
+                                                                <c:if test="${relate.show_order_flag == 'Y'}"><center><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="window.location='productDetail.jsp?productDetailId=${relate.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button></center></c:if>
+                                                            </div>
+                                                            <br/>
+                                                        </c:forEach>
+
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                        <%-- จบ สินค้าแนะนำ --%>
                                     </div>
                                 </div>
                             </div>
