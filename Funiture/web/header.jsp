@@ -58,10 +58,10 @@ body {
                 <td bgcolor="#000000" width="10px" align="left"> Login </td>
             </tr>
             <tr >
-                <td ><div align="center"><img src="${query.Header_Logo}" width="950" height="100" /></div></td>
+                <td ><div align="center"><img src="${query.Header_Logo}" width="100%" height="100" /></div></td>
             </tr>
             <tr>
-                <td><div align="center"><img src="jshome/images/line.jpg" width="950" height="4" /></div></td>
+                <td><div align="center"><img src="jshome/images/line.jpg" width="100%" height="4" /></div></td>
             </tr>
     </c:forEach>  
      <tr>

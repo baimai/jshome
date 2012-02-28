@@ -1,13 +1,15 @@
 
 #container {
-    width: 940px;
+    width: auto;
     margin: 0px ;
-
+    background-color: #292929;
+    position:absolute;
 }
 
 ul, li {
     margin: 0;
     padding: 0;
+	
 }
 
 #blob {
@@ -30,7 +32,7 @@ ul, li {
     position: relative;
     background: #292929;
     float: left;
-	 border-left: 1px solid black;
+    border-left: 1px solid black;
 }
 
 #nav li {
@@ -50,7 +52,7 @@ ul, li {
     font-family: "Tahoma","MS Sans Serif","Arial","Thonburi";
     text-decoration: none;
     padding: 12px 49px;
-    width: 100%;
+    
 	
     
 
