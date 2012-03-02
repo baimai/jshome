@@ -34,7 +34,7 @@ public class memberMasterEntity {
     private String memberMobile2;
     private String memberEmail1;
     private String memberEmail2;
-    private String memberGrade;
+    private int memberGradeId;
     private String memberlogoloc;
     private String memberLogin;
     private String memberPassword;
@@ -43,6 +43,7 @@ public class memberMasterEntity {
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
+    private memberGradeMasterEntity memberGradeMasterEntity ;
 
     /**
      * @return the companyId
@@ -338,19 +339,7 @@ public class memberMasterEntity {
         this.memberEmail2 = memberEmail2;
     }
 
-    /**
-     * @return the memberGrade
-     */
-    public String getMemberGrade() {
-        return memberGrade;
-    }
-
-    /**
-     * @param memberGrade the memberGrade to set
-     */
-    public void setMemberGrade(String memberGrade) {
-        this.memberGrade = memberGrade;
-    }
+   
 
     /**
      * @return the memberlogoloc
@@ -462,5 +451,33 @@ public class memberMasterEntity {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the memberGradeId
+     */
+    public int getMemberGradeId() {
+        return memberGradeId;
+    }
+
+    /**
+     * @param memberGradeId the memberGradeId to set
+     */
+    public void setMemberGradeId(int memberGradeId) {
+        this.memberGradeId = memberGradeId;
+    }
+
+    /**
+     * @return the memberGradeMasterEntity
+     */
+    public memberGradeMasterEntity getMemberGradeMasterEntity() {
+        return memberGradeMasterEntity;
+    }
+
+    /**
+     * @param memberGradeMasterEntity the memberGradeMasterEntity to set
+     */
+    public void setMemberGradeMasterEntity(memberGradeMasterEntity memberGradeMasterEntity) {
+        this.memberGradeMasterEntity = memberGradeMasterEntity;
     }
 }

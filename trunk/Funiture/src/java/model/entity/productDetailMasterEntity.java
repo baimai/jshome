@@ -46,6 +46,9 @@ public class productDetailMasterEntity {
     private stockBalanceEntity stockBalanceEntity;
     private String productModelCode;
     private int productMaxSale;
+    private saleDiscountDMasterEntity saleDiscountDMaster;
+    private saleDiscountHMasterEntity saleDiscountHMaster;
+    private int discountId;
     /**
      * @return the productCode
      */
@@ -547,6 +550,48 @@ public class productDetailMasterEntity {
      */
     public void setProductModelCode(String productModelCode) {
         this.productModelCode = productModelCode;
+    }
+
+    /**
+     * @return the saleDiscountDMaster
+     */
+    public saleDiscountDMasterEntity getSaleDiscountDMaster() {
+        return saleDiscountDMaster;
+    }
+
+    /**
+     * @param saleDiscountDMaster the saleDiscountDMaster to set
+     */
+    public void setSaleDiscountDMaster(saleDiscountDMasterEntity saleDiscountDMaster) {
+        this.saleDiscountDMaster = saleDiscountDMaster;
+    }
+
+    /**
+     * @return the saleDiscountHMaster
+     */
+    public saleDiscountHMasterEntity getSaleDiscountHMaster() {
+        return saleDiscountHMaster;
+    }
+
+    /**
+     * @param saleDiscountHMaster the saleDiscountHMaster to set
+     */
+    public void setSaleDiscountHMaster(saleDiscountHMasterEntity saleDiscountHMaster) {
+        this.saleDiscountHMaster = saleDiscountHMaster;
+    }
+
+    /**
+     * @return the discountId
+     */
+    public int getDiscountId() {
+        return discountId;
+    }
+
+    /**
+     * @param discountId the discountId to set
+     */
+    public void setDiscountId(int discountId) {
+        this.discountId = discountId;
     }
 
     
