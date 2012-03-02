@@ -88,4 +88,19 @@ public class orderHeaderMasterTable {
         db.add(sql,ohm.getOrderStatus(),ohm.getUpdateDate(),ohm.getOrderId());
 
     }
+    public void updateDiscount(orderHeaderMasterEntity ohm){
+        String sql = " update order_header_master ohm "+
+                     " join (select sum(product_amount),sum(product_amount-discount_price) as sumamount,sum(discount_price) as discount,order_id from order_detail_master "+
+                     " where order_id = ? group by order_id) odm on odm.order_id = ohm.order_id "+
+                     " join (SELECT (case when mgm.discount_rate is null then 0.0 "+
+                     " else mgm.discount_rate end) as discount_rate,ohm.order_id,mm.member_id FROM member_master mm "+
+                     " left join member_grade_master mgm on mgm.member_grade_id = mm.member_grade_id "+
+                     " join order_header_master ohm on ohm.member_id = mm.member_id "+
+                     " where mm.member_id = ?) mm on mm.order_id = ohm.order_id "+
+                     " set ohm.update_date = ?,ohm.total_amount = odm.sumamount,ohm.discount_rate = mm.discount_rate, "+
+                     " ohm.discount_amount = (odm.sumamount*mm.discount_rate/100) "+
+                     " where ohm.order_id = ? ";
+        db.add(sql,ohm.getOrderId(),ohm.getMemberId(),ohm.getUpdateDate(),ohm.getOrderId());
+
+    }
 }
