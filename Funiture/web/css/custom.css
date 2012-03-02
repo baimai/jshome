@@ -1,9 +1,10 @@
 
 a { color:#555452; text-decoration: none; }
-.col3-layout .col-wrapper {float:left;width:723px;}
-.col3-layout .col-main {margin-left:4px;width:522px;}
-.col2-left-layout .col-main {float:right;width:720px;}
-.col2-right-layout .col-main {width:720px;}
+.col3-layout .col-wrapper {float:left;width:80%;}
+.col3-layout .col-main {width:80%;}
+.col2-left-layout .col-main {float:right;width:80%;}
+.col2-right-layout .col-main {width:84.5%;}
+.col1-left-layout .col-main {width:95%;}
 .product-view {border:0px;}
 .product-collateral h2{color:#3A83B4;font-size:12px;font-weight:bold;}
 

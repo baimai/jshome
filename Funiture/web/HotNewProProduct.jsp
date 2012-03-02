@@ -95,17 +95,18 @@
         </script>
         <script src="jshome/js/jquery.thumbnailScroller.js"></script>
         <style type="text/css">
-            div.img-resize img {
-                width: 64px;
-                height: auto;
-
-            }
-          div.img-resize {
-                width: 64px;
-                height: 64px;
-                overflow: hidden;
-                text-align: center;
-            }
+       /* $("[title]").tooltip();*/
+        /* tooltip styling. by default the element to be styled is .tooltip  */
+.tooltip {
+	display:none;
+	background:transparent url(/tools/img/tooltip/black_arrow.png);
+	font-size:12px;
+	height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;
+}
+$("[title]").tooltip();
         </style>
     </head>
     <body>
@@ -122,7 +123,7 @@
                         <div class="jTscrollerContainer">
                             <div class="jTscroller">
                                 <c:forEach var="hotProduct" items="${query.rows}">
-                                    <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}"><img src="${hotProduct.Product_D_Pic_loc}" /></a>
+                                    <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}"><img src="${hotProduct.Product_D_Pic_loc}" title="${hotProduct.Product_D_Name_T}"/></a>
                                     </c:forEach>
                             </div>
                         </div>
@@ -143,7 +144,7 @@
                         <div class="jTscrollerContainer">
                             <div class="jTscroller">
                                 <c:forEach var="newProduct" items="${query2.rows}">
-                                    <a href="productDetail.jsp?productDetailId=${newProduct.product_detail_id}"><img src="${newProduct.Product_D_Pic_loc}" /></a>
+                                    <a href="productDetail.jsp?productDetailId=${newProduct.product_detail_id}"><img src="${newProduct.Product_D_Pic_loc}" title="${newProduct.Product_D_Name_T}" /></a>
                                     </c:forEach>
 
                             </div>
@@ -163,7 +164,7 @@
                         <div class="jTscrollerContainer">
                             <div class="jTscroller">
                                 <c:forEach var="proProduct" items="${query3.rows}">
-                                    <a href="productDetail.jsp?productDetailId=${proProduct.product_detail_id}"><img src="${proProduct.Product_D_Pic_Loc}" /></a>
+                                    <a href="productDetail.jsp?productDetailId=${proProduct.product_detail_id}"><img src="${proProduct.Product_D_Pic_Loc}" title="${proProduct.Product_D_Name_T}"/></a>
                                     </c:forEach>
 
                             </div>

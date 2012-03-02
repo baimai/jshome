@@ -67,29 +67,22 @@
             });
         </script>
 
-        <!--<script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script --></head>
-    <body class=" catalog-category-view categorypath-electronics-computers-html category-computers" onload="setProduct('00010','9','1','picCode');" >
+        <!--<script typcatalog-category-viewe="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script --></head>
+    <body class="  catalog-category-view" onload="setProduct('00010','9','1','picCode');" >
         <input type="hidden" value="" id="menuCode"/>
         <input type="hidden" value="9" id="navShow"/>
         <input type="hidden" value="1" id="navCurPage"/>
         <input type="hidden" value="name" id="navSort"/>
         <input type="hidden" value="picCode" id="menuType"/>
         <div class="wrapper">
-
             <div class="page">
-
-
             </div>
-        </div>        <div class="main-container col3-layout">
-
-
+        </div><div class="main-container col3-layout">
             <div class="main">
+                
                 <div class="col-wrapper">
-
                     <div id="productList">
-
                     </div>
-
                     <div class="col-left sidebar"><div class="block block-layered-nav">
                             <div class="block-title"><strong>Products Navigation</strong></div>
                             <div class="block-content">
@@ -104,26 +97,15 @@
                                         <li><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
                                     </c:forEach>
                                 </ul>
-
                             </div>
                         </div>
 
-                        <!--<div class="block block-banner">
-                                    <a href="http://freedemo.templates-master.com/f002/checkout/cart/">
-                                <img src="http://freedemo.templates-master.com/skin/frontend/default/f002/images/media/col_left_callout-1.jpg" width="195" alt="Our customer service is available 24/7. Call us at (800) DEMO-NUMBER." style="display:block;" />
-                                </a>
-                            </div>
-
-                        <div class="block block-banner">
-                                    <a href="http://freedemo.templates-master.com/f002/checkout/cart/">
-                                <img src="http://freedemo.templates-master.com/skin/frontend/default/f002/images/media/col_left_callout-2.jpg" width="195" alt="Our customer service is available 24/7. Call us at (800) DEMO-NUMBER." style="display:block;" />
-                                </a>
-                            </div> -->
                     </div>
+                    
                 </div>
+                
                 <jsp:include page="myCart.jsp" />
             </div>
-
         </div>
     </body>
 </html>

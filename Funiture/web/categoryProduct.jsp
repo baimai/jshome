@@ -82,96 +82,73 @@
             <div class="page-title category-title">
                 <h1><c:forEach items="${query4.rows}" var="head">${head.name}</c:forEach></h1>
             </div>
-
-
             <c:forEach items="${query2.rows}" var="recordNum" >
                 <c:set var="total" value="${recordNum.count}" />
             </c:forEach>
-
-
             <div class="category-products">
                 <div class="toolbar" id="pageNav">
-                    <div class="pager">
-                        <table border="0">
-                            <tr>
-                                <td width="31%">
-                                    สินค้า ${((param.page-1)*param.show)+1} ถึง
-                                    <c:if test="${param.page == (total/param.show) }">${total}</c:if>                 
-                                    <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                                    จาก ${total} 
-                                </td>
-                                <td width="7%">
-                                    <c:if test="${param.page != 1}" >
-                                        <a  href="#" title="Backward" style="text-decoration: none;"  onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
-                                            <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
-                                        </a>
-                                        <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
-                                            <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
-                                        </a>
-                                    </c:if>
-                                    <c:if test="${param.page == 1}" >
-                                        <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
-                                        <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
-                                    </c:if>
-                                </td>
-                                <td width="40%" style="text-align:center;">
-                                    <%--<c:if test="${param.page-4 > 0}">
-                                        ...
-                                    </c:if> --%>
-                                    <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
-                                        <c:if test="${count >= (param.page-3)}">
-                                            <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
-                                        </c:if>
-                                    </c:forEach>
-                                    <a style="padding:3px 5px;border:1px solid #000; color:#000; background-color:#fff;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page},document.getElementById('menuType').value)">${param.page}</a>
-                                    <c:forEach begin="${param.page+1}" step="1" end="${((total/param.show)+(1-((total/param.show)%1))%1)}" var="count2">                                    
-                                        <c:if test="${count2 <= (param.page+3)}">
-                                            <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
-                                        </c:if>
-                                    </c:forEach>
-                                    <%--       
-                                    <c:if test="${param.page+4 < (total/param.show)}">
-                                        ...
-                                    </c:if>  
-                                    --%>
-                                </td>
-                                <td width="8%">
-                                    <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
-                                        <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
-                                            <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
-                                        </a>
-                                        <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
-                                            <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
-                                        </a>
-                                    </c:if>
-                                    <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">                                   
-                                        <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
-                                        <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
-                                    </c:if>
-                                </td>
-                                <td width="14%" style="text-align: right;">
-                                    <input type="text" id="pageNum" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum').value,document.getElementById('menuType').value)" > ค้นหา! </a>
-                                </td>    
+                    <div class="pager"><p class="amount">
+                        สินค้า ${((param.page-1)*param.show)+1} ถึง
+                        <c:if test="${param.page == (total/param.show) }">${total}</c:if>
+                        <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
+                        จาก ${total}</p>
+                        <c:if test="${param.page != 1}" >
+                            <a  href="#" title="Backward" style="text-decoration: none;"  onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
+                                <img src="images/icon/hide-left-icon.png" width="18" height="18" alt="next"/>
+                            </a>
+                            <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
+                                <img src="images/icon/navigate-left-icon.png" width="18" height="18" alt="back" />
+                            </a>
+                        </c:if>
+                        <c:if test="${param.page == 1}" >
+                            <img src="images/icon/hide-left-icon.png" width="18" height="18" alt="next"/>
+                            <img src="images/icon/navigate-left-icon.png" width="18" height="18" alt="back" />
+                        </c:if>
 
+                        <%--<c:if test="${param.page-4 > 0}">
+                            ...
+                        </c:if> --%>
+                        <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
+                            <c:if test="${count >= (param.page-3)}">
+                                <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
+                            </c:if>
+                        </c:forEach>
+                        <a style="padding:3px 5px;border:1px solid #000; color:#000; background-color:#fff;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page},document.getElementById('menuType').value)">${param.page}</a>
+                        <c:forEach begin="${param.page+1}" step="1" end="${((total/param.show)+(1-((total/param.show)%1))%1)}" var="count2">
+                            <c:if test="${count2 <= (param.page+3)}">
+                                <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
+                            </c:if>
+                        </c:forEach>
+                        <%--
+                        <c:if test="${param.page+4 < (total/param.show)}">
+                            ...
+                        </c:if>
+                        --%>
 
-                            </tr>
-                        </table>
-
-
-
+                        <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                            <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
+                                <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                            </a>
+                            <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
+                                <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
+                            </a>
+                        </c:if>
+                        <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                            <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                            <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
+                        </c:if>
+                            <input type="text" id="pageNum" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum').value,document.getElementById('menuType').value)" > ค้นหา! </a></div>
                     </div>
-
+                   
                     <div class="sorter">
                         <div class="sort-by" style="display: inline-block">
                             <label>เรียงลำดับจาก</label>
                             <select id="sortBy">
-
                                 <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=name" selected="selected">
                                     ชื่อ                </option>
                                 <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=price">
                                     ราคา                </option>
                             </select>
-
                         </div>
                         <div style="display: inline-block">
                             <label>จำนวนที่แสดง</label>
@@ -188,13 +165,13 @@
                         </div>
                     </div>
                 </div>
-
+                    
                 <div id="productList">
                     <c:forEach  items="${query3.rows}" var="product"  varStatus="counter">
                         <c:if test="${(counter.count mod 3) == 1}">
                             <ul class="products-grid">
                                 <li class="item first">
-                        </c:if>
+                                </c:if>
 
                                 <c:if test="${(counter.count mod 3) == 2}">
                                 <li class="item">
@@ -237,94 +214,65 @@
                                     </div>
                                 </c:if>
                             </li>
-
                             <c:if test="${(counter.count mod 3) == 0}">
                             </ul>
-                            </c:if>
-
-
-
-
+                        </c:if>
                     </c:forEach>
-
-
-
-
                 </div>
-
                 <div class="toolbar-bottom">
                     <div class="toolbar">
-
                         <div class="pager">
-                            <table border="0">
-                                <tr>
-                                    <td width="31%">
-                                        สินค้า ${((param.page-1)*param.show)+1} ถึง
-                                        <c:if test="${param.page == (total/param.show) }">${total}</c:if>                 
-                                        <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                                        จาก ${total}
-                                    </td>
-                                    <td width="7%">
-                                        <c:if test="${param.page != 1}" >
-                                            <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
-                                                <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
-                                            </a>
-                                            <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
-                                                <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
-                                            </a>
-                                        </c:if>
-                                        <c:if test="${param.page == 1}" >
-                                            <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
-                                            <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
-                                        </c:if>
-                                    </td>
-                                    <td width="40%" style="text-align:center;">
-                                        <%--<c:if test="${param.page-4 > 0}">
-                                            ...
-                                        </c:if> --%>
-                                        <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
-                                            <c:if test="${count >= (param.page-3)}">
-                                                <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
-                                            </c:if>
-                                        </c:forEach>
-                                        <a style="padding:3px 5px;border:1px solid #000; color:#000; background-color:#fff;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page},document.getElementById('menuType').value)">${param.page}</a>
-                                        <c:forEach begin="${param.page+1}" step="1" end="${((total/param.show)+(1-((total/param.show)%1))%1)}" var="count2">                                    
-                                            <c:if test="${count2 <= (param.page+3)}">
-                                                <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
-                                            </c:if>
-                                        </c:forEach>
-                                        <%--       
-                                        <c:if test="${param.page+4 < (total/param.show)}">
-                                            ...
-                                        </c:if>  
-                                        --%>
-                                    </td>
-                                    <td width="8%">
-                                        <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
-                                            <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
-                                                <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
-                                            </a>
-                                            <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
-                                                <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
-                                            </a>
-                                        </c:if>
-                                        <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">                                   
-                                            <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
-                                            <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
-                                        </c:if>
-                                    </td>
-                                    <td width="14%" style="text-align: right;">
-                                        <input type="text" id="pageNum2" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum2').value,document.getElementById('menuType').value)" > Go! </a>
-                                    </td>    
+                            สินค้า ${((param.page-1)*param.show)+1} ถึง
+                            <c:if test="${param.page == (total/param.show) }">${total}</c:if>
+                            <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
+                            จาก ${total}
 
+                            <c:if test="${param.page != 1}" >
+                                <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
+                                    <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
+                                </a>
+                                <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
+                                    <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
+                                </a>
+                            </c:if>
+                            <c:if test="${param.page == 1}" >
+                                <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
+                                <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
+                            </c:if>
 
-                                </tr>
-                            </table>
-
-
-
+                            <%--<c:if test="${param.page-4 > 0}">
+                                ...
+                            </c:if> --%>
+                            <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
+                                <c:if test="${count >= (param.page-3)}">
+                                    <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
+                                </c:if>
+                            </c:forEach>
+                            <a style="padding:3px 5px;border:1px solid #000; color:#000; background-color:#fff;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page},document.getElementById('menuType').value)">${param.page}</a>
+                            <c:forEach begin="${param.page+1}" step="1" end="${((total/param.show)+(1-((total/param.show)%1))%1)}" var="count2">
+                                <c:if test="${count2 <= (param.page+3)}">
+                                    <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
+                                </c:if>
+                            </c:forEach>
+                            <%--
+                            <c:if test="${param.page+4 < (total/param.show)}">
+                                ...
+                            </c:if>
+                            --%>
+                            <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                                <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
+                                    <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                                </a>
+                                <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
+                                    <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
+                                </a>
+                            </c:if>
+                            <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                                <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                                <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
+                            </c:if>
+                            <input type="text" id="pageNum2" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum2').value,document.getElementById('menuType').value)" > Go! </a>
                         </div>
-
                         <div class="sorter">
                             <div class="sort-by" style="display: inline-block">
                                 <label>เรียงลำดับจาก</label>
@@ -335,7 +283,6 @@
                                     <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=price">
                                         ราคา               </option>
                                 </select>
-
                             </div>
                             <div style="display: inline-block">
                                 <label>จำนวนที่แสดง</label>
