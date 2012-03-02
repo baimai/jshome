@@ -180,11 +180,7 @@ public class memberGradeMasterEntity {
         this.memberPriceFlag = memberPriceFlag;
     }
 
-    private static class DateTime {
 
-        public DateTime() {
-        }
-    }
   
 
 }

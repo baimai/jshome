@@ -24,6 +24,9 @@ public class orderDetailMasterEntity {
     private String userId;
     private BigDecimal shippingCost;
     private productDetailMasterEntity productDetailMasterEntity;
+    private BigDecimal discountPrice;
+    private int freeVolumn;
+    private String discountText;
     /**
      * @return the companyId
      */
@@ -180,6 +183,48 @@ public class orderDetailMasterEntity {
      */
     public void setProductDetailMasterEntity(productDetailMasterEntity productDetailMasterEntity) {
         this.productDetailMasterEntity = productDetailMasterEntity;
+    }
+
+    /**
+     * @return the discountPrice
+     */
+    public BigDecimal getDiscountPrice() {
+        return discountPrice;
+    }
+
+    /**
+     * @param discountPrice the discountPrice to set
+     */
+    public void setDiscountPrice(BigDecimal discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    /**
+     * @return the freeVolumn
+     */
+    public int getFreeVolumn() {
+        return freeVolumn;
+    }
+
+    /**
+     * @param freeVolumn the freeVolumn to set
+     */
+    public void setFreeVolumn(int freeVolumn) {
+        this.freeVolumn = freeVolumn;
+    }
+
+    /**
+     * @return the discountText
+     */
+    public String getDiscountText() {
+        return discountText;
+    }
+
+    /**
+     * @param discountText the discountText to set
+     */
+    public void setDiscountText(String discountText) {
+        this.discountText = discountText;
     }
 
    

@@ -25,6 +25,8 @@ public class orderHeaderMasterEntity {
     private Timestamp updateDate;
     private String userId;
     private memberMasterEntity memberMasterEntity;
+    private BigDecimal discountRate;
+    private BigDecimal discountAmount;
     /**
      * @return the orderId
      */
@@ -193,6 +195,36 @@ public class orderHeaderMasterEntity {
      */
     public void setMemberMasterEntity(memberMasterEntity memberMasterEntity) {
         this.memberMasterEntity = memberMasterEntity;
+    }
+
+
+
+    /**
+     * @return the discountAmount
+     */
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
+    }
+
+    /**
+     * @param discountAmount the discountAmount to set
+     */
+    public void setDiscountAmount(BigDecimal discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    /**
+     * @return the discountRate
+     */
+    public BigDecimal getDiscountRate() {
+        return discountRate;
+    }
+
+    /**
+     * @param discountRate the discountRate to set
+     */
+    public void setDiscountRate(BigDecimal discountRate) {
+        this.discountRate = discountRate;
     }
 
 
