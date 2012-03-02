@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import model.entity.productDetailMasterEntity;
 import model.entity.productGroupMasterEntity;
+import model.entity.saleDiscountDMasterEntity;
+import model.entity.saleDiscountHMasterEntity;
 import model.entity.stockBalanceEntity;
 import util.Default;
 
@@ -239,6 +241,64 @@ public class productDetailMasterTable {
                 list.add(pdm);
             }
             return list;
+        } else {
+            return null;
+        }
+
+    }
+
+    public productDetailMasterEntity searchForDiscount(int productDetailId) {
+        List<Map<String, Object>> result = null;
+        String sql = " SELECT * FROM product_detail_master pdm "+
+                     " left join sale_discount_d_master sdd on sdd.discount_id = pdm.discount_id "+
+                     " left join sale_discount_h_master sdh on sdh.discount_id = pdm.discount_id "+
+                     " where pdm.product_detail_id = ? ";
+        result = db.queryList(sql,productDetailId);
+
+        if (result.size()>0) {
+          
+                productDetailMasterEntity pdm = new productDetailMasterEntity();
+                saleDiscountDMasterEntity sdd = new saleDiscountDMasterEntity();
+                saleDiscountHMasterEntity sdh = new saleDiscountHMasterEntity();
+                sdd.setDiscountFrom(Default.Integer(result.get(0).get("Discount_From")));
+                sdd.setDiscountTo(Default.Integer(result.get(0).get("Discount_To")));
+                sdd.setGetFreeVolumn(Default.Integer(result.get(0).get("Get_Free_Volumn")));
+                sdd.setSalesVolumn(Default.Integer(result.get(0).get("Sales_Volumn")));
+                sdd.setDiscount(Default.BigDecimal(result.get(0).get("Discount")));
+                pdm.setSaleDiscountDMaster(sdd);
+                sdh.setDiscountType(Default.Str(result.get(0).get("Discount_Type")));
+                pdm.setSaleDiscountHMaster(sdh);
+                //pdm.setCompanyId((Integer) result.get(0).get("Company_Id"));
+                pdm.setProductGroupId((Integer) result.get(0).get("Product_Group_Id"));
+                pdm.setProductCode(Default.Str(result.get(0).get("Product_Code")));
+                pdm.setProductDNameT(Default.Str(result.get(0).get("Product_D_Name_T")));
+                pdm.setProductDNameE(Default.Str((result.get(0).get("Product_D_Name_E"))));
+                pdm.setProductPrice1(Default.BigDecimal(result.get(0).get("Product_Price1")));
+                pdm.setProductPrice2(Default.BigDecimal(result.get(0).get("Product_Price2")));
+                pdm.setProductPrice3(Default.BigDecimal(result.get(0).get("Product_Price3")));
+                pdm.setProductPrice4(Default.BigDecimal(result.get(0).get("Product_Price4")));
+                pdm.setProductSpect1_T(Default.Str(result.get(0).get("Product_Spec1_T")));
+                pdm.setProductSpect2_T(Default.Str(result.get(0).get("Product_Spec2_T")));
+                pdm.setProductSpect3_T(Default.Str(result.get(0).get("Product_Spec3_T")));
+                pdm.setProductSpect4_T(Default.Str(result.get(0).get("Product_Spec4_T")));
+                pdm.setProductSpect5_T(Default.Str(result.get(0).get("Product_Spec5_T")));
+                pdm.setProductSpect6_T(Default.Str(result.get(0).get("Product_Spec6_T")));
+                pdm.setProductSpect1_E(Default.Str(result.get(0).get("Product_Spec1_E")));
+                pdm.setProductSpect2_E(Default.Str(result.get(0).get("Product_Spec2_E")));
+                pdm.setProductSpect3_E(Default.Str(result.get(0).get("Product_Spec3_E")));
+                pdm.setProductSpect4_E(Default.Str(result.get(0).get("Product_Spec4_E")));
+                pdm.setProductSpect5_E(Default.Str(result.get(0).get("Product_Spec5_E")));
+                pdm.setProductSpect6_E(Default.Str(result.get(0).get("Product_Spec6_E")));
+                pdm.setProductDPicLoc(Default.Str(result.get(0).get("Product_D_Pic_Loc")));
+                pdm.setProductDIconLoc(Default.Str(result.get(0).get("Product_D_Icon_Loc")));
+                pdm.setProductDRemarkT(Default.Str(result.get(0).get("Product_D_Remark_T")));
+                pdm.setProductDRemarkE(Default.Str(result.get(0).get("Product_D_Remark_E")));
+                pdm.setProductDDisplayFlag(Default.Str(result.get(0).get("Product_D_Display_Flag")));
+                pdm.setUserId(Default.Str(result.get(0).get("User_Id")));
+                pdm.setProductDetailId((Integer) result.get(0).get("Product_Detail_Id"));
+               
+            
+            return pdm;
         } else {
             return null;
         }

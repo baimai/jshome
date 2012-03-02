@@ -27,8 +27,9 @@ public class orderDetailMasterTable {
 
     public void add(orderDetailMasterEntity odm) {
         String sql = "insert into order_detail_master "
-                + "(Company_Id, Order_Id, Product_Detail_Id, Product_Volumn, Product_Cost, Product_Amount, Create_Date, User_Id, Shipping_Cost)"
-                + "values (?,?,?,?,?,?,?,?,?)";
+                + "(Company_Id, Order_Id, Product_Detail_Id, Product_Volumn, Product_Cost, Product_Amount, "
+                + " Create_Date, User_Id, Shipping_Cost,Discount_Price,Free_Volumn,Discount_Text) "
+                + "values (?,?,?,?,?,?,?,?,?,?,?,?)";
         db.add(sql, odm.getCompanyId(),
                 odm.getOrderId(),
                 odm.getProductDetailId(),
@@ -37,7 +38,10 @@ public class orderDetailMasterTable {
                 odm.getProductAmount(),
                 odm.getCreateDate(),
                 odm.getUserId(),
-                odm.getShippingCost());
+                odm.getShippingCost(),
+                odm.getDiscountPrice(),
+                odm.getFreeVolumn(),
+                odm.getDiscountText());
     }
 
     public ArrayList searchId(int orderId) {
