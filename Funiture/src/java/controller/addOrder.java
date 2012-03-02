@@ -20,11 +20,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
+import model.entity.memberGradeMasterEntity;
+import model.entity.memberMasterEntity;
 import model.entity.orderDetailMasterEntity;
 import model.entity.orderHeaderMasterEntity;
+import model.entity.productDetailMasterEntity;
 import model.entity.stockBalanceEntity;
+import model.memberGradeMasterTable;
+import model.memberMasterTable;
 import model.orderDetailMasterTable;
 import model.orderHeaderMasterTable;
+import model.productDetailMasterTable;
 import model.stockBalanceTable;
 
 /**
@@ -55,8 +61,14 @@ public class addOrder extends HttpServlet {
             orderDetailMasterTable odmt = new orderDetailMasterTable(db);
             orderHeaderMasterEntity ohm = new orderHeaderMasterEntity();
             orderHeaderMasterTable ohmt = new orderHeaderMasterTable(db);
+            productDetailMasterTable pdmt = new productDetailMasterTable(db);
+            productDetailMasterEntity pdm = new productDetailMasterEntity();
+            memberMasterTable mgmt = new memberMasterTable(db);
+            memberMasterEntity mgm = new memberMasterEntity();
             stockBalanceEntity sb = new stockBalanceEntity();
             stockBalanceTable sbt = new stockBalanceTable(db);
+            loginClass lg = (loginClass) s.getAttribute("loginDetail");
+            mgm.setMemberId(lg.getMemberId());
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
             if (s.getAttribute("productList") != null) {
                 ArrayList list = (ArrayList) s.getAttribute("productList");
@@ -95,29 +107,83 @@ public class addOrder extends HttpServlet {
                 ohm.setTotalAmount(BigDecimal.valueOf(total));
                 ohm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 ohm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                mgm = mgmt.searchByUserId(mgm);
                 int rowNum = ohmt.add(ohm);
                 if (rowNum != 0) {
                     int oid = ohmt.getOrderId(ohm, Company_Id);
+                    ohm.setOrderId(oid);
                     odm.setCompanyId(Company_Id);
                     odm.setOrderId(oid);
                     for (int i = 0; i < list.size(); i++) {
+                        
                         product p = (product) list.get(i);
-                        odm.setProductDetailId(p.getProductDetailId());
-                        odm.setProductAmount(BigDecimal.valueOf(p.getAmount() * p.getProductPrice()));
+                        productDetailMasterEntity pdm2 = pdmt.searchForDiscount(p.getProductDetailId());
+                        //
                         odm.setProductVolumn(p.getAmount());
-                        odm.setProductCost(BigDecimal.valueOf(p.getProductPrice()));
+                        //เซตว่าใช้ราคาไหน
+                        if (mgm.getMemberGradeMasterEntity().getMemberPriceFlag().equals("W")) {
+                            if (pdm2.getProductPrice1() != BigDecimal.ZERO) {
+                                odm.setProductCost(pdm2.getProductPrice1());
+                            } else {
+                                odm.setProductCost(pdm2.getProductPrice2());
+                            }
+                        } else if (mgm.getMemberGradeMasterEntity().getMemberPriceFlag().equals("R")) {
+                            if (pdm2.getProductPrice3() != BigDecimal.ZERO) {
+                                odm.setProductCost(pdm2.getProductPrice3());
+                            } else {
+                                odm.setProductCost(pdm2.getProductPrice4());
+                            }
+                        }else{
+                            odm.setProductCost(BigDecimal.ZERO);
+                        }
+                        //end
+                        odm.setDiscountPrice(BigDecimal.ZERO);
+                        odm.setFreeVolumn(0);
+                        odm.setProductAmount(odm.getProductCost().multiply(BigDecimal.valueOf(odm.getProductVolumn())));
+                        //เช็คว่า status ส่วนลดเป็นอะไร
+                        if (pdm2.getSaleDiscountHMaster().getDiscountType().equals("R") || pdm2.getSaleDiscountHMaster().getDiscountType().equals("B")) {
+                            //เช็คว่าจำนวนสินค้าที่ซื้อมาอยู่ในช่วงส่วนลดหรือไม่
+                            if (pdm2.getSaleDiscountDMaster().getDiscountFrom() <= p.getAmount() && pdm2.getSaleDiscountDMaster().getDiscountTo() >= p.getAmount()) {
+                                // ถ้า status ลดเป็น %
+                                if (pdm2.getSaleDiscountHMaster().getDiscountType().equals("R")) {
+                                    odm.setDiscountPrice(odm.getProductAmount().multiply(pdm2.getSaleDiscountDMaster().getDiscount()).divide(BigDecimal.TEN.multiply(BigDecimal.TEN)));
+                                    odm.setDiscountText("ลดเป็นจำนวนเงิน "+pdm2.getSaleDiscountDMaster().getDiscount()+"%");
+                                    // ถ้า status ลดเป็น ค่าคงที่
+                                } else if (pdm2.getSaleDiscountHMaster().getDiscountType().equals("B")) {
+                                    odm.setDiscountPrice(pdm2.getSaleDiscountDMaster().getDiscount());
+                                    odm.setDiscountText("ลดเป็นจำนวนเงิน "+odm.getDiscountPrice());
+                                }
+
+                            }
+                            //end
+                            //ถ้า status เป็นของแถม
+                        } else if (pdm2.getSaleDiscountHMaster().getDiscountType().equals("P")) {
+                            //ถ้าจำนวนมากว่าที่กำหนด
+                            if (pdm2.getSaleDiscountDMaster().getSalesVolumn() <= p.getAmount()) {
+                                int k=1;
+                                for (int j = pdm2.getSaleDiscountDMaster().getSalesVolumn(); j <= p.getAmount(); j = j + pdm2.getSaleDiscountDMaster().getSalesVolumn()) {
+                                    odm.setFreeVolumn(odm.getFreeVolumn() + pdm2.getSaleDiscountDMaster().getGetFreeVolumn());
+                                    k++;
+                                }
+                                odm.setDiscountText("แถม "+k);
+                            }
+                        }
+                        odm.setProductDetailId(p.getProductDetailId());
                         odm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         odm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        odm.setShippingCost(BigDecimal.ZERO);
+                        odm.setShippingCost(BigDecimal.ZERO);                     
                         odmt.add(odm);
                     }
                     s.removeAttribute("productList");
                 }
+               ohm.setMemberId(lg.getMemberId());
+               ohm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+               ohmt.updateDiscount(ohm);
 
             }
             db.close();
             response.sendRedirect("index.jsp");
-            
+
 
         } catch (Exception ex) {
             ex.printStackTrace(out);
