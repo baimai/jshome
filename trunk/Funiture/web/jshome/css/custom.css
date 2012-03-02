@@ -10,18 +10,19 @@ a:hover  img { border:0; text-decoration:none;}*/
 /*.header-container { background: url(../images/header-bg.gif) repeat-x 0 0; }
 .header-top {clear:both;margin:0 auto;position:relative;width:930px;z-index:100;}*/
 
-.col3-layout .col-wrapper {float:left;width:70%;}
-.col3-layout .col-main {margin-left:4px;width:70%;}
-.col2-left-layout .col-main {float:right;width:80%;}
-.col2-right-layout .col-main {width:70%;}
+.col3-layout .col-wrapper {width:84.5%;}
+.col3-layout .col-main {width:72.5%;}
+
+.col2-left-layout .col-main {float:right;width:84.5%;}
+.col2-right-layout .col-main {width:84.5%; }
 .col1-left-layout .col-main {width:95%;}
 .breadcrumbs ul{margin:0 auto 0; padding-bottom:0px; text-align:left; width:930px;}
 
-.products-grid li.item { padding:12px 10px; width:150px; text-align:center;}
+.products-grid li.item { padding:8px 6px; width:30.5%; text-align:center;}
 .products-grid  { line-height:1.35em; }
 .products-grid  .product-name { margin-bottom:.4em; font-size:1.05em; }
 .products-grid  .product-name a, .products-grid  .product-name a:hover { color:#007ed3; text-decoration: none; }
-.products-grid  .ratings { margin-bottom:.6em; }
+.products-grid  .ratings { margin-bottom:.5em; }
 .products-grid  {border-bottom:1px solid #D9DDE3;}
 .link-wishlist {color:#DC6809 !important;font-weight:bold !important;}
 .products-grid  .link-wishlist a, .products-grid .link-compare a:hover {text-decoration:underline;}
@@ -107,7 +108,7 @@ a:hover  img { border:0; text-decoration:none;}*/
 .block .block-content { background: #fcfcfc url(../images/box-content-bg.gif) repeat-x 0 0; border: 1px solid #ccc; border-top: none; -moz-border-radius-bottomleft: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-left-radius: 8px; -webkit-border-bottom-right-radius: 8px; padding:5px 5px;}
 .block .content ol {background: none;border: none;}
 
-/*#slider{height:200px; position:relative; width:930px; margin:0 auto;*/ overflow:hidden; margin-bottom:13px; border:1px solid #ccc}
+/*#slider{height:200px; position:relative; width:930px; margin:0 auto; overflow:hidden; margin-bottom:13px; border:1px solid #ccc}*/
 div.scroller{height:200px; overflow:hidden; width:930px; zoom:1}
 div.scroller .content{padding:0}
 /*div.slidercontrolwr{position:absolute; right:15px; top:15px}*/

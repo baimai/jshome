@@ -25,23 +25,17 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                    <jsp:include page="head.jsp"/>
-                     <br><br><br>
+                    <jsp:include page="head.jsp"/>                    
                     <jsp:include page="slide.jsp"/>
                       <br><br><br>
-                    <jsp:include page="category_detail2.jsp" />
-                     
+                    <jsp:include page="category_detail2.jsp" />                     
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
     </body>
 </html>
