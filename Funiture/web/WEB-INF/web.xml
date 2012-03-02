@@ -120,14 +120,25 @@
         <servlet-name>memberGradeMaster</servlet-name>
         <servlet-class>controller.memberGradeMaster</servlet-class>
     </servlet>
-   
     <servlet>
         <servlet-name>userSecurity</servlet-name>
         <servlet-class>controller.userSecurity</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>seqProductSetup</servlet-name>
+        <servlet-class>controller.seqProductSetup</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editProfile</servlet-name>
+        <servlet-class>controller.editProfile</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>xmlUserSecurity</servlet-name>
         <servlet-class>controller.xmlUserSecurity</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editOrder</servlet-name>
+        <servlet-class>controller.editOrder</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
@@ -245,14 +256,25 @@
         <servlet-name>memberGradeMaster</servlet-name>
         <url-pattern>/admin/memberGradeMaster.do</url-pattern>
     </servlet-mapping>
-  
     <servlet-mapping>
         <servlet-name>userSecurity</servlet-name>
         <url-pattern>/admin/userSecurity.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>seqProductSetup</servlet-name>
+        <url-pattern>/admin/seqProductSetup.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editProfile</servlet-name>
+        <url-pattern>/editProfile.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>xmlUserSecurity</servlet-name>
         <url-pattern>/admin/xmlUserSecurity.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editOrder</servlet-name>
+        <url-pattern>/admin/editOrder.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
