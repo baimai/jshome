@@ -101,8 +101,8 @@ public class editProfile extends HttpServlet {
                     mb.setMemberEmail2(request.getParameter("memberEmail2"));
                 }
 
-                if (request.getParameter("memberGrade") != null) {
-                    mb.setMemberGrade(request.getParameter("memberGrade"));
+                if (request.getParameter("memberGradeId") != null) {
+                    mb.setMemberGradeId(Integer.parseInt(request.getParameter("memberGradeId")));
                 }
                 if (request.getParameter("memberlogoloc") != null) {
                     mb.setMemberlogoloc(request.getParameter("memberlogoloc"));
