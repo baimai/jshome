@@ -27,4 +27,11 @@ public class Default {
             return (BigDecimal) obj;
         }
     }
+    public static Integer Integer(Object obj) {
+        if (obj == null) {
+            return 0;
+        } else {
+            return (Integer) obj;
+        }
+    }
 }
