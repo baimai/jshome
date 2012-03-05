@@ -4,7 +4,7 @@
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup mps
     join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
-    where mps.Pic_Code = '99999' and pdm.product_d_display_flag = 'Y'
+    where mps.Pic_Code = '99999' and pdm.product_d_display_flag = 'A'
     order by mps.Pic_code,mps.pic_seq
     limit 0,6
 </sql:query>
