@@ -180,7 +180,7 @@
                                 <c:if test="${(counter.count mod 3) == 0}">
                                 <li class="item last">
                                 </c:if>
-                                <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="135" height="135" alt="${product.product_d_name_t}" /></a>
+                                <a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}" class="product-image"><img src="${product.product_d_pic_loc}" width="150" height="90" alt="${product.product_d_name_t}" /></a>
                                 <h2 class="product-name"><a href="productDetail.jsp?productDetailId=${product.product_detail_id}" title="${product.product_d_name_t}">${product.product_d_name_t}</a></h2>
                                 <div class="price-box">
                                     <c:if test="${product.show_price_list_flag!='N'}">

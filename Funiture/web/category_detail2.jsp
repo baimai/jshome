@@ -92,6 +92,16 @@
                                         <li><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
                                     </c:forEach>
                                 </ul>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                     <div class="col-left sidebar"><div class="block block-layered-nav">
+                            <div class="block-title"><strong>Products Navigation</strong></div>
+                            <div class="block-content">
+                                <p class="block-subtitle">ประเภทสินค้า</p>
+                                
                                 <ul>
                                     <c:forEach var="menu2" items="${query2.rows}">
                                         <li><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
@@ -101,7 +111,6 @@
                         </div>
 
                     </div>
-                    
                 </div>
                 
                 <jsp:include page="myCart.jsp" />

@@ -67,6 +67,40 @@
                 location.href="cartDetail.jsp";
             }
         </script>
+        <link rel="stylesheet" type="text/css" href="../style-projects-jquery.css" />
+
+    <!-- Arquivos utilizados pelo jQuery lightBox plugin -->
+    <script type="text/javascript" src="jshome/js/jquery.js"></script>
+    <script type="text/javascript" src="jshome/js/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="jshome/css/jquery.lightbox-0.5.css" media="screen" />
+    <!-- / fim dos arquivos utilizados pelo jQuery lightBox plugin -->
+
+    <!-- Ativando o jQuery lightBox plugin -->
+    <script type="text/javascript">
+    $(function() {
+        $('#gallery a').lightBox();
+    });
+    </script>
+   	<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {
+		background-color: #fff;
+		padding: 10px;
+		width: 400px;
+	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+	}
+	#gallery ul a:hover img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+		color: #fff;
+	}
+	#gallery ul a:hover { color: #fff; }
+	</style>
     </head>
     <body>
         <div id="art-main">
@@ -79,6 +113,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
+                    <br><br>
                     <c:forEach var="product" items="${queryProduct.rows}">
                         <%-- product detail --%>
                         <div class="wrapper">
@@ -179,11 +214,13 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="product-img-box">
-                                                            <p class="product-image product-image-zoom">
-                                                                <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}" title="${product.product_d_name_t}"  /></p>
-
-
+                                                                <div id="gallery"  >
+                                                             <ul>
+        <li>
+                                                            <a href="${product.product_d_pic_loc}" title="${product.product_d_name_t}">
+                                                                <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}" height="100%"  width="100%" />
+</a></li>
+                                                             </ul>
                                                         </div>
 
                                                         <div class="clearer"></div>
@@ -272,7 +309,7 @@
                                                     <c:forEach var="relate" items="${queryRelate.rows}">
 
                                                         <div class="empty"  id="productList">
-                                                            <div><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"> <img width="160" height="80" src="${relate.product_d_pic_loc}"/></a></div>
+                                                            <div><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"> <img width="90" height="40" src="${relate.product_d_pic_loc}"/></a></div>
                                                             <div><center><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}">${relate.product_d_name_t}</a></center></div>
                                                             <c:if test="${relate.show_price_list_flag != 'N'}">
                                                                 <c:if test="${relate.show_price_list_flag == 'A'}">
