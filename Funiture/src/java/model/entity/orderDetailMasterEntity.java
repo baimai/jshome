@@ -24,9 +24,11 @@ public class orderDetailMasterEntity {
     private String userId;
     private BigDecimal shippingCost;
     private productDetailMasterEntity productDetailMasterEntity;
+    private memberMasterEntity memMasterEntity;
     private BigDecimal discountPrice;
     private int freeVolumn;
     private String discountText;
+    private int orderDetailId;
     /**
      * @return the companyId
      */
@@ -225,6 +227,34 @@ public class orderDetailMasterEntity {
      */
     public void setDiscountText(String discountText) {
         this.discountText = discountText;
+    }
+
+    /**
+     * @return the orderDetailId
+     */
+    public int getOrderDetailId() {
+        return orderDetailId;
+    }
+
+    /**
+     * @param orderDetailId the orderDetailId to set
+     */
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
+    }
+
+    /**
+     * @return the memMasterEntity
+     */
+    public memberMasterEntity getMemMasterEntity() {
+        return memMasterEntity;
+    }
+
+    /**
+     * @param memMasterEntity the memMasterEntity to set
+     */
+    public void setMemMasterEntity(memberMasterEntity memMasterEntity) {
+        this.memMasterEntity = memMasterEntity;
     }
 
    
