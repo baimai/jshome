@@ -7,6 +7,7 @@ package controller;
 import controller.Xml.GenerateXml;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -117,9 +118,11 @@ public class xmlOrderMaster extends HttpServlet {
                     xml.setRecords(listp.size());
                     for (int i = 0; i < listp.size(); i++) {
                         orderDetailMasterEntity data = (orderDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(i,data.getProductDetailMasterEntity().getProductCode(),
+                        xml.setRowDetail(data.getProductDetailId(),data.getProductDetailMasterEntity().getProductCode(),
                                 data.getProductDetailMasterEntity().getProductDNameE(),
-                                data.getProductVolumn(), data.getProductCost(),data.getProductAmount());
+                                data.getProductVolumn(), data.getProductCost(),data.getDiscountText(),
+                                (data.getProductAmount().subtract(data.getDiscountPrice())),data.getOrderDetailId(),data.getOrderId(),
+                                data.getMemMasterEntity().getMemberId());
                     }
                      out.print(xml.getXml());
                 }

@@ -147,11 +147,11 @@ public class addOrder extends HttpServlet {
                                 // ถ้า status ลดเป็น %
                                 if (pdm2.getSaleDiscountHMaster().getDiscountType().equals("R")) {
                                     odm.setDiscountPrice(odm.getProductAmount().multiply(pdm2.getSaleDiscountDMaster().getDiscount()).divide(BigDecimal.TEN.multiply(BigDecimal.TEN)));
-                                    odm.setDiscountText("ลดเป็นจำนวนเงิน "+pdm2.getSaleDiscountDMaster().getDiscount()+"%");
+                                    odm.setDiscountText("ลด "+pdm2.getSaleDiscountDMaster().getDiscount()+"%");
                                     // ถ้า status ลดเป็น ค่าคงที่
                                 } else if (pdm2.getSaleDiscountHMaster().getDiscountType().equals("B")) {
                                     odm.setDiscountPrice(pdm2.getSaleDiscountDMaster().getDiscount());
-                                    odm.setDiscountText("ลดเป็นจำนวนเงิน "+odm.getDiscountPrice());
+                                    odm.setDiscountText("ลด "+odm.getDiscountPrice() +" บาท");
                                 }
 
                             }
