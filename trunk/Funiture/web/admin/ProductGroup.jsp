@@ -35,11 +35,10 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlProductGroup.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'xmlProductGroup.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['No','Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id','Display'],
-                    colModel:[
-                        {name:'No',index:'No',  align:"right",width:40,editable:false,editoptions:{readonly:true,size:10}, search:false},
+                    colNames:['Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id','Display'],
+                    colModel:[                       
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:100,editable:true,editoptions:{size:10}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:230,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:230,editable:true,editoptions:{size:25}},

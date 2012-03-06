@@ -33,12 +33,12 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlMemberMaster.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'xmlMemberMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['No','Login', 'firtName', 'LastName','Status','Register','Approve','Status','memberId'],
+                    colNames:['Login', 'firtName', 'LastName','Status','Register','Approve','Status','memberId'],
                     colModel:[
-                        {name:'No',index:'No', width:40,align:"right",editable:false,editoptions:{readonly:true,size:10},search:false},
-                        {name:'memberLogin',index:'memberLogin',align:"center", width:120,editrules:{ edithidden:false},editable:false},
+                       
+                        {name:'memberLogin',index:'memberLogin',align:"center", width:120,editrules:{ edithidden:false},editable:true},
                         {name:'memberName',index:'memberName',align:"center", width:180,editrules:{ edithidden:false},editable:false},
                         {name:'memberSurName',index:'memberSurName',align:"center", width:180,editrules:{ edithidden:false},editable:false},
                         {name:'memberStatus',index:'memberStatus', width:80, align:"center",editable:false,editoptions:{size:25}},
@@ -49,8 +49,9 @@
 
 
                     ],
-                    rowNum:10,
-                    rowList:[10,20,30,40,80,160,320,500,1000],
+                    rowNum:20,
+                    rowList:[20,30,40,80,160,320,500,1000],
+                    height:400,
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
