@@ -34,17 +34,14 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlColorMaster.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'xmlColorMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['No','Color Code', 'Color Name T ', 'Color Name E ','Color Id' ],
-                    colModel:[
-                        {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10},search:false},
+                    colNames:['Color Code', 'Color Name T ', 'Color Name E ','Color Id' ],
+                    colModel:[                        
                         {name:'colorCode',index:'colorCode', width:180,editable:true,editoptions:{size:10}},
                         {name:'colorNameT',index:'colorNameT', width:288,editable:true,editoptions:{size:25}},
                         {name:'colorNameE',index:'colorNameE', width:288,editable:true,editoptions:{size:25}},
                         {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
-
-
                     ],
                     rowNum:20,
                     height:400,
