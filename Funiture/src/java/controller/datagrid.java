@@ -46,9 +46,16 @@ public class datagrid extends HttpServlet {
             if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
-                String status = request.getParameter("status");
-                String rows = request.getParameter("rows");
-                String page = request.getParameter("page");
+                int rows = 20, page = 1;
+                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
+                    String r = request.getParameter("rows");
+                    rows = Integer.parseInt(r);
+                }
+                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
+                    String r = request.getParameter("page");
+                    page = Integer.parseInt(r);
+                }
+                int start = rows * page - rows;
                 String picCode = null;
                 String sField = null, sValue = null, sOper = null;
                 /*
@@ -69,19 +76,7 @@ public class datagrid extends HttpServlet {
                     sOper = request.getParameter("searchOper");
                 }
 
-                int totalPages = 0;
-                int totalCount = 2;
 
-                if (totalCount > 0) {
-                    if (totalCount % Integer.parseInt(rows) == 0) {
-                        totalPages = totalCount / Integer.parseInt(rows);
-                    } else {
-                        totalPages = (totalCount / Integer.parseInt(rows)) + 1;
-                    }
-
-                } else {
-                    totalPages = 0;
-                }
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 Database db = new Database();
                 picProductSetupTable ppst = new picProductSetupTable(db);
@@ -90,31 +85,40 @@ public class datagrid extends HttpServlet {
                 pps.setCompanyId(Company_Id);
                 pps.setPicCode(picCode);
                 ArrayList list2 = ppst.searchHeader(sField, sValue, sOper,pps);
-                ArrayList list = ppst.search(sField, sValue, sOper,pps);
-                db.close();
+                ArrayList list = ppst.search(sField, sValue, sOper,pps,start,rows);
                 if (request.getParameter("q").equals("1")) {
+                    int totalPages = 0;
+                    int totalCount = ppst.countAll(pps);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(list.size());
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list.get(i);
-                        xml.setRowDetail(data.getPicId(), i+1,
+                        xml.setRowDetail(data.getPicId(),
                                data.getPicCode(),data.getProductDetailMasterEntity().getProductDPicLoc(),
                                data.getProductCode(),data.getPicNameT(),data.getPicNameE(),
                                data.getProductRemarkT(),data.getProductRemarkE(),data.getPicId(),data.getPicCode());
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
+                    int totalPages = 0;
+                    int totalCount = ppst.countAll(pps);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
-                    xml.setTotal(totalPages);
+                    xml.setTotal(1);
                     xml.setPage(request.getParameter("page"));
                     xml.setRecords(list2.size());
                     for (int i = 0; i < list2.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list2.get(i);
                         xml.setRowDetail(data.getPicCode(), i+1,
                                data.getPicCode(),data.getMenuDetailMasterEntity().getMenuCNameT(),
-                               data.getMenuDetailMasterEntity().getMenuCNameE(),data.getPicCode(),data.getPicCode());
+                               data.getMenuDetailMasterEntity().getMenuCNameE(),data.getPicCode(),data.getPicCode(),data.getPicCode());
                     }
                     out.print(xml.getXml());
                 }

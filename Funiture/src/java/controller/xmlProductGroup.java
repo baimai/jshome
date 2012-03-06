@@ -41,9 +41,18 @@ public class xmlProductGroup extends HttpServlet {
             if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
-                String status = request.getParameter("status");
-                String rows = request.getParameter("rows");
-                String page = request.getParameter("page");
+
+                int rows = 20, page = 1;
+                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
+                    String r = request.getParameter("rows");
+                    rows = Integer.parseInt(r);
+                }
+                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
+                    String r = request.getParameter("page");
+                    page = Integer.parseInt(r);
+                }
+                int start = rows * page - rows;
+
                 String productGroupId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
 
@@ -67,61 +76,65 @@ public class xmlProductGroup extends HttpServlet {
                     sOper = request.getParameter("searchOper");
                 }
 
-                int totalPages = 0;
-                int totalCount = 2;
 
-                if (totalCount > 0) {
-                    if (totalCount % Integer.parseInt(rows) == 0) {
-                        totalPages = totalCount / Integer.parseInt(rows);
-                    } else {
-                        totalPages = (totalCount / Integer.parseInt(rows)) + 1;
-                    }
-
-                } else {
-                    totalPages = 0;
-                }
 
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = pdm.search(productGroupId, Company_Id);
-                ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id);
-                db.close();
+                ArrayList listp = pdm.search(productGroupId, Company_Id,start,rows);
+                ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id, start, rows);
+
+                
                 if (request.getParameter("q").equals("1")) {
+                    int totalPages = 0;
+                    int totalCount = pgmt.countAll(Company_Id);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(list.size());
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         productGroupMasterEntity data = (productGroupMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getProductGroupId(), i, data.getProductGroupCode(), data.getProductGNameT(),
+                        xml.setRowDetail(data.getProductGroupId(), data.getProductGroupCode(), data.getProductGNameT(),
                                 data.getProductGNameE(), data.getProductRemarkT(), data.getProductRemarkE(),
-                                data.getProductGroupId(),data.getProductGDisplayFlag());
+                                data.getProductGroupId(), data.getProductGDisplayFlag());
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
+                    int totalPages = 0;
+                    int totalCount = pdm.countAll(Company_Id);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(listp.size());
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getProductDetailId(),data.getProductDetailId(), data.getProductDNameT(),
-                                data.getProductDNameE(), data.getProductPrice1(),data.getProductDetailId(),
+                        xml.setRowDetail(data.getProductDetailId(), data.getProductDetailId(), data.getProductDNameT(),
+                                data.getProductDNameE(), data.getProductPrice1(), data.getProductDetailId(),
                                 data.getProductDetailId());
                     }
-                     out.print(xml.getXml());
-                }else if (request.getParameter("q").equals("3")) {
+                    out.print(xml.getXml());
+                } else if (request.getParameter("q").equals("3")) {
+                    int totalPages = 0;
+                    int totalCount = pdm.countAll(Company_Id);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(listp.size());
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getProductDetailId(),i+1, data.getProductCode(),
-                                data.getProductDNameT(),data.getProductDNameE(),data.getProductDPicLoc());
+                        xml.setRowDetail(data.getProductDetailId(), i + 1, data.getProductCode(),
+                                data.getProductDNameT(), data.getProductDNameE(), data.getProductDPicLoc());
                     }
                     out.print(xml.getXml());
                 }
