@@ -43,6 +43,20 @@ public class Column {
             sField = "pps.Pic_Name_E";
         } else if (sField.equals("orderStatus")) {
             sField = "ohm.Order_Status";
+        }else if (sField.equals("colorCode")) {
+            sField = "cm.Color_Code";
+        }else if (sField.equals("colorNameT")) {
+            sField = "cm.Color_Name_T";
+        }else if (sField.equals("colorNameE")) {
+            sField = "cm.Color_Name_E";
+        }else if (sField.equals("memberLogin")) {
+            sField = "mb.Member_Login";
+        }else if (sField.equals("memberName")) {
+            sField = "mb.Member_Name";
+        }else if (sField.equals("memberSurName")) {
+            sField = "mb.Member_SurName";
+        }else if (sField.equals("memberStatus")) {
+            sField = "mb.Member_Status";
         }
         return sField;
     }
