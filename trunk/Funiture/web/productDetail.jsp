@@ -31,6 +31,7 @@
     order by rand())
     )tbl1
     join company_master cm on cm.company_id = tbl1.company_id
+    where tbl1.product_D_display_flag = 'Y'
     order by rand()
     limit 2
 </sql:query>
