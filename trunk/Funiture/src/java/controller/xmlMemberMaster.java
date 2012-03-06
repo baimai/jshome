@@ -42,9 +42,16 @@ public class xmlMemberMaster extends HttpServlet {
             if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
-                String status = request.getParameter("status");
-                String rows = request.getParameter("rows");
-                String page = request.getParameter("page");
+                int rows = 20, page = 1;
+                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
+                    String r = request.getParameter("rows");
+                    rows = Integer.parseInt(r);
+                }
+                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
+                    String r = request.getParameter("page");
+                    page = Integer.parseInt(r);
+                }
+                int start = rows * page - rows;
                 String memberGradeId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
                 /*
@@ -61,43 +68,35 @@ public class xmlMemberMaster extends HttpServlet {
                 if (request.getParameter("Del") != null) {
                     Del = request.getParameter("Del");
                 }
-                if (request.getParameter("searchField") != null) {
-                    sField = request.getParameter("searchField");
-                }
-                if (request.getParameter("searchString") != null) {
-                    sValue = request.getParameter("searchString");
-                }
-                if (request.getParameter("searchOper") != null) {
-                    sOper = request.getParameter("searchOper");
-                }
-
-                int totalPages = 0;
-                int totalCount = 2;
-
-                if (totalCount > 0) {
-                    if (totalCount % Integer.parseInt(rows) == 0) {
-                        totalPages = totalCount / Integer.parseInt(rows);
-                    } else {
-                        totalPages = (totalCount / Integer.parseInt(rows)) + 1;
+                if (request.getParameter("q").equals("1")) {
+                    if (request.getParameter("searchField") != null) {
+                        sField = request.getParameter("searchField");
                     }
-
-                } else {
-                    totalPages = 0;
+                    if (request.getParameter("searchString") != null) {
+                        sValue = request.getParameter("searchString");
+                    }
+                    if (request.getParameter("searchOper") != null) {
+                        sOper = request.getParameter("searchOper");
+                    }
                 }
 
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                memberGradeMasterTable mgt = new memberGradeMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = mgt.search(sField, sValue, sOper, Company_Id);
-                ArrayList list = mbt.search(sField, sValue, sOper, Company_Id);
-                db.close();
+                ArrayList list = mbt.search(sField, sValue, sOper, Company_Id, start, rows);
                 if (request.getParameter("q").equals("1")) {
+                    int totalPages = 0;
+                    int totalCount = mbt.countAll(Company_Id);
+                    db.close();
+                    if (totalCount % rows == 0) {
+                        totalPages = totalCount / rows;
+                    } else {
+                        totalPages = (totalCount / rows) + 1;
+                    }
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(list.size());
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         memberMasterEntity data = (memberMasterEntity) list.get(i);
                         String statusFull = null;
@@ -108,28 +107,16 @@ public class xmlMemberMaster extends HttpServlet {
                         } else if (data.getMemberStatus().equals("B")) {
                             statusFull = "Ban";
                         }
-                        xml.setRowDetail(data.getMemberId(), i + 1, data.getMemberName(), data.getMemberSurName(),
-                                data.getMemberComName(),
+                        xml.setRowDetail(data.getMemberId(), data.getMemberLogin(), data.getMemberName(), data.getMemberSurName(),
                                 statusFull,
                                 data.getMemberRegDate(),
                                 data.getMemberAppdate(),
-                                data.getMemberId(),
+                                data.getMemberStatus(),
                                 data.getMemberId());
                     }
                     out.print(xml.getXml());
-                } else if (request.getParameter("q").equals("2")) {
-                    GenerateXml xml = new GenerateXml();
-                    xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(listp.size());
-                    for (int i = 0; i < listp.size(); i++) {
-                        memberGradeMasterEntity data = (memberGradeMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getMemberGradeId(), i + 1, data.getMemberGrade(), data.getGradeNameT(),
-                                data.getGradeNameE(), data.getDiscountRate(), data.getPaymentTerm(),data.getMemberPriceFlag());
-
-                    }
-                    out.print(xml.getXml());
                 }
+
 
             }
 

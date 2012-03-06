@@ -42,8 +42,16 @@ public class xmlOrderMaster extends HttpServlet {
                 response.setContentType("text/xml;charset=UTF-8");
 
 
-                String rows = request.getParameter("rows");
-                String page = request.getParameter("page");
+                int rows = 20, page = 1;
+                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
+                    String r = request.getParameter("rows");
+                    rows = Integer.parseInt(r);
+                }
+                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
+                    String r = request.getParameter("page");
+                    page = Integer.parseInt(r);
+                }
+                int start = rows * page - rows;
                 String orderStatus = null;
                 String sField = null, sValue = null, sOper = null;
                 int orderId = 0;
@@ -64,19 +72,6 @@ public class xmlOrderMaster extends HttpServlet {
                     orderId = Integer.parseInt(request.getParameter("orderId"));
                 }
 
-                int totalPages = 0;
-                int totalCount = 2;
-
-                if (totalCount > 0) {
-                    if (totalCount % Integer.parseInt(rows) == 0) {
-                        totalPages = totalCount / Integer.parseInt(rows);
-                    } else {
-                        totalPages = (totalCount / Integer.parseInt(rows)) + 1;
-                    }
-
-                } else {
-                    totalPages = 0;
-                }
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 Database db = new Database();
                 orderHeaderMasterTable ohmt = new orderHeaderMasterTable(db);
@@ -85,13 +80,17 @@ public class xmlOrderMaster extends HttpServlet {
                 ohm.setCompanyId(Company_Id);
                 ohm.setOrderStatus(orderStatus);
                 ArrayList listp = odmt.searchId(orderId);
-                ArrayList list = ohmt.search(sField, sValue, sOper, ohm);
-                db.close();
+                ArrayList list = ohmt.search(sField, sValue, sOper, ohm,start,rows);
                 if (request.getParameter("q").equals("1")) {
+                    int totalPages = 0;
+                    int totalCount = ohmt.countAll(ohm);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(list.size());
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         String status = null;
                         orderHeaderMasterEntity data = (orderHeaderMasterEntity) list.get(i);
@@ -113,18 +112,18 @@ public class xmlOrderMaster extends HttpServlet {
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
                     GenerateXml xml = new GenerateXml();
-                    xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
+                    xml.setTotal(1);
+                    xml.setPage(1);
                     xml.setRecords(listp.size());
                     for (int i = 0; i < listp.size(); i++) {
                         orderDetailMasterEntity data = (orderDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getProductDetailId(),data.getProductDetailMasterEntity().getProductCode(),
+                        xml.setRowDetail(data.getProductDetailId(), data.getProductDetailMasterEntity().getProductCode(),
                                 data.getProductDetailMasterEntity().getProductDNameE(),
-                                data.getProductVolumn(), data.getProductCost(),data.getDiscountText(),
-                                (data.getProductAmount().subtract(data.getDiscountPrice())),data.getOrderDetailId(),data.getOrderId(),
+                                data.getProductVolumn(), data.getProductCost(), data.getDiscountText(),
+                                (data.getProductAmount().subtract(data.getDiscountPrice())), data.getOrderDetailId(), data.getOrderId(),
                                 data.getMemMasterEntity().getMemberId());
                     }
-                     out.print(xml.getXml());
+                    out.print(xml.getXml());
                 }
             }
         } catch (Exception ex) {
