@@ -118,14 +118,15 @@ public class memberMasterTable {
         db.add(sql, mb.getMemberPassword(), mb.getUpdateDate(), mb.getMemberId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper, int Company_Id) {
+    public ArrayList search(String sField, String sValue, String sOper, int Company_Id,int start ,int limit) {
         String sql = "SELECT * FROM member_master mb"
                 + " where mb.Company_Id = ?";
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql, Company_Id);
+        sql = sql + " limit ?,?";
+        List<Map<String, Object>> result = db.queryList(sql, Company_Id,start,limit);
         ArrayList list = new ArrayList();
         if (result.size() > 0) {
             for (int i = 0; i < result.size(); i++) {
@@ -145,6 +146,18 @@ public class memberMasterTable {
         } else {
             return null;
         }
+
+    }
+
+    public int countAll(int company_id){
+         String sql =  "SELECT count(*) as COUNT FROM member_master mb"
+                         + " where mb.Company_Id = ?";
+         List<Map<String, Object>> result = db.queryList(sql,company_id);
+         if (!result.isEmpty()) {
+              return Integer.valueOf(result.get(0).get("COUNT").toString());
+         }else{
+             return 0;
+         }
 
     }
 

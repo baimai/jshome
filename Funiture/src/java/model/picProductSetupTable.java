@@ -52,7 +52,7 @@ public class picProductSetupTable {
         db.update(sql, mps.getPicId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,picProductSetupEntity pps) {
+    public ArrayList search(String sField, String sValue, String sOper,picProductSetupEntity pps,int start,int limit) {
         String sql = "SELECT *,pps.create_date as CDATE,pps.update_date as UDATE,pps.Pic_Code as Pic FROM pic_product_setup pps"
                 + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_id "
                 + " join company_master cm on cm.company_id = pps.company_id "
@@ -60,7 +60,8 @@ public class picProductSetupTable {
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql,pps.getCompanyId(),pps.getPicCode());
+        sql=sql+" limit ?,? ";
+        List<Map<String, Object>> result = db.queryList(sql,pps.getCompanyId(),pps.getPicCode(),start,limit);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -85,6 +86,20 @@ public class picProductSetupTable {
         } else {
             return null;
         }
+
+    }
+
+    public int countAll(picProductSetupEntity pps){
+         String sql = "SELECT count(*) as COUNT FROM pic_product_setup pps"
+                + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_id "
+                + " join company_master cm on cm.company_id = pps.company_id "
+                + " where cm.Company_Id = ? and pps.pic_code = ? ";
+         List<Map<String, Object>> result = db.queryList(sql,pps.getCompanyId(),pps.getPicCode());
+         if (!result.isEmpty()) {
+              return Integer.valueOf(result.get(0).get("COUNT").toString());
+         }else{
+             return 0;
+         }
 
     }
 

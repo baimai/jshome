@@ -39,7 +39,8 @@ public class colorMasterTable {
                 cm.getUserId(),
                 0);
     }
-  public void update(colorCodeMasterEntity cm) {
+
+    public void update(colorCodeMasterEntity cm) {
         String sql = "update color_code_master set Color_Code = ?,"
                 + " Color_Name_T = ?,Color_Name_E = ?,"
                 + " Update_Date = ? "
@@ -53,18 +54,20 @@ public class colorMasterTable {
 
 
     }
-  public void remove(colorCodeMasterEntity cm){
-      String sql = "delete from color_code_master where color_id = ?";
-      db.update(sql,cm.getColorId());
-  }
 
-  public ArrayList search(String sField, String sValue, String sOper) {
-        String sql = "SELECT * FROM color_code_master cm";
+    public void remove(colorCodeMasterEntity cm) {
+        String sql = "delete from color_code_master where color_id = ?";
+        db.update(sql, cm.getColorId());
+    }
+
+    public ArrayList search(String sField, String sValue, String sOper,int start,int limit) {
+        String sql = "SELECT * FROM color_code_master cm ";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" where "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql);
+        sql = sql + " limit ?,?";
+        List<Map<String, Object>> result = db.queryList(sql,start,limit);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -73,7 +76,7 @@ public class colorMasterTable {
                 cm.setColorNameT(Default.Str(result.get(i).get("Color_Name_T")));
                 cm.setColorNameE(Default.Str(result.get(i).get("Color_Name_E")));
                 cm.setColorId((Integer) result.get(i).get("Color_Id"));
-               
+
                 list.add(cm);
             }
             return list;
@@ -83,7 +86,14 @@ public class colorMasterTable {
 
     }
 
+    public int countAll() {
+        String sql = "SELECT count(*) as COUNT FROM color_code_master cm";
+        List<Map<String, Object>> result = db.queryList(sql);
+        if (!result.isEmpty()) {
+            return Integer.valueOf(result.get(0).get("COUNT").toString());
+        } else {
+            return 0;
+        }
 
-    
-
+    }
 }

@@ -53,7 +53,7 @@ public class orderHeaderMasterTable {
         }
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,orderHeaderMasterEntity ohm) {
+    public ArrayList search(String sField, String sValue, String sOper,orderHeaderMasterEntity ohm,int start,int limit) {
         String sql = " SELECT * FROM order_header_master ohm "
                     + " join member_master mm on ohm.member_Id = mm.member_Id"+
                      " where ohm.Company_Id = ?";
@@ -63,7 +63,8 @@ public class orderHeaderMasterTable {
         if (sOper != null && sValue != null & sField != null) {
             sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql,ohm.getCompanyId());
+        sql=sql+" limit ?,? ";
+        List<Map<String, Object>> result = db.queryList(sql,ohm.getCompanyId(),start,limit);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -83,6 +84,23 @@ public class orderHeaderMasterTable {
         }
 
     }
+
+    public int countAll(orderHeaderMasterEntity ohm){
+         String sql = " SELECT count(*) as COUNT FROM order_header_master ohm "
+                    + " join member_master mm on ohm.member_Id = mm.member_Id"+
+                     " where ohm.Company_Id = ?";
+         if(ohm.getOrderStatus()!=null&&!ohm.getOrderStatus().equals("")){
+            sql = sql + " and ohm.order_status = '"+ohm.getOrderStatus()+"' ";
+        }
+         List<Map<String, Object>> result = db.queryList(sql,ohm.getCompanyId());
+         if (!result.isEmpty()) {
+              return Integer.valueOf(result.get(0).get("COUNT").toString());
+         }else{
+             return 0;
+         }
+
+    }
+
     public void updateStatus(orderHeaderMasterEntity ohm){
         String sql = "update order_header_master ohm set ohm.order_status = ?,ohm.update_date = ? where ohm.order_id = ?";
         db.add(sql,ohm.getOrderStatus(),ohm.getUpdateDate(),ohm.getOrderId());
