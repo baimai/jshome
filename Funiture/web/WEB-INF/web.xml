@@ -140,6 +140,10 @@
         <servlet-name>editOrder</servlet-name>
         <servlet-class>controller.editOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>xmlMemberGradeMaster</servlet-name>
+        <servlet-class>controller.xmlMemberGradeMaster</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -275,6 +279,10 @@
     <servlet-mapping>
         <servlet-name>editOrder</servlet-name>
         <url-pattern>/admin/editOrder.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlMemberGradeMaster</servlet-name>
+        <url-pattern>/admin/xmlMemberGradeMaster.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
