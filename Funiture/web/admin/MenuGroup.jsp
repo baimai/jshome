@@ -62,7 +62,7 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
+                {search:false}, //options
                 {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,

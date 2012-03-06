@@ -34,7 +34,7 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlMemberMaster.do?action=fetchData&rows=3&page=1&q=2',
+                    url:'xmlMemberGradeMaster.do?action=fetchData&rows=3&page=1&q=2',
                     datatype: "xml",
                     colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','ราคา','memberGradeId' ],
                     colModel:[

@@ -55,7 +55,7 @@
              
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlOrderMaster.do?action=fetchData&rows=3&page=1&q=1${orderStatus}',
+                    url:'xmlOrderMaster.do?action=fetchData&q=1${orderStatus}',
                     datatype: "xml",
                     colNames:['Order Date','Order ID', 'Name', 'Status',''],
                     colModel:[

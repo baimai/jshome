@@ -53,7 +53,7 @@
             }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({        
-                    url:'xmlProductGroup.do?action=fetchData&rows=3&page=1&q=2&Edit=1&Del=1${productGroupId}',
+                    url:'xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1${productGroupId}',
                     datatype: "xml",
                     colNames:['Product Code','Name Th', 'Name En', 'Price','Edit','Del'],
                     colModel:[
@@ -64,8 +64,8 @@
                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductDetail.jsp?productDetailId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"remove("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                     ],
-                    rowNum:10,
-                    rowList:[10,20,30,40,80,160,320,500,1000],
+                    rowNum:20,
+                    rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     height:200,
                     sortname: 'id',

@@ -61,14 +61,17 @@
             jQuery("#rowed1").jqGrid({
                 url:'xmlOrderMaster.do?action=fetchData&rows=3&page=1&q=2&orderId=${param.orderId}',
                 datatype: "xml",
-                colNames:['Product Code','Product Name', 'Volumn', 'Cost','Amount'],
+                colNames:['Product Code','Product Name', 'Volumn', 'Cost','Discount/Free','Amount','orderdetail id','order id','member id'],
                 colModel:[
                     {name:'productCode',index:'productCode', width:120,align:"right"},
                     {name:'productDNameE',index:'productDNameE', width:200,align:"center"},
-                    {name:'volumn',index:'volumn', width:90, align:"center"},
-                    {name:'cost',index:'cost', width:130, align:"center"},
-                    {name:'Amount',index:'Amount', width:170,align:"center"}
-
+                    {name:'productVolumn',index:'productVolumn', width:90, align:"center",editable:true},
+                    {name:'productCost',index:'productCost', width:130, align:"center",hidden:false,editrules:{ edithidden:true},editable:false},
+                    {name:'discountText',index:'discountText', width:130, align:"center"},
+                    {name:'Amount',index:'Amount', width:170,align:"center"},
+                    {name:'orderDetailId',index:'orderDetailId', width:170,align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
+                    {name:'orderId',index:'orderId', width:170,align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
+                    {name:'memberId',index:'memberId', width:170,align:"center",hidden:true,editrules:{ edithidden:false},editable:true}
                 ],
                 rowNum:10,
                 rowList:[10,20,30,40,80,160,320,500,1000],
@@ -77,10 +80,23 @@
                 sortname: 'id',
                 viewrecords: true,
                 sortorder: "desc",
-                caption:"Order Detail"
-                // editurl:"colorMaster.do"
+                caption:"Order Detail",
+                editurl:"editOrder.do"
 
             });
+            jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+            {search:false,add:false}, //options
+            {height:100,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+            {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+            {reloadAfterSubmit:true,
+                delData:{action:"Del",
+                    orderDetailId:function() {
+                        var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                        var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'orderDetailId');
+                        return value;
+                    }}}, // del options
+            {} // search options
+        );
         });
     </script>
 </head>
@@ -97,24 +113,24 @@
             <div class="art-sheet-body">
                 <jsp:include page="header.jsp"/>
                 <br/><br/>
-               <div class="wrapper">
-            <div class="page">
-            </div>
-        </div>        <div class="main-container col1-layout">
-            <div class="main">
-                <div class="col-main">
-                    <div class="account-login">
-                        <div class="page-title">
-                                        <h1>ใบสั่งซื้อ</h1>
-                                    </div>
-                                    <c:forEach var="order" items="${query.rows}">
-                               <div class="col2-set">
-                                <div class="col-1 new-users">
-                                    <div class="content">
+                <div class="wrapper">
+                    <div class="page">
+                    </div>
+                </div>        <div class="main-container col1-layout">
+                    <div class="main">
+                        <div class="col-main">
+                            <div class="account-login">
+                                <div class="page-title">
+                                    <h1>ใบสั่งซื้อ</h1>
+                                </div>
+                                <c:forEach var="order" items="${query.rows}">
+                                    <div class="col2-set">
+                                        <div class="col-1 new-users">
+                                            <div class="content">
                                                 <h2>รหัสใบสั่งซื้อ : ${order.order_id} </h2>
-                                                
+
                                                 <h2>วันที่ : ${order.order_date} เวลา : ${order.order_time}</h2>
-                                               
+
                                                 <h2>สถานะ 
                                                     <form action="manageOrder.do">
                                                         <select name="orderStatus" style="color: blue;">
@@ -138,11 +154,11 @@
                                                         <input type="submit" value="Submit" name="action"/>
                                                     </form>
                                                 </h2>
-                                                </div>
-                                               
-                                              </div>
-                                                       <div class="col-2 registered-users">
-                                                     <div class="content">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-2 registered-users">
+                                            <div class="content">
                                                 <h2> ชื่อลูกค้า : ${order.name}</h2>
                                                 <h2>บริษัท  : ${order.Member_Com_Name}</h2>
                                                 <h2>ที่อยู่ : ${order.address} </h2>
@@ -150,33 +166,46 @@
                                                 <h2>โทรสาร : ${order.Fax} </h2>
                                                 <h2>มือถือ : ${order.Mobile} </h2>
                                                 <h2>อีเมลล์ : ${order.Email} </h2>
-                                                 </div>
-                                                 </div>
                                             </div>
                                         </div>
-                                                 <center>
-                                        <table id="rowed1"></table>
-                                        <div id="prowed1"></div>
-                                                 </center>
-                                        <br>
-                                        <table align="right" width="100%" border="0">
-                                            <tr>
-                                                <td width="74%" style="font-weight: bold;text-align:right;">รวม</td>
-                                                <td ><input style="color: blue;" disabled type="text" value="${order.amount}"/></td>
-                                            </tr>
-                                        </table>
-                                    </c:forEach>
-                                    
+                                    </div>
                                 </div>
-                            </div>
+                                <center>
+                                    <table id="rowed1"></table>
+                                    <div id="prowed1"></div>
+                                </center>
+                                <br>
+                            </c:forEach>
+                            <c:forEach var="orderH" items="${query2.rows}">
+                            <table align="right" width="100%" border="0">
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td width="12%" style="font-weight: bold;text-align:left;">รวม &nbsp;</td>
+                                    <td width="21%"><input style="color: blue;" disabled type="text" value="${orderH.total_amount}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td style="font-weight: bold;text-align:left;">ส่วนลด ${orderH.discount_rate} % &nbsp;</td>
+                                    <td ><input style="color: blue;" disabled type="text" value="${orderH.discount_amount}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td style="font-weight: bold;text-align:left;">รวมทั้งสิ้น &nbsp;</td>
+                                    <td ><input style="color: blue;" disabled type="text" value="${orderH.total_amount - orderH.discount_amount}"/></td>
+                                </tr>
+                            </table>
+                            </c:forEach>
+
                         </div>
                     </div>
                 </div>
- </div>
-            
-        
-        <div class="cleared"></div>
-   
+            </div>
+        </div>
+    </div>
+
+
+    <div class="cleared"></div>
+
 
     <div class="cleared"></div>
     <p class="art-page-footer"></p>
