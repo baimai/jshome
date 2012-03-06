@@ -4,11 +4,12 @@
     SELECT count(*) as count,md.*,me.* FROM pic_product_setup me
     join menu_detail_master md on me.pic_code = md.pic_code
     join product_detail_master pdm on pdm.product_detail_id = me.product_detail_id
+    where md.pic_code != '99999'
     group by me.pic_code
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT count(pdm.product_detail_id) as count,pgm.* FROM product_group_master pgm
-    left join product_detail_master pdm on pdm.product_group_id = pgm.product_group_id
+    left join (select * from product_detail_master where product_d_display_flag = 'Y') pdm on pdm.product_group_id = pgm.product_group_id
     where pgm.product_g_display_flag = 'Y'
     group by product_group_code
     order by product_group_code

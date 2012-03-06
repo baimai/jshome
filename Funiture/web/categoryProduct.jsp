@@ -15,7 +15,7 @@
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
         left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
-        where pps.pic_code = '${param.menuCode}'
+        where pps.pic_code = '${param.menuCode}' and pdm.product_d_display_flag = 'Y'
         Group by pps.product_detail_id
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
@@ -31,7 +31,7 @@
         left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
         join company_master cm on cm.company_id = pps.company_id
-        where pps.pic_code = '${param.menuCode}'
+        where pps.pic_code = '${param.menuCode}' and pdm.product_d_display_flag = 'Y'
         Group by pps.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query>
@@ -46,7 +46,7 @@
         join product_detail_master pdm on pgm.product_group_id = pdm.product_group_id
         left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
-        where pdm.product_group_id = ${param.menuCode}
+        where pdm.product_group_id = ${param.menuCode} and pdm.product_d_display_flag = 'Y'
 
     </sql:query>
     <sql:query var="query3" dataSource="webdb">
@@ -60,7 +60,7 @@
         left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
         join company_master cm on cm.company_id = pgm.company_id
-        where pdm.product_group_id = '${param.menuCode}'
+        where pdm.product_group_id = '${param.menuCode}' and pdm.product_d_display_flag = 'Y'
         Group by pdm.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query>

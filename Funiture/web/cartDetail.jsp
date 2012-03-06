@@ -143,7 +143,7 @@
                                                                         <td>${product.productCode}</td>
                                                                         <td>
                                                                             <h2 class="product-name">                                                                               
-                                                                                ${product.productName}
+                                                                               <a href="productDetail.jsp?productDetailId=${product.productDetailId}"> ${product.productName}</a>
                                                                             </h2>
                                                                         </td>
                                                                         <td class="a-right">
