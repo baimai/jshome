@@ -121,15 +121,29 @@ public class productDetailMasterTable {
         db.add(sql, pdm.getProductDetailId(),pdm.getCompanyId());
     }
 
-    public ArrayList search(String productGroupId, int Company_Id) {
+    public Integer countAll(int company_id){
+         String sql = " SELECT count(*) as COUNT FROM product_detail_master pdm where pdm.Company_Id = ? ";
+         List<Map<String, Object>> result = db.queryList(sql,company_id);
+         if (!result.isEmpty()) {
+              return Integer.valueOf(result.get(0).get("COUNT").toString());
+         }else{
+             return 0;
+         }
+
+    }
+
+    public ArrayList search(String productGroupId, int Company_Id,int start,int limit) {
         List<Map<String, Object>> result = null;
         String sql = "SELECT * FROM product_detail_master pdm where pdm.Company_Id = ? ";
         if (productGroupId == null) {
-            result = db.queryList(sql, Company_Id);
+            sql = sql + " LIMIT ?,? ";
+            result = db.queryList(sql, Company_Id,start,limit);
         } else {
             sql = sql + " and  pdm.Product_Group_Id = ? ";
-            result = db.queryList(sql, Company_Id, productGroupId);
+            sql = sql + " LIMIT ?,? ";
+            result = db.queryList(sql, Company_Id, productGroupId,start,limit);
         }
+        
 
 
         ArrayList list = new ArrayList();

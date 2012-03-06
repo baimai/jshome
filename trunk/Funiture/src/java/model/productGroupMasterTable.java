@@ -70,15 +70,16 @@ public class productGroupMasterTable {
         db.remove(sql, pgm.getProductGroupId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,int Company_Id) {
-        String sql = "SELECT * FROM product_group_master pgm"+
+    public ArrayList search(String sField, String sValue, String sOper,int Company_Id,int start ,int limit) {
+        String sql = " SELECT * FROM product_group_master pgm"+
                      " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
-                     " where cm.Company_Id = ? ";
+                     " where cm.Company_Id = ? " ;
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql,Company_Id);
+        sql = sql +  " LIMIT ?,? ";
+        List<Map<String, Object>> result = db.queryList(sql,Company_Id,start,limit);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -99,4 +100,17 @@ public class productGroupMasterTable {
         }
 
     }
+    public int countAll(int company_id){
+         String sql = " SELECT count(*) as COUNT FROM product_group_master pgm"+
+                      " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
+                      " where cm.Company_Id = ? " ;
+         List<Map<String, Object>> result = db.queryList(sql,company_id);
+         if (!result.isEmpty()) {
+              return Integer.valueOf(result.get(0).get("COUNT").toString());
+         }else{
+             return 0;
+         }
+        
+    }
+
 }
