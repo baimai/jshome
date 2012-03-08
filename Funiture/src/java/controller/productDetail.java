@@ -180,7 +180,7 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("display") != null && !mr.getParameter("display").equals("")) {
                             pdm.setProductDDisplayFlag(mr.getParameter("display"));
                         }
-                        sm.setQuantity(Integer.parseInt(mr.getParameter("qtyplus")) - Integer.parseInt(mr.getParameter("qtyminus")));
+                        //sm.setQuantity(Integer.parseInt(mr.getParameter("qtyplus")) - Integer.parseInt(mr.getParameter("qtyminus")));
                         pdm.setCompanyId(Company_Id);
                         pdm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
