@@ -51,12 +51,13 @@
                     ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
-                    height:400,
+                     height: "auto",
+                     width: 950,
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption:"Search Example",
+                    caption:"สมาชิก",
                     editurl:"memberMaster.do"
 
                 });

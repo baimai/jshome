@@ -66,10 +66,11 @@
                         {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"orderDetail.jsp?orderId="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                         
                     ],
-                    rowNum:10,
-                    rowList:[10,20,30,40,80,160,320,500,1000],
+                    rowNum:20,
+                    rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
-                    height:200,
+                     height: "auto",
+                     width: 950,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",

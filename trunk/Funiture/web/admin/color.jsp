@@ -44,13 +44,14 @@
                         {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
                     ],
                     rowNum:20,
-                    height:400,
+                     height: "auto",
+                     width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption:"Search Example",
+                    caption:"สีของสินค้า",
                     editurl:"colorMaster.do"
 
                 });
