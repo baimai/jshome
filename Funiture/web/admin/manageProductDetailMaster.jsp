@@ -67,11 +67,12 @@
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
-                    height:200,
+                     height: "auto",
+                     width: 950,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption:"Product Group"
+                    caption:"รายการสินค้า"
                     // editurl:"colorMaster.do"
                     
                 });

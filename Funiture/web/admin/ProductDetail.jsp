@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//Ddiv HTML 4.01 divansitional//EN"
     "http://www.w3.org/div/html4/loose.ddiv">
-<c:if test="${param.producdivetailId!=null}">
+<c:if test="${param.productDetailId!=null}">
     <sql:query var="query3" dataSource="webdb">
         SELECT pdm.*,cm.company_code,pgm.product_group_code,ccm.color_code,sm.quantity,sb.balance  FROM product_detail_master pdm
         left join company_master cm on cm.company_id = pdm.company_id
@@ -17,7 +17,7 @@
         left join color_code_master ccm on ccm.color_id = pdm.product_color_id
         left join stock_master sm on sm.product_detail_id = pdm.product_detail_id
         left join stock_balance sb on sb.product_detail_id = sm.product_detail_id
-        where pdm.product_detail_id =  ${param.producdivetailId}
+        where pdm.product_detail_id =  ${param.productDetailId}
     </sql:query>
 </c:if>
 <sql:query var="query1" dataSource="webdb">
@@ -209,11 +209,11 @@
                                                         </div>
 
                                                     </c:if>
-                                                    <c:if test="${param.producdivetailId!=null}" >
+                                                    <c:if test="${param.productDetailId!=null}" >
 
                                                         <c:forEach var="product" items="${query3.rows}" >
                                                             <input type="hidden" name="action" value="Edit" />
-                                                            <input type="hidden" name="producdivetailId" value="${product.product_detail_id}"/>
+                                                            <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
                                                             <div>
                                                                 <div  align="right" >Product Group</div>
                                                                 <div >

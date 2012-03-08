@@ -60,11 +60,12 @@
 
                     ],
                     rowNum:20,
-                    height:400,
+                     height: "auto",
+                     width: 950,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
-                    caption:"Product Group",
+                    caption:"เมนูย่อย",
                     pager: '#prowed1',
                     editurl:"menuDetailMaster.do"
 

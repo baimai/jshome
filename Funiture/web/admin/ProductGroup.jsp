@@ -52,10 +52,11 @@
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
-                    height:400,
                     viewrecords: true,
+                    height: "auto",
+                     width: 950,
                     sortorder: "desc",
-                    caption:"Search Example",
+                    caption:"ประเภทสินค้า",
                     editurl:"productGroup.do"
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
