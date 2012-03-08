@@ -9,12 +9,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-<c:if test="${param.companyId!=null}">
+<c:if test="${applicationScope.Company_Id!=null}">
     <sql:query var="company1" dataSource="webdb">
         SELECT * from company_master cpm
-        where cpm.Company_Id =  ${param.companyId}
+        where cpm.Company_Id =  ${applicationScope.Company_Id}
     </sql:query>
 </c:if>
+        
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,8 +38,6 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br><br>
-
-
                     <div class="wrapper">
                         <div class="page">
                         </div>
@@ -50,7 +49,7 @@
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
                                        <form action="companyMasterController.do" method="post" enctype="multipart/form-data" >
-                                            <c:if test="${param.companyId==null}" >
+                                            <c:if test="${applicationScope.Company_Id==null}" >
                                                 <input type="hidden" value="Add" name="action">
 
                                                 <div class="buttons-set">
@@ -386,9 +385,9 @@
 
                                                 </div>
                                             </c:if>
-                                            <c:if test="${param.productDetailId!=null}" >
+                                            <c:if test="${applicationScope.Company_Id!=null}" >
 
-                                                <c:forEach var="product" items="${company1.rows}" >
+                                                <c:forEach var="company" items="${company1.rows}" >
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="companyId" value="${company.company_id}"/>
  <div class="fieldset">
@@ -414,7 +413,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label align="right">Header Website</label>
+                                                                    <label >Header Website</label>
                                                                     <div class="input-box">
                                                                         <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
                                                                         <input type="file" name="uploadheadtmp" value="${company.Company_Header_Loc}"  class="input-text" disabled/>
@@ -430,7 +429,7 @@
                                                                 </c:if>
                                                                      <div class="input-box">
                                                                         <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                        <input type="file" name="uploadhead" value=""  class="input-text" />
+                                                                        <input type="file" name="uploadhead" value="${company.Company_Header_Loc}"  class="input-text" />
                                                                         </c:if>
 
                                                                     </div>
@@ -438,6 +437,7 @@
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">Cataloge</label>
+
                                                                     <div class="input-box">
                                                                         <input type="file" name="uploadcataloge" value="${company.Company_Catalog_Loc!=null&&company.Company_Catalog_Loc!=''}"  class="input-text" />
 

@@ -38,6 +38,7 @@
                 document.getElementById("showSearch").innerHTML=text;
             }
         </script>
+        
         <script type="text/javascript">
             $(function() {
                 $( "#dialog-form" ).dialog({
