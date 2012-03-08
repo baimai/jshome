@@ -101,15 +101,16 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลรายการสินค้า</h1>
-                                        </div>
-                                        <div class="button" align="left">
+                                            <div class="button" align="right">
                                     <form action="ProductDetail.jsp" >
                                                             <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                                            <div align="left"> <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button></div>
+                                                             <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
                                                         </form>
 
 
                                 </div>
+                                        </div>
+                                        
                                         <center>
                                             <br/>
                                             <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
