@@ -56,7 +56,7 @@
         <div >
             <img src="images/head.jpg" width="100%" height="100px" border="0" usemap="#Map"/>
         </div>
-        <div id="container-menu" style="">
+           <div id="container-menu" >
             <ul id="nav">
                 <c:forEach var="topmenu" items="${query2.rows}">
                     <c:if test="${topmenu.Menu_G_Name_T=='หน้าหลัก' || topmenu.Menu_G_Name_E =='Home'}">
