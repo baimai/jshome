@@ -1,7 +1,7 @@
 
 #container {
-    width: auto;
-    margin: 0px ;
+    width: 110%;
+    margin: 5px ;
     background-color: #292929;
     position:absolute;
 }
@@ -40,6 +40,8 @@ ul, li {
     list-style: none;
     border-right: 1px solid #292929;
     border-left: 1px solid black;
+   
+    
 }
 
 #nav li a {
@@ -51,7 +53,7 @@ ul, li {
     font-size: 16px;
     font-family: "Tahoma","MS Sans Serif","Arial","Thonburi";
     text-decoration: none;
-    padding: 12px 49px;
+    padding: 12px 3.43em;
     
 	
     
