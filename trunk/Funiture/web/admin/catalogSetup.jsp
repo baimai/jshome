@@ -23,14 +23,14 @@
         <script>
             function setCheck(){
                 if(document.getElementById('c1').checked == true){
-                    document.getElementById('c1').value = 1;
+                    document.getElementById('picCode').disabled = true;
                 }else{
-                    document.getElementById('c1').value = 0;
+                    document.getElementById('picCode').disabled = false;
                 }
                 if(document.getElementById('c2').checked == true){
-                    document.getElementById('c2').value = 1;
+                   document.getElementById('productGroup').disabled = true
                 }else{
-                    document.getElementById('c2').value = 0;
+                    document.getElementById('productGroup').disabled = false;
                 }
             }
             function clearText(field){
@@ -38,6 +38,16 @@
                 if (field.defaultValue == field.value) field.value = '';
                 else if (field.value == '') field.value = field.defaultValue;
 
+            }
+            function setName(){
+                if(document.getElementById('c1').checked == true){
+                    var e = document.getElementById('productGroup');
+                    document.getElementById('groupName').value =e.options[e.selectedIndex].text;
+                }else{
+                    var e = document.getElementById('picCode');
+                    document.getElementById('groupName').value =e.options[e.selectedIndex].text;
+                }                
+                
             }
         </script>
     </head>
@@ -58,10 +68,10 @@
                             <table >
                                 <tr>
                                     <td>
-                                        <input id="c1" type="checkbox" value="0" onclick="setCheck()">แสดงตามกลุ่มสินค้า
+                                        <input id="c1" name="type" type="radio"   onclick="setCheck()" checked>แสดงตามกลุ่มสินค้า
                                     </td>
                                     <td>
-                                        <select name="productGroup">
+                                        <select id="productGroup" name="productGroup" onchange="setName()">
                                             <option value="all">ทั้งหมด</option>
                                             <c:forEach var="group" items="${query1.rows}">
                                                 <option value="${group.product_group_id}">${group.product_g_name_t}</option>
@@ -71,10 +81,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="c2" type="checkbox" value="0" onclick="setCheck()">แสดงตามรายการ
+                                        <input id="c2" name="type" type="radio"  onclick="setCheck()">แสดงตามรายการ
                                     </td>
                                     <td>
-                                        <select name="picCode">
+                                        <select id="picCode" name="picCode" disabled onchange="setName()">
                                             <option value="all">ทั้งหมด</option>
                                             <c:forEach var="menu" items="${query2.rows}">
                                                 <option value="${menu.pic_code}">${menu.menu_c_name_t}</option>
@@ -91,9 +101,18 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>
+                                        ชื่อ Link
+                                    </td>
+                                    <td>
+                                        <input id="linkName" type="text" value="Link-Name" name="linkName" onFocus="clearText(this)" onBlur="clearText(this)">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td colspan="2" align="center"><button name="action" value="Add" >Submit</button> </td>
                                 </tr>
                             </table>
+                            <input type="hidden" id="groupName" name="groupName" value="ทั้งหมด" />
                             <br/>
                             <br/>
                             <br/><br/><br/>
