@@ -81,6 +81,14 @@ background:transparent url(images/header_bg.gif) repeat-x 0 0;
             </div>
 
         </li>
+        <li class="last"><a href="#"><span>จัดการแคตตาล็อก</span></a>
+            <div>
+                <ul>
+                    <li><a href="catalogSetup.jsp" class="parent"><span>สร้างเอกสารแคตาล็อก</span></a></li>
+                </ul>
+            </div>
+
+        </li>
         <li class="last"><a href="userSecurity.jsp"><span>จัดการผู้ใช้</span></a></li>
   </ul>
 </div>
