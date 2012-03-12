@@ -16,7 +16,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="content-language" content="th" />
+        <meta name="robots" content="index, company,category,contactUs" />
+        <meta name="description" content="jshome " />
+        <meta name="revisit-after" content="7 days"/>
+        <meta name="keywords" content="ชุดโซฟาไม้,ชุดโซฟาผ้า,ชุดโต๊ะกลางหิน,ชุดมินิบาร์,ชุดหวายแท้,ชุดหวายซันทาน่า,เอเลียส,ชุดอลูอัล
+              ,เตียงชายหาด,ชุดอาหารกระจก,ชุดอาหารไม้,ชุดอาหารหินกลม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 4 ที่นั่ง,โต๊ะกลางกระจก,
+              โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />
+
+        <title>jshome</title>
         <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="screen" />
 
         <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
@@ -24,10 +32,12 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
-
+        <script src="jshome/js/jquery-1.4.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
+        <script type="text/javascript" src="jshome/js/jquery.spasticNav.js"></script>
 
     </head>
-    <body>
+    <body >
         <c:set var="itemNum" value="0" />
         <c:forEach items="${sessionScope.productList}" varStatus="counter">
             <c:set var="itemNum" value="${counter.count}" />
@@ -54,9 +64,13 @@
 
         </div>
         <div >
-            <img src="images/head.jpg" width="100%" height="100px" border="0" usemap="#Map"/>
+            <img src="images/head.jpg" width="95%" height="100px" border="0" usemap="#Map"/>
         </div>
-           <div id="container-menu" >
+
+
+        <div id="container"  >
+
+
             <ul id="nav">
                 <c:forEach var="topmenu" items="${query2.rows}">
                     <c:if test="${topmenu.Menu_G_Name_T=='หน้าหลัก' || topmenu.Menu_G_Name_E =='Home'}">
@@ -69,6 +83,7 @@
 
             </ul>
         </div>
+
 
 
 

@@ -11,7 +11,7 @@ scrollers styling
 .jThumbnailScroller .jTscrollerNextButton{background:#000 url(../../images/nextArrow.png) center center;}
 .jThumbnailScroller .jTscrollerPrevButton{background:#000 url(../../images/prevArrow.png) center center;}
 .jThumbnailScroller .jTscrollerNextButton:hover,.jThumbnailScroller .jTscrollerPrevButton:hover{background-color:#d56916; opacity:1;}
-.jThumbnailScroller .jTscroller a{display:inline-block; display:inline; border:5px solid #ddd; margin:6px 10px 6px 0; background:#fff; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;}
+.jThumbnailScroller .jTscroller a{display:inline-block; display:inline;  margin:6px 10px 6px 0; background:#fff; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;}
 .jThumbnailScroller .jTscroller a:hover{border-color:#fff;}
 .jThumbnailScroller .jTscroller a:first-child{margin-left:10px;}
 .jThumbnailScroller .jTscroller a img{border:none;max-width:250px; min-width:150px;min-height:150px;}

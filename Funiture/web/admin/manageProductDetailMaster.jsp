@@ -22,7 +22,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jqGrid Demos</title>
-         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
@@ -67,8 +67,8 @@
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -102,30 +102,31 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลรายการสินค้า</h1>
                                             <div class="button" align="right">
-                                    <form action="ProductDetail.jsp" >
-                                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                                             <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
-                                                        </form>
+                                                <form action="ProductDetail.jsp" >
+                                                    <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
+                                                    <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
+                                                </form>
 
 
-                                </div>
+                                            </div>
                                         </div>
-                                        
+
                                         <center>
                                             <br/>
-                                            <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
-                                                <option value=""> ทั้งหมด </option>
-                                                <c:forEach items="${query3.rows}" var="group">
+                                            <div class="field"> ประเภทสินค้า
+                                                <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
+                                                    <option value=""> ทั้งหมด </option>
+                                                    <c:forEach items="${query3.rows}" var="group">
 
-                                                    <option value="${group.product_group_Id}"
-                                                            <c:if test="${param.productGroupId == group.product_group_Id && param.productGroupId != null}">
-                                                                selected
-                                                            </c:if>
-                                                            >${group.product_g_name_t}</option>
+                                                        <option value="${group.product_group_Id}"
+                                                                <c:if test="${param.productGroupId == group.product_group_Id && param.productGroupId != null}">
+                                                                    selected
+                                                                </c:if>
+                                                                >${group.product_g_name_t}</option>
 
-                                                </c:forEach>
-                                            </select>
-                                            <br/><br/>
+                                                    </c:forEach>
+                                                </select>
+                                                <br/><br/></div>
                                             <table id="rowed1"></table>
                                             <br/>
                                             <!--<table width="100%">

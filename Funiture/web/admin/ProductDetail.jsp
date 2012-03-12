@@ -78,8 +78,8 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div   class="field name-firstname">
-                                                                    <label for="firstname" >Product Group </label>
-                                                                    <select name="productGroupId" class="select">
+                                                                    <label for="firstname" class="required"><em>*</em>Product Group </label>
+                                                                    <select name="productGroupId" class="select"  class="input-text required-entry ">
                                                                         <c:forEach items="${query1.rows}" var="group">
                                                                             <c:if test="${param.productGroupId != group.product_group_id}">
                                                                                 <option value="${group.product_group_id}" >${group.product_g_name_t}</option>
@@ -93,8 +93,8 @@
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" > Product Code </label>
-                                                                    <input name="productCode" id="productCode" type="text" class="input-text" />
+                                                                    <label for="firstname" class="required"><em>*</em> Product Code </label>
+                                                                    <input name="productCode" id="productCode" type="text" class="input-text required-entry" />
                                                                 </div>
                                                             </div>
                                                         <li class="fields">
@@ -173,8 +173,8 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname">  Price 1</label>
-                                                                    <input name="price1" type="text"  class="input-text"/>
+                                                                    <label for="firstname"class="required"><em>*</em>  Price 1</label>
+                                                                    <input name="price1" type="text"  class="input-text required-entry"/>
 
                                                                     Baht (ราคาขายส่ง)
 
@@ -215,41 +215,41 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">   Product Name T </label>
-                                                                    <input name="nameTh" type="text" class="input-text" />
+                                                                    <label for="firstname" class="required"><em>*</em>   Product Name T </label>
+                                                                    <input name="nameTh" type="text" class="input-text required-entry" />
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label for="firstname"> Product Name E  </label>
-                                                                    <input name="nameEn" type="text" class="input-text" />
+                                                                    <input name="nameEn" type="text" class="input-text required-entry" />
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect T 1 </label>
+                                                                    <label for="firstname">Product Spect  1 T</label>
                                                                     <textarea name="spect1Th" cols="25" rows="2"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect E 1 </label>
-                                                                    <textarea name="spect1En" cols="25" rows="2" class="input-text"></textarea>
+                                                                    <label for="firstname">Product Spect  1 E</label>
+                                                                    <textarea name="spect1En" cols="30" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect T 2 </label>
+                                                                    <label for="firstname">Product Spect  2 T</label>
                                                                     <textarea name="spect2Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect E 2 </label>
+                                                                    <label for="firstname">Product Spect  2 E</label>
                                                                     <textarea name="spect2En" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -257,12 +257,12 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 3 </label>
+                                                                    <label for="firstname">Product Spect  3 T</label>
                                                                     <textarea name="spect3Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div> </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 3 </label>
+                                                                    <label for="firstname">Product Spect 3 E</label>
                                                                     <textarea name="spect3En" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -270,13 +270,13 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 4 </label>
+                                                                    <label for="firstname">Product Spect 4 T</label>
                                                                     <textarea name="spect4Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 4 </label>
+                                                                    <label for="firstname">Product Spect 4 E</label>
                                                                     <textarea name="spect4En" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -284,13 +284,13 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 5 </label>
+                                                                    <label for="firstname">Product Spect 5 T</label>
                                                                     <textarea name="spect5Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 5 </label>
+                                                                    <label for="firstname">Product Spect 5 E</label>
                                                                     <textarea name="spect5En" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -298,13 +298,13 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 6 </label>
+                                                                    <label for="firstname">Product Spect 6 T</label>
                                                                     <textarea name="spect6Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 6 </label>
+                                                                    <label for="firstname">Product Spect 6 E</label>
                                                                     <textarea name="spect6En" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -312,13 +312,13 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Remark </label>
+                                                                    <label for="firstname">Remark T</label>
                                                                     <textarea name="remarkTh" cols="25" rows="3" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Remark </label>
+                                                                    <label for="firstname">Remark E</label>
                                                                     <textarea name="remarkEn" cols="25" rows="3" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -342,9 +342,9 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Group</label>
-                                                                        <select name="productGroupId">
-                                                                            <c:forEach items="${query1.rows}" var="group">
+                                                                        <label for="firstname" class="required"><em>*</em>Product Group</label>
+                                                                        <select name="productGroupId" class="select required-entry">
+                                                                            <c:forEach items="${query1.rows}" var="group" >
                                                                                 <c:if test="${group.product_Group_Id == product.product_Group_Id }" >
                                                                                     <option value="${group.product_group_id}" selected>${group.product_g_name_t}</option>
                                                                                 </c:if>
@@ -358,8 +358,8 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Code</label>
-                                                                        <input name="productCode" class="input-text" value="${product.product_code}"/>
+                                                                        <label for="firstname" class="required"><em>*</em>Product Code</label>
+                                                                        <input name="productCode" class="input-text " value="${product.product_code}"/>
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -465,8 +465,8 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Price 1</label>
-                                                                <input name="price1" type="text" class="input-text"  value="${product.product_Price1}"/> Baht (ราคาขายส่ง)</div>
+                                                                        <label for="firstname" class="required"><em>*</em>Price 1</label>
+                                                                <input name="price1" type="text" class="input-text required-entry"  value="${product.product_Price1}"/> Baht (ราคาขายส่ง)</div>
                                                             </div>
                                                             </li>
                                                             <li class="fields">
@@ -498,86 +498,86 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Name </label>
-                                                                            <input name="nameTh" type="text" class="input-text" value="${product.product_d_name_t}"/>
+                                                                        <label for="firstname" class="required"><em>*</em>Product Name T</label>
+                                                                            <input name="nameTh" type="text" class="input-text required-entry" value="${product.product_d_name_t}"/>
                                                                          </div>
                                                                           </div>
                                                                              <div class="customer-name">
                                                                               <div   class="field name-firstname">
-                                                                                 <label for="firstname" >  Product Name </label>
-                                                                            <input name="nameEn" type="text" class="input-text" value="${product.product_d_name_e}"/>
+                                                                                 <label for="firstname" class="required"><em>*</em>  Product Name E</label>
+                                                                            <input name="nameEn" type="text" class="input-text required-entry" value="${product.product_d_name_e}"/>
                                                                              </div> </div>
                                                             </li>
                                                                         
                                                             <li class="fields">
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 1 </label>
+                                                                            <label for="firstname" >Product Spect 1 T</label>
                                                                             <textarea name="spect1Th" cols="25" rows="2" >${product.product_spec1_t}</textarea></div>
                                                                             </div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 1 </label>
+                                                                            <label for="firstname" >Product Spect 1 E</label>
                                                                             <textarea name="spect1En" cols="25" rows="2">${product.product_spec1_e}</textarea></div></div>
                                                                         </li>
                                                                         <li class="fields">
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 2 </label>
+                                                                            <label for="firstname" >Product Spect 2 T</label>
                                                                             <textarea name="spect2Th" cols="25" rows="2">${product.product_spec2_t}</textarea></div></div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 2 </label>
+                                                                            <label for="firstname" >Product Spect 2 E</label>
                                                                            <textarea name="spect2En" cols="25" rows="2">${product.product_spec2_e}</textarea></div></div>
                                                                         </li>
                                                                         <li class="fields">
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 3 </label>
+                                                                            <label for="firstname" >Product Spect 3 T</label>
                                                                             <textarea name="spect3Th" cols="25" rows="2">${product.product_spec3_t}</textarea></div></div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 3 </label>
+                                                                            <label for="firstname" >Product Spect 3 E</label>
                                                                             <textarea name="spect3En" cols="25" rows="2">${product.product_spec3_e}</textarea></div></div>
                                                                         </li>
                                                                         <li class="fields">
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 4 </label>
+                                                                            <label for="firstname" >Product Spect 4 T</label>
                                                                             <textarea name="spect4Th" cols="25" rows="2">${product.product_spec4_t}</textarea></div></div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 4 </label>
+                                                                            <label for="firstname" >Product Spect 4 E</label>
                                                                             <textarea name="spect4En" cols="25" rows="2">${product.product_spec4_e}</textarea></div></div>
                                                                         </li>
                                                                         <li class="fields">
                                                                            <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 5 </label>
+                                                                            <label for="firstname" >Product Spect 5 T</label>
                                                                             <textarea name="spect5Th" cols="25" rows="2">${product.product_spec5_t}</textarea></div></div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 5 </label>
+                                                                            <label for="firstname" >Product Spect 5 E</label>
                                                                             <textarea name="spect5En" cols="25" rows="2">${product.product_spec5_e}</textarea></div></div>
                                                                         </li>
                                                                         <li class="fields">
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 6 </label>
+                                                                            <label for="firstname" >Product Spect 6 T</label>
                                                                             <textarea name="spect6Th" cols="25" rows="2">${product.product_spec6_t}</textarea></div></div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 6 </label>
+                                                                            <label for="firstname" >Product Spect 6 E</label>
                                                                            <textarea name="spect6En" cols="25" rows="2">${product.product_spec6_e}</textarea></div></div>
                                                                         </li>
                                                                         <li class="fields">
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Remark </label>
+                                                                            <label for="firstname" >Remark T</label>
                                                                             <textarea name="remarkTh" cols="25" rows="3">${product.product_d_remark_t}</textarea></div></div>
                                                                             <div class="customer-name">
                                                                             <div   class="field name-firstname">
-                                                                            <label for="firstname" >Remark </label>
+                                                                            <label for="firstname" >Remark E</label>
                                                                             <textarea name="remarkEn" cols="25" rows="3">${product.product_d_remark_e}</textarea></div></div>
                                                                         </li>
                                                                     
