@@ -144,6 +144,10 @@
         <servlet-name>xmlMemberGradeMaster</servlet-name>
         <servlet-class>controller.xmlMemberGradeMaster</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>testPdf</servlet-name>
+        <servlet-class>controller.testPdf</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -283,6 +287,10 @@
     <servlet-mapping>
         <servlet-name>xmlMemberGradeMaster</servlet-name>
         <url-pattern>/admin/xmlMemberGradeMaster.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>testPdf</servlet-name>
+        <url-pattern>/admin/testPdf.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
