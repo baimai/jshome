@@ -103,10 +103,7 @@
                                                             <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
                                                              <button name="action" value="Add" class="button"><span><span>ค้นหา</span></span></button>
                                                         </form>
-                                            <form action="stockMaster.jsp" >
-                                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                                             <button name="action" value="edit" class="button"><span><span>แก้ไข</span></span></button>
-                                                        </form>
+                                            
 
                                         </div>
                                         

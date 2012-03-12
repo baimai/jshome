@@ -31,14 +31,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>jshome</title>
         <link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script src="jshome/js/jquery-ui-1.8.13.custom.min.js"></script>
+        <script src="jshome/js/jquery-1.5.min.js" type="text/javascript"></script>
+        <script src="jshome/js/jquery-ui-1.8.13.custom.min.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" /> 
-        <script>
+        <script type="text/javascript">
             /* jQuery.noConflict() for using the plugin along with other libraries.
            You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or
            if you include jQuery before other libraries in yourdocument's head tag.
@@ -93,7 +93,7 @@
             })(jQuery);
             
         </script>
-        <script src="jshome/js/jquery.thumbnailScroller.js"></script>
+        <script src="jshome/js/jquery.thumbnailScroller.js" type="text/javascript"></script>
         <style type="text/css">
        /* $("[title]").tooltip();*/
         /* tooltip styling. by default the element to be styled is .tooltip  */
