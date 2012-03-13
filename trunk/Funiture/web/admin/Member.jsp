@@ -35,17 +35,18 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['Login', 'firtName', 'LastName','Status','Register','Approve','Status','memberId'],
+                    colNames:['Login', 'firtName', 'LastName','Status','Register','Approve','Status','memberId','viewProfile'],
                     colModel:[
                        
                         {name:'memberLogin',index:'memberLogin',align:"center", width:120,editrules:{ edithidden:false},editable:true},
-                        {name:'memberName',index:'memberName',align:"center", width:180,editrules:{ edithidden:false},editable:false},
-                        {name:'memberSurName',index:'memberSurName',align:"center", width:180,editrules:{ edithidden:false},editable:false},
+                        {name:'memberName',index:'memberName',align:"center", width:150,editrules:{ edithidden:false},editable:false},
+                        {name:'memberSurName',index:'memberSurName',align:"center", width:150,editrules:{ edithidden:false},editable:false},
                         {name:'memberStatus',index:'memberStatus', width:80, align:"center",editable:false,editoptions:{size:25}},
                         {name:'memberRegDate',index:'memberRegDate', width:125, align:"right",editrules:{ edithidden:false},editable:false},
                         {name:'memberAppdate',index:'memberAppdate', width:125, align:"right",editrules:{ edithidden:false},editable:false},
                         {name:'status',index:'status', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select', editoptions:{value:{'Y':'Active','N':'InActive','B':'Ban'}}},
-                        {name:'memberId',index:'memberId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
+                        {name:'memberId',index:'memberId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
+                        {name:'view',index:'view', width:100,hidden:false,align:"center",editrules:{ edithidden:false},editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"viewProfile.jsp?memberId="+cellvalue+"\" >View</a>"}}
 
 
                     ],
@@ -63,7 +64,7 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {add:false,del:false,search:true}, //options
-                {height:100,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:150,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
                 {} // search options

@@ -12,12 +12,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:if test="${param.orderStatus != null || param.orderStatus != ''}">
-    <c:set var="orderStatus" value="&orderStatus=${param.orderStatus}" />
-</c:if>
-<c:if test="${param.orderStatus == null || param.orderStatus == ''}">
-    <c:set var="orderStatus" value="" />
-</c:if>
+
 <sql:query var="query3" dataSource="webdb">
     SELECT distinct(ohm.order_status),(case when ohm.order_status = 'N' then 'InActive'
     when ohm.order_status = 'Y' then 'Active'
@@ -52,10 +47,18 @@
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
-             
+             function show(){
+                if(document.getElementById('status').value==''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlOrderMaster.do?action=fetchData&q=1"});
+				jQuery("#rowed1").trigger('reloadGrid');
+                }else{
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlOrderMaster.do?action=fetchData&q=1&orderStatus="+document.getElementById('status').value});
+                }
+                jQuery("#rowed1").trigger('reloadGrid');
+            }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlOrderMaster.do?action=fetchData&q=1${orderStatus}',
+                    url:'xmlOrderMaster.do?action=fetchData&q=1',
                     datatype: "xml",
                     colNames:['Order Date','Order ID', 'Name', 'Status',''],
                     colModel:[
@@ -63,8 +66,7 @@
                         {name:'orderId',index:'orderId', width:80,align:"right"},
                         {name:'name',index:'name', width:225, align:"center"},
                         {name:'orderStatus',index:'orderStatus', width:100, align:"center"},
-                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"orderDetail.jsp?orderId="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}}
-                        
+                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"orderDetail.jsp?orderId="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}}                        
                     ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
@@ -105,24 +107,16 @@
                                         </div>
                                         <center>
                                             <br/>
-                                            <select onchange="window.location='orderHeader.jsp?orderStatus='+this.value;">
+                                            <select id="status" onchange="show()">
                                                 <option value=""> ทั้งหมด </option>
                                                 <c:forEach items="${query3.rows}" var="order">
-
-                                                    <option value="${order.order_status}"
-                                                            <c:if test="${param.orderStatus == order.order_status && param.orderStatus != null}">
-                                                                selected
-                                                            </c:if>
-                                                            >${order.status}</option>
-
+                                                    <option value="${order.order_status}">${order.status}</option>
                                                 </c:forEach>
                                             </select>
                                             <br/><br/>
                                             <table id="rowed1"></table>
                                             <br/>
-
                                             <div id="prowed1"></div>
-
                                         </center>
                                         <br/><br/> <br/>
                                     </div>
