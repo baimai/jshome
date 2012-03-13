@@ -8,12 +8,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:if test="${param.productGroupId != null || param.productGroupId != ''}">
-    <c:set var="productGroupId" value="&productGroupId=${param.productGroupId}" />
-</c:if>
-<c:if test="${param.productGroupId == null || param.productGroupId == ''}">
-    <c:set var="productGroupId" value="" />
-</c:if>
+
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM product_group_master
 </sql:query>
@@ -51,9 +46,19 @@
             function test(){
 
             }
+            function show(){
+                if(document.getElementById('groupId').value==''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1"});
+				jQuery("#rowed1").trigger('reloadGrid');
+                }else{
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1&productGroupId="+document.getElementById('groupId').value});
+                }
+                jQuery("#rowed1").trigger('reloadGrid');
+                
+            }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({        
-                    url:'xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1${productGroupId}',
+                    url:'xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1',
                     datatype: "xml",
                     colNames:['Product Code','Name Th', 'Name En', 'Price','Edit','Del'],
                     colModel:[
@@ -114,31 +119,18 @@
                                         <center>
                                             <br/>
                                             <div class="field"> ประเภทสินค้า
-                                                <select onchange="window.location='manageProductDetailMaster.jsp?productGroupId='+this.value;">
+                                                <select id="groupId" onchange="show()">
                                                     <option value=""> ทั้งหมด </option>
                                                     <c:forEach items="${query3.rows}" var="group">
 
-                                                        <option value="${group.product_group_Id}"
-                                                                <c:if test="${param.productGroupId == group.product_group_Id && param.productGroupId != null}">
-                                                                    selected
-                                                                </c:if>
-                                                                >${group.product_g_name_t}</option>
+                                                        <option value="${group.product_group_Id}" >${group.product_g_name_t}</option>
 
                                                     </c:forEach>
                                                 </select>
                                                 <br/><br/></div>
                                             <table id="rowed1"></table>
                                             <br/>
-                                            <!--<table width="100%">
-                                                <tr>
-                                                    <td width="7%"></td>
-                                                    <td><form action="ProductDetail.jsp" >
-                                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                                            <div align="left"> <input type="submit" value="Add" /></div>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            </table>-->
+ 
                                             <div id="prowed1"></div>
 
                                         </center>
