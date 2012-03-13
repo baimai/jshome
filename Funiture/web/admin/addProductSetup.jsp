@@ -32,7 +32,7 @@
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
-                postDataReturnText("searchProduct.jsp",param,showSearch);
+                postDataReturnText("Product.jsp",param,showSearch);
             }
             function showSearch(text){
                 document.getElementById("showSearch").innerHTML=text;

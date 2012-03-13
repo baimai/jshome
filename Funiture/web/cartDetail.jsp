@@ -38,12 +38,15 @@
 <html  >
     <title>Shopping Cart</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Default Description" />
-    <meta name="keywords" content="Magento, Varien, E-commerce" />
-    <meta name="robots" content="*" />
-    <link rel="icon" href="http://freedemo.templates-master.com/skin/frontend/default/default/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="http://freedemo.templates-master.com/skin/frontend/default/default/favicon.ico" type="image/x-icon" />
-    <!--[if lt IE 7]>
+     <meta http-equiv="content-language" content="th" />
+        <meta name="robots" content="index, company,category,contactUs" />
+        <meta name="description" content="jshome " />
+        <meta name="revisit-after" content="*"/>
+        <meta name="keywords" content="ชุดโซฟาไม้,ชุดโซฟาผ้า,ชุดโต๊ะกลางหิน,ชุดมินิบาร์,ชุดหวายแท้,ชุดหวายซันทาน่า,เอเลียส,ชุดอลูอัล
+              ,เตียงชายหาด,ชุดอาหารกระจก,ชุดอาหารไม้,ชุดอาหารหินกลม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 4 ที่นั่ง,โต๊ะกลางกระจก,
+              โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />
+        <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />   <!--[if lt IE 7]>
     <script type="text/javascript">
     //<![CDATA[
         var BLANK_URL = 'http://freedemo.templates-master.com/js/blank.html';
@@ -83,9 +86,8 @@
             <div class="art-sheet-body">
                 <jsp:include page="head.jsp"/>
                 <jsp:include page="slide.jsp"/>
-                <table border="0" cellspacing="0" cellpadding="0" width="940px">
-                    <tr>
-                        <td valign="top">
+                <br><br>
+               
                             <%--หน้า cartDetail.jsp --%>
                             <div class="wrapper">
                                 <div class="page">
@@ -139,7 +141,7 @@
 
                                                                     <tr>
                                                                         <td class="a-center"><a href="addProduct.do?productDetailId=${product.productDetailId}&status=remove" title="ลบรายการ" class="btn-remove2">ลบรายการ</a></td>
-                                                                        <td><a href="productDetail.jsp?productDetailId=${product.productDetailId}" target="_blank" title="Ottoman"><img src="${product.productPath}" width="363" height="150" alt="Ottoman" /></a></td>
+                                                                        <td><a href="productDetail.jsp?productDetailId=${product.productDetailId}" target="_blank" title=""><img src="${product.productPath}" width="75" height="75" alt="" /></a></td>
                                                                         <td>${product.productCode}</td>
                                                                         <td>
                                                                             <h2 class="product-name">                                                                               
@@ -252,10 +254,7 @@
 
                             </div>
                             <%--จบหน้า cartDetail.jsp --%>
-                        </td>
-
-                    </tr>
-                </table>
+                       
 
                 <br/><br/>
                 <jsp:include page="footer.jsp" />

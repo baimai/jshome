@@ -8,13 +8,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>Create New Customer Account</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="description" content="Default Description" />
-        <meta name="keywords" content="Magento, Varien, E-commerce" />
-        <meta name="robots" content="*" />
-        <link rel="icon" href="http://freedemo.templates-master.com/skin/frontend/default/default/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="http://freedemo.templates-master.com/skin/frontend/default/default/favicon.ico" type="image/x-icon" />
-        <!--[if lt IE 7]>
+       <title>jshome</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta http-equiv="content-language" content="th" />
+        <meta name="robots" content="index, company,category,contactUs" />
+        <meta name="description" content="jshome " />
+        <meta name="revisit-after" content="*"/>
+        <meta name="keywords" content="ชุดโซฟาไม้,ชุดโซฟาผ้า,ชุดโต๊ะกลางหิน,ชุดมินิบาร์,ชุดหวายแท้,ชุดหวายซันทาน่า,เอเลียส,ชุดอลูอัล
+              ,เตียงชายหาด,ชุดอาหารกระจก,ชุดอาหารไม้,ชุดอาหารหินกลม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 4 ที่นั่ง,โต๊ะกลางกระจก,
+              โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />
+        <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />    <!--[if lt IE 7]>
         <script type="text/javascript">
         //<![CDATA[
             var BLANK_URL = 'http://freedemo.templates-master.com/js/blank.html';

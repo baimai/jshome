@@ -21,16 +21,22 @@
 <!DOCTYPE html>
 <html  >
     <head>
-        <title>Computers - Electronics</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=tis-620" />
-        <meta name="description" content="Default Description" />
-        <meta name="keywords" content="Magento, Varien, E-commerce" />
-        <meta name="robots" content="*" />
+        <title>jshome</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta http-equiv="content-language" content="th" />
+        <meta name="robots" content="index, company,category,contactUs" />
+        <meta name="description" content="jshome " />
+        <meta name="revisit-after" content="*"/>
+        <meta name="keywords" content="ชุดโซฟาไม้,ชุดโซฟาผ้า,ชุดโต๊ะกลางหิน,ชุดมินิบาร์,ชุดหวายแท้,ชุดหวายซันทาน่า,เอเลียส,ชุดอลูอัล
+              ,เตียงชายหาด,ชุดอาหารกระจก,ชุดอาหารไม้,ชุดอาหารหินกลม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 4 ที่นั่ง,โต๊ะกลางกระจก,
+              โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />
+        <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-        <script language="javascript">
+        <script type="text/javascript"language="javascript">
 
             function showProduct(text){
                 document.getElementById("productList").innerHTML=text;
@@ -81,8 +87,7 @@
             <div class="page">
             </div>
         </div><div class="main-container col3-layout">
-            <div class="main">
-                
+            <div class="main">                
                 <div class="col-wrapper">
                     <div id="productList">
                     </div>

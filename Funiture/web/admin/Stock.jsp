@@ -17,44 +17,74 @@
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <link rel="stylesheet" type="text/css" href="../jshome/ui/jquery-ui-1.8.16.custom.js">
-        <link rel="stylesheet" type="text/css" media="screen" href="../css/jquery.ui.datepicker.css" />
-        <script type="text/javascript" src="../js/jquery.ui.datepicker.min.js" ></script>
-
-        <script type="text/javascript" src="${url}js/jquery-autocomplete/jquery.autocomplete.js"></script>
-        <script type="text/javascript" src="${url}js/jquery-autocomplete/lib/jquery.bgiframe.min.js"></script>
-        <script type="text/javascript" src="${url}js/jquery-autocomplete/lib/jquery.ajaxQueue.js"></script>
-        <script type="text/javascript" src="${url}js/jquery-autocomplete/lib/thickbox-compressed.js"></script>
-        <link rel="stylesheet" href="${url}js/jquery-autocomplete/lib/thickbox.css" />
-        <link rel="stylesheet" href="${url}js/jquery-autocomplete/jquery.autocomplete.css"/>
+        <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+	<script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
-           $(document).ready(function() {
-	  var jQueryDatePicker1Opts = {
-		dateFormat : 'dd/mm/yy',
-		changeMonth : true,
-		changeYear : true,
-		showButtonPanel : false,
-		showAnim : 'show'
-	};
-	$("#startDate").datepicker(jQueryDatePicker1Opts);
-        });
-        $(document).ready(function(){
-    var myData = ${jsonList};
-    $("#productCodeSearch").autocomplete(myData, {
-        minChars: 0,
-        //max: 12,
-        autoFill: true,
-        mustMatch: true,
-        matchContains: false,
-        scrollHeight: 220,
-        formatItem: function(item) { return item.code; }
-    })
-
-    .result(function(event, item) {
-        $("#productNameTSearch").text(""+item.name);
-    });
-
+            function setSearch(productCode,productName,productGroupId,page){
+                var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
+                postDataReturnText("Product.jsp",param,showSearch);
+            }
+            function showSearch(text){
+                document.getElementById("showSearch").innerHTML=text;
+            }
         </script>
+        <script type="text/javascript">
+            $(function() {
+                $( "#dialog-form" ).dialog({
+                    autoOpen: false,
+                    height: 650,
+                    width: 800,
+                    modal: true
+                });
+            });
+        </script>
+
+
+        <style type="text/css">
+            #box-table-a
+            {
+                font-size: 12px;
+                margin: 45px;
+                width: 400px;
+                text-align: left;
+                border-collapse: collapse;
+            }
+            #box-table-a th
+            {
+                font-size: 13px;
+                font-weight: normal;
+                padding: 8px;
+                background: #b9c9fe;
+                border-top: 4px solid #aabcfe;
+                border-bottom: 1px solid #fff;
+                color: #039;
+            }
+            #box-table-a td
+            {
+                padding: 8px;
+                background: #e8edff;
+                border-bottom: 1px solid #fff;
+                color: #669;
+                border-top: 1px solid transparent;
+            }
+            #box-table-a tr:hover td
+            {
+                background: #d0dafd;
+                color: #339;
+            }
+        </style>
+<script type="text/javascript">
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+	</script>
+      
 
     </head>
     <body>
@@ -91,7 +121,34 @@
 
                                         </div>
                                         <form action="stockMaster.do" method="post" enctype="multipart/form-data" >
+                                    <div id="dialog-form" title="Search Product">
+                            <table >
+                                <tr>
+                                    <td>Product Group</td>
+                                    <td><select name="productGroupId2" id="productGroupId2">
+                                            <option value=""></option>
+                                            <c:forEach var="group" items="${query3.rows}">
+                                                <option value="${group.product_group_id}">${group.product_g_name_t}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Product Code</td>
+                                    <td><input type="text" name="productCode2" id="productCode2" value=""/></td>
+                                </tr>
+                                <tr>
+                                    <td>Product Name</td>
+                                    <td><input type="text" name="productName2" id="productName2" value=""/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"> <input type="submit" value="ค้นหา" onclick="setSearch(document.getElementById('productCode2').value,document.getElementById('productName2').value,document.getElementById('productGroupId2').value,1)"/></td>
+                                </tr>
+                            </table>
+                            <div id="showSearch">
 
+                            </div>
+                        </div>
                                             <c:if test="${param.productDetailId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <div class="fieldset">
@@ -102,7 +159,7 @@
                                                                 <div class="field name-firstname">
                                                                     <label for="firstname" >วันที่นำเข้า</label>
                                                                     <div class="input-box">
-                                                                        <input type="text" id="startDate" name="startDate" value="" title="startDate"class="startDate"   />
+                                                                        <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -112,8 +169,8 @@
                                                                 <div class="field name-firstname">
                                                                     <label for="firstname" >รหัสสินค้า</label>
                                                                     <div  class="input-box">
-			    <input type="text" id="productCodeSearch" name="productCode"  validate="" />
-			    <span id="productNameTSearch"></span></div>
+			   <input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a>
+			   </div>
                                                                     
 
                                                                 </div>
