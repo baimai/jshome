@@ -170,4 +170,31 @@ public class picProductSetupTable {
         }
 
     }
+
+    public ArrayList searchPicCode2(picProductSetupEntity pps) {
+        String sql = "select * from pic_product_setup pps "
+                + " where pps.pic_code = ? and pps.company_id = ? "
+                + " order by pps.pic_code,pps.pic_seq desc ";
+        List<Map<String, Object>> result = db.queryList(sql,pps.getPicCode(),pps.getCompanyId());
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            for (int i = 0; i < result.size(); i++) {
+                picProductSetupEntity mps = new picProductSetupEntity();
+                mps.setPicCode(Default.Str(result.get(i).get("Pic_Code")));
+                mps.setCompanyCode(Default.Str(result.get(i).get("Company_Code")));
+                mps.setPicNameT(Default.Str(result.get(i).get("Pic_Name_T")));
+                mps.setPicNameE(Default.Str(result.get(i).get("Pic_Name_E")));
+                mps.setProductRemarkT(Default.Str(result.get(i).get("Product_Remark_T")));
+                mps.setProductRemarkE(Default.Str(result.get(i).get("Product_Remark_E")));
+                mps.setUserId(Default.Str(result.get(i).get("User_Id")));
+                mps.setPicId((Integer)(result.get(i).get("Pic_Id")));
+                mps.setPicSeq((Integer)(result.get(i).get("Pic_Seq")));
+                list.add(mps);
+            }
+            return list;
+        } else {
+            return null;
+        }
+
+    }
 }
