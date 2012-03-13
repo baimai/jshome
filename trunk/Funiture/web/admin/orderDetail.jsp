@@ -117,7 +117,7 @@
                 <div class="wrapper">
                     <div class="page">
                     </div>
-                </div>        <div class="main-container col1-layout">
+                </div><div class="main-container col1-layout">
                     <div class="main">
                         <div class="col-main">
                             <div class="account-login">

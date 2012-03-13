@@ -5,12 +5,15 @@
     <head>
         <title>Customer Login</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="description" content="Default Description" />
-        <meta name="keywords" content="Magento, Varien, E-commerce" />
-        <meta name="robots" content="*" />
-        <link rel="icon" href="http://freedemo.templates-master.com/skin/frontend/default/default/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="http://freedemo.templates-master.com/skin/frontend/default/default/favicon.ico" type="image/x-icon" />
-
+        <meta http-equiv="content-language" content="th" />
+        <meta name="robots" content="index, company,category,contactUs" />
+        <meta name="description" content="jshome " />
+        <meta name="revisit-after" content="*"/>
+        <meta name="keywords" content="ชุดโซฟาไม้,ชุดโซฟาผ้า,ชุดโต๊ะกลางหิน,ชุดมินิบาร์,ชุดหวายแท้,ชุดหวายซันทาน่า,เอเลียส,ชุดอลูอัล
+              ,เตียงชายหาด,ชุดอาหารกระจก,ชุดอาหารไม้,ชุดอาหารหินกลม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 4 ที่นั่ง,โต๊ะกลางกระจก,
+              โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />
+        <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
@@ -97,7 +100,7 @@
                                 </div>
                                 <div class="col-2 registered-users">
                                     <div class="buttons-set">
-                                        <a href="http://freedemo.templates-master.com/f002/customer/account/forgotpassword/" class="f-left">ลืมรหัสผ่าน?</a>
+                                        <a href="forgotpassword.jsp" class="f-left">ลืมรหัสผ่าน?</a>
                                         <button type="submit" class="button" title="Login" name="send" id="send2"><span><span>เข้าสู่ระบบ</span></span></button>
                                     </div>
                                 </div>
