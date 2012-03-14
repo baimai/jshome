@@ -115,4 +115,6 @@ public class loginClass {
     public void setMemberId(int memberId) {
         this.memberId = memberId;
     }
+
+
 }
