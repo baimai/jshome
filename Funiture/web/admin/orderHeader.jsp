@@ -26,6 +26,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jqGrid Demos</title>
+        <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
+
         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
@@ -47,12 +52,15 @@
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
-             function show(){
-                if(document.getElementById('status').value==''){
+            function show(){
+                if(document.getElementById('status').value==''&&document.getElementById('datepicker').value==''){
                     jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlOrderMaster.do?action=fetchData&q=1"});
-				jQuery("#rowed1").trigger('reloadGrid');
-                }else{
+                }else if(document.getElementById('status').value!=''&&document.getElementById('datepicker').value==''){
                     jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlOrderMaster.do?action=fetchData&q=1&orderStatus="+document.getElementById('status').value});
+                }else if(document.getElementById('status').value==''&&document.getElementById('datepicker').value!=''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlOrderMaster.do?action=fetchData&q=1&orderDate="+splitDate(document.getElementById('datepicker').value)});
+                }else if(document.getElementById('status').value!=''&&document.getElementById('datepicker').value!=''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlOrderMaster.do?action=fetchData&q=1&orderStatus="+document.getElementById('status').value+"&orderDate="+splitDate(document.getElementById('datepicker').value)});
                 }
                 jQuery("#rowed1").trigger('reloadGrid');
             }
@@ -71,8 +79,8 @@
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -81,6 +89,17 @@
 
                 });
             });
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#datepicker").datepicker();
+            });
+
+            function splitDate(date){
+                var t = date.split("/");  //ถ้าเจอวรรคแตกเก็บลง array t
+                return t[2]+"-"+t[0]+"-"+t[1];
+            }
+
         </script>
     </head>
     <body >
@@ -113,6 +132,9 @@
                                                     <option value="${order.order_status}">${order.status}</option>
                                                 </c:forEach>
                                             </select>
+                                            <br/>
+                                            <br/>
+                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
                                             <br/><br/>
                                             <table id="rowed1"></table>
                                             <br/>

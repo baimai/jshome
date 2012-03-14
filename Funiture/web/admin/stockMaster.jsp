@@ -6,14 +6,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>stock Master</title>
-         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-          <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
@@ -50,8 +50,8 @@
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -74,7 +74,7 @@
         </script>
     </head>
     <body >
-  <div id="art-main">
+        <div id="art-main">
             <div class="art-sheet">
                 <div class="art-sheet-bl"></div>
                 <div class="art-sheet-br"></div>
@@ -94,19 +94,19 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>
-                                            <div class="buttons" align="right">
+                                        <div class="buttons" align="right">
                                             <form action="addstockMaster.jsp" >
-                                                            <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
-                                                        </form>
-                                       
+                                                <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
+                                            </form>
+
                                             <form action="stockMaster.jsp" >
-                                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                                             <button name="action" value="Add" class="button"><span><span>ค้นหา</span></span></button>
-                                                        </form>
-                                            
+                                                <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
+                                                <button name="action" value="Add" class="button"><span><span>ค้นหา</span></span></button>
+                                            </form>
+
 
                                         </div>
-                                        
+
                                         <center>
 
                                             <table id="rowed1"></table>

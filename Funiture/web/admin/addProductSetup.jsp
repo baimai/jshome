@@ -17,6 +17,13 @@
 <sql:query var="query3" dataSource="webdb">
     SELECT * from product_group_master
 </sql:query>
+<c:if test="${param.picId != null}">
+    <sql:query var="query4" dataSource="webdb">
+        SELECT * from pic_product_setup pps
+        join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_id
+        where pps.pic_id = ${param.picId}
+    </sql:query>
+</c:if>
 <input type="hidden" value="1" id="productGroupId" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,9 +39,10 @@
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
-                postDataReturnText("Product.jsp",param,showSearch);
+                postDataReturnText("searchProduct.jsp",param,showSearch);
             }
             function showSearch(text){
+
                 document.getElementById("showSearch").innerHTML=text;
             }
         </script>
@@ -98,83 +106,133 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br><br>
+                    <br/>
 
 
-                    <form action="productSetup.do" >
 
-                        <div id="dialog-form" title="Search Product">
-                            <table >
-                                <tr>
-                                    <td>Product Group</td>
-                                    <td><select name="productGroupId2" id="productGroupId2">
-                                            <option value=""></option>
-                                            <c:forEach var="group" items="${query3.rows}">
-                                                <option value="${group.product_group_id}">${group.product_g_name_t}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Product Code</td>
-                                    <td><input type="text" name="productCode2" id="productCode2" value=""/></td>
-                                </tr>
-                                <tr>
-                                    <td>Product Name</td>
-                                    <td><input type="text" name="productName2" id="productName2" value=""/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center"> <input type="submit" value="ค้นหา" onclick="setSearch(document.getElementById('productCode2').value,document.getElementById('productName2').value,document.getElementById('productGroupId2').value,1)"/></td>
-                                </tr>
-                            </table>
-                            <div id="showSearch">
+                    <div id="dialog-form" title="Search Product">
+                        <table >
+                            <tr>
+                                <td>Product Group</td>
+                                <td><select name="productGroupId2" id="productGroupId2">
+                                        <option value=""></option>
+                                        <c:forEach var="group" items="${query3.rows}">
+                                            <option value="${group.product_group_id}">${group.product_g_name_t}</option>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Product Code</td>
+                                <td><input type="text" name="productCode2" id="productCode2" value=""/></td>
+                            </tr>
+                            <tr>
+                                <td>Product Name</td>
+                                <td><input type="text" name="productName2" id="productName2" value=""/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"> <input type="submit" value="ค้นหา" onclick="setSearch(document.getElementById('productCode2').value,document.getElementById('productName2').value,document.getElementById('productGroupId2').value,1)"/></td>
+                            </tr>
+                        </table>
+                        <div id="showSearch">
+                         
+                        </div>
+                    </div>
+                    <c:if test="${param.picId == null}" >
+                        <form action="productSetup.do" >
+                            <div id="users-contain" class="ui-widget">
 
+                                <table     id="box-table-a">
+
+                                    <tr>
+                                        <td style="text-align: right">Pic Code</td>
+                                        <td>
+                                            <select name="picCode" >
+                                                <c:forEach var="pic" items="${query.rows}">
+                                                    <c:if test="${pic.pic_code == param.picCode}">
+                                                        <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
+                                                    </c:if>
+                                                    <c:if test="${pic.pic_code != param.picCode}">
+                                                        <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right">Product Code</td>
+                                        <td><input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right">Pic Name Th</td>
+                                        <td><input type="text" value="" id="picNameT" name="picNameT" size="40"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right">Pic Name En</td>
+                                        <td><input type="text" value="" id="picNameE" name="picNameE" size="40" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right">Product Remark Th</td>
+                                        <td><input type="text" value="" id="productRemarkT" name="productRemarkT" size="40" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right">Product Remark En</td>
+                                        <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
+                                    </tr>
+                                </table>
                             </div>
-                        </div>
+                            <button name="action" value="Add" >Save</button>
+                        </form>
+                    </c:if>
+                    <c:if test="${param.picId != null}" >
+                        <c:forEach var="product" items="${query4.rows}">
+                            <form action="productSetup.do" >
+                                <div id="users-contain" class="ui-widget">
 
+                                    <table     id="box-table-a">
 
-                        <div id="users-contain" class="ui-widget">
-
-                            <table     id="box-table-a">
-
-                                <tr>
-                                    <td style="text-align: right">Pic Code</td>
-                                    <td>
-                                        <select name="picCode" >
-                                            <c:forEach var="pic" items="${query.rows}">
-                                                <c:if test="${pic.pic_code == param.picCode}">
-                                                    <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
-                                                </c:if>
-                                                <c:if test="${pic.pic_code != param.picCode}">
-                                                    <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
-                                                </c:if>
-                                            </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right">Product Code</td>
-                                    <td><input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right">Pic Name Th</td>
-                                    <td><input type="text" value="" id="picNameT" name="picNameT" size="40"/></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right">Pic Name En</td>
-                                    <td><input type="text" value="" id="picNameE" name="picNameE" size="40" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right">Product Remark Th</td>
-                                    <td><input type="text" value="" id="productRemarkT" name="productRemarkT" size="40" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right">Product Remark En</td>
-                                    <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <button name="action" value="Add" >Save</button>
-                    </form>
+                                        <tr>
+                                            <td style="text-align: right">Pic Code</td>
+                                            <td>
+                                                <select name="picCode" >
+                                                    <c:forEach var="pic" items="${query.rows}">
+                                                        <c:if test="${pic.pic_code == param.picCode}">
+                                                            <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
+                                                        </c:if>
+                                                        <c:if test="${pic.pic_code != param.picCode}">
+                                                            <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right">Product Code</td>
+                                            <td><input type="text" value="${product.product_code}" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right">Pic Name Th</td>
+                                            <td><input type="text" value="${product.pic_name_t}" id="picNameT" name="picNameT" size="40"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right">Pic Name En</td>
+                                            <td><input type="text" value="${product.pic_name_e}" id="picNameE" name="picNameE" size="40" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right">Product Remark Th</td>
+                                            <td><input type="text" value="${product.product_remark_t}" id="productRemarkT" name="productRemarkT" size="40" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right">Product Remark En</td>
+                                            <td><input type="text" value="${product.product_remark_e}" id="productRemarkE" name="productRemarkE" size="40"/></td>
+                                        </tr>
+                                    </table>
+                                    <input type="hidden" value="${product.pic_id}" name="picId" />
+                                </div>
+                                <button name="action" value="Edit2" >Save</button>
+                            </form>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
             <div class="cleared"></div>

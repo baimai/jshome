@@ -15,7 +15,7 @@
         where cpm.Company_Id =  ${applicationScope.Company_Id}
     </sql:query>
 </c:if>
-        
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -48,7 +48,7 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
-                                       <form action="companyMasterController.do" method="post" enctype="multipart/form-data" >
+                                        <form action="companyMasterController.do" method="post" enctype="multipart/form-data" >
                                             <c:if test="${applicationScope.Company_Id==null}" >
                                                 <input type="hidden" value="Add" name="action">
 
@@ -390,346 +390,346 @@
                                                 <c:forEach var="company" items="${company1.rows}" >
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="companyId" value="${company.company_id}"/>
- <div class="fieldset">
-                                                    <h2 class="legend">ตั้งค่า</h2>
-                                                    <ul class="form-list">
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label for="firstname" >รหัสบริษัท</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" id="firstname" name="companyCode" value="${company.company_Code}" title="First Name"class="input-text"   />
+                                                    <div class="fieldset">
+                                                        <h2 class="legend">ตั้งค่า</h2>
+                                                        <ul class="form-list">
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label for="firstname" >รหัสบริษัท</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" id="firstname" name="companyCode" value="${company.company_Code}" title="First Name"class="input-text"   />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="field name-lastname">
+                                                                        <label for="lastname" >ชื่อย่อบริษัท</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" id="lastname" name="companyNameAbbr" value="${company.Company_Name_Abbr}" title="Last Name" class="input-text" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="field name-lastname">
-                                                                    <label for="lastname" >ชื่อย่อบริษัท</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" id="lastname" name="companyNameAbbr" value="${company.Company_Name_Abbr}" title="Last Name" class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
 
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label >Header Website</label>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label >Header Website</label>
+                                                                        <div class="input-box">
+                                                                            <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
+                                                                                <input type="file" name="uploadheadtmp" value="${company.Company_Header_Loc}"  class="input-text" disabled/>
+                                                                            </c:if>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
+                                                                        <td colspan="2" align="right"></td>
+                                                                    </c:if>
+                                                                    <c:if test="${company.Company_Header_Loc==null||company.Company_Header_Loc==''}" >
+                                                                        <label align="right">Header Website</label>
+                                                                    </c:if>
                                                                     <div class="input-box">
                                                                         <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                        <input type="file" name="uploadheadtmp" value="${company.Company_Header_Loc}"  class="input-text" disabled/>
+                                                                            <input type="file" name="uploadhead" value="${company.Company_Header_Loc}"  class="input-text" />
                                                                         </c:if>
 
                                                                     </div>
                                                                 </div>
-                                                                 <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                    <td colspan="2" align="right"></td>
-                                                                </c:if>
-                                                                <c:if test="${company.Company_Header_Loc==null||company.Company_Header_Loc==''}" >
-                                                                   <label align="right">Header Website</label>
-                                                                </c:if>
-                                                                     <div class="input-box">
-                                                                        <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                        <input type="file" name="uploadhead" value="${company.Company_Header_Loc}"  class="input-text" />
-                                                                        </c:if>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Cataloge</label>
 
-                                                                    </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">Cataloge</label>
-
-                                                                    <div class="input-box">
-                                                                        <input type="file" name="uploadcataloge" value="${company.Company_Catalog_Loc!=null&&company.Company_Catalog_Loc!=''}"  class="input-text" />
+                                                                        <div class="input-box">
+                                                                            <input type="file" name="uploadcataloge" value="${company.Company_Catalog_Loc!=null&&company.Company_Catalog_Loc!=''}"  class="input-text" />
 
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">จำนวนสินค้า</label>
-                                                                    <div class="select">
-                                                                        <select name="showStockBalanceFlag">
-                                                                            <option <c:if test="${company.show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                            <option <c:if test="${company.show_Stock_Balance_Flag == 'Y'}"> selected</c:if>>Show    </option>
-                                                                        </select>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">จำนวนสินค้า</label>
+                                                                        <div class="select">
+                                                                            <select name="showStockBalanceFlag">
+                                                                                <option <c:if test="${company.show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option <c:if test="${company.show_Stock_Balance_Flag == 'Y'}"> selected</c:if>>Show    </option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">ราคาสินค้า</label>
-                                                                    <div class="select">
-                                                                        <select name="showPriceListFlag">
-                                                                            <option <c:if test="${company.show_PriceList_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                            <option <c:if test="${company.show_PriceList_Flag == 'W'}"> selected</c:if>>ราคาขายส่ง</option>
-                                                                            <option <c:if test="${company.show_PriceList_Flag == 'R'}"> selected</c:if>>ราคาขายปลีก</option>
-                                                                            <option <c:if test="${company.show_PriceList_Flag == 'A'}"> selected</c:if>>ราคาขาย</option>
-                                                                        </select>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">ราคาสินค้า</label>
+                                                                        <div class="select">
+                                                                            <select name="showPriceListFlag">
+                                                                                <option <c:if test="${company.show_PriceList_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option <c:if test="${company.show_PriceList_Flag == 'W'}"> selected</c:if>>ราคาขายส่ง</option>
+                                                                                <option <c:if test="${company.show_PriceList_Flag == 'R'}"> selected</c:if>>ราคาขายปลีก</option>
+                                                                                <option <c:if test="${company.show_PriceList_Flag == 'A'}"> selected</c:if>>ราคาขาย</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">ปุ่มการสั่งซื้อ</label>
-                                                                    <div class="select">
-                                                                        <select name="showOrderFlag">
-                                                                            <option <c:if test="${company.show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                            <option <c:if test="${company.show_Order_Flag == 'Y'}"> selected</c:if>>Show    </option>
-                                                                        </select>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">ปุ่มการสั่งซื้อ</label>
+                                                                        <div class="select">
+                                                                            <select name="showOrderFlag">
+                                                                                <option <c:if test="${company.show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option <c:if test="${company.show_Order_Flag == 'Y'}"> selected</c:if>>Show    </option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="fieldset">
-                                                    <h2 class="legend">รายละเอียดบริษัท</h2>
-                                                    <ul class="form-list">
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">ชื่อบริษัท</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyNameT" value="${company.company_Name_T}" size="30"  class="input-text" />
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="fieldset">
+                                                        <h2 class="legend">รายละเอียดบริษัท</h2>
+                                                        <ul class="form-list">
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">ชื่อบริษัท</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyNameT" value="${company.company_Name_T}" size="30"  class="input-text" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">CompanyName</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyNameE" value="${company.company_Name_E}" size="30"  class="input-text"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </li>
-
-
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">ที่อยู่</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyAddrT" value="${company.company_Addr_T}" class="input-text"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">Address</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyAddrE" value="${company.company_Addr_E}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">แขวง/ตำบล</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyDistrictT" value="${company.company_District_T}"  class="input-text"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-
-                                                                    <label align="right">District</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyDistrictE" value="${company.company_District_E}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">อำเภอ</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyAmphurT" value="${company.company_Amphur_T}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">Amphur</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyAmphurE" value="${company.company_Amphur_E}"  class="input-text" />
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">CompanyName</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyNameE" value="${company.company_Name_E}" size="30"  class="input-text"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">จังหวัด</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyProvinceT" value="${company.company_Province_T}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">Province</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyProvinceE" value="${company.company_Province_E}"  class="input-text"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            </li>
 
 
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">รหัสไปรษณีย์</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyPostCode" value="${company.company_PostCode}"  class="input-text" />
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">ที่อยู่</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyAddrT" value="${company.company_Addr_T}" class="input-text"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">โทรศัพท์ 1</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyTel1" value="${company.company_Addr_T}"  class="input-text"/>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Address</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyAddrE" value="${company.company_Addr_E}"  class="input-text" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">แขวง/ตำบล</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyDistrictT" value="${company.company_District_T}"  class="input-text"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
 
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">โทรศัพท์ 2</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyTel2" value="${company.company_Tel2}"   class="input-text"/>
+                                                                        <label align="right">District</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyDistrictE" value="${company.company_District_E}"  class="input-text" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">อำเภอ</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyAmphurT" value="${company.company_Amphur_T}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">โทรศัพท์ 3</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyTel3" value="${company.company_Tel3}"  class="input-text" />
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Amphur</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyAmphurE" value="${company.company_Amphur_E}"  class="input-text" />
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">โทรสาร 1</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyFax1" value="${company.company_Fax1}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">โทรสาร 2 </label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyFax2" value="${company.company_Fax2}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">โทรสาร 3</label>
 
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyFax3" value="${company.company_Fax3}"  class="input-text" />
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">จังหวัด</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyProvinceT" value="${company.company_Province_T}"  class="input-text" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">มือถือ 1</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyMobile1" value="${company.company_Mobile_1}"  class="input-text" />
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Province</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyProvinceE" value="${company.company_Province_E}"  class="input-text"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">มือถือ 2</label>
-                                                                    <div class="input-box">
-
-                                                                        <input type="text" name="companyMobile2" value="${company.company_Mobile_2}"  class="input-text"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">มือถือ 3</label>
-
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyMobile3" value="${company.company_Mobile_3}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">อีเมลล์ 1</label>
-
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyEmail1" value="${company.company_Email_1}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">อีเมลล์ 2</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyEmail2" value="${company.company_Email_2}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">อีเมลล์ 3</label>
-
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="companyEmail3" value="${company.company_Email_3}"  class="input-text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="fields">
-                                                            <div class="customer-name">
-                                                                <div class="field name-firstname">
-                                                                    <label align="right">Language</label>
-                                                                    <div class="select option">
-                                                                        <select name="languageFlag">
-                                                                            <option <c:if test="${company.language_Flag == 'T'}"> selected</c:if>>Thai</option>
-                                                                            <option <c:if test="${company.language_Flag == 'E'}"> selected</c:if>>English</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </li>
-
-                                                    </ul>
 
 
-                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">รหัสไปรษณีย์</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyPostCode" value="${company.company_PostCode}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">โทรศัพท์ 1</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyTel1" value="${company.company_Addr_T}"  class="input-text"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">โทรศัพท์ 2</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyTel2" value="${company.company_Tel2}"   class="input-text"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">โทรศัพท์ 3</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyTel3" value="${company.company_Tel3}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">โทรสาร 1</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyFax1" value="${company.company_Fax1}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">โทรสาร 2 </label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyFax2" value="${company.company_Fax2}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">โทรสาร 3</label>
+
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyFax3" value="${company.company_Fax3}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">มือถือ 1</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyMobile1" value="${company.company_Mobile_1}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">มือถือ 2</label>
+                                                                        <div class="input-box">
+
+                                                                            <input type="text" name="companyMobile2" value="${company.company_Mobile_2}"  class="input-text"/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">มือถือ 3</label>
+
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyMobile3" value="${company.company_Mobile_3}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">อีเมลล์ 1</label>
+
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyEmail1" value="${company.company_Email_1}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">อีเมลล์ 2</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyEmail2" value="${company.company_Email_2}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">อีเมลล์ 3</label>
+
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="companyEmail3" value="${company.company_Email_3}"  class="input-text" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Language</label>
+                                                                        <div class="select option">
+                                                                            <select name="languageFlag">
+                                                                                <option <c:if test="${company.language_Flag == 'T'}"> selected</c:if>>Thai</option>
+                                                                                <option <c:if test="${company.language_Flag == 'E'}"> selected</c:if>>English</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+
+                                                        </ul>
+
+
+                                                    </div>
                                                 </c:forEach>
                                             </c:if>
                                         </form>

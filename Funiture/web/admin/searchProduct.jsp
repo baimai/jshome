@@ -45,7 +45,7 @@
                     <tr>
                         <td><img src="../${product.product_d_pic_loc}" width="120" height="80"/></td>
                         <td align="cenetr"><a>${product.product_code}</a></td>
-                        <td align="center"><a href="#" onclick="document.getElementById('productCode').value = '${product.product_code}'; $( '#dialog-form' ).dialog( 'this' );">${product.product_D_name_t}</a></td>
+                        <td align="center"><a href="#" onclick="document.getElementById('productCode').value = '${product.product_code}'; $( '#dialog-form' ).dialog( 'close' );">${product.product_D_name_t}</a></td>
                     </tr>
                 </c:forEach>
                     <tr>
