@@ -78,6 +78,9 @@ public class productSetup extends HttpServlet {
                     mpst.add(mps);
                 } else if (request.getParameter("action").equals("Edit")) {
                     mpst.update(mps);
+                } else if (request.getParameter("action").equals("Edit2")) {
+                    mpst.update(mps);
+                    response.sendRedirect("ProductSetup.jsp?picCode="+mps.getPicCode());
                 } else if (request.getParameter("action").equals("Del")) {
                     mpst.remove(mps);
                 }
