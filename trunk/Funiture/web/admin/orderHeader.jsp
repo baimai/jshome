@@ -125,7 +125,7 @@
                                             <h1>สั่งซื้อ</h1>
                                         </div>
                                         <center>
-                                            <br/>
+                                            <br/>สถานะ
                                             <select id="status" onchange="show()">
                                                 <option value=""> ทั้งหมด </option>
                                                 <c:forEach items="${query3.rows}" var="order">
@@ -133,7 +133,7 @@
                                                 </c:forEach>
                                             </select>
                                             <br/>
-                                            <br/>
+                                            <br/>วันที่
                                             <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
                                             <br/><br/>
                                             <table id="rowed1"></table>
