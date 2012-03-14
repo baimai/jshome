@@ -53,12 +53,15 @@ public class orderHeaderMasterTable {
         }
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,orderHeaderMasterEntity ohm,int start,int limit) {
+    public ArrayList search(String sField, String sValue, String sOper,orderHeaderMasterEntity ohm,int start,int limit,String date) {
         String sql = " SELECT * FROM order_header_master ohm "
                     + " join member_master mm on ohm.member_Id = mm.member_Id"+
                      " where ohm.Company_Id = ?";
         if(ohm.getOrderStatus()!=null&&!ohm.getOrderStatus().equals("")){
             sql = sql + " and ohm.order_status = '"+ohm.getOrderStatus()+"' ";
+        }
+        if(date!=null){
+            sql = sql + " and date_format(ohm.order_date,'%Y-%m-%d') = '"+date+"' ";
         }
         if (sOper != null && sValue != null & sField != null) {
             sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
@@ -66,7 +69,7 @@ public class orderHeaderMasterTable {
         sql=sql+" limit ?,? ";
         List<Map<String, Object>> result = db.queryList(sql,ohm.getCompanyId(),start,limit);
         ArrayList list = new ArrayList();
-        if (!result.isEmpty()) {
+        if (result != null) {
             for (int i = 0; i < result.size(); i++) {
                 memberMasterEntity mm = new memberMasterEntity();
                 mm.setMemberName(Default.Str(result.get(i).get("Member_Name")));
