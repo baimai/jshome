@@ -3,14 +3,30 @@
     Created on : Dec 29, 2011, 12:14:30 PM
     Author     : Baimai
 --%>
+<%@ include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%--
+    Document   : test
+    Created on : 11 พ.ย. 2554, 12:52:39
+    Author     : Achilles
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<sql:query var="query1" dataSource="webdb">
+    SELECT distinct(mm.member_status),(case when mm.member_status = 'N' then 'InActive'
+    when mm.member_status = 'Y' then 'Active'
+    when mm.member_status = 'B' then 'Ban'
+    else 'InActive' end) as status FROM member_master mm;
+</sql:query>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>jqGrid Demos</title>
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
@@ -26,6 +42,11 @@
         <script src="../jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
+
+        <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
@@ -71,13 +92,14 @@
     </head>
     <body >
 
-       
-    <center>
-        <table id="rowed1"></table>
-        <div id="prowed1"></div>
-        <br />
-        <table id="rowed2"></table>
-    </center>
-    <br/><br/><br/>
+
+        <center>
+            
+            <table id="rowed1"></table>
+            <div id="prowed1"></div>
+            <br />
+            <table id="rowed2"></table>
+        </center>
+        <br/><br/><br/>
     </body>
 </html>

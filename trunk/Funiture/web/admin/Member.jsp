@@ -1,16 +1,25 @@
-<%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
---%>
-
+<%@ include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<sql:query var="query1" dataSource="webdb">
+    SELECT distinct(mm.member_status),(case when mm.member_status = 'N' then 'InActive'
+    when mm.member_status = 'Y' then 'Active'
+    when mm.member_status = 'B' then 'Ban'
+    else 'InActive' end) as status FROM member_master mm;
+</sql:query>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
+
         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
@@ -52,8 +61,8 @@
                     ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
@@ -69,11 +78,30 @@
                 {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
                 {} // search options
             );
-
-
-
-
             });
+            function show(){
+                if(document.getElementById('status').value==''&&document.getElementById('datepicker').value==''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlMemberMaster.do?action=fetchData&q=1"});
+                }else if(document.getElementById('status').value!=''&&document.getElementById('datepicker').value==''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlMemberMaster.do?action=fetchData&q=1&memberStatus="+document.getElementById('status').value});
+                }else if(document.getElementById('status').value==''&&document.getElementById('datepicker').value!=''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlMemberMaster.do?action=fetchData&q=1&memberDate="+splitDate(document.getElementById('datepicker').value)});
+                }else if(document.getElementById('status').value!=''&&document.getElementById('datepicker').value!=''){
+                    jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlMemberMaster.do?action=fetchData&q=1&memberStatus="+document.getElementById('status').value+"&memberDate="+splitDate(document.getElementById('datepicker').value)});
+                }
+                jQuery("#rowed1").trigger('reloadGrid');
+            }
+        </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#datepicker").datepicker();
+            });
+
+            function splitDate(date){
+                var t = date.split("/");  //ถ้าเจอวรรคแตกเก็บลง array t
+                return t[2]+"-"+t[0]+"-"+t[1];
+            }
+
         </script>
         <title>JSP Page</title>
     </head>
@@ -99,6 +127,17 @@
                                             <h1>สมาชิก</h1>
                                         </div>
                                         <center>
+                                            <br/>สถานะ
+                                            <select id="status" onchange="show()">
+                                                <option value=""> ทั้งหมด </option>
+                                                <c:forEach items="${query1.rows}" var="member">
+                                                    <option value="${member.member_status}">${member.status}</option>
+                                                </c:forEach>
+                                            </select>
+                                            <br/>
+                                            <br/>วันที่
+                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
+                                            <br/><br/>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
                                             <br />
