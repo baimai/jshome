@@ -65,31 +65,27 @@
                                 <div class="page-title">
                                     <h1>แค็ตตาล็อก</h1>
                                 </div>
-                                <c:forEach var="catalog" items="${query1.rows}">
-                                    <fieldset>
-                                        <table id="shopping-cart-table" class="data-table cart-table">
-                                            
+
+                                <fieldset>
+                                    <c:forEach var="catalog" items="${query1.rows}">
+                                        <table id="shopping-cart-table" class="data-table cart-table" wifth="100%">
+
                                             <thead>
-                                                <tr><th rowspan="3" class="a-center">PDF</th>
-                                                     <th rowspan="3" class="a-center">NAME</th>
-                                                    
-                                                    
+                                                <tr>
+                                                    <th  class="a-center">PDF</th>
+                                                    <th  class="a-center">NAME</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <td class="a-center" >
-                                                        <a href="${catalog.catalog_pic_loc}">
-                                                            <img src="images/icon/filetype_pdf.png" width="42" height="42" alt="filetype_pdf"/></a></td>
-                                                    
-                                                    <td class="a-left" >
-                                                            <a href="${catalog.catalog_pic_loc}">${catalog.catalog_name}</a></td>
-                                                    
+                                            <td class="a-center" >
+                                                <a href="${catalog.catalog_pic_loc}">
+                                                    <img src="images/icon/filetype_pdf.png" width="42" height="42" alt="filetype_pdf"/></a></td>
 
-
-                                               
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
+                                            <td class="a-left" >
+                                                <a href="${catalog.catalog_pic_loc}">${catalog.catalog_name}</a></td>
+                                            </tbody>
+                                        </table>
+                                    </c:forEach>
                                 </fieldset>
 
                             </div>  <jsp:include page="myCart.jsp" /> </div>  </div>
