@@ -18,7 +18,9 @@ import javax.servlet.http.HttpSession;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.memberMasterEntity;
+import model.entity.userSecurityEntity;
 import model.memberMasterTable;
+import model.userSecurityTable;
 
 /**
  *
@@ -46,17 +48,23 @@ public class login extends HttpServlet {
             memberMasterEntity mm = new memberMasterEntity();
             memberMasterTable mmt = new memberMasterTable(db);
             companyMasterTable cmt = new companyMasterTable(db);
+            userSecurityEntity us = new userSecurityEntity();
+            userSecurityTable ust = new userSecurityTable(db);
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
             loginClass lc = new loginClass();
 
             if (request.getParameter("memberLogin") != null) {
                 mm.setMemberLogin(request.getParameter("memberLogin"));
+                us.setUserId(request.getParameter("memberLogin"));
             }
             if (request.getParameter("memberPassword") != null) {
                 mm.setMemberPassword(request.getParameter("memberPassword"));
+                us.setUserPassword(request.getParameter("memberPassword"));
             }
             mm.setCompanyId(Company_Id);
+            us.setCompanyId(Company_Id);
             ArrayList list = mmt.chkUserPass(mm);
+            ArrayList list2 = ust.chkUserPass(us);
             db.close();
             if (list != null) {
                 memberMasterEntity data = (memberMasterEntity) list.get(0);
@@ -68,7 +76,13 @@ public class login extends HttpServlet {
                 lc.setMemberComAbbr(data.getMemberNameAbbr());
                 lc.setMemberId(data.getMemberId());
                 s.setAttribute("loginDetail", lc);
+                s.setAttribute("userRole","user");
                 response.sendRedirect("index.jsp");
+            } else if (list2 != null) {
+                userSecurityEntity data = (userSecurityEntity) list2.get(0);
+                s.setAttribute("loginDetail", data);
+                s.setAttribute("userRole","admin");
+                response.sendRedirect("admin/orderHeader.jsp");
             } else {
                 request.setAttribute("invalid", "Invalid Username Or Password");
                 request.setAttribute("memberLogin", request.getParameter("memberLogin"));
