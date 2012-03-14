@@ -3,6 +3,7 @@
     Created on : Jan 4, 2012, 3:49:26 PM
     Author     : Baimai
 --%>
+<%@ include file="checkRole.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

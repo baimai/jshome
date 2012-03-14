@@ -3,7 +3,7 @@
     Created on : 6 ธ.ค. 2554, 11:41:26
     Author     : Baimai
 --%>
-
+<%@ include file="checkRole.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
