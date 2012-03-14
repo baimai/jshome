@@ -22,7 +22,7 @@
         SELECT
         pps.company_id,pps.pic_code,pps.product_detail_id,md.menu_group_id,
         md.pic_code,md.menu_code_id,pdm.product_group_id,pdm.product_code,
-        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        pdm.product_price1,pdm.product_price2,pdm.product_price3,pdm.product_price4,pdm.product_d_pic_loc,sb.balance,
         um.unit_name_t,pdm.product_d_name_t,pps.pic_name_t,md.menu_c_name_t,
         cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag
         FROM (select * from pic_product_setup pps group by pps.pic_code,pps.product_detail_id) pps
@@ -52,7 +52,7 @@
     <sql:query var="query3" dataSource="webdb">
         SELECT
         pdm.product_detail_id,pdm.product_group_id,pdm.product_code,
-        pdm.product_price1,pdm.product_d_pic_loc,sb.balance,
+        pdm.product_price1,pdm.product_price2,pdm.product_price3,pdm.product_price4,pdm.product_d_pic_loc,sb.balance,
         um.unit_name_t,pdm.product_d_name_t,
         cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag
         FROM (select * from product_group_master pgm group by pgm.product_group_id) pgm
@@ -75,7 +75,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <meta http-equiv="content-language" content="th" />
+        <meta http-equiv="content-language" content="th" />
         <meta name="robots" content="index, company,category,contactUs" />
         <meta name="description" content="jshome " />
         <meta name="revisit-after" content="*"/>
@@ -197,17 +197,42 @@
                                     <c:if test="${product.show_price_list_flag!='N'}">
                                         <span class="regular-price" id="product-price-156">
                                             <c:if test="${product.show_price_list_flag =='W'}">
-                                                <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                                <c:if test="${product.product_price2 != null}">
+                                                    <span class="price"  > <s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  >  <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span>
+                                                </c:if>
+                                                <c:if test="${product.product_price2 == null}">
+                                                    <span class="price"  >  <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                                </c:if>
+
                                             </c:if>
                                             <c:if test="${product.show_price_list_flag =='R'}">
-                                                <span class="price"  > <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></span>
+                                                <c:if test="${product.product_price4 != null}">
+                                                    <span class="price"  > <s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  >  <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                </c:if>
+                                                <c:if test="${product.product_price4 == null}">
+                                                    <span class="price"  >  <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></span>
+                                                </c:if>
                                             </c:if>
                                             <c:if test="${product.show_price_list_flag =='A'}">
                                                 <c:if test="${product.product_price1 == null || product.product_price1 == ''}">
-                                                    <span class="price"  > <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    <c:if test="${product.product_price4 != null}">
+                                                        <span class="price"  > <s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  >  <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price4 == null}">
+                                                        <span class="price"  >  <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 != null && product.product_price1 != ''}">
-                                                    <span class="price"  > <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    <c:if test="${product.product_price2 != null}">
+                                                        <span class="price"  > <s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  >  <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price2 == null}">
+                                                        <span class="price"  >  <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
                                                 </c:if>
                                             </c:if>
                                         </span>
@@ -232,87 +257,87 @@
                 </div>
                 <div class="toolbar-bottom">
                     <div class="toolbar" id="pageNav">
-                          <div class="pager"><p class="amount">
-                                    สินค้า ${((param.page-1)*param.show)+1} ถึง
-                                    <c:if test="${param.page == (total/param.show) }">${total}</c:if>
-                                    <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                                    จาก ${total}</p>
-                                <div class="limiter">
-                                    <c:if test="${param.page != 1}" >
-                                        <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
-                                            <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
-                                        </a>
-                                        <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
-                                            <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
-                                        </a>
-                                    </c:if>
-                                    <c:if test="${param.page == 1}" >
+                        <div class="pager"><p class="amount">
+                                สินค้า ${((param.page-1)*param.show)+1} ถึง
+                                <c:if test="${param.page == (total/param.show) }">${total}</c:if>
+                                <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
+                                จาก ${total}</p>
+                            <div class="limiter">
+                                <c:if test="${param.page != 1}" >
+                                    <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
                                         <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
+                                    </a>
+                                    <a  href="#" title="back"  style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page-1},document.getElementById('menuType').value)">
                                         <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
-                                    </c:if>
+                                    </a>
+                                </c:if>
+                                <c:if test="${param.page == 1}" >
+                                    <img src="images/icon/hide-left-icon.png" width="15" height="15" alt="next"/>
+                                    <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
+                                </c:if>
 
-                                    <%--<c:if test="${param.page-4 > 0}">
-                                        ...
-                                    </c:if> --%>
-                                    <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
-                                        <c:if test="${count >= (param.page-3)}">
-                                            <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
-                                        </c:if>
-                                    </c:forEach>
-                                    <a style="padding:3px 5px;border:1px solid #000; color:#000; background-color:#fff;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page},document.getElementById('menuType').value)">${param.page}</a>
-                                    <c:forEach begin="${param.page+1}" step="1" end="${((total/param.show)+(1-((total/param.show)%1))%1)}" var="count2">
-                                        <c:if test="${count2 <= (param.page+3)}">
-                                            <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
-                                        </c:if>
-                                    </c:forEach>
-                                    <%--
-                                    <c:if test="${param.page+4 < (total/param.show)}">
-                                        ...
+                                <%--<c:if test="${param.page-4 > 0}">
+                                    ...
+                                </c:if> --%>
+                                <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
+                                    <c:if test="${count >= (param.page-3)}">
+                                        <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
                                     </c:if>
-                                    --%>
-                                    <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
-                                        <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
-                                            <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
-                                        </a>
-                                        <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
-                                            <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
-                                        </a>
+                                </c:forEach>
+                                <a style="padding:3px 5px;border:1px solid #000; color:#000; background-color:#fff;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page},document.getElementById('menuType').value)">${param.page}</a>
+                                <c:forEach begin="${param.page+1}" step="1" end="${((total/param.show)+(1-((total/param.show)%1))%1)}" var="count2">
+                                    <c:if test="${count2 <= (param.page+3)}">
+                                        <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
                                     </c:if>
-                                    <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                                </c:forEach>
+                                <%--
+                                <c:if test="${param.page+4 < (total/param.show)}">
+                                    ...
+                                </c:if>
+                                --%>
+                                <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                                    <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
                                         <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                                    </a>
+                                    <a  href="#" title="forward" onclick="setProduct(document.getElementById('menuCode').value,${param.show},<fmt:formatNumber value="${(total/param.show)+(1-((total/param.show)%1))%1}" type="number" pattern="#"/>,document.getElementById('menuType').value)" style="text-decoration: none">
                                         <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
-                                    </c:if>
-                                    <input type="text" id="pageNum2" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum2').value,document.getElementById('menuType').value)" > Go! </a>
-                                </div>
+                                    </a>
+                                </c:if>
+                                <c:if test="${param.page >= ((total/param.show)+(1-((total/param.show)%1))%1) }">
+                                    <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
+                                    <img src="images/icon/hide-right-icon.png" width="15" height="15" alt="forward"/>
+                                </c:if>
+                                <input type="text" id="pageNum2" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum2').value,document.getElementById('menuType').value)" > Go! </a>
                             </div>
-                            <div class="sorter">
-                                <div class="sort-by" style="display: inline-block">
-                                    <label>เรียงลำดับจาก</label>
-                                    <select id="sortBy">
-                                        <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=name" selected="selected">
-                                            ชื่อ                </option>
-                                        <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=price">
-                                            ราคา                </option>
-                                    </select>
-                                </div>
-                                <div style="display: inline-block">
-                                    <label>จำนวนที่แสดง</label>
-                                    <select onchange="setProduct(document.getElementById('menuCode').value,this.value,1,document.getElementById('menuType').value,document.getElementById('menuType').value);">
-                                        <c:forEach begin="9" end="30" step="3" var="show">
-                                            <c:if test="${show == param.show}" >
-                                                <option value="${show}" selected="selected"  > ${show} </option>
-                                            </c:if>
-                                            <c:if test="${show != param.show}" >
-                                                <option value="${show}"  > ${show} </option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select> ต่อหน้า
-                                </div>
+                        </div>
+                        <div class="sorter">
+                            <div class="sort-by" style="display: inline-block">
+                                <label>เรียงลำดับจาก</label>
+                                <select id="sortBy">
+                                    <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=name" selected="selected">
+                                        ชื่อ                </option>
+                                    <option value="http://freedemo.templates-master.com/f002/electronics/computers.html?dir=asc&amp;order=price">
+                                        ราคา                </option>
+                                </select>
+                            </div>
+                            <div style="display: inline-block">
+                                <label>จำนวนที่แสดง</label>
+                                <select onchange="setProduct(document.getElementById('menuCode').value,this.value,1,document.getElementById('menuType').value,document.getElementById('menuType').value);">
+                                    <c:forEach begin="9" end="30" step="3" var="show">
+                                        <c:if test="${show == param.show}" >
+                                            <option value="${show}" selected="selected"  > ${show} </option>
+                                        </c:if>
+                                        <c:if test="${show != param.show}" >
+                                            <option value="${show}"  > ${show} </option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select> ต่อหน้า
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        
+        </div>
+
     </body>
 </html>
