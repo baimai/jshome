@@ -47,12 +47,12 @@
                         {name:'productRemarkT',index:'productRemarkT', width:225, align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'picId',index:'picId', width:55,hidden:true,editable:true,editrules:{edithidden:true}},
-                        {name:'Edit',index:'Edit', width:100,hidden:true,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
+                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picId="+cellvalue+"\" >Edit</a>"}}
                     ]
                     ,
                     rowNum:20,
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -89,6 +89,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
+
                     <br><br> <div class="wrapper">
                         <div class="page">
                         </div>
@@ -99,6 +100,9 @@
                                         <div class="page-title">
                                             <h1>จัดการรูปแสดงสินค้า</h1>
                                         </div>
+                                        <br/>
+                                        <button onclick="window.location.href='addProductSetup.jsp?picCode=${param.picCode}'" class="button"><span><span> Add</span></span></button>
+                                        <br/><br/>
                                         <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>

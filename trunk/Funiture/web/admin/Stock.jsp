@@ -18,9 +18,9 @@
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
-	<script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
-	<script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
+        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
@@ -79,12 +79,12 @@
                 color: #339;
             }
         </style>
-<script type="text/javascript">
-	$(function() {
-		$("#datepicker").datepicker();
-	});
-	</script>
-      
+        <script type="text/javascript">
+            $(function() {
+                $("#datepicker").datepicker();
+            });
+        </script>
+
 
     </head>
     <body>
@@ -121,34 +121,34 @@
 
                                         </div>
                                         <form action="stockMaster.do" method="post" enctype="multipart/form-data" >
-                                    <div id="dialog-form" title="Search Product">
-                            <table >
-                                <tr>
-                                    <td>Product Group</td>
-                                    <td><select name="productGroupId2" id="productGroupId2">
-                                            <option value=""></option>
-                                            <c:forEach var="group" items="${query3.rows}">
-                                                <option value="${group.product_group_id}">${group.product_g_name_t}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Product Code</td>
-                                    <td><input type="text" name="productCode2" id="productCode2" value=""/></td>
-                                </tr>
-                                <tr>
-                                    <td>Product Name</td>
-                                    <td><input type="text" name="productName2" id="productName2" value=""/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center"> <input type="submit" value="ค้นหา" onclick="setSearch(document.getElementById('productCode2').value,document.getElementById('productName2').value,document.getElementById('productGroupId2').value,1)"/></td>
-                                </tr>
-                            </table>
-                            <div id="showSearch">
+                                            <div id="dialog-form" title="Search Product">
+                                                <table >
+                                                    <tr>
+                                                        <td>Product Group</td>
+                                                        <td><select name="productGroupId2" id="productGroupId2">
+                                                                <option value=""></option>
+                                                                <c:forEach var="group" items="${query3.rows}">
+                                                                    <option value="${group.product_group_id}">${group.product_g_name_t}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Product Code</td>
+                                                        <td><input type="text" name="productCode2" id="productCode2" value=""/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Product Name</td>
+                                                        <td><input type="text" name="productName2" id="productName2" value=""/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" align="center"> <input type="submit" value="ค้นหา" onclick="setSearch(document.getElementById('productCode2').value,document.getElementById('productName2').value,document.getElementById('productGroupId2').value,1)"/></td>
+                                                    </tr>
+                                                </table>
+                                                <div id="showSearch">
 
-                            </div>
-                        </div>
+                                                </div>
+                                            </div>
                                             <c:if test="${param.productDetailId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <div class="fieldset">
@@ -169,9 +169,9 @@
                                                                 <div class="field name-firstname">
                                                                     <label for="firstname" >รหัสสินค้า</label>
                                                                     <div  class="input-box">
-			   <input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a>
-			   </div>
-                                                                    
+                                                                        <input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a>
+                                                                    </div>
+
 
                                                                 </div>
                                                             </div>
