@@ -8,6 +8,7 @@ import controller.Xml.GenerateXml;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,7 @@ public class xmlOrderMaster extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+                //response.setContentType("text/xml;charset=UTF-8");
 
 
                 int rows = 20, page = 1;
@@ -52,12 +53,15 @@ public class xmlOrderMaster extends HttpServlet {
                     page = Integer.parseInt(r);
                 }
                 int start = rows * page - rows;
-                String orderStatus = null;
+                String orderStatus = null,orderDate = null;
                 String sField = null, sValue = null, sOper = null;
                 int orderId = 0;
 
                 if (request.getParameter("orderStatus") != null) {
                     orderStatus = request.getParameter("orderStatus");
+                }
+                if (request.getParameter("orderDate") != null) {
+                    orderDate = request.getParameter("orderDate");
                 }
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
@@ -79,8 +83,9 @@ public class xmlOrderMaster extends HttpServlet {
                 orderHeaderMasterEntity ohm = new orderHeaderMasterEntity();
                 ohm.setCompanyId(Company_Id);
                 ohm.setOrderStatus(orderStatus);
+                //ohm.setOrderDate(Timestamp.valueOf(orderDate));
                 ArrayList listp = odmt.searchId(orderId);
-                ArrayList list = ohmt.search(sField, sValue, sOper, ohm,start,rows);
+                ArrayList list = ohmt.search(sField, sValue, sOper, ohm,start,rows,orderDate);
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = ohmt.countAll(ohm);

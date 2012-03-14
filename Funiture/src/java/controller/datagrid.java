@@ -101,7 +101,7 @@ public class datagrid extends HttpServlet {
                         xml.setRowDetail(data.getPicId(),
                                data.getPicCode(),data.getProductDetailMasterEntity().getProductDPicLoc(),
                                data.getProductCode(),data.getPicNameT(),data.getPicNameE(),
-                               data.getProductRemarkT(),data.getProductRemarkE(),data.getPicId(),data.getPicCode());
+                               data.getProductRemarkT(),data.getProductRemarkE(),data.getPicId(),data.getPicId());
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
