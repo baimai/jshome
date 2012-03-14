@@ -54,7 +54,7 @@ public class addOrder extends HttpServlet {
         try {
             HttpSession s = request.getSession(true);
             loginClass lc = (loginClass) s.getAttribute("loginDetail");
-            Vector v = new Vector();
+            Vector v = new Vector();            
             Database db = new Database();
             errorClass err = new errorClass();
             orderDetailMasterEntity odm = new orderDetailMasterEntity();
@@ -122,13 +122,13 @@ public class addOrder extends HttpServlet {
                         odm.setProductVolumn(p.getAmount());
                         //เซตว่าใช้ราคาไหน
                         if (mgm.getMemberGradeMasterEntity().getMemberPriceFlag().equals("W")) {
-                            if (pdm2.getProductPrice1() != BigDecimal.ZERO) {
+                            if (pdm2.getProductPrice1() != BigDecimal.ZERO && pdm2.getProductPrice2()==BigDecimal.ZERO) {
                                 odm.setProductCost(pdm2.getProductPrice1());
                             } else {
                                 odm.setProductCost(pdm2.getProductPrice2());
                             }
                         } else if (mgm.getMemberGradeMasterEntity().getMemberPriceFlag().equals("R")) {
-                            if (pdm2.getProductPrice3() != BigDecimal.ZERO) {
+                            if (pdm2.getProductPrice3() != BigDecimal.ZERO && pdm2.getProductPrice4()==BigDecimal.ZERO) {
                                 odm.setProductCost(pdm2.getProductPrice3());
                             } else {
                                 odm.setProductCost(pdm2.getProductPrice4());
@@ -179,7 +179,6 @@ public class addOrder extends HttpServlet {
                ohm.setMemberId(lg.getMemberId());
                ohm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                ohmt.updateDiscount(ohm);
-
             }
             db.close();
             response.sendRedirect("index.jsp");
