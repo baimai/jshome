@@ -118,9 +118,16 @@ public class memberMasterTable {
         db.add(sql, mb.getMemberPassword(), mb.getUpdateDate(), mb.getMemberId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper, int Company_Id,int start ,int limit) {
+    public ArrayList search(String sField, String sValue, String sOper, int Company_Id,int start ,int limit,String status,String date) {
         String sql = "SELECT * FROM member_master mb"
                 + " where mb.Company_Id = ?";
+
+        if(status!=null&&!status.equals("")){
+            sql = sql + " and mb.member_status = '"+status+"' ";
+        }
+        if(date!=null){
+            sql = sql + " and date_format(mb.member_reg_date,'%Y-%m-%d') = '"+date+"' ";
+        }
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);

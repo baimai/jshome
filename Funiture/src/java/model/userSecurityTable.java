@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.Timestamp;
@@ -20,11 +19,13 @@ import util.Operation;
  */
 public class userSecurityTable {
 
-private Database db;
-public userSecurityTable (Database db){
-    this.db = db;
-}
-public void add(userSecurityEntity uss) {
+    private Database db;
+
+    public userSecurityTable(Database db) {
+        this.db = db;
+    }
+
+    public void add(userSecurityEntity uss) {
 
         String sql = "insert into user_security "
                 + "( User_Id,Company_Id,User_Password,"
@@ -46,7 +47,8 @@ public void add(userSecurityEntity uss) {
                 uss.getCreateDate());
 
     }
-public void update(userSecurityEntity uss) {
+
+    public void update(userSecurityEntity uss) {
         String sql = "update user_security set User_Password = ?,"
                 + " User_Name_T =? ,User_Name_E = ?,User_Authority_Sts = ?,"
                 + " User_Alive_Sts = ?,Approved_Date = ?,Hold_Date = ?,"
@@ -63,15 +65,17 @@ public void update(userSecurityEntity uss) {
                 uss.getUpdateDate(),
                 uss.getUserId());
     }
-public void remove(userSecurityEntity uss){
-      String sql = "delete from user_security where User_Id = ?";
-      db.update(sql,uss.getUserId());
-  }
-public ArrayList search(String sField, String sValue, String sOper) {
+
+    public void remove(userSecurityEntity uss) {
+        String sql = "delete from user_security where User_Id = ?";
+        db.update(sql, uss.getUserId());
+    }
+
+    public ArrayList search(String sField, String sValue, String sOper) {
         String sql = "SELECT * FROM user_security cm";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" where "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
@@ -88,6 +92,25 @@ public ArrayList search(String sField, String sValue, String sOper) {
 
                 list.add(uss);
             }
+            return list;
+        } else {
+            return null;
+        }
+    }
+
+    public ArrayList chkUserPass(userSecurityEntity us) {
+        String sql = "select * from user_security where user_id = ? and user_password = ? and Company_Id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, us.getUserId(), us.getUserPassword(), us.getCompanyId());
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            userSecurityEntity us2 = new userSecurityEntity();
+                us2.setUserId((String)result.get(0).get("User_Id"));
+                us2.setUserPassword((String)result.get(0).get("User_Password"));
+                us2.setUserNameT((String)result.get(0).get("User_Name_T"));
+                us2.setUserNameE((String)result.get(0).get("User_Name_E"));
+                us2.setUserAliveSts((String)result.get(0).get("User_Alive_Sts"));
+                us2.setUserAuthoritySts((String)result.get(0).get("User_Authority_Sts"));
+            list.add(us2);
             return list;
         } else {
             return null;
