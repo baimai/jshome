@@ -131,6 +131,7 @@ public class memberMaster extends HttpServlet {
                 mb.setMemberRegDate(Timestamp.valueOf(db.getNow()));
                 mb.setMemberAppdate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Submit")) {
+                    mb.setMemberStatus("N");
                     mbt.add(mb);
 
                 } else if (request.getParameter("action").equals("Edit")) {

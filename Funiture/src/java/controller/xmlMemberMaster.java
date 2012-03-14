@@ -54,11 +54,14 @@ public class xmlMemberMaster extends HttpServlet {
                 int start = rows * page - rows;
                 String memberGradeId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
-                /*
-                if (request.getParameter("menuCode") != null ) {
-                menuCode = request.getParameter("menuCode");
+                String memberStatus = null,memberDate = null;
+                if (request.getParameter("memberStatus") != null) {
+                    memberStatus = request.getParameter("memberStatus");
                 }
-                 */
+                if (request.getParameter("memberDate") != null) {
+                    memberDate = request.getParameter("memberDate");
+                }
+
                 if (request.getParameter("memberGradeId") != null) {
                     memberGradeId = request.getParameter("memberGradeId");
                 }
@@ -83,7 +86,7 @@ public class xmlMemberMaster extends HttpServlet {
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList list = mbt.search(sField, sValue, sOper, Company_Id, start, rows);
+                ArrayList list = mbt.search(sField, sValue, sOper, Company_Id, start, rows,memberStatus,memberDate);
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = mbt.countAll(Company_Id);
