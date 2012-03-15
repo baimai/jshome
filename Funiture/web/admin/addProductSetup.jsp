@@ -33,6 +33,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>        
         <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
@@ -105,12 +109,7 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                    <jsp:include page="header.jsp"/>
-                    <br><br>
-                    <br/>
-
-
-
+                    <jsp:include page="header.jsp"/>                    <br><br>
                     <div id="dialog-form" title="Search Product">
                         <table >
                             <tr>
@@ -136,105 +135,141 @@
                             </tr>
                         </table>
                         <div id="showSearch">
-                         
+
                         </div>
                     </div>
                     <c:if test="${param.picId == null}" >
                         <form action="productSetup.do" >
-                            <div id="users-contain" class="ui-widget">
+                            <div class="wrapper">
+                                <div class="page">
+                                </div>
+                                <div class="main-container col1-layout">
+                                    <div class="main">
+                                        <div class="col-main">
+                                            <div class="account-create">
+                                                <div class="page-title">
+                                                    <h1>จัดการรูปแสดงสินค้า</h1>
+                                                </div>
+                                                  <div class="buttons" align="right">
+                                                <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
 
-                                <table     id="box-table-a">
-
-                                    <tr>
-                                        <td style="text-align: right">Pic Code</td>
-                                        <td>
-                                            <select name="picCode" >
-                                                <c:forEach var="pic" items="${query.rows}">
-                                                    <c:if test="${pic.pic_code == param.picCode}">
-                                                        <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
-                                                    </c:if>
-                                                    <c:if test="${pic.pic_code != param.picCode}">
-                                                        <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right">Product Code</td>
-                                        <td><input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right">Pic Name Th</td>
-                                        <td><input type="text" value="" id="picNameT" name="picNameT" size="40"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right">Pic Name En</td>
-                                        <td><input type="text" value="" id="picNameE" name="picNameE" size="40" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right">Product Remark Th</td>
-                                        <td><input type="text" value="" id="productRemarkT" name="productRemarkT" size="40" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right">Product Remark En</td>
-                                        <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
-                                    </tr>
-                                </table>
+                                            </div>
+                                                <div id="users-contain" class="ui-widget">
+                                                    <table id="box-table-a">
+                                                        <tr>
+                                                            <td style="text-align: right">Pic Code</td>
+                                                            <td>
+                                                                <select name="picCode" >
+                                                                    <c:forEach var="pic" items="${query.rows}">
+                                                                        <c:if test="${pic.pic_code == param.picCode}">
+                                                                            <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
+                                                                        </c:if>
+                                                                        <c:if test="${pic.pic_code != param.picCode}">
+                                                                            <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Product Code</td>
+                                                            <td><input type="text" value="" id="productCode" name="productCode"  />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Pic Name Th</td>
+                                                            <td><input type="text" value="" id="picNameT" name="picNameT" size="40"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Pic Name En</td>
+                                                            <td><input type="text" value="" id="picNameE" name="picNameE" size="40" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Product Remark Th</td>
+                                                            <td><input type="text" value="" id="productRemarkT" name="productRemarkT" size="40" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Product Remark En</td>
+                                                            <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button name="action" value="Add" >Save</button>
                         </form>
                     </c:if>
+
                     <c:if test="${param.picId != null}" >
-                        <c:forEach var="product" items="${query4.rows}">
-                            <form action="productSetup.do" >
-                                <div id="users-contain" class="ui-widget">
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>จัดการรูปแสดงสินค้า</h1>
+                                        </div>
+                                        <c:forEach var="product" items="${query4.rows}">
+                                            
+                                               <div class="buttons" align="right">
+                                                <button name="action" value="Edit2" class="button"><span><span>แก้ไข</span></span></button>
 
-                                    <table     id="box-table-a">
+                                            </div>
+                                            <form action="productSetup.do" >
+                                                <div id="users-contain" class="ui-widget">
+                                                    <table id="box-table-a">
+                                                        <tr>
+                                                            <td style="text-align: right">Pic Code</td>
+                                                            <td>
+                                                                <select name="picCode" >
+                                                                    <c:forEach var="pic" items="${query.rows}">
+                                                                        <c:if test="${pic.pic_code == param.picCode}">
+                                                                            <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
+                                                                        </c:if>
+                                                                        <c:if test="${pic.pic_code != param.picCode}">
+                                                                            <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Product Code</td>
+                                                            <td><input type="text" value="${product.product_code}" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Pic Name Th</td>
+                                                            <td><input type="text" value="${product.pic_name_t}" id="picNameT" name="picNameT" size="40"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Pic Name En</td>
+                                                            <td><input type="text" value="${product.pic_name_e}" id="picNameE" name="picNameE" size="40" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Product Remark Th</td>
+                                                            <td><input type="text" value="${product.product_remark_t}" id="productRemarkT" name="productRemarkT" size="40" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right">Product Remark En</td>
+                                                            <td><input type="text" value="${product.product_remark_e}" id="productRemarkE" name="productRemarkE" size="40"/></td>
+                                                        </tr>
+                                                    </table>
+                                                    <input type="hidden" value="${product.pic_id}" name="picId" />
 
-                                        <tr>
-                                            <td style="text-align: right">Pic Code</td>
-                                            <td>
-                                                <select name="picCode" >
-                                                    <c:forEach var="pic" items="${query.rows}">
-                                                        <c:if test="${pic.pic_code == param.picCode}">
-                                                            <option value="${pic.pic_code}" selected>${pic.menu_c_name_t}</option>
-                                                        </c:if>
-                                                        <c:if test="${pic.pic_code != param.picCode}">
-                                                            <option value="${pic.pic_code}">${pic.menu_c_name_t}</option>
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">Product Code</td>
-                                            <td><input type="text" value="${product.product_code}" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">Pic Name Th</td>
-                                            <td><input type="text" value="${product.pic_name_t}" id="picNameT" name="picNameT" size="40"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">Pic Name En</td>
-                                            <td><input type="text" value="${product.pic_name_e}" id="picNameE" name="picNameE" size="40" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">Product Remark Th</td>
-                                            <td><input type="text" value="${product.product_remark_t}" id="productRemarkT" name="productRemarkT" size="40" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">Product Remark En</td>
-                                            <td><input type="text" value="${product.product_remark_e}" id="productRemarkE" name="productRemarkE" size="40"/></td>
-                                        </tr>
-                                    </table>
-                                    <input type="hidden" value="${product.pic_id}" name="picId" />
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button name="action" value="Edit2" >Save</button>
-                            </form>
+                            </div>
                         </c:forEach>
                     </c:if>
                 </div>
+
+
             </div>
             <div class="cleared"></div>
         </div>

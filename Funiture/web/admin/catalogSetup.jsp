@@ -21,7 +21,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <script>
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+        <script type="text/javascript">
             function setCheck(){
                 if(document.getElementById('c1').checked == true){
                     document.getElementById('picCode').disabled = true;
@@ -29,7 +33,7 @@
                     document.getElementById('picCode').disabled = false;
                 }
                 if(document.getElementById('c2').checked == true){
-                   document.getElementById('productGroup').disabled = true
+                    document.getElementById('productGroup').disabled = true
                 }else{
                     document.getElementById('productGroup').disabled = false;
                 }
@@ -63,65 +67,77 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-                    <br/><br/><br/>
-                    <center>
-                        <form action="testPdf.do">
-                            <table >
-                                <tr>
-                                    <td>
-                                        <input id="c1" name="type" type="radio"   onclick="setCheck()" checked>แสดงตามกลุ่มสินค้า
-                                    </td>
-                                    <td>
-                                        <select id="productGroup" name="productGroup" onchange="setName()">
-                                            <option value="all">ทั้งหมด</option>
-                                            <c:forEach var="group" items="${query1.rows}">
-                                                <option value="${group.product_group_id}">${group.product_g_name_t}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input id="c2" name="type" type="radio"  onclick="setCheck()">แสดงตามรายการ
-                                    </td>
-                                    <td>
-                                        <select id="picCode" name="picCode" disabled onchange="setName()">
-                                            <option value="all">ทั้งหมด</option>
-                                            <c:forEach var="menu" items="${query2.rows}">
-                                                <option value="${menu.pic_code}">${menu.menu_c_name_t}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ชื่อ File
-                                    </td>
-                                    <td>
-                                        <input id="fileName" type="text" value="Example" name="fileName" onFocus="clearText(this)" onBlur="clearText(this)">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ชื่อ Link
-                                    </td>
-                                    <td>
-                                        <input id="linkName" type="text" value="Link-Name" name="linkName" onFocus="clearText(this)" onBlur="clearText(this)">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center"><button name="action" value="Add" >Submit</button> </td>
-                                </tr>
-                            </table>
-                            <input type="hidden" id="groupName" name="groupName" value="ทั้งหมด" />
-                            <br/>
-                            <br/>
-                            <br/><br/><br/>
-                        </form>
-                    </center>
+                    <br/><br/>
+                    <div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>สร้างแค๊ดตาล็อก</h1>
+                                        </div>
+                                        <div class="buttons" align="right">
+                                            <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
 
+                                        </div>
+                                        <form action="testPdf.do">
+                                            <div class="fieldset">
+                                                <h2 class="legend"></h2>
+                                                <ul class="form-list">
+                                                    <li class="fields">
+                                                        <div class="customer-name">
+                                                            <input id="c1" name="type" type="radio"   onclick="setCheck()" checked> แสดงตามกลุ่มสินค้า :
+                                                            <select id="productGroup" name="productGroup" onchange="setName()" class="selected">
+                                                                <option value="all">ทั้งหมด</option>
+                                                                <c:forEach var="group" items="${query1.rows}">
+                                                                    <option value="${group.product_group_id}">${group.product_g_name_t}</option>
+                                                                </c:forEach>
+                                                            </select></div>
+                                                        <div class="customer-name">
+                                                            <input id="c2" name="type" type="radio"  onclick="setCheck()"> แสดงตามรายการ   :
+                                                            <select id="picCode" name="picCode" disabled onchange="setName()" class="selected">
+                                                                <option value="all">ทั้งหมด</option>
+                                                                <c:forEach var="menu" items="${query2.rows}">
+                                                                    <option value="${menu.pic_code}">${menu.menu_c_name_t}</option>
+                                                                </c:forEach>
+                                                            </select></div>
+
+                                                        <div class="customer-name" >
+
+                                                            ชื่อ File :
+
+                                                            <input id="fileName" type="text" value="Example" class="input-text" name="fileName" onFocus="clearText(this)" onBlur="clearText(this)">
+
+                                                        </div>
+
+                                                        <div class="customer-name">
+
+                                                            ชื่อ Link :
+
+                                                            <input id="linkName" type="text" value="Link-Name" class="input-text" name="linkName" onFocus="clearText(this)" onBlur="clearText(this)">
+
+                                                        </div>
+
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                            <input type="hidden" id="groupName" name="groupName" value="ทั้งหมด" />
+                                            <br/>
+                                            <br/>
+                                            <br/><br/><br/>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
 
             </div>
             <div class="cleared"></div>

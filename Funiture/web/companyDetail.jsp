@@ -30,55 +30,47 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <meta http-equiv="content-language" content="th" />
-        <meta name="robots" content="index, company,category,contactUs" />
-        <meta name="description" content="jshome " />
-        <meta name="revisit-after" content="*"/>
-        <meta name="keywords" content="ชุดโซฟาไม้,ชุดโซฟาผ้า,ชุดโต๊ะกลางหิน,ชุดมินิบาร์,ชุดหวายแท้,ชุดหวายซันทาน่า,เอเลียส,ชุดอลูอัล
-              ,เตียงชายหาด,ชุดอาหารกระจก,ชุดอาหารไม้,ชุดอาหารหินกลม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 6 ที่นั่ง,ชุดอาหารหินเหลี่ยม 4 ที่นั่ง,โต๊ะกลางกระจก,
-              โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />
-        <link rel="icon" href="images/js.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
-         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-       
-         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+
+        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
     </head>
     <body>
-    <div class="main-container col2-right-layout">
-         <div class="main">
-             <div class="col-main">
-                <div id="messages_product_view"></div>
-                 <div class="page-title">
-                    <h1>รู้จักบริษัท</h1>
-                </div>
-       <div class="fieldset">
+        <div class="main-container col2-right-layout">
+            <div class="main">
+                <div class="col-main">
+                    <div id="messages_product_view"></div>
+                    <div class="page-title">
+                        <h1>รู้จักบริษัท</h1>
+                    </div>
+                    <div class="fieldset">
                         <c:forEach var="company" items="${query.rows}">
                             <div class="subtitle" style="font-size:24px" > ${company.company_name}</div>
-                             <c:if test="${company.company_addr!=null&&company.company_addr!=''}">
-                               <div align="left" >${company.company_addr}</div>
-                          </c:if>
-                                <c:if test="${company.tumbon!=null&&company.tumbon!=''}">
-                                    <div align="left">${company.tumbon}</div>
-                                </c:if>
-                                <c:if test="${company.amphur!=null&&company.amphur!=''}">
-                                    <div align="left">${company.amphur}</div>
-                                </c:if>
-                                <c:if test="${company.province!=null&&company.province!=''}">
-                                    <div align="left">${company.province}</div>
-                                </c:if>
-                                <c:if test="${company.post_code!=null&&company.post_code!=''}">
-                                    <div align="left">${company.post_code}</div>
-                                </c:if>
-                                <div align="left">  โทร.&nbsp;
-                               
+                            <c:if test="${company.company_addr!=null&&company.company_addr!=''}">
+                                <div align="left" >${company.company_addr}</div>
+                            </c:if>
+                            <c:if test="${company.tumbon!=null&&company.tumbon!=''}">
+                                <div align="left">${company.tumbon}</div>
+                            </c:if>
+                            <c:if test="${company.amphur!=null&&company.amphur!=''}">
+                                <div align="left">${company.amphur}</div>
+                            </c:if>
+                            <c:if test="${company.province!=null&&company.province!=''}">
+                                <div align="left">${company.province}</div>
+                            </c:if>
+                            <c:if test="${company.post_code!=null&&company.post_code!=''}">
+                                <div align="left">${company.post_code}</div>
+                            </c:if>
+                            <div align="left">  โทร.&nbsp;
+
                                 <c:if test="${company.tel1!=null&&company.tel1!=''}">
                                     ${company.tel1}
                                 </c:if>
@@ -88,8 +80,8 @@
                                 <c:if test="${company.tel3!=null&&company.tel3!=''}">
                                     ,${company.tel3}
                                 </c:if></div>
-                                <div align="left"> แฟกซ์.&nbsp;
-                               
+                            <div align="left"> แฟกซ์.&nbsp;
+
                                 <c:if test="${company.fax1!=null&&company.fax1!=''}">
                                     ${company.fax1}
                                 </c:if>
@@ -99,8 +91,8 @@
                                 <c:if test="${company.fax3!=null&&company.fax3!=''}">
                                     ,${company.fax3}
                                 </c:if></div>
-                                <div align="left"> มือถือ.&nbsp;
-                               
+                            <div align="left"> มือถือ.&nbsp;
+
                                 <c:if test="${company.mobile1!=null&&company.mobile1!=''}">
                                     ${company.mobile1}
                                 </c:if>
@@ -110,8 +102,8 @@
                                 <c:if test="${company.mobile3!=null&&company.mobile3!=''}">
                                     ,${company.mobile3}
                                 </c:if></div>
-                                <div align="left"> อีเมลล์.&nbsp;
-                               
+                            <div align="left"> อีเมลล์.&nbsp;
+
                                 <c:if test="${company.email1!=null&&company.email1!=''}">
                                     <a href="mailto:${company.email1}"> ${company.email1}</a>
                                 </c:if>
@@ -121,15 +113,10 @@
                                 <c:if test="${company.email3!=null&&company.email3!=''}">
                                     <a href="mailto:${company.email3}">${company.email3}</a>
                                 </c:if></div>
-                            
-
-
-           </c:forEach></div>
-                        <br/><br/><br/><br/>
-                         
-                  
-                      </div>
-                            <jsp:include page="myCart.jsp" /> </div>
-    </div>
+                        </c:forEach></div>
+                    <br/><br/><br/><br/>
+                </div>
+                <jsp:include page="myCart.jsp" /> </div>
+        </div>
     </body>
 </html>

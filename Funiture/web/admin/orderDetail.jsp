@@ -182,18 +182,18 @@
                             <table align="right" width="100%" border="0">
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td width="12%" style="font-weight: bold;text-align:left;">รวม &nbsp;</td>
-                                    <td width="21%"><input style="color: blue;" disabled type="text" value="${orderH.total_amount}"/></td>
+                                    <td width="12%" style="font-weight: bold;text-align:right;">รวม &nbsp;</td>
+                                    <td width="21%"><input style="color: blue; font-weight:bold;text-align:right;" disabled type="text" value="${orderH.total_amount}"/></td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td style="font-weight: bold;text-align:left;">ส่วนลด ${orderH.discount_rate} % &nbsp;</td>
-                                    <td ><input style="color: blue;" disabled type="text" value="${orderH.discount_amount}"/></td>
+                                    <td style="font-weight: bold;text-align:right;">ส่วนลด ${orderH.discount_rate} % &nbsp;</td>
+                                    <td ><input style="color: blue;font-weight: bold;text-align:right;" disabled type="text" value="${orderH.discount_amount}"/></td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td style="font-weight: bold;text-align:left;">รวมทั้งสิ้น &nbsp;</td>
-                                    <td ><input style="color: blue;" disabled type="text" value="${orderH.total_amount - orderH.discount_amount}"/></td>
+                                    <td style="font-weight: bold;text-align:right;">รวมทั้งสิ้น &nbsp;</td>
+                                    <td ><input style="color: blue;font-weight: bold;text-align:right;" disabled type="text" value="${orderH.total_amount - orderH.discount_amount}"/></td>
                                 </tr>
                             </table>
                             </c:forEach>

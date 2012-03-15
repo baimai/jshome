@@ -16,6 +16,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <style type="text/css">
             body
             {
@@ -68,49 +72,70 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-                    <center>
-                        <br/>
-                        <table  width="100%"   id="box-table-a">
-                            <thead>
-                                <tr>
-                                    <th width="15%" align="center" scope="col">Pic Code</th>
-                                    <th width="15%" align="center" scope="col"> Menu Name Th</th>
-                                    <th width="15%" align="center" scope="col"> Menu Name En</th>
-                                    <th width="20%" align="center" scope="col"> Product Name Th</th>
-                                    <th width="20%" align="center" scope="col"> Product Name En</th>
-                                    <th width="10%" align="center" scope="col">Seq No.</th>
-                                    <th width="5%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="pic" items="${picProductList}" varStatus="counter">
-                                    <tr>
-                                        <td align="center" >${pic.picCode}</td>
-                                        <td align="center" >${pic.menuDetailMasterEntity.menuCNameT}</td>
-                                        <td align="center" >${pic.menuDetailMasterEntity.menuCNameE}</td>
-                                        <td align="center" >${pic.productDetailMasterEntity.productDNameT}</td>
-                                        <td align="center" >${pic.productDetailMasterEntity.productDNameE}</td>
-                                        <td align="center" ><input type="text" value="${pic.picSeq}" style="width:30px;text-align: right;" disabled/></td>
-                                        <td align="center" style="background-color:navajowhite">
-                                            <div>
-                                                <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picCode=${pic.picCode}">   <img src="../images/icon/arrow-up-blue.png" width="22" height="22" alt="Up"/> </a>
-                                            </div>
-                                            <div>
-                                                <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picCode=${pic.picCode}">  <img src="../images/icon/arrow-down-blue.png" width="22" height="22" alt="Up"/> </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                        <form action="seqProductSetup.do" >
-                            <input type="submit" name="action" value="saveSeq" />
-                        </form>
-                        <br/><br/><br/>
-                    </center>
+                    <br><br>
+                    <div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>จัดลำดับสินค้า</h1>
+                                        </div>
+                                        <form action="seqProductSetup.do" >
+                                            <div class="buttons" align="right">
+                                                <button name="action" type="submit" value="saveSeq" class="button"><span><span>บันทึก</span></span></button>
 
+                                            </div>
+
+                                        </form>
+                                        <center>
+                                            <br/>
+                                            <table  width="100%"   id="box-table-a">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="15%" align="center" scope="col">Pic Code</th>
+                                                        <th width="15%" align="center" scope="col"> Menu Name Th</th>
+                                                        <th width="15%" align="center" scope="col"> Menu Name En</th>
+                                                        <th width="20%" align="center" scope="col"> Product Name Th</th>
+                                                        <th width="20%" align="center" scope="col"> Product Name En</th>
+                                                        <th width="10%" align="center" scope="col">Seq No.</th>
+                                                        <th width="5%"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="pic" items="${picProductList}" varStatus="counter">
+                                                        <tr>
+                                                            <td align="center" >${pic.picCode}</td>
+                                                            <td align="center" >${pic.menuDetailMasterEntity.menuCNameT}</td>
+                                                            <td align="center" >${pic.menuDetailMasterEntity.menuCNameE}</td>
+                                                            <td align="center" >${pic.productDetailMasterEntity.productDNameT}</td>
+                                                            <td align="center" >${pic.productDetailMasterEntity.productDNameE}</td>
+                                                            <td align="center" ><input type="text" value="${pic.picSeq}" style="width:30px;text-align: right;" disabled/></td>
+                                                            <td align="center" style="background-color:navajowhite">
+                                                                <div>
+                                                                    <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picCode=${pic.picCode}">   <img src="../images/icon/arrow-up-blue.png" width="22" height="22" alt="Up"/> </a>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picCode=${pic.picCode}">  <img src="../images/icon/arrow-down-blue.png" width="22" height="22" alt="Up"/> </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+
+                                            <br/><br/><br/>
+                                        </center>
+
+                                    </div>
+                                    <br/><br/><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
 
             </div>
             <div class="cleared"></div>

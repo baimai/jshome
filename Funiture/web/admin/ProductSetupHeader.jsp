@@ -6,13 +6,17 @@
 <%@ include file="checkRole.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
+         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.multiselect.css" />
@@ -44,8 +48,8 @@
                     ]
                     ,
                     rowNum:20,
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -82,16 +86,30 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-                    
-                    <br><br><br>
-                    <center>
-                        <table id="rowed1"></table>
-                        <div id="prowed1"></div>
-                        <br />
 
-                    </center>
-                    <br/><br/><br/>
+                    <br><br>
+                    <div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>หัวข้อแสดงรูปสินค้า</h1>
+                                        </div>
+                                        <center>
+                                            <table id="rowed1"></table>
+                                            <div id="prowed1"></div>
+                                            <br />
 
+                                        </center>
+                                        <br/><br/><br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
