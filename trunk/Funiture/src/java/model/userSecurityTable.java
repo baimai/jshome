@@ -99,7 +99,7 @@ public class userSecurityTable {
     }
 
     public ArrayList chkUserPass(userSecurityEntity us) {
-        String sql = "select * from user_security where user_id = ? and user_password = ? and Company_Id = ?";
+        String sql = "select * from user_security where user_id = ? and user_password = MD5(?) and Company_Id = ? and user_alive_sts = 'A' ";
         List<Map<String, Object>> result = db.queryList(sql, us.getUserId(), us.getUserPassword(), us.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {

@@ -37,7 +37,7 @@ public class memberMasterTable {
                 + "  Member_Fax2,Member_Mobile1,Member_Mobile2,Member_Email1,"
                 + "  Member_Email2,Member_Grade_Id,Member_logo_loc,Member_Status,"
                 + "  Create_Date,User_Id,Company_Id )"
-                + "  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "  values(?,MD5(?),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         db.add(sql,
                 mb.getMemberLogin(),
@@ -113,7 +113,7 @@ public class memberMasterTable {
     }
 
     public void editPassword(memberMasterEntity mb) {
-        String sql = " update member_master set member_password = ?,Update_Date = ?"
+        String sql = " update member_master set member_password = MD5(?),Update_Date = ?"
                 + " where Member_Id = ?";
         db.add(sql, mb.getMemberPassword(), mb.getUpdateDate(), mb.getMemberId());
     }
@@ -189,7 +189,7 @@ public class memberMasterTable {
     }
 
     public ArrayList chkUserPass(memberMasterEntity mm) {
-        String sql = "select * from member_master where member_login = ? and member_password = ? and Company_Id = ?";
+        String sql = "select * from member_master where member_login = ? and member_password = MD5(?) and Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword(), mm.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
