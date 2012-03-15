@@ -258,7 +258,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>stockMaster</servlet-name>
-        <url-pattern>/admin/stockMaster</url-pattern>
+        <url-pattern>/admin/stockMaster.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>memberGradeMaster</servlet-name>
@@ -296,7 +296,7 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
+        <description>jdbc:mysql://localhost:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>

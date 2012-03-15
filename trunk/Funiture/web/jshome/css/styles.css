@@ -109,7 +109,7 @@ ul,ol         { list-style:none; }
 .col1-layout .col-main { float:none; width:auto; }
 
 /* 2 Columns Layout */
-.col2-left-layout .col-main {width:auto; float:right; }
+.col2-left-layout .col-main {width:auto; float:none; }
 .col2-right-layout .col-main {}
 
 /* 3 Columns Layout */
@@ -923,7 +923,7 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 .product-collateral .box-collateral { margin:0 0 25px; }
 
 /* Product Images */
-.product-view .product-img-box { float:left; width:267px; }
+.product-view .product-img-box { float:left;  }
 .col3-layout .product-view .product-img-box { float:none; margin:0 auto; }
 .product-view .product-img-box .product-image { margin:0 0 13px; }
 .product-view .product-img-box .product-image-zoom { position:relative; width:265px; height:265px; overflow:hidden; z-index:9; }

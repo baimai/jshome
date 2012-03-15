@@ -66,11 +66,7 @@
         <div >
             <img src="images/head.jpg" width="95%" height="100px" border="0" usemap="#Map"/>
         </div>
-
-
         <div id="container"  >
-
-
             <ul id="nav">
                 <c:forEach var="topmenu" items="${query2.rows}">
                     <c:if test="${topmenu.Menu_G_Name_T=='หน้าหลัก' || topmenu.Menu_G_Name_E =='Home'}">
@@ -83,10 +79,6 @@
 
             </ul>
         </div>
-
-
-
-
         <script type="text/javascript" src="js/top_menu.js"></script>
         <map name="Map">
             <area shape="rect" coords="893,7,937,24" href="Login.jsp" target="_self">

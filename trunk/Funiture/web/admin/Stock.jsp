@@ -4,10 +4,14 @@
     Author     : Jik
 --%>
 <%@ include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
-<c:url var="url" value="/" />
+<sql:query var="query" dataSource="webdb">
+    select * from unit_master order by unit_name_t asc
+</sql:query>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +32,7 @@
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
-                postDataReturnText("Product.jsp",param,showSearch);
+                postDataReturnText("searchProductdetail.jsp",param,showSearch);
             }
             function showSearch(text){
                 document.getElementById("showSearch").innerHTML=text;
@@ -42,7 +46,9 @@
                     width: 800,
                     modal: true
                 });
+                
             });
+          
         </script>
 
 
@@ -50,8 +56,8 @@
             #box-table-a
             {
                 font-size: 12px;
-                margin: 45px;
-                width: 400px;
+                margin: 25px;
+                width: 800px;
                 text-align: left;
                 border-collapse: collapse;
             }
@@ -78,11 +84,14 @@
                 background: #d0dafd;
                 color: #339;
             }
+
+            }
         </style>
         <script type="text/javascript">
             $(function() {
                 $("#datepicker").datepicker();
             });
+
         </script>
 
 
@@ -108,49 +117,30 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>
-                                        <div class="buttons" align="right">
-                                            <form action="Stock.jsp" >
+
+                                        <form action="stockMaster.do" >
+                                            <div class="buttons" align="right">
                                                 <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
-                                            </form>
-
-                                            <form action="stockMaster.jsp" >
-                                                <input type="hidden" name="stockId" value="${param.stockId}" />
-                                                <button name="action" value="Seart" class="button"><span><span>ค้นหา</span></span></button>
-                                            </form>
-
-
-                                        </div>
-                                        <form action="stockMaster.do" method="post" enctype="multipart/form-data" >
+                                               
+                                            </div>
                                             <div id="dialog-form" title="Search Product">
-                                                <table >
-                                                    <tr>
-                                                        <td>Product Group</td>
-                                                        <td><select name="productGroupId2" id="productGroupId2">
-                                                                <option value=""></option>
-                                                                <c:forEach var="group" items="${query3.rows}">
-                                                                    <option value="${group.product_group_id}">${group.product_g_name_t}</option>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Product Code</td>
-                                                        <td><input type="text" name="productCode2" id="productCode2" value=""/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Product Name</td>
-                                                        <td><input type="text" name="productName2" id="productName2" value=""/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2" align="center"> <input type="submit" value="ค้นหา" onclick="setSearch(document.getElementById('productCode2').value,document.getElementById('productName2').value,document.getElementById('productGroupId2').value,1)"/></td>
-                                                    </tr>
-                                                </table>
-                                                <div id="showSearch">
 
+                                                <script type="text/javascript">
+                                                    setSearch('','','',1)
+
+                                                </script>
+
+                                                <div id="showSearch">
+                                                    <script type="text/javascript">
+
+                                                        $(function(onclick) {
+                                                            $( '#dialog-form' ).dialog( 'close' );
+                                                        });
+                                                    </script>
                                                 </div>
                                             </div>
                                             <c:if test="${param.productDetailId==null}" >
-                                                <input type="hidden" name="action" value="Add" />
+                                               
                                                 <div class="fieldset">
                                                     <h2 class="legend">ตั้งค่า</h2>
                                                     <ul class="form-list">
@@ -190,7 +180,7 @@
                                                             <div class="field name-lastname">
                                                                 <label for="lastname" >หน่วย</label>
                                                                 <select name="unitId" class="select">
-                                                                    <c:forEach  items="${query4.rows}" var="unit">
+                                                                    <c:forEach  items="${query.rows}" var="unit">
                                                                         <option value="${unit.unit_id}">${unit.unit_name_t}</option>
                                                                     </c:forEach>
                                                                 </select>
