@@ -4,6 +4,7 @@
  */
 package model.entity;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -21,7 +22,10 @@ public class stockMasterEntity {
     private Timestamp updateDate;
     private String userId;
     private int unitId;
-    private Timestamp receiveDate;
+    private Date receiveDate;
+    private productGroupMasterEntity productGroupMasterEntity;
+    private productDetailMasterEntity  productDetailMasterEntity;
+    private unitMasterEntity  unitMasterEntity;
     /**
      * @return the productDetailId
      */
@@ -134,19 +138,63 @@ public class stockMasterEntity {
         this.unitId = unitId;
     }
 
-
     /**
      * @return the receiveDate
      */
-    public Timestamp getReceiveDate() {
+    public Date getReceiveDate() {
         return receiveDate;
     }
 
     /**
      * @param receiveDate the receiveDate to set
      */
-    public void setReceiveDate(Timestamp receiveDate) {
+    public void setReceiveDate(Date receiveDate) {
         this.receiveDate = receiveDate;
     }
+
+    /**
+     * @return the productGroupMasterEntity
+     */
+    public productGroupMasterEntity getProductGroupMasterEntity() {
+        return productGroupMasterEntity;
+    }
+
+    /**
+     * @param productGroupMasterEntity the productGroupMasterEntity to set
+     */
+    public void setProductGroupMasterEntity(productGroupMasterEntity productGroupMasterEntity) {
+        this.productGroupMasterEntity = productGroupMasterEntity;
+    }
+
+    /**
+     * @return the productDetailMasterEntity
+     */
+    public productDetailMasterEntity getProductDetailMasterEntity() {
+        return productDetailMasterEntity;
+    }
+
+    /**
+     * @param productDetailMasterEntity the productDetailMasterEntity to set
+     */
+    public void setProductDetailMasterEntity(productDetailMasterEntity productDetailMasterEntity) {
+        this.productDetailMasterEntity = productDetailMasterEntity;
+    }
+
+    /**
+     * @return the unitMasterEntity
+     */
+    public unitMasterEntity getUnitMasterEntity() {
+        return unitMasterEntity;
+    }
+
+    /**
+     * @param unitMasterEntity the unitMasterEntity to set
+     */
+    public void setUnitMasterEntity(unitMasterEntity unitMasterEntity) {
+        this.unitMasterEntity = unitMasterEntity;
+    }
+
+
+  
 
 }
