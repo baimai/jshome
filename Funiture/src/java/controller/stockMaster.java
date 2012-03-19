@@ -64,27 +64,30 @@ public class stockMaster extends HttpServlet {
                 if (request.getParameter("quantity") != null) {
                     mps.setQuantity(Integer.parseInt(request.getParameter("quantity")));
                 }
+                if (request.getParameter("receiveDate") != null) {
+                    String tmpDate[] = request.getParameter("receiveDate").split("/");
+                    mps.setReceiveDate(Date.valueOf(tmpDate[2]+"-"+tmpDate[0]+"-"+tmpDate[1]));
+                }
                 out.println("quantity>>>>" + mps.getQuantity());
-                db.close();
                 if (request.getParameter("unitId") != null) {
                     mps.setUnitId(Integer.parseInt(request.getParameter("unitId")));
                 }
-              //  mps.setReceiveDate(toString.(request.getParameter("receiveDate")));
                 out.println("getReceiveDate>>>>" + mps.getReceiveDate());
-                String tmpDate[] = request.getParameter("receiveDate").split("/");
-                String date = tmpDate[2]+"-"+tmpDate[1]+"-"+tmpDate[0];
-                mps.setReceiveDate(Date.valueOf(date));
                 mps.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mps.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("add")) {
-                    st.add(mps);
-
-                    //out.println("unitId")+mps.getUserId());
+                    Boolean chk = st.getAvailable(mps);
+                    if (chk == true) {
+                        st.update(mps);
+                    } else {
+                        st.add(mps);
+                    }
                 }
                 out.println("getReceiveDate" + mps.getReceiveDate());
                 out.println("getProductDetailId" + mps.getProductDetailId());
                 out.println("quantity" + mps.getQuantity());
                 db.close();
+                response.sendRedirect("Stock.jsp");
             }
 
         } catch (Exception ex) {
