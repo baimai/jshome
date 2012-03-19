@@ -82,11 +82,13 @@ public class companyMasterController extends HttpServlet {
                         }
                         u.store(mr, "uploadhead");
                         if (upFile.getFileName() != null) {
-                            if (mr.getParameter("uploadtmp") != null && upFile.getFileName().equals("")) {
-                                cp.setCompanyHeaderLoc(mr.getParameter("uploadtmp"));
-                            } else if (!upFile.getFileName().equals("")) {
-                                cp.setCompanyCatalogLoc("upload/picture/head" + "/" + upFile.getFileName());
+                            if (mr.getParameter("uploadheadtmp") != null && upFile.getFileName().equals("")) {
+                                cp.setCompanyHeaderLoc(mr.getParameter("uploadheadtmp"));
+                            } else
+                                if (!upFile.getFileName().equals("")) {
+                                cp.setCompanyHeaderLoc("upload/picture/head" + "/" + upFile.getFileName());
                             }
+                            out.print(cp.getCompanyHeaderLoc());
                         }
                         //============================================cataloge=======================================================================
                         if (upFile2.getFileName() != null && !upFile2.getFileName().equals("")) {
@@ -109,11 +111,15 @@ public class companyMasterController extends HttpServlet {
                         }
                         u.store(mr, "uploadcataloge");
                         if (upFile2.getFileName() != null) {
-                            if (mr.getParameter("uploadtmp") != null && upFile2.getFileName().equals("")) {
-                                cp.setCompanyHeaderLoc(mr.getParameter("uploadtmp"));
+                            if (mr.getParameter("uploadcatalogetmp") != null && upFile2.getFileName().equals("")) {
+                                cp.setCompanyCatalogLoc(mr.getParameter("uploadcatalogetmp"));
                             } else if (!upFile.getFileName().equals("")) {
                                 cp.setCompanyCatalogLoc("upload/picture/cataloge" + "/" + upFile2.getFileName());
                             }
+                        }
+                         if (mr.getParameter("companyId") != null && !mr.getParameter("companyId").equals("")) {
+                            cp.setCompanyId(Integer.parseInt(mr.getParameter("companyId")));
+
                         }
                         if (request.getParameter("companyCode") != null) {
                             cp.setCompanyCode(request.getParameter("companyCode"));
@@ -211,8 +217,10 @@ public class companyMasterController extends HttpServlet {
                             cpm.add(cp);
                         }
                         if (mr.getParameter("action").equals("Edit")) {
-                            cpm.update(cp);
 
+                            cpm.update(cp);
+                            //out.println("xxx"+cp.getCompanyHeaderLoc());
+                       //response.sendRedirect("Company.jsp?companyId=" + cp.getCompanyId());
                         }
                         if (mr.getParameter("action").equals("Del")) {
                             cpm.remove(cp);
