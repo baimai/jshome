@@ -63,14 +63,14 @@
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
                                         <form action="productDetail.do" method="post" enctype="multipart/form-data" >
-                                            
+
                                             <c:if test="${param.productDetailId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <input type="hidden" value="0" name="qtyminus" />
                                                 <div class="buttons-set">
                                                     <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
                                                     <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
-                                                   
+
                                                 </div>
                                                 <div class="fieldset">
                                                     <h2 class="legend">ตั้งค่า</h2>
@@ -331,10 +331,10 @@
                                                 <c:forEach var="product" items="${query3.rows}" >
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
-                                                   <input type="hidden" name="product_d_pic_loc" value="${product.product_d_pic_loc}"/>
+                                                    <input type="hidden" name="product_d_pic_loc" value="${product.product_d_pic_loc}"/>
                                                     <div class="buttons-set">
                                                         <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
-                                                       
+
                                                         <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
                                                     </div>
                                                     <div class="fieldset">
@@ -364,8 +364,8 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                        
-                                                        
+
+
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -373,222 +373,221 @@
                                                                         <input name="productModelCode" type="text" class="input-text" value="${product.product_model_code}"/>
                                                                     </div>
                                                                 </div>
-                                                                
-                                                            
-                                                             <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >Color</label>
 
-                                                                    <select name="colorId" class="select">
-                                                                        <c:forEach items="${query2.rows}" var="color" >
-                                                                            <c:if test="${color.color_Id == product.product_color_Id }" >
-                                                                                <option value="${color.Color_Id}" selected>${color.colorName}</option>
-                                                                            </c:if>
-                                                                            <c:if test="${color.color_Id != product.product_color_Id }" >
-                                                                                <option value="${color.Color_Id}">${color.colorName}</option>
-                                                                            </c:if>
-                                                                        </c:forEach>
-                                                                    </select></div>
-                                                            </div>
+
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Color</label>
+
+                                                                        <select name="colorId" class="select">
+                                                                            <c:forEach items="${query2.rows}" var="color" >
+                                                                                <c:if test="${color.color_Id == product.product_color_Id }" >
+                                                                                    <option value="${color.Color_Id}" selected>${color.colorName}</option>
+                                                                                </c:if>
+                                                                                <c:if test="${color.color_Id != product.product_color_Id }" >
+                                                                                    <option value="${color.Color_Id}">${color.colorName}</option>
+                                                                                </c:if>
+                                                                            </c:forEach>
+                                                                        </select></div>
+                                                                </div>
                                                             </li>
 
-                                                              <li class="fields">
-                                                                <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >Product Max Sale</label>
-                                                                <input name="productMaxSale" type="text" class="input-text"  value="${product.product_max_sale}"/>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                             <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >Product Image</label>
-                                                                    <input type="text" name="uploadtmp" value="${product.product_d_pic_loc}" class="input-text" readonly/>
-                                                                </div>
-                                                                </div>
-                                                                 
-                                                             <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >Product Image</label>
-                                                                <c:if test="${product.product_d_pic_loc!=null&&product.product_d_pic_loc!=''}" >
-
-                                                                </c:if>
-                                                                <c:if test="${product.product_d_pic_loc==null||product.product_d_pic_loc==''}" >
-                                                                    <label for="firstname" >Product Image</label>
-                                                                </c:if>
-                                                                <input type="file" name="upload" class="input-text"/></div>
-                                                            </div>
-                                                             </li>
                                                             <li class="fields">
-                                                             <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >Product Display</label>
-
-                                                                    <select name="display" class="select">
-                                                                        <option value="Y" <c:if test="${product.product_d_display_flag == 'Y'}"> selected</c:if> >Show</option>
-                                                                        <option value="N" <c:if test="${product.product_d_display_flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                        <option value="A" <c:if test="${product.product_d_display_flag == 'A'}"> selected</c:if>>Show on Slide</option>
-                                                                    </select></div>
-                                                            </div>
-                                                           
-                                                            <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >Quatity</label>
-                                                                
-                                                                    <c:if test="${product.balance != null && product.balance != ''}">
-                                                                        <input type="text" class="input-text" value="${product.balance}" name="qtyold" size="5" disabled/>
-                                                                    </c:if>
-                                                                    <c:if test="${product.balance == null || product.balance == ''}">
-                                                                        <input type="text" class="input-text" value="0" name="qtyold" size="5" disabled/>
-                                                                    </c:if>
-                                                                         </div>
-
-                                                            </div>
-                                                                    <div class="customer-name">
-                                                                <div   class="field name-firstname">
-                                                                    <label for="firstname" >หน่วยนับ</label>
-                                                                    <select name="unitId">
-                                                                        <c:forEach  items="${query4.rows}" var="unit">
-                                                                            <option value="${unit.unit_id}">${unit.unit_name_t}</option>
-                                                                        </c:forEach>
-                                                                    </select>
-                                                                   <!-- &nbsp;&nbsp;&nbsp; เพิ่ม <input type="text" name="qtyplus" value="0" size="5"/>
-                                                                    &nbsp;&nbsp;&nbsp; ลด <input type="text" name="qtyminus" value="0" size="5"/>-->
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Max Sale</label>
+                                                                        <input name="productMaxSale" type="text" class="input-text"  value="${product.product_max_sale}"/>
+                                                                    </div>
                                                                 </div>
 
-                                                            </div>
-                                                        </li>
-                                                            </ul>
-                                                             </div>
-                                                            <div class="fieldset">
-                                                         <h2 class="legend">ราคา</h2>
-                                                             <ul class="form-list">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Image</label>
+                                                                        <input type="text" name="uploadtmp" value="${product.product_d_pic_loc}" class="input-text" readonly/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Image</label>
+                                                                        <c:if test="${product.product_d_pic_loc!=null&&product.product_d_pic_loc!=''}" >
+                                                                        </c:if>
+                                                                        <c:if test="${product.product_d_pic_loc==null||product.product_d_pic_loc==''}" >
+                                                                            <label for="firstname" >Product Image</label>
+                                                                        </c:if>
+                                                                        <input type="file" name="upload" class="input-text"/></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Display</label>
+
+                                                                        <select name="display" class="select">
+                                                                            <option value="Y" <c:if test="${product.product_d_display_flag == 'Y'}"> selected</c:if> >Show</option>
+                                                                            <option value="N" <c:if test="${product.product_d_display_flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                            <option value="A" <c:if test="${product.product_d_display_flag == 'A'}"> selected</c:if>>Show on Slide</option>
+                                                                        </select></div>
+                                                                </div>
+
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Quatity</label>
+
+                                                                        <c:if test="${product.balance != null && product.balance != ''}">
+                                                                            <input type="text" class="input-text" value="${product.balance}" name="qtyold" size="5" disabled/>
+                                                                        </c:if>
+                                                                        <c:if test="${product.balance == null || product.balance == ''}">
+                                                                            <input type="text" class="input-text" value="0" name="qtyold" size="5" disabled/>
+                                                                        </c:if>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >หน่วยนับ</label>
+                                                                        <select name="unitId">
+                                                                            <c:forEach  items="${query4.rows}" var="unit">
+                                                                                <option value="${unit.unit_id}">${unit.unit_name_t}</option>
+                                                                            </c:forEach>
+                                                                        </select>
+                                                                        <!-- &nbsp;&nbsp;&nbsp; เพิ่ม <input type="text" name="qtyplus" value="0" size="5"/>
+                                                                         &nbsp;&nbsp;&nbsp; ลด <input type="text" name="qtyminus" value="0" size="5"/>-->
+                                                                    </div>
+
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="fieldset">
+                                                        <h2 class="legend">ราคา</h2>
+                                                        <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required"><em>*</em>Price 1</label>
-                                                                <input name="price1" type="text" class="input-text required-entry"  value="${product.product_Price1}"/> Baht (ราคาขายส่ง)</div>
-                                                            </div>
+                                                                        <input name="price1" type="text" class="input-text required-entry"  value="${product.product_Price1}"/> Baht (ราคาขายส่ง)</div>
+                                                                </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >Price 2</label>
-                                                                <input name="price2" type="text" class="input-text"  value="${product.product_Price2}"/> Baht (ราคาขายส่ง Promotion)</div>
-                                                            </div>
+                                                                        <input name="price2" type="text" class="input-text"  value="${product.product_Price2}"/> Baht (ราคาขายส่ง Promotion)</div>
+                                                                </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >Price 3</label>
-                                                                <input name="price3" type="text" class="input-text"  value="${product.product_Price3}"/> Baht (ราคาขายปลีก)</div>
-                                                            </div></li>
-                                                           <li class="fields">
+                                                                        <input name="price3" type="text" class="input-text"  value="${product.product_Price3}"/> Baht (ราคาขายปลีก)</div>
+                                                                </div></li>
+                                                            <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >Price 4</label>
-                                                                <input name="price4" type="text" class="input-text"  value="${product.product_Price4}"/> Baht (ราคาขายปลีก Promotion)</div>
-                                                            </div>
-                                                </li>
-                                                             </ul>
-                                                            </div>
+                                                                        <input name="price4" type="text" class="input-text"  value="${product.product_Price4}"/> Baht (ราคาขายปลีก Promotion)</div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
 
-                                                           <div class="fieldset">
-                                                          <h2 class="legend">ราคา</h2>
-                                                             <ul class="form-list">
+                                                    <div class="fieldset">
+                                                        <h2 class="legend">ราคา</h2>
+                                                        <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required"><em>*</em>Product Name T</label>
-                                                                            <input name="nameTh" type="text" class="input-text required-entry" value="${product.product_d_name_t}"/>
-                                                                         </div>
-                                                                          </div>
-                                                                             <div class="customer-name">
-                                                                              <div   class="field name-firstname">
-                                                                                 <label for="firstname" class="required"><em>*</em>  Product Name E</label>
-                                                                            <input name="nameEn" type="text" class="input-text required-entry" value="${product.product_d_name_e}"/>
-                                                                             </div> </div>
+                                                                        <input name="nameTh" type="text" class="input-text required-entry" value="${product.product_d_name_t}"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" class="required"><em>*</em>  Product Name E</label>
+                                                                        <input name="nameEn" type="text" class="input-text required-entry" value="${product.product_d_name_e}"/>
+                                                                    </div> </div>
                                                             </li>
-                                                                        
+
                                                             <li class="fields">
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 1 T</label>
-                                                                            <textarea name="spect1Th" cols="25" rows="2" >${product.product_spec1_t}</textarea></div>
-                                                                            </div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 1 E</label>
-                                                                            <textarea name="spect1En" cols="25" rows="2">${product.product_spec1_e}</textarea></div></div>
-                                                                        </li>
-                                                                        <li class="fields">
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 2 T</label>
-                                                                            <textarea name="spect2Th" cols="25" rows="2">${product.product_spec2_t}</textarea></div></div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 2 E</label>
-                                                                           <textarea name="spect2En" cols="25" rows="2">${product.product_spec2_e}</textarea></div></div>
-                                                                        </li>
-                                                                        <li class="fields">
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 3 T</label>
-                                                                            <textarea name="spect3Th" cols="25" rows="2">${product.product_spec3_t}</textarea></div></div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 3 E</label>
-                                                                            <textarea name="spect3En" cols="25" rows="2">${product.product_spec3_e}</textarea></div></div>
-                                                                        </li>
-                                                                        <li class="fields">
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 4 T</label>
-                                                                            <textarea name="spect4Th" cols="25" rows="2">${product.product_spec4_t}</textarea></div></div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 4 E</label>
-                                                                            <textarea name="spect4En" cols="25" rows="2">${product.product_spec4_e}</textarea></div></div>
-                                                                        </li>
-                                                                        <li class="fields">
-                                                                           <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 5 T</label>
-                                                                            <textarea name="spect5Th" cols="25" rows="2">${product.product_spec5_t}</textarea></div></div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 5 E</label>
-                                                                            <textarea name="spect5En" cols="25" rows="2">${product.product_spec5_e}</textarea></div></div>
-                                                                        </li>
-                                                                        <li class="fields">
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 6 T</label>
-                                                                            <textarea name="spect6Th" cols="25" rows="2">${product.product_spec6_t}</textarea></div></div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Product Spect 6 E</label>
-                                                                           <textarea name="spect6En" cols="25" rows="2">${product.product_spec6_e}</textarea></div></div>
-                                                                        </li>
-                                                                        <li class="fields">
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Remark T</label>
-                                                                            <textarea name="remarkTh" cols="25" rows="3">${product.product_d_remark_t}</textarea></div></div>
-                                                                            <div class="customer-name">
-                                                                            <div   class="field name-firstname">
-                                                                            <label for="firstname" >Remark E</label>
-                                                                            <textarea name="remarkEn" cols="25" rows="3">${product.product_d_remark_e}</textarea></div></div>
-                                                                        </li>
-                                                                    
-                                                               
-                                                           
-                                                            
-                                                             </ul>
-                                                        </div>
-                                                    </c:forEach>
-                                                </c:if>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 1 T</label>
+                                                                        <textarea name="spect1Th" cols="25" rows="2" >${product.product_spec1_t}</textarea></div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 1 E</label>
+                                                                        <textarea name="spect1En" cols="25" rows="2">${product.product_spec1_e}</textarea></div></div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 2 T</label>
+                                                                        <textarea name="spect2Th" cols="25" rows="2">${product.product_spec2_t}</textarea></div></div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 2 E</label>
+                                                                        <textarea name="spect2En" cols="25" rows="2">${product.product_spec2_e}</textarea></div></div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 3 T</label>
+                                                                        <textarea name="spect3Th" cols="25" rows="2">${product.product_spec3_t}</textarea></div></div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 3 E</label>
+                                                                        <textarea name="spect3En" cols="25" rows="2">${product.product_spec3_e}</textarea></div></div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 4 T</label>
+                                                                        <textarea name="spect4Th" cols="25" rows="2">${product.product_spec4_t}</textarea></div></div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 4 E</label>
+                                                                        <textarea name="spect4En" cols="25" rows="2">${product.product_spec4_e}</textarea></div></div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 5 T</label>
+                                                                        <textarea name="spect5Th" cols="25" rows="2">${product.product_spec5_t}</textarea></div></div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 5 E</label>
+                                                                        <textarea name="spect5En" cols="25" rows="2">${product.product_spec5_e}</textarea></div></div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 6 T</label>
+                                                                        <textarea name="spect6Th" cols="25" rows="2">${product.product_spec6_t}</textarea></div></div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Product Spect 6 E</label>
+                                                                        <textarea name="spect6En" cols="25" rows="2">${product.product_spec6_e}</textarea></div></div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Remark T</label>
+                                                                        <textarea name="remarkTh" cols="25" rows="3">${product.product_d_remark_t}</textarea></div></div>
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Remark E</label>
+                                                                        <textarea name="remarkEn" cols="25" rows="3">${product.product_d_remark_e}</textarea></div></div>
+                                                            </li>
+
+
+
+
+                                                        </ul>
+                                                    </div>
+                                                </c:forEach>
+                                            </c:if>
 
                                         </form>
 

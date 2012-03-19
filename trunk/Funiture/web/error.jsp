@@ -10,12 +10,12 @@
 
 <html>
     <head>
-         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <title>jshome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-   <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
@@ -32,7 +32,8 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                   
+                    <br><br>
+
                     <div class="wrapper">
 
                         <div class="page">
@@ -48,7 +49,8 @@
                                         <div class="col-1 registered-users">
                                             <h2 class="content">Eror Code</h2></div>
                                         <div class="discount">
-                                             <h2 class="legend">${requestScope.error.errorCode}</h2></div>
+                                            <h2 class="legend">${requestScope.error.errorCode}</h2>
+                                        </div>
 
                                         <tr style="vertical-align:text-top">
                                             <td ><h2>Error Message</h2></td>
@@ -81,8 +83,11 @@
                                                 <td><font size="4">${requestScope.error.remark}</font></td>
                                             </tr>
                                         </c:if>
-                                             </div>
-                                    </div> </div> </div> </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <jsp:include page="footer.jsp" />

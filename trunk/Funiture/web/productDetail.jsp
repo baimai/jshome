@@ -35,19 +35,33 @@
     order by rand()
     limit 2
 </sql:query>
-
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-        
+
         <link rel="stylesheet" type="text/css" href="jshome/css/calendar-win2k-1.css" />
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
+        <link type="text/css" href="jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <script type="text/javascript" src="jshome/ui/jquery.ui.core.js"></script>
+        <script src="jshome/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+       	<script src="jshome/external/bgiframe/jquery.bgiframe.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.ui.widget.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.ui.mouse.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.ui.draggable.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.ui.position.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.ui.resizable.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.ui.dialog.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.effects.core.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.effects.blind.js" type="text/javascript"></script>
+        <script src="jshome/ui/jquery.effects.explode.js" type="text/javascript"></script>
+
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
             function addToCart(){
@@ -69,40 +83,28 @@
                 location.href="cartDetail.jsp";
             }
         </script>
-        <link rel="stylesheet" type="text/css" href="../style-projects-jquery.css" />
 
-    <!-- Arquivos utilizados pelo jQuery lightBox plugin -->
-    <script type="text/javascript" src="jshome/js/jquery.js"></script>
-    <script type="text/javascript" src="jshome/js/jquery.lightbox-0.5.js"></script>
-    <link rel="stylesheet" type="text/css" href="jshome/css/jquery.lightbox-0.5.css" media="screen" />
-    <!-- / fim dos arquivos utilizados pelo jQuery lightBox plugin -->
+        <script type="text/javascript">
+            // increase the default animation speed to exaggerate the effect
+            $.fx.speeds._default = 10;
+            $(function() {
+                $( "#dialog" ).dialog({
+                   
+                    autoOpen: false,
+                    height: 400,
+                    width: 650,
+                    modal: true
 
-    <!-- Ativando o jQuery lightBox plugin -->
-    <script type="text/javascript">
-    $(function() {
-        $('#gallery a').lightBox();
-    });
-    </script>
-   	<style type="text/css">
-	/* jQuery lightBox plugin - Gallery style */
-	#gallery {
-		background-color: #fff;
-		padding: 10px;
-		width: 400px;
-	}
-	#gallery ul { list-style: none; }
-	#gallery ul li { display: inline; }
-	#gallery ul img {
-		border: 5px solid #fff;
-		border-width: 5px 5px 20px;
-	}
-	#gallery ul a:hover img {
-		border: 5px solid #fff;
-		border-width: 5px 5px 20px;
-		color: #fff;
-	}
-	#gallery ul a:hover { color: #fff; }
-	</style>
+                });
+
+                $( "#opener" ).click(function() {
+                    $( "#dialog" ).dialog( "open" );
+                    return false;
+                });
+            });
+        </script>
+
+
     </head>
     <body>
         <div id="art-main">
@@ -216,13 +218,16 @@
                                                             </div>
                                                         </div>
 
-                                                                <div id="gallery"  class="product-view product-img-box">
-                                                             <ul>
-        <li>
-                                                            <a href="${product.product_d_pic_loc}" title="${product.product_d_name_t}">
-                                                                <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}"  />
-</a></li>
-                                                             </ul>
+                                                        <div >
+                                                            <div id="dialog"  title="${product.product_d_name_t}">
+                                                                <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}"/>
+                                                            </div>
+
+
+                                                            <div  id="opener">
+                                                                <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}" width="250px" height="150px" onclick="$( '#dialog' ).dialog( 'open' );"/>
+
+                                                            </div>
                                                         </div>
 
                                                         <div class="clearer"></div>
@@ -323,10 +328,10 @@
                                                                     </c:if>
                                                                 </c:if>
                                                                 <c:if test="${relate.show_price_list_flag == 'W'}">
-                                                                        <center>฿ ${relate.product_price1}</center>
+                                                                    <center>฿ ${relate.product_price1}</center>
                                                                 </c:if>
                                                                 <c:if test="${relate.show_price_list_flag == 'R'}">
-                                                                        <center>฿ ${relate.product_price3}</center>
+                                                                    <center>฿ ${relate.product_price3}</center>
                                                                 </c:if>
 
                                                             </c:if>
@@ -356,7 +361,7 @@
         </div>
 
         <div class="cleared"></div>
-        <p class="art-page-footer"><a href="http://www.2createawebsite.com/artisteer">Website Template created with Artisteer</a>.</p>
+      
 
     </body>
 </html>

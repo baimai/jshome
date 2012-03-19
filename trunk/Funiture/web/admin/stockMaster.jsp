@@ -33,39 +33,40 @@
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script  type="text/javascript">
             jQuery(document).ready(function(){
-                jQuery("#rowed1").jqGrid({
+                jQuery("#toolbar").jqGrid({
                     url:'xmlStockMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','รหัสสินค้า', 'ชื่อสินค้า ', 'จำนวน ','หน่วย','stockId' ],
+                    colNames:['วันที่นำสินค้าเข้า','รหัสสินค้า', 'ชื่อสินค้า ', 'ประเภทสินค้า','จำนวน ','หน่วย','stockId' ],
                     colModel:[
-                        {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10}},
-                        {name:'productCode',index:'productCode', width:180,editable:true,editoptions:{size:10}},
-                        {name:'productNameT',index:'productNameT', width:288,editable:true,editoptions:{size:25}},
+                        {name:'receiveDate',index:'receiveDate', width:100,editable:true,editoptions:{size:10}},
+                        {name:'productCode',index:'productCode', width:100,editable:true,editoptions:{size:10}},
+                        {name:'productNameT',index:'productNameT', width:100,editable:true,editoptions:{size:25}},
+                        {name:'productGroupNameT',index:'productGroupNameT', width:100,editable:true,editoptions:{size:25}},
                         {name:'quantity',index:'quantity', width:50,editable:true,editoptions:{size:25}},
                         {name:'unit',index:'unit', width:50,editable:true,editoptions:{size:5}},
                         {name:'stockId',index:'stockId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false}
 
 
-                    ],
+                   ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
-                    pager: '#prowed1',
+                    loadonce:true,
+                    pager: '#ptoolbar',
                     height: "auto",
                     width: 950,
                     sortname: 'id',
-                    viewrecords: true,
-                    sortorder: "desc",
-                    caption:"Search Example",
-                    editurl:"stockMaster.do"
+                    rownumbers: true,
+                    rownumWidth: 40,
+                    gridview: true,
+   	            viewrecords: true,
+                    sortorder: "asc",
+                    caption: "Toolbar Searching"
 
                 });
-                jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
-                {} // search options
-            );
+
+               jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',{del:true,add:false,edit:false,search:false,view:true });
+              jQuery("#toolbar").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+            
 
 
 
@@ -100,7 +101,7 @@
                                             </form>
 
                                             <form action="stockMaster.jsp" >
-                                                <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
+                                               
                                                 <button name="action" value="Add" class="button"><span><span>ค้นหา</span></span></button>
                                             </form>
 
@@ -109,8 +110,8 @@
 
                                         <center>
 
-                                            <table id="rowed1"></table>
-                                            <div id="prowed1"></div>
+                                            <table id="toolbar"></table>
+                                            <div id="ptoolbar"></div>
                                             <br /> <br />
                                         </center>
                                         <br/>

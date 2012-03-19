@@ -116,6 +116,10 @@
         <servlet-name>stockMaster</servlet-name>
         <servlet-class>controller.stockMaster</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>xmlStockMaster</servlet-name>
+        <servlet-class>controller.xmlStockMaster</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>memberGradeMaster</servlet-name>
         <servlet-class>controller.memberGradeMaster</servlet-class>
@@ -257,6 +261,10 @@
         <url-pattern>/admin/manageOrder.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>xmlStockMaster</servlet-name>
+        <url-pattern>/admin/xmlStockMaster.do</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
         <servlet-name>stockMaster</servlet-name>
         <url-pattern>/admin/stockMaster.do</url-pattern>
     </servlet-mapping>
@@ -292,11 +300,12 @@
         <servlet-name>testPdf</servlet-name>
         <url-pattern>/admin/testPdf.do</url-pattern>
     </servlet-mapping>
+   
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://localhost:3306/webdb</description>
+        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
