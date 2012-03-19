@@ -434,6 +434,27 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
+                                                             <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Company Logo</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="uploadlogoLogtmp" value="${company.Company_Logo_Loc}"  class="input-text" readonly/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Company Logo</label>
+                                                                        <c:if test="${company.Company_Logo_Loc!=null&&company.Company_Logo_Loc!=''}" >
+                                                                        </c:if>
+                                                                        <c:if test="${company.Company_Logo_Loc==null||company.Company_Logo_Loc==''}" >
+                                                                            <label for="firstname" >Company Logo</label>
+                                                                        </c:if>
+                                                                        <input type="file" name="uploadlogoLog" class="input-text"/>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
@@ -461,8 +482,8 @@
                                                                         <label align="right">จำนวนสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showStockBalanceFlag">
-                                                                                <option <c:if test="${company.Show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                                <option <c:if test="${company.Show_Stock_Balance_Flag == 'Y'}"> selected</c:if>>Show    </option>
+                                                                                <option value="N" <c:if test="${company.Show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option value="Y" <c:if test="${company.Show_Stock_Balance_Flag == 'Y'}"> selected</c:if>>Show    </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -472,10 +493,10 @@
                                                                         <label align="right">ราคาสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showPriceListFlag">
-                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'W'}"> selected</c:if>>ราคาขายส่ง</option>
-                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'R'}"> selected</c:if>>ราคาขายปลีก</option>
-                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'A'}"> selected</c:if>>ราคาขาย</option>
+                                                                                <option value="N" <c:if test="${company.Show_Price_List_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option value="W" <c:if test="${company.Show_Price_List_Flag == 'W'}"> selected</c:if>>ราคาขายส่ง</option>
+                                                                                <option value="R" <c:if test="${company.Show_Price_List_Flag == 'R'}"> selected</c:if>>ราคาขายปลีก</option>
+                                                                                <option value="A" <c:if test="${company.Show_Price_List_Flag == 'A'}"> selected</c:if>>ราคาขาย</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -487,8 +508,8 @@
                                                                         <label align="right">ปุ่มการสั่งซื้อ</label>
                                                                         <div class="select">
                                                                             <select name="showOrderFlag">
-                                                                                <option <c:if test="${company.Show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                                <option <c:if test="${company.Show_Order_Flag == 'Y'}"> selected</c:if>>Show    </option>
+                                                                                <option value="N" <c:if test="${company.Show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option value="Y" <c:if test="${company.Show_Order_Flag == 'Y'}"> selected</c:if>>Show    </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -613,7 +634,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรศัพท์ 1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyTel1" value="${company.Company_Addr_T}"  class="input-text"/>
+                                                                            <input type="text" name="companyTel1" value="${company.Company_Tel1}"  class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
