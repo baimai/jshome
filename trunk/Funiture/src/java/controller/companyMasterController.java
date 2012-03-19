@@ -345,7 +345,7 @@ public class companyMasterController extends HttpServlet {
                             out.println("showOrderFlag===" + cp.getShowOrderFlag());
                             out.println("CreateDate===" + cp.getCreateDate());
                             out.println("UpdateDate===" + cp.getUpdateDate());
-
+                            out.println("CompanyId===" + cp.getCompanyId());
 
                              //response.sendRedirect("Company.jsp?companyId=" + cp.getCompanyId());
                         }
