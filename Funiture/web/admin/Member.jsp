@@ -9,6 +9,13 @@
     when mm.member_status = 'B' then 'Ban'
     else 'InActive' end) as status FROM member_master mm;
 </sql:query>
+<sql:query var="query2" dataSource="webdb">
+    select * from member_grade_master
+</sql:query>
+<c:forEach  items="${query2.rows}" var="list">
+    <c:set var="listGrade" value="${listGrade}${list.member_grade_id}:${list.member_grade};" />
+</c:forEach>
+    <c:set var="listGrade" value="${listGrade}:Undefined" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -44,16 +51,18 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['Login', 'firtName', 'LastName','Status','Register','Approve','Status','memberId','viewProfile'],
+                    colNames:['Login', 'firtName', 'LastName','Status','Register','Approve','Status','Grade','Grade','memberId','viewProfile'],
                     colModel:[
                        
                         {name:'memberLogin',index:'memberLogin',align:"center", width:120,editrules:{ edithidden:false},editable:true},
-                        {name:'memberName',index:'memberName',align:"center", width:150,editrules:{ edithidden:false},editable:false},
-                        {name:'memberSurName',index:'memberSurName',align:"center", width:150,editrules:{ edithidden:false},editable:false},
+                        {name:'memberName',index:'memberName',align:"center", width:130,editrules:{ edithidden:false},editable:false},
+                        {name:'memberSurName',index:'memberSurName',align:"center", width:130,editrules:{ edithidden:false},editable:false},
                         {name:'memberStatus',index:'memberStatus', width:80, align:"center",editable:false,editoptions:{size:25}},
                         {name:'memberRegDate',index:'memberRegDate', width:125, align:"right",editrules:{ edithidden:false},editable:false},
                         {name:'memberAppdate',index:'memberAppdate', width:125, align:"right",editrules:{ edithidden:false},editable:false},
                         {name:'status',index:'status', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select', editoptions:{value:{'Y':'Active','N':'InActive','B':'Ban'}}},
+                        {name:'gradeName',index:'gradeName', width:60,hidden:false,align:"center",editrules:{ edithidden:false},editable:false},
+                        {name:'grade',index:'grade', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select',editoptions:{value:"${listGrade}"}},
                         {name:'memberId',index:'memberId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
                         {name:'view',index:'view', width:100,hidden:false,align:"center",editrules:{ edithidden:false},editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"viewProfile.jsp?memberId="+cellvalue+"\" >View</a>"}}
 
@@ -73,7 +82,7 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {add:false,del:false,search:true}, //options
-                {height:150,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:170,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
                 {} // search options
