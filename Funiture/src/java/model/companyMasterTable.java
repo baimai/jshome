@@ -84,9 +84,6 @@ public class companyMasterTable {
                 cpm.getCompanyHeaderLoc(),
                 cpm.getCompanyCatalogLoc(),
                 cpm.getCreateDate(),
-                cpm.getShowStockBalanceFlag(),
-                cpm.getShowPriceListFlag(),
-                cpm.getShowOrderFlag(),
                 cpm.getUserId());
     }
      public void update(companyMasterEntity cpm) {
