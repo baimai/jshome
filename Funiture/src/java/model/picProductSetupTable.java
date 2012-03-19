@@ -136,7 +136,7 @@ public class picProductSetupTable {
                 + " join menu_detail_master mdm on mdm.pic_code = pps.pic_code "
                 + " where pps.pic_code = ? and pps.company_id = ? "
                 + " and (case when pps.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end )"
-                + " order by pps.pic_code,pps.pic_seq desc ";
+                + " order by pps.pic_code,pps.pic_seq  ";
         List<Map<String, Object>> result = db.queryList(sql,pps.getPicCode(),pps.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {

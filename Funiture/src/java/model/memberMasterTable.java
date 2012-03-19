@@ -107,9 +107,9 @@ public class memberMasterTable {
     }
 
     public void adminUpdate(memberMasterEntity mb) {
-        String sql = " update member_master set member_status = ?,member_app_date = ?"
+        String sql = " update member_master set member_status = ?,member_grade_id = ?,member_app_date = ?"
                 + " where Member_Id = ?";
-        db.add(sql, mb.getMemberStatus(), mb.getMemberAppdate(), mb.getMemberId());
+        db.add(sql, mb.getMemberStatus(),mb.getMemberGradeId() ,mb.getMemberAppdate(), mb.getMemberId());
     }
 
     public void editPassword(memberMasterEntity mb) {
@@ -119,8 +119,9 @@ public class memberMasterTable {
     }
 
     public ArrayList search(String sField, String sValue, String sOper, int Company_Id,int start ,int limit,String status,String date) {
-        String sql = "SELECT * FROM member_master mb"
-                + " where mb.Company_Id = ?";
+        String sql = "SELECT *,mb.company_id as com_id,mb.member_grade_id as grade_id FROM member_master mb "
+                + " left join member_grade_master mgm on mgm.member_grade_id = mb.member_grade_id "
+                + " where mb.Company_Id = ? ";
 
         if(status!=null&&!status.equals("")){
             sql = sql + " and mb.member_status = '"+status+"' ";
@@ -138,6 +139,10 @@ public class memberMasterTable {
         if (result.size() > 0) {
             for (int i = 0; i < result.size(); i++) {
                 memberMasterEntity mb = new memberMasterEntity();
+                memberGradeMasterEntity mgm = new memberGradeMasterEntity();
+                mgm.setMemberGrade(Default.Str(result.get(i).get("Member_Grade")));
+                mgm.setMemberGradeId((Integer) result.get(i).get("grade_id"));
+                mb.setMemberGradeMasterEntity(mgm);
                 mb.setMemberLogin(Default.Str(result.get(i).get("Member_Login")));
                 mb.setMemberName(Default.Str(result.get(i).get("Member_Name")));
                 mb.setMemberSurName(Default.Str(result.get(i).get("Member_SurName")));
@@ -146,7 +151,7 @@ public class memberMasterTable {
                 mb.setMemberAppdate((Date) result.get(i).get("Member_App_Date"));
                 mb.setMemberRegDate((Date) result.get(i).get("Member_Reg_Date"));
                 mb.setMemberId((Integer) result.get(i).get("Member_Id"));
-                mb.setCompanyId((Integer) result.get(i).get("Company_Id"));
+                mb.setCompanyId((Integer) result.get(i).get("com_id"));
                 list.add(mb);
             }
             return list;
@@ -189,7 +194,7 @@ public class memberMasterTable {
     }
 
     public ArrayList chkUserPass(memberMasterEntity mm) {
-        String sql = "select * from member_master where member_login = ? and member_password = MD5(?) and Company_Id = ?";
+        String sql = "select * from member_master where member_login = ? and member_password = MD5(?) and Company_Id = ? and member_status IN ('Y')";
         List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getMemberPassword(), mm.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
