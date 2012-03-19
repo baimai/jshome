@@ -85,6 +85,8 @@ public class xmlProductGroup extends HttpServlet {
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 ArrayList listp = pdm.search(productGroupId, Company_Id,start,rows);
                 ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id, start, rows);
+                ArrayList listpd = pdm.searchAll2();
+                
 
                 
                 if (request.getParameter("q").equals("1")) {
@@ -138,6 +140,32 @@ public class xmlProductGroup extends HttpServlet {
                     }
                     out.print(xml.getXml());
                 }
+                 else if (request.getParameter("q").equals("4")) {
+                    int totalPages = 0;
+                    int totalCount = pdm.countAll(Company_Id);
+                    db.close();
+                    if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(totalPages);
+                    xml.setPage(page);
+                    xml.setRecords(totalCount);
+                    for (int i = 0; i < listpd.size(); i++) {
+                        productDetailMasterEntity data = (productDetailMasterEntity) listpd.get(i);
+                        xml.setRowDetail(data.getProductDetailId(),
+                                data.getProductCode(),
+                                data.getProductDNameT(),
+                                data.getProductGroupMasterEntity().getProductGNameT(),
+                                data.getProductSpect1_T(),
+                                data.getProductSpect2_T(),
+                                data.getProductSpect3_T(),
+                                data.getProductSpect4_T(),
+                                data.getProductSpect5_T(),
+                                data.getProductSpect6_T(),                               
+                                data.getProductDetailId());
+                    }
+                    out.print(xml.getXml());
+            }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);

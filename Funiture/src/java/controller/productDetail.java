@@ -7,6 +7,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -186,7 +187,7 @@ public class productDetail extends HttpServlet {
                         pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                         sm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         sm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        sm.setReceiveDate(Timestamp.valueOf(db.getNow()));
+                        sm.setReceiveDate(Date.valueOf(request.getParameter("receiveDate")));
                         sm.setCompanyId(Company_Id);
                         sm.setUnitId(Integer.parseInt(mr.getParameter("unitId")));
                         if (mr.getParameter("action").equals("Add")) {
