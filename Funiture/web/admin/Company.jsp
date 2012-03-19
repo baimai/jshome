@@ -51,7 +51,6 @@
                                         </div>
                                         <form action="companyMasterController.do" method="post" enctype="multipart/form-data" >
                                             <c:if test="${applicationScope.Company_Id==null}" >
-                                                <input type="hidden" value="Add" name="action">
 
                                                 <div class="buttons-set">
                                                     <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
@@ -385,14 +384,13 @@
                                                 </div>
                                             </c:if>
                                             <c:if test="${applicationScope.Company_Id!=null}" >
-  <div class="buttons-set">
+                                                <div class="buttons-set">
                                                     <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
 
-                                                   
-                                                    <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+
+                                                    <button name="action" value="Edit" class="button" ><span><span>แก้ไข</span></span></button>
                                                 </div>
                                                 <c:forEach var="company" items="${company1.rows}" >
-                                                    <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="companyId" value="${company.company_id}"/>
                                                     <div class="fieldset">
                                                         <h2 class="legend">ตั้งค่า</h2>
@@ -402,7 +400,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label for="firstname" >รหัสบริษัท</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" id="firstname" name="companyCode" value="${company.company_Code}" title="First Name"class="input-text"   />
+                                                                            <input type="text" id="firstname" name="companyCode" value="${company.Company_Code}" title="First Name"class="input-text"   />
                                                                         </div>
                                                                     </div>
                                                                     <div class="field name-lastname">
@@ -432,8 +430,8 @@
                                                                             <label for="firstname" >Header Website</label>
                                                                         </c:if>
                                                                         <input type="file" name="uploadhead" class="input-text"/>
-                                                                       
-                                                                        </div>
+
+                                                                    </div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
@@ -445,7 +443,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                 <div class="customer-name">
+                                                                <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right">Cataloge</label>
                                                                         <c:if test="${company.Company_Catalog_Loc!=null&&company.Company_Catalog_Loc!=''}" >
@@ -463,8 +461,8 @@
                                                                         <label align="right">จำนวนสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showStockBalanceFlag">
-                                                                                <option <c:if test="${company.show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                                <option <c:if test="${company.show_Stock_Balance_Flag == 'Y'}"> selected</c:if>>Show    </option>
+                                                                                <option <c:if test="${company.Show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option <c:if test="${company.Show_Stock_Balance_Flag == 'Y'}"> selected</c:if>>Show    </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -474,10 +472,10 @@
                                                                         <label align="right">ราคาสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showPriceListFlag">
-                                                                                <option <c:if test="${company.show_PriceList_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                                <option <c:if test="${company.show_PriceList_Flag == 'W'}"> selected</c:if>>ราคาขายส่ง</option>
-                                                                                <option <c:if test="${company.show_PriceList_Flag == 'R'}"> selected</c:if>>ราคาขายปลีก</option>
-                                                                                <option <c:if test="${company.show_PriceList_Flag == 'A'}"> selected</c:if>>ราคาขาย</option>
+                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'W'}"> selected</c:if>>ราคาขายส่ง</option>
+                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'R'}"> selected</c:if>>ราคาขายปลีก</option>
+                                                                                <option <c:if test="${company.Show_Price_List_Flag == 'A'}"> selected</c:if>>ราคาขาย</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -489,8 +487,8 @@
                                                                         <label align="right">ปุ่มการสั่งซื้อ</label>
                                                                         <div class="select">
                                                                             <select name="showOrderFlag">
-                                                                                <option <c:if test="${company.show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
-                                                                                <option <c:if test="${company.show_Order_Flag == 'Y'}"> selected</c:if>>Show    </option>
+                                                                                <option <c:if test="${company.Show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
+                                                                                <option <c:if test="${company.Show_Order_Flag == 'Y'}"> selected</c:if>>Show    </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -506,7 +504,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">ชื่อบริษัท</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyNameT" value="${company.company_Name_T}" size="30"  class="input-text" />
+                                                                            <input type="text" name="companyNameT" value="${company.Company_Name_T}" size="30"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -514,7 +512,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">CompanyName</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyNameE" value="${company.company_Name_E}" size="30"  class="input-text"/>
+                                                                            <input type="text" name="companyNameE" value="${company.Company_Name_E}" size="30"  class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -527,7 +525,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">ที่อยู่</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyAddrT" value="${company.company_Addr_T}" class="input-text"/>
+                                                                            <input type="text" name="companyAddrT" value="${company.Company_Addr_T}" class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -535,7 +533,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">Address</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyAddrE" value="${company.company_Addr_E}"  class="input-text" />
+                                                                            <input type="text" name="companyAddrE" value="${company.Company_Addr_E}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -545,7 +543,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">แขวง/ตำบล</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyDistrictT" value="${company.company_District_T}"  class="input-text"/>
+                                                                            <input type="text" name="companyDistrictT" value="${company.Company_District_T}"  class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -554,7 +552,7 @@
 
                                                                         <label align="right">District</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyDistrictE" value="${company.company_District_E}"  class="input-text" />
+                                                                            <input type="text" name="companyDistrictE" value="${company.Company_District_E}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -564,7 +562,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">อำเภอ</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyAmphurT" value="${company.company_Amphur_T}"  class="input-text" />
+                                                                            <input type="text" name="companyAmphurT" value="${company.Company_Amphur_T}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -573,7 +571,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">Amphur</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyAmphurE" value="${company.company_Amphur_E}"  class="input-text" />
+                                                                            <input type="text" name="companyAmphurE" value="${company.Company_Amphur_E}"  class="input-text" />
                                                                         </div>
                                                                     </div>
 
@@ -584,7 +582,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">จังหวัด</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyProvinceT" value="${company.company_Province_T}"  class="input-text" />
+                                                                            <input type="text" name="companyProvinceT" value="${company.Company_Province_T}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -593,7 +591,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">Province</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyProvinceE" value="${company.company_Province_E}"  class="input-text"/>
+                                                                            <input type="text" name="companyProvinceE" value="${company.Company_Province_E}"  class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -605,7 +603,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">รหัสไปรษณีย์</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyPostCode" value="${company.company_PostCode}"  class="input-text" />
+                                                                            <input type="text" name="companyPostCode" value="${company.Company_PostCode}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -615,7 +613,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรศัพท์ 1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyTel1" value="${company.company_Addr_T}"  class="input-text"/>
+                                                                            <input type="text" name="companyTel1" value="${company.Company_Addr_T}"  class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -624,7 +622,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรศัพท์ 2</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyTel2" value="${company.company_Tel2}"   class="input-text"/>
+                                                                            <input type="text" name="companyTel2" value="${company.Company_Tel2}"   class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -633,7 +631,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรศัพท์ 3</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyTel3" value="${company.company_Tel3}"  class="input-text" />
+                                                                            <input type="text" name="companyTel3" value="${company.Company_Tel3}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -643,7 +641,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรสาร 1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyFax1" value="${company.company_Fax1}"  class="input-text" />
+                                                                            <input type="text" name="companyFax1" value="${company.Company_Fax1}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -651,7 +649,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรสาร 2 </label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyFax2" value="${company.company_Fax2}"  class="input-text" />
+                                                                            <input type="text" name="companyFax2" value="${company.Company_Fax2}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -660,7 +658,7 @@
                                                                         <label align="right">โทรสาร 3</label>
 
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyFax3" value="${company.company_Fax3}"  class="input-text" />
+                                                                            <input type="text" name="companyFax3" value="${company.Company_Fax3}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -671,7 +669,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">มือถือ 1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyMobile1" value="${company.company_Mobile_1}"  class="input-text" />
+                                                                            <input type="text" name="companyMobile1" value="${company.Company_Mobile_1}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -680,7 +678,7 @@
                                                                         <label align="right">มือถือ 2</label>
                                                                         <div class="input-box">
 
-                                                                            <input type="text" name="companyMobile2" value="${company.company_Mobile_2}"  class="input-text"/>
+                                                                            <input type="text" name="companyMobile2" value="${company.Company_Mobile_2}"  class="input-text"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -689,7 +687,7 @@
                                                                         <label align="right">มือถือ 3</label>
 
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyMobile3" value="${company.company_Mobile_3}"  class="input-text" />
+                                                                            <input type="text" name="companyMobile3" value="${company.Company_Mobile_3}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -700,7 +698,7 @@
                                                                         <label align="right">อีเมลล์ 1</label>
 
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyEmail1" value="${company.company_Email_1}"  class="input-text" />
+                                                                            <input type="text" name="companyEmail1" value="${company.Company_Email_1}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -708,7 +706,7 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">อีเมลล์ 2</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyEmail2" value="${company.company_Email_2}"  class="input-text" />
+                                                                            <input type="text" name="companyEmail2" value="${company.Company_Email_2}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -717,7 +715,7 @@
                                                                         <label align="right">อีเมลล์ 3</label>
 
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyEmail3" value="${company.company_Email_3}"  class="input-text" />
+                                                                            <input type="text" name="companyEmail3" value="${company.Company_Email_3}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -728,8 +726,8 @@
                                                                         <label align="right">Language</label>
                                                                         <div class="select option">
                                                                             <select name="languageFlag">
-                                                                                <option <c:if test="${company.language_Flag == 'T'}"> selected</c:if>>Thai</option>
-                                                                                <option <c:if test="${company.language_Flag == 'E'}"> selected</c:if>>English</option>
+                                                                                <option <c:if test="${company.Language_Flag == 'T'}"> selected</c:if>>Thai</option>
+                                                                                <option <c:if test="${company.Language_Flag == 'E'}"> selected</c:if>>English</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
