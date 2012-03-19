@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.memberMasterEntity;
+import model.memberGradeMasterTable;
 import model.memberMasterTable;
 
 /**
@@ -42,16 +43,19 @@ public class memberMaster extends HttpServlet {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
+                memberGradeMasterTable mgmt = new memberGradeMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 memberMasterEntity mb = new memberMasterEntity();
                 mb.setCompanyId(Company_Id);
-//                if (request.getParameter("memberLogin") != null && request.getParameter("action").equals("Edit")) {
-//                    int i = mbt.getMemberId(request.getParameter("memberLogin"), Company_Id);
+                if (request.getParameter("grade") != null && !request.getParameter("grade").equals("")) {
+//                    int i = mgmt.getMemberGrade(request.getParameter("grade"), Company_Id);
 //                    if (i != 0) {
-//                        mb.setMemberId(i);
+                        mb.setMemberGradeId(Integer.parseInt(request.getParameter("grade")));
+//                    } else {
+//                        mb.setMemberGradeId(0);
 //                    }
-//                }
+                }
                 if (request.getParameter("memberId") != null) {
                     mb.setMemberId(Integer.parseInt(request.getParameter("memberId")));
                 }
@@ -138,8 +142,7 @@ public class memberMaster extends HttpServlet {
                     mbt.adminUpdate(mb);
                 } else if (request.getParameter("action").equals("Del")) {
                     //mbt.remove(mb);
-                } 
-
+                }
                 db.close();
                 if (request.getParameter("action").equals("Submit")) {
                     out.println("<html>");
@@ -175,7 +178,7 @@ public class memberMaster extends HttpServlet {
                     out.println("</body>");
                     out.println("</html>");
                 }
-                
+
 
             }
         } catch (Exception ex) {

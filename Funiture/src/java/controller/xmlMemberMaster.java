@@ -115,6 +115,8 @@ public class xmlMemberMaster extends HttpServlet {
                                 data.getMemberRegDate(),
                                 data.getMemberAppdate(),
                                 data.getMemberStatus(),
+                                data.getMemberGradeMasterEntity().getMemberGrade(),
+                                "",
                                 data.getMemberId(),
                                 data.getMemberId());
 

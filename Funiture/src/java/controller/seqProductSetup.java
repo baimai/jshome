@@ -71,18 +71,18 @@ public class seqProductSetup extends HttpServlet {
                     }
                     ArrayList list2 = new ArrayList();
                     for (int i = 0; i < seq.length; i++) {
-                        if (seq[i] != -1) {
+                        if (seq[i] != 9999) {
                             int k = seq[i];
                             int pointer = i;
                             for (int j = 0; j < seq.length; j++) {
-                                if (k < seq[j]) {
+                                if (k >= seq[j]) {
                                     k = seq[j];
                                     pointer = j;
                                     i = -1;
                                 }
                             }
                             list2.add(list.get(pointer));
-                            seq[pointer] = -1;
+                            seq[pointer] = 9999;
                         }
                     }
                     s.setAttribute("picProductList", list2);
