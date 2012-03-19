@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+
         <title>jshome</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
@@ -23,7 +23,16 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
 
-        <!-- thumbnailScroller script -->
+        <script type="text/javascript">
+            function checkMember(catalog){
+                if(${sessionScope.loginDetail == null} ){
+                    alert('กรุณาสมัครสมาชิก');
+                }else{
+                    window.location.href=catalog;
+                }
+            }
+
+        </script>
     </head>
     <body >
         <div id="art-main">
@@ -44,38 +53,38 @@
                                 <div class="page-title">
                                     <h1>แค็ตตาล็อก</h1>
                                 </div>                             
-                                 <fieldset>
-                                    <c:forEach var="catalog" items="${query1.rows}">
+                                <fieldset>
+                                    
                                         <table id="shopping-cart-table" class="data-table cart-table" wifth="100%">
-               <thead>                         <tr>
+                                            <thead>                         <tr>
                                                     <th rowspan="3" class="a-center"></th>
                                                     <th rowspan="3" class="a-center"></th>                                       
-                                                                                                    </tr>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                                  <c:forEach var="catalog" items="${query1.rows}">
-                                                       <tr >
+                                                <c:forEach var="catalog" items="${query1.rows}">
+                                                    <tr >
                                                         <td class="a-right" >
                                                             <a href="${catalog.catalog_pic_loc}">
-                                                            <img src="images/icon/filetype_pdf.png" width="42" height="42" alt="filetype_pdf"/></a></td>
-                                                    
+                                                                <img src="images/icon/filetype_pdf.png" width="42" height="42" alt="filetype_pdf" /></a></td>
+
                                                         <td class="a-left" >
-                                                            <a href="${catalog.catalog_pic_loc}">${catalog.catalog_name}</a></td>
-                                                       </tr>
-                                           </c:forEach>
-                                        </tbody>
-                                    </table>
-                                    </c:forEach>
+                                                            <a href="#" onclick="checkMember('${catalog.catalog_pic_loc}');">${catalog.catalog_name}</a></td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    
 
                                 </fieldset>
                             </div>  <jsp:include page="myCart.jsp" /> </div>  </div>
                             <jsp:include page="footer.jsp" />
                     <br/><br/>
+                </div>
             </div>
+            <div class="cleared"></div>
         </div>
         <div class="cleared"></div>
-    </div>
-    <div class="cleared"></div>
-    <p class="art-page-footer"></p>
+        <p class="art-page-footer"></p>
     </body>
 </html>
