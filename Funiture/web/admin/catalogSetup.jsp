@@ -78,11 +78,12 @@
                                         <div class="page-title">
                                             <h1>สร้างแค๊ดตาล็อก</h1>
                                         </div>
-                                        <div class="buttons" align="right">
-                                            <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
 
-                                        </div>
                                         <form action="testPdf.do">
+                                            <div class="buttons" align="right">
+                                                <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
+
+                                            </div>
                                             <div class="fieldset">
                                                 <h2 class="legend"></h2>
                                                 <ul class="form-list">
