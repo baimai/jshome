@@ -132,6 +132,7 @@ public class productDetailMasterTable {
 
     }
 
+
     public ArrayList search(String productGroupId, int Company_Id,int start,int limit) {
         List<Map<String, Object>> result = null;
         String sql = "SELECT * FROM product_detail_master pdm where pdm.Company_Id = ? ";
@@ -201,6 +202,9 @@ public class productDetailMasterTable {
 
     }
 
+
+
+
     public ArrayList searchAll() {
         List<Map<String, Object>> result = null;
         String sql = "SELECT * FROM product_detail_master pdm"+
@@ -243,7 +247,7 @@ public class productDetailMasterTable {
                 pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
                 /////
                 pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
-                pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_T")));
+                pgm.setProductGNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
                 ////
                 sb.setBalance(((BigDecimal) result.get(0).get("balance")).intValue());
                 ////
@@ -313,6 +317,66 @@ public class productDetailMasterTable {
                
             
             return pdm;
+        } else {
+            return null;
+        }
+
+    }
+     public ArrayList searchAll2() {
+        List<Map<String, Object>> result = null;
+        String sql = "SELECT * FROM product_detail_master pdm"+
+                     " left join product_group_master pgm on pgm.product_group_id = pdm.product_group_id";
+
+        result = db.queryList(sql);
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            for (int i = 0; i < result.size(); i++) {
+                productDetailMasterEntity pdm = new productDetailMasterEntity();
+                productGroupMasterEntity pgm = new productGroupMasterEntity();
+               
+                pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
+                pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
+                pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
+                pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
+                pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));
+                pdm.setProductPrice1(Default.BigDecimal(result.get(i).get("Product_Price1")));
+                pdm.setProductPrice2(Default.BigDecimal(result.get(i).get("Product_Price2")));
+                pdm.setProductPrice3(Default.BigDecimal(result.get(i).get("Product_Price3")));
+                pdm.setProductPrice4(Default.BigDecimal(result.get(i).get("Product_Price4")));
+                pdm.setProductSpect1_T(Default.Str(result.get(i).get("Product_Spec1_T")));
+                pdm.setProductSpect2_T(Default.Str(result.get(i).get("Product_Spec2_T")));
+                pdm.setProductSpect3_T(Default.Str(result.get(i).get("Product_Spec3_T")));
+                pdm.setProductSpect4_T(Default.Str(result.get(i).get("Product_Spec4_T")));
+                pdm.setProductSpect5_T(Default.Str(result.get(i).get("Product_Spec5_T")));
+                pdm.setProductSpect6_T(Default.Str(result.get(i).get("Product_Spec6_T")));
+                pdm.setProductSpect1_E(Default.Str(result.get(i).get("Product_Spec1_E")));
+                pdm.setProductSpect2_E(Default.Str(result.get(i).get("Product_Spec2_E")));
+                pdm.setProductSpect3_E(Default.Str(result.get(i).get("Product_Spec3_E")));
+                pdm.setProductSpect4_E(Default.Str(result.get(i).get("Product_Spec4_E")));
+                pdm.setProductSpect5_E(Default.Str(result.get(i).get("Product_Spec5_E")));
+                pdm.setProductSpect6_E(Default.Str(result.get(i).get("Product_Spec6_E")));
+                pdm.setProductDPicLoc(Default.Str(result.get(i).get("Product_D_Pic_Loc")));
+                pdm.setProductDIconLoc(Default.Str(result.get(i).get("Product_D_Icon_Loc")));
+                pdm.setProductDRemarkT(Default.Str(result.get(i).get("Product_D_Remark_T")));
+                pdm.setProductDRemarkE(Default.Str(result.get(i).get("Product_D_Remark_E")));
+                pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
+                pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
+                pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
+                /////
+                pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
+                pgm.setProductGNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
+                pgm.setProductGroupCode(Default.Str(result.get(i).get("Product_Group_Code")));
+                ////
+              
+                ////
+                pdm.setProductGroupMasterEntity(pgm);
+               
+                if (result.get(i).get("Product_Color_Id") != null) {
+                    pdm.setProductColorId((Integer) result.get(i).get("Product_Color_Id"));
+                }
+                list.add(pdm);
+            }
+            return list;
         } else {
             return null;
         }
