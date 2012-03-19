@@ -61,6 +61,7 @@ public class companyMasterController extends HttpServlet {
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("uploadhead");
                         UploadFile upFile2 = (UploadFile) files.get("uploadcataloge");
+                        UploadFile upFile3 = (UploadFile) files.get("uploadlogoLog");
                         UploadBean u = new UploadBean();
                         //===============================heade=================================================
                         if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
@@ -117,163 +118,195 @@ public class companyMasterController extends HttpServlet {
                                 cp.setCompanyCatalogLoc("upload/picture/cataloge" + "/" + upFile2.getFileName());
                             }
                         }
-                        out.println("cataloge===" + cp.getCompanyCatalogLoc());
-                        if (mr.getParameter("companyId") != null && !mr.getParameter("companyId").equals("")) {
+                        //=============================logoLog============================================
+                        //============================================cataloge=======================================================================
+                        if (upFile3.getFileName() != null && !upFile3.getFileName().equals("")) {
+                            String filename = upFile3.getFileName();
+                            String filetype = filename.substring(filename.lastIndexOf("."), filename.length());
+                            if ((filetype.indexOf("gif") == -1) && (filetype.indexOf("jpeg") == -1) && (filetype.indexOf("jpg") == -1) && (filetype.indexOf("png") == -1)) {
+                            } else {
+                                if (filetype.endsWith("gif")) {
+                                    upFile2.setFileName(System.currentTimeMillis() + ".gif");
+                                } else if (filetype.endsWith("jpeg")) {
+                                    upFile2.setFileName(System.currentTimeMillis() + ".jpeg");
+                                } else if (filetype.endsWith("jpg")) {
+                                    upFile2.setFileName(System.currentTimeMillis() + ".jpg");
+                                } else if (filetype.endsWith("png")) {
+                                    upFile2.setFileName(System.currentTimeMillis() + ".png");
+                                }
+
+                                u.setFolderstore(getServletContext().getRealPath("upload/picture/logo"));
+                            }
                         }
-                        cp.setCompanyId(Integer.parseInt(mr.getParameter("companyId")));
-                        if (request.getParameter("companyCode") != null) {
-                            cp.setCompanyCode(request.getParameter("companyCode"));
+                        u.store(mr, "uploadlogoLog");
+                        if (upFile3.getFileName() != null) {
+                            if (mr.getParameter("uploadlogoLogtmp") != null && upFile3.getFileName().equals("")) {
+                                cp.setCompanyLogoLoc(mr.getParameter("uploadlogoLogtmp"));
+                            } else if (!upFile.getFileName().equals("")) {
+                                cp.setCompanyLogoLoc("upload/picture/logo" + "/" + upFile3.getFileName());
+                            }
+                        }
+                        //================================================================================
+                        out.println("cataloge===" + cp.getCompanyCatalogLoc());
+
+                        if (mr.getParameter("companyId") != null && !mr.getParameter("companyId").equals("")) {
+                            cp.setCompanyId(Integer.parseInt(mr.getParameter("companyId")));
+                        }
+
+
+                        if (mr.getParameter("companyCode") != null) {
+                            cp.setCompanyCode(mr.getParameter("companyCode"));
 
                         }
                         //
-                        if (request.getParameter("companyNameT==") != null) {
-                            cp.setCompanyNameT(request.getParameter("companyNameT"));
+                        if (mr.getParameter("companyNameT==") != null) {
+                            cp.setCompanyNameT(mr.getParameter("companyNameT"));
 
                         }
-                        if (request.getParameter("companyNameE") != null) {
-                            cp.setCompanyNameE(request.getParameter("companyNameE"));
+                        if (mr.getParameter("companyNameE") != null) {
+                            cp.setCompanyNameE(mr.getParameter("companyNameE"));
                             //   out.println("companyNameE==" + cp.getCompanyNameE());
                         }
                         // out.println("companyNameT==" + cp.getCompanyNameT());
-                        if (request.getParameter("companyAbbr") != null) {
-                            cp.setCompanyAbbr(request.getParameter("companyAbbr"));
+                        if (mr.getParameter("companyAbbr") != null) {
+                            cp.setCompanyAbbr(mr.getParameter("companyAbbr"));
 
                         }
                         //  out.println("companyAbbr===" + cp.getCompanyAbbr());
-                        if (request.getParameter("companyLogoLoc") != null) {
-                            cp.setCompanyLogoLoc(request.getParameter("companyLogoLoc"));
+                        if (mr.getParameter("companyLogoLoc") != null) {
+                            cp.setCompanyLogoLoc(mr.getParameter("companyLogoLoc"));
 
                         }
                         // out.println("companyLogoLoc==" + cp.getCompanyLogoLoc());
-                        if (request.getParameter("companyAddrT") != null) {
-                            cp.setCompanyAddrT(request.getParameter("companyAddrT"));
+                        if (mr.getParameter("companyAddrT") != null) {
+                            cp.setCompanyAddrT(mr.getParameter("companyAddrT"));
 
                         }
                         // out.println("companyAddrT===" + cp.getCompanyAddrT());
-                        if (request.getParameter("companyAddrE") != null) {
-                            cp.setCompanyAddrE(request.getParameter("companyAddrE"));
+                        if (mr.getParameter("companyAddrE") != null) {
+                            cp.setCompanyAddrE(mr.getParameter("companyAddrE"));
 
                         }
                         // out.println("companyAddrE" + cp.getCompanyAddrE());
-                        if (request.getParameter("companyDistrictT") != null) {
-                            cp.setCompanyDistrictT(request.getParameter("companyDistrictT"));
+                        if (mr.getParameter("companyDistrictT") != null) {
+                            cp.setCompanyDistrictT(mr.getParameter("companyDistrictT"));
 
                         }
                         //  out.println("companyDistrictT===" + cp.getCompanyDistrictT());
-                        if (request.getParameter("companyDistrictE") != null) {
-                            cp.setCompanyDistrictE(request.getParameter("companyDistrictE"));
+                        if (mr.getParameter("companyDistrictE") != null) {
+                            cp.setCompanyDistrictE(mr.getParameter("companyDistrictE"));
 
                         }
                         //   out.println("companyDistrictE===" + cp.getCompanyDistrictE());
-                        if (request.getParameter("companyAmphurT") != null) {
-                            cp.setCompanyAmphurT(request.getParameter("companyAmphurT"));
+                        if (mr.getParameter("companyAmphurT") != null) {
+                            cp.setCompanyAmphurT(mr.getParameter("companyAmphurT"));
 
                         }
                         //   out.println("companyAmphurT===" + cp.getCompanyAmphurT());
-                        if (request.getParameter("companyAmphurE") != null) {
-                            cp.setCompanyAmphurE(request.getParameter("companyAmphurE"));
+                        if (mr.getParameter("companyAmphurE") != null) {
+                            cp.setCompanyAmphurE(mr.getParameter("companyAmphurE"));
 
                         }
                         // out.println("companyAmphurE===" + cp.getCompanyAmphurE());
-                        if (request.getParameter("companyProvinceT") != null) {
-                            cp.setCompanyProvinceT(request.getParameter("companyProvinceT"));
+                        if (mr.getParameter("companyProvinceT") != null) {
+                            cp.setCompanyProvinceT(mr.getParameter("companyProvinceT"));
 
                         }
                         //  out.println("companyProvinceT===" + cp.getCompanyProvinceT());
-                        if (request.getParameter("companyProvinceE") != null) {
-                            cp.setCompanyProvinceE(request.getParameter("companyProvinceE"));
+                        if (mr.getParameter("companyProvinceE") != null) {
+                            cp.setCompanyProvinceE(mr.getParameter("companyProvinceE"));
 
                         }
                         //  out.println("companyProvinceE===" + cp.getCompanyProvinceE());
-                        if (request.getParameter("companyPostCode") != null) {
-                            cp.setCompanyPostCode(request.getParameter("companyPostCode"));
+                        if (mr.getParameter("companyPostCode") != null) {
+                            cp.setCompanyPostCode(mr.getParameter("companyPostCode"));
 
                         }
                         // out.println("companyPostCode===" + cp.getCompanyPostCode());
-                        if (request.getParameter("companyTel1") != null) {
-                            cp.setCompanyTel1(request.getParameter("companyTel1"));
+                        if (mr.getParameter("companyTel1") != null) {
+                            cp.setCompanyTel1(mr.getParameter("companyTel1"));
 
                         }
                         //  out.println("companyTel1===" + cp.getCompanyTel1());
-                        if (request.getParameter("companyTel2") != null) {
-                            cp.setCompanyTel2(request.getParameter("companyTel2"));
+                        if (mr.getParameter("companyTel2") != null) {
+                            cp.setCompanyTel2(mr.getParameter("companyTel2"));
 
                         }
                         // out.println("companyTel2===" + cp.getCompanyTel2());
-                        if (request.getParameter("companyTel3") != null) {
-                            cp.setCompanyTel3(request.getParameter("companyTel3"));
+                        if (mr.getParameter("companyTel3") != null) {
+                            cp.setCompanyTel3(mr.getParameter("companyTel3"));
 
                         }
                         // out.println("companyTel3===" + cp.getCompanyTel3());
-                        if (request.getParameter("companyFax1") != null) {
-                            cp.setCompanyFax1(request.getParameter("companyFax1"));
+                        if (mr.getParameter("companyFax1") != null) {
+                            cp.setCompanyFax1(mr.getParameter("companyFax1"));
 
                         }
                         //
-                        if (request.getParameter("companyFax2") != null) {
-                            cp.setCompanyFax2(request.getParameter("companyFax2"));
+                        if (mr.getParameter("companyFax2") != null) {
+                            cp.setCompanyFax2(mr.getParameter("companyFax2"));
 
                         }
                         // out.println("companyFax1===" + cp.getCompanyFax2());
-                        if (request.getParameter("companyFax3") != null) {
-                            cp.setCompanyFax3(request.getParameter("companyFax3"));
+                        if (mr.getParameter("companyFax3") != null) {
+                            cp.setCompanyFax3(mr.getParameter("companyFax3"));
 
                         }
                         //  out.println("companyFax1===" + cp.getCompanyFax3());
-                        if (request.getParameter("companyMobile1") != null) {
-                            cp.setCompanyMobile1(request.getParameter("companyMobile1"));
+                        if (mr.getParameter("companyMobile1") != null) {
+                            cp.setCompanyMobile1(mr.getParameter("companyMobile1"));
 
                         }
                         // out.println("companyMobile1===" + cp.getCompanyMobile1());
-                        if (request.getParameter("companyMobile2") != null) {
-                            cp.setCompanyMobile2(request.getParameter("companyMobile2"));
+                        if (mr.getParameter("companyMobile2") != null) {
+                            cp.setCompanyMobile2(mr.getParameter("companyMobile2"));
 
                         }
                         // out.println("companyMobile1===" + cp.getCompanyMobile2());
-                        if (request.getParameter("companyMobile3") != null) {
-                            cp.setCompanyMobile3(request.getParameter("companyMobile3"));
+                        if (mr.getParameter("companyMobile3") != null) {
+                            cp.setCompanyMobile3(mr.getParameter("companyMobile3"));
 
                         }
                         //  out.println("companyMobile1===" + cp.getCompanyMobile3());
-                        if (request.getParameter("companyEmail1") != null) {
-                            cp.setCompanyNameT(request.getParameter("companyEmail1"));
+                        if (mr.getParameter("companyEmail1") != null) {
+                            cp.setCompanyNameT(mr.getParameter("companyEmail1"));
 
                         }
                         // out.println("companyEmail1===" + cp.getCompanyEmail1());
-                        if (request.getParameter("companyEmail2") != null) {
-                            cp.setCompanyEmail2(request.getParameter("companyEmail2"));
+                        if (mr.getParameter("companyEmail2") != null) {
+                            cp.setCompanyEmail2(mr.getParameter("companyEmail2"));
 
                         }
                         // out.println("companyEmail1===" + cp.getCompanyEmail2());
-                        if (request.getParameter("companyEmail3") != null) {
-                            cp.setCompanyEmail3(request.getParameter("companyEmail3"));
+                        if (mr.getParameter("companyEmail3") != null) {
+                            cp.setCompanyEmail3(mr.getParameter("companyEmail3"));
 
                         }
                         // out.println("companyEmail1===" + cp.getCompanyEmail3());
-                        if (request.getParameter("languageFlag") != null) {
-                            cp.setLanguageFlag(request.getParameter("languageFlag"));
+                        if (mr.getParameter("languageFlag") != null) {
+                            cp.setLanguageFlag(mr.getParameter("languageFlag"));
 
                         }
                         //out.println("languageFlag===" + cp.getLanguageFlag());
-                        if (request.getParameter("showStockBalanceFlag") != null) {
-                            cp.setPicCode(request.getParameter("showStockBalanceFlag"));
+                        if (mr.getParameter("showStockBalanceFlag") != null) {
+                            cp.setShowStockBalanceFlag(mr.getParameter("showStockBalanceFlag"));
 
                         }
                         // out.println("showStockBalanceFlag===" + cp.getShowStockBalanceFlag());
-                        if (request.getParameter("showPriceListFlag") != null) {
-                            cp.setPicCode(request.getParameter("showPriceListFlag"));
+                        if (mr.getParameter("showPriceListFlag") != null) {
+                            cp.setShowPriceListFlag(mr.getParameter("showPriceListFlag"));
 
                         }
                         // out.println("showPriceListFlag===" + cp.getShowPriceListFlag());
-                        if (request.getParameter("showOrderFlag") != null) {
-                            cp.setPicCode(request.getParameter("showOrderFlag"));
+                        if (mr.getParameter("showOrderFlag") != null) {
+                            cp.setShowOrderFlag(mr.getParameter("showOrderFlag"));
 
                         }
+                       // cp.setCompanyId(Company_Id);
                         // out.println("showOrderFlag===" + cp.getShowOrderFlag());
-                        cp.setCreateDate(Timestamp.valueOf(db.getNow()));
-                        out.println("CreateDate===" + cp.getCreateDate());
+                        cp.setCreateDate(Timestamp.valueOf(db.getNow()));                       
                         cp.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        out.println("UpdateDate===" + cp.getUpdateDate());
+                      
                         if (mr.getParameter("action").equals("Add")) {
                             cpm.add(cp);
                         }
@@ -310,10 +343,11 @@ public class companyMasterController extends HttpServlet {
                             out.println("showStockBalanceFlag===" + cp.getShowStockBalanceFlag());
                             out.println("showPriceListFlag===" + cp.getShowPriceListFlag());
                             out.println("showOrderFlag===" + cp.getShowOrderFlag());
+                            out.println("CreateDate===" + cp.getCreateDate());
+                            out.println("UpdateDate===" + cp.getUpdateDate());
 
 
-
-                            // response.sendRedirect("Company.jsp?companyId=" + cp.getCompanyId());
+                             //response.sendRedirect("Company.jsp?companyId=" + cp.getCompanyId());
                         }
                         if (mr.getParameter("action").equals("Del")) {
                             cpm.remove(cp);
