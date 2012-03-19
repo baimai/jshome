@@ -32,7 +32,7 @@ public class userSecurityTable {
                 + " User_Name_T,User_Name_E,User_Authority_Sts,"
                 + " User_Alive_Sts,Approved_Date,Hold_Date,"
                 + " Create_Date)"
-                + "  values(?,?,?,?,?,?,?,?,?,?)";
+                + "  values(?,?,MD5(?),?,?,?,?,?,?,?)";
 
         db.add(sql,
                 uss.getUserId(),
