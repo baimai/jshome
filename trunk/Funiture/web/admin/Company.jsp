@@ -747,8 +747,8 @@
                                                                         <label align="right">Language</label>
                                                                         <div class="select option">
                                                                             <select name="languageFlag">
-                                                                                <option <c:if test="${company.Language_Flag == 'T'}"> selected</c:if>>Thai</option>
-                                                                                <option <c:if test="${company.Language_Flag == 'E'}"> selected</c:if>>English</option>
+                                                                                <option <c:if test="${company.Language_Flag == 'T'}"> selected</c:if> value="T" >Thai</option>
+                                                                                <option <c:if test="${company.Language_Flag == 'E'}"> selected</c:if> value="E">English</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
