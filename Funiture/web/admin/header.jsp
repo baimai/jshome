@@ -12,7 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Untitled Document</title>
         <link type="text/css" href="css/menu.css" rel="stylesheet" />
-
+        <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
+         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
         <%-- <script type="text/javascript" src="js/menu.js"></script> --%>
         <style type="text/css">
 
@@ -30,6 +35,7 @@
     </head>
 
     <body>
+        
         <div><img src="images/head.jpg" width="100%" height="100"/> </div>
 
 

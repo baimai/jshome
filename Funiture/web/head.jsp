@@ -80,9 +80,7 @@
             </ul>
         </div>
         <script type="text/javascript" src="js/top_menu.js"></script>
-        <map name="Map">
-            <area shape="rect" coords="893,7,937,24" href="Login.jsp" target="_self">
-        </map>
+        
         <script type="text/javascript">
             $('#nav').spasticNav();
         </script>

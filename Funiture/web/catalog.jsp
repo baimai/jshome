@@ -53,8 +53,10 @@
                                 <div class="page-title">
                                     <h1>แค็ตตาล็อก</h1>
                                 </div>                             
+
                                 <fieldset>
                                     
+
                                         <table id="shopping-cart-table" class="data-table cart-table" wifth="100%">
                                             <thead>                         <tr>
                                                     <th rowspan="3" class="a-center"></th>
@@ -62,19 +64,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+
                                                 <c:forEach var="catalog" items="${query1.rows}">
                                                     <tr >
+
                                                         <td class="a-right" >
                                                             <a href="${catalog.catalog_pic_loc}">
                                                                 <img src="images/icon/filetype_pdf.png" width="42" height="42" alt="filetype_pdf" /></a></td>
 
-                                                        <td class="a-left" >
-                                                            <a href="#" onclick="checkMember('${catalog.catalog_pic_loc}');">${catalog.catalog_name}</a></td>
+                                                        <td class="a-left" >                                                       
+                                                                        <a href="#" onclick="checkMember('${catalog.catalog_pic_loc}');">${catalog.catalog_name}</a></td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
                                         </table>
                                     
+
 
                                 </fieldset>
                             </div>  <jsp:include page="myCart.jsp" /> </div>  </div>

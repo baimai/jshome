@@ -90,6 +90,8 @@
         <script type="text/javascript">
             $(function() {
                 $("#datepicker").datepicker();
+               // $.datepicker.formatDate('yyyy-mm-dd');
+
             });
 
         </script>
@@ -120,7 +122,7 @@
 
                                         <form action="stockMaster.do" >
                                             <div class="buttons" align="right">
-                                                <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
+                                                <button name="action" value="add" class="button"><span><span>บันทึก</span></span></button>
                                                
                                             </div>
                                             <div id="dialog-form" title="Search Product">
@@ -149,7 +151,7 @@
                                                                 <div class="field name-firstname">
                                                                     <label for="firstname" >วันที่นำเข้า</label>
                                                                     <div class="input-box">
-                                                                        <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   />
+                                                                        <input type="text" id="datepicker" name="receiveDate" value="" title="receiveDate"class="startDate"   />
                                                                     </div>
                                                                 </div>
                                                             </div>

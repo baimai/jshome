@@ -27,10 +27,10 @@
 			// Configuration related to navigation
 			fixedNavigation:		false,		// (boolean) Boolean that informs if the navigation (next and prev button) will be fixed or not in the interface.
 			// Configuration related to images
-			imageLoading:			'jshome/images/lightbox-ico-loading.gif',		// (string) Path and the name of the loading icon
-			imageBtnPrev:			'jshome/images/lightbox-btn-prev.gif',			// (string) Path and the name of the prev button image
-			imageBtnNext:			'jshome/images/lightbox-btn-next.gif',			// (string) Path and the name of the next button image
-			imageBtnClose:			'jshome/images/lightbox-btn-close.gif',		// (string) Path and the name of the close btn
+			imageLoading:			'../images/lightbox-ico-loading.gif',		// (string) Path and the name of the loading icon
+			imageBtnPrev:			'../images/lightbox-btn-prev.gif',			// (string) Path and the name of the prev button image
+			imageBtnNext:			'../images/lightbox-btn-next.gif',			// (string) Path and the name of the next button image
+			imageBtnClose:			'../images/lightbox-btn-close.gif',		// (string) Path and the name of the close btn
 			imageBlank:				'jshome/images/lightbox-blank.gif',			// (string) Path and the name of a blank image (one pixel)
 			// Configuration related to container image box
 			containerBorderSize:	10,			// (integer) If you adjust the padding in the CSS for the container, #lightbox-container-image-box, you will need to update this value

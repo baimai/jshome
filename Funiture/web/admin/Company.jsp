@@ -85,8 +85,6 @@
                                                                     <label align="right">Header Website</label>
                                                                     <div class="input-box">
                                                                         <input type="file" name="uploadhead" value=""  class="input-text" />
-
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -387,7 +385,12 @@
                                                 </div>
                                             </c:if>
                                             <c:if test="${applicationScope.Company_Id!=null}" >
+  <div class="buttons-set">
+                                                    <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
 
+                                                   
+                                                    <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                </div>
                                                 <c:forEach var="company" items="${company1.rows}" >
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="companyId" value="${company.company_id}"/>
@@ -415,35 +418,42 @@
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label >Header Website</label>
-                                                                        <div class="input-box">
-                                                                            <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                                <input type="file" name="uploadheadtmp" value="${company.Company_Header_Loc}"  class="input-text" disabled/>
-                                                                            </c:if>
-
+                                                                        <div class="input-box">                                                                            
+                                                                            <input type="text" name="uploadheadtmp" value="${company.Company_Header_Loc}"  class="input-text" readonly/>
                                                                         </div>
-                                                                    </div>
-                                                                    <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                        <td colspan="2" align="right"></td>
-                                                                    </c:if>
-                                                                    <c:if test="${company.Company_Header_Loc==null||company.Company_Header_Loc==''}" >
-                                                                        <label align="right">Header Website</label>
-                                                                    </c:if>
-                                                                    <div class="input-box">
-                                                                        <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
-                                                                            <input type="file" name="uploadhead" value="${company.Company_Header_Loc}"  class="input-text" />
-                                                                        </c:if>
-
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Cataloge</label>
-
-                                                                        <div class="input-box">
-                                                                            <input type="file" name="uploadcataloge" value="${company.Company_Catalog_Loc!=null&&company.Company_Catalog_Loc!=''}"  class="input-text" />
-
-
+                                                                        <label align="right">Header Website</label>
+                                                                        <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
+                                                                        </c:if>
+                                                                        <c:if test="${company.Company_Header_Loc==null||company.Company_Header_Loc==''}" >
+                                                                            <label for="firstname" >Header Website</label>
+                                                                        </c:if>
+                                                                        <input type="file" name="uploadhead" class="input-text"/>
+                                                                       
                                                                         </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Cataloge</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="uploadcatalogetmp" value="${company.Company_Catalog_Loc}"  class="input-text" readonly/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="customer-name">
+                                                                    <div class="field name-firstname">
+                                                                        <label align="right">Cataloge</label>
+                                                                        <c:if test="${company.Company_Catalog_Loc!=null&&company.Company_Catalog_Loc!=''}" >
+                                                                        </c:if>
+                                                                        <c:if test="${company.Company_Catalog_Loc==null||company.Company_Catalog_Loc==''}" >
+                                                                            <label for="firstname" >Cataloge</label>
+                                                                        </c:if>
+                                                                        <input type="file" name="uploadcataloge" class="input-text"/>
                                                                     </div>
                                                                 </div>
                                                             </li>
