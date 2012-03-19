@@ -40,7 +40,7 @@ public class companyMasterEntity {
     private String languageFlag;
     private String picCode;
     private Timestamp createDate;
-     private Timestamp updateDate;
+    private Timestamp updateDate;
     private int companyId;
     private String userId;
     private String companyHeaderLoc;
