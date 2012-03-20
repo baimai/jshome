@@ -49,7 +49,7 @@ public class userSecurityTable {
     }
 
     public void update(userSecurityEntity uss) {
-        String sql = "update user_security set User_Password = ?,"
+        String sql = "update user_security set User_Password = MD5(?),"
                 + " User_Name_T =? ,User_Name_E = ?,User_Authority_Sts = ?,"
                 + " User_Alive_Sts = ?,Approved_Date = ?,Hold_Date = ?,"
                 + " Update_Date = ? "

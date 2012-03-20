@@ -102,8 +102,10 @@ public class stockMasterTable {
                 pd.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pg.setProductGNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
                 sm.setQuantity((Integer) result.get(i).get("Quantity"));
-                un.setUnitNameT(Default.Str(result.get(i).get("Unit_Name_T")));
-      
+                un.setUnitNameT(Default.Str(result.get(i).get("unit_name_t")));
+                sm.setUnitMasterEntity(un);
+                sm.setProductDetailMasterEntity(pd);
+                sm.setProductGroupMasterEntity(pg);
                 list.add(sm);
 
             }
