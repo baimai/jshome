@@ -43,13 +43,11 @@ public class memberGradeMaster extends HttpServlet {
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 mgm.setCompanyId(Company_Id);
-
                 if (request.getParameter("memberGradeId") != null && !request.getParameter("memberGradeId").equals("")) {
                     mgm.setMemberGradeId(Integer.parseInt(request.getParameter("memberGradeId")));
                 }
                 if (request.getParameter("memberGrade") != null) {
                     mgm.setMemberGrade(request.getParameter("memberGrade"));
-                   // out.println("memberGrade>>>"+mgm.getMemberGrade());
                 }
                 if (request.getParameter("gradeNameT") != null) {
                     mgm.setGradeNameT(request.getParameter("gradeNameT"));
@@ -69,15 +67,11 @@ public class memberGradeMaster extends HttpServlet {
                 }
                 if (request.getParameter("memberPriceFlag") != null) {
                     mgm.setGradeNameT(request.getParameter("memberPriceFlag"));
-
                 }
-
                 mgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
-
-                    mgt.add(mgm);
-                    
+                    mgt.add(mgm);                  
                 } else if (request.getParameter("action").equals("Edit")) {
                     mgt.update(mgm);
                 } else if (request.getParameter("action").equals("Del")) {
