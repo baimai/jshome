@@ -59,9 +59,8 @@
                                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                                 </li>
-                                <li><a href="Stock.jsp" class="parent"><span>นำเข้าสินค้า</span></a>
-
-                                </li>
+                                <li><a href="Stock.jsp" class="parent"><span>นำเข้าสินค้า</span></a></li>
+                                <li><a href="stockMaster.jsp" class="parent"><span>จำนวนสินค้า</span></a></li>
 
 
                                 </li>

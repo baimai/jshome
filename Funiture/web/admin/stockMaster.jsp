@@ -96,14 +96,10 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>
                                         <div class="buttons" align="right">
-                                            <form action="addstockMaster.jsp" >
-                                                <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
-                                            </form>
 
-                                            <form action="stockMaster.jsp" >
-                                               
-                                                <button name="action" value="Add" class="button"><span><span>ค้นหา</span></span></button>
-                                            </form>
+                                            <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
+                                            
+
 
 
                                         </div>
