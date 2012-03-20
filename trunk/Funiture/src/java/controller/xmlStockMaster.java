@@ -51,19 +51,7 @@ public class xmlStockMaster extends HttpServlet {
                 }
                 int start = rows * page - rows;
 
-               // String productGroupId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
-
-
-             /*   if (request.getParameter("productGroupId") != null) {
-                    productGroupId = request.getParameter("productGroupId");
-                }
-                if (request.getParameter("Edit") != null) {
-                    Edit = request.getParameter("Edit");
-                }
-                if (request.getParameter("Del") != null) {
-                    Del = request.getParameter("Del");
-                }*/
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
                 }
@@ -83,7 +71,6 @@ public class xmlStockMaster extends HttpServlet {
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 ArrayList list = smt.searchAll();
-                db.close();
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = pdm.countAll(Company_Id);
@@ -97,19 +84,17 @@ public class xmlStockMaster extends HttpServlet {
                     xml.setTotal(totalPages);
                     xml.setPage(page);
                     xml.setRecords(totalCount);
-                    for (int i = 0; i < list.size(); i++) {
-                        stockMasterEntity data = (stockMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getStockId(),
-                                data.getReceiveDate(),
-                                data.getProductDetailId(),
-                                data.getProductGroupMasterEntity().getProductGroupCode(),
-                                data.getProductDetailMasterEntity().getProductCode(),
-                                data.getProductDetailMasterEntity().getProductDNameT(),
-                                data.getProductGroupMasterEntity().getProductGNameT(),
-                                data.getQuantity(),
-                                data.getUnitId(),
-                                data.getUnitMasterEntity().getUnitNameT(),
-                                data.getStockId());
+                    if (list != null) {
+                        for (int i = 0; i < list.size(); i++) {
+                            stockMasterEntity data = (stockMasterEntity) list.get(i);
+                            xml.setRowDetail(i,
+                                    data.getReceiveDate(),
+                                    data.getProductDetailMasterEntity().getProductCode(),                                                                
+                                    data.getProductDetailMasterEntity().getProductDNameT(),
+                                    data.getProductGroupMasterEntity().getProductGNameT(),
+                                    data.getQuantity(),
+                                    data.getUnitMasterEntity().getUnitNameT());
+                        }
                     }
                     out.print(xml.getXml());
                 }
