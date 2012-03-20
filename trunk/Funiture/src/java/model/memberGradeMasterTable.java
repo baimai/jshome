@@ -43,7 +43,7 @@ public class memberGradeMasterTable {
      public void update(memberGradeMasterEntity mgm){
           String sql = "update Member_Grade_Master set  Company_Id=?,Member_Grade=?,"
                   + " Grade_name_t=? ,Grade_name_e=?,Discount_Rate=?,payment_term=?,"
-                  + " Member_Price_Flag,Update_date=?,user_id=?"
+                  + " Member_Price_Flag=?,Update_date=?,user_id=?"
                   + "  where Member_Grade_Id=? ";
            db.add(sql,
                    mgm.getMemberGradeId(),

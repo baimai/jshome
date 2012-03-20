@@ -20,11 +20,17 @@ public class Database {
     public Database() {
         try {
 
-
+        Class.forName("com.mysql.jdbc.Driver").newInstance(); 
          // connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/webdb?user=jshome&password=jshome");
           connect = DriverManager.getConnection("jdbc:mysql://192.168.0.15:3306/webdb?user=jshome&password=jshome");
 
 
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
