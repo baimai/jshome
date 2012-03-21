@@ -35,7 +35,21 @@
     </head>
 
     <body>
-        
+        <div class="header-topbar">
+            <div class="quick-access">
+                <div class="welcome-msg">
+                </div>
+                <div class="shop-access">
+                    <ul class="links">
+                        <li class=" last" >
+                            <c:if test="${sessionScope.loginDetail!=null}"><a href="../logout.do" title="Log Out" >Log Out</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="../Login.jsp" title="Log In" >Log In</a></c:if>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
         <div><img src="images/head.jpg" width="100%" height="100"/> </div>
 
 
