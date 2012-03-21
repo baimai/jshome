@@ -187,7 +187,7 @@ public class productDetail extends HttpServlet {
                         pdm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                         sm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         sm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        sm.setReceiveDate(Date.valueOf(request.getParameter("receiveDate")));
+                        //sm.setReceiveDate(Date.valueOf(request.getParameter("receiveDate")));
                         sm.setCompanyId(Company_Id);
                         sm.setUnitId(Integer.parseInt(mr.getParameter("unitId")));
                         if (mr.getParameter("action").equals("Add")) {
