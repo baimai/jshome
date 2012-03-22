@@ -1,18 +1,20 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <sql:query var="query" dataSource="webdb">
-    SELECT count(*) as count,md.*,me.* FROM pic_product_setup me
-    join menu_detail_master md on me.pic_code = md.pic_code
-    join product_detail_master pdm on pdm.product_detail_id = me.product_detail_id
-
-    where md.pic_code != '99999'
-
-    group by me.pic_code
+    select count(pps.pic_code) as count,pps.*,md.*
+    From  pic_product_setup pps
+    JOIN  product_detail_master pdm on pdm.product_detail_id = pps.product_detail_id
+    JOIN  product_group_master  pgm on pgm.product_group_id  = pdm.product_group_id
+    JOIN  menu_detail_master    md  on md.pic_code = pps.pic_code
+    WHERE pdm.product_d_display_flag = 'Y' and pgm.product_g_display_flag = 'Y' and
+    md.pic_code != '99999'
+    group by pps.pic_code
+    order by pps.pic_code
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT count(pdm.product_detail_id) as count,pgm.* FROM product_group_master pgm
     left join (select * from product_detail_master where product_d_display_flag = 'Y') pdm on pdm.product_group_id = pgm.product_group_id
-    where pgm.product_g_display_flag = 'Y' 
+    where pgm.product_g_display_flag = 'Y'
     group by product_group_code
     order by product_group_code
 </sql:query>
@@ -22,8 +24,8 @@
 <html  >
     <head>
         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
@@ -86,22 +88,22 @@
                     <div class="col-left sidebar"><div class="block block-layered-nav">
                             <div class="block-title"><strong>Products Navigation</strong></div>
                             <div class="block-content">
-                                <p class="block-subtitle">????????????</p>
+                                <p class="block-subtitle"></p>
                                 <ul>      
                                     <c:forEach var="menu" items="${query.rows}">
                                         <li><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
                                     </c:forEach>
                                 </ul>
-                                
+
                             </div>
                         </div>
 
                     </div>
-                     <div class="col-left sidebar"><div class="block block-layered-nav">
+                    <div class="col-left sidebar"><div class="block block-layered-nav">
                             <div class="block-title"><strong>Products Navigation</strong></div>
                             <div class="block-content">
-                                <p class="block-subtitle">????????????</p>
-                                
+                                <p class="block-subtitle"></p>
+
                                 <ul>
                                     <c:forEach var="menu2" items="${query2.rows}">
                                         <li><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
@@ -112,7 +114,7 @@
 
                     </div>
                 </div>
-                
+
                 <jsp:include page="myCart.jsp" />
             </div>
         </div>

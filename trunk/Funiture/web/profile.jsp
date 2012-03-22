@@ -78,7 +78,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                  
+                    <br/><br/>
 
                             <c:forEach items="${query2.rows}" var="member" >
                                 <script type="text/javascript">
