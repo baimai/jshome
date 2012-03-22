@@ -25,6 +25,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
+                    <br/><br/><br/><br/>
                     <jsp:include page="member.jsp" />
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
