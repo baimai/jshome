@@ -65,7 +65,7 @@
                 colNames:['Product Code','Product Name', 'Volumn', 'Cost','Discount/Free','Amount','orderdetail id','order id','member id'],
                 colModel:[
                     {name:'productCode',index:'productCode', width:120,align:"right"},
-                    {name:'productDNameE',index:'productDNameE', width:200,align:"center"},
+                    {name:'productDNameT',index:'productDNameT', width:200,align:"center"},
                     {name:'productVolumn',index:'productVolumn', width:90, align:"center",editable:true},
                     {name:'productCost',index:'productCost', width:130, align:"center",hidden:false,editrules:{ edithidden:true},editable:false},
                     {name:'discountText',index:'discountText', width:130, align:"center"},
