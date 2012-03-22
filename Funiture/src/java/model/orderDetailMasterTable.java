@@ -59,7 +59,7 @@ public class orderDetailMasterTable {
                 memberMasterEntity mm = new memberMasterEntity();
                 mm.setMemberId((Integer)result.get(i).get("Member_Id"));
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
-                pdm.setProductDNameE(Default.Str(result.get(i).get("Product_D_Name_E")));
+                pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 orderDetailMasterEntity odm2 = new orderDetailMasterEntity();
                 odm2.setOrderId((Integer) result.get(i).get("Order_Id"));

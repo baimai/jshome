@@ -104,10 +104,9 @@ public class picProductSetupTable {
     }
 
     public ArrayList searchHeader(String sField, String sValue, String sOper,picProductSetupEntity pps) {
-        String sql = " SELECT pps.pic_code as Pic,menu_c_name_t as nameT,mdm.menu_c_name_e as nameE FROM pic_product_setup pps " +
-                     " join menu_detail_master mdm on mdm.pic_code = pps.pic_code " +
-                     " where pps.Company_Id = ? " +
-                     " group by pps.pic_code ";
+        String sql = " SELECT mdm.pic_code as Pic,mdm.menu_c_name_t as nameT,mdm.menu_c_name_e as nameE  " +
+                     " From menu_detail_master mdm " +
+                     " where mdm.Company_Id = ? ";
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }

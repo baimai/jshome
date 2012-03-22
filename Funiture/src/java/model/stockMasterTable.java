@@ -44,6 +44,11 @@ public class stockMasterTable {
 
     }
 
+    public void remove(stockMasterEntity sb){
+        String sql = "delete from stock_master where stock_id = ?";
+        db.remove(sql, sb.getStockId());
+    }
+
     public void update(stockMasterEntity sb) {
         String sql = "update stock_master set quantity = quantity+?,update_date = ?,Receive_Date = ? where product_detail_id = ?";
         db.add(sql, sb.getQuantity(),sb.getUpdateDate(),sb.getReceiveDate(), sb.getProductDetailId());
