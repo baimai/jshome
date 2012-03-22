@@ -67,7 +67,7 @@
                 {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
-                        colorId:function() {
+                        memberGradeId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
                             var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'memberGradeId');
                             return value;

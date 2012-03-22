@@ -24,9 +24,9 @@
 
 
             div#menu {
-                top:130px;
-                left:0px;
-                width:100%;
+                top:170px;
+                left:5px;
+                width:99.1%;
 
                 background:transparent url(images/header_bg.gif) repeat-x 0 0;
             }

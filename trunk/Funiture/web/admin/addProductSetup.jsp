@@ -8,9 +8,7 @@
     Author     : Achilles
 --%>
 <sql:query var="query" dataSource="webdb">
-    SELECT * FROM pic_product_setup pps
-    join menu_detail_master mdm on mdm.pic_code = pps.pic_code
-    group by pps.pic_code
+     SELECT * FROM menu_detail_master mdm
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM product_group_master pgm

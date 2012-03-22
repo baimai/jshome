@@ -44,7 +44,7 @@
                         {name:'productGroupNameT',index:'productGroupNameT', width:100,editable:true,editoptions:{size:25}},
                         {name:'quantity',index:'quantity', width:50,editable:true,editoptions:{size:25}},
                         {name:'unit',index:'unit', width:50,editable:true,editoptions:{size:5}},
-                        {name:'stockId',index:'stockId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false}
+                        {name:'stockId',index:'stockId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
 
 
                    ],
@@ -60,13 +60,23 @@
                     gridview: true,
    	            viewrecords: true,
                     sortorder: "asc",
-                    caption: "Toolbar Searching"
-
+                    caption: "Toolbar Searching",
+                    editurl:"stockMaster.do"
                 });
 
-               jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',{del:true,add:false,edit:false,search:false,view:true });
-              jQuery("#toolbar").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
-            
+               //jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',{del:true,add:false,edit:false,search:false,view:true });
+            jQuery("#toolbar").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+            jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',
+                {add:false,edit:false,search:false,view:true },
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        stockId:function() {
+                            var sel_id = jQuery("#toolbar").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#toolbar").jqGrid('getCell', sel_id, 'stockId');
+                            return value;
+                        }}}, // del options
+                {} // search options
+            );
 
 
 
