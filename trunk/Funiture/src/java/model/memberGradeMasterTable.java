@@ -46,7 +46,7 @@ public class memberGradeMasterTable {
                   + " Member_Price_Flag=?,Update_date=?,user_id=?"
                   + "  where Member_Grade_Id=? ";
            db.add(sql,
-                   mgm.getMemberGradeId(),
+                   mgm.getCompanyId(),
                    mgm.getMemberGrade(),
                    mgm.getGradeNameT(),
                    mgm.getGradeNameE(),
@@ -55,7 +55,8 @@ public class memberGradeMasterTable {
                    mgm.getMemberPriceFlag(),
                    mgm.getUpdateDate(),
                    mgm.getUserId(),
-                   mgm.getCompanyId());
+                   mgm.getMemberGradeId()
+                   );
 
      }
       public void remove(memberGradeMasterEntity mgm){
@@ -76,8 +77,8 @@ public class memberGradeMasterTable {
             for (int i = 0; i < result.size(); i++) {
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
                 mgm.setMemberGrade(Default.Str(result.get(i).get("Member_Grade")));
-                mgm.setGradeNameT(Default.Str(result.get(i).get("Grade_name_t")));
-                mgm.setGradeNameE(Default.Str(result.get(i).get("Grade_name_e")));
+                mgm.setGradeNameT(Default.Str(result.get(i).get("Grade_Name_T")));
+                mgm.setGradeNameE(Default.Str(result.get(i).get("Grade_Name_E")));
                 mgm.setDiscountRate(Default.BigDecimal(result.get(i).get("Discount_Rate")));
                 mgm.setPaymentTerm((Integer)result.get(i).get("Payment_Term"));
                 mgm.setMemberPriceFlag(Default.Str(result.get(i).get("Member_Price_Flag")));
