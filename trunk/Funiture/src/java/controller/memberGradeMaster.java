@@ -41,7 +41,7 @@ public class memberGradeMaster extends HttpServlet {
                 memberGradeMasterTable mgt = new memberGradeMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
-                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+               int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 mgm.setCompanyId(Company_Id);
                 if (request.getParameter("memberGradeId") != null && !request.getParameter("memberGradeId").equals("")) {
                     mgm.setMemberGradeId(Integer.parseInt(request.getParameter("memberGradeId")));
@@ -54,7 +54,7 @@ public class memberGradeMaster extends HttpServlet {
                      
                 }
                 if (request.getParameter("gradeNameE") != null) {
-                    mgm.setGradeNameT(request.getParameter("gradeNameE"));
+                    mgm.setGradeNameE(request.getParameter("gradeNameE"));
                     
                 }
                 if (request.getParameter("discountRate") != null) {
@@ -66,7 +66,7 @@ public class memberGradeMaster extends HttpServlet {
                      
                 }
                 if (request.getParameter("memberPriceFlag") != null) {
-                    mgm.setGradeNameT(request.getParameter("memberPriceFlag"));
+                    mgm.setMemberPriceFlag(request.getParameter("memberPriceFlag"));
                 }
                 mgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mgm.setUpdateDate(Timestamp.valueOf(db.getNow()));

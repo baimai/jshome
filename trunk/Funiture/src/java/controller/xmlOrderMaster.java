@@ -123,7 +123,7 @@ public class xmlOrderMaster extends HttpServlet {
                     for (int i = 0; i < listp.size(); i++) {
                         orderDetailMasterEntity data = (orderDetailMasterEntity) listp.get(i);
                         xml.setRowDetail(data.getProductDetailId(), data.getProductDetailMasterEntity().getProductCode(),
-                                data.getProductDetailMasterEntity().getProductDNameE(),
+                                data.getProductDetailMasterEntity().getProductDNameT(),
                                 data.getProductVolumn(), data.getProductCost(), data.getDiscountText(),
                                 (data.getProductAmount().subtract(data.getDiscountPrice())), data.getOrderDetailId(), data.getOrderId(),
                                 data.getMemMasterEntity().getMemberId());
