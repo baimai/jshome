@@ -93,7 +93,8 @@ public class xmlStockMaster extends HttpServlet {
                                     data.getProductDetailMasterEntity().getProductDNameT(),
                                     data.getProductGroupMasterEntity().getProductGNameT(),
                                     data.getQuantity(),
-                                    data.getUnitMasterEntity().getUnitNameT());
+                                    data.getUnitMasterEntity().getUnitNameT(),
+                                    data.getStockId());
                         }
                     }
                     out.print(xml.getXml());

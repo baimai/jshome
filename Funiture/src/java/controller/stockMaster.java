@@ -82,6 +82,8 @@ public class stockMaster extends HttpServlet {
                     } else {
                         st.add(mps);
                     }
+                }else if (request.getParameter("action").equals("Del")) {
+                    st.remove(mps);
                 }
                 out.println("getReceiveDate" + mps.getReceiveDate());
                 out.println("getProductDetailId" + mps.getProductDetailId());

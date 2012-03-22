@@ -33,7 +33,8 @@ public class logout extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             HttpSession s = request.getSession();
-            s.removeAttribute("loginDetail");
+            //s.removeAttribute("loginDetail");
+            s.invalidate();
             response.sendRedirect("index.jsp");
         } finally { 
             out.close();
