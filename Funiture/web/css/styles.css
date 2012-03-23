@@ -31,7 +31,7 @@ img           { border:0;}
 .col3-layout .col-wrapper .col-main { width:84.5%; }
 
 /* Content Columns */
-.col2-set .col-1 { float:left; width:48.5%; }
+.col2-set .col-1 { float:left; width:60.5%; }
 .col2-set .col-2 { float:right; width:48.5%; }
 .col2-set .col-narrow { width:32%; }
 .col2-set .col-wide { width:65%; }

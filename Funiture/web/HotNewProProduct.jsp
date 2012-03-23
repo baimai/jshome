@@ -30,148 +30,114 @@
 <!DOCTYPE html>
 <html>
     <head>
-          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>jshome</title>
-        <link href="jshome/css/jquery.thumbnailScroller.css" rel="stylesheet" />
-        <script src="jshome/js/jquery-1.5.min.js" type="text/javascript"></script>
-        <script src="jshome/js/jquery-ui-1.8.13.custom.min.js" type="text/javascript"></script>
+        <!-- the CSS for Smooth Div Scroll -->
+        <link rel="Stylesheet" type="text/css" href="css/smoothDivScroll.css" />
+
+        <!-- jQuery UI widget factory -->
+        <script src="http://www.smoothdivscroll.com/js/jquery.ui.widget.js" type="text/javascript"></script>
+
+        <!-- Smooth Div Scroll 1.1 - minified for faster loading-->
+        <script src="js/jquery.smoothDivScroll-1.1-min.js" type="text/javascript"></script>
+        <!-- Script for specified scrolling -->
+        <script type="text/javascript">
+            // Initialize the plugin with no custom options
+            $(window).load(function() {
+                $("div#makeMeScrollable").smoothDivScroll({
+                    autoScroll: "onstart" ,
+                    autoScrollDirection: "backandforth",
+                    autoScrollStep: 1,
+                    autoScrollInterval: 15,
+                    startAtElementId: "startAtMe",
+                    visibleHotSpots: "always"
+                });
+            });
+        </script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" /> 
-        <script type="text/javascript">
-            /* jQuery.noConflict() for using the plugin along with other libraries.
-           You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or
-           if you include jQuery before other libraries in yourdocument's head tag.
-           [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
-            jQuery.noConflict();
-            /* calling thumbnailScroller function with options as parameters */
-            (function($){
-                window.onload=function(){
-                    $("#tS2").thumbnailScroller({
-                        scrollerType:"hoverPrecise",
-                        scrollerOrientation:"horizontal",
-                        scrollSpeed:2,
-                        scrollEasing:"easeOutCirc",
-                        scrollEasingAmount:600,
-                        acceleration:4,
-                        scrollSpeed:800,
-                        noScrollCenterSpace:10,
-                        autoScrolling:0,
-                        autoScrollingSpeed:2000,
-                        autoScrollingEasing:"easeInOutQuad",
-                        autoScrollingDelay:500
-                    });
-                    $("#tS3").thumbnailScroller({
-                        scrollerType:"hoverPrecise",
-                        scrollerOrientation:"horizontal",
-                        scrollSpeed:2,
-                        scrollEasing:"easeOutCirc",
-                        scrollEasingAmount:600,
-                        acceleration:4,
-                        scrollSpeed:800,
-                        noScrollCenterSpace:10,
-                        autoScrolling:0,
-                        autoScrollingSpeed:2000,
-                        autoScrollingEasing:"easeInOutQuad",
-                        autoScrollingDelay:500
-                    });
-                    $("#tS4").thumbnailScroller({
-                        scrollerType:"hoverPrecise",
-                        scrollerOrientation:"horizontal",
-                        scrollSpeed:2,
-                        scrollEasing:"easeOutCirc",
-                        scrollEasingAmount:600,
-                        acceleration:4,
-                        scrollSpeed:800,
-                        noScrollCenterSpace:10,
-                        autoScrolling:0,
-                        autoScrollingSpeed:2000,
-                        autoScrollingEasing:"easeInOutQuad",
-                        autoScrollingDelay:500
-                    });
-                }
-            })(jQuery);
-            
-        </script>
-        <script src="jshome/js/jquery.thumbnailScroller.js" type="text/javascript"></script>
+
         <style type="text/css">
-       /* $("[title]").tooltip();*/
-        /* tooltip styling. by default the element to be styled is .tooltip  */
-.tooltip {
-	display:none;
-	background:transparent url(/tools/img/tooltip/black_arrow.png);
-	font-size:12px;
-	height:70px;
-	width:160px;
-	padding:25px;
-	color:#fff;
-}
-$("[title]").tooltip();
+            #makeMeScrollable
+            {
+                
+                width:95%;
+                margin-left: 25px;
+                height: 250px;
+                position: relative;
+            }
+
+            #makeMeScrollable div.scrollableArea img
+            {
+                position: relative;
+                float: left;
+                margin: 0;
+                padding: 0;
+            }
         </style>
     </head>
     <body>
         <div class="main-container col1-layout">
             <div class="main">
-                <div class="col-main">
-                    <div id="messages_product_view"></div>
-                    <div class="page-title">
-                        <h1><img src="images/icon/flag-hot-red.png" width="24" height="24" alt="flag-hot-red"/>
-                            HotProduct</h1>
-                    </div>
+              
+                    
 
-                    <div id="tS2" class="jThumbnailScroller" >
-                        <div class="jTscrollerContainer">
-                            <div class="jTscroller">
+                <img src="images/hotpromotion.png" width="100%" alt="flag-hot-red"/>
+
+                    <div id="makeMeScrollable">
+                        <div class="scrollingHotSpotLeft"></div>
+                        <div class="scrollingHotSpotRight"></div>
+                        <div class="scrollWrapper">
+                            <div class="scrollableArea">
                                 <c:forEach var="hotProduct" items="${query.rows}">
                                     <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}"><img src="${hotProduct.Product_D_Pic_loc}" title="${hotProduct.Product_D_Name_T}"/></a>
                                     </c:forEach>
                             </div>
                         </div>
-
-                        <a href="#" class="jTscrollerPrevButton"></a>
-                        <a href="#" class="jTscrollerNextButton"></a>
                     </div>
-                </div>
+                
                 <br>
-                <div class="col-main">
-                    <div id="messages_product_view"></div>
-                    <div class="page-title">
-                        <h1><img src="images/icon/flag-new-blue.png" width="24" height="24" alt="flag-new-blue"/>
-                            New Product</h1>
-                    </div>
+               
+                  
+                   
+                        <img src="images/newproduct.png" width="100%" alt="flag-new-blue"/>
+                           
 
-                    <div id="tS3" class="jThumbnailScroller" style="margin-top:50px;">
-                        <div class="jTscrollerContainer">
-                            <div class="jTscroller">
+                    <div id="makeMeScrollable">
+                        <div class="scrollingHotSpotLeft"></div>
+                        <div class="scrollingHotSpotRight"></div>
+                        <div class="scrollWrapper">
+                            <div class="scrollableArea">
                                 <c:forEach var="newProduct" items="${query2.rows}">
                                     <a href="productDetail.jsp?productDetailId=${newProduct.product_detail_id}"><img src="${newProduct.Product_D_Pic_loc}" title="${newProduct.Product_D_Name_T}" /></a>
                                     </c:forEach>
 
                             </div>
                         </div>
-                        <a href="#" class="jTscrollerPrevButton"></a>
-                        <a href="#" class="jTscrollerNextButton"></a>
+
                     </div>
-                </div>
+               
                 <br>
-                <div class="col-main">
-                    <div id="messages_product_view"></div>
-                    <div class="page-title">
-                        <h1><img src="images/icon/flag-popular-red.png" width="24" height="24" alt="flag-popular-red"/>
-                            Promotion</h1>
-                    </div>
-                    <div id="tS4" class="jThumbnailScroller" style="margin-top:50px;">
-                        <div class="jTscrollerContainer">
-                            <div class="jTscroller">
+               
+                    
+                   
+                        <img src="images/promotion.png" width="100%"  alt="flag-popular-red"/>
+                            
+                   
+                    <div id="makeMeScrollable">
+                        <div class="scrollingHotSpotLeft"></div>
+                        <div class="scrollingHotSpotRight"></div>
+                        <div class="scrollWrapper">
+                            <div class="scrollableArea">
                                 <c:forEach var="proProduct" items="${query3.rows}">
                                     <a href="productDetail.jsp?productDetailId=${proProduct.product_detail_id}"><img src="${proProduct.Product_D_Pic_Loc}" title="${proProduct.Product_D_Name_T}"/></a>
                                     </c:forEach>
 
                             </div>
-                        </div>
-                        <a href="#" class="jTscrollerPrevButton"></a>
-                        <a href="#" class="jTscrollerNextButton"></a>
+                        
+
                     </div>
                 </div>
             </div>

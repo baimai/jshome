@@ -166,8 +166,9 @@
                                                 <div class="cart-collaterals">
                                                     <div class="col2-set">
                                                         <div class="col-1">
-                                                            <div class="crosssell">
-                                                                <h2>สินค้าแนะนำ</h2>
+
+                                                            <div class="crosssell"><img src="images/P4.png" width="130" height="35" alt="P4"/>
+                                                                
                                                                 <ul id="crosssell-products-list">
                                                                     <c:forEach var="relate" items="${query.rows}" >
                                                                         <li class="item">
