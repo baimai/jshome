@@ -59,7 +59,7 @@
                         <li ><a href="cartDetail.jsp" title="Checkout" class="top-link-checkout">Checkout</a></li>
                         <li class=" last" >
                             <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >Log Out</a></c:if>
-                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Log In</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Log In/Register</a></c:if>
                         </li>
                     </ul>
                 </div>

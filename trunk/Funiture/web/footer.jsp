@@ -15,7 +15,7 @@
     <body>
     <tr>
 
-        <td align="center" > <div align="center">Copyright © 2011 jshome - All Rights Reserved by <a href="http://www.jshome.com">jshome</a>
+        <td align="center" > <div align="center">Copyright © 2011 jshome - All Rights Reserved by <a href="http://www.kumnuanthai.com">kumnuanthai</a>
             </div></td>
    
 </body>

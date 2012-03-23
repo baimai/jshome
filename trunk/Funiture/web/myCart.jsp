@@ -16,9 +16,10 @@
 
 
         <div class="col-right sidebar">
-            <div class="block block-cart">
+
+            <div class="block block-cart"><img src="images/P3-2.png" width="120" height="35" alt="P3-2"/>
                 <div class="block-title">
-                    <strong><span>สินค้าในตะกร้า</span></strong>
+                    <strong></strong>
                 </div>
                 <c:if test="${sessionScope.productList != null}">
                     <div class="block-content">

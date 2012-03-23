@@ -306,10 +306,11 @@
                                             </div>                </div>
                                             <jsp:include page="myCart.jsp" />
                                             <%-- สินค้าแนะนำ --%>
-                                        <div class="col-right sidebar">
+                                            <div class="col-right sidebar"><img src="images/P4.png" width="130" height="35" alt="P4"/>
+
                                             <div class="block block-cart">
                                                 <div class="block-title">
-                                                    <strong><span>สินค้าแนะนำ</span></strong>
+                                                    <strong></strong>
                                                 </div>
 
                                                 <div class="block-content">
@@ -320,18 +321,23 @@
                                                             <div><center><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}">${relate.product_d_name_t}</a></center></div>
                                                             <c:if test="${relate.show_price_list_flag != 'N'}">
                                                                 <c:if test="${relate.show_price_list_flag == 'A'}">
+                                                                     
                                                                     <c:if test="${relate.product_price1 != null && relate.product_price1 != ''}">
-                                                                        <center>฿ ${relate.product_price1}</center>
+                                                                        <div class="price-box"><center>
+                                                                        <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price1}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
                                                                     </c:if>
                                                                     <c:if test="${relate.product_price1 == null || relate.product_price1 == ''}">
-                                                                        <center>฿ ${relate.product_price3}</center>
+                                                                        <div class="price-box"><center>
+                                                                        <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price3}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
                                                                     </c:if>
                                                                 </c:if>
                                                                 <c:if test="${relate.show_price_list_flag == 'W'}">
-                                                                    <center>฿ ${relate.product_price1}</center>
+                                                                    <div class="price-box"><center>
+                                                                        <span class="regular-price" id="product-price-42" ><span class="price" >฿ <fmt:formatNumber value="${relate.product_price1}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
                                                                 </c:if>
                                                                 <c:if test="${relate.show_price_list_flag == 'R'}">
-                                                                    <center>฿ ${relate.product_price3}</center>
+                                                                    <div class="price-box"><center>
+                                                                        <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price3}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
                                                                 </c:if>
 
                                                             </c:if>

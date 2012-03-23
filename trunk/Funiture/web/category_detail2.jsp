@@ -85,13 +85,15 @@
                 <div class="col-wrapper">
                     <div id="productList">
                     </div>
-                    <div class="col-left sidebar"><div class="block block-layered-nav">
-                            <div class="block-title"><strong>Products Navigation</strong></div>
+                    <div class="col-left sidebar"><img src="images/P1-2.png" width="180" height="35" alt="P1-2"/>
+
+                        <div class="block block-layered-nav">
+                            
                             <div class="block-content">
-                                <p class="block-subtitle"></p>
+                              
                                 <ul>      
                                     <c:forEach var="menu" items="${query.rows}">
-                                        <li><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                        <li><img src="${menu.Menu_C_Icon_Loc}" width="24" height="24"/><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
                                     </c:forEach>
                                 </ul>
 
@@ -99,14 +101,15 @@
                         </div>
 
                     </div>
-                    <div class="col-left sidebar"><div class="block block-layered-nav">
-                            <div class="block-title"><strong>Products Navigation</strong></div>
-                            <div class="block-content">
-                                <p class="block-subtitle"></p>
+                    <div class="col-left sidebar"><img src="images/P2-2.png" width="180" height="35" alt="P2-2"/>
+                        <div class="block block-layered-nav">
 
+                           
+                            <div class="block-content">
+                               
                                 <ul>
                                     <c:forEach var="menu2" items="${query2.rows}">
-                                        <li><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
+                                        <li><img src="${menu2.Product_Icon_Loc}" width="24" height="24"/><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
                                     </c:forEach>
                                 </ul>
                             </div>
