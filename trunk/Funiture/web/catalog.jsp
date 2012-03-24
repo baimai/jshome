@@ -57,12 +57,8 @@
                                 <fieldset>
                                     
 
-                                        <table id="shopping-cart-table" class="data-table cart-table" wifth="100%">
-                                            <thead>                         <tr>
-                                                    <th rowspan="3" class="a-center"></th>
-                                                    <th rowspan="3" class="a-center"></th>                                       
-                                                </tr>
-                                            </thead>
+                                    <table style="margin-left: 100px" wifth="100%">
+                                           
                                             <tbody>
 
                                                 <c:forEach var="catalog" items="${query1.rows}">
@@ -70,7 +66,7 @@
 
                                                         <td class="a-right" >
                                                             <a href="${catalog.catalog_pic_loc}">
-                                                                <img src="images/icon/filetype_pdf.png" width="42" height="42" alt="filetype_pdf" /></a></td>
+                                                                <img src="images/pdf.png"  alt="filetype_pdf" /></a></td>
 
                                                         <td class="a-left" >                                                       
                                                                         <a href="#" onclick="checkMember('${catalog.catalog_pic_loc}');">${catalog.catalog_name}</a></td>

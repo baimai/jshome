@@ -230,7 +230,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect  1 T</label>
+                                                                    <label for="firstname">คุณสมบัติของสินค้า</label>
                                                                     <textarea name="spect1Th" cols="25" rows="2"></textarea>
                                                                 </div>
                                                             </div>
@@ -244,7 +244,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect  2 T</label>
+                                                                    <label for="firstname">โครงสร้างสินค้า 1</label>
                                                                     <textarea name="spect2Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -258,7 +258,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect  3 T</label>
+                                                                    <label for="firstname">โครงสร้างสินค้า 2</label>
                                                                     <textarea name="spect3Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div> </div>
                                                             <div class="customer-name">
@@ -271,7 +271,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 4 T</label>
+                                                                    <label for="firstname">ขนาดสินค้า 1</label>
                                                                     <textarea name="spect4Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -285,7 +285,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 5 T</label>
+                                                                    <label for="firstname">ขนาดสินค้า 2</label>
                                                                     <textarea name="spect5Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -299,7 +299,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">Product Spect 6 T</label>
+                                                                    <label for="firstname">สีของสินค้า</label>
                                                                     <textarea name="spect6Th" cols="25" rows="2" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -512,7 +512,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Spect 1 T</label>
+                                                                        <label for="firstname" >คุณสมบัติของสินค้า</label>
                                                                         <textarea name="spect1Th" cols="25" rows="2" >${product.product_spec1_t}</textarea></div>
                                                                 </div>
                                                                 <div class="customer-name">
@@ -523,7 +523,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Spect 2 T</label>
+                                                                        <label for="firstname" >โครงสร้างสินค้า 1</label>
                                                                         <textarea name="spect2Th" cols="25" rows="2">${product.product_spec2_t}</textarea></div></div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -533,7 +533,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Spect 3 T</label>
+                                                                        <label for="firstname" >โครงสร้างสินค้า 2</label>
                                                                         <textarea name="spect3Th" cols="25" rows="2">${product.product_spec3_t}</textarea></div></div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -543,7 +543,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Spect 4 T</label>
+                                                                        <label for="firstname" >ขนาดสินค้า 1</label>
                                                                         <textarea name="spect4Th" cols="25" rows="2">${product.product_spec4_t}</textarea></div></div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -553,7 +553,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Spect 5 T</label>
+                                                                        <label for="firstname" >ขนาดสินค้า 2</label>
                                                                         <textarea name="spect5Th" cols="25" rows="2">${product.product_spec5_t}</textarea></div></div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -563,7 +563,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Product Spect 6 T</label>
+                                                                        <label for="firstname" >สีของสินค้า </label>
                                                                         <textarea name="spect6Th" cols="25" rows="2">${product.product_spec6_t}</textarea></div></div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">

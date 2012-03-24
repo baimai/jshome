@@ -93,7 +93,7 @@
                               
                                 <ul>      
                                     <c:forEach var="menu" items="${query.rows}">
-                                        <li><img src="${menu.Menu_C_Icon_Loc}" width="24" height="24"/><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                        <li><img src="${menu.Menu_C_Icon_Loc}" /><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
                                     </c:forEach>
                                 </ul>
 
@@ -109,7 +109,7 @@
                                
                                 <ul>
                                     <c:forEach var="menu2" items="${query2.rows}">
-                                        <li><img src="${menu2.Product_Icon_Loc}" width="24" height="24"/><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
+                                        <li><img src="${menu2.Product_Icon_Loc}" /><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
                                     </c:forEach>
                                 </ul>
                             </div>
