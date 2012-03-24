@@ -29,18 +29,10 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
         <script type="text/javascript" src="jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
+       <link type="text/css" href="jshome/themes/base/jquery.ui.all.css" rel="stylesheet" />
+       <script type="text/javascript" src="jshome/js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="jshome/ui/ui.core.js"></script>
+         <script type="text/javascript" src="jshome/ui/ui.tabs.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
 
@@ -62,8 +54,11 @@
                 document.getElementById("showDistinct").innerHTML=text;
             }
         </script>
-
-
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+	</script>
 
     </head>
 
@@ -79,6 +74,7 @@
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
                     <br/><br/>
+
 
                             <c:forEach items="${query2.rows}" var="member" >
                                 <script type="text/javascript">
@@ -97,10 +93,15 @@
                                         <div class="main">
                                             <div class="col-main">
                                                 <div class="account-create">
-                                                    <div class="page-title">
-                                                        <h1>สร้างบัญชีใหม่</h1>
-                                                    </div>
-                                                    <form action="editProfile.do" method="post" id="form-validate" >
+                                                   
+                                                    <div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">ข้อมูลทั่วไป</a></li>
+				<li><a href="#tabs-2">รายการสั่งซื้อ</a></li>
+				
+			</ul>
+			<div id="tabs-1">
+                            <form action="editProfile.do" method="post" id="form-validate" >
                                                         <div class="fieldset">
                                                             <h2 class="legend">ข้อมูลการล็อกอิน</h2>
                                                             <ul class="form-list">
@@ -284,19 +285,23 @@
                                                             <button name="action" value="editProfile" class="button" ><span><span>เยืนยัน</span></span></button>
                                                         </div>
                                                     </form>
-
-                                                    <script type="text/javascript">
-                                                        //<![CDATA[
-                                                        var dataForm = new VarienForm('form-validate', true);
-                                                        //]]>
-                                                    </script>
+ </c:forEach>
+                                                   
                                                 </div>
+                                                        <div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
                                             </div>
                                         </div>
+                                                
                                     </div>
-
+ 
                                 </div>
-                            </c:forEach>
+                           
+                                       
+                        </div>
+			
+
+		</div>
+                                                    
 
 
 
