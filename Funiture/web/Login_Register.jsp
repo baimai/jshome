@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-2 registered-users">
                                     <div class="buttons-set">
-                                        <a href="forgotpassword.jsp" class="f-left">ลืมรหัสผ่าน?</a>
+                                        <a href="forgotPassword.jsp" class="f-left">ลืมรหัสผ่าน?</a>
                                         <button type="submit" class="button" title="Login" name="send" id="send2"><span><span>เข้าสู่ระบบ</span></span></button>
                                     </div>
                                 </div>

@@ -78,6 +78,7 @@
 
 
                                 </fieldset>
+
                             </div>  <jsp:include page="myCart.jsp" /> </div>  </div>
                             <jsp:include page="footer.jsp" />
                     <br/><br/>

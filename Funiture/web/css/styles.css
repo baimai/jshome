@@ -19,7 +19,7 @@ img           { border:0;}
 .col-right { float:right; width:14.5%; padding:0 0 1px; }
 
 /* 1 Column Layout */
-.col1-layout .col-main { float:none; width:auto; }
+.col1-layout .col-main { float:left; width:auto; }
 
 /* 2 Columns Layout */
 .col2-left-layout .col-main { float:left; }

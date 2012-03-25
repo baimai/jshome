@@ -55,11 +55,12 @@
                         <c:if test="${sessionScope.loginDetail!=null}"><li class="first" ><a href="profile.jsp" title="My Account" >My Account</a></li></c:if>
 
                         <li ><a href="#" title="My Cart" class="top-link-cart">My Cart (${itemNum} item)</a></li>
-                        <li ><a href="forgetPassword.jsp" title="My Cart" class="top-link-cart">forgot password</a></li>
+                        <li ><a href="forgotPassword.jsp" title="My Cart" class="top-link-cart">forgot password</a></li>
                         <li ><a href="cartDetail.jsp" title="Checkout" class="top-link-checkout">Checkout</a></li>
                         <li class=" last" >
                             <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >Log Out</a></c:if>
-                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Log In/Register</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Log In</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Register</a></c:if>
                         </li>
                     </ul>
                 </div>
@@ -69,6 +70,7 @@
         <div >
             <c:forEach items="${query3.rows}" var="company"> <img src="${company.company_header_loc}" width="95%" height="100px" border="0" /> </c:forEach>
         </div>
+      
         <div id="container"  >
             <ul id="nav">
                 <c:forEach var="topmenu" items="${query2.rows}">
