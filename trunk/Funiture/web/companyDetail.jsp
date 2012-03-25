@@ -41,7 +41,9 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
     </head>
-    <body>
+    <body >  <div class="wrapper">
+                        <div class="page">
+                        </div>
         <div class="main-container col2-right-layout">
             <div class="main">
                 <div class="col-main">
@@ -114,7 +116,7 @@
                         </c:forEach></div>
                    
                 </div>
-                <jsp:include page="myCart.jsp" /> </div>
+                <jsp:include page="myCart.jsp" /> </div></div>
         </div>
     </body>
 </html>

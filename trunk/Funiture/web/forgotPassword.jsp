@@ -7,6 +7,19 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" src="jshome/js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="jshome/js/lib/ccard.js"></script>
+        <script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="jshome/js/varien/js.js"></script>
+        <script type="text/javascript" src="jshome/js/varien/form.js"></script>
+        <script type="text/javascript" src="jshome/js/varien/menu.js"></script>
+        <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
+        <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
 
     </head>
     <body >
@@ -31,13 +44,13 @@
                                         <div class="page-title">
                                             <h1>ลืมรหัสผ่าน</h1>
                                         </div>
-                                        <form action="" >
+                                        <form action="" id="form-validate">
                                              <div class="fieldset">
                                             <ul class="form-list">
                                                 <li><div class="field">
                                                         <label for="login" class="required"><em>*</em>ชื่อที่ใช้เข้าสู่ระบบ &nbsp; </label>
                                                         <div class="input-box">
-                                                            <input type="text" value="" name="memberLogin" class="input-text" />
+                                                            <input type="text" value="" name="memberLogin" class="input-text required-entry " />
                                                         </div>
                                                     </div>
                                                 </li>
@@ -47,7 +60,7 @@
                                                     <li><div class="field">
                                                             <label for="login" class="required"><em>*</em>อีเมลล์ &nbsp; </label>
                                                             <div class="input-box">
-                                                                <input type="text" value="" name="memberEmail1" class="input-text"/>
+                                                                <input type="text" value="" name="memberEmail1" class="input-text required-entry validate-email"/>
 
                                                             </div>
 
@@ -61,6 +74,11 @@
                                             </div>
                                                   </div>
                                         </form>
+                                         <script type="text/javascript">
+                                //<![CDATA[
+                                var dataForm = new VarienForm('form-validate', true);
+                                //]]>
+                            </script>
                                     </div>
                                 </div>
                             </div>
