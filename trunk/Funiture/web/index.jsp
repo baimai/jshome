@@ -44,7 +44,7 @@
                      <jsp:include page="HotNewProProduct.jsp" />
                             
 
-                    <br/><br/>
+                  
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>

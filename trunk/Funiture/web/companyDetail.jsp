@@ -35,9 +35,7 @@
 <html>
     <head>
         <title>jshome</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
 
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
@@ -114,7 +112,7 @@
                                     <a href="mailto:${company.email3}">${company.email3}</a>
                                 </c:if></div>
                         </c:forEach></div>
-                    <br/><br/><br/><br/>
+                   
                 </div>
                 <jsp:include page="myCart.jsp" /> </div>
         </div>

@@ -16,12 +16,17 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-       
+        <script type="text/javascript" src="jshome/js/varien/form.js"></script>
+        <script type="text/javascript" src="jshome/js/varien/js.js"></script>
+        <script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
         <script type="text/javascript">
-            //<![CDATA[
-            var contactForm = new VarienForm('contactForm', true);
-            //]]>
-        </script>
+			    //<![CDATA[
+			        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail-footer');
+			    //]]>
+			    </script>
     </head>
     <body>
         <div class="main-container col2-right-layout">
@@ -31,7 +36,7 @@
                     <div class="page-title">
                         <h1>ติดต่อบริษัท</h1>
                     </div>
-                    <form action="http://freedemo.templates-master.com/f002/contacts/index/post/" id="contactForm" method="post">
+                    <form action=""  method="post" id="newsletter-validate-detail-footer">
                         <div class="fieldset">
                             <h2 class="legend">รายละเอียดการติดต่อ</h2>
                             <ul class="form-list">
@@ -45,7 +50,7 @@
                                     <div class="field">
                                         <label for="email" class="required"><em>*</em>อีเมลล์</label>
                                         <div class="input-box">
-                                            <input name="email" id="email" title="Email" value="" class="input-text required-entry validate-email" type="text" />
+                                            <input name="email" id="email" title="Email" value="" class="input-text validate-email required-entry " type="text" />
                                         </div>
                                     </div>
                                 </li>

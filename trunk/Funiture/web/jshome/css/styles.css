@@ -186,7 +186,7 @@ input.input-text:focus,select:focus,textarea:focus { background-color:#edf7fd; }
 .form-list li.wide input.input-text { width:529px; }
 .form-list li.wide textarea { width:529px; }
 .form-list li.wide select { width:535px; }
-.form-list li.additional-row { border-top:1px solid #ccc; margin-top:10px; padding-top:7px; }
+.form-list li.additional-row { border-top:1px solid #ccc; margin-top:5px; padding-top:5px; }
 .form-list li.additional-row .btn-remove { float:right; margin:5px 0 0; }
 .form-list .input-range input.input-text { width:74px; }
 /* Customer */
