@@ -5,8 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 
 <html>
     <head>
@@ -16,24 +15,9 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-         <script type="text/javascript" src="jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
-        <script type="text/javascript">
-			    //<![CDATA[
-			        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail-footer');
-			    //]]>
-			    </script>
+        
+        
+      
     </head>
     <body>
         <div class="wrapper">
