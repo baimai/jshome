@@ -28,7 +28,7 @@
               โต๊ะกลาง,ชุดกาแฟ,เตียง,เก้าอี้,เก้าอี้ชิงช้า,ชั้นวางโทรศัพท์,ชั้นวางหนังสือ,ราวไม้ ,ฉากกั้น,กระเช้า, โต๊ะคาเฟ่" />       
         <link rel="icon" href="images/js.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
-
+        <link rel="stylesheet" href="css/validator.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="all" />
         <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
