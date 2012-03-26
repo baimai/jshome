@@ -37,7 +37,7 @@
         <link rel="Stylesheet" type="text/css" href="css/smoothDivScroll.css" />
 
         <!-- jQuery UI widget factory -->
-        <script src="http://www.smoothdivscroll.com/js/jquery.ui.widget.js" type="text/javascript"></script>
+        <script src="js/jquery.ui.widget.js" type="text/javascript"></script>
 
         <!-- Smooth Div Scroll 1.1 - minified for faster loading-->
         <script src="js/jquery.smoothDivScroll-1.1-min.js" type="text/javascript"></script>
