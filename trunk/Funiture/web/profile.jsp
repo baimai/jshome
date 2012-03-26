@@ -31,8 +31,8 @@
         <script type="text/javascript" src="jshome/js/prototype/prototype.js"></script>
        <link type="text/css" href="jshome/themes/base/jquery.ui.all.css" rel="stylesheet" />
        <script type="text/javascript" src="jshome/js/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="jshome/ui/ui.core.js"></script>
-         <script type="text/javascript" src="jshome/ui/ui.tabs.js"></script>
+        <script type="text/javascript" src="jshome/ui/jquery.ui.core.js"></script>
+         <script type="text/javascript" src="jshome/ui/jquery.ui.tabs.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
 
