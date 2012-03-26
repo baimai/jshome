@@ -36,7 +36,7 @@
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
         <script src="jshome/js/jquery-1.4.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
+         <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
         <script type="text/javascript" src="jshome/js/jquery.spasticNav.js"></script>
     <title>jshome</title>
     </head>
