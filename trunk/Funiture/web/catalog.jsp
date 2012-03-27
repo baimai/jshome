@@ -74,8 +74,8 @@
                                                     <tr >
 
                                                         <td class="a-right" >
-                                                            <a href="${catalog.catalog_pic_loc}">
-                                                                <img src="images/pdf.png"  alt="filetype_pdf" /></a></td>
+                                                            
+                                                                <img src="images/pdf.png"  alt="filetype_pdf" /></td>
 
                                                         <td class="a-left" >
                                                                         <a href="#" onclick="checkMember('${catalog.catalog_pic_loc}');">${catalog.catalog_name}</a></td>
