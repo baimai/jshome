@@ -60,7 +60,7 @@
 
         jQuery(document).ready(function(){
             jQuery("#rowed1").jqGrid({
-                url:'xmlOrderMaster.do?action=fetchData&rows=3&page=1&q=2&orderId=${param.orderId}',
+                url:'xmlOrderMaster.do?action=fetchData&rows=3&page=1&q=2&orderId=1',
                 datatype: "xml",
                 colNames:['Product Code','Product Name', 'Volumn', 'Cost','Discount/Free','Amount','orderdetail id','order id','member id'],
                 colModel:[
