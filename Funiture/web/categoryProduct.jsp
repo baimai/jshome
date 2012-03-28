@@ -92,7 +92,7 @@
                             สินค้า ${((param.page-1)*param.show)+1} ถึง
                             <c:if test="${param.page == (total/param.show) }">${total}</c:if>
                             <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                            จาก ${total}</p>
+                           </p>
                         <div class="limiter">
                             <c:if test="${param.page != 1}" >
                                 <a  href="#" title="Backward" style="text-decoration: none;"  onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
@@ -253,7 +253,7 @@
                                 สินค้า ${((param.page-1)*param.show)+1} ถึง
                                 <c:if test="${param.page == (total/param.show) }">${total}</c:if>
                                 <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                                จาก ${total}</p>
+                               </p>
                             <div class="limiter">
                                 <c:if test="${param.page != 1}" >
                                     <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
