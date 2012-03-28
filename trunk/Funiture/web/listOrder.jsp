@@ -13,9 +13,10 @@
     select date_format(ohm.order_date,'วันที่ %d %M %Y เวลา %H:%i') as order_date,pdm.product_d_name_t,odm.product_volumn,
     odm.product_cost,odm.product_amount,odm.discount_TEXT
     from order_header_master ohm
+    join member_master mm on mm.member_id = ohm.member_id
     join order_detail_master odm on ohm.order_id = odm.order_id
     join product_detail_master pdm on odm.product_detail_id = pdm.product_detail_id
-    where DATE_FORMAT(ohm.order_date,'%Y-%m-%d') = '${param.date}'
+    where DATE_FORMAT(ohm.order_date,'%Y-%m-%d') = '${param.date}' and mm.member_id = ${sessionScope.loginDetail.memberId}
 </sql:query>
 <html>
     <head>
