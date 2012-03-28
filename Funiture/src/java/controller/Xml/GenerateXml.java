@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.Xml;
+package Util;
 
 /**
  *
@@ -16,9 +16,8 @@ public class GenerateXml {
     private String page;
     private String total;
     private String records;
-    private String rowDetail="";
-
-
+    private String rowDetail = "";
+    private String userdata = "";
 
     /**
      * @param page the page to set
@@ -27,15 +26,12 @@ public class GenerateXml {
         this.page = "<page>" + page + "</page>";
     }
 
-
     /**
      * @param total the total to set
      */
     public void setTotal(Object total) {
         this.total = "<total>" + total + "</total>";
     }
-
-
 
     /**
      * @param records the records to set
@@ -44,14 +40,13 @@ public class GenerateXml {
         this.records = "<records>" + records + "</records>";
     }
 
-
     /**
      * @param rowDetail the rowDetail to set
      */
     public void setRowDetail(Object rowId, Object... args) {
         if (args.length > 0 && rowId != null) {
             String IdOp = "<row id='" + rowId + "'>";
-            String detail="";
+            String detail = "";
             for (int i = 0; i < args.length; i++) {
                 detail = detail + "<cell>" + args[i] + "</cell>";
             }
@@ -65,7 +60,21 @@ public class GenerateXml {
      * @return the Xml
      */
     public String getXml() {
-        return header + rowsOp + page + total + records + rowDetail + rowsEd;
+        return header + rowsOp + page + total + records + rowDetail + userdata + rowsEd;
+    }
+
+    /**
+     * @return the userdata
+     */
+    public String getUserdata() {
+        return userdata;
+    }
+
+    /**
+     * @param userdata the userdata to set
+     */
+    public void setUserdata(Object obj1, Object obj2) {
+        this.userdata = this.userdata + "<userdata name=\"" + obj1 + "\">" + obj2 + "</userdata>";
     }
 //
 }
