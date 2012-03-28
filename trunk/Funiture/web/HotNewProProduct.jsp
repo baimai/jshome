@@ -33,114 +33,106 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>jshome</title>
-        <!-- the CSS for Smooth Div Scroll -->
-        <link rel="Stylesheet" type="text/css" href="css/smoothDivScroll.css" />
 
-        <!-- jQuery UI widget factory -->
-        <script src="js/jquery.ui.widget.js" type="text/javascript"></script>
-
-        <!-- Smooth Div Scroll 1.1 - minified for faster loading-->
-        <script src="js/jquery.smoothDivScroll-1.1-min.js" type="text/javascript"></script>
-        <!-- Script for specified scrolling -->
-        <script type="text/javascript">
-            // Initialize the plugin with no custom options
-            $(window).load(function() {
-                $("div#makeMeScrollable").smoothDivScroll({
-                    autoScroll: "onstart" ,
-                    autoScrollDirection: "backandforth",
-                    autoScrollStep: 1,
-                    autoScrollInterval: 15,
-                    startAtElementId: "startAtMe",
-                    visibleHotSpots: "always"
-                });
-            });
-        </script>
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" /> 
+        <link href="css/movingboxes.css" media="screen" rel="stylesheet">
+        <!--[if lt IE 9]>
+	<link href="css/movingboxes-ie.css" rel="stylesheet" media="screen" />
+	<![endif]-->
 
-        <style type="text/css">
-            #makeMeScrollable
-            {
-                
-                width:95%;
-                margin-left: 25px;
-                height: 250px;
-                position: relative;
-            }
+        <!-- Required script -->
 
-            #makeMeScrollable div.scrollableArea img
-            {
-                position: relative;
-                float: left;
-                margin: 0;
-                padding: 0;
-            }
+        <script src="js/jquery.movingboxes.js"></script>
+
+        <!-- Demo only -->
+
+        <style>
+            /* Dimensions set via css in MovingBoxes version 2.2.2+ */
+
+            #slider2 { width: 900px; }
+            #slider2 li { width: 250px; }
+            #slider3 { width: 900px; }
+            #slider3 li { width: 250px; }
+            #slider4 { width: 900px; }
+            #slider4 li { width: 250px; }
         </style>
+        <script>
+            $(function(){
+
+                $('#slider2').movingBoxes({
+                    /* width and panelWidth options deprecated, but still work to keep the plugin backwards compatible
+                        width: 500,
+                        panelWidth: 0.5,
+                     */
+                    startPanel   : 3,      // start with this panel
+                    wrap         : false,   // if true, the panel will "wrap" (it really rewinds/fast forwards) at the ends
+                    buildNav     : true,   // if true, navigation links will be added
+                    navFormatter : function(){ return "&#9679;"; } // function which returns the navigation text for each panel
+                });
+                $('#slider3').movingBoxes({
+                    /* width and panelWidth options deprecated, but still work to keep the plugin backwards compatible
+                        width: 500,
+                        panelWidth: 0.5,
+                     */
+                    startPanel   : 3,      // start with this panel
+                    wrap         : false,   // if true, the panel will "wrap" (it really rewinds/fast forwards) at the ends
+                    buildNav     : true,   // if true, navigation links will be added
+                    navFormatter : function(){ return "&#9679;"; } // function which returns the navigation text for each panel
+                });
+                $('#slider4').movingBoxes({
+                    /* width and panelWidth options deprecated, but still work to keep the plugin backwards compatible
+                        width: 500,
+                        panelWidth: 0.5,
+                     */
+                    startPanel   : 3,      // start with this panel
+                    wrap         : false,   // if true, the panel will "wrap" (it really rewinds/fast forwards) at the ends
+                    buildNav     : true,   // if true, navigation links will be added
+                    navFormatter : function(){ return "&#9679;"; } // function which returns the navigation text for each panel
+                });
+
+            });
+        </script>
     </head>
     <body>
         <div class="main-container col1-layout">
             <div class="main">
-              
-                    
-
                 <img src="images/hotpromotion.png" width="100%" alt="flag-hot-red"/>
+                <ul id="slider2">
+                    <c:forEach var="hotProduct" items="${query.rows}">
+                        <li>
+                            <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}" title="${hotProduct.Product_D_Name_T}">
+                                <img src="${hotProduct.Product_D_Pic_loc}" alt="title"/></a>
+                            <h2>${hotProduct.Product_D_Name_T}</h2>
 
-                    <div id="makeMeScrollable">
-                        <div class="scrollingHotSpotLeft"></div>
-                        <div class="scrollingHotSpotRight"></div>
-                        <div class="scrollWrapper">
-                            <div class="scrollableArea">
-                                <c:forEach var="hotProduct" items="${query.rows}">
-                                    <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}"><img src="${hotProduct.Product_D_Pic_loc}" title="${hotProduct.Product_D_Name_T}"/></a>
-                                    </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                
-                <br>
-               
-                  
-                   
-                        <img src="images/newproduct.png" width="100%" alt="flag-new-blue"/>
-                           
+                        </li>
+                    </c:forEach>
+                </ul>
+                <img src="images/newproduct.png" width="100%" alt="flag-new-blue"/>
+                <ul id="slider3">
+                    <c:forEach var="newProduct" items="${query2.rows}">
+                        <li>
+                            <a href="productDetail.jsp?productDetailId=${newProduct.product_detail_id}" title="${newProduct.Product_D_Name_T}">
+                                <img src="${newProduct.Product_D_Pic_loc}" alt="title"/></a>
+                            <h2>${newProduct.Product_D_Name_T}</h2>
 
-                    <div id="makeMeScrollable">
-                        <div class="scrollingHotSpotLeft"></div>
-                        <div class="scrollingHotSpotRight"></div>
-                        <div class="scrollWrapper">
-                            <div class="scrollableArea">
-                                <c:forEach var="newProduct" items="${query2.rows}">
-                                    <a href="productDetail.jsp?productDetailId=${newProduct.product_detail_id}"><img src="${newProduct.Product_D_Pic_loc}" title="${newProduct.Product_D_Name_T}" /></a>
-                                    </c:forEach>
+                        </li>
+                    </c:forEach>
+                </ul>
+                <img src="images/promotion.png" width="100%"  alt="flag-popular-red"/>
+                <ul id="slider4">
+                    <c:forEach var="proProduct" items="${query3.rows}">
+                        <li>
+                            <a href="productDetail.jsp?productDetailId=${proProduct.product_detail_id}" title="${proProduct.Product_D_Name_T}">
+                                <img src="${proProduct.Product_D_Pic_loc}" alt="title"/></a>
+                            <h2>${proProduct.Product_D_Name_T}</h2>
 
-                            </div>
-                        </div>
-
-                    </div>
-               
-                <br>
-               
-                    
-                   
-                        <img src="images/promotion.png" width="100%"  alt="flag-popular-red"/>
-                            
-                   
-                    <div id="makeMeScrollable">
-                        <div class="scrollingHotSpotLeft"></div>
-                        <div class="scrollingHotSpotRight"></div>
-                        <div class="scrollWrapper">
-                            <div class="scrollableArea">
-                                <c:forEach var="proProduct" items="${query3.rows}">
-                                    <a href="productDetail.jsp?productDetailId=${proProduct.product_detail_id}"><img src="${proProduct.Product_D_Pic_Loc}" title="${proProduct.Product_D_Name_T}"/></a>
-                                    </c:forEach>
-
-                            </div>
-                        
-
-                    </div>
-                </div>
+                        </li>
+                    </c:forEach>
+                </ul>
             </div>
         </div>
+
     </body>
 </html>

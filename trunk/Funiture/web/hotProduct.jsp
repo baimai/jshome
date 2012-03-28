@@ -6,10 +6,11 @@
     Author     : Achilles
 --%>
 <sql:query var="query" dataSource="webdb">
-    SELECT * FROM menu_product_setup mps
-         join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-         where mps.Menu_Code = '011'
-    order by mps.Menu_code,mps.Product_Code
+    SELECT * FROM pic_product_setup mps
+    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
+    where mps.Pic_Code = '00010' and pdm.product_d_display_flag = 'Y'
+    order by mps.Pic_code,mps.pic_seq
+    limit 0,6
 </sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -55,7 +56,11 @@ window.onload=function(){
 		autoScrolling:0, 
 		autoScrollingSpeed:2000, 
 		autoScrollingEasing:"easeInOutQuad", 
-		autoScrollingDelay:500 
+		autoScrollingDelay:500 ,
+                title_show: 'enable',//enable  disable
+                    time_interval: "15",
+                     title_size: "12",
+                    title_color: "black"
 	});
 	$("#tS3").thumbnailScroller({ 
 		scrollerType:"hoverPrecise", 
@@ -69,7 +74,11 @@ window.onload=function(){
 		autoScrolling:0, 
 		autoScrollingSpeed:2000, 
 		autoScrollingEasing:"easeInOutQuad", 
-		autoScrollingDelay:500 
+		autoScrollingDelay:500 ,
+                title_show: "enable",//enable  disable
+                    time_interval: "15",
+                     title_size: "12",
+                    title_color: "black"
 	});
 	$("#tS4").thumbnailScroller({ 
 		scrollerType:"hoverPrecise", 
@@ -83,7 +92,11 @@ window.onload=function(){
 		autoScrolling:0, 
 		autoScrollingSpeed:2000, 
 		autoScrollingEasing:"easeInOutQuad", 
-		autoScrollingDelay:500 
+		autoScrollingDelay:500 ,
+                title_show: "enable",//enable  disable
+                    time_interval: "15",
+                     title_size: "12",
+                    title_color: "black"
 	});
 }
 })(jQuery);
@@ -96,14 +109,17 @@ window.onload=function(){
     
     <tr>
         <td><div align="center"><img src="jshome/images/hot.jpg" width="953" height="27" /></div></td>
-    </tr>
-    <tr>
+    </tr>    <tr>
         <td><!-- thumbnail scroller markup begin -->
             <div id="tS2" class="jThumbnailScroller" style="margin-top:50px;">
                 <div class="jTscrollerContainer">
                     <div class="jTscroller">
                         <c:forEach var="hotProduct" items="${query.rows}">
-                        <a href="products_detail.html"><img src="${hotProduct.Product_D_Logo}" /></a>			
+                            <div>
+                                <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}" 
+                                   title="${hotProduct.Product_D_Name_T}">
+                                    <img src="${hotProduct.Product_D_Pic_loc}" alt="title"/>${hotProduct.Product_D_Name_T}</a>
+                            </div>
                         </c:forEach>
                         </div>
                 </div>

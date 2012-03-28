@@ -124,7 +124,7 @@
                         <div>
                             <ul>
                                 <li><a href="#" class="last"><span>รายงานสินค้าสินค้าขายดี</span></a></li>
-                                <li><a href="#" class="last"><span>รายงานสั่งซื้อ</span></a></li>
+                                <li><a href="reportOrder.jsp" class="last"><span>รายงานสั่งซื้อ</span></a></li>
 
                             </ul>
                         </div>
