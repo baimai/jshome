@@ -39,7 +39,7 @@ public class xmlProductGroup extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+                //response.setContentType("text/xml;charset=UTF-8");
 
 
                 int rows = 20, page = 1;
@@ -85,7 +85,7 @@ public class xmlProductGroup extends HttpServlet {
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 ArrayList listp = pdm.search(productGroupId, Company_Id,start,rows);
                 ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id, start, rows);
-                ArrayList listpd = pdm.searchAll2();
+               
                 
 
                 
@@ -141,6 +141,7 @@ public class xmlProductGroup extends HttpServlet {
                     out.print(xml.getXml());
                 }
                  else if (request.getParameter("q").equals("4")) {
+                      ArrayList listpd = pdm.searchAll2();
                     int totalPages = 0;
                     int totalCount = pdm.countAll(Company_Id);
                     db.close();
