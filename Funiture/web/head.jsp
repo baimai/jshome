@@ -30,7 +30,7 @@
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/validator.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="all" />
-        <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
+       
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
