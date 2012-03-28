@@ -57,6 +57,8 @@ public class Column {
             sField = "mb.Member_SurName";
         }else if (sField.equals("memberStatus")) {
             sField = "mb.Member_Status";
+        }else if (sField.equals("orderId")) {
+            sField = "ohm.Order_Id";
         }
         return sField;
     }
