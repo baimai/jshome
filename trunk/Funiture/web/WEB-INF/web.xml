@@ -13,10 +13,6 @@
         <servlet-class>controller.datagrid</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>controller.test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>productSetup</servlet-name>
         <servlet-class>controller.productSetup</servlet-class>
     </servlet>
@@ -101,10 +97,6 @@
         <servlet-class>controller.logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>test2</servlet-name>
-        <servlet-class>controller.test2</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>xmlOrderMaster</servlet-name>
         <servlet-class>controller.xmlOrderMaster</servlet-class>
     </servlet>
@@ -116,7 +108,7 @@
         <servlet-name>stockMaster</servlet-name>
         <servlet-class>controller.stockMaster</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>xmlStockMaster</servlet-name>
         <servlet-class>controller.xmlStockMaster</servlet-class>
     </servlet>
@@ -152,13 +144,21 @@
         <servlet-name>testPdf</servlet-name>
         <servlet-class>controller.testPdf</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>controller.test</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>xmlReport</servlet-name>
+        <servlet-class>controller.xmlReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>insert</servlet-name>
+        <servlet-class>controller.insert</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>datagrid</servlet-name>
@@ -249,10 +249,6 @@
         <url-pattern>/logout.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>test2</servlet-name>
-        <url-pattern>/test2.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>xmlOrderMaster</servlet-name>
         <url-pattern>/admin/xmlOrderMaster.do</url-pattern>
     </servlet-mapping>
@@ -264,7 +260,7 @@
         <servlet-name>xmlStockMaster</servlet-name>
         <url-pattern>/admin/xmlStockMaster.do</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>stockMaster</servlet-name>
         <url-pattern>/admin/stockMaster.do</url-pattern>
     </servlet-mapping>
@@ -300,12 +296,23 @@
         <servlet-name>testPdf</servlet-name>
         <url-pattern>/admin/testPdf.do</url-pattern>
     </servlet-mapping>
-   
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>xmlReport</servlet-name>
+        <url-pattern>/admin/xmlReport.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insert</servlet-name>
+        <url-pattern>/insert</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://localhost:3306/webdb</description>
+        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
