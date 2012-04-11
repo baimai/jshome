@@ -67,6 +67,7 @@ public class productGroup extends HttpServlet {
 
                 pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                pgm.setUserId(getServletInfo());
 
                 if (request.getParameter("action").equals("Add")) {
                     pgmt.add(pgm);
