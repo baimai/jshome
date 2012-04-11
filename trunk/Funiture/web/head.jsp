@@ -52,15 +52,15 @@
                     <c:if test="${sessionScope.loginDetail==null}">ยินดีต้อนรับ ลูกค้า</c:if>
                 </div>
                 <div class="shop-access"><ul class="links">
-                        <c:if test="${sessionScope.loginDetail!=null}"><li class="first" ><a href="profile.jsp" title="My Account" >My Account</a></li></c:if>
+                        <c:if test="${sessionScope.loginDetail!=null}"><li class="first" ><a href="profile.jsp" title="My Account" >ข้อมูลส่วนตัว</a></li></c:if>
 
-                        <li ><a href="#" title="My Cart" class="top-link-cart">My Cart (${itemNum} item)</a></li>
-                        <li ><a href="forgotPassword.jsp" title="My Cart" class="top-link-cart">forgot password</a></li>
-                        <li ><a href="cartDetail.jsp" title="Checkout" class="top-link-checkout">Checkout</a></li>
+                        <li ><a href="cartDetail.jsp" title="My Cart" class="top-link-cart">สินค้าในตระกร้า (${itemNum} รายการ)</a></li>
+                        <li ><a href="forgotPassword.jsp" title="My Cart" class="top-link-cart">ลืมรัหสผ่าน</a></li>
+                        
                         <li class=" last" >
-                            <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >Log Out</a></c:if>
-                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Log In</a></c:if>
-                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >Register</a></c:if>
+                            <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >ออกจากระบบ</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >เข้าสู่ระบบ</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >สมัครสมาชิก</a></c:if>
                         </li>
                     </ul>
                 </div>
