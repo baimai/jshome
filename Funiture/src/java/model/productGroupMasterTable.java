@@ -73,7 +73,7 @@ public class productGroupMasterTable {
     public ArrayList search(String sField, String sValue, String sOper,int Company_Id,int start ,int limit) {
         String sql = " SELECT * FROM product_group_master pgm"+
                      " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
-                     " where cm.Company_Id = ? " ;
+                     " where cm.Company_Id = ? order by pgm.product_group_code" ;
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
@@ -90,6 +90,9 @@ public class productGroupMasterTable {
                 pgm.setProductRemarkT(Default.Str(result.get(i).get("Product_Remark_T")));
                 pgm.setProductRemarkE(Default.Str(result.get(i).get("Product_Remark_E")));
                 pgm.setProductGDisplayFlag(Default.Str(result.get(i).get("Product_G_Display_Flag")));
+                pgm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+                pgm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
+                pgm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 pgm.setProductGroupId((Integer)result.get(i).get("Product_Group_Id"));
                 pgm.setCompanyCode(Default.Str(result.get(i).get("Company_Code")));
                 list.add(pgm);
