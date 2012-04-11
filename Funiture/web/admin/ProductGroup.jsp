@@ -38,15 +38,16 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['Group Code', 'Group Name Th', 'Group Name En','Remark Th','Remark En','Group Id','Display'],
+                    colNames:['รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id'],
                     colModel:[                       
-                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:100,editable:true,editoptions:{size:10}},
-                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:230,editable:true,editoptions:{size:25}},
-                        {name:'productGNameE',index:'productGNameE', align:"centert", width:230,editable:true,editoptions:{size:25}},
-                        {name:'productRemarkT',index:'productRemarkT',hidden:true ,editrules:{ edithidden:true}, width:125, align:"right",editable:true,editoptions:{size:50}},
-                        {name:'productRemarkE',index:'productRemarkE',hidden:true ,editrules:{ edithidden:true},width:125, align:"right",editable:true,editoptions:{size:50}},
-                        {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:80,editable:true,editrules:{ edithidden:true},edittype:'select',editoptions:{value:{'Y':'Show','N':'Not Show','A':'Show On Slide'}}}
+                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editable:true,editoptions:{size:10}},
+                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25}},
+                        {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:80,editable:true,editrules:{ edithidden:true},edittype:'select',editoptions:{value:{'Y':'Show','N':'Not Show','A':'Show On Slide'}}},
+                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:true,editoptions:{size:25}},
+                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:true,editoptions:{size:25}},
+                        {name:'userId',index:'userId', align:"centert", width:200,editable:true,editoptions:{size:25}},
+                        {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true}
 
                     ],
                     rowNum:20,
