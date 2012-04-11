@@ -56,6 +56,18 @@ public class testPdf extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         Document document = new Document(PageSize.A4, 30, 30, 30, 30);
         try {
+            BaseFont bfComic = BaseFont.createFont("c:\\windows\\fonts\\ANGSA.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            Font fontHeader = new Font(bfComic, 24, 2, BaseColor.BLUE);
+            Font font6 = new Font(bfComic, 6);
+            Font font10 = new Font(bfComic, 10);
+            Font font12 = new Font(bfComic, 12);
+            Font font15 = new Font(bfComic, 15);
+            Font font14 = new Font(bfComic, 14);
+            Font font16 = new Font(bfComic, 16);
+            Font font18 = new Font(bfComic, 18);
+            Font font20 = new Font(bfComic, 20);
+            Font font22 = new Font(bfComic, 22);
+            Font font24 = new Font(bfComic, 24);
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
             Database db = new Database();
             catalogTable cat = new catalogTable(db);
@@ -63,18 +75,12 @@ public class testPdf extends HttpServlet {
             ca.setCompanyId(Company_Id);
             ca.setCatalogName(request.getParameter("linkName"));
             ca.setCatalogPicLoc("upload/catalog/" + request.getParameter("fileName") + ".pdf");
-
-            String productGroup = "", picCode = "";
-            if (request.getParameter("productGroup") != null) {
-                productGroup = request.getParameter("productGroup");
-            }
-            if (request.getParameter("picCode") != null) {
-                picCode = request.getParameter("picCode");
-            }
+            String productGroup = request.getParameter("productGroup") != null ? request.getParameter("productGroup") : "";
+            String picCode = request.getParameter("picCode") != null ? request.getParameter("picCode") : "";
             ArrayList list = cat.search(productGroup, picCode);
             ArrayList list2 = cat.searchDetail(Company_Id);
             companyMasterEntity com = (companyMasterEntity) list2.get(0);
-            //LOGO Header
+            //ภาพหน้าปก
             out.print(com.getCompanyCatalogLoc());
             String relativeWebPath = com.getCompanyCatalogLoc();
             String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
@@ -88,99 +94,96 @@ public class testPdf extends HttpServlet {
             img.scaleAbsoluteWidth(595);
             writer.getDirectContent().addImage(img);
             document.newPage();
-            //
-            String relativeWebPath3 = com.getCompanyLogoLoc();
-            String absoluteDiskPath3 = getServletContext().getRealPath(relativeWebPath3);
-            Image img3 = Image.getInstance(absoluteDiskPath3);
-            img3.setAbsolutePosition(40,760);
-            img3.scaleAbsoluteHeight(45);
-            img3.scaleAbsoluteWidth(70);
-            writer.getDirectContent().addImage(img3);
-            //
-            BaseFont bfComic = BaseFont.createFont("c:\\windows\\fonts\\ANGSA.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            Font font = new Font(bfComic, 12);
-            PdfPCell cellh;
-            PdfPTable tablehead = new PdfPTable(20);
-            tablehead.setWidthPercentage(100);
-            cellh = new PdfPCell(new Paragraph("ลำดับ", font));
-            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cellh.setColspan(1);
-            tablehead.addCell(cellh);
-            cellh = new PdfPCell(new Paragraph("", font));
-            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cellh.setColspan(5);
-            tablehead.addCell(cellh);
-            cellh = new PdfPCell(new Paragraph("ชื่อสินค้า", font));
-            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cellh.setColspan(3);
-            tablehead.addCell(cellh);
-            cellh = new PdfPCell(new Paragraph("รหัสสินค้า", font));
-            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cellh.setColspan(3);
-            tablehead.addCell(cellh);
-            cellh = new PdfPCell(new Paragraph("รายละอียด", font));
-            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cellh.setColspan(6);
-            tablehead.addCell(cellh);
-            cellh = new PdfPCell(new Paragraph("ราคา", font));
-            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cellh.setColspan(2);
-            tablehead.addCell(cellh);
-            //
+            //รายละเอียดบริษัท
             PdfPTable tableCom = new PdfPTable(1);
             tableCom.setWidthPercentage(100);
             PdfPCell cellCom;
-            Font font2 = new Font(bfComic, 24, 2, BaseColor.BLUE);
-            cellCom = new PdfPCell(new Paragraph("แคตตาล็อคออนไลน์", font2));
+            cellCom = new PdfPCell(new Paragraph("แคตตาล็อคออนไลน์", fontHeader));
             cellCom.setBorder(0);
             cellCom.setHorizontalAlignment(cellCom.ALIGN_CENTER);
             tableCom.addCell(cellCom);
-
-            font2 = new Font(bfComic, 18, 2, BaseColor.BLACK);
-            cellCom = new PdfPCell(new Paragraph(com.getCompanyNameT(), font2));
+            cellCom = new PdfPCell(new Paragraph(com.getCompanyNameT(), font16));
             cellCom.setBorder(0);
             cellCom.setHorizontalAlignment(cellCom.ALIGN_CENTER);
             tableCom.addCell(cellCom);
-
-            font2 = new Font(bfComic, 15, 2, BaseColor.BLACK);
-            cellCom = new PdfPCell(new Paragraph(com.getCompanyAddrT(), font2));
+            cellCom = new PdfPCell(new Paragraph(com.getCompanyAddrT(), font15));
             cellCom.setBorder(0);
             cellCom.setHorizontalAlignment(cellCom.ALIGN_CENTER);
             tableCom.addCell(cellCom);
-
-            font2 = new Font(bfComic, 18, 2, BaseColor.BLACK);
-            cellCom = new PdfPCell(new Paragraph(com.getCompanyTel1() + "   " + com.getCompanyFax1() + "   " + com.getCompanyEmail1(), font2));
+            cellCom = new PdfPCell(new Paragraph(com.getCompanyTel1() + "   " + com.getCompanyFax1() + "   " + com.getCompanyEmail1(), font16));
             cellCom.setBorder(0);
             cellCom.setHorizontalAlignment(cellCom.ALIGN_CENTER);
             tableCom.addCell(cellCom);
+            //เส้น
+            PdfPTable tableLine = new PdfPTable(1);
+            tableLine.setWidthPercentage(100);
+            PdfPCell cellLine;
+            cellLine = new PdfPCell(new Paragraph("_______________________________________________________________________________________________________________________________________________________________", font10));
+            cellLine.setBorder(0);
+            cellLine.setHorizontalAlignment(cellLine.ALIGN_CENTER);
+            tableLine.addCell(cellLine);
+            //หมวดหมู่
+            PdfPTable tableGroup = new PdfPTable(1);
+            tableGroup.setWidthPercentage(100);
+            PdfPCell cellGroup;
+            cellGroup = new PdfPCell(new Paragraph("หมวดสินค้า : " + request.getParameter("groupName"), font12));
+            cellGroup.setBorder(0);
+            cellGroup.setHorizontalAlignment(cellGroup.ALIGN_LEFT);
+            tableGroup.addCell(cellGroup);
+            cellGroup = new PdfPCell(new Paragraph("", font6));
+            cellGroup.setBorder(Rectangle.BOTTOM);
+            tableGroup.addCell(cellGroup);
+            //ภาพโลโก้
+            String relativeWebPath3 = com.getCompanyLogoLoc();
+            String absoluteDiskPath3 = getServletContext().getRealPath(relativeWebPath3);
+            Image img3 = Image.getInstance(absoluteDiskPath3);
+            img3.setAbsolutePosition(40, 760);
+            img3.scaleAbsoluteHeight(45);
+            img3.scaleAbsoluteWidth(70);
+            writer.getDirectContent().addImage(img3);
+            //หัวตาราง
+            PdfPCell cellh;
+            PdfPTable tablehead = new PdfPTable(20);
+            tablehead.setWidthPercentage(100);
+            cellh = new PdfPCell(new Paragraph("ลำดับ", font12));
+            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            cellh.setColspan(1);
+            tablehead.addCell(cellh);
+            cellh = new PdfPCell(new Paragraph("", font12));
+            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            cellh.setColspan(5);
+            tablehead.addCell(cellh);
+            cellh = new PdfPCell(new Paragraph("ชื่อสินค้า", font12));
+            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            cellh.setHorizontalAlignment(cellh.ALIGN_CENTER);
+            cellh.setColspan(3);
+            tablehead.addCell(cellh);
+            cellh = new PdfPCell(new Paragraph("รหัสสินค้า", font12));
+            cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            cellh.setHorizontalAlignment(cellh.ALIGN_CENTER);
+            cellh.setColspan(3);
+            tablehead.addCell(cellh);
+            if (!com.getShowPriceListFlag().equals("N")) { //เมื่อset แสดงราคา
+                cellh = new PdfPCell(new Paragraph("รายละอียด", font12));
+                cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                cellh.setHorizontalAlignment(cellh.ALIGN_CENTER);
+                cellh.setColspan(6);
+                tablehead.addCell(cellh);
+                cellh = new PdfPCell(new Paragraph("ราคา", font12));
+                cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                cellh.setHorizontalAlignment(cellh.ALIGN_CENTER);
+                cellh.setColspan(2);
+                tablehead.addCell(cellh);
+            } else { //เมื่อset ไม่แสดงราคา
+                cellh = new PdfPCell(new Paragraph("รายละอียด", font12));
+                cellh.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                cellh.setHorizontalAlignment(cellh.ALIGN_CENTER);
+                cellh.setColspan(8);
+                tablehead.addCell(cellh);
+            }
+            //
 
-            font2 = new Font(bfComic, 18, 2, BaseColor.BLACK);
-            cellCom = new PdfPCell(new Paragraph("_________________________________________________________________________________________", font2));
-            cellCom.setBorder(0);
-            cellCom.setHorizontalAlignment(cellCom.ALIGN_CENTER);
-            tableCom.addCell(cellCom);
-
-            font2 = new Font(bfComic, 16, 2, BaseColor.BLACK);
-            cellCom = new PdfPCell(new Paragraph("หมวดสินค้า : "+request.getParameter("groupName"), font2));
-            cellCom.setBorder(0);
-            cellCom.setHorizontalAlignment(cellCom.ALIGN_LEFT);
-            tableCom.addCell(cellCom);
-
-            cellCom = new PdfPCell(new Paragraph("", font2));
-            cellCom.setBorder(Rectangle.BOTTOM);
-            tableCom.addCell(cellCom);
-
-
-            document.add(tableCom);
-
-
-            LineSeparator ls = new LineSeparator();
-            document.add(new Chunk(ls));
-            document.add(new Chunk(ls));
-            document.add(new Chunk(ls));
-            document.add(new Chunk(ls));
-            document.add(tablehead);
-
+            int pageNum = 0;
             for (int i = 0; i < list.size(); i++) {
                 PdfPTable table = new PdfPTable(20);
                 PdfPCell cell;
@@ -192,17 +195,17 @@ public class testPdf extends HttpServlet {
                 img2.scaleAbsoluteHeight(90);
                 img2.scaleAbsoluteWidth(130);
 
-                if (i == 6) {
-                    document.newPage();
-                    document.add(tablehead);
-                }
-                if (i > 6 && (i - 6) % 7 == 0) {
-                    document.newPage();
+                if (i % 6 == 0) {
+                    if (i != 0) {
+                        document.newPage();
+                    }
+                    document.add(tableCom);
+                    document.add(tableLine);
+                    document.add(tableGroup);
                     document.add(tablehead);
                 }
 
-
-                cell = new PdfPCell(new Paragraph(i + 1 + " ", font));
+                cell = new PdfPCell(new Paragraph(i + 1 + " ", font12));
                 cell.setColspan(1);
                 cell.setRowspan(6);
                 cell.setHorizontalAlignment(cell.ALIGN_CENTER);
@@ -214,61 +217,128 @@ public class testPdf extends HttpServlet {
                 cell.setVerticalAlignment(cell.ALIGN_MIDDLE);
                 table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductDNameT() + " ", font));
+                cell = new PdfPCell(new Paragraph(pdm.getProductDNameT() + " ", font12));
                 cell.setColspan(3);
                 cell.setRowspan(6);
                 table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductCode() + " ", font));
+                cell = new PdfPCell(new Paragraph(pdm.getProductCode() + " " + "(" + pdm.getProductModelCode() + ")", font12));
                 cell.setColspan(3);
                 cell.setRowspan(6);
                 table.addCell(cell);
                 ////
-                cell = new PdfPCell(new Paragraph(pdm.getProductSpect1_T(), font));
-                cell.setColspan(6);
-                cell.setRowspan(1);
-                cell.setBorder(Rectangle.ALIGN_TOP);
-                table.addCell(cell);
-                ////
-                cell = new PdfPCell(new Paragraph(pdm.getProductPrice1() + " ", font));
-                cell.setColspan(2);
-                cell.setRowspan(6);
-                table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductSpect2_T(), font));
-                cell.setColspan(6);
-                cell.setRowspan(1);
-                cell.setBorder(Rectangle.ALIGN_TOP);
-                table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductSpect3_T(), font));
-                cell.setColspan(6);
-                cell.setRowspan(1);
-                cell.setBorder(Rectangle.ALIGN_TOP);
-                table.addCell(cell);
+                if (!com.getShowPriceListFlag().equals("N")) { //เมื่อset แสดงราคา
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect1_T(), font12));
+                    cell.setColspan(6);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    table.addCell(cell);
+                    if (com.getShowPriceListFlag().equals("R")) {
+                        cell = new PdfPCell(new Paragraph(pdm.getProductPrice3() + " ", font12));
+                        cell.setColspan(2);
+                        cell.setRowspan(6);
+                        table.addCell(cell);
+                    } else {
+                        cell = new PdfPCell(new Paragraph(pdm.getProductPrice1() + " ", font12));
+                        cell.setColspan(2);
+                        cell.setRowspan(6);
+                        table.addCell(cell);
+                    }
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect2_T(), font12));
+                    cell.setColspan(6);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductSpect4_T(), font));
-                cell.setColspan(6);
-                cell.setRowspan(1);
-                cell.setBorder(Rectangle.ALIGN_TOP);
-                table.addCell(cell);
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect3_T(), font12));
+                    cell.setColspan(6);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductSpect5_T(), font));
-                cell.setColspan(6);
-                cell.setRowspan(1);
-                cell.setBorder(Rectangle.ALIGN_TOP);
-                table.addCell(cell);
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect4_T(), font12));
+                    cell.setColspan(6);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    table.addCell(cell);
 
-                cell = new PdfPCell(new Paragraph(pdm.getProductSpect6_T(), font));
-                cell.setColspan(6);
-                cell.setRowspan(1);
-                cell.setBorder(Rectangle.ALIGN_TOP);
-                 cell.setBorder(Rectangle.BOTTOM);
-                table.addCell(cell);
-                table.completeRow();
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect5_T(), font12));
+                    cell.setColspan(6);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    table.addCell(cell);
+
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect6_T(), font12));
+                    cell.setColspan(6);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    cell.setBorder(Rectangle.BOTTOM);
+                    table.addCell(cell);
+                    table.completeRow();
+                } else {//เมื่อเซตไม่แสดงสินค้า
+
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect1_T()+" ", font12));
+                    cell.setColspan(8);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    cell.setBorder(Rectangle.RIGHT);
+                    table.addCell(cell);
+
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect2_T()+" ", font12));
+                    cell.setColspan(8);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    cell.setBorder(Rectangle.RIGHT);
+                    table.addCell(cell);
+
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect4_T()+" ", font12));
+                    cell.setColspan(8);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    cell.setBorder(Rectangle.RIGHT);
+                    table.addCell(cell);
+
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect5_T()+" ", font12));
+                    cell.setColspan(8);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    cell.setBorder(Rectangle.RIGHT);
+                    table.addCell(cell);
+
+                    cell = new PdfPCell(new Paragraph(pdm.getProductSpect6_T()+" ", font12));
+                    cell.setColspan(8);
+                    cell.setRowspan(1);
+                    cell.setBorder(Rectangle.ALIGN_TOP);
+                    cell.setBorder(Rectangle.BOTTOM | Rectangle.RIGHT);
+                    table.addCell(cell);
+                    table.completeRow();
+                }
                 document.add(table);
 
+                if ((i > 0 && (i + 1) % 6 == 0) || i == (list.size() - 1)) {
+                    pageNum = pageNum + 1;
+                    document.add(tableLine);
+                    //footer
+                    PdfPTable footerTable = new PdfPTable(20);
+                    footerTable.setWidthPercentage(100);
+                    PdfPCell footerCell = new PdfPCell(new Paragraph(com.getCompanyNameT(), font12));
+                    footerCell.setColspan(10);
+                    footerCell.setBorder(0);
+                    footerCell.setHorizontalAlignment(footerCell.ALIGN_LEFT);
+                    footerTable.addCell(footerCell);
+                    PdfPCell footerCell2 = new PdfPCell(new Paragraph("page 1/" + pageNum, font12));
+                    footerCell2.setColspan(10);
+                    footerCell2.setBorder(0);
+                    footerCell2.setHorizontalAlignment(footerCell2.ALIGN_RIGHT);
+                    footerTable.addCell(footerCell2);
+                    document.add(footerTable);
+                    //end footer
+                }
+
             }
+
             cat.add(ca);
             db.close();
             document.close();
