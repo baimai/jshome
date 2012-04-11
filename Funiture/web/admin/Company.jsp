@@ -355,7 +355,7 @@
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label align="right">อีเมลล์ 3</label>
+                                                                    <label align="right">เว็บไซด์</label>
 
                                                                     <div class="input-box">
                                                                         <input type="text" name="companyEmail3" value=""  class="input-text" />
@@ -733,7 +733,7 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">อีเมลล์ 3</label>
+                                                                        <label align="right">เว็บไซด์</label>
 
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyEmail3" value="${company.Company_Email_3}"  class="input-text" />
