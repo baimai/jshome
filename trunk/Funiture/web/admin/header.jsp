@@ -66,10 +66,10 @@
                     </li>
                     <li><a href="#" class="parent"><span>จัดการสินค้า</span></a>
                         <div><ul>
-                                <li><a href="ProductGroup.jsp" class="parent"><span>ประเภทสินค้า</span></a>
+                                <li><a href="ProductGroup.jsp" class="parent"><span>กลุ่มสินค้า</span></a>
 
                                 </li>
-                                <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a>
+                                <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a> </li>
                                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                                 </li>
@@ -77,7 +77,7 @@
                                 <li><a href="stockMaster.jsp" class="parent"><span>จำนวนสินค้า</span></a></li>
 
 
-                                </li>
+                               
                             </ul></div>
                     </li>
                     <li><a href="#" class="parent"><span>จัดการเมนู</span></a>
