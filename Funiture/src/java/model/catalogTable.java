@@ -85,6 +85,7 @@ public class catalogTable {
                 pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
                 pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
+                pdm.setProductModelCode(Default.Str(result.get(i).get("product_model_code")));
                 if (result.get(i).get("Product_Color_Id") != null) {
                     pdm.setProductColorId((Integer) result.get(i).get("Product_Color_Id"));
                 }
@@ -102,7 +103,7 @@ public class catalogTable {
         String sql = " SELECT c.Company_Name_T, "+
                      " concat(c.company_addr_t,' ต.',company_district_t,' อ.',company_amphur_t,' จ.',company_province_t,' ',company_postcode) as address, "+
                      " concat('Tel : ',c.company_tel1) as tel,concat('Fax : ',c.company_fax1) as fax,concat('Email : ',c.company_email1) as email,"+
-                     " c.Company_Catalog_Loc,c.Company_Logo_Loc "+
+                     " c.Company_Catalog_Loc,c.Company_Logo_Loc,c.Show_Price_List_Flag "+
                      " FROM company_master c "+
                      " where c.company_id = ?";
 
@@ -118,6 +119,7 @@ public class catalogTable {
                 c.setCompanyEmail1((String)result.get(0).get("email"));
                 c.setCompanyCatalogLoc((String)result.get(0).get("Company_Catalog_Loc"));
                 c.setCompanyLogoLoc((String)result.get(0).get("Company_Logo_Loc"));
+                c.setShowPriceListFlag((String)result.get(0).get("Show_Price_List_Flag"));
                 list.add(c);
             }
             return list;
