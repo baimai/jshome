@@ -53,46 +53,49 @@ public class seqProductSetup extends HttpServlet {
                     // RequestDispatcher obj = request.getRequestDispatcher("seqProductSetup.jsp");
                     //obj.forward(request, response);
                 } else if (request.getParameter("action").equals("editSeq")) {
-                    ArrayList list = (ArrayList) s.getAttribute("picProductList");
-                    int seq[] = new int[list.size()];
-                    for (int i = 0; i < list.size(); i++) {
-                        picProductSetupEntity pps = (picProductSetupEntity) list.get(i);
-                        if (pps.getPicId() == Integer.parseInt(request.getParameter("picId"))) {
-                            if (request.getParameter("status").equals("plus")) {
-                                pps.setPicSeq(pps.getPicSeq() + 1);
-                            } else if (request.getParameter("status").equals("minus")) {
-                                if (pps.getPicSeq() > 0) {
-                                    pps.setPicSeq(pps.getPicSeq() - 1);
-                                }
-
-                            }
-                        }
-                        seq[i] = pps.getPicSeq();
-                    }
-                    ArrayList list2 = new ArrayList();
-                    for (int i = 0; i < seq.length; i++) {
-                        if (seq[i] != 9999) {
-                            int k = seq[i];
-                            int pointer = i;
-                            for (int j = 0; j < seq.length; j++) {
-                                if (k >= seq[j]) {
-                                    k = seq[j];
-                                    pointer = j;
-                                    i = -1;
-                                }
-                            }
-                            list2.add(list.get(pointer));
-                            seq[pointer] = 9999;
-                        }
-                    }
-                    s.setAttribute("picProductList", list2);
-                    response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
+//                    ArrayList list = (ArrayList) s.getAttribute("picProductList");
+//                    int seq[] = new int[list.size()];
+//                    for (int i = 0; i < list.size(); i++) {
+//                        picProductSetupEntity pps = (picProductSetupEntity) list.get(i);
+//                        if (pps.getPicId() == Integer.parseInt(request.getParameter("picId"))) {
+//                            if (request.getParameter("status").equals("plus")) {
+//                                pps.setPicSeq(pps.getPicSeq() + 1);
+//                            } else if (request.getParameter("status").equals("minus")) {
+//                                if (pps.getPicSeq() > 0) {
+//                                    pps.setPicSeq(pps.getPicSeq() - 1);
+//                                }
+//
+//                            }
+//                        }
+//                        seq[i] = pps.getPicSeq();
+//                    }
+//                    ArrayList list2 = new ArrayList();
+//                    for (int i = 0; i < seq.length; i++) {
+//                        if (seq[i] != 9999) {
+//                            int k = seq[i];
+//                            int pointer = i;
+//                            for (int j = 0; j < seq.length; j++) {
+//                                if (k >= seq[j]) {
+//                                    k = seq[j];
+//                                    pointer = j;
+//                                    i = -1;
+//                                }
+//                            }
+//                            list2.add(list.get(pointer));
+//                            seq[pointer] = 9999;
+//                        }
+//                    }
+//                    s.setAttribute("picProductList", list2);
+//                    response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
                 } else if (request.getParameter("action").equals("saveSeq")) {
-                    ArrayList list = (ArrayList) s.getAttribute("picProductList");
+                    String[] picId = request.getParameterValues("picId");
+                    String[] picSeq = request.getParameterValues("picSeq");
                     Database db = new Database();
-                    for (int i = 0; i < list.size(); i++) {
-                        picProductSetupEntity pps = (picProductSetupEntity) list.get(i);
+                    for (int i = 0; i < picId.length; i++) {
                         picProductSetupTable ppst = new picProductSetupTable(db);
+                        picProductSetupEntity pps = new picProductSetupEntity();
+                        pps.setPicId(Integer.parseInt(picId[i]));
+                        pps.setPicSeq(Integer.parseInt(picSeq[i]));
                         ppst.updateSeq(pps);
                     }
                     db.close();

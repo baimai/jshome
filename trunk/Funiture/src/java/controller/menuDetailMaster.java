@@ -80,11 +80,19 @@ public class menuDetailMaster extends HttpServlet {
                 md.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 md.setCreateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
-                    mdt.add(md);
+                    Boolean chechDuplicate = mdt.checkDuplicate(md);
+                    if (chechDuplicate == false) {
+                        mdt.add(md);
+                    }
                 } else if (request.getParameter("action").equals("Edit")) {
+                    
                     mdt.update(md);
+
                 } else if (request.getParameter("action").equals("Del")) {
-                    mdt.remove(md);
+                    Boolean checkChild = mdt.checkChild(md);
+                    if(checkChild==false){
+                         mdt.remove(md);
+                    }
                 }
                 db.close();
             }

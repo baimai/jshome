@@ -38,29 +38,13 @@ public class xmlColorMaster extends HttpServlet {
            if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
-                int rows = 20, page = 1;
-                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
-                    String r = request.getParameter("rows");
-                    rows = Integer.parseInt(r);
-                }
-                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
-                    String r = request.getParameter("page");
-                    page = Integer.parseInt(r);
-                }
-                int start = rows * page - rows;;
-
-                String sField = null, sValue = null, sOper = null;
-                if (request.getParameter("searchField") != null) {
-                    sField = request.getParameter("searchField");
-                }
-                if (request.getParameter("searchString") != null) {
-                    sValue = request.getParameter("searchString");
-                }
-                if (request.getParameter("searchOper") != null) {
-                    sOper = request.getParameter("searchOper");
-                }
+                int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
+                int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;
+                int start = rows * page - rows;
+                String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
+                String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
+                String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
                
-
                 Database db = new Database();
                 colorMasterTable cmt = new colorMasterTable(db);
                 ArrayList list = cmt.search(sField, sValue, sOper,start,rows);

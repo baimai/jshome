@@ -53,7 +53,10 @@ public class colorMaster extends HttpServlet {
             cm.setCreateDate(Timestamp.valueOf(db.getNow()));
             cm.setUpdateDate(Timestamp.valueOf(db.getNow()));
             if (request.getParameter("action").equals("Add")) {
-                cmt.add(cm);
+                Boolean chechDuplicate = cmt.checkDuplicate(cm);
+                if (chechDuplicate == false) {
+                    cmt.add(cm);
+                }
             } else if (request.getParameter("action").equals("Edit")) {
                 cmt.update(cm);
             } else if (request.getParameter("action").equals("Del")) {
