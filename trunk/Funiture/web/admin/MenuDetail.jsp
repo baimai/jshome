@@ -44,7 +44,7 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=2',
+                    url:'xmlMenuGroupMaster.do?action=fetchData&q=2',
                     datatype: "xml",
                     colNames:['NO', 'Group Name','Menu Name T', 'Menu Name En','Pic Code','Seq No.','Show List','Menu Code Id','Remark Th','Remark En'],
                     colModel:[
@@ -52,7 +52,7 @@
                         {name:'menuGroupId',index:'menuGroupId', width:150,align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:"${listGroup}"}},
                         {name:'menuCNameT',index:'menuCNameT', width:150,align:"center",editable:true,editoptions:{size:25}},
                         {name:'menuCNameE',index:'menuCNameE', width:150, align:"center",editable:true,editoptions:{size:25}},
-                        {name:'picCode',index:'picCode', width:100, align:"center",editable:true,editoptions:{size:10}},
+                        {name:'picCode',index:'picCode', width:100, align:"center",editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'menuSeq',index:'menuSeq', width:100, align:"center",editable:true,editoptions:{size:10}},
                         {name:'showListSts',index:'showListSts', width:100, align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'Y':'Show','N':'Hidden'}}},
                         {name:'menuCodeId',index:'menuCodeId', width:100, align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
@@ -73,15 +73,20 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:false}, //options
-                {height:300,width:320,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:300,width:320,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:330,width:320,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:330,width:320,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         menuCodeId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
                             var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuCodeId');
                             return value;
-                        }}}, // del options
+                        },picCode:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'picCode');
+                            return value;
+                        }
+                    }}, // del options
                 {} // search options
             );
 
