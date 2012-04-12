@@ -40,64 +40,26 @@ public class xmlProductGroup extends HttpServlet {
         try {
             if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
+                
+                String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
 
-
-                int rows = 20, page = 1;
-                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
-                    String r = request.getParameter("rows");
-                    rows = Integer.parseInt(r);
-                }
-                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
-                    String r = request.getParameter("page");
-                    page = Integer.parseInt(r);
-                }
+                int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
+                int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;
                 int start = rows * page - rows;
-
-                String productGroupId = null, Edit = null, Del = null;
-                String sField = null, sValue = null, sOper = null;
-
-
-                if (request.getParameter("productGroupId") != null) {
-                    productGroupId = request.getParameter("productGroupId");
-                }
-                if (request.getParameter("Edit") != null) {
-                    Edit = request.getParameter("Edit");
-                }
-                if (request.getParameter("Del") != null) {
-                    Del = request.getParameter("Del");
-                }
-                if (request.getParameter("searchField") != null) {
-                    sField = request.getParameter("searchField");
-                }
-                if (request.getParameter("searchString") != null) {
-                    sValue = request.getParameter("searchString");
-                }
-                if (request.getParameter("searchOper") != null) {
-                    sOper = request.getParameter("searchOper");
-                }
-
-
+                String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
+                String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
+                String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
 
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = pdm.search(productGroupId, Company_Id, start, rows);
-                ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id, start, rows);
-
-
-
 
                 if (request.getParameter("q").equals("1")) {
-                    int totalPages = 0;
+                    ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id, start, rows);
                     int totalCount = pgmt.countAll(Company_Id);
+                    int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-                    if (totalCount % rows == 0) {
-                        totalPages = totalCount / rows;
-                    } else {
-                        totalPages = (totalCount / rows) + 1;
-                    }
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
@@ -116,39 +78,36 @@ public class xmlProductGroup extends HttpServlet {
 
                     }
                     out.print(xml.getXml());
+
                 } else if (request.getParameter("q").equals("2")) {
-                    int totalPages = 0;
+                    ArrayList listp = pdm.search(productGroupId, Company_Id, start, rows);
                     int totalCount = pdm.countAll(Company_Id);
+                    int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-                    if (totalCount % rows == 0) {
-                        totalPages = totalCount / rows;
-                    } else {
-                        totalPages = (totalCount / rows) + 1;
-                    }
+
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
                     xml.setRecords(totalCount);
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getProductDetailId(),
-                                data.getProductDetailId(),
+
+                        xml.setRowDetail(data.getProductDetailId(), 
+                                data.getProductCode(),
                                 data.getProductDNameT(),
-                                data.getProductDNameE(),
+                                data.getProductDNameE(), 
                                 data.getProductPrice1(),
                                 data.getProductDetailId(),
                                 data.getProductDetailId());
                     }
                     out.print(xml.getXml());
+
                 } else if (request.getParameter("q").equals("3")) {
-                    int totalPages = 0;
+                    ArrayList listp = pdm.search(productGroupId, Company_Id, start, rows);
                     int totalCount = pdm.countAll(Company_Id);
+                    int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-                    if (totalCount % rows == 0) {
-                        totalPages = totalCount / rows;
-                    } else {
-                        totalPages = (totalCount / rows) + 1;
-                    }
+
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
@@ -159,16 +118,13 @@ public class xmlProductGroup extends HttpServlet {
                                 data.getProductDNameT(), data.getProductDNameE(), data.getProductDPicLoc());
                     }
                     out.print(xml.getXml());
+
                 } else if (request.getParameter("q").equals("4")) {
                     ArrayList listpd = pdm.searchAll2();
-                    int totalPages = 0;
                     int totalCount = pdm.countAll(Company_Id);
+                    int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-                    if (totalCount % rows == 0) {
-                        totalPages = totalCount / rows;
-                    } else {
-                        totalPages = (totalCount / rows) + 1;
-                    }
+
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);

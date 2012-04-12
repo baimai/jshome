@@ -39,7 +39,7 @@ public class xmlStockMaster extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+                //response.setContentType("text/xml;charset=UTF-8");
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
                     String r = request.getParameter("rows");

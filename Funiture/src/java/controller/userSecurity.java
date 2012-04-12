@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Database;
 import model.entity.userSecurityEntity;
 import model.userSecurityTable;
@@ -40,14 +41,11 @@ public class userSecurity extends HttpServlet {
                 userSecurityTable ust = new userSecurityTable(db);
                 userSecurityEntity uss = new userSecurityEntity();
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                // out.println("Company_Id"+uss.getCompany_Id());
                 if (request.getParameter("userId") != null && !request.getParameter("userId").equals("")) {
                     uss.setUserId(request.getParameter("userId"));
-                    out.println("userId"+uss.getUserId());
                 }
                 if (request.getParameter("userPassword") != null) {
                     uss.setUserPassword(request.getParameter("userPassword"));
-                    out.println("userPassword"+uss.getUserPassword());
                 }
                 if (request.getParameter("userNameT") != null) {
                     uss.setUserNameT(request.getParameter("userNameT"));
@@ -76,10 +74,16 @@ public class userSecurity extends HttpServlet {
                 uss.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 uss.setCreateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
-                    ust.add(uss);
-                    out.println("add");
+                    Boolean checkDuplicate = ust.checkDuplicate(uss);
+                    if(checkDuplicate == false){
+                        ust.add(uss);
+                    }
                 } else if (request.getParameter("action").equals("Edit")) {
                     ust.update(uss);
+                    Boolean checkPass = ust.checkPasswordById(uss);
+                    if(checkPass == false){
+                        ust.updatePassword(uss);
+                    }
                 } else if (request.getParameter("action").equals("Del")) {
                     ust.remove(uss);
                 }

@@ -73,11 +73,17 @@ public class menuGroupMaster extends HttpServlet {
             mg.setUpdateDate(Timestamp.valueOf(db.getNow()));
             mg.setCompanyId(Company_Id);
             if (request.getParameter("action").equals("Add")) {
+
                 mgt.add(mg);
             } else if (request.getParameter("action").equals("Edit")) {
+
                 mgt.update(mg);
+
             } else if (request.getParameter("action").equals("Del")) {
-                mgt.remove(mg);
+                Boolean checkChild = mgt.checkChild(mg);
+                if (checkChild == false) {
+                    mgt.remove(mg);
+                }
             }
 
 

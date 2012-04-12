@@ -71,11 +71,17 @@ public class memberGradeMaster extends HttpServlet {
                 mgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 if (request.getParameter("action").equals("Add")) {
-                    mgt.add(mgm);                  
+                    Boolean checkDuplicate = mgt.checkDuplicate(mgm);
+                    if(checkDuplicate==false){
+                        mgt.add(mgm);
+                    }
                 } else if (request.getParameter("action").equals("Edit")) {
                     mgt.update(mgm);
                 } else if (request.getParameter("action").equals("Del")) {
-                    mgt.remove(mgm);
+                    Boolean checkChild = mgt.checkChild(mgm);
+                    if(checkChild == false){
+                         mgt.remove(mgm);
+                    }
                 }
                 db.close();
             }

@@ -43,7 +43,7 @@ public class productGroup extends HttpServlet {
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 pgm.setCompanyId(Company_Id);
 
-                if (request.getParameter("productGroupId") != null &&!request.getParameter("productGroupId").equals("")) {
+                if (request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")) {
                     pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
                 }
                 if (request.getParameter("productGroupCode") != null) {
@@ -70,7 +70,10 @@ public class productGroup extends HttpServlet {
                 pgm.setUserId(getServletInfo());
 
                 if (request.getParameter("action").equals("Add")) {
-                    pgmt.add(pgm);
+                    Boolean chechDuplicate = pgmt.checkDuplicate(pgm);
+                    if (chechDuplicate == false) {
+                        pgmt.add(pgm);
+                    }
                 } else if (request.getParameter("action").equals("Edit")) {
                     pgmt.update(pgm);
                 } else if (request.getParameter("action").equals("Del")) {

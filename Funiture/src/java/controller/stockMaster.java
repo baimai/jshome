@@ -14,9 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Database;
 import model.entity.productDetailMasterEntity;
 import model.entity.stockMasterEntity;
+import model.entity.userSecurityEntity;
 import model.productDetailMasterTable;
 import model.stockMasterTable;
 
@@ -40,6 +42,9 @@ public class stockMaster extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action") != null) {
+                HttpSession s = request.getSession(true);
+                userSecurityEntity lg = (userSecurityEntity) s.getAttribute("loginDetail");
+
                 Database db = new Database();
                 stockMasterTable st = new stockMasterTable(db);
                 productDetailMasterTable pdmt = new productDetailMasterTable(db);
@@ -66,7 +71,7 @@ public class stockMaster extends HttpServlet {
                 }
                 if (request.getParameter("receiveDate") != null) {
                     String tmpDate[] = request.getParameter("receiveDate").split("/");
-                    mps.setReceiveDate(Date.valueOf(tmpDate[2]+"-"+tmpDate[0]+"-"+tmpDate[1]));
+                    mps.setReceiveDate(Date.valueOf(tmpDate[2] + "-" + tmpDate[0] + "-" + tmpDate[1]));
                 }
                 out.println("quantity>>>>" + mps.getQuantity());
                 if (request.getParameter("unitId") != null) {
@@ -75,6 +80,7 @@ public class stockMaster extends HttpServlet {
                 out.println("getReceiveDate>>>>" + mps.getReceiveDate());
                 mps.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mps.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                mps.setUserId(lg.getUserId());
                 if (request.getParameter("action").equals("add")) {
                     Boolean chk = st.getAvailable(mps);
                     if (chk == true) {
@@ -82,7 +88,7 @@ public class stockMaster extends HttpServlet {
                     } else {
                         st.add(mps);
                     }
-                }else if (request.getParameter("action").equals("Del")) {
+                } else if (request.getParameter("action").equals("Del")) {
                     st.remove(mps);
                 }
                 out.println("getReceiveDate" + mps.getReceiveDate());
