@@ -63,14 +63,14 @@
             }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({        
-                    url:'xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1',
+                    url:'xmlProductGroup.do?action=fetchData&q=2',
                     datatype: "xml",
                     colNames:['Product Code','Name Th', 'Name En', 'Price','Edit','Del'],
                     colModel:[
-                        {name:'Code',index:'Code',editoptions:"", width:100,align:"right"},
-                        {name:'nameTh',index:'nameTh', width:225,align:"right"},
-                        {name:'nameEn',index:'nameEn', width:225, align:"right"},
-                        {name:'price',index:'price', width:100, align:"right"},                      
+                        {name:'Code',index:'Code',editoptions:"", width:110,align:"right"},
+                        {name:'nameTh',index:'nameTh', width:225,align:"center"},
+                        {name:'nameEn',index:'nameEn', width:225, align:"center"},
+                        {name:'price',index:'price', width:90, align:"right"},
                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductDetail.jsp?productDetailId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                     ],

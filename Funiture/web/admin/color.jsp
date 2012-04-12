@@ -38,8 +38,8 @@
                     datatype: "xml",
                     colNames:['Color Code', 'Color Name T ', 'Color Name E ','Color Id' ],
                     colModel:[                        
-                        {name:'colorCode',index:'colorCode', width:180,editable:true,editoptions:{size:10}},
-                        {name:'colorNameT',index:'colorNameT', width:288,editable:true,editoptions:{size:25}},
+                        {name:'colorCode',index:'colorCode', width:180,editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'colorNameT',index:'colorNameT', width:288,editable:true,editoptions:{size:25},editrules:{required:true}},
                         {name:'colorNameE',index:'colorNameE', width:288,editable:true,editoptions:{size:25}},
                         {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
                     ],
@@ -57,8 +57,8 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:170,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:170,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         colorId:function() {
