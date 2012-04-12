@@ -51,8 +51,6 @@ public class colorMasterTable {
                 cm.getColorNameE(),
                 cm.getUpdateDate(),
                 cm.getColorId());
-
-
     }
 
     public void remove(colorCodeMasterEntity cm) {
@@ -60,14 +58,13 @@ public class colorMasterTable {
         db.update(sql, cm.getColorId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,int start,int limit) {
+    public ArrayList search(String sField, String sValue, String sOper, int start, int limit) {
         String sql = "SELECT * FROM color_code_master cm ";
-
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
         sql = sql + " limit ?,?";
-        List<Map<String, Object>> result = db.queryList(sql,start,limit);
+        List<Map<String, Object>> result = db.queryList(sql, start, limit);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -79,21 +76,19 @@ public class colorMasterTable {
 
                 list.add(cm);
             }
-            return list;
-        } else {
-            return null;
         }
-
+        return !result.isEmpty()?list:null;
     }
 
     public int countAll() {
         String sql = "SELECT count(*) as COUNT FROM color_code_master cm";
         List<Map<String, Object>> result = db.queryList(sql);
-        if (!result.isEmpty()) {
-            return Integer.valueOf(result.get(0).get("COUNT").toString());
-        } else {
-            return 0;
-        }
+        return !result.isEmpty() ? Integer.valueOf(result.get(0).get("COUNT").toString()) : 0;
+    }
 
+    public Boolean checkDuplicate(colorCodeMasterEntity ccm) {
+        String sql = " select * from color_code_master where color_code = ?  ";
+        List<Map<String, Object>> result = db.queryList(sql, ccm.getColorCode());
+        return !result.isEmpty() ? true : false;
     }
 }

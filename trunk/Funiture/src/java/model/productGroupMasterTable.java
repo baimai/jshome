@@ -65,21 +65,22 @@ public class productGroupMasterTable {
                 pgm.getUpdateDate(),
                 pgm.getProductGroupId());
     }
-    public void remove(productGroupMasterEntity pgm){
+
+    public void remove(productGroupMasterEntity pgm) {
         String sql = "delete from product_group_master where product_group_id = ?";
         db.remove(sql, pgm.getProductGroupId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,int Company_Id,int start ,int limit) {
-        String sql = " SELECT * FROM product_group_master pgm"+
-                     " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
-                     " where cm.Company_Id = ? order by pgm.product_group_code" ;
+    public ArrayList search(String sField, String sValue, String sOper, int Company_Id, int start, int limit) {
+        String sql = " SELECT * FROM product_group_master pgm " +
+                     " where pgm.Company_Id = ? ";
+
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql +" and "+ Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        sql = sql +  " LIMIT ?,? ";
-        List<Map<String, Object>> result = db.queryList(sql,Company_Id,start,limit);
+        sql = sql + " LIMIT ?,? ";
+        List<Map<String, Object>> result = db.queryList(sql, Company_Id, start, limit);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -94,26 +95,22 @@ public class productGroupMasterTable {
                 pgm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
                 pgm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 pgm.setProductGroupId((Integer)result.get(i).get("Product_Group_Id"));
-                pgm.setCompanyCode(Default.Str(result.get(i).get("Company_Code")));
                 list.add(pgm);
             }
-            return list;
-        } else {
-            return null;
         }
-
-    }
-    public int countAll(int company_id){
-         String sql = " SELECT count(*) as COUNT FROM product_group_master pgm"+
-                      " join Company_Master cm on cm.Company_Id = pgm.Company_Id"+
-                      " where cm.Company_Id = ? " ;
-         List<Map<String, Object>> result = db.queryList(sql,company_id);
-         if (!result.isEmpty()) {
-              return Integer.valueOf(result.get(0).get("COUNT").toString());
-         }else{
-             return 0;
-         }
-        
+        return !result.isEmpty() ? list : null;
     }
 
+    public int countAll(int company_id) {
+        String sql = " SELECT count(*) as COUNT FROM product_group_master pgm"
+                + " where pgm.Company_Id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, company_id);
+        return !result.isEmpty() ? Integer.valueOf(result.get(0).get("COUNT").toString()) : 0;
+    }
+
+    public Boolean checkDuplicate(productGroupMasterEntity pgm) {
+        String sql = " select * from product_group_master where product_group_code = ? and company_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, pgm.getProductGroupCode(), pgm.getCompanyId());
+        return !result.isEmpty() ? true : false;
+    }
 }

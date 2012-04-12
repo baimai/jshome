@@ -74,8 +74,7 @@ public class menuGroupMasterTable {
 
     public ArrayList search(String sField, String sValue, String sOper, int Company_Id) {
         String sql = "SELECT * FROM menu_group_master pgm"
-                + " join Company_Master cm on cm.Company_Id = pgm.Company_Id"
-                + " where cm.Company_Id = ?";
+                + " where pgm.Company_Id = ?";
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
@@ -116,8 +115,17 @@ public class menuGroupMasterTable {
                 list.add(mgm2);
             }
             return list;
-        }else{
+        } else {
             return null;
         }
+    }
+
+    public Boolean checkChild(menuGroupMasterEntity mgm) {
+        String sql = " SELECT COUNT(*) as COUNT FROM menu_group_master  mgm "
+                + " Join menu_detail_master mdm on mdm.menu_group_id = mgm.menu_group_id "
+                + " where mgm.Company_Id = ? and mgm.menu_group_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, mgm.getCompanyId(), mgm.getMenuGroupId());
+        int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
+        return checkChild == 0 ? false : true;
     }
 }

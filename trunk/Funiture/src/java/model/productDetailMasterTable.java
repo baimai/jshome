@@ -334,8 +334,6 @@ public class productDetailMasterTable {
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 productGroupMasterEntity pgm = new productGroupMasterEntity();
                
-                pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
-                pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));

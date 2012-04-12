@@ -88,10 +88,10 @@ public class menuDetailMasterTable {
 
     public ArrayList searchAll() {
         List<Map<String, Object>> result = null;
-        String sql = " select * from menu_detail_master mdm "+
-                     " join menu_group_master mgm on mdm.menu_group_id = mgm.menu_group_id" ;
-            result = db.queryList(sql);
-        
+        String sql = " select * from menu_detail_master mdm "
+                + " join menu_group_master mgm on mdm.menu_group_id = mgm.menu_group_id";
+        result = db.queryList(sql);
+
 
 
         ArrayList list = new ArrayList();
@@ -131,6 +131,22 @@ public class menuDetailMasterTable {
         } else {
             return 0;
         }
+    }
 
+    public Boolean checkDuplicate(menuDetailMasterEntity mdm) {
+        String sql = "SELECT * FROM menu_detail_master where company_id = ? and pic_code = ?";
+        List<Map<String, Object>> result = db.queryList(sql, mdm.getCompanyId(), mdm.getPicCode());
+        return !result.isEmpty() ? true : false;
+    }
+
+    public Boolean checkChild(menuDetailMasterEntity mdm) {
+        String sql = " select count(*) as COUNT from menu_detail_master mdm "+
+                     " join (select pic_code from pic_product_setup "+
+                     " union all "+
+                     " select pic_code from company_master ) pps on pps.pic_code = mdm.pic_code "+
+                     " where mdm.company_id = ? and mdm.pic_code = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, mdm.getCompanyId(), mdm.getPicCode());
+        int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
+        return checkChild == 0 ? false : true;
     }
 }

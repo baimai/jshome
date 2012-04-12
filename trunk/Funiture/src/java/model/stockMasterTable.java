@@ -50,8 +50,8 @@ public class stockMasterTable {
     }
 
     public void update(stockMasterEntity sb) {
-        String sql = "update stock_master set quantity = quantity+?,update_date = ?,Receive_Date = ? where product_detail_id = ?";
-        db.add(sql, sb.getQuantity(),sb.getUpdateDate(),sb.getReceiveDate(), sb.getProductDetailId());
+        String sql = "update stock_master set quantity = quantity+?,update_date = ?,Receive_Date = ?,User_Id = ? where product_detail_id = ?";
+        db.add(sql, sb.getQuantity(),sb.getUpdateDate(),sb.getReceiveDate(),sb.getUserId(), sb.getProductDetailId());
     }
 
     public Boolean getAvailable(stockMasterEntity sm) {

@@ -49,13 +49,13 @@ public class userSecurityTable {
     }
 
     public void update(userSecurityEntity uss) {
-        String sql = "update user_security set User_Password = MD5(?),"
+        String sql = "update user_security set " //User_Password = MD5(?),
                 + " User_Name_T =? ,User_Name_E = ?,User_Authority_Sts = ?,"
                 + " User_Alive_Sts = ?,Approved_Date = ?,Hold_Date = ?,"
                 + " Update_Date = ? "
                 + " where User_Id = ? ";
         db.add(sql,
-                uss.getUserPassword(),
+                //uss.getUserPassword(),
                 uss.getUserNameT(),
                 uss.getUserNameE(),
                 uss.getUserAuthoritySts(),
@@ -63,6 +63,14 @@ public class userSecurityTable {
                 uss.getApprovedDate(),
                 uss.getHoldDate(),
                 uss.getUpdateDate(),
+                uss.getUserId());
+    }
+
+    public void updatePassword(userSecurityEntity uss){
+        String sql = " update  user_security set User_Password = MD5(?) "+
+                     " where User_Id = ?";
+        db.add(sql,
+                uss.getUserPassword(),
                 uss.getUserId());
     }
 
@@ -104,16 +112,29 @@ public class userSecurityTable {
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             userSecurityEntity us2 = new userSecurityEntity();
-                us2.setUserId((String)result.get(0).get("User_Id"));
-                us2.setUserPassword((String)result.get(0).get("User_Password"));
-                us2.setUserNameT((String)result.get(0).get("User_Name_T"));
-                us2.setUserNameE((String)result.get(0).get("User_Name_E"));
-                us2.setUserAliveSts((String)result.get(0).get("User_Alive_Sts"));
-                us2.setUserAuthoritySts((String)result.get(0).get("User_Authority_Sts"));
+            us2.setUserId((String) result.get(0).get("User_Id"));
+            us2.setUserPassword((String) result.get(0).get("User_Password"));
+            us2.setUserNameT((String) result.get(0).get("User_Name_T"));
+            us2.setUserNameE((String) result.get(0).get("User_Name_E"));
+            us2.setUserAliveSts((String) result.get(0).get("User_Alive_Sts"));
+            us2.setUserAuthoritySts((String) result.get(0).get("User_Authority_Sts"));
             list.add(us2);
             return list;
         } else {
             return null;
         }
+    }
+
+    public Boolean checkPasswordById(userSecurityEntity us) {
+        String sql = " select User_Password from user_security where user_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, us.getUserId());
+            String curPass = (String) result.get(0).get("User_Password");
+            return us.getUserPassword().equals(curPass)?true:false;
+    }
+
+    public Boolean checkDuplicate(userSecurityEntity uss) {
+        String sql = " select * from user_security where user_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, uss.getUserId());
+        return !result.isEmpty() ? true : false;
     }
 }
