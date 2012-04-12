@@ -130,12 +130,12 @@ public class picProductSetupTable {
     }
 
     public ArrayList searchPicCode(picProductSetupEntity pps) {
-        String sql = "select * from pic_product_setup pps"
-                + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "
-                + " join menu_detail_master mdm on mdm.pic_code = pps.pic_code "
-                + " where pps.pic_code = ? and pps.company_id = ? "
-                + " and (case when pps.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end )"
-                + " order by pps.pic_code,pps.pic_seq  ";
+        String sql = " select *,@row := @row + 1 as rownum from (select * from pic_product_setup order by pic_code,pic_seq) pps "+
+                     " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "+
+                     " join menu_detail_master mdm on mdm.pic_code = pps.pic_code, (SELECT @row := 0) r "+
+                     " where pps.pic_code = ? and pps.company_id = ? "+
+                     " and (case when pps.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end ) ";
+
         List<Map<String, Object>> result = db.queryList(sql,pps.getPicCode(),pps.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
@@ -158,7 +158,7 @@ public class picProductSetupTable {
                 mps.setUpdateDate((Timestamp) result.get(i).get("UDATE"));
                 mps.setUserId(Default.Str(result.get(i).get("User_Id")));
                 mps.setPicId((Integer)(result.get(i).get("Pic_Id")));
-                mps.setPicSeq((Integer)(result.get(i).get("Pic_Seq")));
+                mps.setPicSeq((Integer)((Long)result.get(i).get("rownum")).intValue());
                 mps.setProductDetailMasterEntity(pdm);
                 mps.setMenuDetailMasterEntity(mdm);
                 list.add(mps);
