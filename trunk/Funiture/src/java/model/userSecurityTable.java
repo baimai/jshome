@@ -53,7 +53,7 @@ public class userSecurityTable {
                 + " User_Name_T =? ,User_Name_E = ?,User_Authority_Sts = ?,"
                 + " User_Alive_Sts = ?,Approved_Date = ?,Hold_Date = ?,"
                 + " Update_Date = ? "
-                + " where User_Id = ? ";
+                + " where User_Id = ? and company_id = ?";
         db.add(sql,
                 //uss.getUserPassword(),
                 uss.getUserNameT(),
@@ -63,29 +63,32 @@ public class userSecurityTable {
                 uss.getApprovedDate(),
                 uss.getHoldDate(),
                 uss.getUpdateDate(),
-                uss.getUserId());
+                uss.getUserId(),
+                uss.getCompanyId());
     }
 
     public void updatePassword(userSecurityEntity uss){
         String sql = " update  user_security set User_Password = MD5(?) "+
-                     " where User_Id = ?";
+                     " where User_Id = ? and company_id = ?";
         db.add(sql,
                 uss.getUserPassword(),
-                uss.getUserId());
+                uss.getUserId(),
+                uss.getCompanyId());
     }
 
     public void remove(userSecurityEntity uss) {
-        String sql = "delete from user_security where User_Id = ?";
-        db.update(sql, uss.getUserId());
+        String sql = "delete from user_security where User_Id = ? and company_id = ?";
+        db.update(sql, uss.getUserId(),uss.getCompanyId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper) {
-        String sql = "SELECT * FROM user_security cm";
+    public ArrayList search(String sField, String sValue, String sOper,userSecurityEntity us) {
+        String sql = " SELECT * FROM user_security us "+
+                     " where us.company_id = ? ";
 
         if (sOper != null && sValue != null & sField != null) {
-            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+            sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql);
+        List<Map<String, Object>> result = db.queryList(sql,us.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -126,15 +129,15 @@ public class userSecurityTable {
     }
 
     public Boolean checkPasswordById(userSecurityEntity us) {
-        String sql = " select User_Password from user_security where user_id = ? ";
-        List<Map<String, Object>> result = db.queryList(sql, us.getUserId());
+        String sql = " select User_Password from user_security where user_id = ? and company_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, us.getUserId(),us.getCompanyId());
             String curPass = (String) result.get(0).get("User_Password");
             return us.getUserPassword().equals(curPass)?true:false;
     }
 
     public Boolean checkDuplicate(userSecurityEntity uss) {
-        String sql = " select * from user_security where user_id = ? ";
-        List<Map<String, Object>> result = db.queryList(sql, uss.getUserId());
+        String sql = " select * from user_security where user_id = ? and company_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, uss.getUserId(),uss.getCompanyId());
         return !result.isEmpty() ? true : false;
     }
 }

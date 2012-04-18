@@ -57,12 +57,7 @@ public class stockMasterTable {
     public Boolean getAvailable(stockMasterEntity sm) {
         String sql = "select * from stock_master where product_detail_id = ? and company_id = ?";
         List<Map<String, Object>> result = db.queryList(sql,sm.getProductDetailId(),sm.getCompanyId());
-        if (!result.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return !result.isEmpty()?true:false;
     }
     public void save(stockMasterEntity sb){
         String sql = "insert into stock_master (Company_Id,Product_Detail_id,quantity,Receive_Date,Create_date,User_id,Unit_Id) "

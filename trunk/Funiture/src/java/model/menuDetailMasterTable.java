@@ -126,11 +126,7 @@ public class menuDetailMasterTable {
     public int getMenuCodeId(String menuCodeId) {
         String sql = "select * from menu_detail_master where Menu_Code_id = ?";
         List<Map<String, Object>> result = db.queryList(sql, menuCodeId);
-        if (!result.isEmpty()) {
-            return Integer.parseInt((String) result.get(0).get("Menu_Code_Id"));
-        } else {
-            return 0;
-        }
+        return !result.isEmpty()?Integer.parseInt((String) result.get(0).get("Menu_Code_Id")):0;
     }
 
     public Boolean checkDuplicate(menuDetailMasterEntity mdm) {

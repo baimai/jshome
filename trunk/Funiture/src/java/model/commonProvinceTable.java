@@ -52,11 +52,6 @@ public class commonProvinceTable {
     public Integer getFirstAmphurId(int id) {
         String sql = "select * from common_province where upid = ?";
         List<Map<String, Object>> result = db.queryList(sql,id);
-        if (!result.isEmpty()) {
-            return (Integer) result.get(0).get("ID_");
-        } else {
-            return 0;
-        }
-
+        return !result.isEmpty()?(Integer) result.get(0).get("ID_"):0;
     }
 }
