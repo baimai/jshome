@@ -95,16 +95,11 @@ public class picProductSetupTable {
                 + " join company_master cm on cm.company_id = pps.company_id "
                 + " where cm.Company_Id = ? and pps.pic_code = ? ";
          List<Map<String, Object>> result = db.queryList(sql,pps.getCompanyId(),pps.getPicCode());
-         if (!result.isEmpty()) {
-              return Integer.valueOf(result.get(0).get("COUNT").toString());
-         }else{
-             return 0;
-         }
-
+         return !result.isEmpty()?Integer.valueOf(result.get(0).get("COUNT").toString()):0;
     }
 
     public ArrayList searchHeader(String sField, String sValue, String sOper,picProductSetupEntity pps) {
-        String sql = " SELECT mdm.pic_code as Pic,mdm.menu_c_name_t as nameT,mdm.menu_c_name_e as nameE  " +
+        String sql = " SELECT mdm.pic_code as Pic,mdm.menu_c_name_t as nameT,mdm.menu_c_name_e as nameE,mdm.Create_Date,mdm.Update_Date,mdm.User_Id  " +
                      " From menu_detail_master mdm " +
                      " where mdm.Company_Id = ? ";
         if (sOper != null && sValue != null & sField != null) {
@@ -119,6 +114,8 @@ public class picProductSetupTable {
                 mdm.setMenuCNameT(Default.Str(result.get(i).get("nameT")));
                 mdm.setMenuCNameE(Default.Str(result.get(i).get("nameE")));
                 mps.setPicCode(Default.Str(result.get(i).get("Pic")));
+                mps.setUserId(Default.Str(result.get(i).get("User_Id")));
+                mps.setCreateDate(Default.Date(result.get(i).get("Create_Date")));
                 mps.setMenuDetailMasterEntity(mdm);
                 list.add(mps);
             }

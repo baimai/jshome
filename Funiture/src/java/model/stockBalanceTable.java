@@ -23,10 +23,6 @@ public class stockBalanceTable {
     public Integer getBalanceProduct(stockBalanceEntity sb) {
         String sql = "select * from stock_balance where product_detail_id = ?";
         List<Map<String, Object>> result = db.queryList(sql, sb.getProductDetailId());
-        if (!result.isEmpty()) {
-            return ((BigDecimal) result.get(0).get("balance")).intValue();
-        } else {
-            return 0;
-        }
+        return !result.isEmpty()?((BigDecimal) result.get(0).get("balance")).intValue():0;
     }
 }

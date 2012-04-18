@@ -165,32 +165,19 @@ public class memberMasterTable {
          String sql =  "SELECT count(*) as COUNT FROM member_master mb"
                          + " where mb.Company_Id = ?";
          List<Map<String, Object>> result = db.queryList(sql,company_id);
-         if (!result.isEmpty()) {
-              return Integer.valueOf(result.get(0).get("COUNT").toString());
-         }else{
-             return 0;
-         }
-
+         return !result.isEmpty()?Integer.valueOf(result.get(0).get("COUNT").toString()):0;
     }
 
     public Integer getMemberId(memberMasterEntity mm) {
         String sql = "select * from member_master where member_login = ? and Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getCompanyId());
-        if (!result.isEmpty()) {
-            return (Integer) result.get(0).get("Member_Login");
-        } else {
-            return 0;
-        }
+        return !result.isEmpty()?(Integer) result.get(0).get("Member_Login"):0;
     }
 
     public Boolean chkMemberLogin(memberMasterEntity mm) {
         String sql = "select * from member_master where member_login = ? and Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, mm.getMemberLogin(), mm.getCompanyId());
-        if (result.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return result.isEmpty()?false:true;
     }
 
     public ArrayList chkUserPass(memberMasterEntity mm) {
@@ -215,12 +202,7 @@ public class memberMasterTable {
     public Integer getMemberGradeId(String memberGradeId, int Company_Id) {
         String sql = "select * from member_grade_master mbg where mbg.Member_Grade_Id = ? and mbg.Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, memberGradeId, Company_Id);
-        if (!result.isEmpty()) {
-            return (Integer) result.get(0).get("Member_Id");
-        } else {
-            return 0;
-        }
-
+        return !result.isEmpty()?(Integer) result.get(0).get("Member_Id"):0;
     }
 
     public ArrayList getProvince(memberMasterEntity mm) {

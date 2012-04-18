@@ -23,12 +23,7 @@ public class companyMasterTable {
     public Integer getCompanyId(String companyCode) {
         String sql = "select * from company_master where company_code = 'JSH'";
         List<Map<String, Object>> result = db.queryList(sql);
-        if (!result.isEmpty()) {
-            return (Integer) result.get(0).get("Company_Id");
-        } else {
-            return 0;
-        }
-
+        return !result.isEmpty()?(Integer) result.get(0).get("Company_Id"):0;
     }
      public void add(companyMasterEntity cpm) {
         String sql = "insert into company_master "
