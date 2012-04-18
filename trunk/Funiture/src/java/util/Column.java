@@ -36,7 +36,7 @@ public class Column {
         } else if (sField.equals("updateDate")) {
             sField = "pps.Update_Date";
         } else if (sField.equals("userId")) {
-            sField = "pps.User_Id";
+            sField = "us.User_Id";
         } else if (sField.equals("picNameT")) {
             sField = "pps.Pic_Name_T";
         } else if (sField.equals("picNameE")) {

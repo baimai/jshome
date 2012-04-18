@@ -5,6 +5,7 @@
 package util;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 /**
  *
@@ -34,4 +35,12 @@ public class Default {
             return (Integer) obj;
         }
     }
+    public static Timestamp Date(Object obj) {
+        if (obj == null) {
+            return Timestamp.valueOf("0000-00-00 00:00:00");
+        } else {
+            return (Timestamp) obj;
+        }
+    }
+
 }
