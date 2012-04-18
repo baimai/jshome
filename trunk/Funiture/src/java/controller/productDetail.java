@@ -80,13 +80,13 @@ public class productDetail extends HttpServlet {
                             if ((filetype.indexOf("gif") == -1) && (filetype.indexOf("jpeg") == -1) && (filetype.indexOf("jpg") == -1) && (filetype.indexOf("png") == -1)) {
                             } else {
                                 if (filetype.endsWith("gif")) {
-                                    upFile.setFileName(System.currentTimeMillis() + ".gif");
+                                    upFile.setFileName(filename + ".gif");
                                 } else if (filetype.endsWith("jpeg")) {
-                                    upFile.setFileName(System.currentTimeMillis() + ".jpeg");
+                                    upFile.setFileName(filename + ".jpeg");
                                 } else if (filetype.endsWith("jpg")) {
-                                    upFile.setFileName(System.currentTimeMillis() + ".jpg");
+                                    upFile.setFileName(filename + ".jpg");
                                 } else if (filetype.endsWith("png")) {
-                                    upFile.setFileName(System.currentTimeMillis() + ".png");
+                                    upFile.setFileName(filename + ".png");
                                 }
 
                                 u.setFolderstore(getServletContext().getRealPath("upload/picture"));
@@ -191,9 +191,15 @@ public class productDetail extends HttpServlet {
                         sm.setCompanyId(Company_Id);
                         sm.setUnitId(Integer.parseInt(mr.getParameter("unitId")));
                         if (mr.getParameter("action").equals("Add")) {
-                            pdmt.add(pdm);
-                            sm.setProductDetailId(pdmt.getProductId(pdm));
-                            smt.add(sm);
+                            Boolean checkDuplicate = pdmt.checkDuplicate(pdm);
+                            if (checkDuplicate == false) {
+                                pdmt.add(pdm);
+                                sm.setProductDetailId(pdmt.getProductId(pdm));
+                                smt.add(sm);
+                            }else{
+                                db.close();
+                                response.sendRedirect("ProductDetail.jsp?error=1");
+                            }
                         }
                         if (mr.getParameter("action").equals("Edit")) {
                             pdmt.update(pdm);
@@ -208,9 +214,9 @@ public class productDetail extends HttpServlet {
                         }
                         db.close();
                         if (mr.getParameter("action").equals("Edit")) {
-                            response.sendRedirect("ProductDetail.jsp?productDetailId=" + pdm.getProductDetailId());
+                            response.sendRedirect("ProductDetail.jsp?valid=1&productDetailId=" + pdm.getProductDetailId());
                         } else if (mr.getParameter("action").equals("Add")) {
-                            response.sendRedirect("ProductDetail.jsp");
+                            response.sendRedirect("ProductDetail.jsp?valid=1");
                         }
 
                     }

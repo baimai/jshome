@@ -109,7 +109,7 @@ public class addOrder extends HttpServlet {
                 ohm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 mgm = mgmt.searchByUserId(mgm);
                 int rowNum = ohmt.add(ohm);
-                if (rowNum != 0) {
+                if (rowNum != -1) {
                     int oid = ohmt.getOrderId(ohm, Company_Id);
                     ohm.setOrderId(oid);
                     odm.setCompanyId(Company_Id);
