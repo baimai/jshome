@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import controller.Xml.GenerateXml;
@@ -22,7 +21,7 @@ import model.userSecurityTable;
  * @author baimai
  */
 public class xmlUserSecurity extends HttpServlet {
-   
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -31,60 +30,37 @@ public class xmlUserSecurity extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-           if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
-
-                String status = request.getParameter("status");
-                String rows = request.getParameter("rows");
-                String page = request.getParameter("page");
-
-                String sField = null, sValue = null, sOper = null;
-                if (request.getParameter("searchField") != null) {
-                    sField = request.getParameter("searchField");
-                }
-                if (request.getParameter("searchString") != null) {
-                    sValue = request.getParameter("searchString");
-                }
-                if (request.getParameter("searchOper") != null) {
-                    sOper = request.getParameter("searchOper");
-                }
-
-                int totalPages = 0;
-                int totalCount = 2;
-
-                if (totalCount > 0) {
-                    if (totalCount % Integer.parseInt(rows) == 0) {
-                        totalPages = totalCount / Integer.parseInt(rows);
-                    } else {
-                        totalPages = (totalCount / Integer.parseInt(rows)) + 1;
-                    }
-
-                } else {
-                    totalPages = 0;
-                }
-
+            if (request.getParameter("action").equals("fetchData")) {
+                String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
+                String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
+                String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
+                
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 Database db = new Database();
                 userSecurityTable ust = new userSecurityTable(db);
-                ArrayList list = ust.search(sField, sValue, sOper);
-                db.close();
+                userSecurityEntity uss = new userSecurityEntity();
+                uss.setCompanyId(Company_Id);
+
                 if (request.getParameter("q").equals("1")) {
+                    ArrayList list = ust.search(sField, sValue, sOper, uss);
+                    db.close();
                     GenerateXml xml = new GenerateXml();
-                    xml.setTotal(totalPages);
-                    xml.setPage(request.getParameter("page"));
+                    xml.setTotal(1);
+                    xml.setPage(1);
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         userSecurityEntity data = (userSecurityEntity) list.get(i);
-                        xml.setRowDetail(data.getUserId(),i+1,data.getUserId(),data.getUserPassword(),
-                       data.getUserNameT(),data.getUserNameE(),data.getUserAuthoritySts()
-                      ,data.getUserAliveSts(),data.getApprovedDate(),data.getHoldDate());
+                        xml.setRowDetail(data.getUserId(), i + 1, data.getUserId(), data.getUserPassword(),
+                                         data.getUserNameT(), data.getUserNameE(), data.getUserAuthoritySts(),
+                                         data.getUserAliveSts(), data.getApprovedDate(), data.getHoldDate());
                     }
                     out.print(xml.getXml());
-               }
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
@@ -103,9 +79,9 @@ public class xmlUserSecurity extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -116,7 +92,7 @@ public class xmlUserSecurity extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -128,5 +104,4 @@ public class xmlUserSecurity extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

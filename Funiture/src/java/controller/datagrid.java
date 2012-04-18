@@ -44,7 +44,7 @@ public class datagrid extends HttpServlet {
         try {
 
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+                //response.setContentType("text/xml;charset=UTF-8");
 
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
@@ -105,20 +105,16 @@ public class datagrid extends HttpServlet {
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
-                    int totalPages = 0;
-                    int totalCount = ppst.countAll(pps);
                     db.close();
-                    if(totalCount%rows==0) totalPages = totalCount/rows;
-                    else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(1);
-                    xml.setPage(request.getParameter("page"));
+                    xml.setPage(1);
                     xml.setRecords(list2.size());
                     for (int i = 0; i < list2.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list2.get(i);
-                        xml.setRowDetail(data.getPicCode(), i+1,
+                        xml.setRowDetail(data.getPicCode(),
                                data.getPicCode(),data.getMenuDetailMasterEntity().getMenuCNameT(),
-                               data.getMenuDetailMasterEntity().getMenuCNameE(),data.getPicCode(),data.getPicCode(),data.getPicCode());
+                               data.getMenuDetailMasterEntity().getMenuCNameE(),data.getCreateDate(),data.getPicCode(),data.getPicCode(),data.getPicCode());
                     }
                     out.print(xml.getXml());
                 }
