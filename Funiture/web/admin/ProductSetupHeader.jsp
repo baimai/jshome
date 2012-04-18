@@ -34,11 +34,10 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'datagrid.do?action=fetchData&rows=3&page=1&q=2',
+                    url:'datagrid.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['No','Pic Code', 'Menu Name Th','Menu Name En','','',''],
-                    colModel:[
-                        {name:'No',index:'No', width:55,editable:false,editoptions:{readonly:true,size:10},search:false},
+                    colNames:['Pic Code', 'Menu Name Th','Menu Name En','','',''],
+                    colModel:[                      
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true},search:false},
                         {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
