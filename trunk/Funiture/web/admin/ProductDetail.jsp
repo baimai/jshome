@@ -63,7 +63,11 @@
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
                                         <form action="productDetail.do" method="post" enctype="multipart/form-data" >
-
+                                            <%--<div class="warning_box">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+                                            </div>--%>
+                                            <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                             <c:if test="${param.productDetailId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <input type="hidden" value="0" name="qtyminus" />
@@ -328,7 +332,10 @@
                                                 </div>
                                             </c:if>
                                             <c:if test="${param.productDetailId!=null}" >
+
+
                                                 <c:forEach var="product" items="${query3.rows}" >
+                                                    <center><img src="../${product.product_d_pic_loc}" width="150" height="200" /></center>
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
                                                     <input type="hidden" name="product_d_pic_loc" value="${product.product_d_pic_loc}"/>
@@ -360,9 +367,10 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required"><em>*</em>Product Code</label>
-                                                                        <input name="productCode" class="input-text " value="${product.product_code}"/>
+                                                                        <input name="productCode" class="input-text " value="${product.product_code}" readonly/>
                                                                     </div>
                                                                 </div>
+
                                                             </li>
 
 
