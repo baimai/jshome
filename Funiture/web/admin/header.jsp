@@ -69,7 +69,7 @@
                                 <li><a href="ProductGroup.jsp" class="parent"><span>กลุ่มสินค้า</span></a>
 
                                 </li>
-                                <li><a href="color.jsp" class="parent"><span>สีของสินค้า</span></a> </li>
+                                <li><a href="color.jsp" class="parent"><span>ข้อมูลสี</span></a> </li>
                                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                                 </li>

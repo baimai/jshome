@@ -38,15 +38,20 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id'],
+                    colNames:['รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','Path เก็บรูปภาพ','Path เก็บรูป Icon','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id'],
                     colModel:[                       
-                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editable:true,editoptions:{size:10}},
-                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25}},
+                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editable:true,editoptions:{disabled: true,size:25},editrules:{required:true}, formoptions:{ rowpos:1, label: "productGroupCode", elmprefix:"(*)"},editrules:{required:true}},
+                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25},editrules:{required:true}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:80,editable:true,editrules:{ edithidden:true},edittype:'select',editoptions:{value:{'Y':'Show','N':'Not Show','A':'Show On Slide'}}},
-                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'userId',index:'userId', align:"centert", width:200,editable:true,editoptions:{size:25}},
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:80,editable:true,edittype:"select",editoptions:{value:"Y:แสดงกลุ่มสินค้า;N:ไม่แสดงกลุ่มสินค้า;A:กลุ่มสินค้าโฆษณา"}},
+                        {name:'productPicLoc',index:'productPicLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'productRemarkT',index:'productRemarkT',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'productRemarkE',index:'productRemarkE',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'userId',index:'userId', align:"centert", width:200,editable:false,editoptions:{size:25}},
+                
                         {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true}
 
                     ],
@@ -56,7 +61,7 @@
                     sortname: 'id',
                     viewrecords: true,
                     height: "auto",
-                     width: 950,
+                    width: 950,
                     sortorder: "desc",
                     caption:"ประเภทสินค้า",
                     editurl:"productGroup.do"
@@ -72,10 +77,15 @@
                             var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
                             return value;
                         }}}, // del options
-                {} // search options
+                {jqModal:true,checkOnUpdate:true,savekey: [true,13], navkeys: [true,38,40], checkOnSubmit : true, reloadAfterSubmit:false, closeOnEscape:true, bottominfo:"Fields marked with (*) are required"}, // edit options
+                {jqModal:true,checkOnUpdate:true,savekey: [true,13], navkeys: [true,38,40], checkOnSubmit : true, reloadAfterSubmit:false, closeOnEscape:true,bottominfo:"Fields marked with (*) are required"}, // add options
+                {reloadAfterSubmit:false,jqModal:false, closeOnEscape:true}, // del options
+                {closeOnEscape:true}, // search options
+                {navkeys: [true,38,40], height:250,jqModal:false,closeOnEscape:true}
             );               
             });
         </script>
+
     </head>
     <body>
         <div id="art-main">
