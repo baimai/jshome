@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,20 +59,28 @@ public class colorMasterTable {
         db.update(sql, cm.getColorId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper, int start, int limit) {
-        String sql = "SELECT * FROM color_code_master cm ";
-        if (sOper != null && sValue != null & sField != null) {
-            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
-        }
-        sql = sql + " limit ?,?";
-        List<Map<String, Object>> result = db.queryList(sql, start, limit);
+    public ArrayList searchAll() {
+        String sql = "SELECT "
+                + " cm.Color_Code,"
+                + " cm.Color_Name_T,"
+                + " cm.Create_date,"
+                + " cm.Update_Date,"                
+                + " cm.User_Id ,"
+                + " cm.Color_Id"
+               + " FROM color_code_master cm order by cm.Create_date ,cm.Update_Date" ;
+  
+        
+       
+        List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 colorCodeMasterEntity cm = new colorCodeMasterEntity();
                 cm.setColorCode(Default.Str(result.get(i).get("Color_Code")));
                 cm.setColorNameT(Default.Str(result.get(i).get("Color_Name_T")));
-                cm.setColorNameE(Default.Str(result.get(i).get("Color_Name_E")));
+                 cm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+                cm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
+                cm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 cm.setColorId((Integer) result.get(i).get("Color_Id"));
 
                 list.add(cm);
