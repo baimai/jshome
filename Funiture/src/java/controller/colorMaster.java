@@ -57,6 +57,8 @@ public class colorMaster extends HttpServlet {
                 if (chechDuplicate == false) {
                     cmt.add(cm);
                 }
+                 db.close();
+                response.sendRedirect("color.jsp");
             } else if (request.getParameter("action").equals("Edit")) {
                 cmt.update(cm);
             } else if (request.getParameter("action").equals("Del")) {

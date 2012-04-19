@@ -200,6 +200,7 @@ public class productDetail extends HttpServlet {
                                 db.close();
                                 response.sendRedirect("ProductDetail.jsp?error=1");
                             }
+
                         }
                         if (mr.getParameter("action").equals("Edit")) {
                             pdmt.update(pdm);

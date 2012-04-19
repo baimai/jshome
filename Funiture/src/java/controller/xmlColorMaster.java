@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import controller.Xml.GenerateXml;
@@ -16,12 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.colorMasterTable;
 import model.entity.colorCodeMasterEntity;
+
 /**
  *
  * @author Jik
  */
 public class xmlColorMaster extends HttpServlet {
-   
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,12 +30,12 @@ public class xmlColorMaster extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         request.setCharacterEncoding("utf-8");
         try {
-           if (request.getParameter("action").equals("fetchData")) {
+            if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
 
                 int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
@@ -44,26 +44,35 @@ public class xmlColorMaster extends HttpServlet {
                 String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
                 String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
                 String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
-               
+
                 Database db = new Database();
                 colorMasterTable cmt = new colorMasterTable(db);
-                ArrayList list = cmt.search(sField, sValue, sOper,start,rows);
+                ArrayList list = cmt.searchAll();
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = cmt.countAll();
                     db.close();
-                    if(totalCount%rows==0) totalPages = totalCount/rows;
-                    else totalPages = (totalCount/rows)+1;
+                    if (totalCount % rows == 0) {
+                        totalPages = totalCount / rows;
+                    } else {
+                        totalPages = (totalCount / rows) + 1;
+                    }
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
                     xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         colorCodeMasterEntity data = (colorCodeMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getColorId(),data.getColorCode(), data.getColorNameT(),data.getColorNameE(),data.getColorId());
+                        xml.setRowDetail(data.getColorId(), 
+                                data.getColorCode(),
+                                data.getColorNameT(),
+                                data.getCreateDate(),
+                                data.getUpdateDate(),
+                                data.getUserId(),
+                                data.getColorId());
                     }
                     out.print(xml.getXml());
-               }
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
@@ -82,9 +91,9 @@ public class xmlColorMaster extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -95,7 +104,7 @@ public class xmlColorMaster extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -107,5 +116,4 @@ public class xmlColorMaster extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
