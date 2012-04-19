@@ -40,8 +40,8 @@
                     colModel:[                        
                         {name:'colorCode',index:'colorCode', width:150,	editable:true,editoptions:{ size:25},editrules:{required:true}},
                         {name:'colorNameT',index:'colorNameT', width:150,editable:true,editoptions:{size:25},editrules:{required:true}},
-                        {name:'createDate',index:'createDate', width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
-                        {name:'updateDate',index:'updateDate', width:150,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'createDate',index:'createDate', width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
+                        {name:'updateDate',index:'updateDate', width:150,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
                         {name:'userId',index:'userId', width:150,editable:false,editoptions:{size:25}},
                         {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
                     ],
@@ -63,7 +63,7 @@
                {add:false,edit:false,search:false,view:true },
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
-                        stockId:function() {
+                        colorId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
                             var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'colorId');
                             return value;
@@ -118,7 +118,7 @@
                                         </div>
 
                                         <center>
-                                            <form method="post" name="Add" id="order" action="colorMaster.do" title='' style="width:350px;margin:0px;">
+                                            <form method="post" id="order" action="colorMaster.do" title='' style="width:350px;margin:0px;">
                                                 <fieldset>
                                                     <legend>Invoice Data</legend>
                                                     <table>
@@ -137,8 +137,8 @@
                                                             </tr>
 
                                                             <tr>
-                                                                <td>&nbsp;</td>
                                                                 <td> <button name="action"  id="savedata" value="Add" class="button" ><span><span>เพิ่ม</span></span></button></td>
+                                                                <td> <button name="action"  id="savedata" value="Edit" class="button" ><span><span>แก้ไข</span></span></button></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
