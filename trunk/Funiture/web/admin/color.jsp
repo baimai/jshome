@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
-         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
@@ -36,16 +36,18 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlColorMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['Color Code', 'Color Name T ', 'Color Name E ','Color Id' ],
+                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id' ],
                     colModel:[                        
-                        {name:'colorCode',index:'colorCode', width:180,editable:true,editoptions:{size:10},editrules:{required:true}},
-                        {name:'colorNameT',index:'colorNameT', width:288,editable:true,editoptions:{size:25},editrules:{required:true}},
-                        {name:'colorNameE',index:'colorNameE', width:288,editable:true,editoptions:{size:25}},
+                        {name:'colorCode',index:'colorCode', width:150,	editable:true,editoptions:{ size:25},editrules:{required:true}},
+                        {name:'colorNameT',index:'colorNameT', width:150,editable:true,editoptions:{size:25},editrules:{required:true}},
+                        {name:'createDate',index:'createDate', width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'updateDate',index:'updateDate', width:150,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'userId',index:'userId', width:150,editable:false,editoptions:{size:25}},
                         {name:'colorId',index:'colorId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
                     ],
                     rowNum:20,
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -55,22 +57,40 @@
                     editurl:"colorMaster.do"
 
                 });
+                 jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:170,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:170,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+               
+               {add:false,edit:false,search:false,view:true },
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
-                        colorId:function() {
+                        stockId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
                             var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'colorId');
                             return value;
                         }}}, // del options
                 {} // search options
             );
+            
 
-
-
+               
+                jQuery("#rowed1").jqGrid('navButtonAdd','#prowed1',{caption:"Edit",
+                    onClickButton:function(){
+                        var gsr = jQuery("#rowed1").jqGrid('getGridParam','selrow');
+                        if(gsr){
+                            jQuery("#rowed1").jqGrid('GridToForm',gsr,"#order");
+                        } else {
+                            alert("Please select Row")
+                        }
+                    }
+                });
+                jQuery("#savedata").click(function(){
+                    var invid = jQuery("#invid").val();
+                    if(invid) {
+                        jQuery("#rowed1").jqGrid('FormToGrid',invid,"#order");
+                    }
+                });
+               
+                
 
             });
         </script>
@@ -96,12 +116,39 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลสีสินค้า</h1>
                                         </div>
-                    <center>
-                        <table id="rowed1"></table>
-                        <div id="prowed1"></div>
-                        <br />
-                    </center>
-                    <br/><br/> </div>
+
+                                        <center>
+                                            <form method="post" name="Add" id="order" action="colorMaster.do" title='' style="width:350px;margin:0px;">
+                                                <fieldset>
+                                                    <legend>Invoice Data</legend>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td> รหัสสี:</td>
+                                                                <td><input type="text" name="colorCode"  id="invid"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> คำอธิบาย(ไทย):</td>
+                                                                <td><input type="text" name="colorNameT"  /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>คำอธิบาย(อังกฤษ) :</td>
+                                                                <td><input type="text" name="colorNameE"  /></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td> <button name="action"  id="savedata" value="Add" class="button" ><span><span>เพิ่ม</span></span></button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </fieldset>
+                                            </form>
+                                            <table id="rowed1"></table>
+                                            <div id="prowed1"></div>
+                                            <br />
+                                        </center>
+                                        <br/><br/> </div>
                                 </div>
                             </div>
                         </div>
