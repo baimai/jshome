@@ -7,10 +7,18 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.Hashtable;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javazoom.upload.MultipartFormDataRequest;
+import javazoom.upload.UploadBean;
+import javazoom.upload.UploadException;
+import javazoom.upload.UploadFile;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.productGroupMasterEntity;
@@ -31,16 +39,56 @@ public class productGroup extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        request.setCharacterEncoding("utf-8");
-        try {
-            if (request.getParameter("action") != null) {
-                Database db = new Database();
-                productGroupMasterTable pgmt = new productGroupMasterTable(db);
-                companyMasterTable cmt = new companyMasterTable(db);
-                productGroupMasterEntity pgm = new productGroupMasterEntity();
-                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+      try {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            request.setCharacterEncoding("utf-8");
+            int uploadlimit = 1024 * 1024 * 1024;
+            Vector listeners = null; // No upload listeners
+            String parser = MultipartFormDataRequest.COSPARSER; // Cos parser
+            String encoding = "utf-8";
+            MultipartFormDataRequest mr;
+            mr = new MultipartFormDataRequest(request, listeners, uploadlimit, parser, encoding);
+
+
+            try {
+                //productCode=&companyCode=&price1=500.00&price2=400.00&price3=300.00&picLoc=&iconLoc=&nameTh=กกกก&nameEn=ssss&spec1Th=1&spec1En=a&spec2Th=2&spec2En=b&spec3Th=3&spec3En=c&spec4Th=4&spec4En=d&spec5Th=5&spec5En=e&spec6Th=6&spec6En=f&remarkTh=gg&remarkEn=fff
+                if (MultipartFormDataRequest.isMultipartFormData(request)) {
+                    if (mr.getParameter("action") != null && !mr.getParameter("action").equals("")) {
+                        Database db = new Database();
+                        productGroupMasterTable pgmt = new productGroupMasterTable(db);
+                        companyMasterTable cmt = new companyMasterTable(db);
+                        productGroupMasterEntity pgm = new productGroupMasterEntity();
+
+                        int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                        Hashtable files = mr.getFiles();
+                        UploadFile upFile = (UploadFile) files.get("upload");
+                        UploadBean u = new UploadBean();
+                        if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
+                            String filename = upFile.getFileName();
+                            String filetype = filename.substring(filename.lastIndexOf("."), filename.length());
+                            if ((filetype.indexOf("gif") == -1) && (filetype.indexOf("jpeg") == -1) && (filetype.indexOf("jpg") == -1) && (filetype.indexOf("png") == -1)) {
+                            } else {
+                                if (filetype.endsWith("gif")) {
+                                    upFile.setFileName(filename + ".gif");
+                                } else if (filetype.endsWith("jpeg")) {
+                                    upFile.setFileName(filename + ".jpeg");
+                                } else if (filetype.endsWith("jpg")) {
+                                    upFile.setFileName(filename + ".jpg");
+                                } else if (filetype.endsWith("png")) {
+                                    upFile.setFileName(filename + ".png");
+                                }
+
+                                u.setFolderstore(getServletContext().getRealPath("upload/picture/icon"));
+                            }
+                        }
+                        u.store(mr, "upload");
+                        if (mr.getParameter("uploadtmp") != null) {
+                            pgm.setProductIconLoc(mr.getParameter("uploadtmp"));
+                        }
+                        if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
+                            pgm.setProductIconLoc("upload/picture/icon" + "/" + upFile.getFileName());
+                        }
                 pgm.setCompanyId(Company_Id);
 
                 if (request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")) {
@@ -69,24 +117,44 @@ public class productGroup extends HttpServlet {
                 pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 pgm.setUserId(getServletInfo());
 
-                if (request.getParameter("action").equals("Add")) {
-                    Boolean chechDuplicate = pgmt.checkDuplicate(pgm);
-                    if (chechDuplicate == false) {
-                        pgmt.add(pgm);
+                if (mr.getParameter("action").equals("Add")) {
+                            Boolean checkDuplicate = pgmt.checkDuplicate(pgm);
+                            if (checkDuplicate == false) {
+                                pgmt.add(pgm);
+                               
+                            }else{
+                                db.close();
+                                response.sendRedirect("addProductGroup.jsp?error=1");
+                            }
+
+                        }
+                        if (mr.getParameter("action").equals("Edit")) {
+                            pgmt.update(pgm);
+                           
+                        }
+                        if (mr.getParameter("action").equals("Del")) {
+                            pgmt.remove(pgm);
+                        }
+                        db.close();
+                        if (mr.getParameter("action").equals("Edit")) {
+                            response.sendRedirect("addProductGroup.jsp?valid=1&productGroupId=" + pgm.getProductGroupId());
+                        } else if (mr.getParameter("action").equals("Add")) {
+                            response.sendRedirect("addProductGroup.jsp?valid=1");
+                        }
+
                     }
-                } else if (request.getParameter("action").equals("Edit")) {
-                    pgmt.update(pgm);
-                } else if (request.getParameter("action").equals("Del")) {
-                    pgmt.remove(pgm);
+
                 }
-                db.close();
+            } catch (Exception ex) {
+                ex.printStackTrace(out);
+            } finally {
+                out.close();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace(out);
-        } finally {
-            out.close();
+        } catch (UploadException ex) {
+            Logger.getLogger(productDetail.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

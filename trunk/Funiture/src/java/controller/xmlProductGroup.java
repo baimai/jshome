@@ -56,29 +56,37 @@ public class xmlProductGroup extends HttpServlet {
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
 
                 if (request.getParameter("q").equals("1")) {
-                    ArrayList list = pgmt.search(sField, sValue, sOper, Company_Id, start, rows);
-                    int totalCount = pgmt.countAll(Company_Id);
-                    int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
+                    ArrayList list = pgmt.searchAll();
+                    int totalPages = 0;
+                    int totalCount = pdm.countAll(Company_Id);
                     db.close();
+                    if (totalCount % rows == 0) {
+                        totalPages = totalCount / rows;
+                    } else {
+                        totalPages = (totalCount / rows) + 1;
+                    }
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
                     xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         productGroupMasterEntity data = (productGroupMasterEntity) list.get(i);
-                        xml.setRowDetail(data.getProductGroupId(),
+                        xml.setRowDetail(
+                                data.getProductGroupId(),
+                                data.getProductGroupId(),
+                                 data.getProductGroupId(),
                                 data.getProductGroupCode(),
                                 data.getProductGNameT(),
                                 data.getProductGNameE(),
-                                data.getProductGDisplayFlag(),
-                                data.getProductPicLoc(),
+                                data.getProductGDisplayFlag(),                               
                                 data.getProductIconLoc(),
                                 data.getProductRemarkT(),
                                 data.getProductRemarkE(),
                                 data.getCreateDate(),
                                 data.getUpdateDate(),
                                 data.getUserId(),
-                                data.getProductGroupId());
+                                data.getProductGroupId()
+                               );
 
                     }
                     out.print(xml.getXml());
