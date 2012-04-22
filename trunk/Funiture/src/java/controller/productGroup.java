@@ -91,26 +91,26 @@ public class productGroup extends HttpServlet {
                         }
                 pgm.setCompanyId(Company_Id);
 
-                if (request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")) {
-                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
+                if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
+                    pgm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
                 }
-                if (request.getParameter("productGroupCode") != null) {
-                    pgm.setProductGroupCode(request.getParameter("productGroupCode"));
+                if (mr.getParameter("productGroupCode") != null) {
+                    pgm.setProductGroupCode(mr.getParameter("productGroupCode"));
                 }
-                if (request.getParameter("productGNameT") != null) {
-                    pgm.setProductGNameT(request.getParameter("productGNameT"));
+                if (mr.getParameter("productGNameT") != null) {
+                    pgm.setProductGNameT(mr.getParameter("productGNameT"));
                 }
-                if (request.getParameter("productGNameE") != null) {
-                    pgm.setProductGNameE(request.getParameter("productGNameE"));
+                if (mr.getParameter("productGNameE") != null) {
+                    pgm.setProductGNameE(mr.getParameter("productGNameE"));
                 }
-                if (request.getParameter("productRemarkT") != null) {
-                    pgm.setProductRemarkT(request.getParameter("productRemarkT"));
+                if (mr.getParameter("productRemarkT") != null) {
+                    pgm.setProductRemarkT(mr.getParameter("productRemarkT"));
                 }
-                if (request.getParameter("productRemarkE") != null) {
-                    pgm.setProductRemarkE(request.getParameter("productRemarkE"));
+                if (mr.getParameter("productRemarkE") != null) {
+                    pgm.setProductRemarkE(mr.getParameter("productRemarkE"));
                 }
-                if (request.getParameter("productGDisplayFlag") != null) {
-                    pgm.setProductGDisplayFlag(request.getParameter("productGDisplayFlag"));
+                if (mr.getParameter("productGDisplayFlag") != null) {
+                    pgm.setProductGDisplayFlag(mr.getParameter("productGDisplayFlag"));
                 }
 
                 pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
