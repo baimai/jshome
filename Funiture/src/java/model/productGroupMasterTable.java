@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,18 @@ public class productGroupMasterTable {
 
     public void add(productGroupMasterEntity pgm) {
         String sql = "insert into product_group_master "
-                + "( Company_Id,Product_Group_Code,Product_G_Name_T,Product_G_Name_E,Product_Pic_Loc,Product_Icon_Loc,"
-                + "  Product_Remark_T,Product_Remark_E,Product_G_Display_Flag,Create_Date,User_Id )"
-                + "  values(?,?,?,?,?,?,?,?,?,?,?)";
+                + "( Company_Id,"
+                + " Product_Group_Code,"
+                + " Product_G_Name_T,"
+                + " Product_G_Name_E,"
+                + " Product_Pic_Loc,"
+                + " Product_Icon_Loc,"
+                + " Product_Remark_T,"
+                + " Product_Remark_E,"
+                + " Product_G_Display_Flag,"
+                + " Create_Date,"
+                + " User_Id )"
+                + " values(?,?,?,?,?,?,?,?,?,?,?)";
 
         db.add(sql,
                 pgm.getCompanyId(),
@@ -72,15 +82,15 @@ public class productGroupMasterTable {
     }
 
     public ArrayList search(String sField, String sValue, String sOper, int Company_Id, int start, int limit) {
-        String sql = " SELECT * FROM product_group_master pgm " +
-                     " where pgm.Company_Id = ? ";
+        String sql = " SELECT * FROM product_group_master pgm "
+                + " where pgm.Company_Id = ? ";
 
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
         sql = sql + " LIMIT ?,? ";
-        List<Map<String, Object>> result = db.queryList(sql, Company_Id, start, limit);
+        List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
@@ -94,7 +104,36 @@ public class productGroupMasterTable {
                 pgm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
                 pgm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
                 pgm.setUserId(Default.Str(result.get(i).get("User_Id")));
-                pgm.setProductGroupId((Integer)result.get(i).get("Product_Group_Id"));
+                pgm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
+                list.add(pgm);
+            }
+        }
+        return !result.isEmpty() ? list : null;
+    }
+
+    public ArrayList searchAll() {
+        String sql = " SELECT pgm.Product_Group_Code, pgm.Product_G_Name_T,"
+                + "  pgm.Product_G_Name_E, pgm.Product_G_Display_Flag,"
+                + "  pgm.Create_Date, pgm.Update_Date, pgm.User_Id,pgm.Product_Group_Id"
+                + " FROM product_group_master pgm ";
+
+
+
+
+
+        List<Map<String, Object>> result = db.queryList(sql);
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            for (int i = 0; i < result.size(); i++) {
+                productGroupMasterEntity pgm = new productGroupMasterEntity();
+                pgm.setProductGroupCode(Default.Str(result.get(i).get("Product_Group_Code")));
+                pgm.setProductGNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
+                pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
+                pgm.setProductGDisplayFlag(Default.Str(result.get(i).get("Product_G_Display_Flag")));
+                pgm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+                pgm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
+                pgm.setUserId(Default.Str(result.get(i).get("User_Id")));
+                pgm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
                 list.add(pgm);
             }
         }
