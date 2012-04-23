@@ -55,7 +55,7 @@
         <script  type="text/javascript">
             function remove(productGroupId){
                 var param = "productGroupId="+productGroupId+"&action=Del";
-                postDataReturnText("remove.do",param,test);
+                postDataReturnText("productGroup.do",param,test);
                 $('#rowed1').trigger("reloadGrid");
             }
             function test(){
@@ -77,8 +77,7 @@
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editable:true,editoptions:{disabled: true,size:25}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25},editrules:{required:true}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:80,editable:true,editoptions:{value:"Y:แสดงกลุ่มสินค้า;N:ไม่แสดงกลุ่มสินค้า;A:กลุ่มสินค้าโฆษณา"}},
-                      
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{value:"Y:แสดงกลุ่มสินค้า;N:ไม่แสดงกลุ่มสินค้า;A:กลุ่มสินค้าโฆษณา"},stype:'select', editoptions:{value:":ทุกกลุ่มสินค้า;Y:แสดงกลุ่มสินค้า;N:ไม่แสดงกลุ่มสินค้า;A:กลุ่มสินค้าโฆษณา;"}},
                         {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
@@ -103,16 +102,16 @@
                 });
                 jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {add:false,edit:false,search:false,view:true }
+                {add:false,edit:false,search:false,view:true },
 
-                //{reloadAfterSubmit:true,
-                  //  delData:{action:"Del",
-                    //    productGroupId:function() {
-                     //       var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                      //      var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
-                       //     return value;
-                     //   }}
-                       // } // del options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        productGroupId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
+                            return value;
+                        }}
+                        } // del options
                
             );              
             });
@@ -142,19 +141,20 @@
                                             <h1>ข้อมูลประเภทสินค้า</h1>
                                             <div class="button" align="right">
                                                     
-                                                <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
+                                       <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
+
 
 
                                             </div>
                                         </div>
 
                                         
-                                        <center>
+                                        
                                    
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
                                             <br /> <br />
-                                        </center>
+                                       
                                         <br/>
                                     </div>
                                 </div>
