@@ -12,7 +12,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${param.productGroupId!=null}">
     <sql:query var="query" dataSource="webdb">
-        SELECT pgm.Product_Group_Code,
+        SELECT 
+        pgm.Product_Group_Code,
+        pgm.product_group_id,
         pgm.Product_G_Name_T,
         pgm.Product_G_Name_E,
         pgm.Product_Pic_Loc,
@@ -131,7 +133,7 @@
                                             <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                             <c:if test="${param.productGroupId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
-                                                <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
+                                                <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
                                                 <table border="1"  width="90%">
 
                                                     <tbody>
