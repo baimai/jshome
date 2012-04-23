@@ -102,16 +102,9 @@
                 });
                 jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {add:false,edit:false,search:false,view:true },
+                {add:false,edit:false,del:false,search:false,view:true }
 
-                {reloadAfterSubmit:true,
-                    delData:{action:"Del",
-                        productGroupId:function() {
-                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
-                            return value;
-                        }}
-                        } // del options
+                // del options
                
             );              
             });
