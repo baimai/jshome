@@ -39,7 +39,7 @@ public class productGroup extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      try {
+        try {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             request.setCharacterEncoding("utf-8");
@@ -89,40 +89,40 @@ public class productGroup extends HttpServlet {
                         if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
                             pgm.setProductIconLoc("upload/picture/icon" + "/" + upFile.getFileName());
                         }
-                pgm.setCompanyId(Company_Id);
+                        pgm.setCompanyId(Company_Id);
 
-                if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
-                    pgm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
-                }
-                if (mr.getParameter("productGroupCode") != null) {
-                    pgm.setProductGroupCode(mr.getParameter("productGroupCode"));
-                }
-                if (mr.getParameter("productGNameT") != null) {
-                    pgm.setProductGNameT(mr.getParameter("productGNameT"));
-                }
-                if (mr.getParameter("productGNameE") != null) {
-                    pgm.setProductGNameE(mr.getParameter("productGNameE"));
-                }
-                if (mr.getParameter("productRemarkT") != null) {
-                    pgm.setProductRemarkT(mr.getParameter("productRemarkT"));
-                }
-                if (mr.getParameter("productRemarkE") != null) {
-                    pgm.setProductRemarkE(mr.getParameter("productRemarkE"));
-                }
-                if (mr.getParameter("productGDisplayFlag") != null) {
-                    pgm.setProductGDisplayFlag(mr.getParameter("productGDisplayFlag"));
-                }
+                        if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
+                            pgm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
+                        }
+                        if (mr.getParameter("productGroupCode") != null) {
+                            pgm.setProductGroupCode(mr.getParameter("productGroupCode"));
+                        }
+                        if (mr.getParameter("productGNameT") != null) {
+                            pgm.setProductGNameT(mr.getParameter("productGNameT"));
+                        }
+                        if (mr.getParameter("productGNameE") != null) {
+                            pgm.setProductGNameE(mr.getParameter("productGNameE"));
+                        }
+                        if (mr.getParameter("productRemarkT") != null) {
+                            pgm.setProductRemarkT(mr.getParameter("productRemarkT"));
+                        }
+                        if (mr.getParameter("productRemarkE") != null) {
+                            pgm.setProductRemarkE(mr.getParameter("productRemarkE"));
+                        }
+                        if (mr.getParameter("productGDisplayFlag") != null) {
+                            pgm.setProductGDisplayFlag(mr.getParameter("productGDisplayFlag"));
+                        }
 
-                pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
-                pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                pgm.setUserId(getServletInfo());
+                        pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
+                        pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                        pgm.setUserId(getServletInfo());
 
-                if (mr.getParameter("action").equals("Add")) {
+                        if (mr.getParameter("action").equals("Add")) {
                             Boolean checkDuplicate = pgmt.checkDuplicate(pgm);
                             if (checkDuplicate == false) {
                                 pgmt.add(pgm);
-                               
-                            }else{
+
+                            } else {
                                 db.close();
                                 response.sendRedirect("addProductGroup.jsp?error=1");
                             }
@@ -130,9 +130,11 @@ public class productGroup extends HttpServlet {
                         }
                         if (mr.getParameter("action").equals("Edit")) {
                             pgmt.update(pgm);
-                           
+
                         }
                         if (mr.getParameter("action").equals("Del")) {
+                            pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
+                            out.print(pgm.getProductGroupId());
                             pgmt.remove(pgm);
                         }
                         db.close();
@@ -154,7 +156,6 @@ public class productGroup extends HttpServlet {
             Logger.getLogger(productDetail.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

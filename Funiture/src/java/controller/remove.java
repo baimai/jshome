@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.entity.productDetailMasterEntity;
+import model.entity.productGroupMasterEntity;
 import model.productDetailMasterTable;
+import model.productGroupMasterTable;
 
 /**
  *
@@ -41,6 +43,12 @@ public class remove extends HttpServlet {
                     pdm.setCompanyId(Company_Id);
                     pdm.setProductDetailId(Integer.parseInt(request.getParameter("productDetailId")));
                     pdmt.remove(pdm);
+                }else if(request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")){
+                    productGroupMasterEntity pgm = new productGroupMasterEntity();
+                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
+                    productGroupMasterTable pgmt = new productGroupMasterTable(db);
+                    out.print(pgm.getProductGroupId());
+                    pgmt.remove(pgm);
                 }
             }
             db.close();
