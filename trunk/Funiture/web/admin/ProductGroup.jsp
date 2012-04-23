@@ -52,14 +52,14 @@
         <script src="../jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
             function remove(productGroupId){
                 var param = "productGroupId="+productGroupId+"&action=Del";
-                postDataReturnText("productGroup.do",param,test);
-                $('#rowed1').trigger("reloadGrid");
+                postDataReturnText("remove.do",param,test);
+                window.location.href='ProductGroup.jsp';
             }
-            function test(){
-
+            function test(text){
             }
             function confirmDelete(id) {
                 if (confirm("คุณต้องการลบหรือไม่ !")) {
