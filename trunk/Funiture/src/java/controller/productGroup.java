@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javazoom.upload.MultipartFormDataRequest;
 import javazoom.upload.UploadBean;
 import javazoom.upload.UploadException;
@@ -22,6 +23,7 @@ import javazoom.upload.UploadFile;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.productGroupMasterEntity;
+import model.entity.userSecurityEntity;
 import model.productGroupMasterTable;
 
 /**
@@ -59,7 +61,8 @@ public class productGroup extends HttpServlet {
                         productGroupMasterTable pgmt = new productGroupMasterTable(db);
                         companyMasterTable cmt = new companyMasterTable(db);
                         productGroupMasterEntity pgm = new productGroupMasterEntity();
-
+                        HttpSession s = request.getSession(true);
+                        userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                         int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
@@ -115,7 +118,7 @@ public class productGroup extends HttpServlet {
 
                         pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                        pgm.setUserId(getServletInfo());
+                        pgm.setUserId(lc.getUserId());
 
                         if (mr.getParameter("action").equals("Add")) {
                             Boolean checkDuplicate = pgmt.checkDuplicate(pgm);
