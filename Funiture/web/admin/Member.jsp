@@ -58,8 +58,8 @@
                         {name:'memberName',index:'memberName',align:"center", width:130,editrules:{ edithidden:false},editable:false},
                         {name:'memberSurName',index:'memberSurName',align:"center", width:130,editrules:{ edithidden:false},editable:false},
                         {name:'memberStatus',index:'memberStatus', width:80, align:"center",editable:false,editoptions:{size:25}},
-                        {name:'memberRegDate',index:'memberRegDate', width:125, align:"right",editrules:{ edithidden:false},editable:false},
-                        {name:'memberAppdate',index:'memberAppdate', width:125, align:"right",editrules:{ edithidden:false},editable:false},
+                        {name:'memberRegDate',index:'memberRegDate', width:125, align:"right",editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'memberAppdate',index:'memberAppdate', width:125, align:"right",editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
                         {name:'status',index:'status', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select', editoptions:{value:{'Y':'Active','N':'InActive','B':'Ban'}}},
                         {name:'gradeName',index:'gradeName', width:60,hidden:false,align:"center",editrules:{ edithidden:false},editable:false},
                         {name:'grade',index:'grade', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select',editoptions:{value:"${listGrade}"}},
@@ -102,6 +102,8 @@
             }
         </script>
         <script type="text/javascript">
+
+
             $(function() {
                 $("#datepicker").datepicker();
             });
