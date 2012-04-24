@@ -58,6 +58,7 @@
                 var param = "productGroupId="+productGroupId+"&action=Del";
                 postDataReturnText("remove.do",param,test);
                 window.location.href='ProductGroup.jsp';
+                //
             }
             function test(text){
             }
