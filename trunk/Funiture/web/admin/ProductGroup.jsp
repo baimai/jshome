@@ -33,6 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
+
         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
@@ -54,6 +55,14 @@
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
+              $(function() {
+                $("#datepicker").datepicker();
+            });
+
+            function splitDate(date){
+                var t = date.split("/");  //ถ้าเจอวรรคแตกเก็บลง array t
+                return t[2]+"-"+t[0]+"-"+t[1];
+            }
             function remove(productGroupId){
                 var param = "productGroupId="+productGroupId+"&action=Del";
                 postDataReturnText("remove.do",param,test);
@@ -64,9 +73,10 @@
             }
             function confirmDelete(id) {
                 if (confirm("คุณต้องการลบหรือไม่ !")) {
-                   remove(id);
+                    remove(id);
                 }
             }
+          
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&q=1',
@@ -78,14 +88,17 @@
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editable:true,editoptions:{disabled: true,size:25}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25},editrules:{required:true}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{value:"Y:แสดงกลุ่มสินค้า;N:ไม่แสดงกลุ่มสินค้า;A:กลุ่มสินค้าโฆษณา"},stype:'select', editoptions:{value:":ทุกกลุ่มสินค้า;Y:แสดงกลุ่มสินค้า;N:ไม่แสดงกลุ่มสินค้า;A:กลุ่มสินค้าโฆษณา;"}},
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{size:25}},
                         {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"Y-m-d"}},
-                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"Y-m-d"}},
+                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
+                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{ dataInit:function(el){
+                                $(el).datepicker({
+                                    dateFormat:'dd/mm/yy',
+                                    onSelect: function(dateText, inst){ $("#rowed1")[0].triggerToolbar(); }
+                                });} }},
                         {name:'userId',index:'userId', align:"centert", width:200,editable:false,editoptions:{size:25}},
-                
                         {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true}
 
                     ],
@@ -103,11 +116,23 @@
                 });
                 jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {add:false,edit:false,del:false,search:false,view:true }
+
+                {add:true,edit:true,del:true,search:false,view:false },
+
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                       productGroupId:function() {
+                           var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                           var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
+                           return value;
+                       }}
+                        } // del options
 
                 // del options
+
                
-            );              
+            );
+               
             });
         </script>
 
@@ -134,21 +159,18 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1>
                                             <div class="button" align="right">
-                                                    
-                                       <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
 
-
-
+                                                <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
                                         </div>
 
-                                        
-                                        
-                                   
-                                            <table id="rowed1"></table>
-                                            <div id="prowed1"></div>
-                                            <br /> <br />
-                                       
+
+
+
+                                        <table id="rowed1"></table>
+                                        <div id="prowed1"></div>
+                                        <br /> <br />
+
                                         <br/>
                                     </div>
                                 </div>
