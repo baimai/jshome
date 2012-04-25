@@ -94,27 +94,52 @@ public class productGroup extends HttpServlet {
                         }
                         pgm.setCompanyId(Company_Id);
 
-                        if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
-                            pgm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
-                        }
-                        if (mr.getParameter("productGroupCode") != null) {
-                            pgm.setProductGroupCode(mr.getParameter("productGroupCode"));
-                        }
-                        if (mr.getParameter("productGNameT") != null) {
-                            pgm.setProductGNameT(mr.getParameter("productGNameT"));
-                        }
-                        if (mr.getParameter("productGNameE") != null) {
-                            pgm.setProductGNameE(mr.getParameter("productGNameE"));
-                        }
-                        if (mr.getParameter("productRemarkT") != null) {
-                            pgm.setProductRemarkT(mr.getParameter("productRemarkT"));
-                        }
-                        if (mr.getParameter("productRemarkE") != null) {
-                            pgm.setProductRemarkE(mr.getParameter("productRemarkE"));
-                        }
-                        if (mr.getParameter("productGDisplayFlag") != null) {
-                            pgm.setProductGDisplayFlag(mr.getParameter("productGDisplayFlag"));
-                        }
+
+                if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
+                    pgm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
+                }
+
+                if (mr.getParameter("productGroupCode") != null && !mr.getParameter("productGroupCode").equals("")){
+                    pgm.setProductGroupCode(mr.getParameter("productGroupCode"));
+                }
+                if (mr.getParameter("productGNameT") != null && !mr.getParameter("productGNameT").equals("")) {
+                    pgm.setProductGNameT(mr.getParameter("productGNameT"));
+                }
+                if (mr.getParameter("productGNameE") != null && !mr.getParameter("productGNameE").equals("")) {
+                    pgm.setProductGNameE(mr.getParameter("productGNameE"));
+                }
+                if (mr.getParameter("productRemarkT") != null && !mr.getParameter("productRemarkT").equals("")) {
+                    pgm.setProductRemarkT(mr.getParameter("productRemarkT"));
+                }
+                if (mr.getParameter("productRemarkE") != null && !mr.getParameter("productRemarkE").equals("")) {
+                    pgm.setProductRemarkE(mr.getParameter("productRemarkE"));
+                }
+                if (mr.getParameter("productGDisplayFlag") != null && !mr.getParameter("productGDisplayFlag").equals("")) {
+                    pgm.setProductGDisplayFlag(mr.getParameter("productGDisplayFlag"));
+                }
+
+//                        if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
+//                            pgm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
+//                        }
+//                        if (mr.getParameter("productGroupCode") != null) {
+//                            pgm.setProductGroupCode(mr.getParameter("productGroupCode"));
+//                        }
+//                        if (mr.getParameter("productGNameT") != null) {
+//                            pgm.setProductGNameT(mr.getParameter("productGNameT"));
+//                        }
+//                        if (mr.getParameter("productGNameE") != null) {
+//                            pgm.setProductGNameE(mr.getParameter("productGNameE"));
+//                        }
+//                        if (mr.getParameter("productRemarkT") != null) {
+//                            pgm.setProductRemarkT(mr.getParameter("productRemarkT"));
+//                        }
+//                        if (mr.getParameter("productRemarkE") != null) {
+//                            pgm.setProductRemarkE(mr.getParameter("productRemarkE"));
+//                        }
+//                        if (mr.getParameter("productGDisplayFlag") != null) {
+//                            pgm.setProductGDisplayFlag(mr.getParameter("productGDisplayFlag"));
+//                        }
+
 
                         pgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                         pgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
@@ -140,9 +165,14 @@ public class productGroup extends HttpServlet {
                             out.print(pgm.getProductGroupId());
                             pgmt.remove(pgm);
                         }
+                  out.println("productGNameT" + pgm.getProductGNameT());
+                  out.println("getProductGroupId" + pgm.getProductGroupId());
+                 // out.println("quantity" + pgm.getQuantity());
                         db.close();
                         if (mr.getParameter("action").equals("Edit")) {
+                           out.println("productGNameT" + pgm.getProductGNameT());
                             response.sendRedirect("addProductGroup.jsp?valid=1&productGroupId=" + pgm.getProductGroupId());
+
                         } else if (mr.getParameter("action").equals("Add")) {
                             response.sendRedirect("addProductGroup.jsp?valid=1");
                         }
@@ -152,6 +182,8 @@ public class productGroup extends HttpServlet {
                 }
             } catch (Exception ex) {
                 ex.printStackTrace(out);
+                                  
+
             } finally {
                 out.close();
             }
