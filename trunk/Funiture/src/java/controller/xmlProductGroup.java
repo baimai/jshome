@@ -71,14 +71,22 @@ public class xmlProductGroup extends HttpServlet {
                     xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         productGroupMasterEntity data = (productGroupMasterEntity) list.get(i);
+                         String displayFlag = null;
+                        if (data.getProductGDisplayFlag() == null || data.getProductGDisplayFlag().equals("Y") || data.getProductGDisplayFlag().equals("")) {
+                            displayFlag = "แสดงกลุ่มสินค้า";
+                        } else if (data.getProductGDisplayFlag().equals("N")) {
+                            displayFlag = "ไม่แสดงกลุ่มสินค้า";
+                        } else if (data.getProductGDisplayFlag().equals("A")) {
+                            displayFlag = "สินค้าโฆษณา";
+                        }
                         xml.setRowDetail(
+                               // data.getProductGroupId(),
+                              //  data.getProductGroupId(),
                                 data.getProductGroupId(),
-                                data.getProductGroupId(),
-                                 data.getProductGroupId(),
                                 data.getProductGroupCode(),
                                 data.getProductGNameT(),
-                                data.getProductGNameE(),
-                                data.getProductGDisplayFlag(),                               
+                                data.getProductGNameE(),                              
+                                displayFlag,
                                 data.getProductIconLoc(),
                                 data.getProductRemarkT(),
                                 data.getProductRemarkE(),
@@ -126,8 +134,11 @@ public class xmlProductGroup extends HttpServlet {
                     xml.setRecords(totalCount);
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getProductDetailId(), i + 1, data.getProductCode(),
-                                data.getProductDNameT(), data.getProductDNameE(), data.getProductDPicLoc());
+                        xml.setRowDetail(data.getProductDetailId(), i + 1,
+                                data.getProductCode(),
+                                data.getProductDNameT(), 
+                                data.getProductDNameE(), 
+                                data.getProductDPicLoc());
                     }
                     out.print(xml.getXml());
 
