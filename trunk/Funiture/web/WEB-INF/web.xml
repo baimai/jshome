@@ -157,6 +157,12 @@
         <servlet-name>insert</servlet-name>
         <servlet-class>controller.insert</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>test1</servlet-name>
+        <servlet-class>controller.test1</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>productGroup_</servlet-name>
         <servlet-class>controller.productGroup</servlet-class>
@@ -313,7 +319,12 @@
         <servlet-name>insert</servlet-name>
         <url-pattern>/insert</url-pattern>
     </servlet-mapping>
-   
+
+    <servlet-mapping>
+        <servlet-name>test1</servlet-name>
+        <url-pattern>/test1</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
