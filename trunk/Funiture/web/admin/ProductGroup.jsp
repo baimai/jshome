@@ -81,14 +81,14 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:[/*'แก้ไข','ลบ',*/'รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','Path เก็บรูป Icon','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id'],
+                    colNames:['แก้ไข','ลบ','รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','Path เก็บรูป Icon','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id'],
                     colModel:[
-                        //{name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                        // {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,formoptions:{ rowpos:1, label: "productGroupCode", elmprefix:"(*)"},editoptions:{disabled: true,size:25},editrules:{required:true,editable:true}},
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editoptions:{editable:true,size:25},editrules:{number:true,required:true,edithidden:true},formoptions:{/* rowpos:1, label: "productGroupCode",*/ elmprefix:"(*)"}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{size:25}},
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{size:25},edittype:"file"},
                         {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
@@ -101,6 +101,7 @@
                         {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',
                             search:'true', searchoptions:{ dataInit:function(el){
                                     $(el).datepicker({
+
                                         dateFormat:'yy-mm-dd',newformat:"dd/mm/yy",
                                         onSelect: function(dateText, inst){ $("#rowed1")[0].triggerToolbar(); }
                                     });} }},
@@ -112,30 +113,33 @@
                     height: "auto",
                     width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
-                    //loadonce:true,
+                    loadonce:true,
                     pager: '#prowed1',
+                    imgpath: 'upload/picture/icon', 
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"ประเภทสินค้า",
                     editurl:"productGroup.do"
                 });
-                jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {add:true,edit:true,del:true,search:false,view:true },
-                // {height:290,reloadAfterSubmit:false, jqModal:false, closeOnEscape:true, bottominfo:"Fields marked with (*) are required"}, // edit options
-                // {height:290,reloadAfterSubmit:false,jqModal:false, closeOnEscape:true,bottominfo:"Fields marked with (*) are required", closeAfterAdd: true}, // add options
-                // {reloadAfterSubmit:false,jqModal:false, closeOnEscape:true},
+                 {add:false,edit:edit,del:true,search:true,view:false }
+               // jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+               // jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+               
+               // {height:290,reloadAfterSubmit:false, jqModal:false, closeOnEscape:true, bottominfo:"Fields marked with (*) are required"}, // edit options
+               //  {height:290,reloadAfterSubmit:false,jqModal:false, closeOnEscape:true,bottominfo:"Fields marked with (*) are required", closeAfterAdd: true}, // add options
+               //  {reloadAfterSubmit:false,jqModal:false, closeOnEscape:true}
              
 
-                {reloadAfterSubmit:true,
-                    delData:{action:"Del",
-                        productGroupId:function() {
-                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
-                            return value;
-                        }}
-                } // del options
+              //  {reloadAfterSubmit:true,
+               //     delData:{action:"Del",
+                //        productGroupId:function() {
+                //            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                 //           var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
+                //            return value;
+                 //       }}
+               // } // del options
 
                 // del options
 
