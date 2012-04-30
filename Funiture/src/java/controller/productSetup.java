@@ -62,6 +62,7 @@ public class productSetup extends HttpServlet {
 
                 if (request.getParameter("picNameT") != null) {
                     mps.setPicNameT(request.getParameter("picNameT"));
+                  //  out.print("picNameT"+mps.getPicNameT());
                 }
                 if (request.getParameter("picNameE") != null) {
                     mps.setPicNameE(request.getParameter("picNameE"));
@@ -87,7 +88,7 @@ public class productSetup extends HttpServlet {
 
                 db.close();
                 if (request.getParameter("action").equals("Add")) {
-                    response.sendRedirect("ProductSetup.jsp");
+                    response.sendRedirect("ProductSetup.jsp?picCode="+mps.getPicCode());
                 }
             }
         } catch (Exception ex) {
