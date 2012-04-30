@@ -77,8 +77,8 @@ public class productGroupMasterTable {
     }
 
     public void remove(productGroupMasterEntity pgm) {
-        String sql = "delete from product_group_master where product_group_id = ?";
-        db.remove(sql, pgm.getProductGroupId());
+        String sql = "delete from product_group_master where product_group_id = ? ";
+        db.add(sql, pgm.getProductGroupId());
     }
 
     public ArrayList search(String sField, String sValue, String sOper, int Company_Id, int start, int limit) {
