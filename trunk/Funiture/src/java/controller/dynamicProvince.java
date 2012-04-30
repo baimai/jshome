@@ -53,11 +53,11 @@ public class dynamicProvince extends HttpServlet {
             ArrayList list = cpt.search(level, id);
             if (list != null) {
                 if (level == 1) {
-                    out.println("<select name=\"memberProvince\" id=\"memberProvince\" onchange=\"changeCommonProvince(2,this.value)\" style=\"width:200px\">");
+                    out.println("<select name=\"memberProvince\" id=\"memberProvince\" onchange=\"changeCommonProvince(2,this.value)\" style=\"width:260px\">");
                 } else if (level == 2) {
-                    out.println("<select name=\"memberAmphur\" id=\"memberAmphur\" onchange=\"changeCommonProvince(3,this.value)\" style=\"width:200px\">");
+                    out.println("<select name=\"memberAmphur\" id=\"memberAmphur\" onchange=\"changeCommonProvince(3,this.value)\" style=\"width:260px\">");
                 } else if (level == 3) {
-                    out.println("<select name=\"memberDistinct\" id=\"memberDistinct\" style=\"width:200px\">");
+                    out.println("<select name=\"memberDistinct\" id=\"memberDistinct\" style=\"width:260px\">");
                 }
                 for (int i = 0; i < list.size(); i++) {
                     commonProvinceEntity data = (commonProvinceEntity) list.get(i);

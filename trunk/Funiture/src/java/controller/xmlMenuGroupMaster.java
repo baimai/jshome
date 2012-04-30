@@ -41,7 +41,7 @@ public class xmlMenuGroupMaster extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                // response.setContentType("text/xml;charset=UTF-8");
+                response.setContentType("text/xml;charset=UTF-8");
 
                 int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
                 int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;

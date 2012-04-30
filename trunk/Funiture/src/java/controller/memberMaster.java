@@ -141,7 +141,9 @@ public class memberMaster extends HttpServlet {
                 } else if (request.getParameter("action").equals("Edit")) {
                     mbt.adminUpdate(mb);
                 } else if (request.getParameter("action").equals("Del")) {
-                    //mbt.remove(mb);
+                  
+                         mbt.remove(mb);
+                   
                 }
                 db.close();
                 if (request.getParameter("action").equals("Submit")) {

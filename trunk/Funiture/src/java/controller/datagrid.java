@@ -99,9 +99,15 @@ public class datagrid extends HttpServlet {
                     for (int i = 0; i < list.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list.get(i);
                         xml.setRowDetail(data.getPicId(),
-                               data.getPicCode(),data.getProductDetailMasterEntity().getProductDPicLoc(),
-                               data.getProductCode(),data.getPicNameT(),data.getPicNameE(),
-                               data.getProductRemarkT(),data.getProductRemarkE(),data.getPicId(),data.getPicId());
+                               data.getPicCode(),
+                               data.getProductDetailMasterEntity().getProductDPicLoc(),
+                               data.getProductCode(),
+                               data.getPicNameT(),
+                               data.getPicNameE(),
+                               data.getProductRemarkT(),
+                               data.getProductRemarkE(),
+                               data.getPicId(),
+                               data.getPicId());
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
@@ -113,8 +119,14 @@ public class datagrid extends HttpServlet {
                     for (int i = 0; i < list2.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list2.get(i);
                         xml.setRowDetail(data.getPicCode(),
-                               data.getPicCode(),data.getMenuDetailMasterEntity().getMenuCNameT(),
-                               data.getMenuDetailMasterEntity().getMenuCNameE(),data.getCreateDate(),data.getPicCode(),data.getPicCode(),data.getPicCode());
+                               data.getPicCode(),
+                               data.getMenuDetailMasterEntity().getMenuCNameT(),
+                               data.getMenuDetailMasterEntity().getMenuCNameE(),
+                               data.getProductRemarkT(),
+                               data.getProductRemarkE(),
+                               data.getPicCode(),
+                               data.getPicCode(),
+                               data.getPicCode());
                     }
                     out.print(xml.getXml());
                 }

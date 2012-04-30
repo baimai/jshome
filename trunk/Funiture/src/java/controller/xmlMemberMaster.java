@@ -40,7 +40,7 @@ public class xmlMemberMaster extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+                //response.setContentType("text/xml;charset=UTF-8");
 
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
@@ -110,9 +110,17 @@ public class xmlMemberMaster extends HttpServlet {
                         } else if (data.getMemberStatus().equals("B")) {
                             statusFull = "Ban";
                         }
-                        xml.setRowDetail(data.getMemberId(), data.getMemberLogin(), data.getMemberName(), data.getMemberSurName(),
+                        xml.setRowDetail(data.getMemberId(), 
+                                data.getMemberLogin(),
+                                data.getMemberComName(),
+                                data.getMemberNameAbbr(),
+                                data.getMemberName(),
+                                data.getMemberSurName(),
                                 statusFull,
                                 data.getMemberRegDate(),
+                                data.getMemberAddr1(),
+                                data.getMemberAddr2(),
+                                data.getMemberDistinct(),
                                 data.getMemberAppdate(),
                                 data.getMemberStatus(),
                                 data.getMemberGradeMasterEntity().getMemberGrade(),
