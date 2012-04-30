@@ -60,8 +60,8 @@
                  jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                
-               {add:false,edit:false,search:false,view:true },
-                {reloadAfterSubmit:true,
+               {add:false,edit:true,search:false,view:true },
+               {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         colorId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');

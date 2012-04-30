@@ -35,6 +35,7 @@
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
                     url:'datagrid.do?action=fetchData&q=1&picCode=${param.picCode}',
+                    //url:'datagrid.do?action=fetchData&q=1&picCode=00010',
                     datatype: "xml",
                     colNames:['Pic Code','Picture','Product Code','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng','Pic Id',''],
                     colModel:[

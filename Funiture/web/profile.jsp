@@ -112,7 +112,7 @@
     </head>
 
     <body class=" customer-account-create" >
-        <div id="art-main">
+c         <div id="art-main">
             <div class="art-sheet">
                 <div class="art-sheet-bl"></div>
                 <div class="art-sheet-br"></div>
@@ -197,22 +197,14 @@
                                                                         <div class="field name-firstname">
                                                                             <label for="firstname" >ชื่อ</label>
                                                                             <div class="input-box">
-                                                                                <input type="text" id="firstname" name="memberName" value="${member.member_name}" title="First Name"class="input-text"   />
+                                                                                <input type="text" id="firstname" name="memberName" value="${member.member_name}" title="First Name"class="input-text required-entry validate-one-required"   />
                                                                             </div>
                                                                         </div>
                                                                         <div class="field name-lastname">
                                                                             <label for="lastname" >นามสกุล</label>
                                                                             <div class="input-box">
-                                                                                <input type="text" id="lastname" name="memberSurName" value="${member.member_SurName}" title="Last Name" class="input-text" />
+                                                                                <input type="text" id="lastname" name="memberSurName" value="${member.member_SurName}" title="Last Name" class="input-text required-entry validate-one-required" />
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="fields">
-                                                                    <div class="field email-address">
-                                                                        <label for="email_address" class="required">อีเมลล์</label>
-                                                                        <div class="input-box">
-                                                                            <input type="text" name="memberEmail1" id="memberEmail1" value="${member.member_email1}" title="Email Address" class="input-text validate-email required-entry" />
                                                                         </div>
                                                                     </div>
                                                                 </li>
@@ -230,15 +222,17 @@
                                                                         </div>
                                                                     </div>
                                                                 </li>
+                                                                <br></br>
+                                                                <h2 class="legend">แก้ไขข้อมูลการติดต่อ</h2>
                                                                 <li class="fields">
                                                                     <div class="field name-lastname">
-                                                                        <label for="Adress1" >ที่อยู่ 1</label>
+                                                                        <label for="Adress1" >ที่อยู่-1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="memberAddr1" id="Adress1" value="${member.member_addr1}" title="Adress1" class="input-text " />
+                                                                            <input type="text" name="memberAddr1" id="Adress1" value="${member.member_addr1}" title="Adress1" class="input-text required-entry validate-one-required" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="field name-lastname">
-                                                                        <label for="Adress2" >ที่อยู่ 2</label>
+                                                                        <label for="Adress2" >ที่อยู่-2</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="memberAddr2" id="Adress2" value="${member.member_addr2}" title="Adress2" class="input-text " />
                                                                         </div>
@@ -246,7 +240,7 @@
                                                                 </li>
                                                                 <li class="fields">
                                                                     <div class="field name-lastname">
-                                                                        <label for="Distinct" >ตำบลt</label>
+                                                                        <label for="Distinct" >ตำบล</label>
                                                                         <div class="input-box" id="showDistinct" >
 
                                                                         </div>
@@ -262,7 +256,7 @@
                                                                     <div class="field name-lastname">
                                                                         <label for="Province" >จังหวัด</label>
                                                                         <div class="input-box" id="showProvince" >
-                                                                            <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" style="width:200px">
+                                                                            <select name="memberProvince"  id="memberProvince"  onchange="changeCommonProvince(2,this.value)" style="width:260px">
                                                                                 <c:forEach var="province" items="${query.rows}">
 
                                                                                     <c:if test="${province.id_==member.member_province}">
@@ -285,13 +279,13 @@
                                                                 </li>
                                                                 <li class="fields">
                                                                     <div class="field name-lastname">
-                                                                        <label for="Tel1" >เบอร์โทรศัพท์ </label>
+                                                                        <label for="Tel1" >โทรศัพท์-1 </label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="memberTel1" id="Tel1" value="${member.member_tel1}" title="Tel1" class="input-text " />
+                                                                            <input type="text" name="memberTel1" id="Tel1" value="${member.member_tel1}" title="Tel1" class="input-text required-entry validate-one-required" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="field name-lastname">
-                                                                        <label for="Tel2" >เบอร์โทรศัพท์</label>
+                                                                        <label for="Tel2" >โทรศัพท์-2</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="memberTel2" id="Tel2" value="${member.member_tel2}" title="Tel2" class="input-text " />
                                                                         </div>
@@ -299,30 +293,40 @@
                                                                 </li>
                                                                 <li>
                                                                     <div class="field name-lastname">
-                                                                        <label for="Mobile1" >เบอร์โทรศัพท์มือถือ</label>
+                                                                        <label for="Mobile1" >Mobile-1</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="memberMobile1" id="Mobile1" value="${member.member_mobile1}" title="Mobile1" class="input-text " />
                                                                         </div>
                                                                     </div>
                                                                     <div class="field name-lastname">
-                                                                        <label for="Mobile2" >เบอร์โทรศัพท์มือถือ</label>
+                                                                        <label for="Mobile2" >Mobile-2</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="memberMobile2" id="Mobile2" value="${member.member_mobile2}" title="Mobile2" class="input-text " />
                                                                         </div>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-
-                                                                    <label for="Fax" >แฟ็กซ์</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="memberFax1" id="Fax" value="${member.member_fax1}" title="Fax" class="input-text " />
+                                                                    <div class="field name-lastname">
+                                                                        <label for="Fax" >โทรสาร-1</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="memberFax1" id="Fax" value="${member.member_fax1}" title="Fax" class="input-text " />
+                                                                        </div>
+                                                                    </div>
+                                                               <!-- </li>
+                                                                <li>-->
+                                                                    <div class="field name-lastname">
+                                                                        <label for="Fax" >โทรสาร-2</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="memberFax2" id="Fax" value="${member.member_fax2}" title="Fax" class="input-text " />
+                                                                        </div>
                                                                     </div>
                                                                 </li>
-                                                                <li>
-
-                                                                    <label for="Fax" >แฟ็กซ์</label>
-                                                                    <div class="input-box">
-                                                                        <input type="text" name="memberFax2" id="Fax" value="${member.member_fax2}" title="Fax" class="input-text " />
+                                                                        <li class="fields">
+                                                                    <div class="field email-address">
+                                                                        <label for="email_address" class="required">E-Mail-1</label>
+                                                                        <div class="input-box">
+                                                                            <input type="text" name="memberEmail1" id="memberEmail1" value="${member.member_email1}" title="Email Address" class="input-text validate-email required-entry" />
+                                                                        </div>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -402,6 +406,6 @@
 
             <div class="cleared"></div>
             <p class="art-page-footer"></p>
-
+            </div>
     </body>
 </html>

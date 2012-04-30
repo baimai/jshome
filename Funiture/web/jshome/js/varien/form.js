@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Magento
  *
  * NOTICE OF LICENSE

@@ -36,11 +36,13 @@
                 jQuery("#rowed1").jqGrid({
                     url:'datagrid.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['Pic Code', 'Menu Name Th','Menu Name En','','',''],
+                    colNames:['รหัสชุดการแสดงสินค้า','ชื่อชุดการแสดงสินค้า(ไทย)','ชื่อชุดการแสดงสินค้า(อังกฤษ)','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','','',''],
                     colModel:[                      
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true},search:false},
                         {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'productRemarkT',index:'productRemarkT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25},hidden:true},
+                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25},hidden:true},
                         {name:'Add',index:'Add',hidden:true,width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picCode="+cellvalue+"\" ><img src=\"../images/icon/plus_orange.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductSetup.jsp?picCode="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
@@ -59,7 +61,7 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true,edit:false,add:false,del:false}, //options
+                {search:true,edit:true,add:true,del:true}, //options
                 {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,

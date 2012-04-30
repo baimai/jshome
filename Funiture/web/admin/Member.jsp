@@ -42,7 +42,7 @@
         <script src="../jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
 
         <script src="../jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
-        <%--<script src="jqgrid4.2/js/jquery.jqGrid.src.js" type="text/javascript"></script> --%>
+        <%--<script src="../jqgrid4.2/js/jquery.jqGrid.src.js" type="text/javascript"></script> --%>
         <script src="../jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
@@ -51,27 +51,30 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['Login', 'firtName', 'LastName','Status','Register','Approve','Status','Grade','Grade','memberId','viewProfile'],
+                    colNames:['รหัสเข้าระบบ','ชื่อบริษัท','ชื่อย่อบริษัท','ชื่อ', 'นามสกุล','สถานะสมาชิก','วันที่ลงทะเบียน','ที่อยู่1','ที่อยู่2','ตำบล','วันที่อนุมัติเข้าใช้งาน','สถานะสมาชิก','รหัสเกรด','รหัสเกรด','memberId','view'],
                     colModel:[
-                       
-                        {name:'memberLogin',index:'memberLogin',align:"center", width:120,editrules:{ edithidden:false},editable:true},
-                        {name:'memberName',index:'memberName',align:"center", width:130,editrules:{ edithidden:false},editable:false},
-                        {name:'memberSurName',index:'memberSurName',align:"center", width:130,editrules:{ edithidden:false},editable:false},
-                        {name:'memberStatus',index:'memberStatus', width:80, align:"center",editable:false,editoptions:{size:25}},
-                        {name:'memberRegDate',index:'memberRegDate', width:125, align:"right",editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
-                        {name:'memberAppdate',index:'memberAppdate', width:125, align:"right",editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'memberLogin',index:'memberLogin',align:"center", width:150,viewable:false,editrules:{edithidden:true},editable:true,editoptions: { readonly: true }},
+                        {name:'memberCompany',index:'memberCompany',align:"center", width:140,editable:false,editoptions:{size:20}, formoptions:{ rowpos:3,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberNameAbbr',index:'memberNameAbbr',align:"center", width:140,hidden:true,editrules:{ edithidden:true},editoptions:{size:20}, formoptions:{ rowpos:4,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberName',index:'memberName',align:"center", width:125,editrules:{ edithidden:false},editable:false,formoptions:{ rowpos:1, elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberSurName',index:'memberSurName',align:"center", width:125,editrules:{ edithidden:true},editable:false, formoptions:{ rowpos:2,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberStatus',index:'memberStatus', width:120, align:"center",viewable:false,editable:false,editoptions:{size:25}},
+                        {name:'memberRegDate',index:'memberRegDate', width:120, align:"right",viewable:false,editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'memberAddr1',index:'memberAddr1', width:125, align:"center",hidden:true,editrules:{ edithidden:true},editable:false,formoptions:{ rowpos:5,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberAddr2',index:'memberAddr2', width:125, align:"center",hidden:true,editrules:{ edithidden:true},editable:false,formoptions:{ rowpos:6,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberDistinct',index:'memberDistinct',width:125, align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
+                        {name:'memberAppdate',index:'memberAppdate', width:160, align:"right",viewable:false,editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
                         {name:'status',index:'status', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select', editoptions:{value:{'Y':'Active','N':'InActive','B':'Ban'}}},
-                        {name:'gradeName',index:'gradeName', width:60,hidden:false,align:"center",editrules:{ edithidden:false},editable:false},
-                        {name:'grade',index:'grade', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select',editoptions:{value:"${listGrade}"}},
+                        {name:'gradeName',index:'gradeName', width:110,align:"center",editrules:{ edithidden:false},editable:false},
+                        {name:'grade',index:'grade', width:60,align:"center",hidden:true,editrules:{ edithidden:true},editable:true,edittype:'select',editoptions:{value:"${listGrade}"}},
                         {name:'memberId',index:'memberId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'view',index:'view', width:100,hidden:false,align:"center",editrules:{ edithidden:false},editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"viewProfile.jsp?memberId="+cellvalue+"\" >View</a>"}}
+                        {name:'view',index:'view', width:100,hidden:false,align:"center",viewable:false,editrules:{ edithidden:false},editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"viewProfile.jsp?memberId="+cellvalue+"\" >view</a>"}}
 
-
-                    ],
+               ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     height: "auto",
-                    width: 950,
+                    width: 1000,
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
@@ -81,10 +84,16 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {add:false,del:false,search:true}, //options
-                {height:170,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {add:false,del:true,search:true,view:false}, //options
+                {height:180,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:false,editData:{action:"Del"}}, // del options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        memberId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'memberId');
+                            return value;
+                        }}}, // del options
                 {} // search options
             );
             });
@@ -100,9 +109,9 @@
                 }
                 jQuery("#rowed1").trigger('reloadGrid');
             }
+
         </script>
         <script type="text/javascript">
-
 
             $(function() {
                 $("#datepicker").datepicker();
@@ -146,7 +155,7 @@
                                                 </c:forEach>
                                             </select>
                                             <br/>
-                                            <br/>วันที่
+                                            <br/>วันที่สมัคร
                                             <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
                                             <br/><br/>
                                             <table id="rowed1"></table>
