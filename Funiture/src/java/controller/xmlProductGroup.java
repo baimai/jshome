@@ -80,8 +80,8 @@ public class xmlProductGroup extends HttpServlet {
                             displayFlag = "สินค้าโฆษณา";
                         }
                         xml.setRowDetail(
-                               // data.getProductGroupId(),
-                              //  data.getProductGroupId(),
+                                data.getProductGroupId(),
+                                data.getProductGroupId(),
                                 data.getProductGroupId(),
                                 data.getProductGroupCode(),
                                 data.getProductGNameT(),

@@ -43,13 +43,16 @@ public class remove extends HttpServlet {
                     pdm.setCompanyId(Company_Id);
                     pdm.setProductDetailId(Integer.parseInt(request.getParameter("productDetailId")));
                     pdmt.remove(pdm);
-                }else if(request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")){
+                }
+                else if(request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")){
                     productGroupMasterEntity pgm = new productGroupMasterEntity();
-                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
                     productGroupMasterTable pgmt = new productGroupMasterTable(db);
+                    pgm.setCompanyId(Company_Id);
+                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));                   
                     out.print(pgm.getProductGroupId());
                     pgmt.remove(pgm);
                 }
+
             }
             db.close();
         } catch (Exception ex) {
