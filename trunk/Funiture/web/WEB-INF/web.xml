@@ -88,6 +88,7 @@
         <servlet-name>remove</servlet-name>
         <servlet-class>controller.remove</servlet-class>
     </servlet>
+     
     <servlet>
         <servlet-name>sendEmail</servlet-name>
         <servlet-class>controller.sendEmail</servlet-class>
@@ -155,6 +156,10 @@
     <servlet>
         <servlet-name>insert</servlet-name>
         <servlet-class>controller.insert</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>productGroup_</servlet-name>
+        <servlet-class>controller.productGroup</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
@@ -308,11 +313,12 @@
         <servlet-name>insert</servlet-name>
         <url-pattern>/insert</url-pattern>
     </servlet-mapping>
+   
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
-        <description>jdbc:mysql://192.168.0.15:3306/webdb</description>
+        <description>jdbc:mysql://localhost:3306/webdb</description>
         <res-ref-name>webdb</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
