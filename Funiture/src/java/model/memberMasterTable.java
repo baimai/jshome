@@ -69,6 +69,10 @@ public class memberMasterTable {
                 mb.getCompanyId());
     }
 
+public void remove(memberMasterEntity mb) {
+        String sql = "delete from Member_Master where Member_Id = ?";
+        db.remove(sql, mb.getMemberId());
+    }
     public void update(memberMasterEntity mb) {
         String sql = "update member_master set "
                 + "  Member_Name=?,"
@@ -146,7 +150,10 @@ public class memberMasterTable {
                 mb.setMemberLogin(Default.Str(result.get(i).get("Member_Login")));
                 mb.setMemberName(Default.Str(result.get(i).get("Member_Name")));
                 mb.setMemberSurName(Default.Str(result.get(i).get("Member_SurName")));
-                mb.setMemberComName(Default.Str(result.get(i).get("Member_Com_Name")));
+                mb.setMemberNameAbbr(Default.Str(result.get(i).get("Member_SurName")));
+                mb.setMemberComName(Default.Str(result.get(i).get("Member_Name_Abbr")));
+                mb.setMemberAddr1(Default.Str(result.get(i).get("Member_Addr1")));
+                mb.setMemberAddr2(Default.Str(result.get(i).get("Member_Addr2")));
                 mb.setMemberStatus(Default.Str(result.get(i).get("Member_Status")));
                 mb.setMemberAppdate((Date) result.get(i).get("Member_App_Date"));
                 mb.setMemberRegDate((Date) result.get(i).get("Member_Reg_Date"));

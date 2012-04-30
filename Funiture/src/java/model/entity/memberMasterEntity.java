@@ -44,6 +44,7 @@ public class memberMasterEntity {
     private Timestamp updateDate;
     private String userId;
     private memberGradeMasterEntity memberGradeMasterEntity ;
+  //  private companyMasterEntity  companyMasterEntity;
 
     /**
      * @return the companyId
@@ -480,4 +481,18 @@ public class memberMasterEntity {
     public void setMemberGradeMasterEntity(memberGradeMasterEntity memberGradeMasterEntity) {
         this.memberGradeMasterEntity = memberGradeMasterEntity;
     }
+
+//    /**
+//     * @return the companyMasterEntity
+//     */
+//    public companyMasterEntity getCompanyMasterEntity() {
+//        return companyMasterEntity;
+//    }
+//
+//    /**
+//     * @param companyMasterEntity the companyMasterEntity to set
+//     */
+//    public void setCompanyMasterEntity(companyMasterEntity companyMasterEntity) {
+//        this.companyMasterEntity = companyMasterEntity;
+//    }
 }
