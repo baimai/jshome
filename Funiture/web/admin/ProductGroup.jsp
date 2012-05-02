@@ -81,10 +81,9 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlProductGroup.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['แก้ไข','ลบ','รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','Path เก็บรูป Icon','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id'],
+                    colNames:['รหัสกลุ่มสินค้า', 'ชื่อกลุ่มสินค้า(ไทย)', 'ชื่อกลุ่มสินค้า(อังกฤษ)','สถานะกลุ่มสินค้า','Path เก็บรูป Icon','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Group Id','แก้ไข','ลบ'],
                     colModel:[
-                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                       
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editoptions:{editable:true,size:25},editrules:{number:true,required:true,edithidden:true},formoptions:{/* rowpos:1, label: "productGroupCode",*/ elmprefix:"(*)"}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
@@ -106,7 +105,9 @@
                                         onSelect: function(dateText, inst){ $("#rowed1")[0].triggerToolbar(); }
                                     });} }},
                         {name:'userId',index:'userId', align:"centert", width:200,editable:false,editoptions:{size:25}},
-                        {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true}
+                        {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true},
+                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
 
                     ],
                     rowNum:20,
