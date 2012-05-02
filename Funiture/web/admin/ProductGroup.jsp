@@ -122,8 +122,20 @@
                     caption:"ประเภทสินค้า",
                     editurl:"productGroup.do"
                 });
-                jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                 {add:false,edit:edit,del:true,search:true,view:false }
+                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+                {search:true}, //options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {reloadAfterSubmit:true,
+                    delData:{action:"Del",
+                        menuGroupId:function() {
+                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
+                            return value;
+                        }}}, // del options
+                {} // search options
+            );
+            });
                // jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                // jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                
@@ -144,9 +156,9 @@
                 // del options
 
                
-            );
+            
                
-            });
+            
         </script>
 
     </head>
