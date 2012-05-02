@@ -81,8 +81,7 @@ public class xmlProductGroup extends HttpServlet {
                         }
                         xml.setRowDetail(
                                 data.getProductGroupId(),
-                                data.getProductGroupId(),
-                                data.getProductGroupId(),
+                              
                                 data.getProductGroupCode(),
                                 data.getProductGNameT(),
                                 data.getProductGNameE(),                              
@@ -93,6 +92,8 @@ public class xmlProductGroup extends HttpServlet {
                                 data.getCreateDate(),
                                 data.getUpdateDate(),
                                 data.getUserId(),
+                                 data.getProductGroupId(),
+                                data.getProductGroupId(),
                                 data.getProductGroupId()
                                );
 
