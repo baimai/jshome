@@ -39,7 +39,7 @@
                     colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','ประเภทราคา','memberGradeId' ],
                     colModel:[
                         {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
-                        {name:'memberGrade',index:'memberGrade', width:80,editable:true,editoptions:{size:10,readonly:true},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberGrade',index:'memberGrade', width:80,editable:true,editoptions:{editrule:{readonly:true},size:10},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'gradeNameT',index:'gradeNameT', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'gradeNameE',index:'gradeNameE', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'discountRate',index:'discountRate', width:100,editable:true,editoptions:{size:25}, formoptions:{elmprefix:"(*)"},editrules:{required:true}},
@@ -58,6 +58,7 @@
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"ระดับ สมาชิก",
+
                     editurl:"memberGradeMaster.do"
                     
                 });

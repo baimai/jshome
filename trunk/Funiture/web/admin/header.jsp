@@ -85,11 +85,14 @@
                                 <li><a href="MenuGroup.jsp" class="parent"><span>เมนูหลัก</span></a>
 
                                 </li>
-                                <li><a href="MenuDetail.jsp" class="parent"><span>รายการเมนู</span></a>
+                                <li><a href="MenuDetail.jsp" class="parent"><span>เมนูย่อย</span></a>
 
                                 </li>
 
-                                <li><a href="ProductSetupHeader.jsp" class="parent"><span>จัดการรูปแสดงสินค้า</span></a>
+                                <li><a href="ProductSetupHeader.jsp" class="parent"><span>กำหนดชุดการแสดงสินค้า</span></a>
+
+                                </li>
+                                 <li><a href="ProductSetup.jsp" class="parent"><span>กำหนดรายการแสดงสินค้า</span></a>
 
                                 </li>
                                 <li><a href="userSecurity.jsp" class="last"><span>ผู้ใช้</span></a></li>

@@ -34,21 +34,22 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'datagrid.do?action=fetchData&q=1&picCode=${param.picCode}',
+                    url:'datagrid.do?action=fetchData&q=1',
                     //url:'datagrid.do?action=fetchData&q=1&picCode=00010',
                     datatype: "xml",
-                    colNames:['Pic Code','Picture','Product Code','Pic Name Th','Pic Name En', 'Remark Thai','Remark Eng','Pic Id',''],
+                    colNames:['Pic detail','piccode','Picture','Product Code','วันที่สร้าง','วันที่แก้ไข','ผู้ใช้', '','',''],
                     colModel:[
-                       
+                        {name:'picDetalId',index:'picDetalId', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'picPath',index:'picPath', align:"center",width:80,editable:false, edittype: 'image',formatter:function(cellvalue, options, rowObject){return "<img src=\"../"+cellvalue+"\" width=\"50\" height=\"50\" alt=\"Bottom_texture\"/>"}},
-                        {name:'productCode',index:'productCode', align:"center",width:110,editable:true,editoptions:{size:10},editrules:{required:true}},
-                        {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'productRemarkT',index:'productRemarkT', width:225, align:"right",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"right",hidden:true,editrules:{edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'picId',index:'picId', width:55,hidden:true,editable:true,editrules:{edithidden:true}},
-                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picId="+cellvalue+"\" >Edit</a>"}}
+                        {name:'productCode',index:'productCode', align:"center",width:110,editable:true,editoptions:{size:10}},
+                        {name:'createDate',index:'createDate', align:"center",width:110,editable:true,editoptions:{size:10}},
+                        {name:'updateDate',index:'updateDate', align:"center",width:110,editable:true,editoptions:{size:10}},
+                        {name:'userId',index:'userId', align:"center",width:110,editable:true,editoptions:{size:10}},
+                        {name:'picDetalId',index:'picDetalId', width:55,hidden:true,editable:true,editrules:{edithidden:true}},
+                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picDetalId="+cellvalue+"\" ><img src=\"../images/icon/tag-blue.png\" width=\"16\" height=\"16\"/></a>"}},
+                       
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/ko-red.png\" width=\"16\" height=\"16\"/></a>"}},// {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
                     ]
                     ,
                     rowNum:20,
@@ -60,7 +61,7 @@
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"Search Example",
-                    editurl:"productSetup.do"
+                    editurl:"productSetupDetail.do"
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
@@ -102,7 +103,7 @@
                                             <h1>จัดการรูปแสดงสินค้า</h1>
                                         </div>
                                         <br/>
-                                        <button onclick="window.location.href='addProductSetup.jsp?picCode=${param.picCode}'" class="button"><span><span> Add</span></span></button>
+                                        <button onclick="window.location.href='addProductSetupDetail.jsp'" class="button"><span><span> Add</span></span></button>
                                         <br/><br/>
                                         <center>
                                             <table id="rowed1"></table>

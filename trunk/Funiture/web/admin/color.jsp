@@ -4,7 +4,18 @@
     Author     : Jik
 --%>
 <%@ include file="checkRole.jsp" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:if test="${param.colorId!=null}">
+    <sql:query var="query" dataSource="webdb">
+        SELECT
+        *
+        FROM color_code_master c
+        where c.color_id =  ${param.colorId}
+    </sql:query>
+</c:if>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -116,8 +127,8 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลสีสินค้า</h1>
                                         </div>
-
-                                        <center>
+                                     <c:if test="${param.colorId==null}" >
+                                       
                                             <form method="post" id="order" action="colorMaster.do" title='' style="width:350px;margin:0px;">
                                                 <fieldset>
                                                     <legend>Invoice Data</legend>
@@ -138,12 +149,42 @@
 
                                                             <tr>
                                                                 <td> <button name="action"  id="savedata" value="Add" class="button" ><span><span>เพิ่ม</span></span></button></td>
+                                                               
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </fieldset>
+                                            </form>
+                                        </c:if>
+                                         <c:if test="${param.colorId!=null}">
+                                                 <center>
+                                            <form method="post" id="order" action="colorMaster.do" title='' style="width:350px;margin:0px;">
+                                                <fieldset>
+                                                    <legend>Invoice Data</legend>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td> รหัสสี:</td>
+                                                                <td><input type="text" name="colorCode"  id="invid"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> คำอธิบาย(ไทย):</td>
+                                                                <td><input type="text" name="colorNameT"  /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>คำอธิบาย(อังกฤษ) :</td>
+                                                                <td><input type="text" name="colorNameE"  /></td>
+                                                            </tr>
+
+                                                            <tr>
+
                                                                 <td> <button name="action"  id="savedata" value="Edit" class="button" ><span><span>แก้ไข</span></span></button></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </fieldset>
                                             </form>
+                                            </c:if>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
                                             <br />
