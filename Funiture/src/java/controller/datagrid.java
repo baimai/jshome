@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.menuDetailMasterEntity;
+import model.entity.picProductSetupDetailEntity;
 import model.entity.picProductSetupEntity;
 import model.entity.productDetailMasterEntity;
+import model.picProductSetupDetailTable;
 import model.picProductSetupTable;
 import model.productDetailMasterTable;
 import util.Default;
@@ -44,7 +46,7 @@ public class datagrid extends HttpServlet {
         try {
 
             if (request.getParameter("action").equals("fetchData")) {
-                //response.setContentType("text/xml;charset=UTF-8");
+                response.setContentType("text/xml;charset=UTF-8");
 
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
@@ -56,16 +58,20 @@ public class datagrid extends HttpServlet {
                     page = Integer.parseInt(r);
                 }
                 int start = rows * page - rows;
-                String picCode = null;
+              //  String picDetailId = null;
+              //  String picCode = null;
                 String sField = null, sValue = null, sOper = null;
                 /*
                 if (request.getParameter("menuCode") != null ) {
                 menuCode = request.getParameter("menuCode");
                 }
                  */
-                if (request.getParameter("picCode") != null) {
-                    picCode = request.getParameter("picCode");
+             /*   if (request.getParameter("picDetailId") != null) {
+                    picDetailId = request.getParameter("picDetailId");
                 }
+                  if (request.getParameter("picCode") != null) {
+                    picCode = request.getParameter("picCode");
+                }*/
                 if (request.getParameter("searchField") != null) {
                     sField = request.getParameter("searchField");
                 }
@@ -81,33 +87,35 @@ public class datagrid extends HttpServlet {
                 Database db = new Database();
                 picProductSetupTable ppst = new picProductSetupTable(db);
                 picProductSetupEntity pps = new picProductSetupEntity();
-                menuDetailMasterEntity mdm = new menuDetailMasterEntity();
+               
+                picProductSetupDetailEntity psd = new picProductSetupDetailEntity();
+                picProductSetupDetailTable psdt = new picProductSetupDetailTable(db);
                 pps.setCompanyId(Company_Id);
-                pps.setPicCode(picCode);
+               // psd.setPicDetailId(picDetailId);
                 ArrayList list2 = ppst.searchHeader(sField, sValue, sOper,pps);
-                ArrayList list = ppst.search(sField, sValue, sOper,pps,start,rows);
+                ArrayList list = psdt.search(sField, sValue, sOper);
                 if (request.getParameter("q").equals("1")) {
-                    int totalPages = 0;
-                    int totalCount = ppst.countAll(pps);
+                   // int totalPages = 0;
+                  //  int totalCount = psdt.countAll(psd);
                     db.close();
-                    if(totalCount%rows==0) totalPages = totalCount/rows;
-                    else totalPages = (totalCount/rows)+1;
+                  //  if(totalCount%rows==0) totalPages = totalCount/rows;
+                 //   else totalPages = (totalCount/rows)+1;
                     GenerateXml xml = new GenerateXml();
-                    xml.setTotal(totalPages);
+                    xml.setTotal(1);
                     xml.setPage(page);
-                    xml.setRecords(totalCount);
+                    xml.setRecords(1);
                     for (int i = 0; i < list.size(); i++) {
-                        picProductSetupEntity data = (picProductSetupEntity) list.get(i);
-                        xml.setRowDetail(data.getPicId(),
-                               data.getPicCode(),
+                        picProductSetupDetailEntity data = (picProductSetupDetailEntity) list.get(i);
+                        xml.setRowDetail(data.getPicDetailId(),data.getPicDetailId(),
+                               data.getPicProductSetupEntity().getPicCode(),
                                data.getProductDetailMasterEntity().getProductDPicLoc(),
                                data.getProductCode(),
-                               data.getPicNameT(),
-                               data.getPicNameE(),
-                               data.getProductRemarkT(),
-                               data.getProductRemarkE(),
-                               data.getPicId(),
-                               data.getPicId());
+                               data.getCreateDate(),
+                               data.getUpdateDate(),
+                               data.getUserId(),
+                               data.getPicDetailId(),
+                               data.getPicDetailId(),                               
+                               data.getPicDetailId());
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
@@ -118,15 +126,18 @@ public class datagrid extends HttpServlet {
                     xml.setRecords(list2.size());
                     for (int i = 0; i < list2.size(); i++) {
                         picProductSetupEntity data = (picProductSetupEntity) list2.get(i);
-                        xml.setRowDetail(data.getPicCode(),
+                        xml.setRowDetail(data.getPicId(),
                                data.getPicCode(),
-                               data.getMenuDetailMasterEntity().getMenuCNameT(),
-                               data.getMenuDetailMasterEntity().getMenuCNameE(),
-                               data.getProductRemarkT(),
-                               data.getProductRemarkE(),
-                               data.getPicCode(),
-                               data.getPicCode(),
-                               data.getPicCode());
+                               data.getPicNameT(),
+                               data.getPicNameE(),
+                               data.getCreateDate(),
+                               data.getUpdateDate(),
+                               data.getUserId(),
+                               data.getPicId(),
+                                data.getPicId(),
+                               data.getPicId()
+                               //data.getPicCode()
+                               );
                     }
                     out.print(xml.getXml());
                 }
