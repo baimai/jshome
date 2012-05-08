@@ -2,10 +2,12 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <sql:query var="query" dataSource="webdb">
-    SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
-    where mps.Pic_Code = '99999' and pdm.product_d_display_flag = 'A'
-    order by mps.Pic_code,mps.pic_seq
+    SELECT * FROM pic_product_setup_detail psd
+    join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
+    join pic_product_setup pps on psd.pic_detail_id = pps.Pic_Id
+    join menu_detail_master md on  pps.Pic_Code = md.Pic_Code
+    where md.menu_model='004' and pdm.product_d_display_flag = 'A'
+    order by psd.pic_seq
     limit 0,6
 </sql:query>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

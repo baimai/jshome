@@ -6,24 +6,30 @@
     Author     : Achilles
 --%>
 <sql:query var="query" dataSource="webdb">
-    SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
-    where mps.Pic_Code = '00010' and pdm.product_d_display_flag = 'Y'
-    order by mps.Pic_code,mps.pic_seq 
+    SELECT * FROM pic_product_setup_detail psd
+    join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
+    join pic_product_setup pps on psd.pic_detail_id = pps.Pic_Id
+    join menu_detail_master md on  pps.Pic_Code = md.Pic_Code
+    where md.menu_model='001' and pdm.product_d_display_flag = 'Y'
+    order by psd.pic_seq
     limit 0,6
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
-    SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
-    where mps.Pic_Code = '00020' and pdm.product_d_display_flag = 'Y'
-    order by mps.Pic_code,mps.pic_seq 
+    SELECT * FROM pic_product_setup_detail psd
+    join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
+    join pic_product_setup pps on psd.pic_detail_id = pps.Pic_Id
+    join menu_detail_master md on  pps.Pic_Code = md.Pic_Code
+    where md.menu_model='002' and pdm.product_d_display_flag = 'Y'
+    order by psd.pic_seq
     limit 0,6
 </sql:query>
 <sql:query var="query3" dataSource="webdb">
-    SELECT * FROM pic_product_setup mps
-    join product_detail_master pdm on mps.Product_Detail_Id = pdm.Product_Detail_Id
-    where mps.pic_Code = '00030' and pdm.product_d_display_flag = 'Y'
-    order by mps.pic_code,mps.pic_seq 
+    SELECT * FROM pic_product_setup_detail psd
+    join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
+    join pic_product_setup pps on psd.pic_detail_id = pps.Pic_Id
+    join menu_detail_master md on  pps.Pic_Code = md.Pic_Code
+    where md.menu_model='003' and pdm.product_d_display_flag = 'Y'
+    order by psd.pic_seq
     limit 0,6
 </sql:query>    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
