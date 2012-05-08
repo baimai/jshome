@@ -28,6 +28,7 @@ public class picProductSetupEntity {
     private String UserId;
     private productDetailMasterEntity productDetailMasterEntity;
     private menuDetailMasterEntity menuDetailMasterEntity;
+    private picProductSetupDetailEntity  picProductSetupDetailEntity;
     /**
      * @return the menuCode
      */
@@ -252,6 +253,20 @@ public class picProductSetupEntity {
      */
     public void setMenuDetailMasterEntity(menuDetailMasterEntity menuDetailMasterEntity) {
         this.menuDetailMasterEntity = menuDetailMasterEntity;
+    }
+
+    /**
+     * @return the picProductSetupDetailEntity
+     */
+    public picProductSetupDetailEntity getPicProductSetupDetailEntity() {
+        return picProductSetupDetailEntity;
+    }
+
+    /**
+     * @param picProductSetupDetailEntity the picProductSetupDetailEntity to set
+     */
+    public void setPicProductSetupDetailEntity(picProductSetupDetailEntity picProductSetupDetailEntity) {
+        this.picProductSetupDetailEntity = picProductSetupDetailEntity;
     }
     
 }
