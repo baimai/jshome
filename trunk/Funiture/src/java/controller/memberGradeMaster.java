@@ -12,9 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.memberGradeMasterEntity;
+import model.entity.userSecurityEntity;
 import model.memberGradeMasterTable;
 
 /**
@@ -41,6 +43,8 @@ public class memberGradeMaster extends HttpServlet {
                 memberGradeMasterTable mgt = new memberGradeMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
+                 HttpSession s = request.getSession(true);
+                 userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 mgm.setCompanyId(Company_Id);
                 if (request.getParameter("memberGradeId") != null && !request.getParameter("memberGradeId").equals("")) {

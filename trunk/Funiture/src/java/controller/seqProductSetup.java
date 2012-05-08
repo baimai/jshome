@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
+import model.entity.picProductSetupDetailEntity;
 import model.entity.picProductSetupEntity;
+import model.picProductSetupDetailTable;
 import model.picProductSetupTable;
 
 /**
@@ -44,12 +46,13 @@ public class seqProductSetup extends HttpServlet {
                     Database db = new Database();
                     picProductSetupTable ppst = new picProductSetupTable(db);
                     picProductSetupEntity pps = new picProductSetupEntity();
-                    pps.setCompanyId(Company_Id);
-                    pps.setPicCode(request.getParameter("picCode"));
-                    ArrayList list = ppst.searchPicCode(pps);
+                    
+                    //pps.setCompanyId(Company_Id);
+                    //pps.setPicDetailId(request.getParameter("picDetailId"));
+                    ArrayList list = ppst.searchPicId(pps);
                     db.close();
                     s.setAttribute("picProductList", list);
-                    response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
+                    response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
                     // RequestDispatcher obj = request.getRequestDispatcher("seqProductSetup.jsp");
                     //obj.forward(request, response);
                 } else if (request.getParameter("action").equals("editSeq")) {
@@ -86,7 +89,7 @@ public class seqProductSetup extends HttpServlet {
 //                        }
 //                    }
 //                    s.setAttribute("picProductList", list2);
-//                    response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
+//                    response.sendRedirect("seqProductSetup.jsp?picDetailId=" + request.getParameter("picDetailId"));
                 } else if (request.getParameter("action").equals("saveSeq")) {
                     String[] picId = request.getParameterValues("picId");
                     String[] picSeq = request.getParameterValues("picSeq");
@@ -99,7 +102,7 @@ public class seqProductSetup extends HttpServlet {
                         ppst.updateSeq(pps);
                     }
                     db.close();
-                    response.sendRedirect("seqProductSetup.jsp?picCode=" + request.getParameter("picCode"));
+                    response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
                 }
             }
         } catch (Exception ex) {
