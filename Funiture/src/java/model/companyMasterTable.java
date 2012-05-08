@@ -105,4 +105,8 @@ public class companyMasterTable {
         String sql = "delete from company_master where Company_Id = ? ";
         db.add(sql, cpm.getCompanyId());
     }
+     public void getShowStockBalanceFlag (companyMasterEntity cpm) {
+         String sql = "select Show_Stock_Balance_Flag from where  Company_Id=?";
+         db.add(sql, cpm.getCompanyId());
+     }
 }
