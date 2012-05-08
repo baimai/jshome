@@ -85,7 +85,7 @@
                                         </div>
                                         <form action="seqProductSetup.do" >
                                             <div class="buttons" align="right">
-                                                <input type="hidden" value="${param.picCode}" name="picCode" />
+                                                <input type="hidden" value="${param.picId}" name="picId" />
                                                 <button name="action" type="submit" value="saveSeq" class="button"><span><span>บันทึก</span></span></button>
 
                                             </div>
@@ -96,9 +96,8 @@
                                                 <table  width="100%"   id="box-table-a">
                                                     <thead>
                                                         <tr>
-                                                            <th width="15%" align="center" scope="col">Pic Code</th>
-                                                            <th width="15%" align="center" scope="col"> Menu Name Th</th>
-                                                            <th width="15%" align="center" scope="col"> Menu Name En</th>
+                                                            <th width="15%" align="center" scope="col">Pic Detail Id</th>
+                                                             <th width="20%" align="center" scope="col"> Pic Code</th>
                                                             <th width="20%" align="center" scope="col"> Product Name Th</th>
                                                             <th width="20%" align="center" scope="col"> Product Name En</th>
                                                             <th width="10%" align="center" scope="col">Seq No.</th>
@@ -108,9 +107,8 @@
                                                     <tbody>
                                                         <c:forEach var="pic" items="${picProductList}" varStatus="counter">
                                                             <tr>
-                                                                <td align="center" >${pic.picCode}</td>
-                                                                <td align="center" >${pic.menuDetailMasterEntity.menuCNameT}</td>
-                                                                <td align="center" >${pic.menuDetailMasterEntity.menuCNameE}</td>
+                                                                <td align="center" >${pic.picDetailId}</td>
+                                                                <td align="center" >${pic.picProductSetupEntity.picCode}</td>
                                                                 <td align="center" >${pic.productDetailMasterEntity.productDNameT}</td>
                                                                 <td align="center" >${pic.productDetailMasterEntity.productDNameE}</td>
                                                                 <td align="center" >
@@ -119,10 +117,10 @@
                                                                 </td>
                                                                 <%--<td align="center" style="background-color:navajowhite">
                                                                     <div>
-                                                                        <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picCode=${pic.picCode}">   <img src="../images/icon/arrow-up-blue.png" width="22" height="22" alt="Up"/> </a>
+                                                                        <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picDetailId=${pic.picDetailId}">   <img src="../images/icon/arrow-up-blue.png" width="22" height="22" alt="Up"/> </a>
                                                                     </div>
                                                                     <div>
-                                                                        <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picCode=${pic.picCode}">  <img src="../images/icon/arrow-down-blue.png" width="22" height="22" alt="Up"/> </a>
+                                                                        <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picDetailId=${pic.picDetailId}">  <img src="../images/icon/arrow-down-blue.png" width="22" height="22" alt="Up"/> </a>
                                                                     </div>
                                                                 </td> --%>
                                                             </tr>

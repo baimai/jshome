@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
-         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
@@ -36,16 +36,17 @@
                 jQuery("#rowed1").jqGrid({
                     url:'datagrid.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['รหัสชุดการแสดงสินค้า','ชื่อชุดการแสดงสินค้า(ไทย)','ชื่อชุดการแสดงสินค้า(อังกฤษ)','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','','',''],
-                    colModel:[                      
+                    colNames:['รหัสชุดการแสดงสินค้า','ชื่อชุดการแสดงสินค้า(ไทย)','ชื่อชุดการแสดงสินค้า(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','','',''],
+                        colModel:[
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true},search:false},
                         {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'productRemarkT',index:'productRemarkT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25},hidden:true},
-                        {name:'productRemarkE',index:'productRemarkE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25},hidden:true},
-                        {name:'Add',index:'Add',hidden:true,width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picCode="+cellvalue+"\" ><img src=\"../images/icon/plus_orange.png\" width=\"16\" height=\"16\"/></a>"}},
-                        {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductSetup.jsp?picCode="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                        {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
+                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'userId',index:'userId', align:"centert", width:200,editable:false,editoptions:{size:25}},
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                         {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picId="+cellvalue+"\" ><img src=\"../images/icon/barchart-blue.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},// {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
                     ]
                     ,
                     rowNum:20,
@@ -99,6 +100,9 @@
                                         <div class="page-title">
                                             <h1>หัวข้อแสดงรูปสินค้า</h1>
                                         </div>
+                                        <br/>
+                                        <button onclick="window.location.href='addProductSetup.jsp'" class="button"><span><span> Add</span></span></button>
+                                        <br/><br/>
                                         <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>

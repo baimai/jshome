@@ -51,8 +51,8 @@
                     ]
                     ,
                     rowNum:20,
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -76,6 +76,133 @@
                 {} // search options
             );
             });
+            function addRow() {
+
+                // Get the currently selected row
+                jq("#rowed1").jqGrid('editGridRow','Add',
+                {  url: "xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1",
+                    editData: {
+                    },
+                    recreateForm: true,
+                    beforeShowForm: function(form) {
+                    },
+                    closeAfterAdd: true,
+                    reloadAfterSubmit:false,
+                    afterSubmit : function(response, postdata)
+                    {
+                        var result = eval('(' + response.responseText + ')');
+                        var errors = "";
+
+                        if (result.success == false) {
+                            for (var i = 0; i < result.message.length; i++) {
+                                errors +=  result.message[i] + "";
+                            }
+                        }  else {
+                            jq("#dialog").text('Entry has been added successfully');
+                            jq("#dialog").dialog(
+                            { title: 'Success',
+                                modal: true,
+                                buttons: {"Ok": function()  {
+                                        jq(this).dialog("close");}
+                                }
+                            });
+                        }
+                        // only used for adding new records
+                        var new_id = null;
+
+                        return [result.success, errors, new_id];
+                    }
+                });
+
+            }
+
+            function editRow() {
+                // Get the currently selected row
+                var row = jq("#rowed1").jqGrid('getGridParam','selrow');
+
+                if( row != null )
+                    jq("#grid").jqGrid('editGridRow',row,
+                { url: "/spring-jqgrid-integration/krams/crud/edit",
+                    editData: {
+                    },
+                    recreateForm: true,
+                    beforeShowForm: function(form) {
+                    },
+                    closeAfterEdit: true,
+                    reloadAfterSubmit:false,
+                    afterSubmit : function(response, postdata)
+                    {
+                        var result = eval('(' + response.responseText + ')');
+                        var errors = "";
+
+                        if (result.success == false) {
+                            for (var i = 0; i < result.message.length; i++) {
+                                errors +=  result.message[i] + "        ";
+                            }
+                        }  else {
+                            jq("#dialog").text('Entry has been edited successfully');
+                            jq("#dialog").dialog(
+                            { title: 'Success',
+                                modal: true,
+                                buttons: {"Ok": function()  {
+                                        jq(this).dialog("close");}
+                                }
+                            });
+                        }
+
+                        return [result.success, errors, null];
+                    }
+                });
+                else jq( "#dialogSelectRow" ).dialog();
+            }
+
+            function deleteRow() {
+                // Get the currently selected row
+                var row = jq("#grid").jqGrid('getGridParam','selrow');
+
+                // A pop-up dialog will appear to confirm the selected action
+                if( row != null )
+                    jq("#rowed1").jqGrid( 'delGridRow', row,
+                { url: 'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
+                    recreateForm: true,
+                    beforeShowForm: function(form) {
+                        //change title
+                        jq(".delmsg").replaceWith('<span style="white-space: pre;">' +
+                            'Delete selected record?' + '</span>');
+
+                        //hide arrows
+                        jq('#pData').hide();
+                        jq('#nData').hide();
+                    },
+                    reloadAfterSubmit:false,
+                    closeAfterDelete: true,
+                    afterSubmit : function(response, postdata)
+                    {
+                        var result = eval('(' + response.responseText + ')');
+                        var errors = "";
+
+                        if (result.success == false) {
+                            for (var i = 0; i < result.message.length; i++) {
+                                errors +=  result.message[i] + "";
+                            }
+                        }  else {
+                            jq("#dialog").text('Entry has been deleted successfully');
+                            jq("#dialog").dialog(
+                            { title: 'Success',
+                                modal: true,
+                                buttons: {"Ok": function()  {
+                                        jq(this).dialog("close");}
+                                }
+                            });
+                        }
+                        // only used for adding new records
+                        var new_id = null;
+
+                        return [result.success, errors, new_id];
+                    }
+                });
+                else jq( "#dialogSelectRow" ).dialog();
+            }
         </script>
     </head>
     <body>
