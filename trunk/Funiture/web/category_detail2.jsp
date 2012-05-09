@@ -3,11 +3,12 @@
 <sql:query var="query" dataSource="webdb">
     select count(pps.pic_code) as count,pps.*,md.*
     From  pic_product_setup pps
-    JOIN  product_detail_master pdm on pdm.product_detail_id = pps.product_detail_id
+    join pic_product_setup_detail ppd on ppd.pic_id = pps.Pic_Id
+    JOIN  product_detail_master pdm on pdm.product_detail_id = ppd.product_detail_id
     JOIN  product_group_master  pgm on pgm.product_group_id  = pdm.product_group_id
-    JOIN  menu_detail_master    md  on md.pic_code = pps.pic_code
+    JOIN  menu_detail_master    md  on md.Pic_Code = pps.Pic_Code
     WHERE pdm.product_d_display_flag = 'Y' and pgm.product_g_display_flag = 'Y' and
-    md.pic_code != '99999'
+    md.Menu_Code_Id != '4'
     group by pps.pic_code
     order by pps.pic_code
 </sql:query>
