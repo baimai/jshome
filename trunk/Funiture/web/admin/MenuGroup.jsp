@@ -36,18 +36,22 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','Menu Name TH', 'Menu Name En', 'Permission','showList','LoginSts','menuGRemarkT','menuGRemarkE','menuGroupId','menuGIconLog' ],
+                    colNames:['No','ชื่อเมนู(ไทย)', 'ชื่อเมนู(อังกฤษ)', 'สิทธิของผู้ใช้','แสดงเมนูย่อย','ต้องloginก่อนเข้าใช้','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','call Program','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','รหัสเมนูหลัก'],
                     colModel:[
                         {name:'No',index:'No', width:50,align:"right",editable:false,editoptions:{readonly:true,size:10},search:false},
-                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:25}},
-                        {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:25}},
-                        {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'A':'Admin','U':'User','C':'Contact','M':'Member'}}},
-                        {name:'showListMenu',index:'showListMenu',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
-                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
+                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:50}},
+                        {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:50}},
+                        {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:100},edittype:'select', editoptions:{value:{'C':'Contact','N':'Inactive'}}},
+                        {name:'showListMenu',index:'showListMenu',align:"center",width:80,editable:true,editoptions:{size:50},edittype:'select', editoptions:{value:{'F':'Show List and Relate','Y':'Show List','N':'Not Show List'}}},
+                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:80,editable:true,editoptions:{size:50},edittype:'select', editoptions:{value:{'Y':'Log in','N':'Unlog in'}}},
                         {name:'menuGRemarkT',index:'menuGRemarkT',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
                         {name:'menuGRemarkE',index:'menuGRemarkE',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
-                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'menuGIconLog',index:'menuGIconLog', align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}}
+                       
+                        {name:'menuGIconLog',index:'menuGIconLog', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
+                        {name:'createDate',index:'createDate', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50,readonly:true}},
+                        {name:'updateDate',index:'updateDate', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50,readonly:true}},
+                        {name:'userId',index:'userId', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50,readonly:true}},
+                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
                     ]
                     ,
                     rowNum:20,
@@ -64,8 +68,8 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:false}, //options
-                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:500,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:500,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         menuGroupId:function() {

@@ -88,6 +88,9 @@
                 {height:180,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
                 {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
+               //
+               editData:{action:"Del"},
+               //
                     delData:{action:"Del",
                         memberId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
@@ -156,7 +159,7 @@
                                             </select>
                                             <br/>
                                             <br/>วันที่สมัคร
-                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
+                                            <input type="text" id="datepicker"  name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
                                             <br/><br/>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>

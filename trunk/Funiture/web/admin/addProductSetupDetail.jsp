@@ -188,7 +188,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td style="text-align: right">คำอธิบาย- อังกฤษ</td>
-                                                            <td><input type="text" value="" id="picDetailRemarkT" name="picDetailRemarkT" size="40"/></td>
+                                                            <td><input type="text" value="" id="picDetailRemarkT" name="picDetailRemarkE" size="40"/></td>
                                                         </tr>
                                                     </table>
                                                 </div>

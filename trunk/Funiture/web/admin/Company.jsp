@@ -25,6 +25,20 @@
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+         <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
+        <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="../jshome/js/varien/js.js"></script>
+        <script type="text/javascript" src="../jshome/js/varien/form.js"></script>
+        <script type="text/javascript" src="../jshome/js/varien/menu.js"></script>
+        <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
+        <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
+        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -49,7 +63,7 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
-                                        <form action="companyMasterController.do" method="post" enctype="multipart/form-data" >
+                                        <form action="companyMasterController.do" method="post" id="form-validate" enctype="multipart/form-data" >
                                             <c:if test="${applicationScope.Company_Id==null}" >
 
                                                 <div class="buttons-set">
@@ -64,9 +78,9 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname" >รหัสบริษัท</label>
+                                                                    <label for="firstname" class="required"><em>*</em>รหัสบริษัท</label>
                                                                     <div class="input-box">
-                                                                        <input type="text" id="firstname" name="companyCode" value="" title="First Name"class="input-text"   />
+                                                                        <input type="text" id="firstname" name="companyCode" value="" title="First Name"class="input-text required-entry"   />
                                                                     </div>
                                                                 </div>
                                                                 <div class="field name-lastname">
@@ -398,15 +412,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label for="firstname" >รหัสบริษัท</label>
+                                                                        <label for="firstname" class="required"><em>*</em>รหัสบริษัท</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" id="firstname" name="companyCode" value="${company.Company_Code}" title="First Name"class="input-text"   />
+                                                                            <input type="text" id="firstname" name="companyCode" value="${company.Company_Code}" title="First Name"class="input-text required-entry "/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="field name-lastname">
-                                                                        <label for="lastname" >ชื่อย่อบริษัท</label>
+                                                                        <label for="lastname" class="required"><em>*</em>รหัสย่อบริษัท</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" id="lastname" name="companyNameAbbr" value="${company.Company_Name_Abbr}" title="Last Name" class="input-text" />
+                                                                            <input type="text" id="lastname" name="companyNameAbbr" value="${company.Company_Name_Abbr}" title="Last Name" class="input-text required-entry validate-code"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -415,7 +429,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label >Header Website</label>
+                                                                        <label class="required"><em>*</em>Header Website</label>
                                                                         <div class="input-box">                                                                            
                                                                             <input type="text" name="uploadheadtmp" value="${company.Company_Header_Loc}"  class="input-text" readonly/>
                                                                         </div>
@@ -427,7 +441,7 @@
                                                                         <c:if test="${company.Company_Header_Loc!=null&&company.Company_Header_Loc!=''}" >
                                                                         </c:if>
                                                                         <c:if test="${company.Company_Header_Loc==null||company.Company_Header_Loc==''}" >
-                                                                            <label for="firstname" >Header Website</label>
+                                                                            <label for="firstname">Header Website</label>
                                                                         </c:if>
                                                                         <input type="file" name="uploadhead" class="input-text"/>
 
@@ -437,7 +451,7 @@
                                                              <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Company Logo</label>
+                                                                        <label align="right"class="required"><em>*</em>Company Logo</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="uploadlogoLogtmp" value="${company.Company_Logo_Loc}"  class="input-text" readonly/>
                                                                         </div>
@@ -458,7 +472,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Cataloge</label>
+                                                                        <label align="right"class="required"><em>*</em>Cataloge</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="uploadcatalogetmp" value="${company.Company_Catalog_Loc}"  class="input-text" readonly/>
                                                                         </div>
@@ -479,7 +493,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">จำนวนสินค้า</label>
+                                                                        <label align="right"class="required"><em>*</em>สถานะจำนวนสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showStockBalanceFlag">
                                                                                 <option value="N" <c:if test="${company.Show_Stock_Balance_Flag == 'N'}"> selected</c:if>>Not Show</option>
@@ -490,7 +504,7 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">ราคาสินค้า</label>
+                                                                        <label align="right"class="required"><em>*</em>สถานะราคาสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showPriceListFlag">
                                                                                 <option value="N" <c:if test="${company.Show_Price_List_Flag == 'N'}"> selected</c:if>>Not Show</option>
@@ -505,7 +519,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">ปุ่มการสั่งซื้อ</label>
+                                                                        <label align="right"class="required"><em>*</em>สถานะสั่งซื้อสินค้า</label>
                                                                         <div class="select">
                                                                             <select name="showOrderFlag">
                                                                                 <option value="N" <c:if test="${company.Show_Order_Flag == 'N'}"> selected</c:if>>Not Show</option>
@@ -523,15 +537,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">ชื่อบริษัท</label>
+                                                                        <label align="right"class="required"><em>*</em>ชื่อบริษัท(ไทย)</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyNameT" value="${company.Company_Name_T}" size="30"  class="input-text" />
+                                                                            <input type="text" name="companyNameT" value="${company.Company_Name_T}" size="30"  class="input-text required-entry validate-Login"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">CompanyName</label>
+                                                                        <label align="right">ชื่อบริษัท(อังกฤษ)</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyNameE" value="${company.Company_Name_E}" size="30"  class="input-text"/>
                                                                         </div>
@@ -544,15 +558,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">ที่อยู่</label>
+                                                                        <label align="right"class="required"><em>*</em>ที่อยู่บริษัท(ไทย)</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyAddrT" value="${company.Company_Addr_T}" class="input-text"/>
+                                                                            <input type="text" name="companyAddrT" value="${company.Company_Addr_T}" class="input-text required-entry validate-Login"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Address</label>
+                                                                        <label align="right">ที่อยู่บริษัท(อังกฤษ)</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyAddrE" value="${company.Company_Addr_E}"  class="input-text" />
                                                                         </div>
@@ -562,16 +576,16 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">แขวง/ตำบล</label>
+                                                                        <label align="right"class="required"><em>*</em>ตำบล(ไทย)</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyDistrictT" value="${company.Company_District_T}"  class="input-text"/>
+                                                                            <input type="text" name="companyDistrictT" value="${company.Company_District_T}"  class="input-text required-entry validate-Login"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
 
-                                                                        <label align="right">District</label>
+                                                                        <label align="right">ตำบล(อังกฤษ)</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyDistrictE" value="${company.Company_District_E}"  class="input-text" />
                                                                         </div>
@@ -581,16 +595,16 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">อำเภอ</label>
+                                                                        <label align="right"class="required"><em>*</em>อำเภอ(ไทย)</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyAmphurT" value="${company.Company_Amphur_T}"  class="input-text" />
+                                                                            <input type="text" name="companyAmphurT" value="${company.Company_Amphur_T}"  class="input-text required-entry validate-Login"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Amphur</label>
+                                                                        <label align="right">อำเภอ(อังกฤษ)</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyAmphurE" value="${company.Company_Amphur_E}"  class="input-text" />
                                                                         </div>
@@ -601,16 +615,16 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">จังหวัด</label>
+                                                                        <label align="right"class="required"><em>*</em>จังหวัด(ไทย)</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyProvinceT" value="${company.Company_Province_T}"  class="input-text" />
+                                                                            <input type="text" name="companyProvinceT" value="${company.Company_Province_T}"  class="input-text required-entry validate-Login"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Province</label>
+                                                                        <label align="right">จังหวัด(อังกฤษ)</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyProvinceE" value="${company.Company_Province_E}"  class="input-text"/>
                                                                         </div>
@@ -622,9 +636,9 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">รหัสไปรษณีย์</label>
+                                                                        <label align="right"class="required"><em>*</em>รหัสไปรษณีย์</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyPostCode" value="${company.Company_PostCode}"  class="input-text" />
+                                                                            <input type="text" name="companyPostCode" value="${company.Company_PostCode}"  class="input-text required-entry validate-number"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -632,16 +646,16 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">โทรศัพท์ 1</label>
+                                                                        <label align="right"class="required"><em>*</em>โทรศัพท์-1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyTel1" value="${company.Company_Tel1}"  class="input-text"/>
+                                                                            <input type="text" name="companyTel1" value="${company.Company_Tel1}"  class="input-text required-entry validate-phoneStrict"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">โทรศัพท์ 2</label>
+                                                                        <label align="right">โทรศัพท์-2</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyTel2" value="${company.Company_Tel2}"   class="input-text"/>
                                                                         </div>
@@ -650,7 +664,7 @@
 
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">โทรศัพท์ 3</label>
+                                                                        <label align="right">โทรศัพท์-3</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyTel3" value="${company.Company_Tel3}"  class="input-text" />
                                                                         </div>
@@ -660,15 +674,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">โทรสาร 1</label>
+                                                                        <label align="right"class="required"><em>*</em>โทรสาร-1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyFax1" value="${company.Company_Fax1}"  class="input-text" />
+                                                                            <input type="text" name="companyFax1" value="${company.Company_Fax1}"  class="input-text required-entry validate-fax"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">โทรสาร 2 </label>
+                                                                        <label align="right">โทรสาร-2 </label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyFax2" value="${company.Company_Fax2}"  class="input-text" />
                                                                         </div>
@@ -676,7 +690,7 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">โทรสาร 3</label>
+                                                                        <label align="right">โทรสาร-3</label>
 
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyFax3" value="${company.Company_Fax3}"  class="input-text" />
@@ -688,15 +702,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">มือถือ 1</label>
+                                                                        <label align="right"class="required"><em>*</em>Mobile-1</label>
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyMobile1" value="${company.Company_Mobile_1}"  class="input-text" />
+                                                                            <input type="text" name="companyMobile1" value="${company.Company_Mobile_1}"  class="input-text required-entry validate-phoneLax"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">มือถือ 2</label>
+                                                                        <label align="right">Mobile-2</label>
                                                                         <div class="input-box">
 
                                                                             <input type="text" name="companyMobile2" value="${company.Company_Mobile_2}"  class="input-text"/>
@@ -705,7 +719,7 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">มือถือ 3</label>
+                                                                        <label align="right">Mobile-3</label>
 
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyMobile3" value="${company.Company_Mobile_3}"  class="input-text" />
@@ -716,16 +730,16 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">อีเมลล์ 1</label>
+                                                                        <label align="right"class="required"><em>*</em>E-mail-บริษัท1</label>
 
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyEmail1" value="${company.Company_Email_1}"  class="input-text" />
+                                                                            <input type="text" name="companyEmail1" value="${company.Company_Email_1}"  class="input-text required-entry validate-email"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">อีเมลล์ 2</label>
+                                                                        <label align="right">E-mail-บริษัท2</label>
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyEmail2" value="${company.Company_Email_2}"  class="input-text" />
                                                                         </div>
@@ -733,10 +747,10 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">เว็บไซด์</label>
+                                                                        <label align="right"class="required"><em>*</em>E-mail-รับแจ้ง order</label>
 
                                                                         <div class="input-box">
-                                                                            <input type="text" name="companyEmail3" value="${company.Company_Email_3}"  class="input-text" />
+                                                                            <input type="text" name="companyEmail3" value="${company.Company_Email_3}"  class="input-text required-entry validate-email"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -744,7 +758,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
-                                                                        <label align="right">Language</label>
+                                                                        <label align="right"class="required"><em>*</em>แสดงภาษา</label>
                                                                         <div class="select option">
                                                                             <select name="languageFlag">
                                                                                 <option <c:if test="${company.Language_Flag == 'T'}"> selected</c:if> value="T" >Thai</option>
@@ -763,7 +777,11 @@
                                                 </c:forEach>
                                             </c:if>
                                         </form>
-
+<script type="text/javascript">
+                                //<![CDATA[
+                                var dataForm = new VarienForm('form-validate', true);
+                                //]]>
+                            </script>
 
                                         <br/><br/><br/><br/>
                                     </div>

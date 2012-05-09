@@ -1,211 +1,321 @@
-<%-- 
-    Document   : menuDetailMaster
-    Created on : Jan 3, 2012, 7:41:39 PM
-    Author     : Jik
+
+<%--
+    Document   : test
+    Created on : 11 พ.ย. 2554, 12:52:39
+    Author     : Achilles
 --%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:if test="${param.menucodeId!=null}">
-    <sql:query var="query3" dataSource="webdb">
-        select md.*,cm.company_code,  from menu_detail_master md
-        left join menu_group_master mg on mg.menu_group_id=md.menu_group_id
-        left join company_master cm on cm.company_id=md.company_id
-        where menu_code_id =  ${param.menuCodeId}
+<c:if test="${param.productGroupId!=null}">
+    <sql:query var="query" dataSource="webdb">
+        SELECT
+        pgm.Product_Group_Code,
+        pgm.product_group_id,
+        pgm.Product_G_Name_T,
+        pgm.Product_G_Name_E,
+        pgm.Product_Pic_Loc,
+        pgm.Product_Icon_Loc,
+        pgm.Product_Remark_T,
+        pgm.Product_Remark_E,
+        pgm.Product_G_Display_Flag,
+        pgm.Create_Date,
+        pgm.Update_Date,
+        pgm.User_Id
+        FROM product_group_master pgm
+        where pgm.product_group_id =  ${param.productGroupId}
     </sql:query>
 </c:if>
-<sql:query var="query1" dataSource="webdb">
-    SELECT mg.menu_g_name_t as groupName,mg.menu_group_id FROM menu_group_master mg
-</sql:query>
-
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+        <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
+        <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="../jshome/js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="../jshome/js/varien/js.js"></script>
+        <script type="text/javascript" src="../jshome/js/varien/form.js"></script>
+        <script type="text/javascript" src="../jshome/js/varien/menu.js"></script>
+        <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
+        <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
+        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
+
+
         <title>JSP Page</title>
+
+
     </head>
-    <body>
+    <body >
+        <div id="art-main">
+            <div class="art-sheet">
+                <div class="art-sheet-bl"></div>
+                <div class="art-sheet-br"></div>
+                <div class="art-sheet-bc"></div>
+                <div class="art-sheet-cl"></div>
+                <div class="art-sheet-cr"></div>
+                <div class="art-sheet-cc"></div>
+                <div class="art-sheet-body">
+                    <jsp:include page="header.jsp"/>
+                    <br><br>
+                    <div class="wrapper">
+                        <div class="page">
+                        </div>
+                        <div class="main-container col1-layout">
+                            <div class="main">
+                                <div class="col-main">
+                                    <div class="account-create">
+                                        <div class="page-title">
+                                            <h1>ข้อมูลบริษัท</h1>
+                                        </div>
 
-        <form action="productDetail.do" method="post" enctype="multipart/form-data" >
+                                        <form action="productGroup.do" method="post" id="form-validate"  enctype="multipart/form-data" >
+                                            <%--<div class="warning_box">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+                                            </div>--%>
+                                            <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                                            <c:if test="${param.productGroupId==null}" >
+                                                <input type="hidden" name="action" value="Add" />
+                                                <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
+                                                <div class="fieldset">
+                                                    <ul class="form-list">
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" class="required"><em>*</em>รหัสกลุ่มสินค้า : </label>
+                                                                    <input type="text" name="productGroupCode" value=""class="input-text required-entry " />
+                                                                </div>
+                                                            </div>
+                                                        </li>
 
-            <table border="0" width="700px" >
-                <tr>
-                    <td colspan="4" align="center"><h1> Add Product</h1></td>
-                </tr>
-                <c:if test="${param.menuCodeId==null}" >
-                    <input type="hidden" name="action" value="Add" />
-                    <tr>
-                        <td colspan="2" align="right" >Menu Group</td>
-                        <td colspan="2">
-                            <select name="menuGroupId">
-                                <c:forEach items="${query1.rows}" var="group">
-                                    <c:if test="${param.menuGroupId != group.menu_group_id}">
-                                        <option value="${group.menu_group_id}" >${group.menu_g_name_t}</option>
-                                    </c:if>
-                                    <c:if test="${param.menuGroupId == group.menu_group_id}">
-                                        <option value="${group.menu_group_id}" selected>${group.menu_g_name_t}</option>
-                                    </c:if>
-                                </c:forEach>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >ชื่อกลุ่มสินค้า(ไทย) :</label>
+                                                                    <input type="text" name="productGNameT" value="" class="input-text" /></div>
+                                                            </div>
+                                                        </li>
 
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"align="right">Menu Model</td>
-                        <td colspan="2"><input name="menuModel" id="menuModel" type="text" size="10" /></td>
-                    </tr>
-                   
-                    
-                    <tr>
-                        <td colspan="2" align="right">MenuSeq </td>
-                        <td colspan="2"><input name="menuSeq" type="text" size="10"/> </td>
-                    </tr>
-                   
-                              
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="right"><input type="submit" value="Add/Edit"></td>
-                        <td colspan="2"><input type="reset" value="Reset"></td>
-                    </tr>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >ชื่อกลุ่มสินค้า(อังกฤษ) :</label>
+                                                                    <input type="text" name="productGNameE" value="" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
 
-                </c:if>
-                <c:if test="${param.productDetailId!=null}" >
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >Path เก็บรูป Icon :</label>
+                                                                    <input type="file" name="upload" value="" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
 
-                    <c:forEach var="product" items="${query3.rows}" >
-                        <input type="hidden" name="action" value="Edit" />
-                    <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
-                        <tr>
-                            <td colspan="2" align="right" >Product Group</td>
-                            <td colspan="2">
-                                <select name="menuGroupId">
-                                    <c:forEach items="${query1.rows}" var="group">
-                                        <c:if test="${group.menu_group_id == product.menu_group_id }" >
-                                            <option value="${group.menu_group_id}" selected>${group.menu_g_name_t}</option>
-                                        </c:if>
-                                        <c:if test="${group.menu_group_id != product.menu_group_id }" >
-                                            <option value="${group.menu_group_id}" >${group.menu_g_name_t}</option>
-                                        </c:if>
-                                    </c:forEach>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >สถานะกลุ่มสินค้า :</label>
+                                                                    <select name="productGDisplayFlag" class="select">
+                                                                        <option value="Y"> แสดงกลุ่มสินค้า</option>
+                                                                        <option value="N"> ไม่แสดงกลุ่มสินค้า</option>
+                                                                        <option value="A">กลุ่มสินค้าโฆษณา </option>
+                                                                    </select></div>
 
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"align="right">Product Code</td>
-                            <td colspan="2"><input name="productCode" type="text" size="10" value="${product.product_code}"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"align="right">Company Code</td>
-                            <td colspan="2"><input name="companyCode" type="text" size="10"  value="${product.company_code}"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"align="right">Color</td>
-                            <td colspan="2">
-                                <select name="colorId">
-                                    <c:forEach items="${query.rows}" var="color" >
-                                        <c:if test="${color.color_Id == product.product_color_Id }" >
-                                            <option value="${color.Color_Id}">${color.colorName}</option>
-                                        </c:if>
-                                    </c:forEach>
-                                </select></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="right">Price 1</td>
-                            <td colspan="2"><input name="price1" type="text" size="10" value="${product.product_Price1}"/> Baht</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"align="right">Price 2</td>
-                            <td colspan="2"><input name="price2" type="text" size="10" value="${product.product_Price2}"/> Baht</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"align="right">Price 3</td>
-                            <td colspan="2"><input name="price3" type="text" size="10" value="${product.product_Price3}"/> Baht</td>
-                        </tr>
-                        <tr>
-                            <td height="46" colspan="2" align="right">Product Image</td>
-                          <td colspan="2" ><input name="picLoc" type="text" size="5"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"align="right">Product Icon</td>
-                            <td colspan="2"><input name="iconLoc" type="text" size="5"/></td>
-                        </tr>
+                                                            </div>
+                                                        </li>
 
-                        <tr>
-                            <td colspan="2" align="right">Product Display</td>
-                            <td colspan="2"><input name="display" type="radio"/>Yes<input name="display" type="radio"/>No</td>
-                        </tr>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >หมายเหตุ(ไทย) :</label>
+                                                                    <textarea name="productRemarkT" rows="2" cols="20"
+                                                                              class="input-text"></textarea></div>
+                                                            </div>
+                                                        </li>
 
-                        <tr>
-                            <td colspan="4">
-                                <table width="100%" border="1" cellspacing="0" cellpadding="5">
-                                    <tr>
-                                        <td colspan="2" align="center" bgcolor="blue">  Thai</td>
-                                        <td colspan="2" align="center" bgcolor="yellow">  English</td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Name </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><input name="nameTh" type="text" size="23" value="${product.product_d_name_t}"/></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Name </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><input name="nameEn" type="text" size="23" value="${product.product_d_name_e}"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 1 </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect1Th" cols="25" rows="2" >${product.product_spec1_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 1 </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect1En" cols="25" rows="2">${product.product_spec1_e}</textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 2 </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect2Th" cols="25" rows="2">${product.product_spec2_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 2 </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect2En" cols="25" rows="2">${product.product_spec2_e}</textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 3 </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect3Th" cols="25" rows="2">${product.product_spec3_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 3 </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect3En" cols="25" rows="2">${product.product_spec3_e}</textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 4 </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect4Th" cols="25" rows="2">${product.product_spec4_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;"align="right">Product Spect 4 </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect4En" cols="25" rows="2">${product.product_spec4_e}</textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 5 </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect5Th" cols="25" rows="2">${product.product_spec5_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 5 </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect5En" cols="25" rows="2">${product.product_spec5_e}</textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Product Spect 6 </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="spect6Th" cols="25" rows="2">${product.product_spec6_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Product Spect 6 </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="spect6En" cols="25" rows="2">${product.product_spec6_e}</textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="lightblue" style="border-right: none;" align="right">Remark </td>
-                                        <td bgcolor="lightblue" style="border-left: none;"><textarea name="remarkTh" cols="25" rows="3">${product.product_d_remark_t}</textarea></td>
-                                        <td bgcolor="lightyellow" style="border-right: none;" align="right">Remark </td>
-                                        <td bgcolor="lightyellow" style="border-left: none;"><textarea name="remarkEn" cols="25" rows="3">${product.product_d_remark_e}</textarea></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="right"><input type="submit" value="Add/Edit"  ></td>
-                            <td colspan="2"><input type="reset" value="Reset"></td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-            </table>
-        </form>
+
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >หมายเหตุ(อังกฤษ) :</label>
+                                                                    <textarea name="productRemarkE" rows="2" cols="20"
+                                                                              class="input-text"></textarea></div>
+                                                            </div>
+                                                        </li>
+
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >วันที่สร้าง :</label>
+                                                                    <td><input type="text" name="createDate" value="" readonly="readonly" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+
+
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >วันที่ปรับปรุง :</label>
+                                                                    <input type="text" name="updateDate" value="" readonly="readonly" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >รหัสผู้ใช้ :</label>
+                                                                    <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+
+                                                        </ul>
+                                                </div>
+
+
+                                            </c:if>
+                                            <c:if test="${param.productGroupId!=null}" >
+                                                <c:forEach var="productGroup" items="${query.rows}" >
+                                                    <center></center>
+                                                    <input type="hidden" name="action" value="Edit" />
+                                                    <input type="hidden" name="productGroupId" value="${productGroup.product_group_id}"/>
+                                                    <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                    <div class="fieldset">
+                                                        <ul class="form-list">
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" class="required">รหัสกลุ่มสินค้า <em>*</em>:</label>
+                                                                        <input type="text" name="productGroupCode" value="${productGroup.product_Group_Code}"  class="input-text required-entry " disabled/>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >ชื่อกลุ่มสินค้า(ไทย) :</label>
+                                                                        <input type="text" name="productGNameT" value="${productGroup.product_G_Name_T}" class="input-text" /></div>
+                                                                </div>
+                                                            </li>
+
+
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >ชื่อกลุ่มสินค้า(อังกฤษ) :</label>
+                                                                        <input type="text" name="productGNameE" value="${productGroup.product_G_Name_E}" class="input-text"/></div>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" > Icon :</label>
+                                                                        <img src="../${productGroup.product_icon_loc}" class="input-text" /></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >Path เก็บรูป Icon</label>
+                                                                        <c:if test="${productGroup.product_icon_loc!=null&&productGroup.product_icon_loc!=''}" >
+                                                                        </c:if>
+                                                                        <c:if test="${productGroup.product_icon_loc==null||productGroup.product_icon_loc==''}" >
+                                                                            <label for="firstname" >Product Image</label>
+                                                                        </c:if>
+                                                                        <input type="file" name="upload" class="input-text"/></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >สถานะกลุ่มสินค้า :</label>
+                                                                        <select name="productGDisplayFlag">
+                                                                                <option value="Y"<c:if test="${productGroup.product_G_display_flag == 'Y'}"> selected</c:if>> แสดงกลุ่มสินค้า</option>
+                                                                                <option value="N"<c:if test="${productGroup.product_G_display_flag == 'N'}"> selected</c:if>> ไม่แสดงกลุ่มสินค้า</option>
+                                                                                <option value="A"<c:if test="${productGroup.product_G_display_flag == 'A'}"> selected</c:if>>กลุ่มสินค้าโฆษณา </option>
+                                                                            </select></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >หมายเหตุ(ไทย) :</label>
+                                                                        <textarea name="productRemarkT" rows="4" cols="20">${productGroup.Product_Remark_T}
+                                                                        </textarea></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >หมายเหตุ(อังกฤษ) :</label>
+                                                                        <textarea name="productRemarkE" rows="4" cols="20">${productGroup.Product_Remark_E}
+                                                                        </textarea></div>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >วันที่สร้าง :</label>
+                                                                        <input type="text" name="createDate" value="${productGroup.Create_Date}" class="input-text" readonly="readonly" />
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >วันที่ปรับปรุง :</label>
+                                                                        <input type="text" name="updateDate" value="${productGroup.Update_Date}" class="input-text" readonly="readonly" /></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="fields">
+                                                                <div class="customer-name">
+                                                                    <div   class="field name-firstname">
+                                                                        <label for="firstname" >รหัสผู้ใช้ :</label>
+                                                                        <input type="text" name="userId" value="${productGroup.User_Id}" class="input-text" readonly="readonly" /></div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+
+                                                    </c:forEach>
+                                                </c:if>
+</div>
+                                        </form>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            var dataForm = new VarienForm('form-validate', true);
+                                            //]]>
+                                        </script>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cleared"></div>
+        </div>
+
+        <div class="cleared"></div>
+        <p class="art-page-footer"></p>
 
     </body>
 </html>
+
