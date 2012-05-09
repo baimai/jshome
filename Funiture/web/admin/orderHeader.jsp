@@ -69,12 +69,14 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlOrderMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['Order Date','Order ID', 'Name', 'Status',''],
+                    colNames:['วันที่สั่งซื้อ','เลขที่ใบสั่งซื้อ', 'ชื่อ-นามสกุล','รหัสบริษัท', 'สถานะใบสั่งซื้อ','จำนวนเงิน','แก้ไข'],
                     colModel:[
                         {name:'orderDate',index:'orderDate',editoptions:"", width:170,align:"center"},
-                        {name:'orderId',index:'orderId', width:80,align:"right"},
+                        {name:'orderNo',index:'orderNo', width:80,align:"right"},
                         {name:'name',index:'name', width:225, align:"center"},
+                        {name:'companyId',index:'companyId', width:80,align:"right"},
                         {name:'orderStatus',index:'orderStatus', width:100, align:"center"},
+                        {name:'totalAmount',index:'totalAmount', width:100, align:"center"},
                         {name:'Edit',index:'Edit', width:100,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"orderDetail.jsp?orderId="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}}                        
                     ],
                     rowNum:20,
@@ -126,16 +128,22 @@
                                             <h1>สั่งซื้อ</h1>
                                         </div>
                                         <center>
-                                            <br/>สถานะ
-                                            <select id="status" onchange="show()">
-                                                <option value=""> ทั้งหมด </option>
+                                            <br/>
+                                            <td>สถานะ</td>
+                                            <select id="status" onchange="show()" >
+                                                <option value=""> ใหม่ (default) </option>
+                                                <option value=""> อนุมัติ </option>
+                                                 <option value=""> ยกเลิก </option>
                                                 <c:forEach items="${query3.rows}" var="order">
                                                     <option value="${order.order_status}">${order.status}</option>
                                                 </c:forEach>
                                             </select>
-                                            <br/>
-                                            <br/>วันที่
-                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
+                                            <br/><br/>
+                                            <td>วันที่สั่งซื้อ</td>
+                                            <td><input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/></td>
+                                            <br/><br/>
+                                            <td>ใบสั่งซื้อ</td>
+                                            <td><input type="text" id="datepicker"  name="order_no" value="" title="order_no"class="order_no"   onchange="show();"/></td>
                                             <br/><br/>
                                             <table id="rowed1"></table>
                                             <br/>

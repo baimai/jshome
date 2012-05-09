@@ -46,7 +46,7 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuGroupMaster.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['NO', 'Group Name','Menu Name T', 'Menu Name En','Pic Code','Seq No.','Show List','Menu Code Id','Remark Th','Remark En'],
+                    colNames:['NO', 'รหัสเมนูหลัก','ชื่อเมนูย่อย(ไทย)', 'ชื่อเมนูย่อย(อังกฤษ)','รหัสชุดการแสดงสินค้า','ลำดับที่.','แสดงเมนูย่อย','รหัสเมนูย่อย','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','Path เก็บรูป Icon','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้'],
                     colModel:[
                         {name:'No',index:'menuSeq',editoptions:"", width:60,align:"right",search:false},
                         {name:'menuGroupId',index:'menuGroupId', width:150,align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:"${listGroup}"}},
@@ -57,8 +57,13 @@
                         {name:'showListSts',index:'showListSts', width:100, align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'Y':'Show','N':'Hidden'}}},
                         {name:'menuCodeId',index:'menuCodeId', width:100, align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
                         {name:'menuCRemarkT',index:'menuCRemarkT', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'menuCRemarkE',index:'menuCRemarkE', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}}
+                        {name:'menuCRemarkE',index:'menuCRemarkE', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'Menu_C_Icon_Loc',index:'Menu_C_Icon_Loc', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'Create_Date',index:'Create_Date', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'Update_Date',index:'Update_Date', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
+                        {name:'User_Id',index:'User_Id', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}}
 
+                      
                     ],
                     rowNum:20,
                      height: "auto",
@@ -73,8 +78,8 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true}, //options
-                {height:330,width:320,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:330,width:320,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:430,width:320,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:430,width:320,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         menuCodeId:function() {
@@ -115,6 +120,10 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>เมนูย่อย</h1>
+                                            <div class="button" align="right">
+
+                                            <button name="action" value="Add" class="button" onclick="window.location.href='menuDetailMaster.jsp'"><span><span>เพิ่ม</span></span></button>
+                                            </div>
                                         </div>
                                         <center>
                                             <br/>

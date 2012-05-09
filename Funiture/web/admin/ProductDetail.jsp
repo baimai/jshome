@@ -132,8 +132,6 @@
                                                                     <label for="firstname" >Product Image</label>
                                                                     <input type="file" name="upload" class="input-box" /></div>
                                                             </div>
-
-
                                                         </li>
 
                                                         <li class="fields">
