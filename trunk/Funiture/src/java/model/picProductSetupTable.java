@@ -47,8 +47,7 @@ public class picProductSetupTable {
                 mps.getProductRemarkT(),
                 mps.getProductRemarkE(),
                 mps.getCreateDate(),
-                mps.getUserId()
-                );
+                mps.getUserId());
     }
 
     public void update(picProductSetupEntity mps) {
@@ -62,13 +61,13 @@ public class picProductSetupTable {
                 + " Update_Date = ?,"
                 + "User_Id = ?"
                 + " where Pic_Id = ?";
-        db.update(sql, mps.getPicCode(), 
+        db.update(sql, mps.getPicCode(),
                 mps.getCompanyId(),
                 mps.getProductRemarkT(),
                 mps.getProductRemarkE(),
                 mps.getPicNameT(),
                 mps.getPicNameE(),
-                mps.getUpdateDate(), 
+                mps.getUpdateDate(),
                 mps.getUserId(),
                 mps.getPicId());
     }
@@ -121,7 +120,7 @@ public class picProductSetupTable {
     }
 
     public int countAll(picProductSetupEntity pps) {
-        String sql = "SELECT count(*) as COUNT FROM pic_product_setup pps"              
+        String sql = "SELECT count(*) as COUNT FROM pic_product_setup pps"
                 + " where cm.Company_Id = ?";
         List<Map<String, Object>> result = db.queryList(sql, pps.getCompanyId());
         return !result.isEmpty() ? Integer.valueOf(result.get(0).get("COUNT").toString()) : 0;
@@ -138,7 +137,7 @@ public class picProductSetupTable {
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 picProductSetupEntity ps = new picProductSetupEntity();
-                ps.setPicId((Integer)(result.get(i).get("Pic_Id")));
+                ps.setPicId((Integer) (result.get(i).get("Pic_Id")));
                 ps.setPicCode(Default.Str(result.get(i).get("Pic_Code")));
                 ps.setPicNameT(Default.Str(result.get(i).get("Pic_Name_T")));
                 ps.setPicNameE(Default.Str(result.get(i).get("Pic_Name_E")));
@@ -228,22 +227,29 @@ public class picProductSetupTable {
         return !result.isEmpty() ? true : false;
     }
     /*===seq==============================================================================================================================*/
- public ArrayList searchPicId(picProductSetupEntity pps) {
-        String sql = " select *,@row := @row + 1 as rownum from (select * from pic_product_setup_detail order by pic_Detail_id,pic_seq) pps"
-                + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "
-                + " join pic_product_setup mdm on mdm.pic_id = pps.pic_id, (SELECT @row := 0) r "
-                + " where mdm.pic_Id = '?' and mdm.company_id = ?"
-                + " and (case when mdm.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end ) ";
 
-        List<Map<String, Object>> result = db.queryList(sql, pps.getPicId());
+    public ArrayList searchPicId(int picId) {
+
+        String sql = " select *,@row := @row + 1 as rownum from (select  * from pic_product_setup_detail order by pic_Detail_id,pic_seq) pps"
+                + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "
+                + " join pic_product_setup mdm on mdm.pic_id = pps.pic_id, (SELECT @row := 0) r ";
+        if (picId != 0) {
+            sql = sql + " where mdm.pic_id = " + picId;
+        }
+       
+        sql = sql + " and (case when mdm.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end ) ";
+       System.out.println("ss"+picId);
+        List<Map<String, Object>> result = db.queryList(sql, picId);
+        
         ArrayList list = new ArrayList();
+        
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 picProductSetupEntity mps = new picProductSetupEntity();
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 picProductSetupDetailEntity psd = new picProductSetupDetailEntity();
 
-                mps.setPicId((Integer)(result.get(i).get("Pic_Id")));
+                mps.setPicId((Integer) (result.get(i).get("Pic_Id")));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str(result.get(i).get("Product_D_Name_E")));
@@ -258,11 +264,12 @@ public class picProductSetupTable {
                 mps.setUserId(Default.Str(result.get(i).get("User_Id")));
                 psd.setPicDetailId((Integer) (result.get(i).get("Pic_Detail_Id")));
                 psd.setPicSeq((Integer) ((Long) result.get(i).get("rownum")).intValue());
-              
+
                 mps.setPicProductSetupDetailEntity(psd);
                 psd.setProductDetailMasterEntity(pdm);
 
                 list.add(mps);
+                System.out.println("xxx1" + mps.getPicId());
             }
             return list;
         } else {
@@ -270,4 +277,5 @@ public class picProductSetupTable {
         }
 
     }
+
 }

@@ -28,8 +28,13 @@ public class colorMasterTable {
     public void add(colorCodeMasterEntity cm) {
 
         String sql = "insert into color_code_master "
-                + "( Color_Code,Color_Name_T,Color_Name_E,"
-                + "  Create_Date,User_Id,Color_Id)"
+                + "( Color_Code,"
+                + "Color_Name_T,"
+                + "Color_Name_E,"
+                + "Create_Date,"
+            
+                + "User_Id,"
+                + "Color_Id)"
                 + "  values(?,?,?,?,?,?)";
 
         db.add(sql,
@@ -37,20 +42,24 @@ public class colorMasterTable {
                 cm.getColorNameT(),
                 cm.getColorNameE(),
                 cm.getCreateDate(),
+              
                 cm.getUserId(),
-                0);
+                cm.getColorId());
     }
 
     public void update(colorCodeMasterEntity cm) {
         String sql = "update color_code_master set Color_Code = ?,"
-                + " Color_Name_T = ?,Color_Name_E = ?,"
-                + " Update_Date = ? "
+                + " Color_Name_T = ?,"
+                + "Color_Name_E = ?,"
+                + " Update_Date = ? ,"
+                + "User_Id=?"
                 + " where Color_Id = ? ";
         db.add(sql,
                 cm.getColorCode(),
                 cm.getColorNameT(),
                 cm.getColorNameE(),
                 cm.getUpdateDate(),
+                cm.getUserId(),
                 cm.getColorId());
     }
 

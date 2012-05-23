@@ -24,7 +24,7 @@ public class menuGroupMasterEntity {
     private String menuGRemarkT;
     private String menuGRemarkE;
     private String menuGPicLoc;
-    private String menuGIconLog;
+    private String menuGIconLoc;
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
@@ -160,15 +160,15 @@ public class menuGroupMasterEntity {
     /**
      * @return the menuGIconLog
      */
-    public String getMenuGIconLog() {
-        return menuGIconLog;
+    public String getMenuGIconLoc() {
+        return menuGIconLoc;
     }
 
     /**
      * @param menuGIconLog the menuGIconLog to set
      */
-    public void setMenuGIconLog(String menuGIconLog) {
-        this.menuGIconLog = menuGIconLog;
+    public void setMenuGIconLoc(String menuGIconLoc) {
+        this.menuGIconLoc = menuGIconLoc;
     }
 
    

@@ -116,5 +116,44 @@ public class stockMasterTable {
         }
 
     }
-    
+    public ArrayList search(String productGroupId, int Company_Id, int start, int limit) {
+        List<Map<String, Object>> result = null;
+        String sql = "SELECT * FROM stock_master sm where sm.Company_Id = ? ";
+        if (productGroupId == null) {
+            sql = sql + " LIMIT ?,? ";
+            result = db.queryList(sql, Company_Id, start, limit);
+        } else {
+            sql = sql + " and  sm.Product_Group_Id = ? ";
+            sql = sql + " LIMIT ?,? ";
+            result = db.queryList(sql, Company_Id, productGroupId, start, limit);
+        }
+
+
+
+        ArrayList list = new ArrayList();
+        if (!result.isEmpty()) {
+            for (int i = 0; i < result.size(); i++) {
+               stockMasterEntity sm = new stockMasterEntity();
+                productDetailMasterEntity pd = new productDetailMasterEntity();
+                productGroupMasterEntity pg  = new productGroupMasterEntity();
+                unitMasterEntity un  = new unitMasterEntity();
+                sm.setStockId((Integer) result.get(i).get("Stock_Id"));
+                sm.setReceiveDate((Date)result.get (i).get("Receive_Date"));
+                pd.setProductCode(Default.Str(result.get(i).get("Product_Code")));
+                pd.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
+                pg.setProductGNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
+                sm.setQuantity((Integer) result.get(i).get("Quantity"));
+                un.setUnitNameT(Default.Str(result.get(i).get("unit_name_t")));
+                sm.setUnitMasterEntity(un);
+                sm.setProductDetailMasterEntity(pd);
+                sm.setProductGroupMasterEntity(pg);
+                list.add(sm);
+               
+            }
+            return list;
+        } else {
+            return null;
+        }
+
+    }
 }

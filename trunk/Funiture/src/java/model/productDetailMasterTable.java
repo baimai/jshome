@@ -34,7 +34,7 @@ public class productDetailMasterTable {
                 + " Product_Spec1_T,Product_Spec2_T,Product_Spec3_T,Product_Spec4_T,Product_Spec5_T,Product_Spec6_T,"
                 + " Product_Spec1_E,Product_Spec2_E,Product_Spec3_E,Product_Spec4_E,Product_Spec5_E,Product_Spec6_E,"
                 + " Product_D_Pic_Loc,Product_D_Icon_Loc,Product_D_Remark_T,Product_D_Remark_E,Product_D_Display_Flag,"
-                + " Create_Date,User_Id,Product_Color_Id,Product_Model_Code,Product_Max_Sale)"
+                + " Create_Date,User_Id,Product_Color_Id,product_Model_Code,product_Max_Sale)"
                 + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         db.add(sql,
                 pdm.getCompanyId(),
@@ -80,7 +80,7 @@ public class productDetailMasterTable {
                 + "Product_Spec4_E = ?,Product_Spec5_E = ?,Product_Spec6_E = ?,"
                 + "Product_D_Pic_Loc = ?,Product_D_Icon_Loc = ?,"
                 + "Product_D_Remark_T = ?,Product_D_Remark_E = ?,Product_D_Display_Flag = ?,"
-                + "Update_date = ?,Product_Color_Id = ?,Product_model_code = ?,product_max_sale = ? "
+                + "Update_date = ?,Product_Color_Id = ?,product_model_code = ?,product_max_sale = ? "
                 + "where Product_Detail_Id = ? ";
         db.add(sql,
                 pdm.getCompanyId(),
@@ -147,6 +147,7 @@ public class productDetailMasterTable {
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
                 pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
+                pdm.setProductModelCode(Default.Str(result.get(i).get("product_model_code")));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));
@@ -171,6 +172,7 @@ public class productDetailMasterTable {
                 pdm.setProductDRemarkT(Default.Str(result.get(i).get("Product_D_Remark_T")));
                 pdm.setProductDRemarkE(Default.Str(result.get(i).get("Product_D_Remark_E")));
                 pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
+
                 pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
                 if (result.get(i).get("Product_Color_Id") != null) {
@@ -205,6 +207,7 @@ public class productDetailMasterTable {
                 stockBalanceEntity sb = new stockBalanceEntity();
                 pdm.setCompanyId((Integer) result.get(i).get("Company_Id"));
                 pdm.setProductGroupId((Integer) result.get(i).get("Product_Group_Id"));
+                pdm.setProductModelCode(Default.Str(result.get(i).get("product_model_code")));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));
@@ -274,6 +277,7 @@ public class productDetailMasterTable {
             pdm.setSaleDiscountHMaster(sdh);
             //pdm.setCompanyId((Integer) result.get(0).get("Company_Id"));
             pdm.setProductGroupId((Integer) result.get(0).get("Product_Group_Id"));
+            pdm.setProductModelCode(Default.Str(result.get(0).get("product_model_code")));
             pdm.setProductCode(Default.Str(result.get(0).get("Product_Code")));
             pdm.setProductDNameT(Default.Str(result.get(0).get("Product_D_Name_T")));
             pdm.setProductDNameE(Default.Str((result.get(0).get("Product_D_Name_E"))));
@@ -320,7 +324,7 @@ public class productDetailMasterTable {
             for (int i = 0; i < result.size(); i++) {
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 productGroupMasterEntity pgm = new productGroupMasterEntity();
-
+                pdm.setProductModelCode(Default.Str(result.get(i).get("product_model_code")));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str((result.get(i).get("Product_D_Name_E"))));

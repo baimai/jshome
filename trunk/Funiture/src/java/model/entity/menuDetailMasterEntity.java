@@ -211,20 +211,7 @@ public class menuDetailMasterEntity {
         this.menuCRemarkE = menuCRemarkE;
     }
 
-   
-    /**
-     * @return the userId
-     */
-    public String getUserId() {
-        return userId;
-    }
-
-    /**
-     * @param userId the userId to set
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+  
 
     /**
      * @return the createDate
@@ -266,6 +253,20 @@ public class menuDetailMasterEntity {
      */
     public void setMenuGroupMasterEntity(menuGroupMasterEntity menuGroupMasterEntity) {
         this.menuGroupMasterEntity = menuGroupMasterEntity;
+    }
+
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
  

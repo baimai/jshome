@@ -26,12 +26,24 @@ public class menuDetailMasterTable {
 
     public void add(menuDetailMasterEntity md) {
         String sql = "insert into menu_detail_master "
-                + "(Company_Id,Menu_Group_Id,Menu_Model,Menu_Seq,"
-                + " Menu_C_Name_T,Menu_C_Name_E,Show_List_Sts,Pic_Code,Menu_C_Pic_Loc,"
-                + " Menu_C_Icon_Loc,Menu_C_Remark_T,Menu_C_Remark_E,Create_Date,User_Id"
-                + " )"
-                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "(Menu_Code_Id,"
+                + "Company_Id,"
+                + "Menu_Group_Id,"
+                + "Menu_Model,"
+                + "Menu_Seq,"
+                + " Menu_C_Name_T,"
+                + "Menu_C_Name_E,"
+                + "Show_List_Sts,"
+                + "Pic_Code,"
+                + "Menu_C_Pic_Loc,"
+                + " Menu_C_Icon_Loc,"
+                + "Menu_C_Remark_T,"
+                + "Menu_C_Remark_E,"
+                + "Create_Date,"
+                + "User_Id)"
+                + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         db.add(sql,
+                md.getMenuCodeId(),
                 md.getCompanyId(),
                 md.getMenuGroupId(),
                 md.getMenuModel(),
@@ -50,6 +62,7 @@ public class menuDetailMasterTable {
 
     public void update(menuDetailMasterEntity md) {
         String sql = "update menu_detail_master set "
+                + "(Menu_Code_Id = ?,"
                 + "Company_Id = ?,"
                 + "Menu_Group_Id = ?,"
                 + "Menu_Model = ?,"
@@ -65,6 +78,7 @@ public class menuDetailMasterTable {
                 + "Update_date = ? "
                 + "where Menu_Code_Id = ? ";
         db.add(sql,
+                md.getMenuCodeId(),
                 md.getCompanyId(),
                 md.getMenuGroupId(),
                 md.getMenuModel(),
@@ -111,6 +125,8 @@ public class menuDetailMasterTable {
                 md.setMenuCIconLoc(Default.Str(result.get(i).get("Menu_C_Icon_Loc")));
                 md.setMenuCRemarkT(Default.Str(result.get(i).get("Menu_C_Remark_T")));
                 md.setMenuCRemarkE(Default.Str(result.get(i).get("Menu_C_Remark_E")));
+                mg.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+                mg.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
                 md.setUserId(Default.Str(result.get(i).get("User_Id")));
                 md.setMenuCodeId((Integer) result.get(i).get("Menu_Code_Id"));
                 md.setMenuGroupMasterEntity(mg);
