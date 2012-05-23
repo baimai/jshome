@@ -36,27 +36,26 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','ชื่อเมนู(ไทย)', 'ชื่อเมนู(อังกฤษ)', 'สิทธิของผู้ใช้','แสดงเมนูย่อย','ต้องloginก่อนเข้าใช้','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','call Program','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','รหัสเมนูหลัก'],
+                    colNames:['No','ชื่อเมนู(ไทย)', 'ชื่อเมนู(อังกฤษ)', 'สิทธิของผู้ใช้','แสดงเมนูย่อย','ต้อง login ก่อนเข้าใช้','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','call Programe','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','แก้ไข','ลบ'],
                     colModel:[
                         {name:'No',index:'No', width:50,align:"right",editable:false,editoptions:{readonly:true,size:10},search:false},
-                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:50}},
-                        {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:50}},
-                        {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:100},edittype:'select', editoptions:{value:{'C':'Contact','N':'Inactive'}}},
-                        {name:'showListMenu',index:'showListMenu',align:"center",width:80,editable:true,editoptions:{size:50},edittype:'select', editoptions:{value:{'F':'Show List and Relate','Y':'Show List','N':'Not Show List'}}},
-                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:80,editable:true,editoptions:{size:50},edittype:'select', editoptions:{value:{'Y':'Log in','N':'Unlog in'}}},
+                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:25}},
+                        {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:25}},
+                        {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'A':'Admin','U':'User','C':'Contact','M':'Member'}}},
+                        {name:'showListMenu',index:'showListMenu',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
+                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
                         {name:'menuGRemarkT',index:'menuGRemarkT',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
                         {name:'menuGRemarkE',index:'menuGRemarkE',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
-                       
-                        {name:'menuGIconLog',index:'menuGIconLog', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
-                        {name:'createDate',index:'createDate', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50,readonly:true}},
-                        {name:'updateDate',index:'updateDate', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50,readonly:true}},
-                        {name:'userId',index:'userId', align:"center",hidden:false,editrules:{ edithidden:true},editable:true,editoptions:{size:50,readonly:true}},
-                        {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true}
-                    ]
-                    ,
+                        {name:'menuGIconLoc',index:'menuGIconLoc', align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
+                        {name:'createDate',index:'createDate', width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
+                        {name:'updateDate',index:'updateDate', width:150,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
+                        {name:'userId',index:'userId', width:150,editable:false,editoptions:{size:25}},
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addMenuGroup.jsp?menuGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
+                    ],
                     rowNum:20,
-                    height: "auto",
-                    width: 950,
+                     height: "auto",
+                     width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -68,8 +67,8 @@
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:false}, //options
-                {height:500,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:500,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         menuGroupId:function() {
@@ -80,133 +79,6 @@
                 {} // search options
             );
             });
-            function addRow() {
-
-                // Get the currently selected row
-                jq("#rowed1").jqGrid('editGridRow','Add',
-                {  url: "xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1",
-                    editData: {
-                    },
-                    recreateForm: true,
-                    beforeShowForm: function(form) {
-                    },
-                    closeAfterAdd: true,
-                    reloadAfterSubmit:false,
-                    afterSubmit : function(response, postdata)
-                    {
-                        var result = eval('(' + response.responseText + ')');
-                        var errors = "";
-
-                        if (result.success == false) {
-                            for (var i = 0; i < result.message.length; i++) {
-                                errors +=  result.message[i] + "";
-                            }
-                        }  else {
-                            jq("#dialog").text('Entry has been added successfully');
-                            jq("#dialog").dialog(
-                            { title: 'Success',
-                                modal: true,
-                                buttons: {"Ok": function()  {
-                                        jq(this).dialog("close");}
-                                }
-                            });
-                        }
-                        // only used for adding new records
-                        var new_id = null;
-
-                        return [result.success, errors, new_id];
-                    }
-                });
-
-            }
-
-            function editRow() {
-                // Get the currently selected row
-                var row = jq("#rowed1").jqGrid('getGridParam','selrow');
-
-                if( row != null )
-                    jq("#grid").jqGrid('editGridRow',row,
-                { url: "/spring-jqgrid-integration/krams/crud/edit",
-                    editData: {
-                    },
-                    recreateForm: true,
-                    beforeShowForm: function(form) {
-                    },
-                    closeAfterEdit: true,
-                    reloadAfterSubmit:false,
-                    afterSubmit : function(response, postdata)
-                    {
-                        var result = eval('(' + response.responseText + ')');
-                        var errors = "";
-
-                        if (result.success == false) {
-                            for (var i = 0; i < result.message.length; i++) {
-                                errors +=  result.message[i] + "        ";
-                            }
-                        }  else {
-                            jq("#dialog").text('Entry has been edited successfully');
-                            jq("#dialog").dialog(
-                            { title: 'Success',
-                                modal: true,
-                                buttons: {"Ok": function()  {
-                                        jq(this).dialog("close");}
-                                }
-                            });
-                        }
-
-                        return [result.success, errors, null];
-                    }
-                });
-                else jq( "#dialogSelectRow" ).dialog();
-            }
-
-            function deleteRow() {
-                // Get the currently selected row
-                var row = jq("#grid").jqGrid('getGridParam','selrow');
-
-                // A pop-up dialog will appear to confirm the selected action
-                if( row != null )
-                    jq("#rowed1").jqGrid( 'delGridRow', row,
-                { url: 'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
-                    recreateForm: true,
-                    beforeShowForm: function(form) {
-                        //change title
-                        jq(".delmsg").replaceWith('<span style="white-space: pre;">' +
-                            'Delete selected record?' + '</span>');
-
-                        //hide arrows
-                        jq('#pData').hide();
-                        jq('#nData').hide();
-                    },
-                    reloadAfterSubmit:false,
-                    closeAfterDelete: true,
-                    afterSubmit : function(response, postdata)
-                    {
-                        var result = eval('(' + response.responseText + ')');
-                        var errors = "";
-
-                        if (result.success == false) {
-                            for (var i = 0; i < result.message.length; i++) {
-                                errors +=  result.message[i] + "";
-                            }
-                        }  else {
-                            jq("#dialog").text('Entry has been deleted successfully');
-                            jq("#dialog").dialog(
-                            { title: 'Success',
-                                modal: true,
-                                buttons: {"Ok": function()  {
-                                        jq(this).dialog("close");}
-                                }
-                            });
-                        }
-                        // only used for adding new records
-                        var new_id = null;
-
-                        return [result.success, errors, new_id];
-                    }
-                });
-                else jq( "#dialogSelectRow" ).dialog();
-            }
         </script>
     </head>
     <body>
@@ -229,6 +101,8 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>เมนูหลัก</h1>
+                                             <button name="action" value="Add" class="button" onclick="window.location.href='addMenuGroup.jsp'"><span><span>เพิ่ม</span></span></button>
+                                             
                                         </div>
                                         <center>
                                             <table id="rowed1"></table>

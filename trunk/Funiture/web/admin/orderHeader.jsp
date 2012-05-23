@@ -128,9 +128,8 @@
                                             <h1>สั่งซื้อ</h1>
                                         </div>
                                         <center>
-                                            <br/>
-                                            <td>สถานะ</td>
-                                            <select id="status" onchange="show()" >
+                                            <br/>สถานะ
+                                            <select id="status" onchange="show()">
                                                 <option value=""> ใหม่ (default) </option>
                                                 <option value=""> อนุมัติ </option>
                                                  <option value=""> ยกเลิก </option>
@@ -138,12 +137,12 @@
                                                     <option value="${order.order_status}">${order.status}</option>
                                                 </c:forEach>
                                             </select>
+                                            <br/>
+                                            <br/>วันที่สั่งซื้อ
+                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
                                             <br/><br/>
-                                            <td>วันที่สั่งซื้อ</td>
-                                            <td><input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/></td>
-                                            <br/><br/>
-                                            <td>ใบสั่งซื้อ</td>
-                                            <td><input type="text" id="datepicker"  name="order_no" value="" title="order_no"class="order_no"   onchange="show();"/></td>
+                                            <br/>ใบสั่งซื้อ
+                                            <input type="text" id="datepicker" name="order_no" value="" title="order_no"class="order_no"   onchange="show();"/>
                                             <br/><br/>
                                             <table id="rowed1"></table>
                                             <br/>

@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <title>JSP Page</title>
-         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
@@ -36,29 +36,30 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberGradeMaster.do?action=fetchData&rows=3&page=1&q=2',
                     datatype: "xml",
-                    colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','ประเภทราคา','memberGradeId' ],
+                    colNames:['No','รหัสเกรด', 'ชื่อเกรด T ', 'ชื่อเกรด E ','ส่วนลด','payment Term','ประเภทราคา','memberGradeId','แก้ไข','ลบ' ],
                     colModel:[
                         {name:'No',index:'No', width:60,editable:false,editoptions:{readonly:true,size:10},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
-                        {name:'memberGrade',index:'memberGrade', width:80,editable:true,editoptions:{editrule:{readonly:true},size:10},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberGrade',index:'memberGrade', width:80,editable:true,editoptions:{size:10,readonly:true},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'gradeNameT',index:'gradeNameT', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'gradeNameE',index:'gradeNameE', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'discountRate',index:'discountRate', width:100,editable:true,editoptions:{size:25}, formoptions:{elmprefix:"(*)"},editrules:{required:true}},
                         {name:'paymentTerm',index:'paymentTerm', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"(*)"},editrules:{required:true}},
                         {name:'memberPriceFlag',index:'memberPriceFlag', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
-                        {name:'memberGradeId',index:'memberGradeId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true,formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                        {name:'memberGradeId',index:'memberGradeId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true,formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addMemberGrade.jsp?memberGradeId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
 
 
                     ],
                     rowNum:20,
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
                     caption:"ระดับ สมาชิก",
-
                     editurl:"memberGradeMaster.do"
                     
                 });
@@ -102,13 +103,18 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ประเภทสมาชิก</h1>
+                                            <div class="button" align="right">
+
+                                                <button name="action" value="Add" class="button" onclick="window.location.href='addMemberGrade.jsp'"><span><span>เพิ่ม</span></span></button>
+                                            </div>
                                         </div>
-                    <center>
-                        <table id="rowed1"></table>
-                        <div id="prowed1"></div>
-                        <br />
-                    </center>
-                    <br/><br/> </div>
+
+                                        <center>
+                                            <table id="rowed1"></table>
+                                            <div id="prowed1"></div>
+                                            <br />
+                                        </center>
+                                        <br/><br/> </div>
                                 </div>
                             </div>
                         </div>

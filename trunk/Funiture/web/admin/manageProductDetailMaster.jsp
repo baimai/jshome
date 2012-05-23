@@ -65,14 +65,18 @@
                 jQuery("#rowed1").jqGrid({        
                     url:'xmlProductGroup.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['Product Code','Name Th', 'Name En', 'Price','Edit','Del'],
+                    colNames:['product_Model_Code','Product_Code', 'Product_d_name_t', 'Product_d_name_e','Product_D_Display_Flag','CreateDate','UpdateDate','User_Id','Edit','Del'],
                     colModel:[
-                        {name:'Code',index:'Code',editoptions:"", width:110,align:"right"},
-                        {name:'nameTh',index:'nameTh', width:225,align:"center"},
-                        {name:'nameEn',index:'nameEn', width:225, align:"center"},
-                        {name:'price',index:'price', width:90, align:"right"},
-                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductDetail.jsp?productDetailId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
+                        {name:'productModelCode',index:'productModelCode', width:70,align:"right"},
+                        {name:'productCode',index:'productCode', width:130,align:"right"},
+                        {name:'productDNameT',index:'productDNameT', width:200, align:"center"},
+                        {name:'productDNameE',index:'productDNameE', width:150, align:"center"},
+                        {name:'productDDisplayFlag',index:'productDDisplayFlag', width:50, align:"center"},
+                        {name:'createDate',index:'createDate', width:110,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
+                        {name:'updateDate',index:'updateDate', width:110,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
+                        {name:'userId',index:'userId', width:80,editable:false,editoptions:{size:25}},
+                        {name:'Edit',index:'Edit', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"ProductDetail.jsp?productDetailId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:50,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                     ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
@@ -111,10 +115,11 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลรายการสินค้า</h1>
-                                            <div class="button" align="right">
+                                           
+                                            <div class="button" align="right" >
                                                 <form action="ProductDetail.jsp" >
-                                                    <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                                    <button name="action" value="Add" class="button"><span><span>เพิ่ม</span></span></button>
+                                                    <input type="hidden" name="productGroupId"  value="${param.productGroupId}" />
+                                                    <button  name="action" value="Add"  class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                                 </form>
 
 
@@ -123,7 +128,7 @@
 
                                         <center>
                                             <br/>
-                                            <div class="field"> ประเภทสินค้า
+                                            <div class="field" align="center"> ประเภทสินค้า
                                                 <select id="groupId" onchange="show()">
                                                     <option value=""> ทั้งหมด </option>
                                                     <c:forEach items="${query3.rows}" var="group">

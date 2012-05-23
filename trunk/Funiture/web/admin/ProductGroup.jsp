@@ -87,23 +87,34 @@
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editoptions:{editable:true,size:25},editrules:{number:true,required:true,edithidden:true},formoptions:{/* rowpos:1, label: "productGroupCode",*/ elmprefix:"(*)"}},
                         {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{size:25}},
-                        {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25},edittype:"file"},
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{size:25},edittype:"file"},
+                        {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
-                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
-                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'createDate',index:'createDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',
+                            formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},search:'true', searchoptions:{ dataInit:function(el){
+                                    $(el).datepicker({
+                                        dateFormat:'yy-mm-dd',newformat:"dd/mm/yy",
+                                        onSelect: function(dateText, inst){ $("#rowed1")[0].triggerToolbar(); }
+                                    });} }},
+                        {name:'updateDate',index:'updateDate', align:"centert", width:200,editable:false,editoptions:{size:25},formatter:'date',
+                            search:'true', searchoptions:{ dataInit:function(el){
+                                    $(el).datepicker({
+
+                                        dateFormat:'yy-mm-dd',newformat:"dd/mm/yy",
+                                        onSelect: function(dateText, inst){ $("#rowed1")[0].triggerToolbar(); }
+                                    });} }},
                         {name:'userId',index:'userId', align:"centert", width:200,editable:false,editoptions:{size:25}},
                         {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
 
                     ],
                     rowNum:20,
                     height: "auto",
                     width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
-                    loadonce:false,
+                    loadonce:true,
                     pager: '#prowed1',
                     imgpath: 'upload/picture/icon', 
                     sortname: 'id',
@@ -175,7 +186,7 @@
                                             <h1>ข้อมูลประเภทสินค้า</h1>
                                             <div class="button" align="right">
 
-                                                <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
+                                                <button name="action" value="Add" class="button" onclick="window.location.href='ProductDetail.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
                                         </div>
 

@@ -43,8 +43,8 @@
                         {name:'menuGRemarkE',index:'menuGRemarkE',align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
                         {name:'companyId',index:'companyId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
                         {name:'menuGroupId',index:'menuGroupId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:false},
-                        {name:'menuGPicLoc',index:'menuGPicLoc',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
-                        {name:'menuGIconLog',index:'menuGIconLog',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGPicLog',index:'menuGPicLoc',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
+                        {name:'menuGIconLog',index:'menuGIconLoc',align:"right",hidden:true,editrules:{ edithidden:true},editable:true},
 
 
                     ],

@@ -66,15 +66,16 @@
                     </li>
                     <li><a href="#" class="parent"><span>จัดการสินค้า</span></a>
                         <div><ul>
+                                <li><a href="color.jsp" class="parent"><span>ข้อมูลสี</span></a> </li>
                                 <li><a href="ProductGroup.jsp" class="parent"><span>กลุ่มสินค้า</span></a>
 
                                 </li>
-                                <li><a href="color.jsp" class="parent"><span>ข้อมูลสี</span></a> </li>
+                                
                                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                                 </li>
-                                <li><a href="Stock.jsp" class="parent"><span>นำเข้าสินค้า</span></a></li>
-                                <li><a href="stockMaster.jsp" class="parent"><span>จำนวนสินค้า</span></a></li>
+                                <li><a href="stockMaster.jsp" class="parent"><span>รับสินค้าเข้าคลัง</span></a></li>
+                               
 
 
                                

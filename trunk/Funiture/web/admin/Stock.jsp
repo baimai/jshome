@@ -124,7 +124,7 @@
                                             <div class="buttons" align="right">
                                                  
                                                 <button name="action" value="add" class="button"><span><span>บันทึก</span></span></button>
-                                               <button  class="button" onclick="window.location.href='stockMaster.jsp'"><span><span>ค้นหา</span></span></button>
+                                               
                                             </div>
                                             <div id="dialog-form" title="Search Product">
 
