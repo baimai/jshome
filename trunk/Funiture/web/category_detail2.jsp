@@ -1,16 +1,16 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <sql:query var="query" dataSource="webdb">
-    select count(pps.pic_code) as count,pps.*,md.*
+    select count(pps.pic_id) as count,pps.*,md.*
     From  pic_product_setup pps
     join pic_product_setup_detail ppd on ppd.pic_id = pps.Pic_Id
     JOIN  product_detail_master pdm on pdm.product_detail_id = ppd.product_detail_id
     JOIN  product_group_master  pgm on pgm.product_group_id  = pdm.product_group_id
-    JOIN  menu_detail_master    md  on md.Pic_Code = pps.Pic_Code
+    JOIN  menu_detail_master    md  on md.pic_id = pps.pic_id
     WHERE pdm.product_d_display_flag = 'Y' and pgm.product_g_display_flag = 'Y' and
-    md.Menu_Code_Id != '4'
-    group by pps.pic_code
-    order by pps.pic_code
+    md.Menu_Code_Id != 4
+    group by pps.pic_id
+    order by pps.pic_id
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT count(pdm.product_detail_id) as count,pgm.* FROM product_group_master pgm
@@ -36,9 +36,9 @@
             function showProduct(text){
                 document.getElementById("productList").innerHTML=text;
             }
-            function setProduct(menuCode,pageShow,curPage,menuType){
-                var param = "menuCode="+menuCode+"&show="+pageShow+"&page="+curPage+"&menuType="+menuType;
-                document.getElementById('menuCode').value = menuCode;
+            function setProduct(menuId,pageShow,curPage,menuType){
+                var param = "menuId="+menuId+"&show="+pageShow+"&page="+curPage+"&menuType="+menuType;
+                document.getElementById('menuId').value = menuId;
                 document.getElementById('navShow').value = pageShow;
                 document.getElementById('menuType').value = menuType;
                 postDataReturnText("categoryProduct.jsp",param,showProduct);
@@ -72,12 +72,12 @@
         </script>
 
         <!--<script typcatalog-category-viewe="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script --></head>
-    <body class="  catalog-category-view" onload="setProduct('00010','9','1','picCode');" >
-        <input type="hidden" value="" id="menuCode"/>
+    <body class="  catalog-category-view" onload="setProduct('1','9','1','picId');" >
+        <input type="hidden" value="" id="menuId"/>
         <input type="hidden" value="9" id="navShow"/>
         <input type="hidden" value="1" id="navCurPage"/>
         <input type="hidden" value="name" id="navSort"/>
-        <input type="hidden" value="picCode" id="menuType"/>
+        <input type="hidden" value="picId" id="menuType"/>
         <div class="wrapper">
             <div class="page">
             </div>
@@ -94,7 +94,7 @@
                               
                                 <ul>      
                                     <c:forEach var="menu" items="${query.rows}">
-                                        <li><img src="${menu.Menu_C_Icon_Loc}" /><a href="#" onclick="setProduct('${menu.pic_code}',document.getElementById('navShow').value,'1','picCode');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                        <li><img src="${menu.Menu_C_Icon_Loc}" /><a href="#" onclick="setProduct('${menu.pic_id}',document.getElementById('navShow').value,'1','picId');">${menu.menu_c_name_t}</a> (${menu.count})</li>
                                     </c:forEach>
                                 </ul>
 

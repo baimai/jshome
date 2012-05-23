@@ -30,15 +30,15 @@
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
         <link rel="stylesheet" href="css/validator.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="all" />
-       
+
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
         <script src="jshome/js/jquery-1.4.min.js" type="text/javascript"></script>
-         <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
+        <script type="text/javascript" src="jshome/js/jquery-1.7.2-ui.min.js"></script>
         <script type="text/javascript" src="jshome/js/jquery.spasticNav.js"></script>
-    <title>jshome</title>
+        <title>jshome</title>
     </head>
     <body >
         <c:set var="itemNum" value="0" />
@@ -52,25 +52,34 @@
                     <c:if test="${sessionScope.loginDetail==null}">ยินดีต้อนรับ ลูกค้า</c:if>
                 </div>
                 <div class="shop-access"><ul class="links">
-                        <c:if test="${sessionScope.loginDetail!=null}"><li class="first" ><a href="profile.jsp" title="My Account" >ข้อมูลส่วนตัว</a></li></c:if>
+                        <c:if test="${sessionScope.loginDetail!=null}">
 
-                        <li ><a href="cartDetail.jsp" title="My Cart" class="top-link-cart">สินค้าในตระกร้า (${itemNum} รายการ)</a></li>
-                        <li ><a href="forgotPassword.jsp" title="My Cart" class="top-link-cart">ลืมรัหสผ่าน</a></li>
-                        
-                        <li class=" last" >
+
+                            <li class="first" ><a href="profile.jsp" title="My Account" >ข้อมูลส่วนตัว</a></li></c:if>
+
+
+                            <li ><a href="forgotPassword.jsp" title="My Cart" class="top-link-cart">ลืมรัหสผ่าน</a></li>
+
+                            <li class=" last" >
                             <c:if test="${sessionScope.loginDetail!=null}"><a href="logout.do" title="Log Out" >ออกจากระบบ</a></c:if>
                             <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >เข้าสู่ระบบ</a></c:if>
                             <c:if test="${sessionScope.loginDetail==null}"><a href="Login.jsp" title="Log In" >สมัครสมาชิก</a></c:if>
                         </li>
                     </ul>
                 </div>
-            </div>
 
+
+                <div class="box header-cart" id="header-cart">
+                    <div class="shop-access">
+                        <a href="cartDetail.jsp" title="My Cart" class="top-link-cart">สินค้าในตระกร้า (${itemNum} รายการ)</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div >
             <c:forEach items="${query3.rows}" var="company"> <img src="${company.company_header_loc}" width="95%" height="100px" border="0" /> </c:forEach>
         </div>
-      
+
         <div id="container"  >
             <ul id="nav">
                 <c:forEach var="topmenu" items="${query2.rows}">
@@ -85,7 +94,7 @@
             </ul>
         </div>
         <script type="text/javascript" src="js/top_menu.js"></script>
-        
+
         <script type="text/javascript">
             $('#nav').spasticNav();
         </script>
