@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Database;
 import model.colorMasterTable;
 import model.entity.colorCodeMasterEntity;
+import model.entity.userSecurityEntity;
 
 /**
  *
@@ -38,6 +39,8 @@ public class colorMaster extends HttpServlet {
             Database db = new Database();
             colorCodeMasterEntity cm = new colorCodeMasterEntity();
             colorMasterTable cmt = new colorMasterTable(db);
+            HttpSession s = request.getSession(true);
+            userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
             if (request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")) {
                 cm.setColorId(Integer.parseInt(request.getParameter("colorId")));
             }
@@ -52,22 +55,44 @@ public class colorMaster extends HttpServlet {
             }
             cm.setCreateDate(Timestamp.valueOf(db.getNow()));
             cm.setUpdateDate(Timestamp.valueOf(db.getNow()));
+            cm.setUserId(lc.getUserId());
             if (request.getParameter("action").equals("Add")) {
                 Boolean chechDuplicate = cmt.checkDuplicate(cm);
                 if (chechDuplicate == false) {
                     cmt.add(cm);
                 }
-                 db.close();
-                response.sendRedirect("color.jsp");
+                db.close();
+                response.sendRedirect("addColor.jsp");
             } else if (request.getParameter("action").equals("Edit")) {
                 cmt.update(cm);
             } else if (request.getParameter("action").equals("Del")) {
                 cmt.remove(cm);
             }
 
+          //  out.println("getColorId" + cm.getColorId());
+          //  out.println("getColorCode" + cm.getColorCode());
+          //  out.println("getColorNameT" + cm.getColorNameT());
+          //  out.println("getColorNameE" + cm.getColorNameE());
+         //   out.println("getCreateDate" + cm.getCreateDate());
+         //   out.println("getUpdateDate" + cm.getUpdateDate());
+         //   out.println("getUserId" + cm.getUserId());
+          
 
             db.close();
+            if (request.getParameter("action").equals("Edit")) {
 
+                response.sendRedirect("addColor.jsp?valid=1&colorId=" + cm.getColorId());
+
+            } else if (request.getParameter("action").equals("Add")) {
+              response.sendRedirect("addColor.jsp?valid=1");
+            }
+  out.println("getColorId" + cm.getColorId());
+           out.println("getColorCode" + cm.getColorCode());
+           out.println("getColorNameT" + cm.getColorNameT());
+           out.println("getColorNameE" + cm.getColorNameE());
+          out.println("getCreateDate" + cm.getCreateDate());
+          out.println("getUpdateDate" + cm.getUpdateDate());
+         out.println("getUserId" + cm.getUserId());
         } catch (Exception ex) {
             ex.printStackTrace(out);
 

@@ -40,6 +40,7 @@ public class xmlStockMaster extends HttpServlet {
         try {
             if (request.getParameter("action").equals("fetchData")) {
                 //response.setContentType("text/xml;charset=UTF-8");
+                 String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
                     String r = request.getParameter("rows");
@@ -70,7 +71,8 @@ public class xmlStockMaster extends HttpServlet {
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList list = smt.searchAll();
+                //ArrayList list = smt.searchAll(productGroupId, Company_Id, start, rows);
+                ArrayList list = smt.search(productGroupId, Company_Id, start, rows);
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = pdm.countAll(Company_Id);
@@ -88,10 +90,11 @@ public class xmlStockMaster extends HttpServlet {
                         for (int i = 0; i < list.size(); i++) {
                             stockMasterEntity data = (stockMasterEntity) list.get(i);
                             xml.setRowDetail(i,
-                                    data.getReceiveDate(),
+                                   
                                     data.getProductDetailMasterEntity().getProductCode(),                                                                
                                     data.getProductDetailMasterEntity().getProductDNameT(),
                                     data.getProductGroupMasterEntity().getProductGNameT(),
+                                     data.getReceiveDate(),
                                     data.getQuantity(),
                                     data.getUnitMasterEntity().getUnitNameT(),
                                     data.getStockId());

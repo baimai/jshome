@@ -25,9 +25,11 @@ import javazoom.upload.UploadFile;
 import model.Database;
 import model.companyMasterTable;
 import model.entity.productDetailMasterEntity;
+import model.entity.saleDiscountHMasterEntity;
 import model.entity.stockMasterEntity;
 import model.entity.unitMasterEntity;
 import model.productDetailMasterTable;
+import model.saleDiscountHMasterTable;
 import model.stockMasterTable;
 import model.unitMasterTable;
 
@@ -70,9 +72,13 @@ public class productDetail extends HttpServlet {
                         stockMasterEntity sm = new stockMasterEntity();
                         unitMasterTable umt = new unitMasterTable(db);
                         unitMasterEntity um = new unitMasterEntity();
+                        saleDiscountHMasterTable sdht = new saleDiscountHMasterTable(db);
+                        saleDiscountHMasterEntity sd = new saleDiscountHMasterEntity();
                         int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                         Hashtable files = mr.getFiles();
+                        Hashtable files3 = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
+                        UploadFile upFile3 = (UploadFile) files3.get("uploadIcon");
                         UploadBean u = new UploadBean();
                         if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
                             String filename = upFile.getFileName();
@@ -99,11 +105,44 @@ public class productDetail extends HttpServlet {
                         if (upFile.getFileName() != null && !upFile.getFileName().equals("")) {
                             pdm.setProductDPicLoc("upload/picture" + "/" + upFile.getFileName());
                         }
+                        //============================================cataloge=======================================================================
+                        if (upFile3.getFileName() != null && !upFile3.getFileName().equals("")) {
+                            String filename = upFile3.getFileName();
+                            String filetype = filename.substring(filename.lastIndexOf("."), filename.length());
+                            if ((filetype.indexOf("gif") == -1) && (filetype.indexOf("jpeg") == -1) && (filetype.indexOf("jpg") == -1) && (filetype.indexOf("png") == -1)) {
+                            } else {
+                                if (filetype.endsWith("gif")) {
+                                    upFile3.setFileName(System.currentTimeMillis() + ".gif");
+                                } else if (filetype.endsWith("jpeg")) {
+                                    upFile3.setFileName(System.currentTimeMillis() + ".jpeg");
+                                } else if (filetype.endsWith("jpg")) {
+                                    upFile3.setFileName(System.currentTimeMillis() + ".jpg");
+                                } else if (filetype.endsWith("png")) {
+                                    upFile3.setFileName(System.currentTimeMillis() + ".png");
+                                }
+
+                                u.setFolderstore(getServletContext().getRealPath("upload/picture/icon"));
+                            }
+                        }
+                        u.store(mr, "uploadIcon");
+                        if (mr.getParameter("uploadIcontmp") != null) {
+                            pdm.setProductDIconLoc(mr.getParameter("uploadIcontmp"));
+                        }
+                        if (upFile3.getFileName() != null && !upFile3.getFileName().equals("")) {
+                            pdm.setProductDIconLoc("upload/picture/icon" + "/" + upFile3.getFileName());
+                        }
+                        //================================================================================
                         if (mr.getParameter("productGroupId") != null && !mr.getParameter("productGroupId").equals("")) {
                             pdm.setProductGroupId(Integer.parseInt(mr.getParameter("productGroupId")));
                         }
                         if (mr.getParameter("colorId") != null && !mr.getParameter("colorId").equals("")) {
                             pdm.setProductColorId(Integer.parseInt(mr.getParameter("colorId")));
+                        }
+                        if (mr.getParameter("unitId") != null && !mr.getParameter("unitId").equals("")) {
+                            pdm.setUnitId(Integer.parseInt(mr.getParameter("unitId")));
+                        }
+                        if (mr.getParameter("discountId") != null && !mr.getParameter("discountId").equals("")) {
+                            pdm.setDiscountId(Integer.parseInt(mr.getParameter("discountId")));
                         }
                         if (mr.getParameter("productCode") != null && !mr.getParameter("productCode").equals("")) {
                             pdm.setProductCode(mr.getParameter("productCode"));
@@ -136,50 +175,50 @@ public class productDetail extends HttpServlet {
                         if (mr.getParameter("nameEn") != null && !mr.getParameter("nameEn").equals("")) {
                             pdm.setProductDNameE(mr.getParameter("nameEn"));
                         }
-                        if (mr.getParameter("spect1Th") != null && !mr.getParameter("spect1Th").equals("")) {
-                            pdm.setProductSpect1_T(mr.getParameter("spect1Th"));
+                        if (mr.getParameter("productSpect1_T") != null && !mr.getParameter("productSpect1_T").equals("")) {
+                            pdm.setProductSpect1_T(mr.getParameter("productSpect1_T"));
                         }
-                        if (mr.getParameter("spect1En") != null && !mr.getParameter("spect1En").equals("")) {
-                            pdm.setProductSpect1_E(mr.getParameter("spect1En"));
+                        if (mr.getParameter("productSpect1_E") != null && !mr.getParameter("productSpect1_E").equals("")) {
+                            pdm.setProductSpect1_E(mr.getParameter("productSpect1_E"));
                         }
-                        if (mr.getParameter("spect2Th") != null && !mr.getParameter("spect2Th").equals("")) {
-                            pdm.setProductSpect2_T(mr.getParameter("spect2Th"));
+                        if (mr.getParameter("productSpect2_T") != null && !mr.getParameter("productSpect2_T").equals("")) {
+                            pdm.setProductSpect2_T(mr.getParameter("productSpect2_T"));
                         }
-                        if (mr.getParameter("spect2En") != null && !mr.getParameter("spect2En").equals("")) {
-                            pdm.setProductSpect2_E(mr.getParameter("spect2En"));
+                        if (mr.getParameter("productSpect2_E") != null && !mr.getParameter("productSpect2_E").equals("")) {
+                            pdm.setProductSpect2_E(mr.getParameter("productSpect2_E"));
                         }
-                        if (mr.getParameter("spect3Th") != null && !mr.getParameter("spect3Th").equals("")) {
-                            pdm.setProductSpect3_T(mr.getParameter("spect3Th"));
+                        if (mr.getParameter("productSpect3_T") != null && !mr.getParameter("productSpect3_T").equals("")) {
+                            pdm.setProductSpect3_T(mr.getParameter("productSpect3_T"));
                         }
-                        if (mr.getParameter("spect3En") != null && !mr.getParameter("spect3En").equals("")) {
-                            pdm.setProductSpect3_E(mr.getParameter("spect3En"));
+                        if (mr.getParameter("productSpect3_E") != null && !mr.getParameter("productSpect3_E").equals("")) {
+                            pdm.setProductSpect3_E(mr.getParameter("productSpect3_E"));
                         }
-                        if (mr.getParameter("spect4Th") != null && !mr.getParameter("spect4Th").equals("")) {
-                            pdm.setProductSpect4_T(mr.getParameter("spect4Th"));
+                        if (mr.getParameter("productSpect4_T") != null && !mr.getParameter("productSpect4_T").equals("")) {
+                            pdm.setProductSpect4_T(mr.getParameter("productSpect4_T"));
                         }
-                        if (mr.getParameter("spect4En") != null && !mr.getParameter("spect4En").equals("")) {
-                            pdm.setProductSpect4_E(mr.getParameter("spect4En"));
+                        if (mr.getParameter("productSpect4_E") != null && !mr.getParameter("productSpect4_E").equals("")) {
+                            pdm.setProductSpect4_E(mr.getParameter("productSpect4_E"));
                         }
-                        if (mr.getParameter("spect5Th") != null && !mr.getParameter("spect5Th").equals("")) {
-                            pdm.setProductSpect5_T(mr.getParameter("spect5Th"));
+                        if (mr.getParameter("productSpect5_T") != null && !mr.getParameter("productSpect5_T").equals("")) {
+                            pdm.setProductSpect5_T(mr.getParameter("productSpect5_T"));
                         }
-                        if (mr.getParameter("spect5En") != null && !mr.getParameter("spect5En").equals("")) {
-                            pdm.setProductSpect5_E(mr.getParameter("spect5En"));
+                        if (mr.getParameter("productSpect5_E") != null && !mr.getParameter("productSpect5_E").equals("")) {
+                            pdm.setProductSpect5_E(mr.getParameter("productSpect5_E"));
                         }
-                        if (mr.getParameter("spect6Th") != null && !mr.getParameter("spect6Th").equals("")) {
-                            pdm.setProductSpect6_T(mr.getParameter("spect6Th"));
+                        if (mr.getParameter("productSpect6_T") != null && !mr.getParameter("productSpect6_T").equals("")) {
+                            pdm.setProductSpect6_T(mr.getParameter("productSpect6_T"));
                         }
-                        if (mr.getParameter("spect6En") != null && !mr.getParameter("spect6En").equals("")) {
-                            pdm.setProductSpect6_E(mr.getParameter("spect6En"));
+                        if (mr.getParameter("productSpect6_E") != null && !mr.getParameter("productSpect6_E").equals("")) {
+                            pdm.setProductSpect6_E(mr.getParameter("productSpect6_E"));
                         }
-                        if (mr.getParameter("remarkTh") != null && !mr.getParameter("remarkTh").equals("")) {
-                            pdm.setProductDRemarkT(mr.getParameter("remarkTh"));
+                        if (mr.getParameter("productDRemarkT") != null && !mr.getParameter("productDRemarkT").equals("")) {
+                            pdm.setProductDRemarkT(mr.getParameter("productDRemarkT"));
                         }
-                        if (mr.getParameter("remarkEn") != null && !mr.getParameter("remarkEn").equals("")) {
-                            pdm.setProductDRemarkE(mr.getParameter("remarkEn"));
+                        if (mr.getParameter("productDRemarkE") != null && !mr.getParameter("productDRemarkE").equals("")) {
+                            pdm.setProductDRemarkE(mr.getParameter("productDRemarkE"));
                         }
-                        if (mr.getParameter("display") != null && !mr.getParameter("display").equals("")) {
-                            pdm.setProductDDisplayFlag(mr.getParameter("display"));
+                        if (mr.getParameter("productDDisplayFlag") != null && !mr.getParameter("productDDisplayFlag").equals("")) {
+                            pdm.setProductDDisplayFlag(mr.getParameter("productDDisplayFlag"));
                         }
                         //sm.setQuantity(Integer.parseInt(mr.getParameter("qtyplus")) - Integer.parseInt(mr.getParameter("qtyminus")));
                         pdm.setCompanyId(Company_Id);
@@ -196,7 +235,7 @@ public class productDetail extends HttpServlet {
                                 pdmt.add(pdm);
                                 sm.setProductDetailId(pdmt.getProductId(pdm));
                                 smt.add(sm);
-                            }else{
+                            } else {
                                 db.close();
                                 response.sendRedirect("ProductDetail.jsp?error=1");
                             }

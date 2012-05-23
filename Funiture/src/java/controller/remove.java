@@ -49,8 +49,16 @@ public class remove extends HttpServlet {
                     productGroupMasterTable pgmt = new productGroupMasterTable(db);
                     pgm.setCompanyId(Company_Id);
                     pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));                   
-                    out.print(pgm.getProductGroupId());
+                    Boolean checkChild = pgmt.checkChild(pgm);
+                if (checkChild == false) {
                     pgmt.remove(pgm);
+
+                }
+                    else {
+                                db.close();
+                                response.sendRedirect("ProductGroup.jsp?error=1");
+                            }
+                    
                 }
 
             }

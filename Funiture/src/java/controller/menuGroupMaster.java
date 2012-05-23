@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
 import model.colorMasterTable;
+import model.companyMasterTable;
 import model.entity.colorCodeMasterEntity;
 import model.entity.companyMasterEntity;
 import model.entity.menuGroupMasterEntity;
+import model.entity.userSecurityEntity;
 import model.menuGroupMasterTable;
 
 /**
@@ -41,7 +43,10 @@ public class menuGroupMaster extends HttpServlet {
             Database db = new Database();
             menuGroupMasterEntity mg = new menuGroupMasterEntity();
             menuGroupMasterTable mgt = new menuGroupMasterTable(db);
+            companyMasterTable cmt = new companyMasterTable(db);
+            HttpSession s = request.getSession(true);
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+            userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
             if (request.getParameter("menuGroupId") != null && !request.getParameter("menuGroupId").equals("")) {
                 mg.setMenuGroupId(Integer.parseInt(request.getParameter("menuGroupId")));
             }
@@ -51,14 +56,14 @@ public class menuGroupMaster extends HttpServlet {
             if (request.getParameter("menuGNameE") != null) {
                 mg.setMenuGNameE(request.getParameter("menuGNameE"));
             }
+            if (request.getParameter("menuPermission") != null) {
+                mg.setMenuPermission(request.getParameter("menuPermission"));
+            }
             if (request.getParameter("showListMenu") != null) {
                 mg.setShowListMenu(request.getParameter("showListMenu"));
             }
             if (request.getParameter("chkLoginSts") != null) {
                 mg.setChkLoginSts(request.getParameter("chkLoginSts"));
-            }
-            if (request.getParameter("menuPermission") != null) {
-                mg.setMenuPermission(request.getParameter("menuPermission"));
             }
             if (request.getParameter("menuGRemarkT") != null) {
                 mg.setMenuGRemarkT(request.getParameter("menuGRemarkT"));
@@ -66,29 +71,57 @@ public class menuGroupMaster extends HttpServlet {
             if (request.getParameter("menuGRemarkE") != null) {
                 mg.setMenuGRemarkE(request.getParameter("menuGRemarkE"));
             }
-            if (request.getParameter("menuGPicLoc") != null) {
-                mg.setMenuGPicLoc(request.getParameter("menuGPicLoc"));
+            if (request.getParameter("menuGIconLoc") != null) {
+                mg.setMenuGIconLoc(request.getParameter("menuGIconLoc"));
             }
+           
             mg.setCreateDate(Timestamp.valueOf(db.getNow()));
             mg.setUpdateDate(Timestamp.valueOf(db.getNow()));
             mg.setCompanyId(Company_Id);
-            if (request.getParameter("action").equals("Add")) {
-
-                mgt.add(mg);
+            mg.setUserId(lc.getUserId());
+                if (request.getParameter("action").equals("Add")) {
+                Boolean chechDuplicate = mgt.checkChild(mg);
+                if (chechDuplicate == false) {
+                    mgt.add(mg);
+                    out.println("getMenuGroupId" +mg.getMenuGroupId());
+                    }else {
+                    db.close();
+                     response.sendRedirect("addMenuGroup.jsp?error=1");
+                    }
             } else if (request.getParameter("action").equals("Edit")) {
-
-                mgt.update(mg);
-
+               mgt.update(mg);
+               out.print("hhhh....");
+//            out.println("getcompanyId...." +mg.getCompanyId());
+//            out.println("getMenuGroupId...." +mg.getMenuGroupId());
+//            out.println("getMenuGNameT...." +mg.getMenuGNameT());
+//            out.println("getMenuGNameE...." +mg.getMenuGNameE());
+//            out.println("getMenuPermission..." +mg.getMenuPermission());
+//            out.println("getShowListMenu..." +mg.getShowListMenu());
+//            out.println("getChkLoginSts...." +mg.getChkLoginSts());
+//            out.println("getMenuGIconLoc...." +mg.getMenuGIconLoc());
+//            out.println("getmenuGRemarkT...." +mg.getMenuGRemarkT());
+//            out.println("getmenuGRemarkE...." +mg.getMenuGRemarkE());
+//            out.println("getCreateDate..." +mg.getCreateDate());
+//            out.println("getUpdateDate.." +mg.getUpdateDate());
+//            out.println("getUserId.." +mg.getUserId());
             } else if (request.getParameter("action").equals("Del")) {
                 Boolean checkChild = mgt.checkChild(mg);
                 if (checkChild == false) {
-                    mgt.remove(mg);
+               mgt.remove(mg);
                 }
             }
-
-
             db.close();
+             if (request.getParameter("action").equals("Edit")) {
+                  out.print("hhhh000");
+             response.sendRedirect("addMenuGroup.jsp?valid=1&menuGroupId=" +mg.getMenuGroupId()+mg.getMenuGNameT()+mg.getMenuGNameE()
+                    +mg.getMenuPermission()+mg.getShowListMenu() +mg.getChkLoginSts()+mg.getMenuGRemarkT()+mg.getMenuGRemarkE()
+                    +mg.getMenuGIconLoc()+mg.getCreateDate()+mg.getUpdateDate()+mg.getUserId()+mg.getCompanyId());
 
+            } else if (request.getParameter("action").equals("Add")) {
+              response.sendRedirect("addMenuGroup.jsp?valid=1");
+            }
+            //db.close();
+           
         } catch (Exception ex) {
             ex.printStackTrace(out);
 

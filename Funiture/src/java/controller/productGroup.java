@@ -161,8 +161,7 @@ public class productGroup extends HttpServlet {
 
                         }
                         if (mr.getParameter("action").equals("Del")) {
-                            pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
-                            out.print(pgm.getProductGroupId());
+                            
                             pgmt.remove(pgm);
                         }
                   out.println("productGNameT" + pgm.getProductGNameT());

@@ -39,7 +39,7 @@ public class xmlProductGroup extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+               // response.setContentType("text/xml;charset=UTF-8");
                 
                 String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
 
@@ -92,7 +92,7 @@ public class xmlProductGroup extends HttpServlet {
                                 data.getCreateDate(),
                                 data.getUpdateDate(),
                                 data.getUserId(),
-                                 data.getProductGroupId(),
+                                data.getProductGroupId(),
                                 data.getProductGroupId(),
                                 data.getProductGroupId()
                                );
@@ -114,10 +114,14 @@ public class xmlProductGroup extends HttpServlet {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
 
                         xml.setRowDetail(data.getProductDetailId(), 
+                                data.getProductModelCode(),
                                 data.getProductCode(),
                                 data.getProductDNameT(),
-                                data.getProductDNameE(), 
-                                data.getProductPrice1(),
+                                data.getProductDNameE(),
+                                data.getProductDDisplayFlag(),
+                                data.getCreateDate(),
+                                data.getUpdateDate(),
+                                data.getUserId(),
                                 data.getProductDetailId(),
                                 data.getProductDetailId());
                     }

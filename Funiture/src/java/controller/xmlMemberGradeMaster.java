@@ -74,9 +74,17 @@ public class xmlMemberGradeMaster extends HttpServlet {
                     xml.setRecords(listp.size());
                     for (int i = 0; i < listp.size(); i++) {
                         memberGradeMasterEntity data = (memberGradeMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getMemberGradeId(), i + 1, data.getMemberGrade(), data.getGradeNameT(),
-                                data.getGradeNameE(), data.getDiscountRate(), data.getPaymentTerm(),
-                                data.getMemberPriceFlag(),data.getMemberGradeId());
+                        xml.setRowDetail(data.getMemberGradeId(), 
+                                i + 1,
+                                data.getMemberGrade(),
+                                data.getGradeNameT(),
+                                data.getGradeNameE(), 
+                                data.getDiscountRate(),
+                                data.getPaymentTerm(),
+                                data.getMemberPriceFlag(),
+                                data.getMemberGradeId(),
+                                data.getMemberGradeId(),
+                                data.getMemberGradeId());
 
                     }
                     out.print(xml.getXml());
