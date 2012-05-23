@@ -36,6 +36,7 @@ public class seqProductSetup extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+         request.setCharacterEncoding("utf-8");
         try {
 
             HttpSession s = request.getSession();
@@ -46,13 +47,17 @@ public class seqProductSetup extends HttpServlet {
                     Database db = new Database();
                     picProductSetupTable ppst = new picProductSetupTable(db);
                     picProductSetupEntity pps = new picProductSetupEntity();
-                    
-                    //pps.setCompanyId(Company_Id);
-                    //pps.setPicDetailId(request.getParameter("picDetailId"));
-                    ArrayList list = ppst.searchPicId(pps);
+                     out.println("xxx1"+pps.getPicId());
+                    pps.setCompanyId(Company_Id);
+                     int picId = 0;
+                     if (request.getParameter("picId") != null) {
+                    picId = Integer.parseInt(request.getParameter("picId"));
+                }
+                    out.println("xxx"+pps.getPicId());
+                    ArrayList list = ppst.searchPicId(picId);
                     db.close();
                     s.setAttribute("picProductList", list);
-                    response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
+                   // response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
                     // RequestDispatcher obj = request.getRequestDispatcher("seqProductSetup.jsp");
                     //obj.forward(request, response);
                 } else if (request.getParameter("action").equals("editSeq")) {

@@ -111,7 +111,7 @@ public class xmlOrderMaster extends HttpServlet {
                         xml.setRowDetail(data.getOrderId(), data.getOrderDate(),
                                 data.getOrderId(),
                                 data.getMemberMasterEntity().getMemberName() + " " + data.getMemberMasterEntity().getMemberSurName(),
-                                status,
+                                data.getOrderNo(),status,data.getTotalAmount(),
                                 data.getOrderId());
                     }
                     out.print(xml.getXml());

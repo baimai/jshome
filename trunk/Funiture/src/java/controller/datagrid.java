@@ -58,7 +58,7 @@ public class datagrid extends HttpServlet {
                     page = Integer.parseInt(r);
                 }
                 int start = rows * page - rows;
-              //  String picDetailId = null;
+              
               //  String picCode = null;
                 String sField = null, sValue = null, sOper = null;
                 /*
@@ -66,9 +66,7 @@ public class datagrid extends HttpServlet {
                 menuCode = request.getParameter("menuCode");
                 }
                  */
-             /*   if (request.getParameter("picDetailId") != null) {
-                    picDetailId = request.getParameter("picDetailId");
-                }
+             /*  
                   if (request.getParameter("picCode") != null) {
                     picCode = request.getParameter("picCode");
                 }*/
@@ -94,6 +92,7 @@ public class datagrid extends HttpServlet {
                // psd.setPicDetailId(picDetailId);
                 ArrayList list2 = ppst.searchHeader(sField, sValue, sOper,pps);
                 ArrayList list = psdt.search(sField, sValue, sOper);
+               
                 if (request.getParameter("q").equals("1")) {
                    // int totalPages = 0;
                   //  int totalCount = psdt.countAll(psd);
@@ -119,6 +118,15 @@ public class datagrid extends HttpServlet {
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
+                      String picDetailId = null;
+                       if (request.getParameter("picDetailId") != null) {
+                    picDetailId = request.getParameter("picDetailId");
+                }
+                       int totalPages = 0;
+                   int totalCount = psdt.countAll(psd);
+                    db.close();
+                   if(totalCount%rows==0) totalPages = totalCount/rows;
+                    else totalPages = (totalCount/rows)+1;
                     db.close();
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(1);
@@ -136,6 +144,30 @@ public class datagrid extends HttpServlet {
                                data.getPicId(),
                                 data.getPicId(),
                                data.getPicId()
+                               //data.getPicCode()
+                               );
+                    }
+                    out.print(xml.getXml());
+                } else if (request.getParameter("q").equals("3")) {
+                    int picId = 0;
+                     if (request.getParameter("picId") != null) {
+                    picId = Integer.parseInt(request.getParameter("picId"));
+                }
+                     ArrayList list3 = ppst.searchPicId(picId);
+                    db.close();
+                    GenerateXml xml = new GenerateXml();
+                    xml.setTotal(1);
+                    xml.setPage(1);
+                    xml.setRecords(list3.size());
+                    for (int i = 0; i < list3.size(); i++) {
+                        picProductSetupEntity data = (picProductSetupEntity) list3.get(i);
+                        xml.setRowDetail(data.getPicId(),
+                               data.getPicCode(),
+                               data.getPicProductSetupDetailEntity().getPicDetailId(),
+                               data.getPicProductSetupDetailEntity().getProductDetailMasterEntity().getProductCode(),
+                               data.getPicProductSetupDetailEntity().getProductDetailMasterEntity().getProductDNameT(),
+                               data.getPicProductSetupDetailEntity().getProductDetailMasterEntity().getProductDNameE(),
+                               data.getPicSeq()
                                //data.getPicCode()
                                );
                     }

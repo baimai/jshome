@@ -69,6 +69,8 @@ public class xmlColorMaster extends HttpServlet {
                                 data.getCreateDate(),
                                 data.getUpdateDate(),
                                 data.getUserId(),
+                                data.getColorId(),
+                                data.getColorId(),
                                 data.getColorId());
                     }
                     out.print(xml.getXml());

@@ -43,7 +43,7 @@ public class memberGradeMaster extends HttpServlet {
                 memberGradeMasterTable mgt = new memberGradeMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
-                 HttpSession s = request.getSession(true);
+                HttpSession s = request.getSession(true);
                  userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 mgm.setCompanyId(Company_Id);
@@ -74,19 +74,64 @@ public class memberGradeMaster extends HttpServlet {
                 }
                 mgm.setCreateDate(Timestamp.valueOf(db.getNow()));
                 mgm.setUpdateDate(Timestamp.valueOf(db.getNow()));
-                if (request.getParameter("action").equals("Add")) {
-                    Boolean checkDuplicate = mgt.checkDuplicate(mgm);
-                    if(checkDuplicate==false){
-                        mgt.add(mgm);
-                    }
-                } else if (request.getParameter("action").equals("Edit")) {
-                    mgt.update(mgm);
-                } else if (request.getParameter("action").equals("Del")) {
-                    Boolean checkChild = mgt.checkChild(mgm);
-                    if(checkChild == false){
-                         mgt.remove(mgm);
-                    }
-                }
+                mgm.setUserId(lc.getUserId());
+//                if (request.getParameter("action").equals("Add")) {
+//                    Boolean checkDuplicate = mgt.checkDuplicate(mgm);
+//                    if(checkDuplicate==false){
+//                        mgt.add(mgm);
+//                    }
+//                } else if (request.getParameter("action").equals("Edit")) {
+//                    mgt.update(mgm);
+//                } else if (request.getParameter("action").equals("Del")) {
+//                    Boolean checkChild = mgt.checkChild(mgm);
+//                    if(checkChild == false){
+//                         mgt.remove(mgm);
+//                    }
+//                }
+
+                 if (request.getParameter("action").equals("Add")) {
+                            Boolean checkDuplicate = mgt.checkDuplicate(mgm);
+                            if (checkDuplicate == false) {
+                                mgt.add(mgm);
+
+                            } else {
+                                db.close();
+                                response.sendRedirect("addMemberGrade.jsp?error=1");
+                            }
+
+                        }
+          
+                        if (request.getParameter("action").equals("Edit")) {
+                            mgt.update(mgm);
+
+
+                        }
+                        if (request.getParameter("action").equals("Del")) {
+                            mgm.setMemberGradeId(Integer.parseInt(request.getParameter("memberGradeId")));
+                            out.print(mgm.getMemberGrade());
+                            mgt.remove(mgm);
+                        }
+              out.println("getGradeNameT" + mgm.getGradeNameT());
+              out.println("getMemberGrade" + mgm.getMemberGrade());
+              out.println("getCompanyId" +mgm.getCompanyId());
+              out.println("getMemberGrade" + mgm.getMemberGrade());
+              out.println("getGradeNameT" + mgm.getGradeNameT());
+              out.println("getGradeNameE" + mgm.getGradeNameE());
+              out.println("getDiscountRate" + mgm.getDiscountRate());
+              out.println("getMemberPriceFlag" +  mgm.getPaymentTerm());
+              out.println("getMemberPriceFlag" +  mgm.getMemberPriceFlag());
+              out.println("getUpdateDate" +  mgm.getUpdateDate());
+              out.println("getUserId" +  mgm.getUserId());
+               out.println("getMemberGradeId" + mgm.getMemberGradeId());
+                 // out.println("quantity" + pgm.getQuantity());
+                        db.close();
+                        if (request.getParameter("action").equals("Edit")) {
+                          
+                           response.sendRedirect("addMemberGrade.jsp?valid=1&memberGradeId=" + mgm.getMemberGradeId());
+
+                        } else if (request.getParameter("action").equals("Add")) {
+                            response.sendRedirect("addMemberGrade.jsp?valid=1");
+                        }
                 db.close();
             }
         } catch (Exception ex) {

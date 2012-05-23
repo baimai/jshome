@@ -55,9 +55,17 @@ public class xmlUserSecurity extends HttpServlet {
                     xml.setRecords(list.size());
                     for (int i = 0; i < list.size(); i++) {
                         userSecurityEntity data = (userSecurityEntity) list.get(i);
-                        xml.setRowDetail(data.getUserId(), i + 1, data.getUserId(), data.getUserPassword(),
-                                         data.getUserNameT(), data.getUserNameE(), data.getUserAuthoritySts(),
-                                         data.getUserAliveSts(), data.getApprovedDate(), data.getHoldDate());
+                        xml.setRowDetail(data.getUserId(), i + 1, data.getUserId(),
+                                         data.getUserPassword(),
+                                         data.getUserNameT(),
+                                         data.getUserNameE(),
+                                         data.getUserAuthoritySts(),
+                                         data.getUserAliveSts(),
+                                         data.getApprovedDate(),
+                                         data.getHoldDate(),
+                                         data.getUserId(),
+                                         data.getUserId());
+
                     }
                     out.print(xml.getXml());
                 }

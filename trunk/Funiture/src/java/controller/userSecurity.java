@@ -37,10 +37,13 @@ public class userSecurity extends HttpServlet {
         try {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
-                
+
                 userSecurityTable ust = new userSecurityTable(db);
                 userSecurityEntity uss = new userSecurityEntity();
+                HttpSession s = request.getSession(true);
+                userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                  uss.setCompanyId(Company_Id);
                 if (request.getParameter("userId") != null && !request.getParameter("userId").equals("")) {
                     uss.setUserId(request.getParameter("userId"));
                 }
@@ -56,38 +59,77 @@ public class userSecurity extends HttpServlet {
                 if (request.getParameter("userAuthoritySts") != null) {
                     uss.setUserAuthoritySts(request.getParameter("userAuthoritySts"));
                 }
-                if (request.getParameter("userAliveSts") != null) {
+              if (request.getParameter("userAliveSts") != null) {
                     uss.setUserAliveSts(request.getParameter("userAliveSts"));
                 }
-                uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
-                
+             uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
 
-                if (request.getParameter("userAliveSts").equals("A")){
-                    uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
-                }else if (request.getParameter("userAliveSts").equals("I")){
-                    uss.setHoldDate(Timestamp.valueOf(db.getNow()));
-                }
-                
-                
+
+
+             if (request.getParameter("userAliveSts").equals("A")) {
+                uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
+              } else if (request.getParameter("userAliveSts").equals("I")) {
+                 uss.setHoldDate(Timestamp.valueOf(db.getNow()));
+               }
+              if (request.getParameter("holdDate").equals("A")){
+         uss.setHoldDate(Timestamp.valueOf(db.getNow()));
+              }else if (request.getParameter("holdDate").equals("I")){
+                 uss.setHoldDate(Timestamp.valueOf(db.getNow()));
+                 }
+
                 uss.setCompanyId(Company_Id);
-                out.println("CompanyId"+uss.getCompanyId());
+              out.println("CompanyId" + uss.getCompanyId());
                 uss.setUpdateDate(Timestamp.valueOf(db.getNow()));
                 uss.setCreateDate(Timestamp.valueOf(db.getNow()));
-                if (request.getParameter("action").equals("Add")) {
-                    Boolean checkDuplicate = ust.checkDuplicate(uss);
-                    if(checkDuplicate == false){
-                        ust.add(uss);
-                    }
-                } else if (request.getParameter("action").equals("Edit")) {
-                    ust.update(uss);
-                    Boolean checkPass = ust.checkPasswordById(uss);
-                    if(checkPass == false){
-                        ust.updatePassword(uss);
-                    }
-                } else if (request.getParameter("action").equals("Del")) {
-                    ust.remove(uss);
-                }
+                //if (request.getParameter("action").equals("Add")) {
+               //     Boolean checkDuplicate = ust.checkDuplicate(uss);
+                 //   if (checkDuplicate == false) {
+                 //       ust.add(uss);
+                 //   }
+             //   }
+
+                    if (request.getParameter("action").equals("Add")) {
+                            Boolean checkDuplicate = ust.checkDuplicate(uss);
+                            if (checkDuplicate == false) {
+                                ust.add(uss);
+
+                            } else {
+                                db.close();
+                                response.sendRedirect("addUserSecurity.jsp?error=1");
+                            }
+
+                        }
+
+                        if (request.getParameter("action").equals("Edit")) {
+                            ust.update(uss);
+
+
+                        }
+                        if (request.getParameter("action").equals("Del")) {
+                            uss.setUserId(request.getParameter("UserId"));
+                            out.print(uss.getUserId());
+                            ust.remove(uss);
+                        }
+                out.println(">>>>>>getUserId<<<<<<<" + uss.getUserId());
+                out.println("getUserPassword" + uss.getUserPassword());
+                out.println("getUserNameT" + uss.getUserNameT());
+                out.println("getUserNameE" + uss.getUserNameE());
+                out.println("getUserAuthoritySts" + uss.getUserAuthoritySts());
+                out.println("getUserAliveSts" + uss.getUserAliveSts());
+                out.println("getApprovedDate" + uss.getApprovedDate());
+                out.println("getHoldDate" + uss.getHoldDate());
+                out.println("getUpdateDate" + uss.getUpdateDate());   
+                
+                 db.close();
+                        if (request.getParameter("action").equals("Edit")) {
+                          
+                          response.sendRedirect("addUserSecurity.jsp?valid=1&UserId=" + uss.getUserId());
+
+                        } else if (request.getParameter("action").equals("Add")) {
+                            response.sendRedirect("addUserSecurity.jsp?valid=1");
+                        }
                 db.close();
+
             }
         } catch (Exception ex) {
             ex.printStackTrace(out);
