@@ -33,7 +33,7 @@ private Timestamp updateDate;
     }
 
     /**
-     * @param userId the userId to set
+     * @param UserId the UserId to set
      */
     public void setUserId(String userId) {
         this.userId = userId;
@@ -179,6 +179,10 @@ private Timestamp updateDate;
      */
     public void setHoldDate(Timestamp holdDate) {
         this.holdDate = holdDate;
+    }
+
+    public void setCompanyId(String Str) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
   

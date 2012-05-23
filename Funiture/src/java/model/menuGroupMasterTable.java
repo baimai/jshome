@@ -26,45 +26,83 @@ public class menuGroupMasterTable {
 
     public void add(menuGroupMasterEntity mg) {
         String sql = "insert into menu_group_master "
-                + "( Company_Id,Menu_G_Name_T,Menu_G_Name_E,Show_List_Menu,"
-                + "  Chk_Login_Sts,Menu_Permission,Menu_G_Remark_T,Menu_G_Remark_E,"
-                + "  Menu_G_Pic_Loc,"
-                + "  Create_Date,User_Id )"
+                + "( Company_Id,"
+                + "Menu_G_Name_T,"
+                + "Menu_G_Name_E,"
+                + "Menu_Permission,"
+                + "Show_List_Menu,"
+                + "Chk_Login_Sts,"
+                + "Menu_G_Remark_T,"
+                + "Menu_G_Remark_E,"
+                + "Menu_G_Icon_Loc,"
+                + "Create_Date,"
+               
+                + " User_Id )"
                 + "  values(?,?,?,?,?,?,?,?,?,?,?)";
 
         db.add(sql,
                 mg.getCompanyId(),
                 mg.getMenuGNameT(),
                 mg.getMenuGNameE(),
+                mg.getMenuPermission(),
                 mg.getShowListMenu(),
                 mg.getChkLoginSts(),
-                mg.getMenuPermission(),
                 mg.getMenuGRemarkT(),
                 mg.getMenuGRemarkE(),
-                mg.getMenuGPicLoc(),
+                mg.getMenuGIconLoc(),
                 mg.getCreateDate(),
+              
                 mg.getUserId());
+            System.out.println(">>>MenuGroupId" +mg.getMenuGroupId());
+            System.out.println(">>>MenuGNameT" +mg.getMenuGNameT());
+            System.out.println(">>>MenuGNameE" +mg.getMenuGNameE());
+            System.out.println(">>>>MenuPermission" +mg.getMenuPermission());
+            System.out.println("ShowListMenu" +mg.getShowListMenu());
+            System.out.println("ChkLoginSts" +mg.getChkLoginSts());
+            System.out.println("MenuGIconLoc" +mg.getMenuGIconLoc());
+            System.out.println("CreateDate" +mg.getCreateDate());
+            System.out.println("UpdateDate" +mg.getUpdateDate());
+            System.out.println("UserId" +mg.getUserId());
+         
     }
 
     public void update(menuGroupMasterEntity mg) {
         String sql = "update menu_group_master set Company_Id = ?,"
-                + " Menu_G_Name_T = ?,Menu_G_Name_E = ?,"
-                + " Show_List_Menu = ?,Chk_Login_Sts = ?,Menu_Permission = ?,"
-                + " Menu_G_Remark_T = ?,Menu_G_Remark_E = ?,Menu_G_Pic_Loc = ?,"
-                + " Update_Date = ? "
-                + " where Menu_Group_Id = ? ";
+                + "Menu_G_Name_T = ?,"
+                + "Menu_G_Name_E = ?,"
+                + "Menu_Permission = ?,"
+                + "Show_List_Menu = ?,"
+                + "Chk_Login_Sts = ?,"
+                + "Menu_G_Remark_T = ?,"
+                + "Menu_G_Remark_E = ?,"
+                + "Menu_G_Icon_Loc=?,"
+                + "Update_Date = ?, "
+                + "User_Id = ? "
+                + "where Menu_Group_Id = ? ";
         db.add(sql,
                 mg.getCompanyId(),
                 mg.getMenuGNameT(),
                 mg.getMenuGNameE(),
+                mg.getMenuPermission(),
                 mg.getShowListMenu(),
                 mg.getChkLoginSts(),
-                mg.getMenuPermission(),
                 mg.getMenuGRemarkT(),
-                mg.getMenuGRemarkE(),
-                mg.getMenuGPicLoc(),
+                mg.getMenuGRemarkE(),              
+                mg.getMenuGIconLoc(),
                 mg.getUpdateDate(),
+                mg.getUserId(),
                 mg.getMenuGroupId());
+            System.out.println(">>>MenuGroupId" +mg.getMenuGroupId());
+            System.out.println(">>>MenuGNameT" +mg.getMenuGNameT());
+            System.out.println(">>>MenuGNameE" +mg.getMenuGNameE());
+            System.out.println(">>>>MenuPermission" +mg.getMenuPermission());
+            System.out.println("ShowListMenu" +mg.getShowListMenu());
+            System.out.println("ChkLoginSts" +mg.getChkLoginSts());
+            System.out.println("MenuGIconLoc" +mg.getMenuGIconLoc());
+            System.out.println("CreateDate" +mg.getCreateDate());
+            System.out.println("UpdateDate" +mg.getUpdateDate());
+            System.out.println("UserId" +mg.getUserId());
+            System.out.println("Company" +mg.getCompanyId());
     }
 
     public void remove(menuGroupMasterEntity mg) {
@@ -94,6 +132,9 @@ public class menuGroupMasterTable {
                 mg.setMenuGRemarkT(Default.Str(result.get(i).get("Menu_G_Remark_T")));
                 mg.setMenuGRemarkE(Default.Str(result.get(i).get("Menu_G_Remark_E")));
                 mg.setMenuGPicLoc(Default.Str(result.get(i).get("Menu_G_Pic_Loc")));
+                mg.setMenuGIconLoc(Default.Str(result.get(i).get("Menu_G_Icon_Loc")));
+
+
                 list.add(mg);
             }
             return list;
@@ -128,4 +169,5 @@ public class menuGroupMasterTable {
         int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
         return checkChild == 0 ? false : true;
     }
+
 }

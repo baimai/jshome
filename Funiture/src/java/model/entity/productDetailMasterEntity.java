@@ -42,6 +42,7 @@ public class productDetailMasterEntity {
     private int ProductColorId;
     private int companyId;
     private int productDetailId;
+    private int unitId;
     private productGroupMasterEntity productGroupMasterEntity;
     private stockBalanceEntity stockBalanceEntity;
     private String productModelCode;
@@ -594,7 +595,22 @@ public class productDetailMasterEntity {
         this.discountId = discountId;
     }
 
-    
+    /**
+     * @return the unitId
+     */
+    public int getUnitId() {
+        return unitId;
+    }
+
+    /**
+     * @param unitId the unitId to set
+     */
+    public void setUnitId(int unitId) {
+        this.unitId = unitId;
+    }
+
+   
+
 
 
  

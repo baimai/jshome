@@ -28,9 +28,15 @@ public class userSecurityTable {
     public void add(userSecurityEntity uss) {
 
         String sql = "insert into user_security "
-                + "( User_Id,Company_Id,User_Password,"
-                + " User_Name_T,User_Name_E,User_Authority_Sts,"
-                + " User_Alive_Sts,Approved_Date,Hold_Date,"
+                + "( User_Id,"
+                + "Company_Id,"
+                + "User_Password,"
+                + " User_Name_T,"
+                + "User_Name_E,"
+                + "User_Authority_Sts,"
+                + " User_Alive_Sts,"
+                + "Approved_Date,"
+                + "Hold_Date,"
                 + " Create_Date)"
                 + "  values(?,?,MD5(?),?,?,?,?,?,?,?)";
 
@@ -50,10 +56,16 @@ public class userSecurityTable {
 
     public void update(userSecurityEntity uss) {
         String sql = "update user_security set " //User_Password = MD5(?),
-                + " User_Name_T =? ,User_Name_E = ?,User_Authority_Sts = ?,"
-                + " User_Alive_Sts = ?,Approved_Date = ?,Hold_Date = ?,"
-                + " Update_Date = ? "
-                + " where User_Id = ? and company_id = ?";
+                + " User_Name_T =? ,"
+                + "User_Name_E = ?,"
+                + "User_Authority_Sts = ?,"
+                + " User_Alive_Sts = ?,"
+                + "Approved_Date = ?,"
+                + "Hold_Date = ?,"
+                + " Update_Date = ? ,"
+                + "company_Id = ?"
+
+                + " where User_Id = ? ";
         db.add(sql,
                 //uss.getUserPassword(),
                 uss.getUserNameT(),
@@ -63,8 +75,9 @@ public class userSecurityTable {
                 uss.getApprovedDate(),
                 uss.getHoldDate(),
                 uss.getUpdateDate(),
-                uss.getUserId(),
-                uss.getCompanyId());
+                uss.getCompanyId(),
+                uss.getUserId()
+                );
     }
 
     public void updatePassword(userSecurityEntity uss){
@@ -82,8 +95,8 @@ public class userSecurityTable {
     }
 
     public ArrayList search(String sField, String sValue, String sOper,userSecurityEntity us) {
-        String sql = " SELECT * FROM user_security us "+
-                     " where us.company_id = ? ";
+        String sql = " SELECT * FROM user_security uss "+
+                     " where uss.company_id = ? ";
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
@@ -100,6 +113,10 @@ public class userSecurityTable {
                 uss.setUserAliveSts(Default.Str(result.get(i).get("User_Alive_Sts")));
                 uss.setApprovedDate((Timestamp) result.get(i).get("Approved_Date"));
                 uss.setHoldDate((Timestamp) result.get(i).get("Hold_Date"));
+              // uss.setCompanyId(Default.Str(result.get(i).get("Company_Id")));
+               uss.setUserPassword(Default.Str(result.get(i).get("User_Password")));
+               //uss.setUpdateDate((Timestamp)result.get(i).get("Update_Date"));
+
 
                 list.add(uss);
             }
