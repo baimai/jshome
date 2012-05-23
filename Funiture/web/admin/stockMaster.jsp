@@ -4,7 +4,15 @@
     Author     : Baimai
 --%>
 <%@ include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<sql:query var="query3" dataSource="webdb">
+    SELECT * FROM product_group_master
+</sql:query>
+<sql:query var="query" dataSource="webdb">
+    SELECT * FROM product_detail_master pdm 
+</sql:query>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -32,22 +40,33 @@
         <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script  type="text/javascript">
+            function show(){
+                if(document.getElementById('groupId').value==''){
+                    jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=2&Edit=1&Del=1"});
+                    jQuery("#toolbar").trigger('reloadGrid');
+                }else{
+                    jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=2&Edit=1&Del=1&productGroupId="+document.getElementById('groupId').value});
+                }
+                jQuery("#toolbar").trigger('reloadGrid');
+
+            }
             jQuery(document).ready(function(){
                 jQuery("#toolbar").jqGrid({
                     url:'xmlStockMaster.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['วันที่นำสินค้าเข้า','รหัสสินค้า', 'ชื่อสินค้า ', 'ประเภทสินค้า','จำนวน ','หน่วย','stockId' ],
+                    colNames:['รหัสสินค้า', 'ชื่อสินค้า ', 'ประเภทสินค้า','วันที่นำสินค้าเข้า','จำนวน ','หน่วย','stockId' ],
                     colModel:[
-                        {name:'receiveDate',index:'receiveDate', width:100,editable:true,editoptions:{size:10}},
+                       
                         {name:'productCode',index:'productCode', width:100,editable:true,editoptions:{size:10}},
                         {name:'productNameT',index:'productNameT', width:100,editable:true,editoptions:{size:25}},
                         {name:'productGroupNameT',index:'productGroupNameT', width:100,editable:true,editoptions:{size:25}},
+                        {name:'receiveDate',index:'receiveDate', width:100,editable:true,editoptions:{size:10},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
                         {name:'quantity',index:'quantity', width:50,editable:true,editoptions:{size:25}},
                         {name:'unit',index:'unit', width:50,editable:true,editoptions:{size:5}},
                         {name:'stockId',index:'stockId',  align:"right",hidden:true,editrules:{ edithidden:true},editable:true}
 
 
-                   ],
+                    ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     loadonce:true,
@@ -58,15 +77,15 @@
                     rownumbers: true,
                     rownumWidth: 40,
                     gridview: true,
-   	            viewrecords: true,
+                    viewrecords: true,
                     sortorder: "asc",
-                    caption: "Toolbar Searching",
+                    caption: "รับสินค้าเข้าคลัง",
                     editurl:"stockMaster.do"
                 });
 
-               //jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',{del:true,add:false,edit:false,search:false,view:true });
-            jQuery("#toolbar").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
-            jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',
+                //jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',{del:true,add:false,edit:false,search:false,view:true });
+                // jQuery("#toolbar").jqGrid('filterToolbar',{stringResult: false,searchOnEnter : false});
+                jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',
                 {add:false,edit:false,search:false,view:true },
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
@@ -105,17 +124,30 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>
-                                        <div class="buttons" align="right">
 
-                                            <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
+                                        <div class="buttons" align="right">
+                                            <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
                                             
+                                            <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
+
 
 
 
                                         </div>
 
                                         <center>
+                                            <div class="field"> ประเภทสินค้า
+                                                <select id="groupId" onchange="show()">
+                                                    <option value=""> ทั้งหมด </option>
+                                                    <c:forEach items="${query3.rows}" var="group">
 
+                                                        <option value="${group.product_group_Id}" >${group.product_g_name_t}</option>
+
+                                                    </c:forEach>
+                                                        </select>
+                                               
+                                             
+                                                <br/><br/></div>
                                             <table id="toolbar"></table>
                                             <div id="ptoolbar"></div>
                                             <br /> <br />

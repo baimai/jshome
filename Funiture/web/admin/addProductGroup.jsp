@@ -85,7 +85,7 @@
                                             <%--<div class="warning_box">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                             </div>--%>
-                                            <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.valid==1}"><div class="valid_box" style="font: message-box ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                             <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                             <c:if test="${param.productGroupId==null}" >
                                                 <input type="hidden" name="action" value="Add" />

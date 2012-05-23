@@ -107,13 +107,13 @@
                                                     <tbody>
                                                         <c:forEach var="pic" items="${picProductList}" varStatus="counter">
                                                             <tr>
-                                                                <td align="center" >${pic.picDetailId}</td>
-                                                                <td align="center" >${pic.picProductSetupEntity.picCode}</td>
-                                                                <td align="center" >${pic.productDetailMasterEntity.productDNameT}</td>
-                                                                <td align="center" >${pic.productDetailMasterEntity.productDNameE}</td>
+                                                                <td align="center" >${pic.picId}</td>
+                                                                <td align="center" >${pic.PicProductSetupDetailEntity.ProductDetailMasterEntity.ProductCode}</td>
+                                                                <td align="center" >${pic.PicProductSetupDetailEntity.ProductDetailMasterEntity.productDNameT}</td>
+                                                                <td align="center" >${pic.PicProductSetupDetailEntity.productDetailMasterEntity.productDNameE}</td>
                                                                 <td align="center" >
-                                                                    <input type="hidden" name="picId" value="${pic.picId}"/>
-                                                                    <input name="picSeq" type="text" value="${pic.picSeq}" style="width:30px;text-align: right;"/>
+                                                                    <input type="hidden" name="picCode" value="${pic.PicProductSetupDetailEntity.picDetailId}"/>
+                                                                    <input name="picSeq" type="text" value="${pic.PicProductSetupDetailEntity.picSeq}" style="width:30px;text-align: right;"/>
                                                                 </td>
                                                                 <%--<td align="center" style="background-color:navajowhite">
                                                                     <div>

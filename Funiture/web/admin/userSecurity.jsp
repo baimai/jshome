@@ -38,7 +38,7 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlUserSecurity.do?action=fetchData&rows=3&page=1&q=1',
                     datatype: "xml",
-                    colNames:['No','ชื่อเข้าใช้','รหัสผ่าน','ชื่อภาษาไทย ', 'ชื่อภาษาอังกฤษ ','ระดับ','สถานะ','วันที่อนุมัติ','วันที่หยุดใช้งาน' ],
+                    colNames:['No','ชื่อเข้าใช้','รหัสผ่าน','ชื่อภาษาไทย ', 'ชื่อภาษาอังกฤษ ','ระดับ','สถานะ','วันที่อนุมัติ','วันที่หยุดใช้งาน','Edit','Del' ],
                     colModel:[
                         {name:'No',index:'No', width:30,editable:false,editoptions:{readonly:true,size:5},search:false},
                         {name:'userId',index:'userId', width:80,editable:true,editoptions:{size:10}},
@@ -48,7 +48,9 @@
                         {name:'userAuthoritySts',index:'userAuthoritySts', width:88,editable:true,edittype:'select',editoptions:{value:{'A':'Admin','U':'User'}}},
                         {name:'userAliveSts',index:'userAliveSts', width:88,editable:true,edittype:'select',editoptions:{value:{'A':' Active','I':' Inactive'}}},
                         {name:'approvedDate',index:'approvedDate', width:88,editrules:{ edithidden:true},editable:false},
-                        {name:'holdDate',index:'holdDate', width:88,editrules:{ edithidden:true},editable:false}
+                        {name:'holdDate',index:'holdDate', width:88,editrules:{ edithidden:true},editable:false},
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addUserSecurity.jsp?UserId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
 
 
 
@@ -73,7 +75,7 @@
                     delData:{action:"Del",
                         colorId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'userId');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'UserId');
                             return value;
                         }}}, // del options
                 {} // search options
@@ -105,6 +107,7 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลผู้ใช้</h1>
+                                             <button name="action" value="Add" class="button" onclick="window.location.href='addUserSecurity.jsp'"><span><span>เพิ่ม</span></span></button>
                                         </div>
                     <center>
                         <table id="rowed1"></table>
