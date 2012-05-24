@@ -49,9 +49,9 @@ public class productSetup extends HttpServlet {
                 userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
 
-                if (request.getParameter("picCode") != null) {
-                    ps.setPicCode(request.getParameter("picCode"));
-                }
+               // if (request.getParameter("picCode") != null) {
+              //    ps.setPicCode(request.getParameter("picCode"));
+              //  }
                 if (request.getParameter("picId") != null && !request.getParameter("picId").equals("")) {
                     ps.setPicId(Integer.parseInt(request.getParameter("picId")));
                 }
