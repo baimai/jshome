@@ -150,13 +150,13 @@
 
                                                             <div class="product-name">สถานะสินค้า  : <c:if test="${product.balance != null&&product.balance !=''}">${product.balance}</c:if></div>                                                           
                                                             <c:if test="${product.show_price_list_flag == 'W'}">
-                                                                <c:if test="${product.product_price1 != null}">
+                                                                <c:if test="${propduct.product_price1 != null}">
                                                                     <div class="price-box">
                                                                         <span class="regular-price" id="product-price-166" >
                                                                             <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price1}" type="number" pattern="###,###,##0.00"  />(ขายส่ง)</span></span>
                                                                     </div>
                                                                 </c:if>
-                                                                <c:if test="${product.product_price2 != null}">
+                                                                <c:if test="${product.product_price2 != null }">
                                                                     <div class="price-box">
                                                                         <span class="regular-price" id="product-price-166" >
                                                                             <span class="price" style="font-style: inherit;" > ราคา : ฿ <fmt:formatNumber value="${product.product_price2}" type="number" pattern="###,###,##0.00"  />(ขายส่ง,ส่วนลด)</span></span>
@@ -204,16 +204,20 @@
                                                                 </c:if>
                                                             </c:if>
                                                             <div class="add-to-box">
-                                                                <div class="add-to-cart">
-                                                                    <label for="qty">จำนวน:</label>
-                                                                    <input type="hidden" id="productDetailId" name="productDetailId" value="${product.product_detail_id}" />
-                                                                    <input type="hidden" id="productName" name="productName" value="${product.product_d_name_t}" />
-                                                                    <input type="hidden" id="productCode" name="productCode" value="${product.product_code}" />
-                                                                    <input type="hidden" id="productGroupId" name="productGroupId" value="${product.product_group_id}" />
-                                                                    <input type="hidden" id="productPrice" name="productPrice" value="${product.product_price1}" />
-                                                                    <input type="hidden" id="productPath" name="productPath" value="${product.product_d_pic_loc}"/>
-                                                                    <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
-                                                                    <c:if test="${product.show_order_flag == 'Y'}"><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button></c:if>
+                                                                 <div class="add-to-cart">                                                  
+                                                                        <input type="hidden" id="productDetailId" name="productDetailId" value="${product.product_detail_id}" />
+                                                                        <input type="hidden" id="productName" name="productName" value="${product.product_d_name_t}" />
+                                                                        <input type="hidden" id="productCode" name="productCode" value="${product.product_code}" />
+                                                                        <input type="hidden" id="productGroupId" name="productGroupId" value="${product.product_group_id}" />
+                                                                        <input type="hidden" id="productPrice" name="productPrice" value="${product.product_price1}" />
+                                                                        <input type="hidden" id="productPath" name="productPath" value="${product.product_d_pic_loc}"/>
+                                                                   <c:if test="${product.show_order_flag == 'Y'}">
+                                                                       <c:if test="${product.balance >= 1 }">
+                                                                        <label for="qty">จำนวน:</label>
+                                                                        <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
+                                                                        <button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
+                                                                       </c:if>
+                                                                   </c:if>
                                                                 </div>
                                                             </div>
                                                         </div>
