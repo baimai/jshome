@@ -32,6 +32,10 @@ import model.orderDetailMasterTable;
 import model.orderHeaderMasterTable;
 import model.productDetailMasterTable;
 import model.stockBalanceTable;
+//
+import model.entity.companyMasterEntity;
+import model.companyMasterTable;
+//
 
 /**
  *
@@ -63,6 +67,10 @@ public class addOrder extends HttpServlet {
             orderHeaderMasterTable ohmt = new orderHeaderMasterTable(db);
             productDetailMasterTable pdmt = new productDetailMasterTable(db);
             productDetailMasterEntity pdm = new productDetailMasterEntity();
+            //
+            companyMasterEntity cm = new companyMasterEntity();
+            companyMasterTable cmt = new companyMasterTable(db);
+            //
             memberMasterTable mgmt = new memberMasterTable(db);
             memberMasterEntity mgm = new memberMasterEntity();
             stockBalanceEntity sb = new stockBalanceEntity();
@@ -70,23 +78,41 @@ public class addOrder extends HttpServlet {
             loginClass lg = (loginClass) s.getAttribute("loginDetail");
             mgm.setMemberId(lg.getMemberId());
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+            //
+            String ShowStockBalanceFlag = cm.getShowStockBalanceFlag();
+            out.print("xxx"+cm.getShowStockBalanceFlag());
+            //
             if (s.getAttribute("productList") != null) {
                 ArrayList list = (ArrayList) s.getAttribute("productList");
                 double total = 0;
                 String[] itemCode = new String[list.size()];
                 String[] itemName = new String[list.size()];
                 String[] itemDetail = new String[list.size()];
+             
+                //String ShowStockBalanceFlag = "N";
                 for (int i = 0; i < list.size(); i++) {
+
                     product p = (product) list.get(i);
                     total = total + (p.getAmount() * p.getProductPrice());
                     sb.setProductDetailId(p.getProductDetailId());
-                    if (sbt.getBalanceProduct(sb) - p.getAmount() < 0) {
+                    //
+                    //if (request.getParameter("ShowStockBalanceFlag") == 'N') {
+                    //if (cm.getShowStockBalanceFlag().equals("N")) {
+                    //if (cm.getShowStockBalanceFlag().equals("N")) {
+                    //if (sbt.getBalanceProduct(sb) - p.getAmount() < 0) {
+                    //out.print("kkk"+ShowStockBalanceFlag));
+                    if(ShowStockBalanceFlag.equals("Y")){
+                        if (sbt.getBalanceProduct(sb) - p.getAmount() < 0) {
                         err.setErrorCode("SB00");
-                        err.setHeader("จำนวนสินค้าคงเหลือในขณะนี้ น้อยกว่าจำนวนสินค้าที่ท่านทำรายการสินค้า กรุณาปรับปรุงรายการสินค้า!");
+                        err.setHeader("จำนวนสินค้าคงเหลือในขณSะนี้ น้อยกว่าจำนวนสินค้าที่ท่านทำรายการสินค้า กรุณาปรับปรุงรายการสินค้า!");
                         itemCode[i] = p.getProductCode();
                         itemName[i] = p.getProductName();
                         itemDetail[i] = "จำนวนสินค้าปัจจุบัน " + sbt.getBalanceProduct(sb) + "   จำนวนที่ท่านเลือก " + p.getAmount();
                     }
+                    //
+                    }
+
+                    //
                 }
                 if (err.getErrorCode() != null) {
                     err.setItemCode(itemCode);
