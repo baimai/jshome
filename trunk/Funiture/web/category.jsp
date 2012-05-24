@@ -29,7 +29,7 @@
                     <jsp:include page="head.jsp"/>                    
                     <jsp:include page="slide.jsp"/>
                       <br><br>
-                    <jsp:include page="category_detail2.jsp" />                     
+                    <jsp:include page="category_detail2.jsp" /> 
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
