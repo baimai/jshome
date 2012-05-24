@@ -248,4 +248,14 @@ public void remove(memberMasterEntity mb) {
             return null;
         }
     }
+//
+    public Boolean checkChild(memberMasterEntity mm) {
+        String sql = " select count(*) as COUNT from order_header_master ohm "+
+                     " join member_master mm on mm.member_id = ohm.member_id "+
+                     " where ohm.member_id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, mm.getMemberId());
+        int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
+        return checkChild == 0 ? false : true;
+    }
+    //
 }
