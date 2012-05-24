@@ -32,13 +32,13 @@ public void add(picProductSetupDetailEntity psd) {
                 + " pic_id,"
                 + " Product_Detail_Id,"
                 + " pic_seq,"
-                + " pic_detail_name_T"
-                + " pic_detail_name_E"
-                + " pic_detail_remark_T"
-                + " pic_detail_remark_E"
+                + " pic_detail_name_T,"
+                + " pic_detail_name_E,"
+                + " pic_detail_remark_T,"
+                + " pic_detail_remark_E,"
                 + " Create_Date,"
                 + " User_Id)"
-                + " values(?,?,?,?,?,?)";
+                + " values(?,?,?,?,?,?,?,?,?,?)";
         db.add(sql, psd.getPicDetailId(),
                 psd.getPicId(),
                 psd.getProductDetailId(),
