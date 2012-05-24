@@ -52,24 +52,26 @@
                         <h1>รู้จักบริษัท</h1>
                     </div>
                     <div class="fieldset">
-                        <c:forEach var="company" items="${query.rows}">
+                        <c:forEach var="company" items="${query.rows}"> </div>
                             <div class="subtitle" style="font-size:24px" > ${company.company_name}</div>
                             <c:if test="${company.company_addr!=null&&company.company_addr!=''}">
                                 <div align="left" >${company.company_addr}</div>
                             </c:if>
                             <c:if test="${company.tumbon!=null&&company.tumbon!=''}">
-                                <div align="left">${company.tumbon}</div>
+                                <div align="left">${company.tumbon}
                             </c:if>
                             <c:if test="${company.amphur!=null&&company.amphur!=''}">
-                                <div align="left">${company.amphur}</div>
+                               ${company.amphur}
                             </c:if>
                             <c:if test="${company.province!=null&&company.province!=''}">
-                                <div align="left">${company.province}</div>
+                                ${company.province}
                             </c:if>
                             <c:if test="${company.post_code!=null&&company.post_code!=''}">
-                                <div align="left">${company.post_code}</div>
-                            </c:if>
-                            <div align="left">  โทร.&nbsp;
+                                ${company.post_code}
+                            </c:if></div>
+                                
+                                
+                                <div align="left"><img src="images/icon/phone1.jpg" width="36" height="36" alt="phone1"/>  
 
                                 <c:if test="${company.tel1!=null&&company.tel1!=''}">
                                     ${company.tel1}
@@ -80,7 +82,8 @@
                                 <c:if test="${company.tel3!=null&&company.tel3!=''}">
                                     ,${company.tel3}
                                 </c:if></div>
-                            <div align="left"> แฟกซ์.&nbsp;
+
+                                <div align="left"><img src="images/icon/fax.jpg" width="36" height="36" alt="fax"/> 
 
                                 <c:if test="${company.fax1!=null&&company.fax1!=''}">
                                     ${company.fax1}
@@ -91,7 +94,8 @@
                                 <c:if test="${company.fax3!=null&&company.fax3!=''}">
                                     ,${company.fax3}
                                 </c:if></div>
-                            <div align="left"> มือถือ.&nbsp;
+
+                                <div align="left"><img src="images/icon/mobile1.jpg" width="36" height="36" alt="mobile1"/> 
 
                                 <c:if test="${company.mobile1!=null&&company.mobile1!=''}">
                                     ${company.mobile1}
@@ -102,7 +106,8 @@
                                 <c:if test="${company.mobile3!=null&&company.mobile3!=''}">
                                     ,${company.mobile3}
                                 </c:if></div>
-                            <div align="left"> อีเมลล์.&nbsp;
+
+                                <div align="left"> <img src="images/icon/email.jpg" width="36" height="36" alt="email"/>
 
                                 <c:if test="${company.email1!=null&&company.email1!=''}">
                                     <a href="mailto:${company.email1}"> ${company.email1}</a>
@@ -112,7 +117,7 @@
                                 </c:if>
                                 <c:if test="${company.email3!=null&&company.email3!=''}">
                                     <a href="mailto:${company.email3}">${company.email3}</a>
-                                </c:if></div>
+                                </c:if>
                         </c:forEach></div>
                    
                 </div>
