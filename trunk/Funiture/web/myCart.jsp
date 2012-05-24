@@ -21,7 +21,7 @@
                 <div class="block-title">
                     <strong></strong>
                 </div>
-                <c:if test="${sessionScope.productList != null}">
+                <%--    <c:if test="${sessionScope.productList != null}"> --%>
                     <div class="block-content">
                         <c:forEach var="list" items="${sessionScope.productList}">
                             <c:set var="price" value="${list.productPrice*list.amount}" />
@@ -34,7 +34,7 @@
                             รวม ${total} บาท
                         </div>
                     </div>
-                </c:if>
+                 <%--</c:if> --%>
                 <c:if test="${sessionScope.productList == null}">
                     <div class="block-content">
                         <div class="empty"  id="productList">
