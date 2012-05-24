@@ -30,7 +30,7 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                     <jsp:include page="slide.jsp"/>
+                     <%--<jsp:include page="slide.jsp"/>--%>
                      <br><br>
                     
                      <jsp:include page="Login_Register.jsp" />
