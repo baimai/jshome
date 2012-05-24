@@ -173,6 +173,12 @@
                                     <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
                                 </tr>
                             </table>
+                            <%--<tr>
+                                <td valign="middle">Enter these letters:<br/>
+                                <img src="captcha.jsp" align="middle" alt="Enter the
+                                    characters appearing in this image" border="1"/></td>
+                                <td><input type="text" name="inCaptchaChars"/></td>
+                            </tr>--%>
                         </div>
                         <button name="action" value="Add" >Save</button>
                     </form>
