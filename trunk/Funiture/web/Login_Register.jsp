@@ -42,8 +42,14 @@
                                         <%--<h2>New Customers</h2>
                                         <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
                                         --%>
-                                        <h2>ลูกค้ารายใหม่</h2>
-                                        <p>การสร้างบัญชีกับทางเว็ปไซต์ของเรา,คุณจะสามารถสังซื้อสินค้าได้รวดเร็วและสะดวกมากยิ่งขึ้น</p>
+                                        <h2>ถ้าคุณยังไม่ได้เป็นสมาชิก กรุณาสมัครสมาชิก</h2>
+                                        <p>สิทธิ์หลังจากเป็นสมาชิก</p>
+                                        <p>ไม่สมัครเป็นสมาชิกก็สามารถซื้อสินค้าได้</p>
+                                        <p>หลังจากลงทะเบียนแล้ว คุณสามารถ</p>
+                                        <p>1.บันทึกข้อมูลส่วนตัวของคุณ</p>
+                                        <p>2.บันทึกรายการสินค้าที่ชื่นชอบ</p>
+                                        <p>3.สมาชิกสามารถใช้รับคะแนน</p>
+                                        <p>4.ได้รับสิทธิ์ข้อมูลข่าวสารก่อนใคร</p>
                                 </div>
                                 </div>
                                 <div class="col-2 registered-users">
@@ -58,19 +64,25 @@
                                                 </c:if>
                                             </li>
                                             <li>
-                                                <label for="email" class="required"><em>*</em>อีเมลล์แอดเดรส</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-email" title="Email Address" />
-                                                </div>
+                                               
+                                                <label for="email" class="required"> <img src="images/icon/user-red.png" width="24" height="24" alt="user-red"/>สมาชิกเข้าสู่ระบบ</label>
+
                                             </li>
                                             <li>
-                                                <label for="pass" class="required"><em>*</em>รหัสผ่าน</label>
-                                                <div class="input-box">
-                                                    <input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="Password" />
-                                                </div>
+                                            
+                                                <label for="name" class="required"> รหัสผู้ใช้ :&nbsp;&nbsp;  <input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="Name" />
+                                                    
+                                                </label>
+                                               
                                             </li>
                                             <li>
-                                                <label for="pass" class="required">ภาษา</label>
+                                                <label for="pass" class="required">รหัส :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="Password" />
+                                                    
+                                             </label>
+                                                
+                                            </li>
+                                            <li>
+                                                <label for="pass" class="required"><input type="checkbox" name="" value="ON" />จำรหัสผ่านของฉัน</label>
                                                 <div class="input-box">
                                                     <select name="lang" id="lang" style="width: 80px">
                                                         <option value="Th">ไทย</option>
@@ -87,12 +99,12 @@
                                 <div class="col-1 new-users">
                                     <div class="buttons-set">
                                         <%--<button type="button" title="Create an Account" class="button" onclick="javascript:popupwnd('member.jsp','no','no','no','yes','yes','no','300','70','800','440')"> <span><span>Create an Account</span></span></button>--%>
-                                        <button type="button" title="สร้างบัญชี" class="button" onclick="javascript:location.href='register.jsp'"> <span><span>สร้างบัญชี</span></span></button>
+                                        <button type="button" title="สมัครสมาชิก" class="button" onclick="javascript:location.href='register.jsp'"> <span><span>สมัครสมาชิก</span></span></button>
                                     </div>
                                 </div>
                                 <div class="col-2 registered-users">
                                     <div class="buttons-set">
-                                        <a href="forgotPassword.jsp" class="f-left">ลืมรหัสผ่าน?</a>
+                                        <%--<a href="forgotPassword.jsp" class="f-left">ลืมรหัสผ่าน?</a>--%>
                                         <button type="submit" class="button" title="Login" name="send" id="send2"><span><span>เข้าสู่ระบบ</span></span></button>
                                     </div>
                                 </div>
