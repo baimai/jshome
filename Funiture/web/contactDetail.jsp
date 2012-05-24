@@ -41,6 +41,8 @@
                                             <input name="name" id="name" title="Name" value="" class="input-text required-entry" type="text" />
                                         </div>
                                     </div>
+                                   </li>
+                                   <li>
                                     <div class="field">
                                         <label for="email" class="required"><em>*</em>อีเมลล์</label>
                                         <div class="input-box">
@@ -60,12 +62,32 @@
                                         <textarea name="comment" id="comment" title="Comment" class="required-entry input-text" cols="5" rows="3"></textarea>
                                     </div>
                                 </li>
+                                <li class="field">
+                                    <%--<label for="pass" class="required">
+                                        <input type="checkbox" name="" value="ON" />มีไฟล์แนบ</label>--%>
+                                    <div class="customer-name">
+                                         <%--<div class="field name-firstname">
+                                            <br><br/>--%>
+                                            <input type="file" name="upload" class="input-box" />
+                                        </div>
+                                    <%--</div>--%>
+                                </li>
+                                <br><br/>
+                                <li class="field">
+                                <div align="left" class="field">ป้อนข้อมูลเพื่อยืนยัน:<br/>
+                                    <img src="captcha.jsp" align="left" alt="Enter the characters appearing in this image" border="1"/></div>
+                                </li><li>
+                                    <div align="left" class="input-box"><input type="text" name="inCaptchaChars"/></div>
+                                </li>
+                                <li class="field">
+                                   <%-- <div align="left" class="input-box"><input type="text" name="inCaptchaChars"/></div>--%>
+                                </li>
                             </ul>
                         </div>
                         <div class="buttons-set">
                             <p class="required">* กรุณาระบุข้อมูล</p>
                             <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
-                            <button type="submit" title="Submit" class="button"><span><span>Submit</span></span></button>
+                            <button type="submit" title="Submit" class="button"><span><span>ส่งอีเมล์</span></span></button>
                         </div>
                     </form>
 
