@@ -19,6 +19,11 @@ import model.companyMasterTable;
 import model.entity.memberMasterEntity;
 import model.memberGradeMasterTable;
 import model.memberMasterTable;
+import model.entity.memberMasterEntity;
+//
+import model.orderHeaderMasterTable;
+import model.entity.orderHeaderMasterEntity;
+//
 
 /**
  *
@@ -43,8 +48,13 @@ public class memberMaster extends HttpServlet {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
                 memberMasterTable mbt = new memberMasterTable(db);
+                memberMasterEntity mm = new  memberMasterEntity();
                 memberGradeMasterTable mgmt = new memberGradeMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
+                //
+                orderHeaderMasterTable ohmt = new orderHeaderMasterTable(db);
+                orderHeaderMasterEntity ohm = new  orderHeaderMasterEntity();
+                //
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 memberMasterEntity mb = new memberMasterEntity();
                 mb.setCompanyId(Company_Id);
@@ -141,9 +151,12 @@ public class memberMaster extends HttpServlet {
                 } else if (request.getParameter("action").equals("Edit")) {
                     mbt.adminUpdate(mb);
                 } else if (request.getParameter("action").equals("Del")) {
-                  
+                  //
+                    Boolean checkChild = mbt.checkChild(mm);
+                    if(checkChild == false){
+                  //
                          mbt.remove(mb);
-                   
+                    }
                 }
                 db.close();
                 if (request.getParameter("action").equals("Submit")) {
