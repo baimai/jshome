@@ -168,6 +168,10 @@
         <servlet-name>productSetupDetail</servlet-name>
         <servlet-class>controller.productSetupDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>seqPicSetup</servlet-name>
+        <servlet-class>controller.seqPicSetup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct.do</url-pattern>
@@ -327,6 +331,10 @@
     <servlet-mapping>
         <servlet-name>productSetupDetail</servlet-name>
         <url-pattern>/admin/productSetupDetail.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seqPicSetup</servlet-name>
+        <url-pattern>/admin/seqPicSetup.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
