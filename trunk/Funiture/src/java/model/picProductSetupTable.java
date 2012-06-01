@@ -235,10 +235,11 @@ public class picProductSetupTable {
                 + " join pic_product_setup mdm on mdm.pic_id = pps.pic_id, (SELECT @row := 0) r ";
         if (picId != 0) {
             sql = sql + " where mdm.pic_id = " + picId;
+             System.out.println("ss"+picId);
         }
        
         sql = sql + " and (case when mdm.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end ) ";
-       System.out.println("ss"+picId);
+       System.out.println("sql"+sql);
         List<Map<String, Object>> result = db.queryList(sql, picId);
         
         ArrayList list = new ArrayList();
