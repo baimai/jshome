@@ -118,9 +118,9 @@ public class datagrid extends HttpServlet {
                     }
                     out.print(xml.getXml());
                 } else if (request.getParameter("q").equals("2")) {
-                      String picDetailId = null;
-                       if (request.getParameter("picDetailId") != null) {
-                    picDetailId = request.getParameter("picDetailId");
+                       int picId = 0;
+                     if (request.getParameter("picId") != null) {
+                    picId = Integer.parseInt(request.getParameter("picId"));
                 }
                        int totalPages = 0;
                    int totalCount = psdt.countAll(psd);

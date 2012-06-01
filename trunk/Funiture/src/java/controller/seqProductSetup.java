@@ -42,22 +42,24 @@ public class seqProductSetup extends HttpServlet {
             HttpSession s = request.getSession();
 
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+
             if (request.getParameter("action") != null) {
                 if (request.getParameter("action").equals("fetchData")) {
                     Database db = new Database();
                     picProductSetupTable ppst = new picProductSetupTable(db);
                     picProductSetupEntity pps = new picProductSetupEntity();
-                     out.println("xxx1"+pps.getPicId());
+                     
                     pps.setCompanyId(Company_Id);
-                     int picId = 0;
-                     if (request.getParameter("picId") != null) {
-                    picId = Integer.parseInt(request.getParameter("picId"));
-                }
-                    out.println("xxx"+pps.getPicId());
+                    // int picId = 0;
+                   //  if (request.getParameter("picId") != null) {
+                   int picId = Integer.parseInt(request.getParameter("picId"));
+                     out.println("xxx>>>"+picId);
+              //  }
+                   
                     ArrayList list = ppst.searchPicId(picId);
                     db.close();
                     s.setAttribute("picProductList", list);
-                   // response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
+                    response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
                     // RequestDispatcher obj = request.getRequestDispatcher("seqProductSetup.jsp");
                     //obj.forward(request, response);
                 } else if (request.getParameter("action").equals("editSeq")) {
