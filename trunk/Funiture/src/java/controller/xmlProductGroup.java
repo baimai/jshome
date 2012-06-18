@@ -39,7 +39,7 @@ public class xmlProductGroup extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-               // response.setContentType("text/xml;charset=UTF-8");
+               response.setContentType("text/xml;charset=UTF-8");
                 
                 String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
 
