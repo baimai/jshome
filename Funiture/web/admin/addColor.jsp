@@ -39,10 +39,19 @@
         <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
         <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
-
-
+<link rel="stylesheet" type="text/css" href="css/jquery.noty.css"/>
+  <link rel="stylesheet" type="text/css" href="css/noty_theme_default.css"/>
+<script src="jquery-1.7.2.min.js"></script>
+  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="jquery-1.7.2.min.js"><\/script>')</script>-->
+  <script type="text/javascript" src="js/jquery.noty.js"></script>
+  <script type="text/javascript" src="stylesViewer.js"></script>
         <title>JSP Page</title>
-
+        <script type="text/javascript">
+            $('.ex1.alert').click(function() {
+  var noty_id = noty({text: 'noty - a jquery notification library!'});
+});
+            </script>
 
     </head>
     <body >
