@@ -1,4 +1,4 @@
-<<<<<<< .mine
+
 (function(a){
     a.jgrid={
         defaults:{
@@ -136,7 +136,7 @@
         idName:"id"
     }
 }
-})(jQuery);=======
+})(jQuery);
 (function(a){
     a.jgrid={
         defaults:{
@@ -274,4 +274,4 @@
         idName:"id"
     }
 }
-})(jQuery);>>>>>>> .r485
+})(jQuery);
