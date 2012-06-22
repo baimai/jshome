@@ -145,8 +145,8 @@ select.multiselect option:last-child { border-bottom:0; }
 textarea { overflow:auto; }
 input.radio { margin-right:3px; }
 input.checkbox { margin-right:3px; }
-input.qty { width:2.5em !important; }
-button.button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
+input.qty { width:4.5em !important; }
+button.button:-moz-focus-inner { padding:0; border:0; } /* FF Fix */
 /* button.button { -webkit-border-fit:lines; }  <- Safari & Google Chrome Fix */
 button.button { overflow:visible; width:auto; border:0; padding:0; margin:0; background:transparent; cursor:pointer; }
 button.button span { display:block; height:19px; padding:0 0px; font:bold 12px/19px Arial, Helvetica, sans-serif; text-align:center; white-space:nowrap; }
@@ -888,7 +888,7 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 
 /* Add to Cart */
 .add-to-cart label { float:left; margin-right:5px; font-weight:bold; color:#666; }
-.add-to-cart .qty { float:left; margin-right:5px; }
+.add-to-cart .qty { float:left; margin-right:2px; }
 .add-to-cart button.button { float:left; }
 
 /* Add to Links + Add to Cart */
