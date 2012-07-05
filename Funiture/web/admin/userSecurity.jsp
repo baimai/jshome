@@ -75,7 +75,7 @@
                     delData:{action:"Del",
                         colorId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'UserId');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'userId');
                             return value;
                         }}}, // del options
                 {} // search options
