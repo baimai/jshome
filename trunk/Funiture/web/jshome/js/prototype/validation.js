@@ -412,7 +412,7 @@ Validation.addAllThese([
     ['validate-select', 'Please select an option.', function(v) {
                 return ((v != "none") && (v != null) && (v.length != 0));
             }],
-    ['required-entry', 'This is a required field.', function(v) {
+    ['required-entry', 'ข้อมูลที่จำเป็นต้องกรอก', function(v) {
                 return !Validation.get('IsEmpty').test(v);
             }],
     ['validate-number', 'Please enter a valid number in this field.', function(v) {
@@ -436,7 +436,7 @@ Validation.addAllThese([
     ['validate-phoneStrict', 'Please enter a valid phone number. For example (123) 456-7890 or 123-456-7890.', function(v) {
                 return Validation.get('IsEmpty').test(v) || /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/.test(v);
             }],
-    ['validate-phoneLax', 'Please enter a valid phone number. For example (123) 456-7890 or 123-456-7890.', function(v) {
+    ['validate-phoneLax', 'เบอร์โทรศัพท์ไม่ถูกต้อง<br>ตัวอย่างเช่น 080-1234567', function(v) {
                 return Validation.get('IsEmpty').test(v) || /^((\d[-. ]?)?((\(\d{3}\))|\d{3}))?[-. ]?\d{3}[-. ]?\d{4}$/.test(v);
             }],
     ['validate-fax', 'Please enter a valid fax number. For example (123) 456-7890 or 123-456-7890.', function(v) {
@@ -446,7 +446,7 @@ Validation.addAllThese([
                 var test = new Date(v);
                 return Validation.get('IsEmpty').test(v) || !isNaN(test);
             }],
-    ['validate-email', 'Please enter a valid email address. For example johndoe@domain.com.', function (v) {
+    ['validate-email', 'กรุณาป้อนอีเมลล์ให้ถูกต้อง<br>ตัวอย่างเช่น johndoe@domain.com.', function (v) {
                 //return Validation.get('IsEmpty').test(v) || /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(v)
                 //return Validation.get('IsEmpty').test(v) || /^[\!\#$%\*/?|\^\{\}`~&\'\+\-=_a-z0-9][\!\#$%\*/?|\^\{\}`~&\'\+\-=_a-z0-9\.]{1,30}[\!\#$%\*/?|\^\{\}`~&\'\+\-=_a-z0-9]@([a-z0-9_-]{1,30}\.){1,5}[a-z]{2,4}$/i.test(v)
                 return Validation.get('IsEmpty').test(v) || /^([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*@([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*\.(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]){2,})$/i.test(v)
@@ -454,7 +454,7 @@ Validation.addAllThese([
     ['validate-emailSender', 'Please use only visible characters and spaces.', function (v) {
                 return Validation.get('IsEmpty').test(v) ||  /^[\S ]+$/.test(v)
                     }],
-    ['validate-password', 'Please enter 6 or more characters. Leading or trailing spaces will be ignored.', function(v) {
+    ['validate-password', 'รหัสผ่านต้องมีมากกว่า 6 ขึ้นไป<br>และห้ามมีช่องว่าง', function(v) {
                 var pass=v.strip(); /*strip leading and trailing spaces*/
                 return !(pass.length>0 && pass.length < 6);
             }],
@@ -468,13 +468,13 @@ Validation.addAllThese([
                 }
                 return !(pass.length < 7);
             }],
-    ['validate-cpassword', 'Please make sure your passwords match.', function(v) {
+    ['validate-cpassword', 'ยืนยันรหัสผ่านไม่ตรงกัน', function(v) {
                 var conf = $('confirmation') ? $('confirmation') : $$('.validate-cpassword')[0];
                 var pass = false;
                 if ($('password')) {
                     pass = $('password');
                 }
-                var passwordElements = $$('.validate-password');
+                var passwordElements = $$('.validate-pasหsword');
                 for (var i = 0; i < passwordElements.size(); i++) {
                     var passwordElement = passwordElements[i];
                     if (passwordElement.up('form').id == conf.up('form').id) {
