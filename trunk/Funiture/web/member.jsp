@@ -66,8 +66,8 @@
                 document.getElementById("showDistinct").innerHTML=text;
             }
             function checkBeforeSubmit(){
-                if(document.getElementById("chkValidate").innerHTML!="ข้อมูลล็อกอินนี้สามารถใช้ได้"){
-                    alert("กรุณาเช็คข้อมูลล็อกอิน");
+                if(document.getElementById("chkValidate").innerHTML!=text){
+                    alert("กรุณาเช็คชื่อเข้าสู้ระบบ");
                     return false;
                 }else{
                     return true;
@@ -93,18 +93,18 @@
                             </div>
                             <form action="admin/memberMaster.do" method="post" id="form-validate" >
                                 <div class="fieldset">
-                                    <h2 class="legend">ข้อมูลการล็อกอิน</h2>
+                                    <h2 class="legend">ข้อมูลการเข้าระบบ</h2>
                                     <ul class="form-list">
                                         <li>   <div class="field">
-                                                <label for="login" class="required"><em>*</em>รหัสเข้าระบบ</label>
+                                                <label for="login" class="required"><em>*</em>ชื่อเข้าสู่ระบบ</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login"  onkeyup="checkMemberLogin(document.getElementById('memberLogin').value)" onchange="checkMemberLogin(document.getElementById('memberLogin').value)"/>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <label for="chkMemberLogin" >สถานะ</label>
-                                                <div class="input-box" id="chkValidate" style="color: red">
-                                                    <em><span >กรุณากรอกข้อมูลล็อกอิน</span></em>
+                                                <div class="input-box" id="chkValidate" style="color: black">
+                                                    <em><span >กรุณากรอกชื่อเข้าสู้ระบบ</span></em>
                                                 </div>
                                             </div>
                                         </li>
@@ -132,13 +132,13 @@
                                         <li class="fields">
                                             <div class="customer-name">
                                                 <div class="field name-firstname">
-                                                    <label for="firstname" >ชื่อ</label>
+                                                    <label for="firstname" class="required"><em>*</em>ชื่อ</label>
                                                     <div class="input-box">
                                                         <input type="text" id="firstname" name="memberName" value="" title="First Name" class="input-text required-entry validate-one-required"   />
                                                     </div>
                                                 </div>
                                                 <div class="field name-lastname">
-                                                    <label for="lastname" >นามสกุล</label>
+                                                    <label for="lastname" class="required"><em>*</em>นามสกุล</label>
                                                     <div class="input-box">
                                                         <input type="text" id="lastname" name="memberSurName" value="" title="Last Name" class="input-text required-entry validate-one-required" />
                                                     </div>
@@ -164,7 +164,7 @@
                                         <h2 class="legend">ข้อมูลการติดต่อ</h2>
                                         <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Adress1" >ที่อยู่-1</label>
+                                                <label for="Adress1" class="required"><em>*</em>ที่อยู่-1</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberAddr1" id="Adress1" value="" title="Adress1" class="input-text required-entry validate-one-required" />
                                                 </div>
@@ -213,7 +213,7 @@
                                             <div class="field name-lastname">
                                                 <label for="Tel1" >โทรศัพท์-1 </label>
                                                 <div class="input-box">
-                                                    <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text required-entry validate-one-required" />
+                                                    <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text" />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
@@ -225,13 +225,13 @@
                                         </li>
                                         <li>
                                             <div class="field name-lastname">
-                                                <label for="Mobile1" >Mobile-1</label>
+                                                <label for="Mobile1" class="required"><em>*</em>มือถือ-1</label>
                                                 <div class="input-box">
-                                                    <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text " />
+                                                    <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text required-entry validate-phoneLax" />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Mobile2" >Mobile-2</label>
+                                                <label for="Mobile2" >มือถือ-2</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberMobile2" id="Mobile2" value="" title="Mobile2" class="input-text " />
                                                 </div>
@@ -265,7 +265,7 @@
                                 </div>
 
                                 <div class="buttons-set">
-                                    <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
+                                    <p class="required">* ข้อมูลที่จำเป็นต้องกรอก</p>
                                     <p class="back-link"><a href="Login.jsp" class="back-link"><small>&laquo; </small>Back</a></p>
                                     <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()"><span><span>ยืนยัน</span></span></button>
                                 </div>
