@@ -186,7 +186,7 @@
                                             <h1>ข้อมูลประเภทสินค้า</h1>
                                             <div class="button" align="right">
 
-                                                <button name="action" value="Add" class="button" onclick="window.location.href='ProductDetail.jsp'"><span><span>เพิ่ม</span></span></button>
+                                                <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
                                         </div>
 
