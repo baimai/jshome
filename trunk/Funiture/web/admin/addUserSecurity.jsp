@@ -72,12 +72,11 @@
                                         <%--<div class="warning_box">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                         </div>--%>
-                                        
-                                       
+                                        <form action="userSecurity.do" method="post" id="form-validate"  >
                                         <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                         <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                         <c:if test="${param.UserId==null}" >
-                                            <form action="userSecurity.do" method="post" id="form-validate"  >
+                                           
                                                 <input type="hidden" name="action" value="Add" />
                                                 <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
                                                 <div class="fieldset">
@@ -204,9 +203,9 @@
                                                          </li>-->
                                                     </ul>
                                                 </div>
-                                            </form>
+                                           
                                         </c:if>
-
+ </form>
 
                                         <c:if test="${param.UserId!=null}" >
                                             <form action="userSecurity.do" method="post" id="form-validate"  >
@@ -223,7 +222,7 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required" <em>*</em>ชื่อเข้าใช้ :</label>
-                                                                        <input type="text" name="userId" value="${userSecurity.User_Id}"  class="input-text " readonly="readonly"/>
+                                                                        <input type="text" name="userId" value="${userSecurity.User_Id}"  class="input-text required-entry " readonly/>
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -249,7 +248,7 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required" <em>*</em >ชื่อภาษาอังกฤษ</label>
-                                                                        <input name="userNameE" value="${userSecurity.User_Name_E}" class="input-text required-entry" />
+                                                                        <input name="userNameE" value="${userSecurity.User_Name_E}" class="input-text required-entry validate-number" />
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -260,9 +259,8 @@
                                                                         <label for="firstname" class="required" <em>*</em >ระดับ :</label>
                                                                         
                                                                         <select name="userAuthoritySts" class="select">
-                                                                            <option value="A" <c:if test="${userSecurity.User_Authority_Sts== 'A'}"> Selected</c:if>>Admin  </option>
-                                                                            <option value="U" <c:if test="${userSecurity.User_Authority_Sts== 'U'}"> Selected</c:if>>User </option>
-                                                                          
+                                                                            <option value="A">Admin </option>
+                                                                            <option value="U">User </option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -272,10 +270,9 @@
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required" <em>*</em >สถานะ:</label>
                                                                         <select name="userAliveSts" class="select">
-                                                                            <option value="A" <c:if test="${userSecurity.User_Alive_Sts== 'A'}"> Selected</c:if>>Active </option>
-                                                                            <option value="I" <c:if test="${userSecurity.User_Alive_Sts== 'I'}"> Selected</c:if>>Inactive  </option>
-                                                                             <option value="N" <c:if test="${userSecurity.User_Alive_Sts== 'N'}"> Selected</c:if>>New </option>
-                                                                     
+                                                                        <option value="A">Active </option>
+                                                                        <option value="I">Inactive </option>
+                                                                        <option value="N">New </option>
                                                                     </select>
                                                                     </div>
                                                                 </div>
