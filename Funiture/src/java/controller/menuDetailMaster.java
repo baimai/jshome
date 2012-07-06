@@ -56,8 +56,6 @@ public class menuDetailMaster extends HttpServlet {
             String encoding = "utf-8";
             MultipartFormDataRequest mr;
             mr = new MultipartFormDataRequest(request, listeners, uploadlimit, parser, encoding);
-
-
             try {
                 //productCode=&companyCode=&price1=500.00&price2=400.00&price3=300.00&picLoc=&iconLoc=&nameTh=กกกก&nameEn=ssss&spec1Th=1&spec1En=a&spec2Th=2&spec2En=b&spec3Th=3&spec3En=c&spec4Th=4&spec4En=d&spec5Th=5&spec5En=e&spec6Th=6&spec6En=f&remarkTh=gg&remarkEn=fff
                 if (MultipartFormDataRequest.isMultipartFormData(request)) {
@@ -66,7 +64,6 @@ public class menuDetailMaster extends HttpServlet {
                         menuDetailMasterTable mdt = new menuDetailMasterTable(db);
                         menuDetailMasterEntity md = new menuDetailMasterEntity();
                         companyMasterTable cmt = new companyMasterTable(db);
-
                         HttpSession s = request.getSession(true);
                         userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                         int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
@@ -87,7 +84,6 @@ public class menuDetailMaster extends HttpServlet {
                                 } else if (filetype.endsWith("png")) {
                                     upFile.setFileName(filename + ".png");
                                 }
-
                                 u.setFolderstore(getServletContext().getRealPath("upload/picture/icon"));
                             }
                         }
@@ -106,11 +102,11 @@ public class menuDetailMaster extends HttpServlet {
                             md.setMenuGroupId(Integer.parseInt(mr.getParameter("menuGroupId")));
                             out.println("menuGroupId" + md.getMenuGroupId());
                         }
-                         if (mr.getParameter("menuModel") != null) {
+                        if (mr.getParameter("menuModel") != null) {
                             md.setMenuGroupId(Integer.parseInt(mr.getParameter("menuModel")));
                             out.println("menuModel" + md.getMenuModel());
                          }
-                         if (mr.getParameter("menuSeq") != null && !mr.getParameter("menuSeq").equals("")) {
+                        if (mr.getParameter("menuSeq") != null && !mr.getParameter("menuSeq").equals("")) {
                             md.setMenuSeq(Integer.parseInt(mr.getParameter("menuSeq")));
                             out.println("menuSeq" + md.getMenuSeq());
                         }
@@ -122,11 +118,19 @@ public class menuDetailMaster extends HttpServlet {
                             md.setMenuCNameE(mr.getParameter("menuCNameE"));
                             out.println("menuCNameE" + md.getMenuCNameE());
                         }
-                        if (mr.getParameter("picCode") != null) {
-                            md.setPicCode(mr.getParameter("picCode"));
-                            out.println("picCode" + md.getPicCode());
+                        if (mr.getParameter("picId") != null && !mr.getParameter("picId").equals(""))  {
+                            md.setPicId(Integer.parseInt(mr.getParameter("picId")));
+                            out.println("picId" + md.getPicId());
                         }
-                        if (mr.getParameter("showListSts") != null) {
+                           if (mr.getParameter("menuCPicLoc") != null) {
+                            md.setMenuCPicLoc(mr.getParameter("menuCPicLoc"));
+                            out.println("menuCPicLoc" + md.getMenuCPicLoc());
+                        }
+                           if (mr.getParameter("menuCIconLoc") != null) {
+                            md.setMenuCIconLoc(mr.getParameter("menuCIconLoc"));
+                            out.println("menuCIconLoc" + md.getMenuCIconLoc());
+                        }
+                            if (mr.getParameter("showListSts") != null) {
                             md.setShowListSts(mr.getParameter("showListSts"));
                             out.println("showListSts" + md.getShowListSts());
                         }
@@ -138,53 +142,45 @@ public class menuDetailMaster extends HttpServlet {
                             md.setMenuCRemarkE(mr.getParameter("menuCRemarkE"));
                             out.println("menuCRemarkE" + md.getMenuCRemarkE());
                         }
-                         if (mr.getParameter("menuCIconLoc") != null) {
-                            md.setMenuCIconLoc(mr.getParameter("menuCIconLoc"));
-                            out.println("menuCIconLoc" + md.getMenuCIconLoc());
-                        }
+                      
                         md.setCompanyId(Company_Id);
                         out.println("companyId" + md.getCompanyId());
                         md.setCreateDate(Timestamp.valueOf(db.getNow()));
                         out.println("createDate" + md.getCreateDate());
                         md.setUpdateDate(Timestamp.valueOf(db.getNow()));
                         out.println("updateDate" + md.getUpdateDate());
-                        
                         md.setUserId(lc.getUserId());
-
+                      
                         if (mr.getParameter("action").equals("Add")) {
                             Boolean chechDuplicate = mdt.checkDuplicate(md);
                             if (chechDuplicate == false) {
                                 mdt.add(md);
-
                             } else {
                                 db.close();
                                 response.sendRedirect("menuDetailMaster.jsp?error=1");
                             }
-
                         }
                         if (mr.getParameter("action").equals("Edit")) {
                             mdt.update(md);
-
                         }
                         if (mr.getParameter("action").equals("Del")) {
                             md.setMenuCodeId(Integer.parseInt(mr.getParameter("menuCodeId")));
                             out.print(md.getMenuCodeId());
                             mdt.remove(md);
                         }
-                        out.println("menuCNameT" + md.getMenuCNameT());
-                        out.println("menuCodeId" + md.getMenuCodeId());
+//                        out.println("menuCNameT" + md.getMenuCNameT());
+//                        out.println("menuCodeId" + md.getMenuCodeId());
                         // out.println("quantity" + pgm.getQuantity());
                         db.close();
                         if (mr.getParameter("action").equals("Edit")) {
                          //   out.println("getMenuCNameT" + md.getMenuCNameT());
-                            response.sendRedirect("menuDetailMaster.jsp?valid=1&menuCodeId="+ md.getMenuCodeId());
+                            response.sendRedirect("menuDetailMaster.jsp?valid=1&menuCodeId=" +md.getMenuCodeId());
                         } else if (mr.getParameter("action").equals("Add")) {
                             response.sendRedirect("menuDetailMaster.jsp?valid=1");
                         }
                     }
 
                 }
-
             } catch (Exception ex) {
                 ex.printStackTrace(out);
 

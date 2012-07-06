@@ -35,9 +35,10 @@ public class xmlMemberGradeMaster extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
-
+           if (request.getParameter("action").equals("fetchData")) {
+               // String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
+              //  String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
+              //  String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
                     String r = request.getParameter("rows");
@@ -47,10 +48,18 @@ public class xmlMemberGradeMaster extends HttpServlet {
                     String r = request.getParameter("page");
                     page = Integer.parseInt(r);
                 }
-                int start = rows * page - rows;
+                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+   int start = rows * page - rows;
+                String colorId = null, Edit = null, Del = null;
                 String sField = null, sValue = null, sOper = null;
 
-                if (request.getParameter("q").equals("1")) {
+                if (request.getParameter("Edit") != null) {
+                    Edit = request.getParameter("Edit");
+                }
+                if (request.getParameter("Del") != null) {
+                    Del = request.getParameter("Del");
+                }
+                  if (request.getParameter("q").equals("2")) {
                     if (request.getParameter("searchField") != null) {
                         sField = request.getParameter("searchField");
                     }
@@ -61,21 +70,23 @@ public class xmlMemberGradeMaster extends HttpServlet {
                         sOper = request.getParameter("searchOper");
                     }
                 }
-
                 Database db = new Database();
                 memberGradeMasterTable mgt = new memberGradeMasterTable(db);
-                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                ArrayList listp = mgt.search(sField, sValue, sOper, Company_Id);
-                db.close();
+                memberGradeMasterEntity mg = new memberGradeMasterEntity();
+                //mg.setCompanyId(Company_Id);
+        
+             // int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+               
                 if (request.getParameter("q").equals("2")) {
+                     ArrayList list = mgt.search(sField, sValue, sOper, Company_Id);
+                    db.close();
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(1);
-                    xml.setPage(request.getParameter("page"));
-                    xml.setRecords(listp.size());
-                    for (int i = 0; i < listp.size(); i++) {
-                        memberGradeMasterEntity data = (memberGradeMasterEntity) listp.get(i);
-                        xml.setRowDetail(data.getMemberGradeId(), 
-                                i + 1,
+                    xml.setPage(1);
+                    xml.setRecords(list.size());
+                    for (int i = 0; i < list.size(); i++) {
+                        memberGradeMasterEntity data = (memberGradeMasterEntity) list.get(i);
+                        xml.setRowDetail(data.getMemberGradeId(), i + 1,
                                 data.getMemberGrade(),
                                 data.getGradeNameT(),
                                 data.getGradeNameE(), 
@@ -91,6 +102,8 @@ public class xmlMemberGradeMaster extends HttpServlet {
                 }
 
             }
+            } catch (Exception ex) {
+            ex.printStackTrace(out);
         } finally { 
             out.close();
         }

@@ -33,7 +33,7 @@ public class userSecurity extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        request.setCharacterEncoding("utf-8");
+        //request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
@@ -64,18 +64,16 @@ public class userSecurity extends HttpServlet {
                 }
              uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
 
-
-
              if (request.getParameter("userAliveSts").equals("A")) {
                 uss.setApprovedDate(Timestamp.valueOf(db.getNow()));
               } else if (request.getParameter("userAliveSts").equals("I")) {
                  uss.setHoldDate(Timestamp.valueOf(db.getNow()));
                }
-              if (request.getParameter("holdDate").equals("A")){
-         uss.setHoldDate(Timestamp.valueOf(db.getNow()));
-              }else if (request.getParameter("holdDate").equals("I")){
-                 uss.setHoldDate(Timestamp.valueOf(db.getNow()));
-                 }
+//              if (request.getParameter("holdDate").equals("A")){
+//         uss.setHoldDate(Timestamp.valueOf(db.getNow()));
+//              }else if (request.getParameter("holdDate").equals("I")){
+//                 uss.setHoldDate(Timestamp.valueOf(db.getNow()));
+//                 }
 
                 uss.setCompanyId(Company_Id);
               out.println("CompanyId" + uss.getCompanyId());
@@ -126,7 +124,7 @@ public class userSecurity extends HttpServlet {
                           response.sendRedirect("addUserSecurity.jsp?valid=1&UserId=" + uss.getUserId());
 
                         } else if (request.getParameter("action").equals("Add")) {
-                            response.sendRedirect("addUserSecurity.jsp?valid=1");
+                           response.sendRedirect("addUserSecurity.jsp?valid=1");
                         }
                 db.close();
 

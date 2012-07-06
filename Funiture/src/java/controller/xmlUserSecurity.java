@@ -36,18 +36,47 @@ public class xmlUserSecurity extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
-                String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
-                String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
-                
+               // String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
+              //  String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
+              //  String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
+                 int rows = 20, page = 1;
+                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
+                    String r = request.getParameter("rows");
+                    rows = Integer.parseInt(r);
+                }
+                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
+                    String r = request.getParameter("page");
+                    page = Integer.parseInt(r);
+                }
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+   int start = rows * page - rows;
+                String colorId = null, Edit = null, Del = null;
+                String sField = null, sValue = null, sOper = null;
+
+                if (request.getParameter("Edit") != null) {
+                    Edit = request.getParameter("Edit");
+                }
+                if (request.getParameter("Del") != null) {
+                    Del = request.getParameter("Del");
+                }
+                  if (request.getParameter("q").equals("1")) {
+                    if (request.getParameter("searchField") != null) {
+                        sField = request.getParameter("searchField");
+                    }
+                    if (request.getParameter("searchString") != null) {
+                        sValue = request.getParameter("searchString");
+                    }
+                    if (request.getParameter("searchOper") != null) {
+                        sOper = request.getParameter("searchOper");
+                    }
+                }
                 Database db = new Database();
                 userSecurityTable ust = new userSecurityTable(db);
-                userSecurityEntity uss = new userSecurityEntity();
-                uss.setCompanyId(Company_Id);
+                userSecurityEntity us = new userSecurityEntity();
+               us.setCompanyId(Company_Id);
 
                 if (request.getParameter("q").equals("1")) {
-                    ArrayList list = ust.search(sField, sValue, sOper, uss);
+                    ArrayList list = ust.search(sField, sValue, sOper,Company_Id,us);
                     db.close();
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(1);

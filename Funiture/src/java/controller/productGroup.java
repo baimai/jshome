@@ -51,19 +51,19 @@ public class productGroup extends HttpServlet {
             String encoding = "utf-8";
             MultipartFormDataRequest mr;
             mr = new MultipartFormDataRequest(request, listeners, uploadlimit, parser, encoding);
-
-
+            Database db = new Database();
+          int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
             try {
                 //productCode=&companyCode=&price1=500.00&price2=400.00&price3=300.00&picLoc=&iconLoc=&nameTh=กกกก&nameEn=ssss&spec1Th=1&spec1En=a&spec2Th=2&spec2En=b&spec3Th=3&spec3En=c&spec4Th=4&spec4En=d&spec5Th=5&spec5En=e&spec6Th=6&spec6En=f&remarkTh=gg&remarkEn=fff
                 if (MultipartFormDataRequest.isMultipartFormData(request)) {
                     if (mr.getParameter("action") != null && !mr.getParameter("action").equals("")) {
-                        Database db = new Database();
+                       
                         productGroupMasterTable pgmt = new productGroupMasterTable(db);
                         companyMasterTable cmt = new companyMasterTable(db);
                         productGroupMasterEntity pgm = new productGroupMasterEntity();
                         HttpSession s = request.getSession(true);
                         userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
-                        int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
+                       // int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                         Hashtable files = mr.getFiles();
                         UploadFile upFile = (UploadFile) files.get("upload");
                         UploadBean u = new UploadBean();
@@ -177,7 +177,24 @@ public class productGroup extends HttpServlet {
                         }
 
                     }
+                     if(request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")){
+                    productGroupMasterEntity pgm = new productGroupMasterEntity();
 
+                    productGroupMasterTable pgmt = new productGroupMasterTable(db);
+                    pgm.setCompanyId(Company_Id);
+                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
+                    out.println("productGroupId"+pgm.getProductGroupId());
+                    Boolean checkChild = pgmt.checkChild(pgm);
+                if (checkChild == false) {
+                    pgmt.remove(pgm);
+
+                }
+                    else {
+                                db.close();
+                                response.sendRedirect("ProductGroup.jsp?error=1");
+                            }
+
+                }
                 }
             } catch (Exception ex) {
                 ex.printStackTrace(out);

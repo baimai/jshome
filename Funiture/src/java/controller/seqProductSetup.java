@@ -109,7 +109,9 @@ public class seqProductSetup extends HttpServlet {
                         ppst.updateSeq(pps);
                     }
                     db.close();
+                        if (request.getParameter("action").equals("Edit")) {
                     response.sendRedirect("seqProductSetup.jsp?picId=" + request.getParameter("picId"));
+                    }
                 }
             }
         } catch (Exception ex) {

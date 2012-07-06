@@ -58,10 +58,10 @@ public class memberMaster extends HttpServlet {
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 memberMasterEntity mb = new memberMasterEntity();
                 mb.setCompanyId(Company_Id);
-                if (request.getParameter("grade") != null && !request.getParameter("grade").equals("")) {
+                if (request.getParameter("gradeName") != null && !request.getParameter("gradeName").equals("")) {
 //                    int i = mgmt.getMemberGrade(request.getParameter("grade"), Company_Id);
 //                    if (i != 0) {
-                        mb.setMemberGradeId(Integer.parseInt(request.getParameter("grade")));
+                        mb.setMemberGradeId(Integer.parseInt(request.getParameter("gradeName")));
 //                    } else {
 //                        mb.setMemberGradeId(0);
 //                    }

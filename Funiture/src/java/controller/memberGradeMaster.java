@@ -44,7 +44,8 @@ public class memberGradeMaster extends HttpServlet {
                 companyMasterTable cmt = new companyMasterTable(db);
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
                 HttpSession s = request.getSession(true);
-                 userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
+                userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
+
                int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 mgm.setCompanyId(Company_Id);
                 if (request.getParameter("memberGradeId") != null && !request.getParameter("memberGradeId").equals("")) {
