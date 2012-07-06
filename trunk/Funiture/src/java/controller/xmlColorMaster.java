@@ -36,18 +36,49 @@ public class xmlColorMaster extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-                response.setContentType("text/xml;charset=UTF-8");
+              //  response.setContentType("text/xml;charset=UTF-8");
 
-                int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
-                int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;
+//                int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
+//                int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;
+//                int start = rows * page - rows;
+//                String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
+//                String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
+//                String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
+
+                int rows = 20, page = 1;
+                if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
+                    String r = request.getParameter("rows");
+                    rows = Integer.parseInt(r);
+                }
+                if (request.getParameter("page") != null && !request.getParameter("page").equals("")) {
+                    String r = request.getParameter("page");
+                    page = Integer.parseInt(r);
+                }
                 int start = rows * page - rows;
-                String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
-                String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
-                String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
+                String colorId = null, Edit = null, Del = null;
+                String sField = null, sValue = null, sOper = null;
+
+                if (request.getParameter("Edit") != null) {
+                    Edit = request.getParameter("Edit");
+                }
+                if (request.getParameter("Del") != null) {
+                    Del = request.getParameter("Del");
+                }
+                if (request.getParameter("q").equals("1")) {
+                    if (request.getParameter("searchField") != null) {
+                        sField = request.getParameter("searchField");
+                    }
+                    if (request.getParameter("searchString") != null) {
+                        sValue = request.getParameter("searchString");
+                    }
+                    if (request.getParameter("searchOper") != null) {
+                        sOper = request.getParameter("searchOper");
+                    }
+                }
 
                 Database db = new Database();
-                colorMasterTable cmt = new colorMasterTable(db);
-                ArrayList list = cmt.searchAll();
+                colorMasterTable cmt = new colorMasterTable(db);             
+                ArrayList list = cmt.searchAll(sField, sValue, sOper);
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = cmt.countAll();
@@ -63,6 +94,14 @@ public class xmlColorMaster extends HttpServlet {
                     xml.setRecords(totalCount);
                     for (int i = 0; i < list.size(); i++) {
                         colorCodeMasterEntity data = (colorCodeMasterEntity) list.get(i);
+//                          String statusFull = null;
+//                        if (data.getColorId() == null || data.getColorId().equals("N") || data.getColorId().equals("")) {
+//                            statusFull = "InActive";
+//                        } else if (data.getColorId().equals("Y")) {
+//                            statusFull = "Active";
+//                        } else if (data.getColorId()).equals("B")) {
+//                            statusFull = "Ban";
+//                        }
                         xml.setRowDetail(data.getColorId(), 
                                 data.getColorCode(),
                                 data.getColorNameT(),

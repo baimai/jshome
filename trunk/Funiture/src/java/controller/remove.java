@@ -63,7 +63,7 @@ public class remove extends HttpServlet {
                             }
                     
                 }
-                else if(request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")){
+               /* else if(request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")){
                     colorCodeMasterEntity ccm = new colorCodeMasterEntity();
                     colorMasterTable cmt = new colorMasterTable(db);
                     //ccm.setCompanyId(Company_Id);
@@ -79,7 +79,7 @@ public class remove extends HttpServlet {
                                 response.sendRedirect("color.jsp?error=1");
                             }
 
-                }
+                }*/
 
 
             }

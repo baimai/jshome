@@ -32,7 +32,7 @@ public class colorMaster extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         try {
@@ -69,22 +69,13 @@ public class colorMaster extends HttpServlet {
                 cmt.remove(cm);
             }
 
-          //  out.println("getColorId" + cm.getColorId());
-          //  out.println("getColorCode" + cm.getColorCode());
-          //  out.println("getColorNameT" + cm.getColorNameT());
-          //  out.println("getColorNameE" + cm.getColorNameE());
-         //   out.println("getCreateDate" + cm.getCreateDate());
-         //   out.println("getUpdateDate" + cm.getUpdateDate());
-         //   out.println("getUserId" + cm.getUserId());
-          
-
             db.close();
             if (request.getParameter("action").equals("Edit")) {
 
                 response.sendRedirect("addColor.jsp?valid=1&colorId=" + cm.getColorId());
 
             } else if (request.getParameter("action").equals("Add")) {
-              response.sendRedirect("addColor.jsp?valid=1");
+             // response.sendRedirect("addColor.jsp?valid=1");
             }
   out.println("getColorId" + cm.getColorId());
            out.println("getColorCode" + cm.getColorCode());
