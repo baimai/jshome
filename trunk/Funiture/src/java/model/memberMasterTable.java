@@ -146,6 +146,7 @@ public void remove(memberMasterEntity mb) {
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
                 mgm.setMemberGrade(Default.Str(result.get(i).get("Member_Grade")));
                 mgm.setMemberGradeId((Integer) result.get(i).get("grade_id"));
+                mgm.setGradeNameT(Default.Str(result.get(i).get("Grade_Name_T")));
                 mb.setMemberGradeMasterEntity(mgm);
                 mb.setMemberLogin(Default.Str(result.get(i).get("Member_Login")));
                 mb.setMemberName(Default.Str(result.get(i).get("Member_Name")));

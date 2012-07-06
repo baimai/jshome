@@ -63,7 +63,7 @@ public class userSecurityTable {
                 + "Approved_Date = ?,"
                 + "Hold_Date = ?,"
                 + " Update_Date = ? ,"
-                + "company_Id = ?"
+                + "Company_Id = ?"
 
                 + " where User_Id = ? ";
         db.add(sql,
@@ -94,13 +94,14 @@ public class userSecurityTable {
         db.update(sql, uss.getUserId(),uss.getCompanyId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper,userSecurityEntity us) {
-        String sql = " SELECT * FROM user_security uss "+
-                     " where uss.company_id = ? ";
+    public ArrayList search(String sField, String sValue, String sOper, int Company_Id ,userSecurityEntity us) {
+        String sql = " SELECT * FROM user_Security us "+
+                     " where us.company_Id = ? ";
 
         if (sOper != null && sValue != null & sField != null) {
             sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
+        System.out.print("sql>>>>"+sql);
         List<Map<String, Object>> result = db.queryList(sql,us.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {

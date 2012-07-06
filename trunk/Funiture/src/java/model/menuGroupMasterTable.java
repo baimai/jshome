@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import util.Operation;
 public class menuGroupMasterTable {
 
     private Database db;
+    private Timestamp Timestamp;
 
     public menuGroupMasterTable(Database db) {
         this.db = db;
@@ -133,6 +135,8 @@ public class menuGroupMasterTable {
                 mg.setMenuGRemarkE(Default.Str(result.get(i).get("Menu_G_Remark_E")));
                 mg.setMenuGPicLoc(Default.Str(result.get(i).get("Menu_G_Pic_Loc")));
                 mg.setMenuGIconLoc(Default.Str(result.get(i).get("Menu_G_Icon_Loc")));
+                mg.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+                mg.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
 
 
                 list.add(mg);

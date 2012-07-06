@@ -32,7 +32,6 @@ public class colorMasterTable {
                 + "Color_Name_T,"
                 + "Color_Name_E,"
                 + "Create_Date,"
-            
                 + "User_Id,"
                 + "Color_Id)"
                 + "  values(?,?,?,?,?,?)";
@@ -42,7 +41,6 @@ public class colorMasterTable {
                 cm.getColorNameT(),
                 cm.getColorNameE(),
                 cm.getCreateDate(),
-              
                 cm.getUserId(),
                 cm.getColorId());
     }
@@ -68,18 +66,23 @@ public class colorMasterTable {
         db.update(sql, cm.getColorId());
     }
 
-    public ArrayList searchAll() {
+    public ArrayList searchAll(String sField, String sValue, String sOper) {
         String sql = "SELECT "
                 + " cm.Color_Code,"
                 + " cm.Color_Name_T,"
+           //     + "cm.Color_Nane_E,"
                 + " cm.Create_date,"
-                + " cm.Update_Date,"                
+                + " cm.Update_Date,"
                 + " cm.User_Id ,"
                 + " cm.Color_Id"
-               + " FROM color_code_master cm order by cm.Create_date ,cm.Update_Date" ;
-  
-        
-       
+                + " FROM color_code_master cm ";
+        //  + " where cm.Color_Id = ? ";
+
+        if (sOper != null && sValue != null & sField != null) {
+            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+        }
+       //   sql = sql + " limit ?,?";
+         System.out.print("sql>>>>"+sql);
         List<Map<String, Object>> result = db.queryList(sql);
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
@@ -87,15 +90,20 @@ public class colorMasterTable {
                 colorCodeMasterEntity cm = new colorCodeMasterEntity();
                 cm.setColorCode(Default.Str(result.get(i).get("Color_Code")));
                 cm.setColorNameT(Default.Str(result.get(i).get("Color_Name_T")));
-                 cm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+            //    cm.setColorNameE(Default.Str(result.get(i).get("Color_Name_E")));
+                cm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
                 cm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
                 cm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 cm.setColorId((Integer) result.get(i).get("Color_Id"));
 
+
                 list.add(cm);
             }
+            return list;
+        } else {
+            return null;
         }
-        return !result.isEmpty()?list:null;
+        //  return !result.isEmpty()?list:null;
     }
 
     public int countAll() {
@@ -108,13 +116,5 @@ public class colorMasterTable {
         String sql = " select * from color_code_master where color_code = ?  ";
         List<Map<String, Object>> result = db.queryList(sql, ccm.getColorCode());
         return !result.isEmpty() ? true : false;
-    }
-public Boolean checkChild(colorCodeMasterEntity ccm) {
-        String sql = " SELECT COUNT(*) AS COUNT FROM    color_code_master ccm "
-                + " JOIN product_detail_master pdm ON pdm.Product_Color_Id = ccm.Color_Id "
-                + " where pdm.Product_Color_Id = ? ";
-        List<Map<String, Object>> result = db.queryList(sql, ccm.getColorId());
-        int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
-        return checkChild == 0 ? false : true;
     }
 }

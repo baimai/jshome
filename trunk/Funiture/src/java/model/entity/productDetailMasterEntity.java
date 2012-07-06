@@ -609,6 +609,7 @@ public class productDetailMasterEntity {
         this.unitId = unitId;
     }
 
+
    
 
 
