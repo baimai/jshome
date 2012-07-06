@@ -32,11 +32,25 @@
         <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script  type="text/javascript">
+            function remove(colorId){
+                var param = "colorId="+colorId+"&action=Del";
+                alert(colorId);
+                postDataReturnText("remove.do",param);
+                window.location.href='color.jsp';
+            }
+            function test(){
+
+            }
+            function confirmDelete(id) {
+                if (confirm("คุณต้องการลบหรือไม่ !")) {
+                    remove(id);
+                }
+            }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
                     url:'xmlColorMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id','Edit','Del' ],
+                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id','แก้ไข','ลบ' ],
                     colModel:[                        
                         {name:'colorCode',index:'colorCode', width:150,	editable:true,editoptions:{ size:25},editrules:{required:true}},
                         {name:'colorNameT',index:'colorNameT', width:150,editable:true,editoptions:{size:25},editrules:{required:true}},
@@ -54,12 +68,15 @@
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
+                    rownumbers: true,
+                    rownumWidth: 40,
+                    gridview: true,
                     sortorder: "desc",
                     caption:"สีของสินค้า",
                     editurl:"colorMaster.do"
 
                 });
-                jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+                //jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
 
                 {add:false,edit:true,search:false,view:true },
