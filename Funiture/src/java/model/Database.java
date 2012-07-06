@@ -21,7 +21,8 @@ public class Database {
         try {
 
         Class.forName("com.mysql.jdbc.Driver").newInstance(); 
-         connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/webdb?user=root&password=root");
+       //  connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/webdb?user=root&password=root");
+          connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/webdb?user=jshome&password=jshome");
         //  connect = DriverManager.getConnection("jdbc:mysql://192.168.0.15:3306/webdb?user=jshome&password=jshome");
 
 

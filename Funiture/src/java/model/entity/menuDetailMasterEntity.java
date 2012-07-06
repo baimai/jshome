@@ -20,7 +20,7 @@ public class menuDetailMasterEntity {
     private String menuCNameT;
     private String menuCNameE;
     private String showListSts;
-    private String picCode;
+    private int picid;
     private String menuCPicLoc;
     private String menuCIconLoc;
     private String menuCRemarkT;
@@ -28,7 +28,10 @@ public class menuDetailMasterEntity {
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
+    private String picCode;
     private menuGroupMasterEntity menuGroupMasterEntity;
+    private memberGradeMasterEntity memberGradeMasterEntity;
+    private picProductSetupEntity picProductSetupEntity ;
     /**
      * @return the menuCodeId
      */
@@ -141,19 +144,9 @@ public class menuDetailMasterEntity {
         this.showListSts = showListSts;
     }
 
-    /**
-     * @return the picCode
-     */
-    public String getPicCode() {
-        return picCode;
-    }
+  
 
-    /**
-     * @param picCode the picCode to set
-     */
-    public void setPicCode(String picCode) {
-        this.picCode = picCode;
-    }
+
 
     /**
      * @return the menuCPicLoc
@@ -267,6 +260,62 @@ public class menuDetailMasterEntity {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the picId
+     */
+    public int getPicId() {
+        return picid;
+    }
+
+    /**
+     * @param picId the picId to set
+     */
+    public void setPicId(int picid) {
+        this.picid = picid;
+    }
+
+    /**
+     * @return the memberGradeMasterEntity
+     */
+    public memberGradeMasterEntity getMemberGradeMasterEntity() {
+        return memberGradeMasterEntity;
+    }
+
+    /**
+     * @param memberGradeMasterEntity the memberGradeMasterEntity to set
+     */
+    public void setMemberGradeMasterEntity(memberGradeMasterEntity memberGradeMasterEntity) {
+        this.memberGradeMasterEntity = memberGradeMasterEntity;
+    }
+
+    /**
+     * @return the picProductSetupEntity
+     */
+    public picProductSetupEntity getPicProductSetupEntity() {
+        return picProductSetupEntity;
+    }
+
+    /**
+     * @param picProductSetupEntity the picProductSetupEntity to set
+     */
+    public void setPicProductSetupEntity(picProductSetupEntity picProductSetupEntity) {
+        this.picProductSetupEntity = picProductSetupEntity;
+    }
+
+    /**
+     * @return the picCode
+     */
+    public String getPicCode() {
+        return picCode;
+    }
+
+    /**
+     * @param picCode the picCode to set
+     */
+    public void setPicCode(String picCode) {
+        this.picCode = picCode;
     }
 
  

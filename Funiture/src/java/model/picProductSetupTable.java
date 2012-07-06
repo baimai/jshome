@@ -230,40 +230,39 @@ public class picProductSetupTable {
 
     public ArrayList searchPicId(int picId) {
 
-        String sql = " select *,@row := @row + 1 as rownum from (select  * from pic_product_setup_detail order by pic_Detail_id,pic_seq) pps"
+        String sql = " select *,@row := @row + 1 as rownum ,mdm.pic_id as picId ,mdm.create_date as CDATE ,mdm.update_date as UDATE,mdm.user_id as UserId from (select  * from pic_product_setup_detail order by pic_Detail_id,pic_seq) pps"
                 + " join product_detail_master pdm on pdm.product_detail_id = pps.product_detail_Id "
                 + " join pic_product_setup mdm on mdm.pic_id = pps.pic_id, (SELECT @row := 0) r ";
         if (picId != 0) {
-            sql = sql + " where mdm.pic_id = " + picId;
+            sql = sql + " where mdm.pic_id  = " + picId;
              System.out.println("ss"+picId);
         }
        
         sql = sql + " and (case when mdm.pic_code = '99999' then pdm.product_d_display_flag In ('Y','A') else pdm.product_d_display_flag In ('Y') end ) ";
        System.out.println("sql"+sql);
-        List<Map<String, Object>> result = db.queryList(sql, picId);
-        
+        List<Map<String, Object>> result = db.queryList(sql);
+       
         ArrayList list = new ArrayList();
-        
+        System.out.println( "List>>>>" +list.size());
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 picProductSetupEntity mps = new picProductSetupEntity();
                 productDetailMasterEntity pdm = new productDetailMasterEntity();
                 picProductSetupDetailEntity psd = new picProductSetupDetailEntity();
-
-                mps.setPicId((Integer) (result.get(i).get("Pic_Id")));
+               // mps.setPicId((Integer) (result.get(i).get("PicId")));
                 pdm.setProductCode(Default.Str(result.get(i).get("Product_Code")));
                 pdm.setProductDNameT(Default.Str(result.get(i).get("Product_D_Name_T")));
                 pdm.setProductDNameE(Default.Str(result.get(i).get("Product_D_Name_E")));
                 mps.setPicCode(Default.Str(result.get(i).get("Pic_Code")));
                 mps.setCompanyCode(Default.Str(result.get(i).get("Company_Code")));
-                mps.setPicNameT(Default.Str(result.get(i).get("Pic_Nane_T")));
-                mps.setPicNameE(Default.Str(result.get(i).get("Pic_Nane_E")));
+                mps.setPicNameT(Default.Str(result.get(i).get("Pic_Name_T")));
+                mps.setPicNameE(Default.Str(result.get(i).get("Pic_Name_E")));
                 mps.setProductRemarkT(Default.Str(result.get(i).get("Product_Remark_T")));
                 mps.setProductRemarkE(Default.Str(result.get(i).get("Product_Remark_E")));
                 mps.setCreateDate((Timestamp) result.get(i).get("CDATE"));
                 mps.setUpdateDate((Timestamp) result.get(i).get("UDATE"));
-                mps.setUserId(Default.Str(result.get(i).get("User_Id")));
-                psd.setPicDetailId((Integer) (result.get(i).get("Pic_Detail_Id")));
+                mps.setUserId(Default.Str(result.get(i).get("UserId")));
+                //psd.setPicDetailId((Integer) (result.get(i).get("Pic_Detail_Id")));
                 psd.setPicSeq((Integer) ((Long) result.get(i).get("rownum")).intValue());
 
                 mps.setPicProductSetupDetailEntity(psd);

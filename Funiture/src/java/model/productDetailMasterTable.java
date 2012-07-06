@@ -5,6 +5,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import util.Default;
 public class productDetailMasterTable {
 
     private Database db;
+    private int i;
 
     public productDetailMasterTable(Database db) {
         this.db = db;
@@ -172,9 +174,10 @@ public class productDetailMasterTable {
                 pdm.setProductDRemarkT(Default.Str(result.get(i).get("Product_D_Remark_T")));
                 pdm.setProductDRemarkE(Default.Str(result.get(i).get("Product_D_Remark_E")));
                 pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
-
                 pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
+                pdm.setCreateDate((Timestamp) result.get(i).get("Create_Date"));
+                pdm.setUpdateDate((Timestamp) result.get(i).get("Update_Date"));
                 if (result.get(i).get("Product_Color_Id") != null) {
                     pdm.setProductColorId((Integer) result.get(i).get("Product_Color_Id"));
                 }
@@ -234,6 +237,7 @@ public class productDetailMasterTable {
                 pdm.setProductDDisplayFlag(Default.Str(result.get(i).get("Product_D_Display_Flag")));
                 pdm.setUserId(Default.Str(result.get(i).get("User_Id")));
                 pdm.setProductDetailId((Integer) result.get(i).get("Product_Detail_Id"));
+           
                 /////
                 pgm.setProductGNameE(Default.Str(result.get(i).get("Product_G_Name_E")));
                 pgm.setProductGNameT(Default.Str(result.get(i).get("Product_G_Name_T")));
@@ -304,6 +308,7 @@ public class productDetailMasterTable {
             pdm.setProductDDisplayFlag(Default.Str(result.get(0).get("Product_D_Display_Flag")));
             pdm.setUserId(Default.Str(result.get(0).get("User_Id")));
             pdm.setProductDetailId((Integer) result.get(0).get("Product_Detail_Id"));
+          
 
 
             return pdm;

@@ -28,8 +28,14 @@ public class memberGradeMasterTable {
         String sql = "insert into Member_Grade_Master "
                 + "( Member_Grade_Id,"
                 + "Company_Id,"
-                + "Member_Grade,Grade_name_t,Grade_name_e,"
-                + "Discount_Rate,payment_term,Member_Price_Flag,Create_date,user_id)"
+                + "Member_Grade,"
+                + "Grade_Name_T,"
+                + "Grade_Name_E,"
+                + "Discount_Rate,"
+                + "Payment_Term,"
+                + "Member_Price_Flag,"
+                + "Create_Date,"
+                + "User_Id)"
                 + "values(?,?,?,?,?,?,?,?,?,?)";
         db.add(sql,
                 mgm.getMemberGradeId(),
@@ -48,14 +54,14 @@ public class memberGradeMasterTable {
         String sql = "update Member_Grade_Master set "
                 + " Company_Id=?,"
                 + "Member_Grade=?,"
-                + " Grade_name_t=? ,"
-                + "Grade_name_e=?,"
+                + "Grade_Name_T=? ,"
+                + "Grade_Name_E=?,"
                 + "Discount_Rate=?,"
-                + "payment_term=?,"
-                + " Member_Price_Flag=?,"
-                + "Update_date=?,"
-                + "user_id=?"
-                + "  where Member_Grade_Id=? ";
+                + "Payment_Term=?,"
+                + "Member_Price_Flag=?,"
+                + "Update_Date=?,"
+                + "User_Id=?"
+                + "where Member_Grade_Id=? ";
         db.add(sql,
                 mgm.getCompanyId(),
                 mgm.getMemberGrade(),
@@ -75,16 +81,18 @@ public class memberGradeMasterTable {
         db.remove(sql, mgm.getMemberGradeId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper, int Company_Id) {
-        String sql = "SELECT * FROM Member_Grade_Master mgm"
-                + " join Company_Master cm on cm.Company_Id = mgm.Company_Id"
-                + " where cm.Company_Id = ? ";
+    public ArrayList search(String sField, String sValue, String sOper, int Company_Id ) {
+        String sql = "SELECT * FROM Member_Grade_Master "
+                  + " where Company_Id = ? ";
 
-        if (sOper != null && sValue != null & sField != null) {
-            sql = sql + " and " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
+         if (sOper != null && sValue != null & sField != null) {
+            sql = sql + " where " + Column.getSQLColumn(sField) + Operation.getSQLOperation(sOper, sValue);
         }
-        List<Map<String, Object>> result = db.queryList(sql, Company_Id);
+        // sql = sql + " limit ?,?";
+       System.out.print("sql>>>>" + sql);
+        List<Map<String, Object>> result = db.queryList(sql,Company_Id);
         ArrayList list = new ArrayList();
+        // System.out.print("sql>>>>" + sql);
         if (!result.isEmpty()) {
             for (int i = 0; i < result.size(); i++) {
                 memberGradeMasterEntity mgm = new memberGradeMasterEntity();
@@ -93,9 +101,13 @@ public class memberGradeMasterTable {
                 mgm.setGradeNameE(Default.Str(result.get(i).get("Grade_Name_E")));
                 mgm.setDiscountRate(Default.BigDecimal(result.get(i).get("Discount_Rate")));
                 mgm.setPaymentTerm((Integer) result.get(i).get("Payment_Term"));
+               
                 mgm.setMemberPriceFlag(Default.Str(result.get(i).get("Member_Price_Flag")));
                 mgm.setMemberGradeId((Integer) result.get(i).get("Member_Grade_Id"));
                 list.add(mgm);
+               //  System.out.println("getMemberGrade" + mg.getMemberGrade());
+
+                 
             }
             return list;
         } else {
@@ -104,16 +116,16 @@ public class memberGradeMasterTable {
 
     }
 
-    public Integer getMemberGradeId(String memberGradeId, int Company_Id) {
+    public Integer getMemberGradeId(String memberGrade_Id, int Company_Id) {
         String sql = "select * from member_grade_master mbg where mbg.Member_Grade_Id = ? and mbg.Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberGradeId, Company_Id);
-        return !result.isEmpty()?(Integer) result.get(0).get("Member_Grade_Id"):0;
+        List<Map<String, Object>> result = db.queryList(sql, memberGrade_Id, Company_Id);
+        return !result.isEmpty() ? (Integer) result.get(0).get("Member_Grade_Id") : 0;
     }
 
-    public Integer getMemberGrade(String memberGrade, int Company_Id) {
+    public Integer getMemberGrade(String member_Grade, int Company_Id) {
         String sql = "select * from member_grade_master mbg where mbg.Member_Grade = ? and mbg.Company_Id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, memberGrade, Company_Id);
-        return !result.isEmpty()?(Integer) result.get(0).get("Member_Grade_Id"):0;
+        List<Map<String, Object>> result = db.queryList(sql, member_Grade, Company_Id);
+        return !result.isEmpty() ? (Integer) result.get(0).get("Member_Grade_Id") : 0;
     }
 
     public Boolean checkDuplicate(memberGradeMasterEntity mgm) {
@@ -123,9 +135,9 @@ public class memberGradeMasterTable {
     }
 
     public Boolean checkChild(memberGradeMasterEntity mgm) {
-        String sql = " select count(*) as COUNT from member_grade_master mgm "+
-                     " join member_master mm on mm.member_grade_id = mgm.member_grade_id "+
-                     " where mgm.member_grade_id = ? ";
+        String sql = " select count(*) as COUNT from member_grade_master mgm "
+                + " join member_master mm on mm.member_grade_id = mgm.member_grade_id "
+                + " where mgm.member_grade_id = ? ";
         List<Map<String, Object>> result = db.queryList(sql, mgm.getMemberGradeId());
         int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
         return checkChild == 0 ? false : true;
