@@ -155,7 +155,8 @@ public class productGroupMasterTable {
     public Boolean checkChild(productGroupMasterEntity pgm) {
         String sql = " SELECT COUNT(*) as COUNT FROM product_group_master  pgm "
                 + " Join product_detail_master pdm on pdm.product_group_id = pgm.product_group_id "
-                + " where mgm.Company_Id = ? and mgm.menu_group_id = ? ";
+                + " where pgm.Company_Id = ? and pgm.product_group_id = ? ";
+       
         List<Map<String, Object>> result = db.queryList(sql, pgm.getCompanyId(), pgm.getProductGroupId());
         int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
         return checkChild == 0 ? false : true;
