@@ -109,4 +109,12 @@ public class colorMasterTable {
         List<Map<String, Object>> result = db.queryList(sql, ccm.getColorCode());
         return !result.isEmpty() ? true : false;
     }
+public Boolean checkChild(colorCodeMasterEntity ccm) {
+        String sql = " SELECT COUNT(*) AS COUNT FROM    color_code_master ccm "
+                + " JOIN product_detail_master pdm ON pdm.Product_Color_Id = ccm.Color_Id "
+                + " where pdm.Product_Color_Id = ? ";
+        List<Map<String, Object>> result = db.queryList(sql, ccm.getColorId());
+        int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
+        return checkChild == 0 ? false : true;
+    }
 }
