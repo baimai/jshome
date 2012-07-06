@@ -12,11 +12,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${param.menuCodeId!=null}">
     <sql:query var="query" dataSource="webdb">
-        Select pgm.Company_Id,
+      Select pgm.Company_Id,
         pgm.Menu_Group_Id,
         pgm.Menu_C_Name_T,
         pgm.Menu_C_Name_E,
-        pgm.Pic_Code,
+        pgm.Pic_Id,
         pgm.Menu_Seq,
         pgm.Show_List_Sts,
         pgm.Menu_Code_Id,
@@ -25,15 +25,21 @@
         pgm.Menu_C_Icon_Loc,
         pgm.Create_Date,
         pgm.Update_Date,
-        pgm.User_Id
+        pgm.User_Id,
+        pps.Pic_Code
         FROM menu_detail_master pgm
+        Left join pic_product_setup pps on pps.Pic_id=pgm.Pic_id
         where pgm.menu_Code_Id =  ${param.menuCodeId}
     </sql:query>
 </c:if>
         <sql:query var="query1" dataSource="webdb">
     SELECT m.Menu_Group_Id,m.Menu_G_Name_T FROM menu_Group_Master m
         </sql:query>
-<!DOCTYPE html>
+          <sql:query var="query2" dataSource="webdb">
+    SELECT m.Pic_id,m.Pic_Code FROM pic_product_setup m
+        </sql:query>
+
+    <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -104,12 +110,10 @@
                                                                             <c:forEach  items="${query1.rows}" var="menu">
                                                                                 <option value="${menu.Menu_Group_Id}">${menu.Menu_G_Name_T}</option>
                                                                             </c:forEach>
-                                                                        </select>
-                                                                      
-                                                                </div>
+                                                                     </select>
+                                                                 </div>
                                                             </div>
                                                         </li>
-
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
@@ -125,18 +129,21 @@
                                                                     <input type="text" name="menuCNameE" value="" class="input-text"/></div>
                                                             </div>
                                                         </li>
-
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >รหัสชุดการแสดงสินค้า :</label>
-                                                                    <input type="text" name="picCode" value="" class="input-text"/></div>
+                                                                        <select name="picId">
+                                                                            <c:forEach  items="${query2.rows}" var="menu">
+                                                                                <option value="${menu.Pic_id}">${menu.Pic_Code}</option>
+                                                                            </c:forEach>
+                                                                        </select></div>
                                                             </div>
                                                         </li>
-                                                         <li class="fields">
+                                                        <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" >ลำดับที่:</label>
+                                                                    <label for="firstname" >ลำดับที่: </label>
                                                                      <input type="text" name="menuSeq" value="" class="input-text"/></div>
                                                             </div>
                                                         </li>
@@ -148,10 +155,8 @@
                                                                         <option value="Y"> Show </option>
                                                                         <option value="N"> Hidden</option>
                                                                     </select></div>
-
                                                             </div>
                                                         </li>
-
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
@@ -160,9 +165,7 @@
                                                                               class="input-text"></textarea></div>
                                                             </div>
                                                         </li>
-
-
-                                                        <li class="fields">
+                                                       <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >หมายเหตุ(อังกฤษ) :</label>
@@ -177,12 +180,11 @@
                                                                     <input type="file" name="upload" value="" class="input-text"/></div>
                                                             </div>
                                                         </li>
-
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >วันที่สร้าง :</label>
-                                                                    <td><input type="text" name="createDate" value="" readonly="readonly" class="input-text"/></div>
+                                                                <td><input type="text" name="createDate" value="" readonly="readonly" class="input-text"/></div>
                                                             </div>
                                                         </li>
 
@@ -202,11 +204,9 @@
                                                                     <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
                                                             </div>
                                                         </li>
-
                                                         </ul>
                                                 </div>
-
-
+                                            </form>
                                             </c:if>
                                             <c:if test="${param.menuCodeId!=null}" >
                                                 <c:forEach var="menuDetailMaster" items="${query.rows}" >
@@ -219,8 +219,8 @@
                                                         <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"> รหัสเมนูหลัก:<em>*</em></label>
+                                                                    <div class="field name-firstname">
+                                                                       <label for="firstname" class="required"> รหัสเมนูหลัก:<em>*</em></label>
                                                                        <select name="menuGroupId" class="select required-entry">
                                                                            <c:forEach items="${query1.rows}" var="menu">
                                                                             <c:if test="${param.menuGroupId == menuDetailMaster.Menu_Group_Id}">
@@ -236,13 +236,11 @@
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
-                                                                    <div   class="field name-firstname">
+                                                                    <div  class="field name-firstname">
                                                                         <label for="firstname" >ชื่อเมนูย่อย(ไทย) :</label>
                                                                         <input type="text" name="menuCNameT" value="${menuDetailMaster.Menu_C_Name_T}" class="input-text" /></div>
                                                                 </div>
                                                             </li>
-
-
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -254,7 +252,16 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >รหัสชุดการแสดงสินค้า :</label>
-                                                                        <input type="text" name="picCode" value="${menuDetailMaster.Pic_Code}" class="input-text"/></div>
+                                                                          <select name="picid" class="select required-entry">
+                                                                           <c:forEach items="${query2.rows}" var="menu">
+                                                                            <c:if test="${param.picId == menuDetailMaster.Pic_Id}">
+                                                                                <option value="${menu.Pic_id}" >${menu.Pic_Code}</option>
+                                                                            </c:if>
+                                                                            <c:if test="${param.picId != menuDetailMaster.Pic_Id}">
+                                                                                <option value="${menu.Pic_id}" selected>${menu.Pic_Code}</option>
+                                                                            </c:if>
+                                                                           </c:forEach>
+                                                                        </select></div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
@@ -268,9 +275,9 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >แสดงเมนูย่อย:</label>
-                                                                         <select name="showListStr">
-                                                                                <option value="Y"<c:if test="${menuDetailMaster.Show_List_Str== 'Y'}"> selected</c:if>> Show</option>
-                                                                                <option value="N"<c:if test="${menuDetailMaster.Show_List_Str== 'N'}"> selected</c:if>> Hidden</option>
+                                                                         <select name="showListSts">
+                                                                                <option value="Y"<c:if test="${menuDetailMaster.Show_List_Sts== 'Y'}"> selected</c:if>> Show</option>
+                                                                                <option value="N"<c:if test="${menuDetailMaster.Show_List_Sts== 'N'}"> selected</c:if>> Hidden</option>
                                                                             </select></div>
                                                                 </div>
                                                             </li>
@@ -301,9 +308,9 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >Path เก็บรูป Icon</label>
-                                                                        <c:if test="${menuDetailMaster.menu_C_Icon_Loc!=null&&menuDetailMaster.Menu_C_Icon_Loc!=''}" >
+                                                                        <c:if test="${menuDetailMaster.Menu_C_Icon_Loc!=null&&menuDetailMaster.Menu_C_Icon_Loc!=''}" >
                                                                         </c:if>
-                                                                        <c:if test="${menuDetailMaster.menu_C_Icon_Loc==null||menuDetailMaster.Menu_C_Icon_Loc==''}" >
+                                                                        <c:if test="${menuDetailMaster.Menu_C_Icon_Loc==null||menuDetailMaster.Menu_C_Icon_Loc==''}" >
                                                                             <label for="firstname" >Product Image</label>
                                                                         </c:if>
                                                                         <input type="file" name="upload" class="input-text"/></div>
@@ -337,7 +344,7 @@
                                                     </c:forEach>
                                                 </c:if>
                                         </div>
-                                        </form>
+                                        
                                         <script type="text/javascript">
                                             //<![CDATA[
                                             var dataForm = new VarienForm('form-validate', true);

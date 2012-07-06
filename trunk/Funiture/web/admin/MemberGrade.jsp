@@ -45,7 +45,7 @@
                         {name:'discountRate',index:'discountRate', width:100,editable:true,editoptions:{size:25}, formoptions:{elmprefix:"(*)"},editrules:{required:true}},
                         {name:'paymentTerm',index:'paymentTerm', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"(*)"},editrules:{required:true}},
                         {name:'memberPriceFlag',index:'memberPriceFlag', width:100,editable:true,editoptions:{size:25},formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
-                        {name:'memberGradeId',index:'memberGradeId',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true,formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
+                        {name:'memberGradeId',index:'member_Grade_Id',  align:"right",hidden:true,editrules:{ edithidden:false},editable:true,formoptions:{elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addMemberGrade.jsp?memberGradeId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
 
@@ -64,16 +64,17 @@
                     
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:true,
-                    delData:{action:"Del",
-                        memberGradeId:function() {
-                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'memberGradeId');
-                            return value;
-                        }}}, // del options
+              //  {search:true}, //options
+                {add:false,edit:false,search:true,view:false,del:false},
+              //  {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+             //   {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+             //   {reloadAfterSubmit:true,
+              //      delData:{action:"Del",
+              //          memberGradeId:function() {
+              //              var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+              //              var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'memberGradeId');
+              //              return value;
+               //         }}}, // del options
                 {} // search options
             );
 

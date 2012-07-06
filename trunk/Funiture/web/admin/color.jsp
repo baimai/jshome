@@ -34,23 +34,23 @@
         <script  type="text/javascript">
             function remove(colorId){
                 var param = "colorId="+colorId+"&action=Del";
-                alert(colorId);
-                postDataReturnText("remove.do",param);
+                postDataReturnText("colorMaster.do",param,test);
                 window.location.href='color.jsp';
+                //
             }
-            function test(){
-
+            function test(text){
             }
             function confirmDelete(id) {
                 if (confirm("คุณต้องการลบหรือไม่ !")) {
                     remove(id);
                 }
             }
+
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
                     url:'xmlColorMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id','แก้ไข','ลบ' ],
+                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id','Edit','Del' ],
                     colModel:[                        
                         {name:'colorCode',index:'colorCode', width:150,	editable:true,editoptions:{ size:25},editrules:{required:true}},
                         {name:'colorNameT',index:'colorNameT', width:150,editable:true,editoptions:{size:25},editrules:{required:true}},
@@ -68,50 +68,33 @@
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
-                    rownumbers: true,
-                    rownumWidth: 40,
-                    gridview: true,
                     sortorder: "desc",
                     caption:"สีของสินค้า",
                     editurl:"colorMaster.do"
 
                 });
-                //jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+               // jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
 
-                {add:false,edit:true,search:false,view:true },
-                {reloadAfterSubmit:true,
-                    delData:{action:"Del",
-                        colorId:function() {
-                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'colorId');
-                            return value;
-                        }}}, // del options
+                {add:false,edit:false,search:true,view:false,del:false},
+
+              //  {height:180,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+             //   {height:230,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+             //  {reloadAfterSubmit:true,
+               //    delData:{action:"Del",
+                   //     colorId:function()
+                   //     {
+                   //        var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                   //        var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'colorId');
+                   //        return value;
+     
+                   //     }}},
+                // del options
                 {} // search options
-            );
-            
-
-               
-                jQuery("#rowed1").jqGrid('navButtonAdd','#prowed1',{caption:"Edit",
-                    onClickButton:function(){
-                        var gsr = jQuery("#rowed1").jqGrid('getGridParam','selrow');
-                        if(gsr){
-                            jQuery("#rowed1").jqGrid('GridToForm',gsr,"#order");
-                        } else {
-                            alert("Please select Row")
-                        }
-                    }
-                });
-                jQuery("#savedata").click(function(){
-                    var invid = jQuery("#invid").val();
-                    if(invid) {
-                        jQuery("#rowed1").jqGrid('FormToGrid',invid,"#order");
-                    }
-                });
-               
-                
-
+            );              
             });
+               
+               
         </script>
     </head>
     <body>

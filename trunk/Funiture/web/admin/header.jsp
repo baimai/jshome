@@ -14,10 +14,11 @@
         <link type="text/css" href="css/menu.css" rel="stylesheet" />
         <link rel="icon" href="images/js.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
-         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
+        <link rel="stylesheet" href="css/style_main.css" type="text/css" media="screen" />
+         <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
         <%-- <script type="text/javascript" src="js/menu.js"></script> --%>
         <style type="text/css">
 
