@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
+import model.colorMasterTable;
+import model.entity.colorCodeMasterEntity;
 import model.entity.productDetailMasterEntity;
 import model.entity.productGroupMasterEntity;
 import model.productDetailMasterTable;
@@ -42,6 +44,7 @@ public class remove extends HttpServlet {
                     productDetailMasterTable pdmt = new productDetailMasterTable(db);
                     pdm.setCompanyId(Company_Id);
                     pdm.setProductDetailId(Integer.parseInt(request.getParameter("productDetailId")));
+
                     pdmt.remove(pdm);
                 }
                 else if(request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")){
@@ -60,6 +63,24 @@ public class remove extends HttpServlet {
                             }
                     
                 }
+                else if(request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")){
+                    colorCodeMasterEntity ccm = new colorCodeMasterEntity();
+                    colorMasterTable cmt = new colorMasterTable(db);
+                    //ccm.setCompanyId(Company_Id);
+                    ccm.setColorId(Integer.parseInt(request.getParameter("colorId")));
+                    out.println("ccc"+ccm.getColorId());
+                    Boolean checkChild = cmt.checkChild(ccm);
+                if (checkChild == false) {
+                    cmt.remove(ccm);
+
+                }
+                    else {
+                                db.close();
+                                response.sendRedirect("color.jsp?error=1");
+                            }
+
+                }
+
 
             }
             db.close();
