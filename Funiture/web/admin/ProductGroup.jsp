@@ -65,6 +65,7 @@
             }
             function remove(productGroupId){
                 var param = "productGroupId="+productGroupId+"&action=Del";
+                alert(productGroupId);
                 postDataReturnText("remove.do",param,test);
                 window.location.href='ProductGroup.jsp';
                 //
@@ -116,16 +117,16 @@
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     loadonce:true,
                     pager: '#prowed1',
-                    imgpath: 'upload/picture/icon', 
+                    //imgpath: 'upload/picture/icon',
                     sortname: 'id',
-                    viewrecords: true,
+                    //viewrecords: true,
                     sortorder: "desc",
                     caption:"ประเภทสินค้า",
                     editurl:"productGroup.do"
                 });
                  jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:300,width:460,reloadAfterSubmit:false,editData:{action:"Edit"}}, // edit options
+                {search:true} //options
+              /*  {height:300,width:460,reloadAfterSubmit:false,editData:{action:"Edit"}}, // edit options
                 {height:300,width:460,reloadAfterSubmit:false,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,
                     delData:{action:"Del",
@@ -134,7 +135,7 @@
                             var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
                             return value;
                         }}}, // del options
-                {} // search options
+                {} // search options*/
             );
             });
                // jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
