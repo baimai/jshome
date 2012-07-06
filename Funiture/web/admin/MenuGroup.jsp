@@ -39,17 +39,17 @@
                     colNames:['No','ชื่อเมนู(ไทย)', 'ชื่อเมนู(อังกฤษ)', 'สิทธิของผู้ใช้','แสดงเมนูย่อย','ต้อง login ก่อนเข้าใช้','หมายเหตุ(ไทย)','หมายเหตุ(อังกฤษ)','call Programe','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','แก้ไข','ลบ'],
                     colModel:[
                         {name:'No',index:'No', width:50,align:"right",editable:false,editoptions:{readonly:true,size:10},search:false},
-                        {name:'menuGNameT',index:'menuGNameT', width:200,editable:true,editoptions:{size:25}},
-                        {name:'menuGNameE',index:'menuGNameE', width:200,editable:true,editoptions:{size:25}},
-                        {name:'menuPermission',index:'menuPermission',align:"center", width:90,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'A':'Admin','U':'User','C':'Contact','M':'Member'}}},
-                        {name:'showListMenu',index:'showListMenu',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
-                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:80,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
+                        {name:'menuGNameT',index:'menuGNameT', width:180,editable:true,editoptions:{size:25}},
+                        {name:'menuGNameE',index:'menuGNameE', width:180,editable:true,editoptions:{size:25}},
+                        {name:'menuPermission',index:'menuPermission',align:"center", width:110,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'A':'Admin','U':'User','C':'Contact','M':'Member'}}},
+                        {name:'showListMenu',index:'showListMenu',align:"center",width:110,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
+                        {name:'chkLoginSts',index:'chkLoginSts',align:"center",width:160,editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'F':'F','Y':'Y','N':'N'}}},
                         {name:'menuGRemarkT',index:'menuGRemarkT',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
                         {name:'menuGRemarkE',index:'menuGRemarkE',align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
                         {name:'menuGIconLoc',index:'menuGIconLoc', align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:50}},
-                        {name:'createDate',index:'createDate', width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
-                        {name:'updateDate',index:'updateDate', width:150,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
-                        {name:'userId',index:'userId', width:150,editable:false,editoptions:{size:25}},
+                        {name:'createDate',index:'createDate', align:"centert", width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'updateDate',index:'updateDate', align:"centert", width:150,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
+                        {name:'userId',index:'userId', width:100,editable:false,editoptions:{size:25}},
                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addMenuGroup.jsp?menuGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                     ],
@@ -66,9 +66,9 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:false}, //options
-                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                {search:false,edit:false,add:false,del:false}, //options
+              //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+              //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         menuGroupId:function() {

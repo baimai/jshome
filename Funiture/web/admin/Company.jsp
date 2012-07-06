@@ -20,11 +20,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
+      <!--  <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />-->
          <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
         <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
         <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>

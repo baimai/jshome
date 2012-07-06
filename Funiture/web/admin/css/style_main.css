@@ -1,7 +1,7 @@
 
 #art-main, table
 {
-    font-family: "Arial","MS Sans Serif","Arial","Thonburi";
+    font-family: "Tahoma","MS Sans Serif","Arial","Thonburi";
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -65,7 +65,7 @@ body
   margin-top: 0px;
   margin-bottom: -5px;
   cursor:auto;
-  width: 80%;
+  width: 1000px;
   z-index: 0;
   
 }

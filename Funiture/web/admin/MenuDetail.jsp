@@ -10,11 +10,11 @@
 
 <c:if test="${param.menuCodeId!=null}">
     <sql:query var="query" dataSource="webdb">
-        SELECT  pgm.Company_Id,
+       Select pgm.Company_Id,
         pgm.Menu_Group_Id,
         pgm.Menu_C_Name_T,
         pgm.Menu_C_Name_E,
-        pgm.Pic_Code,
+        pgm.Pic_Id,
         pgm.Menu_Seq,
         pgm.Show_List_Sts,
         pgm.Menu_Code_Id,
@@ -23,7 +23,8 @@
         pgm.Menu_C_Icon_Loc,
         pgm.Create_Date,
         pgm.Update_Date,
-        pgm.User_Id
+        pgm.User_Id,
+        pps.Pic_Code
         FROM menu_detail_master pgm
         where pgm.menu_Code_Id =  ${param.menuCodeId}
     </sql:query>
@@ -32,7 +33,6 @@
 <c:forEach  items="${query3.rows}" var="list">
     <c:set var="listGroup" value="${listGroup}${list.menu_group_id}:${list.menu_g_name_e};" />
 </c:forEach>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -90,10 +90,9 @@
                         {name:'menuGroupId',index:'menuGroupId', width:150,align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:"${listGroup}"}},
                         {name:'menuCNameT',index:'menuCNameT', width:150,align:"center",editable:true,editoptions:{size:25}},
                         {name:'menuCNameE',index:'menuCNameE', width:150, align:"center",editable:true,editoptions:{size:25}},
-                        {name:'picCode',index:'picCode', width:100, align:"center",editable:true,editoptions:{size:10},editrules:{required:true}},
+                        {name:'picId',index:'picId', width:100, align:"center",editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'menuSeq',index:'menuSeq', width:100, align:"center",editable:true,editoptions:{size:10}},
                         {name:'showListSts',index:'showListSts', width:100, align:"center",editable:true,editoptions:{size:25},edittype:'select', editoptions:{value:{'Y':'Show','N':'Hidden'}}},
-                        
                         {name:'menuCRemarkT',index:'menuCRemarkT', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'menuCRemarkE',index:'menuCRemarkE', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'menuCIconLoc',index:'menuCIconLoc', width:100, align:"center",hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
@@ -116,7 +115,8 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
+                //{search:true}, //options
+                {add:false,edit:false,del:false,search:true,view:false},
                 {height:430,width:320,reloadAfterSubmit:false,editData:{action:"Edit"}}, // edit options
                 {height:430,width:320,reloadAfterSubmit:false,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,

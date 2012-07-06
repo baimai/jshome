@@ -90,7 +90,7 @@
 #menu>ul>li:hover>a span { color:#FFF; }
 #menu span {
     text-transform:uppercase;
-    font:14px  "Tahoma","MS Sans Serif","Arial","Thonburi"Arial,Verdana,sans-serif;
+    font:14px  "Tahoma","MS Sans Serif","Arial","Thonburi";
     letter-spacing:0.3em;
     text-decoration:none;
     color:#ffffff;

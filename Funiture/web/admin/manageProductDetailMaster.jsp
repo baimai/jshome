@@ -65,13 +65,13 @@
                 jQuery("#rowed1").jqGrid({        
                     url:'xmlProductGroup.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['product_Model_Code','Product_Code', 'Product_d_name_t', 'Product_d_name_e','Product_D_Display_Flag','CreateDate','UpdateDate','User_Id','Edit','Del'],
+                    colNames:['รหัสสินค้าต้นทาง','รหัสสินค้า', 'ชื่อสินค้า(ไทย)', 'ชื่อสินค้า(อังกฤษ)','สถานะสินค้า','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Edit','Del'],
                     colModel:[
-                        {name:'productModelCode',index:'productModelCode', width:70,align:"right"},
+                        {name:'productModelCode',index:'productModelCode', width:110,align:"right"},
                         {name:'productCode',index:'productCode', width:130,align:"right"},
-                        {name:'productDNameT',index:'productDNameT', width:200, align:"center"},
-                        {name:'productDNameE',index:'productDNameE', width:150, align:"center"},
-                        {name:'productDDisplayFlag',index:'productDDisplayFlag', width:50, align:"center"},
+                        {name:'productDNameT',index:'productDNameT', width:200, align:"left"},
+                        {name:'productDNameE',index:'productDNameE', width:150, align:"left"},
+                        {name:'productDDisplayFlag',index:'productDDisplayFlag', width:90, align:"center"},
                         {name:'createDate',index:'createDate', width:110,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
                         {name:'updateDate',index:'updateDate', width:110,editable:false,editoptions:{size:25},formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
                         {name:'userId',index:'userId', width:80,editable:false,editoptions:{size:25}},

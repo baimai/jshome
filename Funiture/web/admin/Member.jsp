@@ -4,18 +4,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <sql:query var="query1" dataSource="webdb">
-    SELECT distinct(mm.member_status),(case when mm.member_status = 'N' then 'InActive'
-    when mm.member_status = 'Y' then 'Active'
-    when mm.member_status = 'B' then 'Ban'
+    SELECT distinct(mm.member_status),(case when mm.member_status = 'N' then 'สมาชิกใหม่'
+    when mm.member_status = 'Y' then 'สมาชิกใช้งาน'
+    when mm.member_status = 'B' then 'สมาชิกหยุดใช้งาน'
     else 'InActive' end) as status FROM member_master mm;
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     select * from member_grade_master
 </sql:query>
 <c:forEach  items="${query2.rows}" var="list">
-    <c:set var="listGrade" value="${listGrade}${list.member_grade_id}:${list.member_grade};" />
+    <c:set var="listGradeName" value="${listGradeName}${list.member_grade_id}:${list.grade_name_t};" />
 </c:forEach>
-    <c:set var="listGrade" value="${listGrade}:Undefined" />
+    <c:set var="listGradeName" value="${listGradeName}:Undefined" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -51,7 +51,7 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMemberMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['รหัสเข้าระบบ','ชื่อบริษัท','ชื่อย่อบริษัท','ชื่อ', 'นามสกุล','สถานะสมาชิก','วันที่ลงทะเบียน','ที่อยู่1','ที่อยู่2','ตำบล','วันที่อนุมัติเข้าใช้งาน','สถานะสมาชิก','รหัสเกรด','รหัสเกรด','memberId','view'],
+                    colNames:['รหัสเข้าระบบ','ชื่อบริษัท','ชื่อย่อบริษัท','ชื่อ', 'นามสกุล','สถานะสมาชิก','วันที่ลงทะเบียน','ที่อยู่1','ที่อยู่2','ตำบล','วันที่อนุมัติเข้าใช้งาน','สถานะสมาชิก','ชื่อเกรด T','รหัสเกรด','memberId','view','ลบ'],
                     colModel:[
                         {name:'memberLogin',index:'memberLogin',align:"center", width:150,viewable:false,editrules:{edithidden:true},editable:true,editoptions: { readonly: true }},
                         {name:'memberCompany',index:'memberCompany',align:"center", width:140,editable:false,editoptions:{size:20}, formoptions:{ rowpos:3,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
@@ -64,12 +64,12 @@
                         {name:'memberAddr2',index:'memberAddr2', width:125, align:"center",hidden:true,editrules:{ edithidden:true},editable:false,formoptions:{ rowpos:6,elmprefix:"&nbsp;&nbsp;&nbsp;&nbsp;"}},
                         {name:'memberDistinct',index:'memberDistinct',width:125, align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
                         {name:'memberAppdate',index:'memberAppdate', width:160, align:"right",viewable:false,editrules:{ edithidden:false},editable:false,formatter:'date',formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"}},
-                        {name:'status',index:'status', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select', editoptions:{value:{'Y':'Active','N':'InActive','B':'Ban'}}},
-                        {name:'gradeName',index:'gradeName', width:110,align:"center",editrules:{ edithidden:false},editable:false},
-                        {name:'grade',index:'grade', width:60,align:"center",hidden:true,editrules:{ edithidden:true},editable:true,edittype:'select',editoptions:{value:"${listGrade}"}},
+                        {name:'status',index:'status', width:60,hidden:true,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select', editoptions:{value:{'Y':'สมาชิกใช้งาน','N':'สมาชิกใหม่','B':'สมาชิกหยุดใช้งาน'}}},
+                        {name:'gradeName',index:'gradeName', width:110,align:"center",editrules:{ edithidden:true},editable:true,edittype:'select',editoptions:{value:"${listGradeName}"}},
+                        {name:'gradeName',index:'gradeName', width:60,align:"center",hidden:true,editrules:{ edithidden:false},editable:true},
                         {name:'memberId',index:'memberId', align:"right",hidden:true,editrules:{ edithidden:false},editable:true},
-                        {name:'view',index:'view', width:100,hidden:false,align:"center",viewable:false,editrules:{ edithidden:false},editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"viewProfile.jsp?memberId="+cellvalue+"\" >view</a>"}}
-
+                        {name:'view',index:'view', width:100,hidden:false,align:"center",viewable:false,editrules:{ edithidden:false},editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"viewProfile.jsp?memberId="+cellvalue+"\" >view</a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
@@ -150,6 +150,9 @@
                                             <br/>สถานะ
                                             <select id="status" onchange="show()">
                                                 <option value=""> ทั้งหมด </option>
+                                                <option value="N"> สมาชิกใหม่ </option>
+                                                <option value="Y"> สมาชิกใช้งาน </option>
+                                                <option value="B"> สมาชิกหยุดใช้งาน </option>
                                                 <c:forEach items="${query1.rows}" var="member">
                                                     <option value="${member.member_status}">${member.status}</option>
                                                 </c:forEach>

@@ -68,14 +68,15 @@
 
                 });
                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:true}, //options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-                {height:250,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+               // {search:true}, //options
+               {add:false,edit:false,search:true,view:false,del:false},
+               {height:250,reloadAfterSubmit:false,editData:{action:"Edit"}}, // edit options
+               {height:250,reloadAfterSubmit:false,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
                         colorId:function() {
                             var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'userId');
+                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'UserId');
                             return value;
                         }}}, // del options
                 {} // search options
