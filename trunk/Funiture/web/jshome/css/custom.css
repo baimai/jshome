@@ -114,7 +114,7 @@ div.sliderdescription:hover,.sliderdescription.active{background-color:#fff !imp
 .astop{background:url(../images/astop.gif) no-repeat 3px 3px}
 .aplay{background:url(../images/aplay.gif) no-repeat 6px 3px}
 
-.footer-container { padding-top: 25px; background: url(../images/footer_green.png) repeat-x 0 0;}
+.footer-container { padding-top: 25px; background: url(../images/template/footer_green.png) repeat-x 0 0;}
 .footer { width:930px; margin:0 auto;}
 .footer .store-switcher { display:inline; padding:0 10px 0 0; vertical-align:middle; }
 .footer .informational label { color:#4e4e51; font-weight:bold; padding-right:3px; }
