@@ -4,9 +4,9 @@
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup_detail psd
     join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
-    join pic_product_setup pps on psd.pic_detail_id = pps.Pic_Id
-    join menu_detail_master md on  pps.Pic_id = md.Pic_id
-    where md.Menu_Code_Id=4 and pdm.product_d_display_flag = 'A'
+    join pic_product_setup pps on psd.Pic_Id = pps.Pic_Id
+    join menu_detail_master md on  pps.Pic_Id = md.Pic_Id
+    where md.menu_model='004' 
     order by psd.pic_seq
     limit 0,6
 </sql:query>

@@ -41,7 +41,7 @@
                    
                      <jsp:include page="slide.jsp"/>
                    <br><br>
-                     <jsp:include page="HotNewProProduct.jsp" />
+                     <jsp:include page="HotNewProProduct2.jsp" />
                             
 
                   
