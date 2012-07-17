@@ -5,7 +5,7 @@
     <head>
         <title>Customer Login</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-       
+
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
@@ -50,7 +50,7 @@
                                         <p>2.บันทึกรายการสินค้าที่ชื่นชอบ</p>
                                         <p>3.สมาชิกสามารถใช้รับคะแนน</p>
                                         <p>4.ได้รับสิทธิ์ข้อมูลข่าวสารก่อนใคร</p>
-                                </div>
+                                    </div>
                                 </div>
                                 <div class="col-2 registered-users">
                                     <div class="content">
@@ -64,34 +64,40 @@
                                                 </c:if>
                                             </li>
                                             <li>
-                                               
+
                                                 <label for="email" class="required"> <img src="images/icon/user-red.png" width="24" height="24" alt="user-red"/>สมาชิกเข้าสู่ระบบ</label>
 
                                             </li>
                                             <li>
+
+                                                <label for="name" class="required"> รหัสผู้ใช้ :&nbsp;&nbsp;  <input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="รหัสผู้ใช้" />
+
+                                                </label><p class="required" style="text-align: left">&nbsp;*</p>
+
+                                            </li>
+                                            <li>
+                                                <label for="pass" class="required">รหัส : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="รหัสผ่าน" />
+
+                                                </label><p class="required" style="text-align: left">&nbsp;*</p>
+
+                                            </li>
+                                                <li>
+                                                    <p class="required" style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                            * ข้อมูลที่จำเป็นต้องกรอก  </p>
+                                            <label for="pass" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="checkbox" name="" value="ON" /> จำรหัสผ่านของฉัน</label>
                                             
-                                                <label for="name" class="required"> รหัสผู้ใช้ :&nbsp;&nbsp;  <input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="Name" />
-                                                    
-                                                </label>
-                                               
-                                            </li>
+                                                    </li>
                                             <li>
-                                                <label for="pass" class="required">รหัส :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="Password" />
-                                                    
-                                             </label>
-                                                
-                                            </li>
-                                            <li>
-                                                <label for="pass" class="required"><input type="checkbox" name="" value="ON" />จำรหัสผ่านของฉัน</label>
                                                 <div class="input-box">
-                                                    <select name="lang" id="lang" style="width: 80px">
+                                                    <label for="pass" class="required">ภาษา :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <select name="lang" id="lang" style="width: 80px">
                                                         <option value="Th">ไทย</option>
                                                         <option value="En">อังกฤษ</option>
                                                     </select>
                                                 </div>
                                             </li>
                                         </ul>
-                                        <p class="required">* ข้อมูลที่จำเป็นต้องกรอก</p>
+                                        
                                     </div>
                                 </div>
                             </div>
