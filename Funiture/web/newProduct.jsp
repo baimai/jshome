@@ -7,10 +7,13 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <sql:query var="query" dataSource="webdb">
-    SELECT * FROM menu_product_setup mps
-         join product_detail_master pdm on mps.Product_Code = pdm.Product_Code
-         where mps.Menu_Code = '012'
-    order by mps.Menu_code,mps.Product_Code
+    SELECT * FROM pic_product_setup_detail psd
+    join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
+    join pic_product_setup pps on psd.pic_id = pps.Pic_Id
+    join menu_detail_master md on  pps.pic_id = md.Pic_id
+    where md.menu_model='001' and pdm.product_d_display_flag = 'Y'
+    order by psd.pic_seq
+    limit 0,6
 </sql:query>
 
 <!DOCTYPE html>
@@ -101,9 +104,10 @@ window.onload=function(){
                 <div class="jTscrollerContainer">
                     <div class="jTscroller">
                         <c:forEach var="newProduct" items="${query.rows}">
-                        <a href="products_detail.html"><img src="${newProduct.Product_D_Logo}" /></a>			
-                        </c:forEach>
+                        <a href="products_detail.html"><img src="${newProduct.Product_D_Pic_loc}" /></a>
                         
+                        </c:forEach>
+                        ${hotProduct.Product_D_Name_T}
                     </div>
                 </div>
                 <a href="#" class="jTscrollerPrevButton"></a>
