@@ -336,7 +336,7 @@ c         <div id="art-main">
                                                         <div class="buttons-set">
 
 
-                                                            <button name="action" value="editProfile" class="button" ><span><span>เยืนยัน</span></span></button>
+                                                            <button name="action" value="editProfile" class="button" ><span><span>ยืนยัน</span></span></button>
                                                         </div>
                                                     </form>
                                                 </c:forEach>
