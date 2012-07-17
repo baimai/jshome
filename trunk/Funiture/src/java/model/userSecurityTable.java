@@ -94,7 +94,7 @@ public class userSecurityTable {
         db.update(sql, uss.getUserId(),uss.getCompanyId());
     }
 
-    public ArrayList search(String sField, String sValue, String sOper, int Company_Id ,userSecurityEntity us) {
+    public ArrayList search(String sField, String sValue, String sOper, userSecurityEntity us) {
         String sql = " SELECT * FROM user_Security us "+
                      " where us.company_Id = ? ";
 

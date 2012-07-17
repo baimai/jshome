@@ -77,8 +77,11 @@ public class xmlColorMaster extends HttpServlet {
                 }
 
                 Database db = new Database();
+
+
                 colorMasterTable cmt = new colorMasterTable(db);             
                 ArrayList list = cmt.searchAll(sField, sValue, sOper);
+
                 if (request.getParameter("q").equals("1")) {
                     int totalPages = 0;
                     int totalCount = cmt.countAll();

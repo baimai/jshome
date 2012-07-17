@@ -76,7 +76,7 @@ public class xmlUserSecurity extends HttpServlet {
                us.setCompanyId(Company_Id);
 
                 if (request.getParameter("q").equals("1")) {
-                    ArrayList list = ust.search(sField, sValue, sOper,Company_Id,us);
+                    ArrayList list = ust.search(sField, sValue, sOper,us);
                     db.close();
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(1);
