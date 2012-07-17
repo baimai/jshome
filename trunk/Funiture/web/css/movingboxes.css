@@ -1,17 +1,17 @@
 /* Default MovingBoxes wrapper size */
 #movingboxes {
 	width: 900px;
-	min-height: 200px;
+	min-height: 300px;
 }
 
 /* Default MovingBoxes panel size */
 #movingboxes > li {
-	width: 350px;
+	width: 250px;
 }
 
 /*** Overall MovingBoxes Slider ***/
 .mb-wrapper {
-	border: 5px solid #ccc;
+	border: 5px solid #fff;
 	margin: 0 auto;
 	position: relative;
 	left: 0;
@@ -19,9 +19,9 @@
 	border-radius: 1em;
 	-moz-border-radius: 1em;
 	-webkit-border-radius: 1em;
-	box-shadow: inset 0 0 10px #888;
-	-moz-box-shadow: inset 0 0 10px #888;
-	-webkit-box-shadow: inset 0 0 10px #888;
+	box-shadow: inset 0 0 10px #fff;
+	-moz-box-shadow: inset 0 0 10px #fff;
+	-webkit-box-shadow: inset 0 0 10px #fff;
 }
 
 /* Panel Wrapper */
@@ -41,7 +41,7 @@
 
 /* active slider border highlight */
 .mb-active-slider {
-	border-color: #999bff;
+	border-color: #ffffff;
 }
 
 /*** Slider panel ***/
@@ -63,7 +63,7 @@ change .current class name using plugin option, currentPanel : 'current' */
 /*** Inside the panel ***/
 .mb-inside {
 	padding: 10px;
-	border: 1px solid #999;
+	border: 1px solid #fff;
 }
 
 .mb-inside * {
@@ -106,7 +106,7 @@ a.mb-scrollButtons.disabled {
 .mb-controls {
 	margin: 0 auto;
 	text-align: center;
-	background: #ccc;
+	background: #fff;
 	position: relative;
 	z-index: 100;
 }
@@ -125,5 +125,5 @@ a.mb-scrollButtons.disabled {
 	color: #fff;
 }
 .mb-active-slider .mb-controls {
-	background: #999bff;
+	background: #ffffff;
 }
