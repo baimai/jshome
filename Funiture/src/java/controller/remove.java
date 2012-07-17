@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Database;
-import model.colorMasterTable;
-import model.entity.colorCodeMasterEntity;
+//import model.colorMasterTable;
+//import model.entity.colorCodeMasterEntity;
+import model.entity.menuGroupMasterEntity;
 import model.entity.productDetailMasterEntity;
 import model.entity.productGroupMasterEntity;
+import model.menuGroupMasterTable;
 import model.productDetailMasterTable;
 import model.productGroupMasterTable;
 
@@ -46,41 +48,57 @@ public class remove extends HttpServlet {
                     pdm.setProductDetailId(Integer.parseInt(request.getParameter("productDetailId")));
 
                     pdmt.remove(pdm);
-                }
-                else if(request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")){
+                } else if (request.getParameter("productGroupId") != null && !request.getParameter("productGroupId").equals("")) {
                     productGroupMasterEntity pgm = new productGroupMasterEntity();
                     productGroupMasterTable pgmt = new productGroupMasterTable(db);
                     pgm.setCompanyId(Company_Id);
-                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));                   
+                    out.print("productGroupId"+pgm.getProductGroupId());
+
+                    pgm.setProductGroupId(Integer.parseInt(request.getParameter("productGroupId")));
                     Boolean checkChild = pgmt.checkChild(pgm);
-                if (checkChild == false) {
-                    pgmt.remove(pgm);
+                    if (checkChild == false) {
+                        pgmt.remove(pgm);
+
+                    } else {
+                        db.close();
+                        response.sendRedirect("ProductGroup.jsp?error=1");
+                    }
+
+                } /* else if(request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")){
+                colorCodeMasterEntity ccm = new colorCodeMasterEntity();
+                colorMasterTable cmt = new colorMasterTable(db);
+                //ccm.setCompanyId(Company_Id);
+                ccm.setColorId(Integer.parseInt(request.getParameter("colorId")));
+                out.println("ccc"+ccm.getColorId());
+                //                    Boolean checkChild = cmt.checkChild(ccm);
+                //                if (checkChild == false) {
+                //                    cmt.remove(ccm);
+                //
+                //                }
+                //                    else {
+                //                                db.close();
+                //                                response.sendRedirect("color.jsp?error=1");
+                //                            }
 
                 }
-                    else {
-                                db.close();
-                                response.sendRedirect("ProductGroup.jsp?error=1");
-                            }
-                    
-                }
-               /* else if(request.getParameter("colorId") != null && !request.getParameter("colorId").equals("")){
-                    colorCodeMasterEntity ccm = new colorCodeMasterEntity();
-                    colorMasterTable cmt = new colorMasterTable(db);
-                    //ccm.setCompanyId(Company_Id);
-                    ccm.setColorId(Integer.parseInt(request.getParameter("colorId")));
-                    out.println("ccc"+ccm.getColorId());
-                    Boolean checkChild = cmt.checkChild(ccm);
-                if (checkChild == false) {
-                    cmt.remove(ccm);
+                }*/ else if (request.getParameter("menuGroupId") != null && !request.getParameter("menuGroupId").equals("")) {
+                    menuGroupMasterEntity mg = new menuGroupMasterEntity();
+                    menuGroupMasterTable mgt = new menuGroupMasterTable(db);
+                    mg.setCompanyId(Company_Id);
+                    mg.setMenuGroupId(Integer.parseInt(request.getParameter("menuGroupId")));
+                    out.println("menuGroupId>>>"+mg.getMenuGroupId());
+                    Boolean checkChild = mgt.checkChild(mg);
+                     out.println("menuGroupId2>>>"+mg.getMenuGroupId());
+                    if (checkChild == false) {
+                         out.print("menuGroupId"+mg.getMenuGroupId());
+                        mgt.remove(mg);
+
+                    } else {
+                        db.close();
+                        response.sendRedirect("MenuGroup.jsp?error=1");
+                    }
 
                 }
-                    else {
-                                db.close();
-                                response.sendRedirect("color.jsp?error=1");
-                            }
-
-                }*/
-
 
             }
             db.close();

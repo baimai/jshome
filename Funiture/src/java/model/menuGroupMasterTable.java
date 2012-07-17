@@ -165,11 +165,12 @@ public class menuGroupMasterTable {
         }
     }
 
-    public Boolean checkChild(menuGroupMasterEntity mgm) {
-        String sql = " SELECT COUNT(*) as COUNT FROM menu_group_master  mgm "
-                + " Join menu_detail_master mdm on mdm.menu_group_id = mgm.menu_group_id "
-                + " where mgm.Company_Id = ? and mgm.menu_group_id = ? ";
-        List<Map<String, Object>> result = db.queryList(sql, mgm.getCompanyId(), mgm.getMenuGroupId());
+    public Boolean checkChild(menuGroupMasterEntity gm) {
+        String sql = "SELECT COUNT(*) as COUNT FROM menu_group_master  gm "
+                + " Join menu_detail_master mdm on mdm.menu_group_id = gm.menu_group_id "
+                + " where gm.Company_Id = ? and gm.menu_group_id = ? ";
+        System.out.println("sql"+sql);
+        List<Map<String, Object>> result = db.queryList(sql, gm.getCompanyId(), gm.getMenuGroupId());
         int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
         return checkChild == 0 ? false : true;
     }
