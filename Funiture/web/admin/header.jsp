@@ -43,8 +43,8 @@
                 <div class="shop-access">
                     <ul class="links" >
                         <li class=" last" >
-                            <c:if test="${sessionScope.loginDetail!=null}"><a href="../logout.do" title="Log Out" >Log Out</a></c:if>
-                            <c:if test="${sessionScope.loginDetail==null}"><a href="../Login.jsp" title="Log In" >Log In</a></c:if>
+                            <c:if test="${sessionScope.loginDetail!=null}"><a href="../logout.do" title="Log Out" >ออกจากระบบ</a></c:if>
+                            <c:if test="${sessionScope.loginDetail==null}"><a href="../Login.jsp" title="Log In" >เข้าสู่ระบบ</a></c:if>
                         </li>
                     </ul>
                 </div>

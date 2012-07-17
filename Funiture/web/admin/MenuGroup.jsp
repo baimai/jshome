@@ -32,6 +32,22 @@
         <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script  type="text/javascript">
+
+             function remove(menuGroupId){
+                var param = "menuGroupId="+menuGroupId+"&action=Del";
+                
+                postDataReturnText("remove.do",param,test);
+                window.location.href='MenuGroup.jsp';
+                
+            }
+            function test(text){
+            }
+            function confirmDelete(id) {
+                if (confirm("คุณต้องการลบหรือไม่ !")) {
+                    remove(id);
+                }
+            }
+
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
                     url:'xmlMenuGroupMaster.do?action=fetchData&rows=3&page=1&q=1',
@@ -54,29 +70,31 @@
                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}}
                     ],
                     rowNum:20,
-                     height: "auto",
-                     width: 950,
+                    height: "auto",
+                    width: 950,
                     rowList:[10,20,30,40,80,160,320,500,1000],
+                    loadonce:true,
                     pager: '#prowed1',
+                    //imgpath: 'upload/picture/icon',
                     sortname: 'id',
-                    viewrecords: true,
+                    //viewrecords: true,
                     sortorder: "desc",
                     caption:"เมนูหลัก",
                     editurl:"menuGroupMaster.do"
 
                 });
-                jQuery("#rowed1").jqGrid('navGrid','#prowed1',
-                {search:false,edit:false,add:false,del:false}, //options
+               jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+                {search:true} //options
               //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
               //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-                {reloadAfterSubmit:true,
-                    delData:{action:"Del",
-                        menuGroupId:function() {
-                            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                            var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
-                            return value;
-                        }}}, // del options
-                {} // search options
+               // {reloadAfterSubmit:true,
+              //      delData:{action:"Del",
+               //         menuGroupId:function() {
+              //              var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+              //              var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
+             //               return value;
+              //          }}}, // del options
+            //    {} // search options
             );
             });
         </script>
