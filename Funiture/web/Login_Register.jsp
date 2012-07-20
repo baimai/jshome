@@ -44,12 +44,20 @@
                                         --%>
                                         <h2>ถ้าคุณยังไม่ได้เป็นสมาชิก กรุณาสมัครสมาชิก</h2>
                                         <p>สิทธิ์หลังจากเป็นสมาชิก</p>
-                                        <p>ไม่สมัครเป็นสมาชิกก็สามารถซื้อสินค้าได้</p>
+                                        <p>เมื่อสมัครเป็นสมาชิกก็สามารถซื้อสินค้าได้</p>
                                         <p>หลังจากลงทะเบียนแล้ว คุณสามารถ</p>
-                                        <p>1.บันทึกข้อมูลส่วนตัวของคุณ</p>
-                                        <p>2.บันทึกรายการสินค้าที่ชื่นชอบ</p>
-                                        <p>3.สมาชิกสามารถใช้รับคะแนน</p>
-                                        <p>4.ได้รับสิทธิ์ข้อมูลข่าวสารก่อนใคร</p>
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.บันทึกข้อมูลส่วนตัวของคุณ</p>
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.บันทึกรายการสินค้าที่ชื่นชอบ</p>
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.สมาชิกสามารถใช้รับคะแนน</p>
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.ได้รับสิทธิ์ข้อมูลข่าวสารก่อนใคร</p>
+
+                                        <div class="col-1 new-users">
+                                            <div class="">
+                                                <%--<button type="button" title="Create an Account" class="button" onclick="javascript:popupwnd('member.jsp','no','no','no','yes','yes','no','300','70','800','440')"> <span><span>Create an Account</span></span></button>--%>
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" title="สมัครสมาชิก" class="button" onclick="javascript:location.href='register.jsp'"> <span><span>สมัครสมาชิก</span></span></button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-2 registered-users">
@@ -70,51 +78,52 @@
                                             </li>
                                             <li>
 
-                                                <label for="name" class="required"> รหัสผู้ใช้ :&nbsp;&nbsp;  <input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="รหัสผู้ใช้" />
+                                                <label for="name" class="required" style="text-align: right" >รหัสผู้ใช้ :&nbsp;<input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="รหัสผู้ใช้"/>
+                                                </label><p class="required" style="text-align: left">&nbsp;*</p>
 
+                                            </li>
+
+                                            <li>
+                                                <label for="pass" style="text-align: right" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รหัส :&nbsp;<input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="รหัสผ่าน" />
                                                 </label><p class="required" style="text-align: left">&nbsp;*</p>
 
                                             </li>
                                             <li>
-                                                <label for="pass" class="required">รหัส : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="รหัสผ่าน" />
-
-                                                </label><p class="required" style="text-align: left">&nbsp;*</p>
+                                                <p class="required" style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                                    * ข้อมูลที่จำเป็นต้องกรอก  </p>
+                                                <label for="pass" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="checkbox" name="" value="ON" />&nbsp;จำรหัสผ่านของฉัน</label>
 
                                             </li>
-                                                <li>
-                                                    <p class="required" style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
-                                            * ข้อมูลที่จำเป็นต้องกรอก  </p>
-                                            <label for="pass" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input type="checkbox" name="" value="ON" /> จำรหัสผ่านของฉัน</label>
-                                            
-                                                    </li>
                                             <li>
                                                 <div class="input-box">
-                                                    <label for="pass" class="required">ภาษา :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <select name="lang" id="lang" style="width: 80px">
+                                                    <label for="pass" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ภาษา :&nbsp;</label> <select name="lang" id="lang" style="width: 80px">
                                                         <option value="Th">ไทย</option>
                                                         <option value="En">อังกฤษ</option>
                                                     </select>
                                                 </div>
+
                                             </li>
+                                                <li>
+                                                    <div class="col-1 new-users">
+                                            <%--<div class="buttons-set">--%>
+                                            <div class="">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <button type="submit" class="button" style="" title="Login" name="send" id="send2"><span><span>เข้าสู่ระบบ</span></span></button>
+                                            </div>
+                                        </div>
+
+                                                </li>
                                         </ul>
-                                        
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="col2-set">
-                                <div class="col-1 new-users">
-                                    <div class="buttons-set">
-                                        <%--<button type="button" title="Create an Account" class="button" onclick="javascript:popupwnd('member.jsp','no','no','no','yes','yes','no','300','70','800','440')"> <span><span>Create an Account</span></span></button>--%>
-                                        <button type="button" title="สมัครสมาชิก" class="button" onclick="javascript:location.href='register.jsp'"> <span><span>สมัครสมาชิก</span></span></button>
-                                    </div>
-                                </div>
-                                <div class="col-2 registered-users">
-                                    <div class="buttons-set">
-                                        <%--<a href="forgotPassword.jsp" class="f-left">ลืมรหัสผ่าน?</a>--%>
-                                        <button type="submit" class="button" title="Login" name="send" id="send2"><span><span>เข้าสู่ระบบ</span></span></button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </form>
                         <script type="text/javascript">
                             //<![CDATA[
