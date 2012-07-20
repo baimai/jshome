@@ -19,7 +19,7 @@ a { color:#555452; text-decoration: none; }
 .block .block-title strong { line-height: 30px; color:#007ED3;}
 .block .block-title strong .count { text-transform:none; color:#2f2f2f; white-space:nowrap; font-weight:normal; font-size:.95em; }
 .block strong { font-size:1em;}
-.block .block-content { background: #fcfcfc url(../images/box-content-bg.gif) repeat-x 0 0; border: 1px solid #ccc; border-top: none; -moz-border-radius-bottomleft: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-left-radius: 8px; -webkit-border-bottom-right-radius: 8px; padding:5px 5px;}
+.block .block-content { background: white url(../images/box-content-bg.gif) repeat-x 0 0; border: 1px solid #ccc; border-top: none; -moz-border-radius-bottomleft: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-left-radius: 8px; -webkit-border-bottom-right-radius: 8px; padding:5px 5px;}
 .block .content ol {background: none;border: none;}
 
 
