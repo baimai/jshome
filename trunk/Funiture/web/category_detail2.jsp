@@ -19,7 +19,6 @@
     group by product_group_code
     order by product_group_code
 </sql:query>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html  >
