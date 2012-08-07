@@ -1,10 +1,12 @@
+<%--
+    Document   : jshome_HotNewProProduct
+    Created on : 7 ส.ค. 2555, 12:36
+    Author     : Sarawut
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : hotProduct_2
-    Created on : 13 พ.ย. 2554, 22:32:15
-    Author     : Achilles
---%>
+
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup_detail psd
     join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
@@ -40,11 +42,13 @@
 
         <title>jshome</title>
 
+
+
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" /> 
         <link href="css/movingboxes.css" media="screen" rel="stylesheet">
-        <!--[if lt IE 9]>
+        [if lt IE 9]>
 	<link href="css/movingboxes-ie.css" rel="stylesheet" media="screen" />
 	<![endif]-->
 
@@ -53,6 +57,10 @@
         <script src="js/jquery.movingboxes.js"></script>
 
         <!-- Demo only -->
+
+
+
+
 
         <style>
             /* Dimensions set via css in MovingBoxes version 2.2.2+ */

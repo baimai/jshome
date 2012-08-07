@@ -77,15 +77,19 @@
         <input type="hidden" value="1" id="navCurPage"/>
         <input type="hidden" value="name" id="navSort"/>
         <input type="hidden" value="picId" id="menuType"/>
+
         <div class="wrapper">
-            <div class="page">
-            </div>
-        </div><div class="main-container col3-layout">
+            <div class="page"></div>
+        </div>
+
+
+        <div class="main-container col3-layout">
             <div class="main">                
                 <div class="col-wrapper">
-                    <div id="productList">
-                    </div>
-                    <div class="col-left sidebar"><img src="images/P1-2.png" width="180" height="35" alt="P1-2"/>
+                    <div id="productList"></div>
+
+                    <div class="col-left sidebar">
+                        <img src="images/P1-2.png" width="180" height="35" alt="P1-2"/>
 
                         <div class="block block-layered-nav">
                             
@@ -109,13 +113,21 @@
                                
                                 <ul>
                                     <c:forEach var="menu2" items="${query2.rows}">
-                                        <li><img src="${menu2.Product_Icon_Loc}" /><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
+                                        <li><img src="${menu2.Product_Icon_Loc}" width="30" height="30"/><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
+                              
                                     </c:forEach>
+                                      
+         
                                 </ul>
+                                              
                             </div>
+            
                         </div>
 
                     </div>
+                    
+                    
+
                 </div>
 
                 <jsp:include page="myCart.jsp" />

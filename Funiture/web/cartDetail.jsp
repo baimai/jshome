@@ -77,11 +77,10 @@
             <div class="art-sheet-cc"></div>
             <div class="art-sheet-body">
                 <jsp:include page="head.jsp"/>
-                <br><br><br><br><br><br><br>
+                
                 <jsp:include page="slide.jsp"/>
                 <br><br>
                
-                            <%--หน้า cartDetail.jsp --%>
                             <div class="wrapper">
                                 <div class="page">
                                 </div>        <div class="main-container col1-layout">
@@ -238,7 +237,15 @@
                                                             </c:if>
                                                            
                                                         </ul>
+                                                                   <br>
+                                                                 <br>
+                                                                  <br>
+                                                                   <br>
+                                                                    <br>
                                                     </div>
+                                                             
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -250,9 +257,8 @@
                             <%--จบหน้า cartDetail.jsp --%>
                        
 
-                <br/><br/>
                 <jsp:include page="footer.jsp" />
-                <br/><br/>
+               <br><br>
             </div>
 
 

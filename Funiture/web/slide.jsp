@@ -1,5 +1,12 @@
+<%--
+    Document   : jshome_slide
+    Created on : 7 ส.ค. 2555, 12:36
+    Author     : Sarawut
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup_detail psd
@@ -10,18 +17,26 @@
     order by psd.pic_seq
     limit 0,6
 </sql:query>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>slide</title>
-        <link rel="stylesheet" href="jshome/css/default/default.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="jshome/css/pascal/pascal.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="jshome/css/orman/orman.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="jshome/css/nivo-slider.css" type="text/css" media="screen" />
-        <script type="text/javascript" src="jshome/js/jquery-1.6.1.min.js"></script>
-        <script type="text/javascript" src="jshome/js/jquery.nivo.slider.pack.js"></script>
+         <title>slide</title>
+
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       
+        <link rel="stylesheet" href="css/default/default.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/pascal/pascal.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/orman/orman.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+         <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
         <script type="text/javascript">
             $(window).load(function() {
                 $('#slider').nivoSlider();

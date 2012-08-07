@@ -1,11 +1,12 @@
 
 #container {
 
-    width: 94%;
+    width: 94.5%;
     margin: 0px auto;
     margin-left: 25px;
     background-color: #292929;
     position:absolute;
+    
    
 }
 
@@ -42,9 +43,7 @@ ul, li {
     float: left;
     list-style: none;
     border-right: 1px solid #292929;
-    border-left: 1px solid black;
-   
-    
+    border-left: 1px solid black;   
 }
 
 #nav li a {

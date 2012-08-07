@@ -37,7 +37,7 @@
                         <div id="nav-rt-curve"><img src="jshome/black-images/black-rt-curve.png" alt="rt-curve" width="14" height="40" /></div>
                     </div>
                 </td>
-            </tr>
+          
        
     </body>
 </html>
