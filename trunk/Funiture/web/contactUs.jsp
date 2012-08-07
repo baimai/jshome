@@ -21,17 +21,15 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                    <br><br><br><br><br><br><br>
-                    <jsp:include page="slide.jsp"/>  <br><br>
+                    <jsp:include page="slide.jsp"/>
+                    <br><br>
                     <jsp:include page="contactDetail.jsp"/>             
-                    <jsp:include page="footer.jsp" />
-                    <br/><br/>
-                </div>
+                </div>   
             </div>
             <div class="cleared"></div>
         </div>
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
     </body>
+
 </html>

@@ -8,16 +8,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>Create New Customer Account</title>
-       <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-           <!--[if lt IE 7]>
-        <script type="text/javascript">
-        //<![CDATA[
-            var BLANK_URL = 'http://freedemo.templates-master.com/js/blank.html';
-            var BLANK_IMG = 'http://freedemo.templates-master.com/js/spacer.gif';
-        //]]>
-        </script>
-        <![endif]-->
+        <title>jshome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <!--[if lt IE 7]>
+     <script type="text/javascript">
+     //<![CDATA[
+         var BLANK_URL = 'http://freedemo.templates-master.com/js/blank.html';
+         var BLANK_IMG = 'http://freedemo.templates-master.com/js/spacer.gif';
+     //]]>
+     </script>
+     <![endif]-->
         <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
@@ -36,7 +36,7 @@
         <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
         <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
-        
+
 
         <script type="text/javascript">
 
@@ -76,15 +76,12 @@
             }
 
         </script>
-     
+
     </head>
     <body class=" customer-account-create" onload="changeCommonProvince(2,1);changeCommonProvince(3,77)">
         <div class="wrapper">
-
             <div class="page">
-
-
-            </div>        <div class="main-container col1-layout">
+            </div><div class="main-container col1-layout">
                 <div class="main">
                     <div class="col-main">
                         <div class="account-create">
@@ -94,15 +91,16 @@
                             <form action="admin/memberMaster.do" method="post" id="form-validate" >
                                 <div class="fieldset">
                                     <h2 class="legend">ข้อมูลการเข้าระบบ</h2>
+                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                     <ul class="form-list">
                                         <li>   <div class="field">
-                                                <label for="login" class="required"><em>*</em>ชื่อเข้าสู่ระบบ</label>
+                                                <label for="login" class="required"><em>*</em>ชื่อเข้าสู่ระบบ :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberLogin" id="memberLogin" title="memberLogin" class="input-text required-entry validate-Login"  onkeyup="checkMemberLogin(document.getElementById('memberLogin').value)" onchange="checkMemberLogin(document.getElementById('memberLogin').value)"/>
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <label for="chkMemberLogin" >สถานะ</label>
+                                                <label for="chkMemberLogin" >สถานะ :</label>
                                                 <div class="input-box" id="chkValidate" style="color: black">
                                                     <em><span >กรุณากรอกชื่อเข้าสู้ระบบ</span></em>
                                                 </div>
@@ -110,13 +108,13 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field">
-                                                <label for="password" class="required"><em>*</em>รหัสผ่าน</label>
+                                                <label for="password" class="required"><em>*</em>รหัสผ่าน :</label>
                                                 <div class="input-box">
                                                     <input type="password" name="memberPassword" id="password" title="Password" class="input-text required-entry validate-password" />
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <label for="confirmation" class="required"><em>*</em>ยืนยันรหัสผ่าน</label>
+                                                <label for="confirmation" class="required"><em>*</em>ยืนยันรหัสผ่าน :</label>
                                                 <div class="input-box">
                                                     <input type="password" name="confirmation" id="confirmation" title="Confirm Password" class="input-text required-entry validate-cpassword" />
                                                 </div>
@@ -128,57 +126,59 @@
                                     <input type="hidden" name="success_url" value="" />
                                     <input type="hidden" name="error_url" value="" />
                                     <h2 class="legend">ข้อมูลส่วนตัว</h2>
+                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                     <ul class="form-list">
                                         <li class="fields">
                                             <div class="customer-name">
                                                 <div class="field name-firstname">
-                                                    <label for="firstname" class="required"><em>*</em>ชื่อ</label>
+                                                    <label for="firstname" class="required"><em>*</em>ชื่อ :</label>
                                                     <div class="input-box">
                                                         <input type="text" id="firstname" name="memberName" value="" title="First Name" class="input-text required-entry validate-one-required"   />
                                                     </div>
                                                 </div>
                                                 <div class="field name-lastname">
-                                                    <label for="lastname" class="required"><em>*</em>นามสกุล</label>
+                                                    <label for="lastname" class="required"><em>*</em>นามสกุล :</label>
                                                     <div class="input-box">
                                                         <input type="text" id="lastname" name="memberSurName" value="" title="Last Name" class="input-text required-entry validate-one-required" />
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        
+                                        </li>                                        
                                         <li class="fields">
                                             <div class="field company-name">
-                                                <label for="memberComName">ชื่อบริษัท</label>
+                                                <label for="memberComName">ชื่อบริษัท :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberComName" id="memberComName" value="" title="Company Name" class="input-text"  />
                                                 </div>
                                             </div>
                                             <div class="field company-name">
-                                                <label for="memberNameAbbr">รหัสบริษัท</label>
+                                                <label for="memberNameAbbr">รหัสบริษัท :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberNameAbbr" id="memberNameAbbr" value="" title="Company Name Abbr" class="input-text"  />
                                                 </div>
                                             </div>
                                         </li>
-                                        <br></br>
+                                        <br></br><br></br>
+                                          <div class="content">
                                         <h2 class="legend">ข้อมูลการติดต่อ</h2>
+                                        <img src="images/line.jpg" width="580" height="" alt=""/>
                                         <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Adress1" class="required"><em>*</em>ที่อยู่-1</label>
+                                                <label for="Adress1" class="required"><em>*</em>ที่อยู่-1 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberAddr1" id="Adress1" value="" title="Adress1" class="input-text required-entry validate-one-required" />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Adress2" >ที่อยู่-2</label>
+                                                <label for="Adress2" >ที่อยู่-2 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberAddr2" id="Adress2" value="" title="Adress2" class="input-text " />
                                                 </div>
                                             </div>
                                         </li>
-                                      <li class="fields">
+                                        <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Province" >จังหวัด</label>
+                                                <label for="Province" >จังหวัด :</label>
                                                 <div class="selected" id="showProvince" >
                                                     <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" >
                                                         <c:forEach var="province" items="${query.rows}">
@@ -189,21 +189,21 @@
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Postcode" >รหัสไปรษณีย์</label>
+                                                <label for="Postcode" >รหัสไปรษณีย์ :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberPstcode" id="Postcode" value="" title="Postcode" class="input-text " />
                                                 </div>
                                             </div>
                                         </li>
-                                          <li class="fields">
-                                               <div class="field name-lastname">
-                                                <label for="Amphur" >อำเภอ</label>
+                                        <li class="fields">
+                                            <div class="field name-lastname">
+                                                <label for="Amphur" >อำเภอ :</label>
                                                 <div class="input-box" id="showAmphur"  style="width:260px" >
 
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Distinct" >ตำบล</label>
+                                                <label for="Distinct" >ตำบล :</label>
                                                 <div class="input-box" id="showDistinct" >
 
                                                 </div>
@@ -211,13 +211,13 @@
                                         </li>
                                         <li class="fields">
                                             <div class="field name-lastname">
-                                                <label for="Tel1" >โทรศัพท์-1 </label>
+                                                <label for="Tel1" >โทรศัพท์-1 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text" />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Tel2" >โทรศัพท์-2</label>
+                                                <label for="Tel2" >โทรศัพท์-2 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberTel2" id="Tel2" value="" title="Tel2" class="input-text " />
                                                 </div>
@@ -225,13 +225,13 @@
                                         </li>
                                         <li>
                                             <div class="field name-lastname">
-                                                <label for="Mobile1" class="required"><em>*</em>มือถือ-1</label>
+                                                <label for="Mobile1" class="required"><em>*</em>มือถือ-1 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text required-entry validate-phoneLax" />
                                                 </div>
                                             </div>
                                             <div class="field name-lastname">
-                                                <label for="Mobile2" >มือถือ-2</label>
+                                                <label for="Mobile2" >มือถือ-2 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberMobile2" id="Mobile2" value="" title="Mobile2" class="input-text " />
                                                 </div>
@@ -239,36 +239,37 @@
                                         </li>
                                         <li>
                                             <div class="field name-lastname">
-                                            <label for="Fax" >โทรสาร-1</label>
-                                            <div class="input-box">
-                                                <input type="text" name="memberFax1" id="Fax" value="" title="Fax" class="input-text " />
+                                                <label for="Fax" >โทรสาร-1 :</label>
+                                                <div class="input-box">
+                                                    <input type="text" name="memberFax1" id="Fax" value="" title="Fax" class="input-text " />
+                                                </div>
                                             </div>
-                                            </div>
-                                        <!--</li>
-                                        <li>-->
+                                            <!--</li>
+                                            <li>-->
                                             <div class="field name-lastname">
-                                            <label for="Fax" >โทรสาร-2</label>
-                                            <div class="input-box">
-                                                <input type="text" name="memberFax2" id="Fax" value="" title="Fax" class="input-text " />
-                                            </div>
+                                                <label for="Fax" >โทรสาร-2 :</label>
+                                                <div class="input-box">
+                                                    <input type="text" name="memberFax2" id="Fax" value="" title="Fax" class="input-text " />
+                                                </div>
                                             </div>
                                         </li>
                                         <li class="fields">
                                             <div class="field email-address">
-                                                <label for="email_address" class="required"><em>*</em>E-Mail-1</label>
+                                                <label for="email_address" class="required"><em>*</em>E-Mail-1 :</label>
                                                 <div class="input-box">
                                                     <input type="text" name="memberEmail1" id="memberEmail1" value="" title="Email Address" class="input-text validate-email required-entry" />
                                                 </div>
                                             </div>
                                         </li>
+                                        <li>
+                                            <p class="required" style="text-align: left">
+                                                * ข้อมูลที่จำเป็นต้องกรอก  </p>
+                                        </li>
+                                        <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()"><span><span>ยืนยัน</span></span></button>
+                                        <button type="button" title="กลับ" class="button" onclick="javascript:location.href='Login.jsp'"> <span><span>กลับ</span></span></button>
                                     </ul>
                                 </div>
-
-                                <div class="buttons-set">
-                                    <p class="required">* ข้อมูลที่จำเป็นต้องกรอก</p>
-                                    <p class="back-link"><a href="Login.jsp" class="back-link"><small>&laquo; </small>Back</a></p>
-                                    <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()"><span><span>ยืนยัน</span></span></button>
-                                </div>
+                                        
                             </form>
                             <script type="text/javascript">
                                 //<![CDATA[
@@ -279,8 +280,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </body>
 </html>

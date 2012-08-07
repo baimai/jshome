@@ -33,7 +33,7 @@
                 <div class="col-main">
                     <div class="account-login">
                         <div class="page-title">
-                            <h1>เข้าสู้ระบบ และ การลงทะเบียน</h1>
+                            <h1>เข้าสู่ระบบ และ การลงทะเบียน</h1>
                         </div>
                         <form action="login.do" method="post" id="login-form">
                             <div class="col2-set">
@@ -78,14 +78,14 @@
                                             </li>
                                             <li>
 
-                                                <label for="name" class="required" style="text-align: right" >รหัสผู้ใช้ :&nbsp;<input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="รหัสผู้ใช้"/>
-                                                </label><p class="required" style="text-align: left">&nbsp;*</p>
+                                                <label for="name" class="required" style="text-align: right" >รหัสผู้ใช้ :<em>*</em>&nbsp;<input type="text" name="memberLogin" value="${requestScope.memberLogin}" id="memberLogin" class="input-text required-entry validate-name" title="รหัสผู้ใช้"/>
+                                                </label>
 
                                             </li>
 
                                             <li>
-                                                <label for="pass" style="text-align: right" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รหัส :&nbsp;<input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="รหัสผ่าน" />
-                                                </label><p class="required" style="text-align: left">&nbsp;*</p>
+                                                <label for="pass" style="text-align: right" class="required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รหัส :<em>*</em>&nbsp;<input type="password" name="memberPassword" id="memberPassword" class="input-text required-entry validate-password" id="pass" title="รหัสผ่าน" />
+                                                </label>
 
                                             </li>
                                             <li>
@@ -116,13 +116,11 @@
                                                 </li>
                                         </ul>
 
-
-
-
-
+                                            <br></br>
                                     </div>
                                 </div>
                             </div>
+
 
                         </form>
                         <script type="text/javascript">
@@ -134,8 +132,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </body>
 </html>

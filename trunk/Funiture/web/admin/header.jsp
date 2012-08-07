@@ -39,6 +39,8 @@
         <div class="header-topbar" >
             <div class="quick-access">
                 <div class="welcome-msg">
+                    <c:if test="${sessionScope.loginDetail!=null}">ผู้ใช้:  ${sessionScope.loginDetail.userNameT} &nbsp ${sessionScope.loginDetail.companyMasterEntity.companyNameT}</c:if>
+                    <c:if test="${sessionScope.loginDetail==null}">ผู้ใช้ </c:if>
                 </div>
                 <div class="shop-access">
                     <ul class="links" >

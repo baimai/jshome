@@ -1,22 +1,27 @@
-<%-- 
-    Document   : footer
-    Created on : 8 พ.ย. 2554, 23:36:13
-    Author     : Achilles
+<%--
+    Document   : jshome_slide
+    Created on : 7 ส.ค. 2555, 12:36
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+
         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     </head>
+
     <body>
     <tr>
+        
+        <td align="center" > <div align="center">
+                <img src="images/footer.png"  alt="" />
+                <a href="http://www.kumnuanthai.com"></a>
+            </div>
+        </td>
 
-        <td align="center" > <div align="center">Copyright © 2011 jshome - All Rights Reserved by <a href="http://www.kumnuanthai.com">kumnuanthai</a>
-            </div></td>
-   
-</body>
+    </body>
 </html>

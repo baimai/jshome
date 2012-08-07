@@ -11,9 +11,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <meta http-equiv="content-language" content="th" />
+        <title>jshome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="content-language" content="th" />
         <meta name="robots" content="index, company,category,contactUs" />
         <meta name="description" content="jshome " />
         <meta name="revisit-after" content="*"/>
@@ -36,23 +36,17 @@
                 <div class="art-sheet-cl"></div>
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
-                <div class="art-sheet-body">
-                    <jsp:include page="head.jsp"/>
-                       <br><br><br><br><br><br><br>
-                     <jsp:include page="slide.jsp"/>
-                   <br><br>
+                <div class="art-sheet-body">                   
+                    <jsp:include page="head.jsp"/>            
+                    <jsp:include page="slide.jsp"/>
+                    <br><br>
                     <jsp:include page="companyDetail.jsp"/>
-
-
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
     </body>

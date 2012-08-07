@@ -55,8 +55,8 @@ body {
         
     <c:forEach var="query" items="${head.rows}">
       <tr bordercolordark="#000000" >
-                <td bgcolor="#000000" width="10px" align="left"> Login </td>
-            </tr>
+              <td bgcolor="#000000" width="10px" align="left"> Login </td>
+      </tr>
             <tr >
                 <td ><div align="center"><img src="${query.Header_Logo}" width="100%" height="100" /></div></td>
             </tr>
