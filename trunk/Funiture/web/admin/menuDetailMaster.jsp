@@ -95,9 +95,9 @@
                                             <%--<div class="warning_box">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                             </div>--%>
-                                            <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                            <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                                            <c:if test="${param.menuCodeId==null}" >
+                                           <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                                             <c:if test="${param.menuCodeId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
                                                 <div class="fieldset">

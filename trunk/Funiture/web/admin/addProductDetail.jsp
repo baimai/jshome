@@ -34,13 +34,16 @@
    
        
     <body>
-
+           <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                             
         <form action="productDetail.do" method="post" enctype="multipart/form-data" >
 
             <table border="0" width="700px" >
                 <tr>
                     <td colspan="4" align="center"><h1> Add Product</h1></td>
                 </tr>
+
                 <c:if test="${param.productDetailId==null}" >
                     <input type="hidden" name="action" value="Add" />
                     <tr>

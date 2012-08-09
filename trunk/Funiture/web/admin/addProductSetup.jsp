@@ -114,7 +114,9 @@
                                         </div>
                                         <c:forEach var="product" items="${query4.rows}">
 
-                                              
+                                                      <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                             
                                             <form action="productSetup.do" >
                                                  <div class="buttons" align="right">
                                                 <button name="action" value="Edit" class="button"><span><span>แก้ไข</span></span></button>

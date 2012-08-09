@@ -38,7 +38,7 @@
                 
                 postDataReturnText("remove.do",param,test);
                 window.location.href='MenuGroup.jsp';
-                
+                alret(menuGroupId);
             }
             function test(text){
             }
