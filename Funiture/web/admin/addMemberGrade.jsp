@@ -84,8 +84,8 @@
                                         <%--<div class="warning_box">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                         </div>--%>
-                                        <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                        <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                                        <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                         <c:if test="${param.memberGradeId==null}" >
                                             <form action="memberGradeMaster.do" method="post" id="form-validate"  >
                                                 <input type="hidden" name="action" value="Add" />
@@ -259,12 +259,12 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                           
+
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >ระยะเวลาการชำระ :</label>
-                                                                         <input name="paymentTerm" value="0" class="input-text validate-number" style="text-align:right;"/>
+                                                                        <input name="paymentTerm" value="0" class="input-text validate-number" style="text-align:right;"/>
 
                                                                     </div>
                                                                 </div>

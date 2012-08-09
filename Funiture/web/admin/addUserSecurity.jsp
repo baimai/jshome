@@ -73,10 +73,10 @@
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                         </div>--%>
                                         <form action="userSecurity.do" method="post" id="form-validate"  >
-                                        <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                        <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                                        <c:if test="${param.UserId==null}" >
-                                           
+                                            <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                                            <c:if test="${param.UserId==null}" >
+
                                                 <input type="hidden" name="action" value="Add" />
                                                 <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
                                                 <div class="fieldset">
@@ -203,9 +203,9 @@
                                                          </li>-->
                                                     </ul>
                                                 </div>
-                                           
-                                        </c:if>
- </form>
+
+                                            </c:if>
+                                        </form>
 
                                         <c:if test="${param.UserId!=null}" >
                                             <form action="userSecurity.do" method="post" id="form-validate"  >
@@ -257,7 +257,7 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required" <em>*</em >ระดับ :</label>
-                                                                        
+
                                                                         <select name="userAuthoritySts" class="select">
                                                                             <option value="A">Admin </option>
                                                                             <option value="U">User </option>
@@ -270,29 +270,29 @@
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required" <em>*</em >สถานะ:</label>
                                                                         <select name="userAliveSts" class="select">
-                                                                        <option value="A">Active </option>
-                                                                        <option value="I">Inactive </option>
-                                                                        <option value="N">New </option>
-                                                                    </select>
+                                                                            <option value="A">Active </option>
+                                                                            <option value="I">Inactive </option>
+                                                                            <option value="N">New </option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
-                                                            <div   class="customer-name">
-                                                                <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em >วันที่อนุมัติ:</label>
-                                                                    <td><input type="text" name="approvedDate" value="${userSecurity.Approved_Date}" readonly="readonly" class="input-text"/></div>
-                                                            </div>
-                                                        </li>
+                                                                <div   class="customer-name">
+                                                                    <div  class="field name-firstname">
+                                                                        <label for="firstname" class="required"><em>*</em >วันที่อนุมัติ:</label>
+                                                                        <td><input type="text" name="approvedDate" value="${userSecurity.Approved_Date}" readonly="readonly" class="input-text"/></div>
+                                                                </div>
+                                                            </li>
 
 
-                                                        <li class="fields">
-                                                            <div   class="customer-name">
-                                                                <div  class="field name-firstname">
-                                                                    <label for="firstname" >วันที่หยุดใช้งาน :</label>
-                                                                    <input type="text" name="holdDate" value="${userSecurity.Hold_Date}" readonly="readonly" class="input-text"/></div>
-                                                            </div>
-                                                        </li>
+                                                            <li class="fields">
+                                                                <div   class="customer-name">
+                                                                    <div  class="field name-firstname">
+                                                                        <label for="firstname" >วันที่หยุดใช้งาน :</label>
+                                                                        <input type="text" name="holdDate" value="${userSecurity.Hold_Date}" readonly="readonly" class="input-text"/></div>
+                                                                </div>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </c:forEach>

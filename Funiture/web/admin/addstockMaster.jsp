@@ -55,6 +55,9 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
+                                                   <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                             
                                        <form action="companyMasterController.do" method="post" enctype="multipart/form-data" >
                                             <c:if test="${param.companyId==null}" >
                                                 <input type="hidden" value="Add" name="action">

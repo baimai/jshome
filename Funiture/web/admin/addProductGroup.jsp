@@ -182,7 +182,7 @@
                                                             </div>
                                                         </li>
 
-                                                        </ul>
+                                                    </ul>
                                                 </div>
 
 
@@ -244,10 +244,10 @@
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >สถานะกลุ่มสินค้า :</label>
                                                                         <select name="productGDisplayFlag">
-                                                                                <option value="Y"<c:if test="${productGroup.product_G_display_flag == 'Y'}"> selected</c:if>> แสดงกลุ่มสินค้า</option>
-                                                                                <option value="N"<c:if test="${productGroup.product_G_display_flag == 'N'}"> selected</c:if>> ไม่แสดงกลุ่มสินค้า</option>
-                                                                                <option value="A"<c:if test="${productGroup.product_G_display_flag == 'A'}"> selected</c:if>>กลุ่มสินค้าโฆษณา </option>
-                                                                            </select></div>
+                                                                            <option value="Y"<c:if test="${productGroup.product_G_display_flag == 'Y'}"> selected</c:if>> แสดงกลุ่มสินค้า</option>
+                                                                            <option value="N"<c:if test="${productGroup.product_G_display_flag == 'N'}"> selected</c:if>> ไม่แสดงกลุ่มสินค้า</option>
+                                                                            <option value="A"<c:if test="${productGroup.product_G_display_flag == 'A'}"> selected</c:if>>กลุ่มสินค้าโฆษณา </option>
+                                                                        </select></div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
@@ -293,7 +293,7 @@
 
                                                     </c:forEach>
                                                 </c:if>
-</div>
+                                            </div>
                                         </form>
                                         <script type="text/javascript">
                                             //<![CDATA[

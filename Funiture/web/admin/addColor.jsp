@@ -72,10 +72,10 @@
                                         <%--<div class="warning_box">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                         </div>--%>
-                                       
-                                            <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                            <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                                            <c:if test="${param.colorId==null}" >
+
+                                        <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+                                        <c:if test="${param.colorId==null}" >
                                             <form action="colorMaster.do" method="post" id="form-validate"  >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
@@ -106,21 +106,21 @@
                                                             </div>
                                                         </li>
 
-                                                      <!---  <li class="fields">
-                                                            <div   class="customer-name">
-                                                                <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em >วันที่สร้าง :</label>
-                                                                    <input type="text" name="createDate" value="" class="input-text"/></div>
-                                                            </div>
-                                                        </li>
+                                                        <!---  <li class="fields">
+                                                              <div   class="customer-name">
+                                                                  <div  class="field name-firstname">
+                                                                      <label for="firstname" class="required"><em>*</em >วันที่สร้าง :</label>
+                                                                      <input type="text" name="createDate" value="" class="input-text"/></div>
+                                                              </div>
+                                                          </li>
 
-                                                        <li class="fields">
-                                                            <div   class="customer-name">
-                                                                <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em>วันที่ปรับปรุง:</label>
-                                                                    <input name="updateDate" value="" class="input-text " /></div>
-                                                            </div>
-                                                        </li>-->
+                                                          <li class="fields">
+                                                              <div   class="customer-name">
+                                                                  <div  class="field name-firstname">
+                                                                      <label for="firstname" class="required"><em>*</em>วันที่ปรับปรุง:</label>
+                                                                      <input name="updateDate" value="" class="input-text " /></div>
+                                                              </div>
+                                                          </li>-->
 
                                                         <!--- <li class="fields">
                                                              <div   class="customer-name">
@@ -208,9 +208,9 @@
                                                          </li>-->
                                                     </ul>
                                                 </div>
- </form>
-                                            </c:if>
-                                       
+                                            </form>
+                                        </c:if>
+
 
                                         <c:if test="${param.colorId!=null}" >
                                             <form action="colorMaster.do" method="post" id="form-validate"  >
@@ -268,34 +268,34 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" class="required" <em>*</em >รหัสผู้ใช้:</label>
-                                                                         <input name="userId" value="${colorCodeMaster.User_Id}" class="input-text " readonly/>
+                                                                        <input name="userId" value="${colorCodeMaster.User_Id}" class="input-text " readonly/>
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                           <!--- <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required" <em>*</em >Color Id:</label>
-                                                                          <input name="colorId" value="${colorCodeMaster.Color_Id}" class="input-text " />
-                                                                    </div>
-                                                                </div>
-                                                            </li>-->
-                                                           <!--- <li class="fields">
-                                                                <div   class="customer-name">
-                                                                    <div  class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em >วันที่อนุมัติ:</label>
-                                                                        <td><input type="text" name="approvedDate" value="${userSecurity.Approved_Date}" readonly="readonly" class="input-text"/></div>
-                                                                </div>
-                                                            </li>
+                                                            <!--- <li class="fields">
+                                                                 <div class="customer-name">
+                                                                     <div   class="field name-firstname">
+                                                                         <label for="firstname" class="required" <em>*</em >Color Id:</label>
+                                                                           <input name="colorId" value="${colorCodeMaster.Color_Id}" class="input-text " />
+                                                                     </div>
+                                                                 </div>
+                                                             </li>-->
+                                                            <!--- <li class="fields">
+                                                                 <div   class="customer-name">
+                                                                     <div  class="field name-firstname">
+                                                                         <label for="firstname" class="required"><em>*</em >วันที่อนุมัติ:</label>
+                                                                         <td><input type="text" name="approvedDate" value="${userSecurity.Approved_Date}" readonly="readonly" class="input-text"/></div>
+                                                                 </div>
+                                                             </li>
 
 
-                                                            <li class="fields">
-                                                                <div   class="customer-name">
-                                                                    <div  class="field name-firstname">
-                                                                        <label for="firstname" >วันที่หยุดใช้งาน :</label>
-                                                                        <input type="text" name="holdDate" value="${userSecurity.Hold_Date}" readonly="readonly" class="input-text"/></div>
-                                                                </div>
-                                                            </li>-->
+                                                             <li class="fields">
+                                                                 <div   class="customer-name">
+                                                                     <div  class="field name-firstname">
+                                                                         <label for="firstname" >วันที่หยุดใช้งาน :</label>
+                                                                         <input type="text" name="holdDate" value="${userSecurity.Hold_Date}" readonly="readonly" class="input-text"/></div>
+                                                                 </div>
+                                                             </li>-->
                                                         </ul>
                                                     </div>
                                                 </c:forEach>
