@@ -1,8 +1,7 @@
-
 <%--
-    Document   : test
-    Created on : 11 พ.ย. 2554, 12:52:39
-    Author     : Achilles
+    Document   : jshome_AddMenuGroup
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,35 +17,33 @@
                 
     </sql:query>
 </c:if>
+
 <!DOCTYPE html>
 <html>
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
-
-
-        <title>JSP Page</title>
-
-
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <script type="text/javascript" src="js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/ccard.js"></script>
+        <script type="text/javascript" src="js/prototype/validation.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="js/varien/js.js"></script>
+        <script type="text/javascript" src="js/varien/form.js"></script>
+        <script type="text/javascript" src="js/varien/menu.js"></script>
+        <script type="text/javascript" src="js/mage/translate.js"></script>
+        <script type="text/javascript" src="js/mage/cookies.js"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     </head>
+
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -324,16 +321,7 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
 
+        <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
-</html>
-
-
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <!---<body>
-        <h1>Hello World!</h1>
-    </body>-->
 </html>

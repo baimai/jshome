@@ -1,30 +1,32 @@
-<%@ include file="checkRole.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : catalogSetup
-    Created on : Mar 8, 2012, 1:20:33 PM
-    Author     : Achilles
+<%--
+    Document   : jshome_CatalogSetup
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+
 <sql:query var="query1" dataSource="webdb">
     SELECT * FROM product_group_master
 </sql:query>
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM menu_detail_master
 </sql:query>
+
+<!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+        <title>jshome</title>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
         <script type="text/javascript">
             function setCheck(){
                 if(document.getElementById('c1').checked == true){
@@ -146,5 +148,7 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>

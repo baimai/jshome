@@ -1,21 +1,22 @@
-<%-- 
-    Document   : addstockMaster
-    Created on : Mar 6, 2012, 2:51:34 PM
-    Author     : baimai
+<%--
+    Document   : jshome_AddStockMaster
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
-<%@ include file="checkRole.jsp" %>
+
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>jshome</title>
     </head>
+
     <body>
       <sql:query var="query1" dataSource="webdb">
        SELECT * FROM product_group_master
@@ -23,14 +24,15 @@
 
 <html>
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
     </head>
+
     <body>
         <div id="art-main">
             <div class="art-sheet">
@@ -43,8 +45,6 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br><br>
-
-
                     <div class="wrapper">
                         <div class="page">
                         </div>
@@ -384,18 +384,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </li>
-                                                       
-
+                                                        </li>                                                      
                                                     </ul>
-
-
                                                 </div>
-                                            </c:if>
-                                            
+                                            </c:if>                                         
                                         </form>
-
-
                                         <br/><br/><br/><br/>
                                     </div>
                                 </div>
@@ -403,14 +396,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+    
 </html>
 

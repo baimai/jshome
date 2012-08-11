@@ -1,22 +1,25 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- 
-    Document   : checkRole
-    Created on : Mar 14, 2012, 4:40:46 PM
-    Author     : Achilles
+<%--
+    Document   : jshome_CheckRole
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
     </head>
+    
     <body>
         <c:if test="${sessionScope.userRole != 'admin'}">
            <% response.sendRedirect("../Login.jsp");%>
         </c:if>
+
     </body>
+
 </html>
