@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.Database;
 //import model.colorMasterTable;
 //import model.entity.colorCodeMasterEntity;
+import model.entity.menuDetailMasterEntity;
 import model.entity.menuGroupMasterEntity;
 import model.entity.productDetailMasterEntity;
 import model.entity.productGroupMasterEntity;
+import model.menuDetailMasterTable;
 import model.menuGroupMasterTable;
 import model.productDetailMasterTable;
 import model.productGroupMasterTable;
@@ -96,6 +98,23 @@ public class remove extends HttpServlet {
                     } else {
                         db.close();
                         response.sendRedirect("MenuGroup.jsp?error=1");
+                    }
+
+                }else if (request.getParameter("menuCodeId") != null && !request.getParameter("menuCodeId").equals("")) {
+                    menuDetailMasterEntity md = new menuDetailMasterEntity();
+                    menuDetailMasterTable mdt = new menuDetailMasterTable(db);
+                    md.setCompanyId(Company_Id);
+                    md.setMenuCodeId(Integer.parseInt(request.getParameter("menuCodeId")));
+                    out.println("menuGroupId>>>"+md.getMenuGroupId());
+                    Boolean checkChild = mdt.checkChild(md);
+                   //  out.println("menuGroupId2>>>"+mg.getMenuGroupId());
+                    if (checkChild == false) {
+                         out.print("menuGroupId"+md.getMenuGroupId());
+                        mdt.remove(md);
+
+                    } else {
+                        db.close();
+                        response.sendRedirect("menuDetailMaster.jsp?error=1");
                     }
 
                 }
