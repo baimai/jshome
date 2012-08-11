@@ -1,15 +1,15 @@
 <%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
+    Document   : jshome_Company
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
-<%@ include file="checkRole.jsp" %>
+
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+
 <c:if test="${applicationScope.Company_Id!=null}">
     <sql:query var="company1" dataSource="webdb">
         SELECT * from company_master cpm
@@ -17,30 +17,36 @@
     </sql:query>
 </c:if>
 
+<!DOCTYPE html>
 <html>
     <head>
+        <title>jshome</title>
+        <link type="text/css" href="development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.jqgrid.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.multiselect.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <!--  <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />-->
-         <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
-        <title>JSP Page</title>
+        <script type="text/javascript" src="js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/ccard.js"></script>
+        <script type="text/javascript" src="js/prototype/validation.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="js/varien/js.js"></script>
+        <script type="text/javascript" src="js/varien/form.js"></script>
+        <script type="text/javascript" src="js/varien/menu.js"></script>
+        <script type="text/javascript" src="js/mage/translate.js"></script>
+        <script type="text/javascript" src="js/mage/cookies.js"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     </head>
+
     <body>
         <div id="art-main">
             <div class="art-sheet">
@@ -65,10 +71,8 @@
                                         </div>
                                         <form action="companyMasterController.do" method="post" id="form-validate" enctype="multipart/form-data" >
                                             <c:if test="${applicationScope.Company_Id==null}" >
-
                                                 <div class="buttons-set">
                                                     <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
-
                                                     <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
                                                     <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
                                                 </div>
@@ -90,7 +94,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </li>
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -106,8 +109,6 @@
                                                                     <label align="right">Cataloge</label>
                                                                     <div class="input-box">
                                                                         <input type="file" name="uploadcataloge" value=""  class="input-text" />
-
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -173,10 +174,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </li>
-
-
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
@@ -223,7 +221,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">Amphur</label>
@@ -231,7 +228,6 @@
                                                                         <input type="text" name="companyAmphurE" value=""  class="input-text" />
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                         </li>
                                                         <li class="fields">
@@ -243,7 +239,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">Province</label>
@@ -252,8 +247,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-
                                                         </li>
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -274,7 +267,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">โทรศัพท์ 2</label>
@@ -283,7 +275,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">โทรศัพท์ 3</label>
@@ -313,13 +304,11 @@
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">โทรสาร 3</label>
-
                                                                     <div class="input-box">
                                                                         <input type="text" name="companyFax3" value=""  class="input-text" />
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </li>
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -370,7 +359,6 @@
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
                                                                     <label align="right">เว็บไซด์</label>
-
                                                                     <div class="input-box">
                                                                         <input type="text" name="companyEmail3" value=""  class="input-text" />
                                                                     </div>
@@ -389,19 +377,13 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </li>
-
                                                     </ul>
-
-
                                                 </div>
                                             </c:if>
                                             <c:if test="${applicationScope.Company_Id!=null}" >
                                                 <div class="buttons-set">
                                                     <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
-
-
                                                     <button name="action" value="Edit" class="button" ><span><span>แก้ไข</span></span></button>
                                                 </div>
                                                 <c:forEach var="company" items="${company1.rows}" >
@@ -424,7 +406,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
@@ -444,11 +425,10 @@
                                                                             <label for="firstname">Header Website</label>
                                                                         </c:if>
                                                                         <input type="file" name="uploadhead" class="input-text"/>
-
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                             <li class="fields">
+                                                            <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right"class="required"><em>*</em>Company Logo</label>
@@ -551,10 +531,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </li>
-
-
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
@@ -601,7 +578,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right">อำเภอ(อังกฤษ)</label>
@@ -609,7 +585,6 @@
                                                                             <input type="text" name="companyAmphurE" value="${company.Company_Amphur_E}"  class="input-text" />
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
@@ -621,7 +596,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right">จังหวัด(อังกฤษ)</label>
@@ -630,8 +604,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
@@ -652,7 +624,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรศัพท์-2</label>
@@ -661,7 +632,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรศัพท์-3</label>
@@ -691,13 +661,11 @@
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right">โทรสาร-3</label>
-
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyFax3" value="${company.Company_Fax3}"  class="input-text" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
@@ -712,7 +680,6 @@
                                                                     <div class="field name-firstname">
                                                                         <label align="right">Mobile-2</label>
                                                                         <div class="input-box">
-
                                                                             <input type="text" name="companyMobile2" value="${company.Company_Mobile_2}"  class="input-text"/>
                                                                         </div>
                                                                     </div>
@@ -731,7 +698,6 @@
                                                                 <div class="customer-name">
                                                                     <div class="field name-firstname">
                                                                         <label align="right"class="required"><em>*</em>E-mail-บริษัท1</label>
-
                                                                         <div class="input-box">
                                                                             <input type="text" name="companyEmail1" value="${company.Company_Email_1}"  class="input-text required-entry validate-email"/>
                                                                         </div>
@@ -767,22 +733,15 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </li>
-
                                                         </ul>
-
-
                                                     </div>
                                                 </c:forEach>
                                             </c:if>
                                         </form>
-<script type="text/javascript">
-                                //<![CDATA[
-                                var dataForm = new VarienForm('form-validate', true);
-                                //]]>
-                            </script>
-
+                                        <script type="text/javascript">
+                                            var dataForm = new VarienForm('form-validate', true);
+                                        </script>
                                         <br/><br/><br/><br/>
                                     </div>
                                 </div>
@@ -790,13 +749,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
+
 </html>

@@ -1,19 +1,21 @@
 <%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
+    Document   : jshome_ManageProductDetail
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
-<%@ include file="checkRole.jsp" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
+<%@include file="checkRole.jsp" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <title>JSP Page</title>
+         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
     </head>
+
     <body>
       <div id="art-main">
             <div class="art-sheet">
@@ -26,16 +28,14 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <jsp:include page="manageProductDetailMaster.jsp"/>
-
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+    
 </html>
