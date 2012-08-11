@@ -41,7 +41,7 @@
                 postDataReturnText("remove.do",param,test);
                 $('#rowed1').trigger("reloadGrid");
             }
-            function test(){
+            function test(text){
 
             }
             function confirmDelete(id) {

@@ -29,14 +29,17 @@
         <script src="jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
+         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
 
              function remove(menuGroupId){
+               // var param = "Del"+"&menuGroupId="+menuGroupId;
                 var param = "menuGroupId="+menuGroupId+"&action=Del";
-                
-                postDataReturnText("remove.do",param,test);
-                window.location.href='MenuGroup.jsp';
+                alert(param);
+                 postDataReturnText("remove.do",param,test);
                 alret(menuGroupId);
+                window.location.href='MenuGroup.jsp';
+                
             }
             function test(text){
             }

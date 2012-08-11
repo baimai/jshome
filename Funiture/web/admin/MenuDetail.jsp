@@ -66,10 +66,11 @@
                 var t = date.split("/");  //ถ้าเจอวรรคแตกเก็บลง array t
                 return t[2]+"-"+t[0]+"-"+t[1];
             }
-            function remove(productGroupId){
+            function remove(menuCodeId){
                 var param = "menuCodeId="+menuCodeId+"&action=Del";
+                alert(param);
                 postDataReturnText("remove.do",param,test);
-                window.location.href='menuCodeId.jsp';
+                window.location.href='menuDetail.jsp';
                 //
             }
             function test(text){
