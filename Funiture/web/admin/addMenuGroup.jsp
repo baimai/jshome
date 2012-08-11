@@ -181,8 +181,6 @@
                                                 </div>
                                             </form>
                                         </c:if>
-
-
                                         <c:if test="${param.menuGroupId!=null}" >
                                             <form action="menuGroupMaster.do" method="post" id="form-validate"  >
                                                 <c:forEach var="menuGroupMaster" items="${query.rows}" >

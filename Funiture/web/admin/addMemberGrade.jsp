@@ -55,7 +55,6 @@
         <script type="text/javascript" src="js/mage/cookies.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     </head>
-
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -78,8 +77,6 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
-
-
                                         <%--<div class="warning_box">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                                         </div>--%>
@@ -107,7 +104,6 @@
                                                                     <input type="text" name="gradeNameT" value="" class="input-text" /></div>
                                                             </div>
                                                         </li>
-
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
@@ -115,7 +111,6 @@
                                                                     <input type="text" name="gradeNameE" value="" class="input-text"/></div>
                                                             </div>
                                                         </li>
-
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">

@@ -64,13 +64,7 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <!---<h1>ข้อมูลบริษัท</h1>-->
-                                        </div>
-
-
-                                        <%--<div class="warning_box">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-                                        </div>--%>
-
+                                        </div>                                       
                                         <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                         <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                         <c:if test="${param.colorId==null}" >
