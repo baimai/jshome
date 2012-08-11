@@ -1,13 +1,15 @@
-<%-- 
-    Document   : productDetail
-    Created on : 17 พ.ย. 2554, 10:14:12
-    Author     : Achilles
+<%--
+    Document   : jshome_ProductDetail
+    Created on : 8 ส.ค. 2555, 13:56
+    Author     : Sarawut
 --%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 <sql:query var="queryProduct" dataSource="webdb">
     SELECT *,cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag
     FROM product_detail_master pdm
@@ -17,6 +19,7 @@
     join company_master cm on cm.company_id = pdm.company_id
     where pdm.product_detail_Id = ${param.productDetailId}
 </sql:query>
+
 <sql:query var="queryRelate" dataSource="webdb">
     select *,cm.show_stock_balance_flag,cm.show_price_list_flag,cm.show_order_flag from (
     (select * from product_detail_master pdm
@@ -35,35 +38,36 @@
     order by rand()
     limit 2
 </sql:query>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
+
     <head>
         <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/calendar-win2k-1.css" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link type="text/css" href="development-bundle/themes/base/ui.all.css" rel="stylesheet" />
 
-        <link rel="stylesheet" type="text/css" href="jshome/css/calendar-win2k-1.css" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-        <link type="text/css" href="jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
-        <script type="text/javascript" src="jshome/ui/jquery.ui.core.js"></script>
-        <script src="jshome/js/jquery-1.7.1.min.js" type="text/javascript"></script>
-       	<script src="jshome/external/bgiframe/jquery.bgiframe.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.ui.widget.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.ui.mouse.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.ui.draggable.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.ui.position.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.ui.resizable.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.ui.dialog.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.effects.core.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.effects.blind.js" type="text/javascript"></script>
-        <script src="jshome/ui/jquery.effects.explode.js" type="text/javascript"></script>
-
+        <script type="text/javascript" src="ui/jquery.ui.core.js"></script>
+        <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+       	<script src="external/bgiframe/jquery.bgiframe.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.widget.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.mouse.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.draggable.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.position.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.resizable.js" type="text/javascript"></script>
+        <script src="ui/jquery.ui.dialog.js" type="text/javascript"></script>
+        <script src="ui/jquery.effects.core.js" type="text/javascript"></script>
+        <script src="ui/jquery.effects.blind.js" type="text/javascript"></script>
+        <script src="ui/jquery.effects.explode.js" type="text/javascript"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
+
             function addToCart(){
                 if(document.getElementById('qty').value > 0){
                     var productDetailId = document.getElementById('productDetailId').value ;
@@ -103,9 +107,8 @@
                 });
             });
         </script>
-
-
     </head>
+
     <body>
         <div id="art-main">
             <div class="art-sheet">
@@ -119,12 +122,9 @@
                     <jsp:include page="head.jsp"/>
                     <br><br>
                     <c:forEach var="product" items="${queryProduct.rows}">
-                        <%-- product detail --%>
                         <div class="wrapper">
-
                             <div class="page">
                                 <div class="main-container col2-right-layout">
-
                                     <div class="main">
                                         <div class="col-main">
                                             <div class="page-title">
@@ -138,16 +138,12 @@
                                                             <input type="hidden" name="product" value="51" />
                                                             <input type="hidden" name="related_product" id="related-products-field" value="" />
                                                         </div>
-
                                                         <div class="product-shop">
                                                             <div class="product-name">
                                                                 ${product.product_d_name_t}
                                                             </div>
-
                                                             <div class="product-name">รหัสสินค้า :${product.product_code}</div>
-
                                                             <div class="product-name">ประเภทสินค้า  : ${product.product_g_name_t}</div>
-
                                                             <div class="product-name">สถานะสินค้า  : <c:if test="${product.balance != null&&product.balance !=''}">${product.balance}</c:if></div>                                                           
                                                             <c:if test="${product.show_price_list_flag == 'W'}">
                                                                 <c:if test="${propduct.product_price1 != null}">
@@ -204,20 +200,20 @@
                                                                 </c:if>
                                                             </c:if>
                                                             <div class="add-to-box">
-                                                                 <div class="add-to-cart">                                                  
-                                                                        <input type="hidden" id="productDetailId" name="productDetailId" value="${product.product_detail_id}" />
-                                                                        <input type="hidden" id="productName" name="productName" value="${product.product_d_name_t}" />
-                                                                        <input type="hidden" id="productCode" name="productCode" value="${product.product_code}" />
-                                                                        <input type="hidden" id="productGroupId" name="productGroupId" value="${product.product_group_id}" />
-                                                                        <input type="hidden" id="productPrice" name="productPrice" value="${product.product_price1}" />
-                                                                        <input type="hidden" id="productPath" name="productPath" value="${product.product_d_pic_loc}"/>
-                                                                   <c:if test="${product.show_order_flag == 'Y'}">
-                                                                       <c:if test="${product.balance >= 1 }">
-                                                                        <label for="qty">จำนวน:</label>
-                                                                        <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
-                                                                        <button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
-                                                                       </c:if>
-                                                                   </c:if>
+                                                                <div class="add-to-cart">
+                                                                    <input type="hidden" id="productDetailId" name="productDetailId" value="${product.product_detail_id}" />
+                                                                    <input type="hidden" id="productName" name="productName" value="${product.product_d_name_t}" />
+                                                                    <input type="hidden" id="productCode" name="productCode" value="${product.product_code}" />
+                                                                    <input type="hidden" id="productGroupId" name="productGroupId" value="${product.product_group_id}" />
+                                                                    <input type="hidden" id="productPrice" name="productPrice" value="${product.product_price1}" />
+                                                                    <input type="hidden" id="productPath" name="productPath" value="${product.product_d_pic_loc}"/>
+                                                                    <c:if test="${product.show_order_flag == 'Y'}">
+                                                                        <c:if test="${product.balance >= 1 }">
+                                                                            <label for="qty">จำนวน:</label>
+                                                                            <input type="text" name="qty" id="qty" maxlength="12" value="" title="Qty" class="input-text qty" />
+                                                                            <button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="addToCart()"><span><span>เพิ่มไปยังตะกร้า</span></span></button>
+                                                                        </c:if>
+                                                                    </c:if>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -226,21 +222,14 @@
                                                             <div id="dialog"  title="${product.product_d_name_t}">
                                                                 <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}"/>
                                                             </div>
-
-
                                                             <div  id="opener">
                                                                 <img  src="${product.product_d_pic_loc}" alt="${product.product_d_name_t}" width="250px" height="150px" onclick="$( '#dialog' ).dialog( 'open' );"/>
-
                                                             </div>
                                                         </div>
-
                                                         <div class="clearer"></div>
                                                     </form>
-
                                                 </div>
-
                                                 <div class="product-collateral">
-
                                                     <div class="box-collateral box-additional">
                                                         <h2>รายละเอียด</h2>
                                                         <table class="data-table" id="product-attribute-specs-table">
@@ -297,81 +286,65 @@
                                                                 </c:if>
                                                             </tbody>
                                                         </table>
-
                                                     </div>
                                                     <div class="box-collateral box-description">
                                                         <h2>ข้อมูลเพิ่มเติม</h2>
                                                         <div class="std">
                                                             ${product.product_d_remark_t}   </div>
                                                     </div>
-
-
                                                 </div>
                                             </div>                </div>
                                             <jsp:include page="myCart.jsp" />
-                                            <%-- สินค้าแนะนำ --%>
-                                            <div class="col-right sidebar"><img src="images/P4.png" width="130" height="35" alt="P4"/>
-
+                                        <div class="col-right sidebar"><img src="images/P4.png" width="130" height="35" alt="P4"/>
                                             <div class="block block-cart">
                                                 <div class="block-title">
                                                     <strong></strong>
                                                 </div>
-
                                                 <div class="block-content">
                                                     <c:forEach var="relate" items="${queryRelate.rows}">
-
                                                         <div class="empty"  id="productList">
                                                             <div><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}"> <img width="90" height="40" src="${relate.product_d_pic_loc}"/></a></div>
                                                             <div><center><a href="productDetail.jsp?productDetailId=${relate.product_detail_id}">${relate.product_d_name_t}</a></center></div>
                                                             <c:if test="${relate.show_price_list_flag != 'N'}">
                                                                 <c:if test="${relate.show_price_list_flag == 'A'}">
-                                                                     
+
                                                                     <c:if test="${relate.product_price1 != null && relate.product_price1 != ''}">
                                                                         <div class="price-box"><center>
-                                                                        <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price1}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
-                                                                    </c:if>
-                                                                    <c:if test="${relate.product_price1 == null || relate.product_price1 == ''}">
+                                                                                <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price1}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
+                                                                            </c:if>
+                                                                            <c:if test="${relate.product_price1 == null || relate.product_price1 == ''}">
                                                                         <div class="price-box"><center>
-                                                                        <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price3}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
+                                                                                <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price3}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
+                                                                            </c:if>
+                                                                        </c:if>
+                                                                        <c:if test="${relate.show_price_list_flag == 'W'}">
+                                                                    <div class="price-box"><center>
+                                                                            <span class="regular-price" id="product-price-42" ><span class="price" >฿ <fmt:formatNumber value="${relate.product_price1}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
+                                                                        </c:if>
+                                                                        <c:if test="${relate.show_price_list_flag == 'R'}">
+                                                                    <div class="price-box"><center>
+                                                                            <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price3}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
+                                                                        </c:if>
                                                                     </c:if>
-                                                                </c:if>
-                                                                <c:if test="${relate.show_price_list_flag == 'W'}">
-                                                                    <div class="price-box"><center>
-                                                                        <span class="regular-price" id="product-price-42" ><span class="price" >฿ <fmt:formatNumber value="${relate.product_price1}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
-                                                                </c:if>
-                                                                <c:if test="${relate.show_price_list_flag == 'R'}">
-                                                                    <div class="price-box"><center>
-                                                                        <span class="regular-price" id="product-price-42" ><span class="price"  >฿ <fmt:formatNumber value="${relate.product_price3}" type="number" pattern="###,###,##0.00"  /></span></span></center></div>
-                                                                </c:if>
-
-                                                            </c:if>
-                                                            <c:if test="${relate.show_order_flag == 'Y'}"><center><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="window.location='productDetail.jsp?productDetailId=${relate.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button></center></c:if>
+                                                                    <c:if test="${relate.show_order_flag == 'Y'}"><center><button type="button" title="เพิ่มไปยังตะกร้า" class="button btn-cart" onclick="window.location='productDetail.jsp?productDetailId=${relate.product_detail_id}'"><span><span>เพิ่มไปยังตะกร้า</span></span></button></center></c:if>
                                                         </div>
                                                         <br/>
                                                     </c:forEach>
-
                                                 </div>
-
                                             </div>
                                         </div>
-                                        <%-- จบ สินค้าแนะนำ --%>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
-                    <%-- end product detail --%>
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
-      
-
     </body>
+
 </html>

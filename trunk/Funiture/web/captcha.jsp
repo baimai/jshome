@@ -1,13 +1,10 @@
-<%-- 
-    Document   : captcha
-    Created on : May 4, 2012, 12:22:57 PM
-    Author     : KCS09
+<%--
+    Document   : jshome_Captcha
+    Created on : 8 ส.ค. 2555, 10:26
+    Author     : Sarawut
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="javax.servlet.*"%>
@@ -149,13 +146,16 @@
  }
 %>
 
+<!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%--<title>JSP Page</title>--%>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
     </head>
+
     <body>
-        <%--<h1>Hello World!</h1>--%>
 
     </body>
+    
 </html>

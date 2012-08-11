@@ -65,7 +65,7 @@ body
   margin-top: 10px;
   margin-bottom: -5px;
   cursor:auto;
-  width: 1025px;
+  width: 1035px;
   z-index: 0;
   
 }
@@ -76,6 +76,7 @@ body
   padding: 5px;
     padding-top:35px;
     padding-bottom:5px;
+    width: 1025px;
 }
 
 .art-sheet-tr, .art-sheet-tl, .art-sheet-br, .art-sheet-bl, .art-sheet-tc, .art-sheet-bc,.art-sheet-cr, .art-sheet-cl

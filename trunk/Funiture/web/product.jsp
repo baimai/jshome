@@ -1,19 +1,22 @@
-<%-- 
-    Document   : product
-    Created on : 10 พ.ย. 2554, 15:27:59
-    Author     : Achilles
+<%--
+    Document   : jshome_Product
+    Created on : 8 ส.ค. 2555, 13:56
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+
     <head>
         <title>jshome</title>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <meta http-equiv="content-language" content="th" />
-        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="content-language" content="th" />
+
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+
         <style type="text/css">
             <!--
             body {
@@ -24,11 +27,8 @@
             }
             -->
         </style>
-
-
-
-        <!-- thumbnailScroller script -->
     </head>
+
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -44,25 +44,22 @@
                     <table  cellspacing="0" cellpadding="0" width="940px">
                         <tr>
                             <td valign="top"><br>
-                                
                                 <jsp:include page="menuLeft.jsp" />
                             </td>
-                            <td ><jsp:include page="productTab.jsp" /></td>
+                            <td >
+                                <jsp:include page="productTab.jsp" />
+                            </td>
                         </tr>
                     </table>
-
                     <br/><br/>
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
     </body>
+
 </html>
