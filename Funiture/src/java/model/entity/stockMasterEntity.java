@@ -16,8 +16,7 @@ public class stockMasterEntity {
     private int productDetailId;
     private int companyId;
     private int stockId;
-    private int quantity;
-   
+    private int quantity;   
     private Timestamp createDate;
     private Timestamp updateDate;
     private String userId;
@@ -26,6 +25,7 @@ public class stockMasterEntity {
     private productGroupMasterEntity productGroupMasterEntity;
     private productDetailMasterEntity  productDetailMasterEntity;
     private unitMasterEntity  unitMasterEntity;
+    private String productDetailCode ;
     /**
      * @return the productDetailId
      */
@@ -192,6 +192,20 @@ public class stockMasterEntity {
      */
     public void setUnitMasterEntity(unitMasterEntity unitMasterEntity) {
         this.unitMasterEntity = unitMasterEntity;
+    }
+
+    /**
+     * @return the productDetailCode
+     */
+    public String getProductDetailCode() {
+        return productDetailCode;
+    }
+
+    /**
+     * @param productDetailCode the productDetailCode to set
+     */
+    public void setProductDetailCode(String productDetailCode) {
+        this.productDetailCode = productDetailCode;
     }
 
 
