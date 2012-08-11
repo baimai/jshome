@@ -1,14 +1,13 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : listOrder
-    Created on : Mar 26, 2012, 5:01:27 PM
-    Author     : Achilles
+<%--
+    Document   : jshome_ListOrder
+    Created on : 8 ส.ค. 2555, 13:56
+    Author     : Sarawut
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+
 <sql:query var="query1" dataSource="webdb">
     select date_format(ohm.order_date,'วันที่ %d %M %Y เวลา %H:%i') as order_date,pdm.product_d_name_t,odm.product_volumn,
     odm.product_cost,odm.product_amount,odm.discount_TEXT
@@ -18,11 +17,15 @@
     join product_detail_master pdm on odm.product_detail_id = pdm.product_detail_id
     where DATE_FORMAT(ohm.order_date,'%Y-%m-%d') = '${param.date}' and mm.member_id = ${sessionScope.loginDetail.memberId}
 </sql:query>
+
+<!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>jshome</title>
     </head>
+
     <body>
         <table border="0" width="70%"  id="box-table-a">
             <thead>
@@ -49,4 +52,5 @@
             </c:forEach>
         </table>
     </body>
+    
 </html>

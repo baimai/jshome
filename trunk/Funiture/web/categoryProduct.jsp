@@ -1,16 +1,18 @@
-<%-- 
-    Document   : categoryProduct
-    Created on : 7 ธ.ค. 2554, 10:10:05
-    Author     : Achilles
+<%--
+    Document   : jshome_CategoryProduct
+    Created on : 8 ส.ค. 2555, 10:36
+    Author     : Sarawut
 --%>
+
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <c:if test="${param.menuType =='picId'}" >
+
     <sql:query var="query2" dataSource="webdb">
-         SELECT count(*) as count FROM(SELECT pps.pic_id,ppsd.pic_detail_id ,ppsd.Product_Detail_Id from pic_product_setup_detail ppsd left join pic_product_setup pps on pps.Pic_Id = ppsd.pic_id )pps
+        SELECT count(*) as count FROM(SELECT pps.pic_id,ppsd.pic_detail_id ,ppsd.Product_Detail_Id from pic_product_setup_detail ppsd left join pic_product_setup pps on pps.Pic_Id = ppsd.pic_id )pps
         join menu_detail_master md on pps.pic_id = md.Pic_id
         join product_detail_master pdm on pps.product_detail_id = pdm.product_detail_id
         left join stock_balance sb on sb.product_detail_id = pps.product_detail_id
@@ -18,6 +20,7 @@
         where md.Pic_id = '${param.menuId}' and pdm.product_d_display_flag = 'Y'
         Group by pps.pic_id
     </sql:query>
+
     <sql:query var="query3" dataSource="webdb">
         SELECT
         pps.company_id,pps.pic_id,pps.product_detail_id,md.menu_group_id,
@@ -34,23 +37,25 @@
         where pps.pic_id = '${param.menuId}' and pdm.product_d_display_flag = 'Y'
         Group by pps.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
-
-       
     </sql:query>
+
     <sql:query var="query4" dataSource="webdb" >
         select concat(menu_c_name_t) as name from menu_detail_master
         where pic_id = '${param.menuId}'
     </sql:query>
+
 </c:if>
+
 <c:if test="${param.menuType == 'group'}" >
+
     <sql:query var="query2" dataSource="webdb">
         SELECT count(*) as count FROM (select * from product_group_master pgm group by pgm.product_group_id) pgm
         join product_detail_master pdm on pgm.product_group_id = pdm.product_group_id
         left join stock_balance sb on sb.product_detail_id = pdm.product_detail_id
         left join unit_master um on um.unit_id = sb.unit_id
         where pdm.product_group_id = '${param.menuId}' and pdm.product_d_display_flag = 'Y'
-
     </sql:query>
+
     <sql:query var="query3" dataSource="webdb">
         SELECT
         pdm.product_detail_id,pdm.product_group_id,pdm.product_code,
@@ -66,20 +71,22 @@
         Group by pdm.product_detail_id
         limit ${(param.page-1)*param.show},${param.show}
     </sql:query>
+
     <sql:query var="query4" dataSource="webdb" >
         select concat(product_g_name_t) as name from  product_group_master pgm
         where pgm.product_group_id  = '${param.menuId}'
     </sql:query>
+
 </c:if>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <title>JSP Page</title>
+        <title>jshome</title>
     </head>
+
     <body >
         <div class="col-main">
             <div class="page-title category-title">
@@ -94,7 +101,7 @@
                             สินค้า ${((param.page-1)*param.show)+1} ถึง
                             <c:if test="${param.page == (total/param.show) }">${total}</c:if>
                             <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                           </p>
+                        </p>
                         <div class="limiter">
                             <c:if test="${param.page != 1}" >
                                 <a  href="#" title="Backward" style="text-decoration: none;"  onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
@@ -109,9 +116,6 @@
                                 <img src="images/icon/navigate-left-icon.png" width="18" height="18" alt="back" />
                             </c:if>
 
-                            <%--<c:if test="${param.page-4 > 0}">
-                                ...
-                            </c:if> --%>
                             <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
                                 <c:if test="${count >= (param.page-3)}">
                                     <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
@@ -123,11 +127,6 @@
                                     <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
                                 </c:if>
                             </c:forEach>
-                            <%--
-                            <c:if test="${param.page+4 < (total/param.show)}">
-                                ...
-                            </c:if>
-                            --%>
 
                             <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
                                 <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
@@ -144,7 +143,6 @@
                             <input type="text" id="pageNum" style="width:25px"/> <a href="#"style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},document.getElementById('pageNum').value,document.getElementById('menuType').value)" > ค้นหา! </a>
                         </div>
                     </div>
-
                     <div class="sorter">
                         <div class="sort-by" style="display: inline-block">
                             <label>เรียงลำดับจาก</label>
@@ -170,18 +168,15 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="productList">
                     <c:forEach  items="${query3.rows}" var="product"  varStatus="counter">
                         <c:if test="${(counter.count mod 3) == 1}">
                             <ul class="products-grid">
                                 <li class="item first">
                                 </c:if>
-
                                 <c:if test="${(counter.count mod 3) == 2}">
                                 <li class="item">
                                 </c:if>
-
                                 <c:if test="${(counter.count mod 3) == 0}">
                                 <li class="item last">
                                 </c:if>
@@ -201,7 +196,6 @@
                                                 <c:if test="${product.product_price2 == null}">
                                                     <span class="price"  >  <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></span>
                                                 </c:if>
-
                                             </c:if>
                                             <c:if test="${product.show_price_list_flag =='R'}">
                                                 <c:if test="${product.product_price3 != null && product.product_price4 <= 0}">
@@ -218,182 +212,182 @@
                                             <c:if test="${product.show_price_list_flag =='A'}">
                                                 <c:if test="${product.product_price1 == null && product.product_price2 == null
                                                               && product.product_price3 == null && product.product_price4 == null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 == null && product.product_price2 == null
                                                               && product.product_price3 == null && product.product_price4 != null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <c:if test="${product.product_price4 > 0 }">
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price4 > 0 }">
                                                         <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
-                                                      </c:if>
+                                                    </c:if>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 == null && product.product_price2 == null
                                                               && product.product_price3 != null && product.product_price4 == null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
-                                                      <c:if test="${product.product_price3 > 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
+                                                    <c:if test="${product.product_price3 > 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 == null && product.product_price2 == null
                                                               && product.product_price3 != null && product.product_price4 != null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
-                                                      <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
-                                                    </c:if>
-                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                    </c:if>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
-                                                              && product.product_price3 == null && product.product_price4 == null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <c:if test="${product.product_price2 > 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
-                                                              && product.product_price3 == null && product.product_price4 != null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <c:if test="${product.product_price2 > 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                       <c:if test="${product.product_price4 > 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
-                                                      </c:if>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
-                                                              && product.product_price3 != null && product.product_price4 == null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <c:if test="${product.product_price2 > 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price3 > 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
-                                                              && product.product_price3 != null && product.product_price4 != null}">
-                                                      <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <c:if test="${product.product_price2 > 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
-                                                              && product.product_price3 == null && product.product_price4 == null}">
-                                                    <c:if test="${product.product_price1 > 0}">
-                                                    <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                    </c:if>
-                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
-                                                              && product.product_price3 == null && product.product_price4 != null}">
-                                                    <c:if test="${product.product_price1 > 0}">
-                                                    <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                    </c:if>
-                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <c:if test="${product.product_price4 > 0}">
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
-                                                      </c:if>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
-                                                              && product.product_price3 != null && product.product_price4 == null}">
-                                                    <c:if test="${product.product_price1 > 0}">
-                                                    <span class="price"  > ราคาขายส่ง : ฿<%--<s> --%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                     </c:if>
-                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
-                                                      <c:if test="${product.product_price3 > 0}">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--/s>--%></span><br/>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
-                                                      </c:if>
-                                                </c:if>
-                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
-                                                              && product.product_price3 != null && product.product_price4 != null}">
-                                                    <c:if test="${product.product_price1 > 0}">
-                                                    <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                    </c:if>
-                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
-                                                      <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
+                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
                                                         <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
                                                         <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
+                                                    </c:if>
+                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
                                                         <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
+                                                    </c:if>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
+                                                              && product.product_price3 == null && product.product_price4 == null}">
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price2 > 0 }">
+                                                        <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
+                                                              && product.product_price3 == null && product.product_price4 != null}">
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price2 > 0 }">
+                                                        <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price4 > 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
+                                                              && product.product_price3 != null && product.product_price4 == null}">
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price2 > 0 }">
+                                                        <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price3 > 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 == null && product.product_price2 != null
+                                                              && product.product_price3 != null && product.product_price4 != null}">
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price2 > 0 }">
+                                                        <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
+                                                              && product.product_price3 == null && product.product_price4 == null}">
+                                                    <c:if test="${product.product_price1 > 0}">
+                                                        <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
+                                                              && product.product_price3 == null && product.product_price4 != null}">
+                                                    <c:if test="${product.product_price1 > 0}">
+                                                        <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <c:if test="${product.product_price4 > 0}">
+                                                        <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
+                                                              && product.product_price3 != null && product.product_price4 == null}">
+                                                    <c:if test="${product.product_price1 > 0}">
+                                                        <span class="price"  > ราคาขายส่ง : ฿<%--<s> --%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
+                                                    <c:if test="${product.product_price3 > 0}">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--/s>--%></span><br/>
+                                                        <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                    </c:if>
+                                                </c:if>
+                                                <c:if test="${product.product_price1 != null && product.product_price2 == null
+                                                              && product.product_price3 != null && product.product_price4 != null}">
+                                                    <c:if test="${product.product_price1 > 0}">
+                                                        <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>--%>
+                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
+                                                        <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 != null && product.product_price2 != null
                                                               && product.product_price3 == null && product.product_price4 == null}">
-                                                      <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                    <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
+                                                        <span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                    </c:if>
+                                                    <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
+                                                        <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                    <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 != null && product.product_price2 != null
                                                               && product.product_price3 == null && product.product_price4 != null}">
-                                                      <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
+                                                    <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
                                                         <span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
                                                         <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
+                                                    </c:if>
+                                                    <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
                                                         <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                    </c:if>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>--%>
+                                                    <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 != null && product.product_price2 != null
                                                               && product.product_price3 != null && product.product_price4 == null}">
-                                                      <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
+                                                    <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
                                                         <span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
                                                         <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
-                                                      </c:if>
-                                                      <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
+                                                    </c:if>
+                                                    <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
                                                         <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      </c:if>
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
-                                                      <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
+                                                    </c:if>
+                                                    <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                    <%--<span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>--%>
                                                 </c:if>
                                                 <c:if test="${product.product_price1 != null && product.product_price2 != null
                                                               && product.product_price3 != null && product.product_price4 != null}">
                                                     <c:if test="${product.product_price1 > 0 && product.product_price2 > 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
+                                                        <span class="price"  > ราคาขายส่ง : ฿<s> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  > ราคาขายส่ง : ฿ <fmt:formatNumber value="${product.product_price2}" type="number"  pattern="###,###,##0.00"/></span><br/>
                                                     </c:if>
                                                     <c:if test="${product.product_price1 > 0 && product.product_price2 <= 0 }">
-                                                      <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                        <span class="price"  > ราคาขายส่ง : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price1}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
                                                     </c:if>
                                                     <c:if test="${product.product_price3 > 0 && product.product_price4 > 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
-                                                      <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
+                                                        <span class="price"  > ราคาขายปลีก : ฿<s> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/></s></span><br/>
+                                                        <span class="price"  > ราคาขายปลีก : ฿ <fmt:formatNumber value="${product.product_price4}" type="number"  pattern="###,###,##0.00"/></span>
                                                     </c:if>
                                                     <c:if test="${product.product_price3 > 0 && product.product_price4 <= 0 }">
-                                                      <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
+                                                        <span class="price"  > ราคาขายปลีก : ฿<%--<s>--%> <fmt:formatNumber value="${product.product_price3}" type="number"  pattern="###,###,##0.00"/><%--</s>--%></span><br/>
                                                     </c:if>
                                                 </c:if>
                                             </c:if>
@@ -423,7 +417,7 @@
                                 สินค้า ${((param.page-1)*param.show)+1} ถึง
                                 <c:if test="${param.page == (total/param.show) }">${total}</c:if>
                                 <c:if test="${param.page != (total/param.show) }">${param.page*param.show}</c:if>
-                               </p>
+                            </p>
                             <div class="limiter">
                                 <c:if test="${param.page != 1}" >
                                     <a  href="#" title="Backward" style="text-decoration: none" onclick="setProduct(document.getElementById('menuCode').value,${param.show},'1',document.getElementById('menuType').value)">
@@ -438,9 +432,6 @@
                                     <img src="images/icon/navigate-left-icon.png" width="15" height="15" alt="back" />
                                 </c:if>
 
-                                <%--<c:if test="${param.page-4 > 0}">
-                                    ...
-                                </c:if> --%>
                                 <c:forEach begin="1" step="1" end="${param.page-1}" var="count">
                                     <c:if test="${count >= (param.page-3)}">
                                         <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count},document.getElementById('menuType').value)">${count}</a>
@@ -452,11 +443,7 @@
                                         <a href="#" style="padding:3px 5px; color:#fff; background-color:#44b0dd; text-decoration:none;" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${count2},document.getElementById('menuType').value)">${count2}</a>
                                     </c:if>
                                 </c:forEach>
-                                <%--
-                                <c:if test="${param.page+4 < (total/param.show)}">
-                                    ...
-                                </c:if>
-                                --%>
+
                                 <c:if test="${param.page < ((total/param.show)+(1-((total/param.show)%1))%1) }">
                                     <a  href="#" title="Next" onclick="setProduct(document.getElementById('menuCode').value,${param.show},${param.page+1},document.getElementById('menuType').value)" style="text-decoration: none">
                                         <img src="images/icon/navigate-right-icon.png" width="15" height="15" alt="next"/>
@@ -500,6 +487,6 @@
                 </div>
             </div>
         </div>
-
     </body>
+
 </html>

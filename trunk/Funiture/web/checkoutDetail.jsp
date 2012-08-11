@@ -1,49 +1,43 @@
+<%--
+    Document   : jshome_CheckoutDetail
+    Created on : 8 ส.ค. 2555, 10:36
+    Author     : Sarawut
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html  >
+
     <title>jshome</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <!--[if lt IE 7]>
-<script type="text/javascript">
-//<![CDATA[
-var BLANK_URL = 'http://freedemo.templates-master.com/js/blank.html';
-var BLANK_IMG = 'http://freedemo.templates-master.com/js/spacer.gif';
-//]]>
-</script>
-<![endif]-->
-    <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
-    <script type="text/javascript" src="jshome/js/prototype/prototype.js"></script>
-    <script type="text/javascript" src="jshome/js/lib/ccard.js"></script>
-    <script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
-    <script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
-    <script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
-    <script type="text/javascript" src="jshome/js/scriptaculous/dragdrop.js"></script>
-    <script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
-    <script type="text/javascript" src="jshome/js/scriptaculous/slider.js"></script>
-    <script type="text/javascript" src="jshome/js/varien/js.js"></script>
-    <script type="text/javascript" src="jshome/js/varien/form.js"></script>
-    <script type="text/javascript" src="jshome/js/varien/menu.js"></script>
-    <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
-    <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
-    <script type="text/javascript" src="jshome/js/mage/centinel.js"></script>
-    <script type="text/javascript" src="jshome/js/varien/weee.js"></script>
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" type="text/css" href="http://freedemo.templates-master.com/skin/frontend/default/f002/css/styles-ie.css" media="all" />
-    <![endif]-->
-    <!--[if lt IE 7]>
-    <script type="text/javascript" src="http://freedemo.templates-master.com/js/lib/ds-sleight.js"></script>
-    <script type="text/javascript" src="http://freedemo.templates-master.com/skin/frontend/base/default/js/ie6.js"></script>
-    <![endif]-->
 
-    <script type="text/javascript">
-        //<![CDATA[
-        optionalZipCountries = [];
-        //]]>
+    <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+
+    <script type="text/javascript" src="js/prototype/prototype.js"></script>
+    <script type="text/javascript" src="js/lib/ccard.js"></script>
+    <script type="text/javascript" src="js/prototype/validation.js"></script>
+    <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+    <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+    <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+    <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+    <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+    <script type="text/javascript" src="js/varien/js.js"></script>
+    <script type="text/javascript" src="js/varien/form.js"></script>
+    <script type="text/javascript" src="js/varien/menu.js"></script>
+    <script type="text/javascript" src="js/mage/translate.js"></script>
+    <script type="text/javascript" src="js/mage/cookies.js"></script>
+    <script type="text/javascript" src="js/mage/centinel.js"></script> <!-- ไม่มี -->
+    <script type="text/javascript" src="js/varien/weee.js"></script>
+    <script type="text/javascript">   
+        optionalZipCountries = [];  
     </script>
+
     <script type="text/javascript">var Translator = new Translate({"Credit card number doesn't match credit card type":"Credit card number does not match credit card type","Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.":"Please use only letters (a-z or A-Z), numbers (0-9) or underscores (_) in this field, first character must be a letter."});</script></head>
+
 <body class=" checkout-onepage-index">
     <div class="wrapper">
         <noscript>
@@ -55,7 +49,6 @@ var BLANK_IMG = 'http://freedemo.templates-master.com/js/spacer.gif';
             </div>
         </noscript>
         <div class="page">
-
             <div class="main-container col2-right-layout">
                 <div class="main">
                     <div class="col-main">
@@ -656,9 +649,10 @@ var BLANK_IMG = 'http://freedemo.templates-master.com/js/spacer.gif';
                                     </dl>
                                 </div>
                             </div></div></div>
-
-
                 </div>
             </div>
-            </body>
-            </html>
+        </div>
+    </div>
+</body>
+
+</html>

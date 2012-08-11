@@ -1,6 +1,6 @@
 <%--
     Document   : jshome_head
-    Created on : 7 ส.ค. 2555, 12:36
+    Created on : 8 ส.ค. 2555, 13:36
     Author     : Sarawut
 --%>
 
@@ -22,7 +22,6 @@
 <html>
 
     <head>
-
         <title>jshome</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,7 +36,7 @@
         <link rel="icon" href="images/js.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="css/validator.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/validator.css" type="text/css" media="all" /> <!-- ไม่มี -->
         <link rel="stylesheet" href="css/top_menu.css" type="text/css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
@@ -48,8 +47,8 @@
         <script src="js/jquery-1.4.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/jquery-1.7.2-ui.min.js"></script>
         <script type="text/javascript" src="js/top_menu.js"></script>
-
     </head>
+
     <body >
         <c:set var="itemNum" value="0" />
         <c:forEach items="${sessionScope.productList}" varStatus="counter">
@@ -77,7 +76,7 @@
                 </div>
                 <div class="box header-cart" id="header-cart">
                     <div class="shop-access">
-                       <a href="cartDetail.jsp" title="My Cart" class="top-link-cart">สินค้าในตระกร้า (${itemNum} รายการ)</a>
+                        <a href="cartDetail.jsp" title="My Cart" class="top-link-cart">สินค้าในตระกร้า (${itemNum} รายการ)</a>
                     </div>
                 </div>
             </div>
