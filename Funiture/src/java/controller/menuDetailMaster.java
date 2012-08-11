@@ -34,8 +34,8 @@ import model.menuGroupMasterTable;
  */
 public class menuDetailMaster extends HttpServlet {
 
-    private int menu_Code_Id;
-    private int menuCodeId;
+  //  private int menu_Code_Id;
+  //  private int menuCodeId;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -152,6 +152,7 @@ public class menuDetailMaster extends HttpServlet {
                         md.setUserId(lc.getUserId());
                       
                         if (mr.getParameter("action").equals("Add")) {
+                            
                             Boolean chechDuplicate = mdt.checkDuplicate(md);
                             if (chechDuplicate == false) {
                                 mdt.add(md);
@@ -168,8 +169,8 @@ public class menuDetailMaster extends HttpServlet {
                             out.print(md.getMenuCodeId());
                             mdt.remove(md);
                         }
-//                        out.println("menuCNameT" + md.getMenuCNameT());
-//                        out.println("menuCodeId" + md.getMenuCodeId());
+                        out.println("menuCNameT" + md.getMenuCNameT());
+                        out.println("menuCodeId" + md.getMenuCodeId());
                         // out.println("quantity" + pgm.getQuantity());
                         db.close();
                         if (mr.getParameter("action").equals("Edit")) {

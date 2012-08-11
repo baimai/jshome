@@ -91,20 +91,9 @@ public class menuGroupMaster extends HttpServlet {
             } else if (request.getParameter("action").equals("Edit")) {
                mgt.update(mg);
                out.print("hhhh....");
-//            out.println("getcompanyId...." +mg.getCompanyId());
-//            out.println("getMenuGroupId...." +mg.getMenuGroupId());
-//            out.println("getMenuGNameT...." +mg.getMenuGNameT());
-//            out.println("getMenuGNameE...." +mg.getMenuGNameE());
-//            out.println("getMenuPermission..." +mg.getMenuPermission());
-//            out.println("getShowListMenu..." +mg.getShowListMenu());
-//            out.println("getChkLoginSts...." +mg.getChkLoginSts());
-//            out.println("getMenuGIconLoc...." +mg.getMenuGIconLoc());
-//            out.println("getmenuGRemarkT...." +mg.getMenuGRemarkT());
-//            out.println("getmenuGRemarkE...." +mg.getMenuGRemarkE());
-//            out.println("getCreateDate..." +mg.getCreateDate());
-//            out.println("getUpdateDate.." +mg.getUpdateDate());
-//            out.println("getUserId.." +mg.getUserId());
+
             } else if (request.getParameter("action").equals("Del")) {
+out.println("ssss");
                 Boolean checkChild = mgt.checkChild(mg);
                 if (checkChild == false) {
                mgt.remove(mg);
