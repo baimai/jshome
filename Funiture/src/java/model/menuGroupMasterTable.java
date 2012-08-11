@@ -109,6 +109,7 @@ public class menuGroupMasterTable {
 
     public void remove(menuGroupMasterEntity mg) {
         String sql = "delete from menu_group_master where menu_group_id = ?";
+        System.out.println("sql");
         db.update(sql, mg.getMenuGroupId());
     }
 
@@ -165,12 +166,15 @@ public class menuGroupMasterTable {
         }
     }
 
-    public Boolean checkChild(menuGroupMasterEntity gm) {
+    public Boolean checkChild(menuGroupMasterEntity mg) {
         String sql = "SELECT COUNT(*) as COUNT FROM menu_group_master  gm "
                 + " Join menu_detail_master mdm on mdm.menu_group_id = gm.menu_group_id "
                 + " where gm.Company_Id = ? and gm.menu_group_id = ? ";
-        System.out.println("sql"+sql);
-        List<Map<String, Object>> result = db.queryList(sql, gm.getCompanyId(), gm.getMenuGroupId());
+       
+        List<Map<String, Object>> result = db.queryList(sql, mg.getCompanyId(), mg.getMenuGroupId());
+         System.out.println("gm.getMenuGroupId()"+mg.getMenuGroupId());
+         System.out.println("gm.getCompanyId()"+mg.getCompanyId());
+         System.out.println("sql"+sql);
         int checkChild = Integer.valueOf(result.get(0).get("COUNT").toString());
         return checkChild == 0 ? false : true;
     }
