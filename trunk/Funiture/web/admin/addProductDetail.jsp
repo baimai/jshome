@@ -1,12 +1,13 @@
-<%@ include file="checkRole.jsp" %>
+<%--
+    Document   : jshome_AddProductDetail
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
+--%>
+
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%-- 
-    Document   : addProductDetail
-    Created on : 13 ธ.ค. 2554, 17:10:20
-    Author     : Achilles
---%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:if test="${param.productDetailId!=null}">
     <sql:query var="query3" dataSource="webdb">
@@ -17,26 +18,29 @@
         where product_detail_id =  ${param.productDetailId}
     </sql:query>  
 </c:if>
+
 <sql:query var="query1" dataSource="webdb">
     SELECT pgm.product_g_name_t as groupName,pgm.product_group_id FROM product_group_master pgm
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     SELECT cc.color_name_t as colorName,cc.color_id FROM color_code_master cc
 </sql:query>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
     </head>
-   
-       
+
     <body>
-           <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                             
+        <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
         <form action="productDetail.do" method="post" enctype="multipart/form-data" >
 
             <table border="0" width="700px" >
@@ -166,10 +170,10 @@
 
                 </c:if>
                 <c:if test="${param.productDetailId!=null}" >
-                    
+
                     <c:forEach var="product" items="${query3.rows}" >
                         <input type="hidden" name="action" value="Edit" />
-                    <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
+                        <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
                         <tr>
                             <td colspan="2" align="right" >Product Group</td>
                             <td colspan="2">
@@ -297,6 +301,8 @@
                 </c:if>
             </table>
         </form>
-
+        <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+
 </html>
