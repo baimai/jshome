@@ -189,8 +189,8 @@ public class menuDetailMasterTable {
     }
 
     public Boolean checkDuplicate(menuDetailMasterEntity mdm) {
-        String sql = "SELECT * FROM menu_detail_master where company_id = ? and pic_id = ?";
-        List<Map<String, Object>> result = db.queryList(sql, mdm.getCompanyId(), mdm.getPicId());
+        String sql = "SELECT * FROM menu_detail_master where company_id = ? and Menu_Code_id = ?";
+        List<Map<String, Object>> result = db.queryList(sql, mdm.getCompanyId(), mdm.getMenuCodeId());
         return !result.isEmpty() ? true : false;
     }
 
