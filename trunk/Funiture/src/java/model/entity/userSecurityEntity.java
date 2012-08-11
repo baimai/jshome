@@ -24,6 +24,9 @@ private Timestamp approvedDate;
 private Timestamp holdDate;
 private Timestamp createDate;
 private Timestamp updateDate;
+private companyMasterEntity  companyMasterEntity;
+private String companyNameT;
+
 
     /**
      * @return the userId
@@ -183,6 +186,34 @@ private Timestamp updateDate;
 
     public void setCompanyId(String Str) {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    /**
+     * @return the companyMasterEntity
+     */
+    public companyMasterEntity getCompanyMasterEntity() {
+        return companyMasterEntity;
+    }
+
+    /**
+     * @param companyMasterEntity the companyMasterEntity to set
+     */
+    public void setCompanyMasterEntity(companyMasterEntity companyMasterEntity) {
+        this.companyMasterEntity = companyMasterEntity;
+    }
+
+    /**
+     * @return the companyNameT
+     */
+    public String getCompanyNameT() {
+        return companyNameT;
+    }
+
+    /**
+     * @param companyNameT the companyNameT to set
+     */
+    public void setCompanyNameT(String companyNameT) {
+        this.companyNameT = companyNameT;
     }
 
   

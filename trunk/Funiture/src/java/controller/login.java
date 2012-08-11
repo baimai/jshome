@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Database;
 import model.companyMasterTable;
+import model.entity.companyMasterEntity;
 import model.entity.memberMasterEntity;
 import model.entity.userSecurityEntity;
 import model.memberMasterTable;
@@ -48,6 +49,7 @@ public class login extends HttpServlet {
             memberMasterEntity mm = new memberMasterEntity();
             memberMasterTable mmt = new memberMasterTable(db);
             companyMasterTable cmt = new companyMasterTable(db);
+           
             userSecurityEntity us = new userSecurityEntity();
             userSecurityTable ust = new userSecurityTable(db);
             int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
@@ -79,12 +81,16 @@ public class login extends HttpServlet {
                 s.setAttribute("userRole","user");
                 response.sendRedirect("index.jsp");
             } else if (list2 != null) {
+                
                 userSecurityEntity data = (userSecurityEntity) list2.get(0);
+                 companyMasterEntity ce = new companyMasterEntity();
+                lc.setUserNameT(request.getParameter("userNameT"));
+                lc.setCompanyNameT(data.getCompanyMasterEntity().getCompanyNameT());
                 s.setAttribute("loginDetail", data);
                 s.setAttribute("userRole","admin");
                 response.sendRedirect("admin/orderHeader.jsp");
             } else {
-                request.setAttribute("invalid", "Invalid Username Or Password");
+                request.setAttribute("invalid", "ชื่อหรือรหัสผ่านไม่ถูกต้อง");
                 request.setAttribute("memberLogin", request.getParameter("memberLogin"));
                 RequestDispatcher obj = request.getRequestDispatcher("Login.jsp");
                 obj.forward(request, response);                
