@@ -1,0 +1,38 @@
+*{margin-left:10; padding:0;}
+body { background:url(../images/background.jpg) repeat; background-attachment:fixed; background-position: center;  }
+
+#navigation { width:950px; margin:0 auto; height:40px; margin-left:10}
+#nav-lt-curve{width:14px; float:left; height:40px;}
+#nav-rt-curve {width:14px; float:left; height:40px;}
+#navigation-mid { width:718px; float:left; background:url(../black-images/black-nav-bg.png) repeat-x; line-height:40px;}
+#navigation-mid ul { margin:0; padding:0; width:718px;}
+#navigation-mid li { float:left; width:102px; line-height:40px; background:url(../black-images/black-devider.png) no-repeat right center; text-align:center; font-family:Arial,Verdana,Helvetica, sans-serif; font-size:16px;  color:#fff; list-style-type:none;}
+#navigation-mid li a{ width:102px;  font-family:Arial, Helvetica, sans-serif; font-size:15px; color:#fff; float:left; list-style:none; text-decoration:none;display:block;  }
+#navigation-mid li a:hover {
+	background:url(../black-images/black-hover.png) no-repeat;
+	width:100px;
+	height:40px;
+	float:left;
+}
+#ser-panel {
+	width:198px;
+	float:left;
+	height:33px;
+	background:url(../black-images/black-nav-bg.png) repeat-x;
+	padding-top:6px;
+}
+.ser-inn-panel { width:198px; float:left; background:url(../black-images/search-int-bg.png) no-repeat; height:35px;}
+.ser-inn-panel input {
+	width:153px;
+	height:40px;
+	margin-left:2px;
+	display:inline;
+	border:none;
+	background:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#a5a5a5;
+	line-height:34px;
+	float:left;
+}
+.btn-ser { width:31px!important; float:left!important;height:34px!important; background:url(../black-images/btn-ser.png) no-repeat!important; cursor:pointer;}
