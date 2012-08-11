@@ -1,21 +1,26 @@
-<%@ include file="checkRole.jsp" %>
+<%--
+    Document   : jshome_AddProductSetupDetail
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
+--%>
+
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%--
-    Document   : test
-    Created on : 11 พ.ย. 2554, 12:52:39
-    Author     : Achilles
---%>
 <sql:query var="query" dataSource="webdb">
      SELECT * FROM pic_product_setup mdm
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM product_group_master pgm
 </sql:query>
+
 <sql:query var="query3" dataSource="webdb">
     SELECT * from product_group_master
 </sql:query>
+
 <c:if test="${param.picDetailId != null}">
     <sql:query var="query4" dataSource="webdb">
        SELECT * from pic_product_setup_detail pps
@@ -24,22 +29,24 @@
         where pps.pic_detail_id = ${param.picDetailId}
     </sql:query>
 </c:if>
+
 <input type="hidden" value="1" id="productGroupId" />
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <title>JSP Page</title>
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-        <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <title>jshome</title>
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
@@ -60,7 +67,6 @@
                 });
             });
         </script>
-
 
         <style type="text/css">
             #box-table-a
@@ -276,5 +282,7 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>
