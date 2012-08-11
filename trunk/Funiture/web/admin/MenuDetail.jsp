@@ -1,8 +1,9 @@
 <%--
-    Document   : menageMenuDetail
-    Created on : Jan 4, 2012, 3:49:26 PM
-    Author     : Baimai
+    Document   : jshome_MenuDetail
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
+
 <%@ include file="checkRole.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
@@ -33,30 +34,28 @@
 <c:forEach  items="${query3.rows}" var="list">
     <c:set var="listGroup" value="${listGroup}${list.menu_group_id}:${list.menu_g_name_e};" />
 </c:forEach>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>jqGrid Demos</title>
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.multiselect.css" />
-
-        <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery.layout.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-
-        <script src="../jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
-        <%--<script src="jqgrid4.2/js/jquery.jqGrid.src.js" type="text/javascript"></script> --%>
-        <script src="../jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
+        <title>jshome</title>
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.jqgrid.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.multiselect.css" />
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.layout.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
               $(function() {
@@ -184,8 +183,7 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
-
-
+        <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>

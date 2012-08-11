@@ -1,15 +1,15 @@
 <%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
+    Document   : jshome_ProductDetail
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+
 <c:if test="${param.productDetailId!=null}">
     <sql:query var="query3" dataSource="webdb">
         SELECT pdm.*,cm.company_code,pgm.product_group_code,ccm.color_code,sm.quantity,sb.balance  FROM product_detail_master pdm
@@ -21,41 +21,47 @@
         where pdm.product_detail_id =  ${param.productDetailId}
     </sql:query>
 </c:if>
+
 <sql:query var="query1" dataSource="webdb">
     SELECT pgm.product_g_name_t as groupName,pgm.product_group_id FROM product_group_master pgm
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     SELECT concat(cc.color_name_t) as colorName,cc.color_id FROM color_code_master cc
 </sql:query>
+
 <sql:query var="query4" dataSource="webdb">
     select u.unit_name_t as unitname , u.unit_id  from unit_master u
 </sql:query>
+
 <sql:query var="query5" dataSource="webdb">
     SELECT * FROM sale_discount_h_master sdh
 </sql:query>
+
+<!DOCTYPE html>
 <html>
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <script type="text/javascript" src="js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/ccard.js"></script>
+        <script type="text/javascript" src="js/prototype/validation.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="js/varien/js.js"></script>
+        <script type="text/javascript" src="js/varien/form.js"></script>
+        <script type="text/javascript" src="js/varien/menu.js"></script>
+        <script type="text/javascript" src="js/mage/translate.js"></script>
+        <script type="text/javascript" src="js/mage/cookies.js"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     </head>
     <body>
         <div id="art-main">
@@ -80,9 +86,7 @@
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
                                         <form action="productDetail.do" method="post" id="form-validate" enctype="multipart/form-data" >
-                                            <%--<div class="warning_box">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-                                            </div>--%>
+                                        
                                             <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                             <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
                                             <c:if test="${param.productDetailId==null}" >
@@ -175,13 +179,6 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-
-                                                        <!--- <li class="fields">
-                                                             <div   class="customer-name">
-                                                                 <div  class="field name-firstname">
-                                                                     <label for="firstname" >Product Max Sale</label>
-                                                                     <input name="productMaxSale" type="text" class="input-text" /></div>
-                                                             </div>-->
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
@@ -211,52 +208,7 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-
-
-                                                <!--- <div class="fieldset">
-                                                     <h2 class="legend">ราคา</h2>
-                                                     <ul class="form-list">
-                                                         <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div  class="field name-firstname">
-                                                                     <label for="firstname"class="required"><em>*</em>  Price 1</label>
-                                                                     <input name="price1" type="text"  class="input-text required-entry"/>
-
-                                                                     Baht (ราคาขายส่ง)
-
-                                                                 </div>
-                                                             </div>
-
-                                                         </li>
-
-                                                         <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname">Price 2</label>
-                                                                     <input name="price2" type="text"  class="input-text"/> Baht (ราคาขายส่ง Promotion)
-                                                                 </div>
-                                                             </div>
-                                                         </li>
-                                                         <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname"> Price 3</label>
-                                                                     <input name="price3" type="text"  class="input-text" /> Baht (ราคาขายปลีก)
-                                                                 </div>
-                                                             </div>
-                                                         </li>
-                                                         <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname">Price 4</label>
-                                                                     <input name="price4" type="text"  class="input-text"/> Baht (ราคาขายปลีก Promotion)
-                                                                 </div>
-                                                             </div>
-                                                         </li>
-                                                     </ul>
-                                                 </div>-->
                                                 <div class="fieldset">
-                                                    <!--- <h2 class="legend">ชื่อและ speck</h2>-->
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -292,21 +244,7 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <!--- <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname">โครงสร้างสินค้า 2</label>
-                                                                     <textarea name="spect3Th" cols="25" rows="2" class="input-text"></textarea>
-                                                                 </div> </div>
-                                                         </li>
-                                                         <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname">Product Spect 3 E</label>
-                                                                     <textarea name="spect3En" cols="25" rows="2" class="input-text"></textarea>
-                                                                 </div>
-                                                             </div>
-                                                         </li>-->
+                                                   
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
@@ -323,20 +261,7 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <!--- <li class="fields">
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname">ขนาดสินค้า 2</label>
-                                                                     <textarea name="spect5Th" cols="25" rows="2" class="input-text"></textarea>
-                                                                 </div>
-                                                             </div>
-                                                             <div class="customer-name">
-                                                                 <div class="field name-firstname">
-                                                                     <label for="firstname">Product Spect 5 E</label>
-                                                                     <textarea name="spect5En" cols="25" rows="2" class="input-text"></textarea>
-                                                                 </div>
-                                                             </div>
-                                                         </li>-->
+                                                        
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
@@ -442,7 +367,7 @@
                                                         <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
                                                     </div>
                                                     <div class="fieldset">
-                                                        <!--- <h2 class="legend">ตั้งค่า</h2>-->
+                                                        
                                                         <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
@@ -533,24 +458,11 @@
                                                                                 </c:if>
                                                                             </c:forEach>
                                                                         </select>
-                                                                        <!-- &nbsp;&nbsp;&nbsp; เพิ่ม <input type="text" name="qtyplus" value="0" size="5"/>
-                                                                         &nbsp;&nbsp;&nbsp; ลด <input type="text" name="qtyminus" value="0" size="5"/>-->
-                                                                    </div>
+                                                                      </div>
                                                                 </div>
                                                             </li>
-
-
-
                                                             <li class="fields">
-                                                                <!--- <div class="customer-name">
-                                                                     <div   class="field name-firstname">
-                                                                         <label for="firstname" >Product Max Sale</label>
-                                                                         <input name="productMaxSale" type="text" class="input-text"  value="${product.product_max_sale}"/>
-                                                                     </div>
-                                                                 </div>-->
-
-
-
+                                                             
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <label for="firstname" >Path เก็บรูปภาพ</label>
@@ -594,7 +506,7 @@
 
 
                                                     <div class="fieldset">
-                                                        <!---<h2 class="legend">ราคา</h2>-->
+                                                        
                                                         <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
@@ -754,7 +666,8 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+        <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>
 

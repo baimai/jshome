@@ -1,34 +1,40 @@
+<%--
+    Document   : jshome_Test
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%-- 
-    Document   : test
-    Created on : 11 พ.ย. 2554, 12:52:39
-    Author     : Achilles
---%>
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup pps
     join menu_detail_master mdm on mdm.pic_code = pps.pic_code
     group by pps.pic_code
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM product_group_master pgm
 </sql:query>
+
 <sql:query var="query3" dataSource="webdb">
     SELECT * from product_group_master
 </sql:query>
+
 <input type="hidden" value="1" id="productGroupId" />
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <title>JSP Page</title>
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-        <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
@@ -49,8 +55,6 @@
                 });
             });
         </script>
-
-
         <style type="text/css">
             #box-table-a
             {
@@ -84,10 +88,9 @@
                 color: #339;
             }
         </style>        
-    </head
+    </head>
+
     <body >
-
-
         <div id="art-main">
             <div class="art-sheet">
                 <div class="art-sheet-bl"></div>
@@ -99,10 +102,7 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br><br>
-
-
                     <form action="productSetup.do" >
-
                         <div id="dialog-form" title="Search Product">
                             <table >
                                 <tr>
@@ -131,8 +131,6 @@
 
                             </div>
                         </div>
-
-
                         <div id="users-contain" class="ui-widget">
 
                             <table     id="box-table-a">
@@ -172,22 +170,18 @@
                                     <td style="text-align: right">Product Remark En</td>
                                     <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
                                 </tr>
-                            </table>
-                            <%--<tr>
-                                <td valign="middle">Enter these letters:<br/>
-                                <img src="captcha.jsp" align="middle" alt="Enter the
-                                    characters appearing in this image" border="1"/></td>
-                                <td><input type="text" name="inCaptchaChars"/></td>
-                            </tr>--%>
+                            </table>                      
                         </div>
                         <button name="action" value="Add" >Save</button>
                     </form>
                 </div>
             </div>
             <div class="cleared"></div>
-        </div>
-
+        </div>\
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+
 </html>

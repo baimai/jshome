@@ -1,25 +1,25 @@
-<%@ include file="checkRole.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : manageProductSetup
-    Created on : Feb 14, 2012, 11:05:24 AM
-    Author     : Achilles
+<%--
+    Document   : jshome_SeqProductSetup
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
         <style type="text/css">
             body
             {
@@ -121,15 +121,6 @@
                                                                  <td align="center" >
                                                                     <input name="picSeq" type="text" value="${pic.picSeq}" style="width:100px;text-align: right;"/>
                                                                 </td>
-
-                                                                <%--<td align="center" style="background-color:navajowhite">
-                                                                    <div>
-                                                                        <a href="seqProductSetup.do?action=editSeq&status=minus&picId=${pic.picId}&picDetailId=${pic.picDetailId}">   <img src="../images/icon/arrow-up-blue.png" width="22" height="22" alt="Up"/> </a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="seqProductSetup.do?action=editSeq&status=plus&picId=${pic.picId}&picDetailId=${pic.picDetailId}">  <img src="../images/icon/arrow-down-blue.png" width="22" height="22" alt="Up"/> </a>
-                                                                    </div>
-                                                                </td> --%>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
@@ -150,12 +141,10 @@
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
-
-
-
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+    
 </html>

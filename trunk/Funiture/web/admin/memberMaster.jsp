@@ -1,17 +1,12 @@
-<%-- 
-    Document   : memberMaster
-    Created on : Dec 29, 2011, 12:14:30 PM
-    Author     : Baimai
---%>
-<%@ include file="checkRole.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%--
-    Document   : test
-    Created on : 11 พ.ย. 2554, 12:52:39
-    Author     : Achilles
+    Document   : jshome_MemberMaster
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <sql:query var="query1" dataSource="webdb">
@@ -21,32 +16,27 @@
     else 'InActive' end) as status FROM member_master mm;
 </sql:query>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>jqGrid Demos</title>
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.multiselect.css" />
-
-        <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery.layout.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-
-        <script src="../jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
-        <%--<script src="jqgrid4.2/js/jquery.jqGrid.src.js" type="text/javascript"></script> --%>
-        <script src="../jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
-
-        <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
-        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
-        <script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.jqgrid.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.multiselect.css" />
+        <link type="text/css" href="development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.layout.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="ui/jquery.ui.datepicker.js"></script>
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
@@ -90,9 +80,8 @@
             });
         </script>
     </head>
+    
     <body >
-
-
         <center>
             
             <table id="rowed1"></table>
@@ -101,5 +90,8 @@
             <table id="rowed2"></table>
         </center>
         <br/><br/><br/>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+    
 </html>

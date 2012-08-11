@@ -1,15 +1,15 @@
-
 <%--
-    Document   : test
-    Created on : 11 พ.ย. 2554, 12:52:39
-    Author     : Achilles
+    Document   : jshome_MenuDetaiMaster
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ include file="checkRole.jsp" %>
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:if test="${param.menuCodeId!=null}">
     <sql:query var="query" dataSource="webdb">
       Select pgm.Company_Id,
@@ -31,6 +31,7 @@
         Left join pic_product_setup pps on pps.Pic_id=pgm.Pic_id
         where pgm.menu_Code_Id =  ${param.menuCodeId}
     </sql:query>
+
 </c:if>
         <sql:query var="query1" dataSource="webdb">
     SELECT m.Menu_Group_Id,m.Menu_G_Name_T FROM menu_Group_Master m
@@ -39,35 +40,33 @@
     SELECT m.Pic_id,m.Pic_Code FROM pic_product_setup m
         </sql:query>
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <script type="text/javascript" src="../jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="../jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="../jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="../jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="../jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="../jshome/js/mage/cookies.js"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
-
-
-        <title>JSP Page</title>
-
-
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <script type="text/javascript" src="js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/ccard.js"></script>
+        <script type="text/javascript" src="js/prototype/validation.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="js/varien/js.js"></script>
+        <script type="text/javascript" src="js/varien/form.js"></script>
+        <script type="text/javascript" src="js/varien/menu.js"></script>
+        <script type="text/javascript" src="js/mage/translate.js"></script>
+        <script type="text/javascript" src="js/mage/cookies.js"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     </head>
+
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -365,7 +364,8 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>
 
