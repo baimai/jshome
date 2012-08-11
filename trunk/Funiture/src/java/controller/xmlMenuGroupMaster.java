@@ -42,9 +42,10 @@ public class xmlMenuGroupMaster extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+          request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-              // response.setContentType("text/xml;charset=UTF-8");
+              response.setContentType("text/xml;charset=UTF-8");
                 int rows = 20, page = 1;
                 if (request.getParameter("rows") != null && !request.getParameter("rows").equals("")) {
                     String r = request.getParameter("rows");
