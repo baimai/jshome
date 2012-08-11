@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import model.entity.companyMasterEntity;
 import model.entity.userSecurityEntity;
 import util.Column;
 import util.Default;
@@ -128,18 +129,23 @@ public class userSecurityTable {
     }
 
     public ArrayList chkUserPass(userSecurityEntity us) {
-        String sql = "select * from user_security where user_id = ? and user_password = MD5(?) and Company_Id = ? and user_alive_sts = 'A' ";
+        String sql = "select * from user_security us join company_master cm on us.Company_Id = cm.Company_Id  where us.user_id = ? and us.user_password = MD5(?) and us.Company_Id = ? and us.user_alive_sts = 'A' ";
         List<Map<String, Object>> result = db.queryList(sql, us.getUserId(), us.getUserPassword(), us.getCompanyId());
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
             userSecurityEntity us2 = new userSecurityEntity();
+            companyMasterEntity cm2 = new companyMasterEntity();
             us2.setUserId((String) result.get(0).get("User_Id"));
             us2.setUserPassword((String) result.get(0).get("User_Password"));
             us2.setUserNameT((String) result.get(0).get("User_Name_T"));
             us2.setUserNameE((String) result.get(0).get("User_Name_E"));
             us2.setUserAliveSts((String) result.get(0).get("User_Alive_Sts"));
             us2.setUserAuthoritySts((String) result.get(0).get("User_Authority_Sts"));
+            cm2.setCompanyNameT((String) result.get(0).get("Company_Name_T"));
+            us2.setCompanyMasterEntity(cm2);
+
             list.add(us2);
+            
             return list;
         } else {
             return null;

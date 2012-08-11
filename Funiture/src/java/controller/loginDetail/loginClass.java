@@ -5,6 +5,8 @@
 
 package controller.loginDetail;
 
+import model.entity.companyMasterEntity;
+
 /**
  *
  * @author Achilles
@@ -17,6 +19,9 @@ public class loginClass {
     private String memberComAbbr;
     private int memberId;
     private String lang;
+    private String userNameT;
+    private companyMasterEntity  companyMasterEntity;
+    private String companyNameT;
 
     /**
      * @return the memberLogin
@@ -116,5 +121,50 @@ public class loginClass {
         this.memberId = memberId;
     }
 
+    /**
+     * @return the userNameT
+     */
+    public String getUserNameT() {
+        return userNameT;
+    }
+
+    /**
+     * @param userNameT the userNameT to set
+     */
+    public void setUserNameT(String userNameT) {
+        this.userNameT = userNameT;
+    }
+
+    /**
+     * @return the companyMasterEntity
+     */
+    public companyMasterEntity getCompanyMasterEntity() {
+        return companyMasterEntity;
+    }
+
+    /**
+     * @param companyMasterEntity the companyMasterEntity to set
+     */
+    public void setCompanyMasterEntity(companyMasterEntity companyMasterEntity) {
+        this.companyMasterEntity = companyMasterEntity;
+    }
+
+    /**
+     * @return the companyNameT
+     */
+    public String getCompanyNameT() {
+        return companyNameT;
+    }
+
+    /**
+     * @param companyNameT the companyNameT to set
+     */
+    public void setCompanyNameT(String companyNameT) {
+        this.companyNameT = companyNameT;
+    }
+
+    /**
+     * @return the userId
+     */
 
 }
