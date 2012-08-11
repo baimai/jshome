@@ -1,16 +1,15 @@
-<%@ include file="checkRole.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : searchProduct
-    Created on : Feb 27, 2012, 10:24:14 AM
-    Author     : Achilles
+<%--
+    Document   : jshome_SearchProduct
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <sql:query var="query" dataSource="webdb">
     select * from product_detail_master
     where product_code like '%${param.productCode}%' and
@@ -18,20 +17,24 @@
     product_group_id like '%${param.productGroupId}%'
     limit ${(param.page-1)*5},5
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     select count(*) as count from product_detail_master
    where product_code like '%${param.productCode}%' and
     product_d_name_t like '%${param.productName}%' and
     product_group_id like '%${param.productGroupId}%'
 </sql:query>
+
 <c:forEach items="${query2.rows}" var="rec">
     <c:set var="record" value="${rec.count}"/>
 </c:forEach>
 <html>
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>        
+        <title>jshome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
     </head>
+
     <body>
         <table width="500px">
             <thead>
@@ -57,7 +60,9 @@
                         </td>
                     </tr>
             </tbody>
-
         </table>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+
 </html>

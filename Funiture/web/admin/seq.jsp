@@ -1,19 +1,20 @@
-<%-- 
-    Document   : seq
-    Created on : May 9, 2012, 2:45:01 PM
-    Author     : KCS09
+<%--
+    Document   : jshome_Seq
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html>
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello World!</h1>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>

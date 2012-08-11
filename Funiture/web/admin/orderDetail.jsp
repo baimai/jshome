@@ -1,15 +1,14 @@
-<%@ include file="checkRole.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : orderDetail
-    Created on : Feb 8, 2012, 12:17:52 PM
-    Author     : Achilles
+<%--
+    Document   : jshome_OrderDetail
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+
 <sql:query var="query" dataSource="webdb">
     SELECT ohm.order_id,concat(mm.member_name,' ',mm.member_surname) as name,mm.Member_Com_Name,
     DATE_FORMAT(ohm.order_date, '%a %D %M %Y') as order_date,
@@ -30,32 +29,32 @@
     where ohm.order_id = ${param.orderId}
     group by ohm.order_id,ohm.order_date,ohm.order_status
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM order_header_master ohm where ohm.order_id = ${param.orderId}
 </sql:query>
+
+<!DOCTYPE html>
 <html>
+    <title>jshome</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>jqGrid Demos</title>
-    <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-    <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.jqgrid.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/ui.multiselect.css" />
-
-    <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-    <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-    <script src="../jqgrid4.2/js/jquery.layout.js" type="text/javascript"></script>
-    <script src="../jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-
-    <script src="../jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
-    <%--<script src="jqgrid4.2/js/jquery.jqGrid.src.js" type="text/javascript"></script> --%>
-    <script src="../jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-    <script src="../jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
-    <script src="../jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
+    <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+    <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/ui.multiselect.css" />
+    <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/jquery.layout.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/ui.multiselect.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
+    <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
+    <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     <script  type="text/javascript">
 
         jQuery(document).ready(function(){
@@ -102,6 +101,7 @@
         });
     </script>
 </head>
+
 <body class=" customer-account-login">
 
     <div id="art-main">
@@ -204,14 +204,11 @@
             </div>
         </div>
     </div>
-
-
     <div class="cleared"></div>
-
-
     <div class="cleared"></div>
     <p class="art-page-footer"></p>
-
-
+     <jsp:include page="footer.jsp" />
+                    <br/><br/>
 </body>
+
 </html>

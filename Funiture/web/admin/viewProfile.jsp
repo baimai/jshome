@@ -1,7 +1,14 @@
-<%@ include file="checkRole.jsp" %>
+<%--
+    Document   : jshome_ViewProfile
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
+--%>
+
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <sql:query var="query2" dataSource="webdb">
     select *,concat(cm1.name_) as tumbon,concat(cm2.name_) as amphur,concat(cm3.name_) as province, mm.Create_Date,mm.Update_Date from member_master mm
     join company_master cm on cm.company_id = mm.company_id
@@ -10,26 +17,27 @@
     join common_province cm3 on mm.member_province = cm3.id_
     where mm.member_Id = ${param.memberId}
 </sql:query>
+
 <sql:query var="query" dataSource="webdb">
     select * from common_province where level_=1
 </sql:query>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!DOCTYPE html>
 <html >
+
     <head>
-        <title>Create New Customer Account</title>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />       
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />       
-      
-        <link type="text/css" href="../jshome/themes/base/jquery.ui.all.css" rel="stylesheet" />
-        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
-        <script type="text/javascript" src="../jshome/ui/jquery.ui.tabs.js"></script>  
-    
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />       
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />       
+        <link type="text/css" href="themes/base/jquery.ui.all.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="ui/jquery.ui.tabs.js"></script>  
         <script type="text/javascript">
 
             $(function() {
@@ -44,8 +52,6 @@
             }
 
         </script>
-
-
     </head>
 
     <body class=" customer-account-create" >
@@ -60,18 +66,14 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br/><br/>
-
                     <c:forEach items="${query2.rows}" var="member" >
                         <div class="wrapper">
-
                             <div class="page">
-
-
-                            </div>        <div class="main-container col1-layout">
+                            </div>
+                            <div class="main-container col1-layout">
                                 <div class="main">
                                     <div class="col-main">
                                         <div class="account-create">
-
                                                     <div class="fieldset">
                                                         <input type="hidden" name="success_url" value="" />
                                                         <input type="hidden" name="error_url" value="" />
@@ -156,7 +158,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>-->
-                                                            <br></br>
+                                                            <br>
                                                             <h2 class="legend">ข้อมูลการติดต่อ</h2>
                                                             <li class="fields">
                                                                 <div class="field name-lastname">
@@ -265,7 +267,7 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            <br></br>
+                                                            <br>
                                                             <h2 class="legend">ข้อมูลการสมัคร</h2>
 
                                                             <li class="fields">
@@ -318,19 +320,14 @@
 
                                 </div></div></div>
                             </c:forEach>
-
-
-
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
-        
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+
 </html>

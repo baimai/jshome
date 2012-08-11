@@ -1,34 +1,36 @@
 <%--
-    Document   : color
-    Created on : Jan 22, 2012, 1:44:02 PM
-    Author     : Jik
+    Document   : jshome_Stock
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
+
 <%@ include file="checkRole.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <sql:query var="query" dataSource="webdb">
     select * from unit_master order by unit_name_t asc
 </sql:query>
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="../style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="../jshome/css/print.css" media="print" />
-        <link type="text/css" href="../jshome/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
-        <script type="text/javascript" src="../jshome/js/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="../jshome/ui/jquery.ui.core.js"></script>
-        <script type="text/javascript" src="../jshome/ui/jquery.ui.datepicker.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="../jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-        <script src="../jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <script src="../jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
+        <title>jshome</title>
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+        <link type="text/css" href="development-bundle/themes/base/ui.all.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="ui/jquery.ui.datepicker.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
@@ -214,6 +216,7 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
+        <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>
