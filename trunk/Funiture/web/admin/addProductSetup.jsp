@@ -35,11 +35,21 @@
         <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
         <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
-        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>           
+        <script type="text/javascript" src="js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/ccard.js"></script>
+        <script type="text/javascript" src="js/prototype/validation.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="js/varien/js.js"></script>
+        <script type="text/javascript" src="js/varien/form.js"></script>
+        <script type="text/javascript" src="js/varien/menu.js"></script>
+        <script type="text/javascript" src="js/mage/translate.js"></script>
+        <script type="text/javascript" src="js/mage/cookies.js"></script>
+        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
     </head>
-
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -50,59 +60,10 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                    <jsp:include page="header.jsp"/>                    <br><br>
-                    
-                    <c:if test="${param.picId == null}" >
-                        <form action="productSetup.do" >
-                            <div class="wrapper">
-                                <div class="page">
-                                </div>
-                                <div class="main-container col1-layout">
-                                    <div class="main">
-                                        <div class="col-main">
-                                            <div class="account-create">
-                                                <div class="page-title">
-                                                    <h1>จัดการรูปแสดงสินค้า</h1>
-                                                </div>
-                                                  <div class="buttons" align="right">
-                                                <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
-
-                                            </div>
-                                                <div id="users-contain" class="ui-widget">
-                                                    <table id="box-table-a">
-                                                        
-                                                        <tr>
-                                                            <td style="text-align: right">Pic Code</td>
-                                                            <td><input type="text" value="" id="picCode" name="picCode"  /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Pic Name Th</td>
-                                                            <td><input type="text" value="" id="picNameT" name="picNameT" size="40"/></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Pic Name En</td>
-                                                            <td><input type="text" value="" id="picNameE" name="picNameE" size="40" /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Product Remark Th</td>
-                                                            <td><input type="text" value="" id="productRemarkT" name="productRemarkT" size="40" /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Product Remark En</td>
-                                                            <td><input type="text" value="" id="productRemarkE" name="productRemarkE" size="40"/></td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </c:if>
-
-                    <c:if test="${param.picId != null}" >
+                    <jsp:include page="header.jsp"/>  <br><br>
+                    <div class="wrapper">
+                        <div class="page">
+                        </div>
                         <div class="main-container col1-layout">
                             <div class="main">
                                 <div class="col-main">
@@ -110,57 +71,114 @@
                                         <div class="page-title">
                                             <h1>จัดการรูปแสดงสินค้า</h1>
                                         </div>
-                                        <c:forEach var="product" items="${query4.rows}">
-
-                                                      <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                         <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                             
-                                            <form action="productSetup.do" >
-                                                 <div class="buttons" align="right">
-                                                <button name="action" value="Edit" class="button"><span><span>แก้ไข</span></span></button>
-
-                                            </div>
-                                                <div id="users-contain" class="ui-widget">
-                                                    <table id="box-table-a">
-                                                        
-                                                        <tr>
-                                                            <td style="text-align: right">Pic Code</td>
-                                                            <td><input type="text" value="${product.pic_code}" id="picCode" name="picCode" /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Pic Name Th</td>
-                                                            <td><input type="text" value="${product.pic_name_t}" id="picNameT" name="picNameT" size="40"/></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Pic Name En</td>
-                                                            <td><input type="text" value="${product.pic_name_e}" id="picNameE" name="picNameE" size="40" /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Product Remark Th</td>
-                                                            <td><input type="text" value="${product.product_remark_t}" id="productRemarkT" name="productRemarkT" size="40" /></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: right">Product Remark En</td>
-                                                            <td><input type="text" value="${product.product_remark_e}" id="productRemarkE" name="productRemarkE" size="40"/></td>
-                                                        </tr>
-                                                    </table>
-                                                    <input type="hidden" value="${product.pic_id}" name="picId" />
+                                        <c:if test="${param.picId == null}" >
+                                            <form action="productSetup.do" method="post" id="form-validate" >
+                                                <input type="hidden" name="action" value="Add" />
+                                                <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
+                                                <div class="fieldset">
+                                                    <ul class="form-list">
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" class="required"><em>*</em>รหัสลำดับแสดงสินค้า : </label>
+                                                                    <input type="text" value="" id="picCode" name="picCode"  class="input-text required-entry " /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" class="required"><em>*</em>คำอธิบาย(ไทย) :</label>
+                                                                    <input type="text" value="" id="picNameT" name="picNameT" value=""class="input-text required-entry " /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >คำอธิบาย(อังกฤษ) :</label>
+                                                                    <input type="text" value="" id="picNameE" name="picNameE" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname">หมายเหตุ(ไทย) :</label>
+                                                                    <textarea name="picRemarkT" rows="2" cols="20"  class="input-text" ></textarea></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname"> หมายเหตุ(อังกฤษ) :</label>
+                                                                    <textarea name="picRemarkE" rows="2" cols="20"  class="input-text" ></textarea></div>
+                                                            </div>
+                                                    </ul>
                                                 </div>
                                             </form>
+                                        </c:if>
+                                        <c:if test="${param.picId != null}" >
+                                            <form action="productSetup.do" method="post" id="form-validate"  >
+                                                <c:forEach var="product" items="${query4.rows}">
+                                                    <input type="hidden" name="action" value="Edit" />
+                                                    <input type="hidden" name="picId" value="${product.picId}"/>
+                                                    <div >
+                                                        <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                    </div>
+                                                    <div class="fieldset">
+                                                    <ul class="form-list">
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" class="required"><em>*</em>รหัสลำดับแสดงสินค้า :</label>
+                                                                    <input type="text" value="${product.pic_code}" id="picCode" name="picCode" class="input-text required-entry " readonly /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" class="required"><em>*</em>คำอธิบาย(ไทย) :</label>
+                                                                    <input type="text" value="${product.pic_name_t}" id="picNameT" name="picNameT" class="input-text required-entry " /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" >คำอธิบาย(อังกฤษ) :</label>
+                                                                    <input type="text" value="${product.pic_name_e}" id="picNameE" name="picNameE" class="input-text "  /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname">หมายเหตุ(ไทย) :</label>
+                                                                    <textarea name="picRemarkT" rows="2" cols="20" value="${product.pic_remark_t}" class="input-text" ></textarea></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div   class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname"> หมายเหตุ(อังกฤษ) :</label>
+                                                                   <textarea name="picRemarkT" rows="2" cols="20" value="${product.pic_remark_t}"  class="input-text" ></textarea></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul> </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:forEach>
-                    </c:if>
+                            </c:forEach>
+                        </c:if>
+                    </div>
                 </div>
             </div>
             <div class="cleared"></div>
         </div>
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
-    
+
 </html>

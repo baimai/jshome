@@ -44,7 +44,7 @@
                         {name:'updateDate',index:'updateDate', align:"center",width:110,editable:true,editoptions:{size:10}},
                         {name:'userId',index:'userId', align:"center",width:110,editable:true,editoptions:{size:10}},
                         {name:'picDetalId',index:'picDetalId', width:55,hidden:true,editable:true,editrules:{edithidden:true}},
-                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetup.jsp?picDetalId="+cellvalue+"\" ><img src=\"../images/icon/tag-blue.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetupDetail.jsp?picDetalId="+cellvalue+"\" ><img src=\"../images/icon/tag-blue.png\" width=\"16\" height=\"16\"/></a>"}},
                        
                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/ko-red.png\" width=\"16\" height=\"16\"/></a>"}},// {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
                     ]
