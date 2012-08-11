@@ -1,0 +1,49 @@
+#container {
+    width: 940px;
+    margin: 0px ;
+
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+#blob {
+    background: #0b2b61;
+    border-right: 1px solid #0059ec;
+    border-left: 1px solid #0059ec;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+   
+}
+/*
+#nav {
+    position: relative;
+    background: #292929;
+    float: left;
+}
+
+#nav li {
+    float: left;
+    list-style: none;
+    border-right: 1px solid #4a4a4a;
+    border-left: 1px solid black;
+}
+
+#nav li a {
+    color: #e3e3e3;
+    z-index: 2;
+    position: relative;
+    cursor: pointer;
+    float: left;
+    font-size: 15px;
+    font-family: "Tahoma","MS Sans Serif","Arial","Thonburi";
+    text-decoration: none;
+    padding: 8px 22px;
+    width: 100%;
+    
+
+}*/
+
