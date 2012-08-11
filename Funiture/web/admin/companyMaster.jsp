@@ -1,22 +1,20 @@
-<%-- 
-    Document   : companyMaster
-    Created on : Dec 28, 2011, 11:28:40 AM
-    Author     : Baimai
+<%--
+    Document   : jshome_CompanyMaster
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
-<%@ include file="checkRole.jsp" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+<%@include file="checkRole.jsp" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-
-        <title>JSP Page</title>
     </head>
-    <body >
 
+    <body >
         <div class="wrapper">
             <div class="page">
             </div>
@@ -53,7 +51,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </li>
                                          <li class="fields">
                                           <div class="customer-name">
@@ -61,8 +58,6 @@
                                                     <label align="right">Header Website</label>
                                                     <div class="input-box">
                                                         <input type="file" name="uploadhead" value=""  class="input-text" />
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -71,8 +66,6 @@
                                                     <label align="right">Cataloge</label>
                                                     <div class="input-box">
                                                         <input type="file" name="uploadcataloge" value=""  class="input-text" />
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,10 +131,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </li>
-
-
                                         <li class="fields">
                                             <div class="customer-name">
                                                 <div class="field name-firstname">
@@ -353,24 +343,18 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                          
-                                        </li>
-                                        
-                                    </ul>
-                                   
-
+                                            </div>                                       
+                                        </li>                                     
+                                    </ul>                                  
                                 </div>
-
                             </form>
-
-
                             <br/><br/><br/><br/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
 </html>

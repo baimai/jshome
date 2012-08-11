@@ -1,28 +1,27 @@
-<%-- 
-    Document   : header
-    Created on : 6 ธ.ค. 2554, 11:41:26
-    Author     : Baimai
+<%--
+    Document   : jshome_Header
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
-<%@ include file="checkRole.jsp" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@include file="checkRole.jsp" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html >
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Untitled Document</title>
         <link type="text/css" href="css/menu.css" rel="stylesheet" />
         <link rel="icon" href="images/js.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="css/style_main.css" type="text/css" media="screen" />
-         <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" /> 
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-        <%-- <script type="text/javascript" src="js/menu.js"></script> --%>
         <style type="text/css">
-
-
 
             div#menu {
                 top:170px;
@@ -53,9 +52,9 @@
             </div>
 
         </div>
-        <div><img src="images/head.jpg" width="100%" height="100"/> </div>
-
-
+        <div>
+            <img src="images/head.jpg" width="100%" height="100"/>
+        </div>
 
         <div id="menu">
             <ul class="menu">
@@ -73,15 +72,12 @@
                                 <li><a href="ProductGroup.jsp" class="parent"><span>กลุ่มสินค้า</span></a>
 
                                 </li>
-                                
+
                                 <li><a href="manageProductDetailMaster.jsp" class="parent"><span>รายการสินค้า</span></a>
 
                                 </li>
                                 <li><a href="stockMaster.jsp" class="parent"><span>รับสินค้าเข้าคลัง</span></a></li>
-                               
 
-
-                               
                             </ul></div>
                     </li>
                     <li><a href="#" class="parent"><span>จัดการเมนู</span></a>
@@ -96,7 +92,7 @@
                                 <li><a href="ProductSetupHeader.jsp" class="parent"><span>กำหนดชุดการแสดงสินค้า</span></a>
 
                                 </li>
-                                 <li><a href="ProductSetup.jsp" class="parent"><span>กำหนดรายการแสดงสินค้า</span></a>
+                                <li><a href="ProductSetup.jsp" class="parent"><span>กำหนดรายการแสดงสินค้า</span></a>
 
                                 </li>
                                 <li><a href="userSecurity.jsp" class="last"><span>ผู้ใช้</span></a></li>
@@ -139,7 +135,7 @@
                 </c:if>
             </ul>
         </div>
-
     </body>
+
 </html>
 

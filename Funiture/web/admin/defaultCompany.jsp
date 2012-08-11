@@ -1,24 +1,26 @@
-<%@ include file="checkRole.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : defaultCompany
-    Created on : 10 ม.ค. 2555, 10:46:37
-    Author     : Achilles
+<%--
+    Document   : jshome_DefaultCompany
+    Created on : 9 ส.ค. 2555, 15:19
+    Author     : Sarawut
 --%>
 
+<%@include file="checkRole.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <sql:query var="query" dataSource="webdb">
     SELECT * from Company_Master
 </sql:query>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html>
+
     <head>
+        <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
     </head>
+
     <body>
         <jsp:include page="header.jsp"/><br/><br/>
         <form action="defaultCompany.do" >
@@ -39,5 +41,8 @@
                 <input type="submit" value="Set Default" name="action"/>
             </center>
         </form>
+         <jsp:include page="footer.jsp" />
+                    <br/><br/>
     </body>
+    
 </html>
