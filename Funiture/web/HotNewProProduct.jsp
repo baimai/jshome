@@ -6,6 +6,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <sql:query var="query" dataSource="webdb">
     SELECT * FROM pic_product_setup_detail psd
@@ -16,6 +17,7 @@
     order by psd.pic_seq
     limit 0,6
 </sql:query>
+
 <sql:query var="query2" dataSource="webdb">
     SELECT * FROM pic_product_setup_detail psd
     join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
@@ -25,6 +27,7 @@
     order by psd.pic_seq
     limit 0,6
 </sql:query>
+
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM pic_product_setup_detail psd
     join product_detail_master pdm on psd.pic_detail_id = pdm.Product_Detail_Id
@@ -33,35 +36,21 @@
     where md.menu_model='003' and pdm.product_d_display_flag = 'Y'
     order by psd.pic_seq
     limit 0,6
-</sql:query>    
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+</sql:query>
+
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <title>jshome</title>
-
-
-
-        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" /> 
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
         <link href="css/movingboxes.css" media="screen" rel="stylesheet">
-        [if lt IE 9]>
 	<link href="css/movingboxes-ie.css" rel="stylesheet" media="screen" />
-	<![endif]-->
-
-        <!-- Required script -->
-
         <script src="js/jquery.movingboxes.js"></script>
-
-        <!-- Demo only -->
-
-
-
-
-
+        
         <style>
             /* Dimensions set via css in MovingBoxes version 2.2.2+ */
 
@@ -72,6 +61,7 @@
             #slider4 { width: 900px; }
             #slider4 li { width: 250px; }
         </style>
+
         <script>
             $(function(){
 
@@ -80,8 +70,8 @@
                         width: 500,
                         panelWidth: 0.5,
                      */
-                    startPanel   : 3,      // start with this panel
-                    wrap         : false,   // if true, the panel will "wrap" (it really rewinds/fast forwards) at the ends
+                    //startPanel   : 3,      // start with this panel
+                    wrap         : true,   // if true, the panel will "wrap" (it really rewinds/fast forwards) at the ends
                     buildNav     : true,   // if true, navigation links will be added
                     navFormatter : function(){ return "&#9679;"; } // function which returns the navigation text for each panel
                 });
@@ -109,6 +99,7 @@
             });
         </script>
     </head>
+
     <body>
         <div class="main-container col1-layout">
             <div class="main">
@@ -117,9 +108,8 @@
                     <c:forEach var="hotProduct" items="${query.rows}">
                         <li>
                             <a href="productDetail.jsp?productDetailId=${hotProduct.product_detail_id}" title="${hotProduct.Product_D_Name_T}">
-                                <img src="${hotProduct.Product_D_Pic_loc}" alt="title"/></a>
+                                <img src="${hotProduct.Product_D_Pic_loc}" alt="title" /></a>
                             <h2>${hotProduct.Product_D_Name_T}</h2>
-
                         </li>
                     </c:forEach>
                 </ul>
@@ -130,7 +120,6 @@
                             <a href="productDetail.jsp?productDetailId=${newProduct.product_detail_id}" title="${newProduct.Product_D_Name_T}">
                                 <img src="${newProduct.Product_D_Pic_loc}" alt="title"/></a>
                             <h2>${newProduct.Product_D_Name_T}</h2>
-
                         </li>
                     </c:forEach>
                 </ul>
@@ -141,12 +130,11 @@
                             <a href="productDetail.jsp?productDetailId=${proProduct.product_detail_id}" title="${proProduct.Product_D_Name_T}">
                                 <img src="${proProduct.Product_D_Pic_loc}" alt="title"/></a>
                             <h2>${proProduct.Product_D_Name_T}</h2>
-
                         </li>
                     </c:forEach>
                 </ul>
             </div>
         </div>
-
     </body>
+
 </html>

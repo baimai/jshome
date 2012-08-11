@@ -1,21 +1,22 @@
-<%-- 
-    Document   : contactDetail
-    Created on : Feb 2, 2012, 2:05:38 PM
-    Author     : Jik
+<%--
+    Document   : jshome_ContactDetail
+    Created on : 8 ส.ค. 2555, 10:36
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html">
 
+<!DOCTYPE html>
 <html>
+
     <head>
         <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
     </head>
+
     <div class="wrapper">
         <div class="page"></div>
     </div>
@@ -30,17 +31,14 @@
                         <div class="col2-set">
                             <div class="col-1 new-users">
                                 <div class="content">
-
                                     <h2>รายละเอียดการติดต่อ</h2>
-
-
                                     <ul class="form-list">
                                         <li class="fields">
                                             <div class="field">
                                                 <label for="name"class="required"><em>*</em>ชื่อ : </label>
-                                                    <div class="input-box">
-                                                        <input name="name" id="name" title="Name" value="" class="input-text required-entry" type="text" />
-                                                    </div>
+                                                <div class="input-box">
+                                                    <input name="name" id="name" title="Name" value="" class="input-text required-entry" type="text" />
+                                                </div>
                                             </div>
                                         </li>
                                         <li>
@@ -64,17 +62,13 @@
                                             </div>
                                         </li>
                                         <li class="field">
-
                                             <div class="input-box">
-
                                                 <input type="file" name="upload" class="input-text" />
-
                                             </div><br>
                                             <label for="comment" class="required"><em>*</em>ป้อนข้อมูลเพื่อยืนยัน : </label><br>
                                         </li>
                                         <br><br/>
                                         <li class="field">
-
                                             <img src="captcha.jsp" align="left" alt="Enter the characters appearing in this image" border="1"/>
                                         </li>
                                         <li>
@@ -88,9 +82,7 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
-
             </div>
             <jsp:include page="myCart.jsp" />
         </div>
@@ -98,7 +90,7 @@
     <jsp:include page="footer.jsp" />
     <br>
     <br>
-
 </body>
+
 </html>
 

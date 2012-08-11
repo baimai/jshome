@@ -1,26 +1,28 @@
-<%-- 
-    Document   : error
-    Created on : 26 ม.ค. 2555, 14:47:23
-    Author     : Achilles
+<%--
+    Document   : jshome_error
+    Created on : 8 ส.ค. 2555, 10:36
+    Author     : Sarawut
 --%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html>
+
     <head>
         <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
-        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
-        <!-- thumbnailScroller script -->
     </head>
+
     <body class=" customer-account-create">
         <div id="art-main">
             <div class="art-sheet">
@@ -31,15 +33,11 @@
                 <div class="art-sheet-cr"></div>
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
-                    <jsp:include page="head.jsp"/>
-                    <br><br>
-
+                    <jsp:include page="head.jsp"/><br><br>
                     <div class="wrapper">
-
                         <div class="page">
-
-
-                        </div>        <div class="main-container col1-layout">
+                        </div>
+                        <div class="main-container col1-layout">
                             <div class="main">
                                 <div class="col-main">
                                     <div class="account-create">
@@ -51,7 +49,6 @@
                                         <div class="discount">
                                             <h2 class="legend">${requestScope.error.errorCode}</h2>
                                         </div>
-
                                         <tr style="vertical-align:text-top">
                                             <td ><h2>Error Message</h2></td>
                                             <td><font size="4.5">${requestScope.error.header}</font></td>
@@ -75,7 +72,6 @@
                                                 </c:if>
                                             </c:forEach>
                                             <tr><td>&nbsp;<td><td>&nbsp;<td></tr>
-
                                         </c:if>
                                         <c:if test="${requestScope.error.remark != null}" >
                                             <tr style="vertical-align:text-top">
@@ -88,18 +84,13 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <jsp:include page="footer.jsp" />
-                    <br/><br/>
+                    <jsp:include page="footer.jsp" /><br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
     </body>
+
 </html>

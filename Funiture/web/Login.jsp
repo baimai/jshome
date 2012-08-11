@@ -1,24 +1,24 @@
+<%--
+    Document   : jshome_Login
+    Created on : 7 ส.ค. 2555, 12:36
+    Author     : Sarawut
+--%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- 
-    Document   : test
-    Created on : 11 พ.ย. 2554, 12:52:39
-    Author     : Achilles
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
-    <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
-        <title>Login jshome</title>
+
+    <head>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>jshome</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
 
-        <!-- thumbnailScroller script -->
     </head>
+
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -30,18 +30,16 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="head.jsp"/>
-                     <br><br><br>
-                     <jsp:include page="Login_Register.jsp" />
+                    <br><br><br>
+                    <jsp:include page="Login_Register.jsp" />
                     <jsp:include page="footer.jsp" />
-                     <br/><br/>
+                    <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
     </body>
+
 </html>

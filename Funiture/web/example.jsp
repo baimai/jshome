@@ -1,33 +1,29 @@
-<%-- 
-    Document   : example
-    Created on : 16 พ.ย. 2554, 12:04:22
-    Author     : Achilles
+<%--
+    Document   : jshome_example
+    Created on : 8 ส.ค. 2555, 10:36
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
+
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <title>Free CSS template by ChocoTemplates.com</title>
-        <link rel="stylesheet" href="jshome/css/style_1.css" type="text/css" media="all" />
+        <title>jshome</title>
 
-	<script src="jshome/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
-	<script src="jshome/js/jquery.slide.js" type="text/javascript"></script>
-	<script src="jshome/js/jquery-func.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="css/style_1.css" type="text/css" media="all" />
 
+        <script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+        <script src="js/jquery.slide.js" type="text/javascript"></script>
+        <script src="js/jquery-func.js" type="text/javascript"></script>
     </head>
-    <body>
 
-        <!-- Main -->
+    <body>
         <div id="main">
             <div class="shell">
-
-
-                <!-- Content -->
                 <div id="content">
-
-                    <!-- Tabs -->
                     <div class="tabs">
                         <ul>
                             <li><a href="#" class="active"><span>All Product</span></a></li>
@@ -36,14 +32,8 @@
                             <li><a href="#"><span>Promotion</span></a></li>
                         </ul>
                     </div>
-                    <!-- Tabs -->
-
-                    <!-- Container -->
                     <div id="container">
-
                         <div class="tabbed">
-
-                            <!-- First Tab Content -->
                             <div class="tab-content" style="display:block;">
                                 <div class="items">
                                     <ul>
@@ -130,7 +120,7 @@
 							    		Brand Name: <span>Adidas Shoes</span><br />
                                                 Product name : <br />
                                             </p><p class="price"> Price: <strong>53 USD</strong><a href="#"><img src="images/cart_add.png" alt="" /></a></p>
-                                           
+
                                         </li>
                                         <li>
                                             <div class="image">
@@ -148,9 +138,6 @@
                                     <div class="cl">&nbsp;</div>
                                 </div>
                             </div>
-                            <!-- End First Tab Content -->
-
-                            <!-- Second Tab Content -->
                             <div class="tab-content">
                                 <div class="items">
                                     <div class="cl">&nbsp;</div>
@@ -255,9 +242,7 @@
                                     <div class="cl">&nbsp;</div>
                                 </div>
                             </div>
-                            <!-- End Second Tab Content -->
 
-                            <!-- Third Tab Content -->
                             <div class="tab-content">
                                 <div class="items">
                                     <div class="cl">&nbsp;</div>
@@ -358,7 +343,6 @@
                                             </p>
                                             <p class="price"> Price: <strong>53 USD</strong><a href="#"><img src="images/cart_add.png" alt="" /></a></p>
                                         </li>
-
                                         <li>
                                             <div class="image">
                                                 <a href="#"><img src="images/image2.jpg" alt="" /></a>
@@ -459,8 +443,6 @@
                                     <div class="cl">&nbsp;</div>
                                 </div>
                             </div>
-                            <!-- End Third Tab Content -->
-                            <!-- Third Tab Content -->
                             <div class="tab-content">
                                 <div class="items">
                                     <div class="cl">&nbsp;</div>
@@ -661,23 +643,12 @@
                                     </ul>
                                     <div class="cl">&nbsp;</div>
                                 </div>
-                            </div>
-                            <!-- End Third Tab Content -->	
+                            </div>	
                         </div>
-
-
-
-
-
                     </div>
-                    <!-- End Container -->
-
                 </div>
-                <!-- End Content -->
-
             </div>
         </div>
-        <!-- End Main -->
-
     </body>
+
 </html>

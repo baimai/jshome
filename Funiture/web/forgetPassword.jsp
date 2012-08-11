@@ -1,14 +1,23 @@
+<%--
+    Document   : jshome_forgetPassword
+    Created on : 8 ส.ค. 2555, 10:36
+    Author     : Sarawut
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
+        <title>jshome</title>
 
+        <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
+
+        <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
     </head>
+
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -41,26 +50,21 @@
                                      <h2>อีเมลล์ &nbsp; </h2>
                                 </td>
                                 <td>
-                                    <input type="text" value="" name="memberEmail1" size="40"/>
-                                    
+                                    <input type="text" value="" name="memberEmail1" size="40"/>         
                                 </td>
                             </tr>
                         </table>
                     </form>
                     </center>
                     <br/><br/><br/><br/>
-
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-
     </body>
+    
 </html>
