@@ -1,18 +1,20 @@
-<%-- 
-    Document   : productDetail
-    Created on : 17 พ.ย. 2554, 10:14:12
-    Author     : Achilles
+<%--
+    Document   : jshome_Cart
+    Created on : 8 ส.ค. 2555, 12:36
+    Author     : Sarawut
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <title>ตะกร้าสินค้า</title>
+        <title>jshome</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
     </head>
+
     <body>
        <div id="art-main">
             <div class="art-sheet">
@@ -28,14 +30,11 @@
                     <jsp:include page="footer.jsp" />
                     <br/><br/>
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"><a href="http://www.2createawebsite.com/artisteer">Website Template created with Artisteer</a>.</p>
-
     </body>
+
 </html>

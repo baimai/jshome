@@ -19,31 +19,31 @@
 </sql:query>
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
 
     <head>
-         <title>slide</title>
+        <title>jshome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-       
         <link rel="stylesheet" href="css/default/default.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/pascal/pascal.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/orman/orman.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
-         <link rel="icon" href="images/js.ico" type="image/x-icon" />
+        <link rel="icon" href="images/js.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="images/js.ico" type="image/x-icon" />
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-        
+
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+
         <script type="text/javascript">
             $(window).load(function() {
                 $('#slider').nivoSlider();
             });
         </script>
-
     </head>
+
     <body>
         <div id="wrapper">
             <div class="slider-wrapper theme-default">
@@ -52,7 +52,6 @@
                     <c:forEach var="hotProduct" items="${query.rows}">
                         <img src="${hotProduct.Product_D_Pic_loc}" alt="" title="${hotProduct.Product_D_Name_T}"/>
                     </c:forEach>
-
                 </div>
                 <div id="htmlcaption" class="nivo-html-caption">
                     <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
@@ -60,4 +59,5 @@
             </div>
         </div>
     </body>
+
 </html>

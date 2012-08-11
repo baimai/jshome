@@ -1,45 +1,44 @@
+<%--
+    Document   : jshome_Member
+    Created on : 8 ส.ค. 2555, 13:56
+    Author     : Sarawut
+--%>
+
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <sql:query var="query" dataSource="webdb">
     select * from common_province where level_=1
 </sql:query>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!DOCTYPE html>
+<html >
+
     <head>
-        <title>Create New Customer Account</title>
         <title>jshome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <!--[if lt IE 7]>
-     <script type="text/javascript">
-     //<![CDATA[
-         var BLANK_URL = 'http://freedemo.templates-master.com/js/blank.html';
-         var BLANK_IMG = 'http://freedemo.templates-master.com/js/spacer.gif';
-     //]]>
-     </script>
-     <![endif]-->
-        <link rel="stylesheet" type="text/css" href="jshome/css/widgets.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/styles.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/custom.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="jshome/css/print.css" media="print" />
-        <script type="text/javascript" src="jshome/js/prototype/prototype.js"></script>
-        <script type="text/javascript" src="jshome/js/lib/ccard.js"></script>
-        <script type="text/javascript" src="jshome/js/prototype/validation.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/builder.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/effects.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/dragdrop.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/controls.js"></script>
-        <script type="text/javascript" src="jshome/js/scriptaculous/slider.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/js.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/form.js"></script>
-        <script type="text/javascript" src="jshome/js/varien/menu.js"></script>
-        <script type="text/javascript" src="jshome/js/mage/translate.js"></script>
-        <script type="text/javascript" src="jshome/js/mage/cookies.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+
+        <script type="text/javascript" src="js/prototype/prototype.js"></script>
+        <script type="text/javascript" src="js/lib/ccard.js"></script>
+        <script type="text/javascript" src="js/prototype/validation.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/builder.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/effects.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/dragdrop.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/controls.js"></script>
+        <script type="text/javascript" src="js/scriptaculous/slider.js"></script>
+        <script type="text/javascript" src="js/varien/js.js"></script>
+        <script type="text/javascript" src="js/varien/form.js"></script>
+        <script type="text/javascript" src="js/varien/menu.js"></script>
+        <script type="text/javascript" src="js/mage/translate.js"></script>
+        <script type="text/javascript" src="js/mage/cookies.js"></script>
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
-
-
         <script type="text/javascript">
-
 
             function changeCommonProvince(level,id){
                 var param = "level="+level+"&id="+id;
@@ -71,13 +70,13 @@
                     return false;
                 }else{
                     return true;
-                    // window.close();
                 }
             }
 
         </script>
 
     </head>
+
     <body class=" customer-account-create" onload="changeCommonProvince(2,1);changeCommonProvince(3,77)">
         <div class="wrapper">
             <div class="page">
@@ -158,123 +157,123 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <br></br><br></br>
-                                          <div class="content">
-                                        <h2 class="legend">ข้อมูลการติดต่อ</h2>
-                                        <img src="images/line.jpg" width="580" height="" alt=""/>
-                                        <li class="fields">
-                                            <div class="field name-lastname">
-                                                <label for="Adress1" class="required"><em>*</em>ที่อยู่-1 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberAddr1" id="Adress1" value="" title="Adress1" class="input-text required-entry validate-one-required" />
-                                                </div>
-                                            </div>
-                                            <div class="field name-lastname">
-                                                <label for="Adress2" >ที่อยู่-2 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberAddr2" id="Adress2" value="" title="Adress2" class="input-text " />
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="fields">
-                                            <div class="field name-lastname">
-                                                <label for="Province" >จังหวัด :</label>
-                                                <div class="selected" id="showProvince" >
-                                                    <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" >
-                                                        <c:forEach var="province" items="${query.rows}">
-                                                            <option value="${province.id_}">${province.name_}</option>
-                                                        </c:forEach>
+                                        <br><br><br><br>
 
-                                                    </select>
+                                        <div class="content">
+                                            <h2 class="legend">ข้อมูลการติดต่อ</h2>
+                                            <img src="images/line.jpg" width="580" height="" alt=""/>
+                                            <li class="fields">
+                                                <div class="field name-lastname">
+                                                    <label for="Adress1" class="required"><em>*</em>ที่อยู่-1 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberAddr1" id="Adress1" value="" title="Adress1" class="input-text required-entry validate-one-required" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="field name-lastname">
-                                                <label for="Postcode" >รหัสไปรษณีย์ :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberPstcode" id="Postcode" value="" title="Postcode" class="input-text " />
+                                                <div class="field name-lastname">
+                                                    <label for="Adress2" >ที่อยู่-2 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberAddr2" id="Adress2" value="" title="Adress2" class="input-text " />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li class="fields">
-                                            <div class="field name-lastname">
-                                                <label for="Amphur" >อำเภอ :</label>
-                                                <div class="input-box" id="showAmphur"  style="width:260px" >
+                                            </li>
+                                            <li class="fields">
+                                                <div class="field name-lastname">
+                                                    <label for="Province" >จังหวัด :</label>
+                                                    <div class="selected" id="showProvince" >
+                                                        <select name="memberProvince" id="memberProvince" onchange="changeCommonProvince(2,this.value)" >
+                                                            <c:forEach var="province" items="${query.rows}">
+                                                                <option value="${province.id_}">${province.name_}</option>
+                                                            </c:forEach>
 
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="field name-lastname">
-                                                <label for="Distinct" >ตำบล :</label>
-                                                <div class="input-box" id="showDistinct" >
+                                                <div class="field name-lastname">
+                                                    <label for="Postcode" >รหัสไปรษณีย์ :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberPstcode" id="Postcode" value="" title="Postcode" class="input-text " />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="fields">
+                                                <div class="field name-lastname">
+                                                    <label for="Amphur" >อำเภอ :</label>
+                                                    <div class="input-box" id="showAmphur"  style="width:260px" >
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li class="fields">
-                                            <div class="field name-lastname">
-                                                <label for="Tel1" >โทรศัพท์-1 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text" />
+                                                <div class="field name-lastname">
+                                                    <label for="Distinct" >ตำบล :</label>
+                                                    <div class="input-box" id="showDistinct" >
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="field name-lastname">
-                                                <label for="Tel2" >โทรศัพท์-2 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberTel2" id="Tel2" value="" title="Tel2" class="input-text " />
+                                            </li>
+                                            <li class="fields">
+                                                <div class="field name-lastname">
+                                                    <label for="Tel1" >โทรศัพท์-1 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberTel1" id="Tel1" value="" title="Tel1" class="input-text" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="field name-lastname">
-                                                <label for="Mobile1" class="required"><em>*</em>มือถือ-1 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text required-entry validate-phoneLax" />
+                                                <div class="field name-lastname">
+                                                    <label for="Tel2" >โทรศัพท์-2 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberTel2" id="Tel2" value="" title="Tel2" class="input-text " />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="field name-lastname">
-                                                <label for="Mobile2" >มือถือ-2 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberMobile2" id="Mobile2" value="" title="Mobile2" class="input-text " />
+                                            </li>
+                                            <li>
+                                                <div class="field name-lastname">
+                                                    <label for="Mobile1" class="required"><em>*</em>มือถือ-1 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberMobile1" id="Mobile1" value="" title="Mobile1" class="input-text required-entry validate-phoneLax" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="field name-lastname">
-                                                <label for="Fax" >โทรสาร-1 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberFax1" id="Fax" value="" title="Fax" class="input-text " />
+                                                <div class="field name-lastname">
+                                                    <label for="Mobile2" >มือถือ-2 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberMobile2" id="Mobile2" value="" title="Mobile2" class="input-text " />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <!--</li>
-                                            <li>-->
-                                            <div class="field name-lastname">
-                                                <label for="Fax" >โทรสาร-2 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberFax2" id="Fax" value="" title="Fax" class="input-text " />
+                                            </li>
+                                            <li>
+                                                <div class="field name-lastname">
+                                                    <label for="Fax" >โทรสาร-1 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberFax1" id="Fax" value="" title="Fax" class="input-text " />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li class="fields">
-                                            <div class="field email-address">
-                                                <label for="email_address" class="required"><em>*</em>E-Mail-1 :</label>
-                                                <div class="input-box">
-                                                    <input type="text" name="memberEmail1" id="memberEmail1" value="" title="Email Address" class="input-text validate-email required-entry" />
+                                                <!--</li>
+                                                <li>-->
+                                                <div class="field name-lastname">
+                                                    <label for="Fax" >โทรสาร-2 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberFax2" id="Fax" value="" title="Fax" class="input-text " />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p class="required" style="text-align: left">
-                                                * ข้อมูลที่จำเป็นต้องกรอก  </p>
-                                        </li>
+                                            </li>
+                                            <li class="fields">
+                                                <div class="field email-address">
+                                                    <label for="email_address" class="required"><em>*</em>E-Mail-1 :</label>
+                                                    <div class="input-box">
+                                                        <input type="text" name="memberEmail1" id="memberEmail1" value="" title="Email Address" class="input-text validate-email required-entry" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <p class="required" style="text-align: left">
+                                                    * ข้อมูลที่จำเป็นต้องกรอก  </p>
+                                            </li>
+                                        </div>
                                         <button name="action" value="Submit" class="button" onclick="return checkBeforeSubmit()"><span><span>ยืนยัน</span></span></button>
                                         <button type="button" title="กลับ" class="button" onclick="javascript:location.href='Login.jsp'"> <span><span>กลับ</span></span></button>
                                     </ul>
                                 </div>
-                                        
+
                             </form>
                             <script type="text/javascript">
-                                //<![CDATA[
                                 var dataForm = new VarienForm('form-validate', true);
-                                //]]>
                             </script>
                         </div>
                     </div>
@@ -282,4 +281,5 @@
             </div>
         </div>
     </body>
+
 </html>
