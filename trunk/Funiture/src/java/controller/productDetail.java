@@ -94,7 +94,6 @@ public class productDetail extends HttpServlet {
                                 } else if (filetype.endsWith("png")) {
                                     upFile.setFileName(filename + ".png");
                                 }
-
                                 u.setFolderstore(getServletContext().getRealPath("upload/picture"));
                             }
                         }
