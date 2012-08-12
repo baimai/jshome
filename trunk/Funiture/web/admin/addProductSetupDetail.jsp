@@ -238,7 +238,7 @@
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" class="required"><em>*</em>รหัสสินค้า</label>
-                                                                    <input type="text" value="${product.product_code}" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></div>
+                                                                    <input type="text" value="${product.product_code}" id="productCode" name="productCode" readonly/>&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
