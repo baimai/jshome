@@ -102,8 +102,8 @@
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" >ชื่อกลุ่มสินค้า(ไทย) :</label>
-                                                                    <input type="text" name="productGNameT" value="" class="input-text" /></div>
+                                                                    <label for="firstname" class="required"><em>*</em>ชื่อกลุ่มสินค้า(ไทย) :</label>
+                                                                    <input type="text" name="productGNameT" value="" class="input-text required-entry " /></div>
                                                             </div>
                                                         </li>
 
