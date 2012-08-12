@@ -40,48 +40,41 @@ public class xmlStockMaster extends HttpServlet {
         try {
             if (request.getParameter("action").equals("fetchData")) {
                 response.setContentType("text/xml;charset=UTF-8");
-                 String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
+                String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
                 int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
                 int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;
                 int start = rows * page - rows;
                 String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
                 String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
                 String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
-
-                // int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
                 Database db = new Database();
                 stockMasterTable smt = new stockMasterTable(db);
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
                 companyMasterTable cmt = new companyMasterTable(db);
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
-                //ArrayList list = smt.searchAll(productGroupId, Company_Id, start, rows);
-                ArrayList list = smt.search(productGroupId, Company_Id, start, rows);
+                //  ArrayList list = smt.search(productGroupId, Company_Id, start, rows);
                 if (request.getParameter("q").equals("1")) {
-                    int totalPages = 0;
+                    ArrayList list = smt.search(productGroupId, Company_Id, start, rows);
                     int totalCount = smt.countAll(Company_Id);
+                    int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-                    if (totalCount % rows == 0) {
-                        totalPages = totalCount / rows;
-                    } else {
-                        totalPages = (totalCount / rows) + 1;
-                    }
+
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
                     xml.setRecords(totalCount);
-                    if (list != null) {
-                        for (int i = 0; i < list.size(); i++) {
-                            stockMasterEntity data = (stockMasterEntity) list.get(i);
-                            xml.setRowDetail( data.getStockId(),i + 1,
-                                    data.getProductDetailMasterEntity().getProductCode(),                                                                
-                                    data.getProductDetailMasterEntity().getProductDNameT(),
-                                    data.getProductGroupMasterEntity().getProductGNameT(),
-                                    data.getReceiveDate(),
-                                    data.getQuantity(),
-                                    data.getUnitMasterEntity().getUnitNameT(),
-                                    data.getStockId());
-                        }
+                    for (int i = 0; i < list.size(); i++) {
+                        stockMasterEntity data = (stockMasterEntity) list.get(i);
+                        xml.setRowDetail(data.getStockId(),
+                                data.getProductDetailMasterEntity().getProductCode(),
+                                data.getProductDetailMasterEntity().getProductDNameT(),
+                                data.getProductGroupMasterEntity().getProductGNameT(),
+                                data.getReceiveDate(),
+                                data.getQuantity(),
+                                data.getUnitMasterEntity().getUnitNameT(),
+                                data.getStockId());
+
                     }
                     out.print(xml.getXml());
                 }
