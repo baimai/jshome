@@ -39,17 +39,14 @@ public class xmlProductGroup extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         try {
             if (request.getParameter("action").equals("fetchData")) {
-               //response.setContentType("text/xml;charset=UTF-8");
-                
+               response.setContentType("text/xml;charset=UTF-8");                
                 String productGroupId = request.getParameter("productGroupId") != null ? request.getParameter("productGroupId") : null;
-
                 int rows = request.getParameter("rows") != null && !request.getParameter("rows").equals("") ? Integer.parseInt(request.getParameter("rows")) : 20;
                 int page = request.getParameter("page") != null && !request.getParameter("page").equals("") ? Integer.parseInt(request.getParameter("page")) : 1;
                 int start = rows * page - rows;
                 String sField = request.getParameter("searchField") != null ? request.getParameter("searchField") : null;
                 String sValue = request.getParameter("searchString") != null ? request.getParameter("searchString") : null;
                 String sOper = request.getParameter("searchOper") != null ? request.getParameter("searchOper") : null;
-
                 Database db = new Database();
                 productGroupMasterTable pgmt = new productGroupMasterTable(db);
                 productDetailMasterTable pdm = new productDetailMasterTable(db);
