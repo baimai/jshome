@@ -8,11 +8,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM product_group_master
 </sql:query>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,7 +44,7 @@
             }
             function confirmDelete(id) {
                 if (confirm("คุณต้องการลบหรือไม่ !")) {
-                   remove(id);
+                    remove(id);
                 }
             }
             function show(){
@@ -57,7 +55,7 @@
                     jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1&productGroupId="+document.getElementById('groupId').value});
                 }
                 jQuery("#rowed1").trigger('reloadGrid');
-                
+                 alret(groupId);
             }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({        
@@ -112,53 +110,41 @@
                                 <div class="col-main">
                                     <div class="account-create">
                                         <div class="page-title">
-                                            <h1>ข้อมูลรายการสินค้า</h1>
-                                           
+                                            <h1>ข้อมูลรายการสินค้า</h1>                                           
                                             <div class="button" align="right" >
                                                 <form action="ProductDetail.jsp" >
                                                     <input type="hidden" name="productGroupId"  value="${param.productGroupId}" />
                                                     <button  name="action" value="Add"  class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                                 </form>
-
-
                                             </div>
                                         </div>
-
                                         <center>
                                             <br/>
                                             <div class="field" align="center"> ประเภทสินค้า
                                                 <select id="groupId" onchange="show()">
                                                     <option value=""> ทั้งหมด </option>
                                                     <c:forEach items="${query3.rows}" var="group">
-
                                                         <option value="${group.product_group_Id}" >${group.product_g_name_t}</option>
-
                                                     </c:forEach>
                                                 </select>
                                                 <br/><br/></div>
                                             <table id="rowed1"></table>
                                             <br/>
-
                                             <div id="prowed1"></div>
-
                                         </center>
                                         <br/> </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
-    
+
 </html>

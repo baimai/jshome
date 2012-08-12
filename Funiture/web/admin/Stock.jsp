@@ -120,13 +120,10 @@
                                 <div class="col-main">
                                     <div class="account-create">
                                         <div class="page-title">
-                                            <h1>ข้อมูลประเภทสินค้า</h1></div>
-                                       
+                                            <h1>ข้อมูลประเภทสินค้า</h1></div>                                       
                                         <form action="stockMaster.do" >
-                                            <div class="buttons" align="right">
-                                                 
+                                            <div class="buttons" align="right">                                                 
                                                 <button name="action" value="add" class="button"><span><span>บันทึก</span></span></button>
-                                               
                                             </div>
                                             <div id="dialog-form" title="Search Product">
 
@@ -191,13 +188,10 @@
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
-
-
                                                         </li>
                                                     </ul>
                                                     <br/>
                                                 </div>
-
                                             </c:if>
                                         </form>
                                     </div>

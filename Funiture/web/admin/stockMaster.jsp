@@ -8,15 +8,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <sql:query var="query3" dataSource="webdb">
     SELECT * FROM product_group_master
 </sql:query>
-
-<sql:query var="query" dataSource="webdb">
-    SELECT * FROM product_detail_master pdm 
-</sql:query>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,21 +35,21 @@
         <script  type="text/javascript">
             function show(){
                 if(document.getElementById('groupId').value==''){
-                    jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=2&Edit=1&Del=1"});
+                    jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=1&Edit=1&Del=1"});
                     jQuery("#toolbar").trigger('reloadGrid');
                 }else{
-                    jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=2&Edit=1&Del=1&productGroupId="+document.getElementById('groupId').value});
+                    jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=1&productGroupId="+document.getElementById('groupId').value});
                 }
                 jQuery("#toolbar").trigger('reloadGrid');
-
+                 alret(document.getElementById('groupId').value);
             }
+           
             jQuery(document).ready(function(){
                 jQuery("#toolbar").jqGrid({
-                    url:'xmlStockMaster.do?action=fetchData&rows=3&page=1&q=1',
+                    url:'xmlStockMaster.do?action=fetchData&q=1',
                     datatype: "xml",
                     colNames:['รหัสสินค้า', 'ชื่อสินค้า ', 'ประเภทสินค้า','วันที่นำสินค้าเข้า','จำนวน ','หน่วย','stockId' ],
-                    colModel:[
-                       
+                    colModel:[                       
                         {name:'productCode',index:'productCode', width:100,editable:true,editoptions:{size:10}},
                         {name:'productNameT',index:'productNameT', width:100,editable:true,editoptions:{size:25}},
                         {name:'productGroupNameT',index:'productGroupNameT', width:100,editable:true,editoptions:{size:25}},
@@ -95,7 +89,6 @@
             });
         </script>
     </head>
-
     <body >
         <div id="art-main">
             <div class="art-sheet">
@@ -117,14 +110,10 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>
-
                                         <div class="buttons" align="right">
                                             <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
-                                            
                                             <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
-
                                         </div>
-
                                         <center>
                                             <div class="field"> ประเภทสินค้า
                                                 <select id="groupId" onchange="show()">
@@ -132,7 +121,7 @@
                                                     <c:forEach items="${query3.rows}" var="group">
                                                         <option value="${group.product_group_Id}" >${group.product_g_name_t}</option>
                                                     </c:forEach>
-                                                        </select>
+                                                </select>
                                                 <br/><br/></div>
                                             <table id="toolbar"></table>
                                             <div id="ptoolbar"></div>
@@ -150,8 +139,8 @@
         </div>
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
-    
+
 </html>
