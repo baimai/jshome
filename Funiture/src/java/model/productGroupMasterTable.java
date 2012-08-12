@@ -53,6 +53,8 @@ public class productGroupMasterTable {
                 pgm.getProductGDisplayFlag(),
                 pgm.getCreateDate(),
                 pgm.getUserId());
+        System.out.println("insert..."+sql);
+        System.out.println(" pgm.getProductGroupCode()..."+ pgm.getProductGroupCode());
     }
 
     public void update(productGroupMasterEntity pgm) {
