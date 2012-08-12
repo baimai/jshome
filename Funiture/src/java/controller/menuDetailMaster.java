@@ -156,6 +156,7 @@ public class menuDetailMaster extends HttpServlet {
                             Boolean chechDuplicate = mdt.checkDuplicate(md);
                             if (chechDuplicate == false) {
                                 mdt.add(md);
+                                response.sendRedirect("menuDetailMaster.jsp?valid=1");
                             } else {
                                 db.close();
                                 response.sendRedirect("menuDetailMaster.jsp?error=1");
@@ -176,9 +177,9 @@ public class menuDetailMaster extends HttpServlet {
                         if (mr.getParameter("action").equals("Edit")) {
                          //   out.println("getMenuCNameT" + md.getMenuCNameT());
                             response.sendRedirect("menuDetailMaster.jsp?valid=1&menuCodeId=" +md.getMenuCodeId());
-                        } else if (mr.getParameter("action").equals("Add")) {
-                            response.sendRedirect("menuDetailMaster.jsp?valid=1");
-                        }
+                        } //else if (mr.getParameter("action").equals("Add")) {
+//                            response.sendRedirect("menuDetailMaster.jsp?valid=1");
+//                        }
                     }
 
                 }
