@@ -141,11 +141,11 @@ public class stockMasterTable {
             sql = sql + " LIMIT ?,? ";
             result = db.queryList(sql, Company_Id, start, limit);
         } else {
-            sql = sql + " and  sm.Product_Group_Id = ? ";
+            sql = sql + " and  stock_master.Product_Group_Id = ? ";
             sql = sql + " LIMIT ?,? ";
             result = db.queryList(sql, Company_Id, productGroupId, start, limit);
         }
-
+System.out.println("sql>>>>"+sql);System.out.println("productGroupId>>>>"+productGroupId);
 
         ArrayList list = new ArrayList();
         if (!result.isEmpty()) {
