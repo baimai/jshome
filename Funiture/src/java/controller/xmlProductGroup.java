@@ -102,15 +102,13 @@ public class xmlProductGroup extends HttpServlet {
                     int totalCount = pdm.countAll(Company_Id);
                     int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
                     xml.setRecords(totalCount);
                     for (int i = 0; i < listp.size(); i++) {
                         productDetailMasterEntity data = (productDetailMasterEntity) listp.get(i);
-
-                        xml.setRowDetail(data.getProductDetailId(), 
+                        xml.setRowDetail(data.getProductDetailId(),
                                 data.getProductModelCode(),
                                 data.getProductCode(),
                                 data.getProductDNameT(),
