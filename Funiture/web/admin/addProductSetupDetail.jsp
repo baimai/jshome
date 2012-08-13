@@ -43,7 +43,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="jqgrid4.2/themes/redmond/jquery-ui-1.8.1.custom.css" />
         <script src="jqgrid4.2/js/jquery.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery-ui-1.8.1.custom.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
+        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script type="text/javascript">
             function setSearch(productCode,productName,productGroupId,page){
                 var param = "productCode="+productCode+"&productName="+productName+"&productGroupId="+productGroupId+"&page="+page;
