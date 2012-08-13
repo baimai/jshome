@@ -59,7 +59,6 @@ public class xmlStockMaster extends HttpServlet {
                     int totalCount = smt.countAll(Company_Id);
                     int totalPages = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows) + 1;
                     db.close();
-
                     GenerateXml xml = new GenerateXml();
                     xml.setTotal(totalPages);
                     xml.setPage(page);
@@ -74,7 +73,6 @@ public class xmlStockMaster extends HttpServlet {
                                 data.getQuantity(),
                                 data.getUnitMasterEntity().getUnitNameT(),
                                 data.getStockId());
-
                     }
                     out.print(xml.getXml());
                 }
