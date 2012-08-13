@@ -115,14 +115,7 @@
                                             <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
                                         </div>
                                         <center>
-                                            <div class="field"> ประเภทสินค้า
-                                                <select id="groupId" onchange="show()">
-                                                    <option value=""> ทั้งหมด </option>
-                                                    <c:forEach items="${query3.rows}" var="group">
-                                                        <option value="${group.product_group_Id}" >${group.product_g_name_t}</option>
-                                                    </c:forEach>
-                                                </select>
-                                                <br/><br/></div>
+                                            
                                             <table id="toolbar"></table>
                                             <div id="ptoolbar"></div>
                                             <br /> <br />
