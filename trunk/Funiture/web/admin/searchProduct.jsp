@@ -20,7 +20,7 @@
 
 <sql:query var="query2" dataSource="webdb">
     select count(*) as count from product_detail_master
-   where product_code like '%${param.productCode}%' and
+    where product_code like '%${param.productCode}%' and
     product_d_name_t like '%${param.productName}%' and
     product_group_id like '%${param.productGroupId}%'
 </sql:query>
