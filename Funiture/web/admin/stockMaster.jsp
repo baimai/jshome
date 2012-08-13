@@ -33,7 +33,7 @@
         <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script  type="text/javascript">
-            function show(){
+           /* function show(){
                 if(document.getElementById('groupId').value==''){
                     jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=1&Edit=1&Del=1"});
                     jQuery("#toolbar").trigger('reloadGrid');
@@ -42,7 +42,7 @@
                 }
                 jQuery("#toolbar").trigger('reloadGrid');
                  alret(document.getElementById('groupId').value);
-            }
+            }*/
            
             jQuery(document).ready(function(){
                 jQuery("#toolbar").jqGrid({
@@ -60,21 +60,21 @@
                     ],
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
-                    loadonce:true,
+                    //loadonce:true,
                     pager: '#ptoolbar',
                     height: "auto",
                     width: 950,
                     sortname: 'id',
                     rownumbers: true,
-                    rownumWidth: 40,
-                    gridview: true,
+                   // rownumWidth: 40,
+                  //  gridview: true,
                     viewrecords: true,
-                    sortorder: "asc",
+                    sortorder: "desc",
                     caption: "รับสินค้าเข้าคลัง",
                     editurl:"stockMaster.do"
                 });
 
-                jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',
+                /*jQuery("#toolbar").jqGrid('navGrid','#ptoolbar',
                 {add:false,edit:false,search:false,view:true },
                 {reloadAfterSubmit:true,
                     delData:{action:"Del",
@@ -83,8 +83,8 @@
                             var value = jQuery("#toolbar").jqGrid('getCell', sel_id, 'stockId');
                             return value;
                         }}}, 
-                {} 
-            );
+                {}
+            ); */
 
             });
         </script>
