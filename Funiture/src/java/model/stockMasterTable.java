@@ -178,6 +178,8 @@ System.out.println("sql>>>>"+sql);System.out.println("productGroupId>>>>"+produc
     }
      public Integer countAll(int company_id) {
         String sql = " SELECT count(*) as COUNT FROM stock_master sm where sm.Company_Id = ? ";
+       System.out.println(sql);
+       System.out.println(company_id);
         List<Map<String, Object>> result = db.queryList(sql, company_id);
         return !result.isEmpty()?Integer.valueOf(result.get(0).get("COUNT").toString()):0;
     }
