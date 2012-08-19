@@ -42,48 +42,37 @@ public class productSetup extends HttpServlet {
             if (request.getParameter("action") != null) {
                 Database db = new Database();
                 picProductSetupTable mpst = new picProductSetupTable(db);
-                picProductSetupEntity ps = new picProductSetupEntity();
-                productDetailMasterTable pdmt = new productDetailMasterTable(db);
-                productDetailMasterEntity pdm = new productDetailMasterEntity();
+                picProductSetupEntity pps = new picProductSetupEntity();
+              
                 HttpSession s = request.getSession(true);
                 userSecurityEntity lc = (userSecurityEntity) s.getAttribute("loginDetail");
                 int Company_Id = (Integer) getServletContext().getAttribute("Company_Id");
 
-               // if (request.getParameter("picCode") != null) {
-              //    ps.setPicCode(request.getParameter("picCode"));
-              //  }
                 if (request.getParameter("picId") != null && !request.getParameter("picId").equals("")) {
-                    ps.setPicId(Integer.parseInt(request.getParameter("picId")));
+                    pps.setPicId(Integer.parseInt(request.getParameter("picId")));
                 }
-                ps.setCompanyId(Company_Id);
-                /*  if (request.getParameter("productCode") != null) {
-                pdm.setProductCode(request.getParameter("productCode"));
-                pdm.setCompanyId(Company_Id);
-                int i = pdmt.getProductId(pdm);
-                if (i != 0) {
-                ps.setProductDetailId(i);
-                }
-                }*/
+                pps.setCompanyId(Company_Id);
 
                 if (request.getParameter("picNameT") != null) {
-                    ps.setPicNameT(request.getParameter("picNameT"));
-                    //  out.print("picNameT"+ps.getPicNameT());
+                    pps.setPicNameT(request.getParameter("picNameT"));
                 }
                 if (request.getParameter("picNameE") != null) {
-                    ps.setPicNameE(request.getParameter("picNameE"));
+                    pps.setPicNameE(request.getParameter("picNameE"));
                 }
                 if (request.getParameter("productRemarkT") != null) {
-                    ps.setProductRemarkT(request.getParameter("productRemarkT"));
+                    pps.setProductRemarkT(request.getParameter("productRemarkT"));
                 }
                 if (request.getParameter("productRemarkE") != null) {
-                    ps.setProductRemarkE(request.getParameter("productRemarkE"));
+                    pps.setProductRemarkE(request.getParameter("productRemarkE"));
                 }
-                ps.setCreateDate(Timestamp.valueOf(db.getNow()));
-                ps.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                pps.setCreateDate(Timestamp.valueOf(db.getNow()));
+               pps.setUpdateDate(Timestamp.valueOf(db.getNow()));
+                 pps.setUserId(lc.getUserId());
+                  out.println("getPicId" + pps.getPicId());
                 if (request.getParameter("action").equals("Add")) {
-                    Boolean checkDuplicate = mpst.checkDuplicate(ps);
+                    Boolean checkDuplicate = mpst.checkDuplicate(pps);
                     if (checkDuplicate == false) {
-                        mpst.add(ps);
+                        mpst.add(pps);
 
                     } else {
                         db.close();
@@ -91,21 +80,22 @@ public class productSetup extends HttpServlet {
                     }
 
                 } else if (request.getParameter("action").equals("Edit")) {
-                    mpst.update(ps);
+                    mpst.update(pps);
+                    response.sendRedirect("addProductSetup.jsp?valid=1");
                 } else if (request.getParameter("action").equals("Edit2")) {
-                    mpst.update(ps);
-                    response.sendRedirect("addProductSetup.jsp?picId=" + ps.getPicId());
+                    mpst.update(pps);
+                    response.sendRedirect("addProductSetup.jsp?picId=" + pps.getPicId());
                 } else if (request.getParameter("action").equals("Del")) {
-                    mpst.remove(ps);
+                    mpst.remove(pps);
                 }
 
                 db.close();
                 if (request.getParameter("action").equals("Edit")) {
                     //   out.println("productGNameT" + ps.getProductGNameT());
-                    response.sendRedirect("addProductSetup.jsp?valid=1&picId=" + ps.getPicId());
+                    response.sendRedirect("addProductSetup.jsp?error=1&picId="+pps.getPicId());
 
                 } else if (request.getParameter("action").equals("Add")) {
-                    response.sendRedirect("addProductSetup.jsp?picId=" + ps.getPicId());
+                    response.sendRedirect("addProductSetup.jsp?picId=" + pps.getPicId());
                 }
             }
         } catch (Exception ex) {

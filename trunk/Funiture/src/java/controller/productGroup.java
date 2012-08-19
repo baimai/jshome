@@ -140,6 +140,7 @@ public class productGroup extends HttpServlet {
                         }
                     }
                 }
+                
             } catch (Exception ex) {
                 ex.printStackTrace(out);
 
