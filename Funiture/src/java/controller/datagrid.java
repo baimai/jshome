@@ -142,7 +142,7 @@ public class datagrid extends HttpServlet {
                                data.getUpdateDate(),
                                data.getUserId(),
                                data.getPicId(),
-                                data.getPicId(),
+                               data.getPicId(),
                                data.getPicId()
                                //data.getPicCode()
                                );
