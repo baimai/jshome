@@ -41,7 +41,7 @@ a:hover  img { border:0; text-decoration:none;}*/
 	font-weight:normal
 }
 
-.header-topbar {height:26px;margin:0 auto;padding-top:5px;position:relative;width:100%;z-index:110;}
+.header-topbar {height:26px;margin:0 auto;padding-top:5px;position:relative;width:1000px;z-index:110;}
 
 .welcome-msg{float:left; font-size:0.95em}
 .quick-access {

@@ -31,7 +31,7 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'datagrid.do?action=fetchData&q=1',
+                    url:'datagrid.do?action=fetchData&q=1&page=1',
                     //url:'datagrid.do?action=fetchData&q=1&picCode=00010',
                     datatype: "xml",
                     colNames:['Pic detail','piccode','Picture','Product Code','วันที่สร้าง','วันที่แก้ไข','ผู้ใช้', '','',''],
