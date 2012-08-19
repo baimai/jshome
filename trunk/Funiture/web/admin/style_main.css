@@ -65,7 +65,7 @@ body
   margin-top: 10px;
   margin-bottom: -5px;
   cursor:auto;
-  width: 1035px;
+  width: 1000px;
   z-index: 0;
   
 }
@@ -74,7 +74,7 @@ body
 {
   position: relative;
   padding: 5px;
-    padding-top:35px;
+    padding-top:25px;
     padding-bottom:5px;
 }
 
@@ -85,7 +85,7 @@ body
 
 .art-sheet-tr, .art-sheet-tl, .art-sheet-br, .art-sheet-bl
 {
-  width: 70px;
+  width: 40px;
   height: 70px;
   background-image: url('images/sheet_s.png');
 }
@@ -94,7 +94,7 @@ body
 {
   top: 0;
   left: 0;
-  clip: rect(auto, 35px, 35px, auto);
+  clip: rect(auto, 25px, 25px, auto);
 }
 
 .art-sheet-tr
@@ -108,20 +108,20 @@ body
 {
   bottom: 0;
   left: 0;
-  clip: rect(35px, 35px, auto, auto);
+  clip: rect(25px, 25px, auto, auto);
 }
 
 .art-sheet-br
 {
   bottom: 0;
   right: 0;
-  clip: rect(35px, auto, auto, 35px);
+  clip: rect(25px, auto, auto, 35px);
 }
 
 .art-sheet-tc, .art-sheet-bc
 {
-  left: 35px;
-  right: 35px;
+  left: 25px;
+  right: 25px;
   height: 70px;
   background-image: url('images/sheet_h.png');
 }
@@ -135,14 +135,14 @@ body
 .art-sheet-bc
 {
   bottom: 0;
-  clip: rect(35px, auto, auto, auto);
+  clip: rect(25px, auto, auto, auto);
 }
 
 .art-sheet-cr, .art-sheet-cl
 {
-  top: 35px;
-  bottom: 35px;
-  width: 70px;
+  top: 25px;
+  bottom: 25px;
+  width: 40px;
   background-image: url('images/sheet_v.png');
 }
 
@@ -155,16 +155,16 @@ body
 .art-sheet-cl
 {
   left: 0;
-  clip: rect(auto, 35px, auto, auto);
+  clip: rect(auto, 25px, auto, auto);
 }
 
 .art-sheet-cc
 {
   position: absolute;
-  top: 35px;
-  left: 35px;
-  right: 35px;
-  bottom: 35px;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
   background-color: #FFFFFF;
 }
 

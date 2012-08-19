@@ -31,7 +31,7 @@
         <script  type="text/javascript">
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({
-                    url:'datagrid.do?action=fetchData&q=2',
+                    url:'datagrid.do?action=fetchData&q=2&page=1',
                     datatype: "xml",
                     colNames:['รหัสชุดการแสดงสินค้า','ชื่อชุดการแสดงสินค้า(ไทย)','ชื่อชุดการแสดงสินค้า(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','','',''],
                         colModel:[

@@ -8,19 +8,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<sql:query var="query2" dataSource="webdb">
-    SELECT * FROM product_group_master pgm
-</sql:query>
-
-<sql:query var="query3" dataSource="webdb">
-    SELECT * from product_group_master
-</sql:query>
-
 <c:if test="${param.picId != null}">
-    <sql:query var="query4" dataSource="webdb">
+    <sql:query var="query" dataSource="webdb">
         SELECT * from pic_product_setup pps       
-        where pps.pic_id = ${param.picId}
+        where pps.Pic_Id = ${param.picId}
     </sql:query>
 </c:if>
 
@@ -119,9 +110,9 @@
                                         </c:if>
                                         <c:if test="${param.picId != null}" >
                                             <form action="productSetup.do" method="post" id="form-validate"  >
-                                                <c:forEach var="product" items="${query4.rows}">
+                                                <c:forEach var="productSetup" items="${query.rows}">
                                                     <input type="hidden" name="action" value="Edit" />
-                                                    <input type="hidden" name="picId" value="${product.picId}"/>
+                                                    <input type="hidden" name="picId" value="${productSetup.Pic_Id}"/>
                                                     <div >
                                                         <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
                                                     </div>
@@ -131,35 +122,35 @@
                                                             <div class="customer-name">
                                                                 <div   class="field name-firstname">
                                                                     <label for="firstname" class="required"><em>*</em>รหัสลำดับแสดงสินค้า :</label>
-                                                                    <input type="text" value="${product.pic_code}" id="picCode" name="picCode" class="input-text required-entry " readonly /></div>
+                                                                    <input type="text" value="${productSetup.Pic_Code}" id="picCode" name="picCode" class="input-text required-entry " readonly /></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" class="required"><em>*</em>คำอธิบาย(ไทย) :</label>
-                                                                    <input type="text" value="${product.pic_name_t}" id="picNameT" name="picNameT" class="input-text required-entry " /></div>
+                                                                    <input type="text" value="${productSetup.Pic_Name_T}" id="picNameT" name="picNameT" class="input-text required-entry " /></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >คำอธิบาย(อังกฤษ) :</label>
-                                                                    <input type="text" value="${product.pic_name_e}" id="picNameE" name="picNameE" class="input-text "  /></div>
+                                                                    <input type="text" value="${productSetup.Pic_Name_E}" id="picNameE" name="picNameE" class="input-text "  /></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname">หมายเหตุ(ไทย) :</label>
-                                                                    <textarea name="picRemarkT" rows="2" cols="20" value="${product.pic_remark_t}" class="input-text" ></textarea></div>
+                                                                    <textarea name="picRemarkT" rows="2" cols="20" value="${productSetup.Pic_Remark_T}" class="input-text" ></textarea></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname"> หมายเหตุ(อังกฤษ) :</label>
-                                                                   <textarea name="picRemarkT" rows="2" cols="20" value="${product.pic_remark_t}"  class="input-text" ></textarea></div>
+                                                                   <textarea name="picRemarkT" rows="2" cols="20" value="${productSetup.Pic_Remark_T}"  class="input-text" ></textarea></div>
                                                             </div>
                                                         </li>
                                                     </ul> </div>
