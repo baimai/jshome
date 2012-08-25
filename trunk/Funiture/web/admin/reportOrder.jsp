@@ -68,7 +68,7 @@
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -113,43 +113,55 @@
                                 <div class="col-main">
                                     <div class="account-create">
                                         <div class="page-title">
-                                            <h1>รายงานสั่งซื้อ</h1></div>
+                                            <h1>รายงานสั่งซื้อ : </h1></div>
                                         <center>
                                             <table cellspacing="10">
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>จากวันที่</td>
-                                                    <td> <input type="text" id="datepicker" name="receiveDate" value="" title="receiveDate"class="startDate"   /></td>
-                                                    <td>ถึงวันที่</td>
-                                                    <td> <input type="text" id="datepicker2" name="receiveDate" value="" title="receiveDate"class="startDate"   /></td>
-                                                </tr>
-                                                <tr><td>ประเภทลูกค้า</td>
-                                                    <td><select name="ทั้งหมด" id="memberGradeId">
-                                                            <option value="0"> ทุกประเภท </option>
-                                                           <c:forEach var="grade" items="${query1.rows}">
-                                                                <option value="${grade.member_grade_id}">${grade.grade_name_t}</option>
-                                                            </c:forEach>
-                                                        </select><td>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>จากวันที่ :&nbsp;</td>
+                                                        <td> <input type="text" id="datepicker" name="receiveDate" value="" title="receiveDate"class="startDate"   />&nbsp;&nbsp;</td>
+                                                        <td>ถึงวันที่ :&nbsp;</td>
+                                                        <td> <input type="text" id="datepicker2" name="receiveDate" value="" title="receiveDate"class="startDate"   /></td>
+                                                    </tr>
+                                                    <tr><td>ประเภทลูกค้า :&nbsp;</td>
+                                                        <td><select name="ทั้งหมด" id="memberGradeId" style=" width: 120px">
+                                                                <option value="0"> ทุกประเภท </option>
+                                                                <c:forEach var="grade" items="${query1.rows}">
+                                                                    <option value="${grade.member_grade_id}">${grade.grade_name_t}</option>
+                                                                </c:forEach>
+                                                            </select><td>
 
-                                                </tr>
-                                                <tr>
-                                                    <td>ประเภทสินค้า</td>
-                                                    <td><select name="ทั้งหมด" id="productGroupId">
-                                                            <option value="0"> ทุกประเภท </option>
-                                                            <c:forEach var="group" items="${query2.rows}">
-                                                                <option value="${group.product_group_id}">${group.product_g_name_t}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table><br/>
-                                        <a href="#" onclick="show();">ค้นหา</a><br/>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>ประเภทสินค้า :&nbsp;</td>
+                                                        <td><select name="ทั้งหมด" id="productGroupId" style=" width: 120px">
+                                                                <option value="0"> ทุกประเภท </option>
+                                                                <c:forEach var="group" items="${query2.rows}">
+                                                                    <option value="${group.product_group_id}">${group.product_g_name_t}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table><br>
+                                            <a href="#" onclick="show();">ค้นหา</a>
+                                            <center>
+                                                <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            </center>
+                                            <br>
                                             <table id="rowed1"></table>
-                                            <br/>
+                                            <br>
+
                                             <div id="prowed1"></div>
                                         </center>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
                                     </div>
                                 </div>
                             </div> </div>
@@ -160,8 +172,8 @@
         </div>
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
 
 </html>

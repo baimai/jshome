@@ -91,12 +91,10 @@
                                         </div>
 
                                         <form action="menuDetailMaster.do" method="post" id="form-validate"  enctype="multipart/form-data" >
-                                            <%--<div class="warning_box">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-                                            </div>--%>
                                            <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                             <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                                             <c:if test="${param.menuCodeId==null}" >
+
+                                            <c:if test="${param.menuCodeId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
                                                 <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
                                                 <div class="fieldset">
@@ -116,16 +114,16 @@
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" >ชื่อเมนูย่อย(ไทย) :</label>
-                                                                    <input type="text" name="menuCNameT" value="" class="input-text" /></div>
+                                                                    <label for="firstname" class="required"><em>*</em>ชื่อเมนูย่อย(ไทย) :</label>
+                                                                    <input type="text" name="menuCNameT" value="" class="input-text required-entry" /></div>
                                                             </div>
                                                         </li>
 
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" >ชื่อเมนูย่อย(อังกฤษ) :</label>
-                                                                    <input type="text" name="menuCNameE" value="" class="input-text"/></div>
+                                                                    <label for="firstname" class="required"><em>*</em>ชื่อเมนูย่อย(อังกฤษ) :</label>
+                                                                    <input type="text" name="menuCNameE" value="" class="input-text required-entry"/></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
@@ -236,15 +234,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div  class="field name-firstname">
-                                                                        <label for="firstname" >ชื่อเมนูย่อย(ไทย) :</label>
-                                                                        <input type="text" name="menuCNameT" value="${menuDetailMaster.Menu_C_Name_T}" class="input-text" /></div>
+                                                                        <label for="firstname" class="required">ชื่อเมนูย่อย(ไทย) :<em>*</em></label>
+                                                                        <input type="text" name="menuCNameT" value="${menuDetailMaster.Menu_C_Name_T}" class="input-text required-entry"/></div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ชื่อเมนูย่อย(อังกฤษ) :</label>
-                                                                        <input type="text" name="menuCNameE" value="${menuDetailMaster.Menu_C_Name_E}" class="input-text"/></div>
+                                                                        <label for="firstname" class="required">ชื่อเมนูย่อย(อังกฤษ) :<em>*</em></label>
+                                                                        <input type="text" name="menuCNameE" value="${menuDetailMaster.Menu_C_Name_E}" class="input-text required-entry"/></div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">

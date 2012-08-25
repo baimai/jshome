@@ -33,7 +33,7 @@
         <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
         <script  type="text/javascript">
-           /* function show(){
+            /* function show(){
                 if(document.getElementById('groupId').value==''){
                     jQuery("#toolbar").jqGrid('setGridParam',{url:"xmlStockMaster.do?action=fetchData&q=1&Edit=1&Del=1"});
                     jQuery("#toolbar").trigger('reloadGrid');
@@ -63,11 +63,11 @@
                     //loadonce:true,
                     pager: '#ptoolbar',
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     sortname: 'id',
                     rownumbers: true,
-                   // rownumWidth: 40,
-                  //  gridview: true,
+                    // rownumWidth: 40,
+                    //  gridview: true,
                     viewrecords: true,
                     sortorder: "desc",
                     caption: "รับสินค้าเข้าคลัง",
@@ -110,13 +110,19 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>
-                                        <div class="buttons" align="right">
+
+                                        <div class="buttons" align="center">
                                             <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
                                             <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
                                         </div>
-                                        <center>
                                             
-                                            <table id="toolbar"></table>
+                                        <center>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br><br>
+                                        </center>
+                                        <center>
+
+                                            <center><table id="toolbar"></table></center>
                                             <div id="ptoolbar"></div>
                                             <br /> <br />
                                         </center>

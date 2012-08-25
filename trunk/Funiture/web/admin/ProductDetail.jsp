@@ -85,26 +85,25 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
-                                        <form action="productDetail.do" method="post" id="form-validate" enctype="multipart/form-data" >
-                                        
-                                            <c:if test="${param.valid==1}"><div class="valid_box">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                            <c:if test="${param.error==1}"><div class="error_box">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                                            <c:if test="${param.productDetailId==null}" >
+                                        <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
+                                        <c:if test="${param.productDetailId==null}" >
+                                            <form action="productDetail.do" method="post" id="form-validate" enctype="multipart/form-data" >
+
                                                 <input type="hidden" name="action" value="Add" />
                                                 <input type="hidden" value="0" name="qtyminus" />
-                                                <div class="buttons-set">
-                                                    <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
-                                                    <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
 
-                                                </div>
+
                                                 <div class="fieldset">
-                                                    <!--- <h2 class="legend">ตั้งค่า</h2>-->
+                                                    <h2 class="legend">เพิ่มรายการสินค้า</h2>
+                                                    <img src="images/line.jpg" width="580" height="" alt=""/>
 
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div   class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em>รหัสกลุ่มสินค้า </label>
+                                                                    <label for="firstname" class="required"><em>*</em>รหัสกลุ่มสินค้า:</label>
                                                                     <select name="productGroupId" class="select"  class="input-text required-entry  ">
                                                                         <c:forEach items="${query1.rows}" var="group">
                                                                             <c:if test="${param.productGroupId != group.product_group_id}">
@@ -122,14 +121,14 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> รหัสสินค้า</label>
+                                                                    <label for="firstname" class="required"><em>*</em> รหัสสินค้า:</label>
                                                                     <input name="productCode" id="productCode" type="text" class="input-text required-entry " />
                                                                 </div>
                                                             </div>
 
                                                             <div class="customer-name">
                                                                 <div  class=" field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em>รหัสสินค้าต้นทาง</label>
+                                                                    <label for="firstname" class="required"><em>*</em>รหัสสินค้าต้นทาง:</label>
                                                                     <input name="productModelCode"  type="text" class="input-text required-entry "  />  
                                                                 </div>
                                                             </div>
@@ -137,7 +136,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> ชื่อสินค้า(ไทย) </label>
+                                                                    <label for="firstname" class="required"><em>*</em> ชื่อสินค้า(ไทย):</label>
                                                                     <input name="nameTh" type="text" class="input-text required-entry " />
                                                                 </div>
                                                             </div>
@@ -145,7 +144,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">  ชื่อสินค้า(อังกฤษ) </label>
+                                                                    <label for="firstname">  ชื่อสินค้า(อังกฤษ): </label>
                                                                     <input name="nameEn" type="text" class="input-text " />
                                                                 </div>
                                                             </div>
@@ -154,7 +153,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" >สีของสินค้า</label>
+                                                                    <label for="firstname" >สีของสินค้า:</label>
                                                                     <select name="colorId"  class="select">
                                                                         <c:forEach items="${query2.rows}" var="color" >
                                                                             <option value="${color.Color_Id}">${color.colorName}</option>
@@ -163,14 +162,14 @@
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> จำนวน</label>
+                                                                    <label for="firstname" class="required"><em>*</em> จำนวน:</label>
                                                                     <input type="text"  value="0" class="input-text required-entry validate-number"  name="qtyplus" style="text-align:right;"/>
                                                                 </div>
                                                             </div>
 
                                                             <div class="customer-name">
                                                                 <div  class="field number">
-                                                                    <label for="firstname" class="required"><em>*</em> หน่วย</label>
+                                                                    <label for="firstname" class="required"><em>*</em> หน่วย:</label>
                                                                     <select name="unitId" class="select required-entry ">
                                                                         <c:forEach  items="${query4.rows}" var="unit">
                                                                             <option value="${unit.unit_id}">${unit.unit_Name_T}</option>
@@ -182,12 +181,12 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> Path เก็บรูปภาพ</label>
+                                                                    <label for="firstname" class="required"><em>*</em> Path เก็บรูปภาพ:</label>
                                                                     <input type="file" name="upload" class="input-box required-entry" /></div>
                                                             </div>
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname">รูป Icon</label>
+                                                                    <label for="firstname">รูป Icon:</label>
                                                                     <input type="file" name="uploadIcon" class="input-box" />
                                                                 </div>
                                                             </div>
@@ -196,8 +195,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname"class="required"><em>*</em>สถานะสินค้า</label>
-
+                                                                    <label for="firstname"class="required"><em>*</em>สถานะสินค้า:</label>
                                                                     <select name="display" class="select required-entry ">
                                                                         <option value="Y">Show</option>
                                                                         <option value="N">Not Show</option>
@@ -206,14 +204,11 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="fieldset">
-                                                    <ul class="form-list">
+
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> คุณสมบัติ(ไทย)</label>
+                                                                    <label for="firstname" class="required"><em>*</em> คุณสมบัติ(ไทย):</label>
                                                                     <textarea   name="productSpect1_T" cols="25" rows="1" class="input-textarea required-entry "></textarea>
                                                                 </div>
                                                             </div>
@@ -221,17 +216,15 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">คุณสมบัติ(อังกฤษ)</label>
+                                                                    <label for="firstname">คุณสมบัติ(อังกฤษ):</label>
                                                                     <textarea name="productSpect1_E" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
-
-
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> โครงสร้างสินค้า-1(ไทย)</label>
+                                                                    <label for="firstname" class="required"><em>*</em> โครงสร้างสินค้า-1(ไทย):</label>
                                                                     <textarea name="productSpect2_T"  cols="25" rows="1" class="input-text required-entry"></textarea>
                                                                 </div>
                                                             </div>
@@ -239,16 +232,16 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">โครงสร้างสินค้า-1(อังกฤษ)</label>
+                                                                    <label for="firstname">โครงสร้างสินค้า-1(อังกฤษ):</label>
                                                                     <textarea name="productSpect2_E" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                   
+
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">ขนาดสินค้า-1(ไทย)</label>
+                                                                    <label for="firstname">ขนาดสินค้า-1(ไทย):</label>
                                                                     <textarea name="productSpect4_T" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -256,16 +249,16 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">ขนาดสินค้า-1(อังกฤษ)</label>
+                                                                    <label for="firstname">ขนาดสินค้า-1(อังกฤษ):</label>
                                                                     <textarea name="productSpect4_E" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        
+
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">สี(ไทย)</label>
+                                                                    <label for="firstname">สี(ไทย):</label>
                                                                     <textarea name="productSpect6_T" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -273,7 +266,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">สี(อังกฤษ)</label>
+                                                                    <label for="firstname">สี(อังกฤษ):</label>
                                                                     <textarea name="productSpect6_E" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -281,7 +274,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">หมายเหตุ(ไทย)</label>
+                                                                    <label for="firstname">หมายเหตุ(ไทย):</label>
                                                                     <textarea name="productDRemarkT" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
@@ -289,25 +282,23 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">หมายเหตุ(อังกฤษ)</label>
+                                                                    <label for="firstname">หมายเหตุ(อังกฤษ):</label>
                                                                     <textarea name="productDRemarkE" cols="25" rows="1" class="input-text"></textarea>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                     </ul>
                                                 </div>
-
                                                 <div class="fieldset">
                                                     <h2 class="legend">ราคา</h2>
+                                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname"class="required"><em>*</em> ราคาขายส่ง</label>
+                                                                    <label for="firstname"class="required"><em>*</em> ราคาขายส่ง:</label>
                                                                     <input name="price1" type="text" align="middle" class="input-text  required-entry validate-number" style="text-align:right;" />
-
                                                                     Baht (ราคาขายส่ง)
-
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -315,7 +306,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">ราคาขายส่ง-Pro</label>
+                                                                    <label for="firstname">ราคาขายส่ง-Pro:</label>
                                                                     <input name="price2" type="text"  class="input-text validate-number" style="text-align:right;"/> Baht (ราคาขายส่ง Promotion)
                                                                 </div>
                                                             </div>
@@ -323,7 +314,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">ราคาขายปลีก</label>
+                                                                    <label for="firstname">ราคาขายปลีก:</label>
                                                                     <input name="price3" type="text"  class="input-text validate-number" style="text-align:right;" /> Baht (ราคาขายปลีก)
                                                                 </div>
                                                             </div>
@@ -331,7 +322,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname">ราคาขายปลีก-Pro</label>
+                                                                    <label for="firstname">ราคาขายปลีก-Pro:</label>
                                                                     <input name="price4" type="text"  class="input-text validate-number" style="text-align:right;"/> Baht (ราคาขายปลีก Promotion)
                                                                 </div>
                                                             </div>
@@ -339,7 +330,7 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> รหัสส่วนลด</label>
+                                                                    <label for="firstname" class="required"><em>*</em> รหัสส่วนลด:</label>
                                                                     <select name="discountId"  class="select required-entry validate-Login">
                                                                         <c:forEach items="${query5.rows}" var="discountId" >
                                                                             <option value="${discountId.discount_id}">${discountId.discount_Name_T}</option>
@@ -347,32 +338,39 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-
+                                                        </li>
+                                                        <li class="fields">
+                                                            <p class="required" style="float: left">* ข้อมูลที่จำเปนต้องหรอก</p>
+                                                        <li class="fields">
+                                                            <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </c:if>
+                                            </form>
+                                        </c:if>
 
 
-                                            <c:if test="${param.productDetailId!=null}" >
+                                        <c:if test="${param.productDetailId!=null}" >
+                                            <form action="productDetail.do" method="post" id="form-validate" enctype="multipart/form-data" >
+
                                                 <c:forEach var="product" items="${query3.rows}" >
-                                                    <center><img alt=""  src="../${product.product_d_pic_loc}" width="150" height="200" /></center>
+
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="productDetailId" value="${product.product_detail_id}"/>
                                                     <input type="hidden" name="product_d_pic_loc" value="${product.product_d_pic_loc}"/>
                                                     <input type="hidden" name="product_d_icon_loc" value="${product.product_d_icon_loc}"/>
-                                                    <div class="buttons-set">
-                                                        <p class="required">* ข้อมูลที่จำเปนต้องหรอก</p>
 
-                                                        <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
-                                                    </div>
                                                     <div class="fieldset">
-                                                        
+                                                        <h2 class="legend">แก้ไขรายการสินค้า</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
                                                         <ul class="form-list">
+                                                            <li class="fields">
+                                                                <img alt=""  src="../${product.product_d_pic_loc}" width="150" height="200" />
+                                                            </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em>รหัสกลุ่มสินค้า</label>
+                                                                        <label for="firstname" class="required"><em>*</em>รหัสกลุ่มสินค้า:</label>
                                                                         <select name="productGroupId" class="select required-entry ">
                                                                             <c:forEach items="${query1.rows}" var="group" >
                                                                                 <c:if test="${group.product_Group_Id == product.product_Group_Id }" >
@@ -389,13 +387,13 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em>รหัสสินค้า</label>
+                                                                        <label for="firstname" >รหัสสินค้า:</label>
                                                                         <input name="productCode"  value="${product.product_code}" class="input-text "readonly/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em> รหัสสินค้าต้นทาง</label>
+                                                                        <label for="firstname" class="required"><em>*</em> รหัสสินค้าต้นทาง:</label>
                                                                         <input name="productModelCode" type="text" value="${product.product_model_code}" class="input-text required-entry " />
                                                                     </div>
                                                                 </div>
@@ -403,7 +401,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em>ชื่อสินค้า(ไทย)</label>
+                                                                        <label for="firstname" class="required"><em>*</em>ชื่อสินค้า(ไทย):</label>
                                                                         <input name="nameTh" type="text" value="${product.product_d_name_t}" class="input-text required-entry " />
                                                                     </div>
                                                                 </div>
@@ -411,15 +409,15 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname">   ชื่อสินค้า(อังกฤษ)</label>
-                                                                        <input name="nameEn" type="text" class="input-text required-entry" value="${product.product_d_name_e}"/>
+                                                                        <label for="firstname">ชื่อสินค้า(อังกฤษ):</label>
+                                                                        <input name="nameEn" type="text" class="input-text " value="${product.product_d_name_e}"/>
                                                                     </div> </div>
                                                             </li>
 
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >สีของสินค้า</label>
+                                                                        <label for="firstname" >สีของสินค้า:</label>
 
                                                                         <select name="colorId" class="select">
                                                                             <c:forEach items="${query2.rows}" var="color" >
@@ -434,7 +432,7 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em> จำนวน</label>
+                                                                        <label for="firstname" class="required"><em>*</em> จำนวน:</label>
 
                                                                         <c:if test="${product.balance != null && product.balance != ''}">
                                                                             <input type="text" class="input-text" value="${product.balance}" name="qtyold" size="5" disabled  style="text-align:right;" />
@@ -447,7 +445,7 @@
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em>หน่วยนับ</label>
+                                                                        <label for="firstname" class="required"><em>*</em>หน่วยนับ:</label>
                                                                         <select name="unitId" class="select ">
                                                                             <c:forEach items="${query4.rows}" var="unitId" >
                                                                                 <c:if test="${unitId.unit_id == product.unit_id }" >
@@ -458,29 +456,30 @@
                                                                                 </c:if>
                                                                             </c:forEach>
                                                                         </select>
-                                                                      </div>
+                                                                    </div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
-                                                             
+
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >Path เก็บรูปภาพ</label>
+                                                                        <label for="firstname" >Path เก็บรูปภาพ:</label>
                                                                         <c:if test="${product.product_d_pic_loc!=null&&product.product_d_pic_loc!=''}" >
                                                                         </c:if>
                                                                         <c:if test="${product.product_d_pic_loc==null||product.product_d_pic_loc==''}" >
-                                                                            <label for="firstname" >Product Image</label>
+                                                                            <label for="firstname" >Product Image:</label>
                                                                         </c:if>
                                                                         <input type="file" name="upload" class="input-text"/></div>
                                                                 </div>
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <img alt=""  src="../${product.Product_D_Icon_Loc}" width="24" height="24" />
-                                                                        <label for="firstname" class="required"><em>*</em>รูป Icon</label>
+                                                                        <!-- <img alt=""  src="../${product.Product_D_Icon_Loc}" width="24" height="24" /> -->
+                                                                        
                                                                         <c:if test="${product.Product_D_Icon_Loc!=null&&product.Product_D_Icon_Loc!=''}" >
+                                                                            <label for="firstname">รูป Icon:</label>
                                                                         </c:if>
                                                                         <c:if test="${product.Product_D_Icon_Loc==null||product.Product_D_Icon_Loc==''}" >
-                                                                            <label for="firstname" class="required"><em>*</em>รูป Icon</label>
+                                                                            <label for="firstname">รูป Icon:</label>
                                                                         </c:if>
                                                                         <input type="file" name="uploadIcon" value="" class="input-text" />
                                                                     </div>
@@ -490,7 +489,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em> สถานะสินค้า</label>
+                                                                        <label for="firstname" class="required"><em>*</em> สถานะสินค้า:</label>
 
                                                                         <select name="display" class="select required-entry">
                                                                             <option value="Y" <c:if test="${product.product_d_display_flag == 'Y'}"> selected</c:if> >Show</option>
@@ -498,20 +497,11 @@
                                                                             <option value="A" <c:if test="${product.product_d_display_flag == 'A'}"> selected</c:if>>Show on Slide</option>
                                                                         </select></div>
                                                                 </div>
-
-
                                                             </li>
-                                                        </ul>
-                                                    </div>
-
-
-                                                    <div class="fieldset">
-                                                        
-                                                        <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em> คุณสมบัติ(ไทย)</label>
+                                                                        <label for="firstname" class="required"><em>*</em> คุณสมบัติ(ไทย):</label>
                                                                         <textarea name="productSpect1_T" cols="25" rows="1"  class="input-text required-entry ">${product.product_spec1_T}</textarea></div>
                                                                 </div>
                                                             </li>
@@ -519,20 +509,20 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >คุณสมบัติ(อังกฤษ)</label>
+                                                                        <label for="firstname" >คุณสมบัติ(อังกฤษ):</label>
                                                                         <textarea name="productSpect1_E" cols="25" rows="1">${product.product_spec1_E}</textarea></div></div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em> โครงสร้างสินค้า-1(ไทย)</label>
+                                                                        <label for="firstname" class="required"><em>*</em> โครงสร้างสินค้า-1(ไทย):</label>
                                                                         <textarea name="productSpect2_T" cols="25" rows="1"  class="input-text required-entry ">${product.product_spec2_T}</textarea></div></div>
                                                             </li>
 
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >โครงสร้างสินค้า-1(อังกฤษ)</label>
+                                                                        <label for="firstname" >โครงสร้างสินค้า-1(อังกฤษ):</label>
                                                                         <textarea name="productSpect2_E" cols="25" rows="1">${product.product_spec2_E}</textarea></div></div>
                                                             </li>
                                                             <!---<li class="fields">
@@ -548,13 +538,13 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ขนาดสินค้า-1(ไทย)</label>
+                                                                        <label for="firstname" >ขนาดสินค้า-1(ไทย):</label>
                                                                         <textarea name="productSpect4_T" cols="25" rows="1">${product.product_spec4_T}</textarea></div></div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ขนาดสินค้า-1(อังกฤษ)</label>
+                                                                        <label for="firstname" >ขนาดสินค้า-1(อังกฤษ):</label>
                                                                         <textarea name="productSpect4_E" cols="25" rows="2">${product.product_spec4_E}</textarea></div></div>
                                                             </li>
                                                             <!--- <li class="fields">
@@ -570,25 +560,25 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >สี(ไทย)</label>
+                                                                        <label for="firstname" >สี(ไทย):</label>
                                                                         <textarea name="productSpect6_T" cols="25" rows="1">${product.product_spec6_T}</textarea></div></div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >สี(อังกฤษ)</label>
+                                                                        <label for="firstname" >สี(อังกฤษ):</label>
                                                                         <textarea name="productSpect6_E" cols="25" rows="1">${product.product_spec6_E}</textarea></div></div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >หมายเหตุ(ไทย)</label>
+                                                                        <label for="firstname" >หมายเหตุ(ไทย):</label>
                                                                         <textarea name="productDRemarkT" cols="25" rows="1">${product.product_d_remark_T}</textarea></div></div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >หมายเหตุ(อังกฤษ)</label>
+                                                                        <label for="firstname" >หมายเหตุ(อังกฤษ):</label>
                                                                         <textarea name="productDRemarkE" cols="25" rows="1">${product.product_d_remark_E}</textarea></div></div>
                                                             </li>
                                                         </ul>
@@ -596,38 +586,40 @@
 
                                                     <div class="fieldset">
                                                         <h2 class="legend">ราคา</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
+
                                                         <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required"><em>*</em>ราคาขายส่ง</label>
+                                                                        <label for="firstname" class="required"><em>*</em>ราคาขายส่ง:</label>
                                                                         <input name="price1" type="text" value="${product.product_Price1}" class="input-text required-entry validate-number" style="text-align:right;" /> Baht (ราคาขายส่ง)</div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ราคาขายส่ง-Pro</label>
+                                                                        <label for="firstname" >ราคาขายส่ง-Pro:</label>
                                                                         <input name="price2" type="text" value="${product.product_Price2}" class="input-text validate-number" style="text-align:right;"/> Baht (ราคาขายส่ง Promotion)</div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ราคาขายปลีก</label>
+                                                                        <label for="firstname" >ราคาขายปลีก:</label>
                                                                         <input name="price3" type="text" value="${product.product_Price3}" class="input-text validate-number" style="text-align:right;" /> Baht (ราคาขายปลีก)</div>
                                                                 </div></li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ราคาขายปลีก-Pro</label>
+                                                                        <label for="firstname" >ราคาขายปลีก-Pro:</label>
                                                                         <input name="price4" type="text" value="${product.product_Price4}" class="input-text validate-number" style="text-align:right;" /> Baht (ราคาขายปลีก Promotion)</div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div  class="field name-firstname">
-                                                                        <label for="firstname" class="required">รหัสส่วนลด</label>
+                                                                        <label for="firstname" class="required">รหัสส่วนลด:</label>
                                                                         <select name="discountId"  class="select required-entry">
                                                                             <c:forEach items="${query5.rows}" var="discountId" >
                                                                                 <c:if test="${discountId.Discount_Id == product.discount_Id }" >
@@ -641,19 +633,25 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
+                                                            <li>
+                                                                <p class="required" style="float: left">* ข้อมูลที่จำเปนต้องหรอก</p>
+                                                            </li>
+                                                            <li>
+                                                                <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </c:forEach>
-                                            </c:if>
+                                            </form>
+                                        </c:if>
 
-                                        </form>
                                         <script type="text/javascript">
                                             //<![CDATA[
                                             var dataForm = new VarienForm('form-validate', true);
                                             //]]>
                                         </script>
 
-                                        <br/><br/><br/><br/>
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>
@@ -667,7 +665,7 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 </html>
 

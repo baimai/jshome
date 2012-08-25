@@ -68,9 +68,9 @@
             }
             function remove(menuCodeId){
                 var param = "menuCodeId="+menuCodeId+"&action=Del";
-                alert(param);
+                //alert(param);
                 postDataReturnText("remove.do",param,test);
-                window.location.href='menuDetail.jsp';
+                window.location.href='MenuDetail.jsp';
                 //
             }
             function test(text){
@@ -105,7 +105,7 @@
                     ],
                     rowNum:20,
                      height: "auto",
-                     width: 950,
+                     width: 930,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -159,18 +159,27 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>เมนูย่อย</h1>
-                                            <div class="button" align="right">
 
+                                            <div class="button" align="right">
                                             <button name="action" value="Add" class="button" onclick="window.location.href='menuDetailMaster.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
-                                        </div>
+                                            </div>
+
+                                        <center>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br>
+                                        </center>
+                                        
                                         <center>
                                             <br/>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
-                                            <br/>
+                                            <br>
                                         </center>
-                                        <br/>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
                                     </div>
                                 </div>
                             </div>

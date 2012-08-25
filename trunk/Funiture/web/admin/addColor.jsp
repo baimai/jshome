@@ -5,10 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ include file="checkRole.jsp" %>
+<%@include file="checkRole.jsp" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${param.colorId!=null}">
     <sql:query var="query" dataSource="webdb">
         SELECT *
@@ -67,17 +67,21 @@
                                         </div>                                       
                                         <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                         <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
                                         <c:if test="${param.colorId==null}" >
                                             <form action="colorMaster.do" method="post" id="form-validate"  >
                                                 <input type="hidden" name="action" value="Add" />
-                                                <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
+                                                
                                                 <div class="fieldset">
+
+                                                    <h2 class="legend">เพิ่มข้อมูลสี</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div   class="field name-firstname">
                                                                     <label for="firstname" class="required"><em>*</em>รหัสสี: </label>
-                                                                    <input type="text" name="colorCode" value=""class="input-text "  />
+                                                                    <input type="text" name="colorCode" value=""class="input-text required-entry "  />
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -86,7 +90,7 @@
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" class="required"><em>*</em>คำอธิบาย(ไทย):</label>
-                                                                    <input type="text" name="colorNameT" value="" class="input-text" /></div>
+                                                                    <input type="text" name="colorNameT" value="" class="input-text required-entry " /></div>
                                                             </div>
                                                         </li>
 
@@ -198,6 +202,7 @@
                                                                      <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
                                                              </div>
                                                          </li>-->
+                                                        <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()" ><span><span>บันทึก</span></span></button>
                                                     </ul>
                                                 </div>
                                             </form>
@@ -210,15 +215,15 @@
                                                     <center></center>
                                                     <input type="hidden" name="action" value="Edit" />
                                                     <input type="hidden" name="colorId" value="${colorCodeMaster.Color_Id}"/>
-                                                    <div class="buttons-set">
-                                                        <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
-                                                    </div>
+
                                                     <div class="fieldset">
+                                                        <h2 class="legend">แก้ไขข้อมูลสี</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
                                                         <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required" <em>*</em>รหัสสี:</label>
+                                                                        <label for="firstname" >รหัสสี:</label>
                                                                         <input type="text" name="colorCode" value="${colorCodeMaster.Color_Code}"  class="input-text required-entry " readonly/>
                                                                     </div>
                                                                 </div>
@@ -226,7 +231,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required" <em>*</em>คำอธิบาย(ไทย):</label>
+                                                                        <label for="firstname" >คำอธิบาย(ไทย):</label>
                                                                         <input type="text" name="colorNameT" value="${colorCodeMaster.Color_Name_T}" class="input-text" /></div>
                                                                 </div>
                                                             </li>
@@ -237,6 +242,8 @@
                                                                         <input type="text" name="colorNameE" value="${colorCodeMaster.Color_Name_E}" class="input-text" /></div>
                                                                 </div>
                                                             </li>
+
+                                                            <!--
 
                                                             <li class="fields">
                                                                 <div class="customer-name">
@@ -288,6 +295,8 @@
                                                                          <input type="text" name="holdDate" value="${userSecurity.Hold_Date}" readonly="readonly" class="input-text"/></div>
                                                                  </div>
                                                              </li>-->
+
+                                                            <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
                                                         </ul>
                                                     </div>
                                                 </c:forEach>
@@ -316,8 +325,8 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-<jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
 </html>
 

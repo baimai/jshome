@@ -34,7 +34,7 @@
                     url:'datagrid.do?action=fetchData&q=1&page=1',
                     //url:'datagrid.do?action=fetchData&q=1&picCode=00010',
                     datatype: "xml",
-                    colNames:['Pic detail','piccode','Picture','Product Code','วันที่สร้าง','วันที่แก้ไข','ผู้ใช้', '','',''],
+                    colNames:['Pic detail','piccode','Picture','Product Code','วันที่สร้าง','วันที่แก้ไข','ผู้ใช้', '','แก้ไข','ลบ'],
                     colModel:[
                         {name:'picDetalId',index:'picDetalId', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true}},
@@ -44,14 +44,13 @@
                         {name:'updateDate',index:'updateDate', align:"center",width:110,editable:true,editoptions:{size:10}},
                         {name:'userId',index:'userId', align:"center",width:110,editable:true,editoptions:{size:10}},
                         {name:'picDetalId',index:'picDetalId', width:55,hidden:true,editable:true,editrules:{edithidden:true}},
-                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetupDetail.jsp?picDetalId="+cellvalue+"\" ><img src=\"../images/icon/tag-blue.png\" width=\"16\" height=\"16\"/></a>"}},
-                       
-                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/ko-red.png\" width=\"16\" height=\"16\"/></a>"}},// {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
+                        {name:'Edit',index:'Edit', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductSetupDetail.jsp?picDetalId="+cellvalue+"\" ><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},      
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},// {name:'Edit2',index:'Edit2', width:100,hidden:false,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"seqProductSetup.do?action=fetchData&picCode="+cellvalue+"\" >Seq</a>"}}
                     ]
                     ,
                     rowNum:20,
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -99,14 +98,18 @@
                                         <div class="page-title">
                                             <h1>จัดการรูปแสดงสินค้า</h1>
                                         </div>
-                                        <br/>
-                                        <button onclick="window.location.href='addProductSetupDetail.jsp'" class="button"><span><span> Add</span></span></button>
-                                        <br/><br/>
+                                        
+                                         <center>
+                                             <button onclick="window.location.href='addProductSetupDetail.jsp'" class="button"><span><span>เพิ่ม</span></span></button>
+                                        <br>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br>
+                                        </center>
+                                        <br>
                                         <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
                                             <br />
-
                                         </center>
                                         <br/>
                                     </div>

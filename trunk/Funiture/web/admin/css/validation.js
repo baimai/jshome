@@ -415,7 +415,7 @@ Validation.addAllThese([
     ['required-entry', 'ข้อมูลที่จำเป็นต้องกรอก', function(v) {
                 return !Validation.get('IsEmpty').test(v);
             }],
-    ['validate-number', 'Please enter a valid number in this field.', function(v) {
+    ['validate-number', 'กรุณากรอกข้อมูลที่เป็นตัวเลขเท่านััน', function(v) {
                 return Validation.get('IsEmpty').test(v) || (!isNaN(parseNumber(v)) && !/^\s+$/.test(parseNumber(v)));
             }],
     ['validate-digits', 'Please use numbers only in this field. please avoid spaces or other characters such as dots or commas.', function(v) {

@@ -29,15 +29,15 @@
         <script src="jqgrid4.2/js/jquery.jqGrid.min.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery.tablednd.js" type="text/javascript"></script>
         <script src="jqgrid4.2/js/jquery.contextmenu.js" type="text/javascript"></script>
-         <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
+        <script type="text/javascript" src="../ajax/myAjaxFramework.js" ></script>
         <script  type="text/javascript">
 
-             function remove(menuGroupId){
-               // var param = "Del"+"&menuGroupId="+menuGroupId;
+            function remove(menuGroupId){
+                // var param = "Del"+"&menuGroupId="+menuGroupId;
                 var param = "menuGroupId="+menuGroupId+"&action=Del";
-                alert(param);
-                 postDataReturnText("remove.do",param,test);
-                alret(menuGroupId);
+                //alert(param);
+                postDataReturnText("remove.do",param,test);
+                //alret(menuGroupId);
                 window.location.href='MenuGroup.jsp';
                 
             }
@@ -72,7 +72,7 @@
                     ],
                     rowNum:20,
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     loadonce:true,
                     pager: '#prowed1',
@@ -84,18 +84,18 @@
                     editurl:"menuGroupMaster.do"
 
                 });
-               jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+                jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true} //options
-              //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
-              //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
-               // {reloadAfterSubmit:true,
-              //      delData:{action:"Del",
-               //         menuGroupId:function() {
-              //              var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-              //              var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
-             //               return value;
-              //          }}}, // del options
-            //    {} // search options
+                //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Edit"}}, // edit options
+                //  {height:300,width:460,reloadAfterSubmit:true,editData:{action:"Add"}}, // add options
+                // {reloadAfterSubmit:true,
+                //      delData:{action:"Del",
+                //         menuGroupId:function() {
+                //              var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+                //              var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'menuGroupId');
+                //               return value;
+                //          }}}, // del options
+                //    {} // search options
             );
             });
         </script>
@@ -120,16 +120,20 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>เมนูหลัก</h1>
-                                             <button name="action" value="Add" class="button" onclick="window.location.href='addMenuGroup.jsp'"><span><span>เพิ่ม</span></span></button>
-                                             
+                                            <button name="action" value="Add" class="button" onclick="window.location.href='addMenuGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                         </div>
+                                        <center>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br><br>
+                                        </center>
                                         <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
-                                            <br />
-
+                                            <br>
                                         </center>
-                                        <br/>
+                                        <br>
+                                        <br>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +148,6 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 </html>

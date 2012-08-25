@@ -62,7 +62,7 @@
                     datatype: "xml",
                     colNames:['วันที่สั่งซื้อ','เลขที่ใบสั่งซื้อ', 'ชื่อ-นามสกุล','รหัสบริษัท', 'สถานะใบสั่งซื้อ','จำนวนเงิน','แก้ไข'],
                     colModel:[
-                        {name:'orderDate',index:'orderDate',editoptions:"", width:170,align:"center"},
+                        {name:'orderDate',index:'orderDate',editoptions:"", width:140,align:"center"},
                         {name:'orderNo',index:'orderNo', width:80,align:"right"},
                         {name:'name',index:'name', width:225, align:"center"},
                         {name:'companyId',index:'companyId', width:80,align:"right"},
@@ -74,7 +74,7 @@
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -115,31 +115,58 @@
                             <div class="main">
                                 <div class="col-main">
                                     <div class="account-create">
-                                        <div class="page-title">
-                                            <h1>สั่งซื้อ</h1>
-                                        </div>
+
+                                        <table class="tableContent1" border="0" cellspacing="3" cellpadding="0" align="" width="60%">
+                                            <tr >
+                                                <td style="float: right">
+                                                    สถานะ :&nbsp;
+                                                </td>
+                                                <td style="width: 120px">
+                                                    <select id="status" onchange="show()">
+                                                        <option value=""> ใหม่ (default) </option>
+                                                        <option value=""> อนุมัติ </option>
+                                                        <option value=""> ยกเลิก </option>
+                                                        <c:forEach items="${query3.rows}" var="order">
+                                                            <option value="${order.order_status}">${order.status}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td style="float: right">
+                                                    วันที่สั่งซื้อ :&nbsp;
+                                                </td>
+                                                <td style="width: 120px">
+                                                    <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td style="float: right">
+                                                    ใบสั่งซื้อ :&nbsp;
+                                                </td>
+                                                <td style="width: 120px">
+                                                    <input type="text" id="datepicker" name="order_no" value="" title="order_no"class="order_no"   onchange="show();"/>
+                                                </td>
+                                            </tr>
+                                            <br><br>
+                                        </table>
+                                        <br>
                                         <center>
-                                            <br/>สถานะ
-                                            <select id="status" onchange="show()">
-                                                <option value=""> ใหม่ (default) </option>
-                                                <option value=""> อนุมัติ </option>
-                                                <option value=""> ยกเลิก </option>
-                                                <c:forEach items="${query3.rows}" var="order">
-                                                    <option value="${order.order_status}">${order.status}</option>
-                                                </c:forEach>
-                                            </select>
-                                            <br/>
-                                            <br/>วันที่สั่งซื้อ
-                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
-                                            <br/><br/>
-                                            <br/>ใบสั่งซื้อ
-                                            <input type="text" id="datepicker" name="order_no" value="" title="order_no"class="order_no"   onchange="show();"/>
-                                            <br/><br/>
-                                            <table id="rowed1"></table>
-                                            <br/>
-                                            <div id="prowed1"></div>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br><br>
                                         </center>
-                                        <br/><br/> <br/>
+                                        <center><table id="rowed1"></table
+                                            <br>
+                                        </center>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br> 
+
+                                        <div id="prowed1"></div>
                                     </div>
                                 </div>
                             </div>
@@ -150,11 +177,9 @@
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
-
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
 </html>

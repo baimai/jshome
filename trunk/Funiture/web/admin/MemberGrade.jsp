@@ -50,7 +50,7 @@
                     ],
                     rowNum:20,
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -106,13 +106,21 @@
                                                 <button name="action" value="Add" class="button" onclick="window.location.href='addMemberGrade.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
                                         </div>
+                                         <center>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br><br>
+                                        </center>
 
                                         <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
                                             <br />
                                         </center>
-                                        <br/><br/> </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br> 
+                                    </div>
                                 </div>
                             </div>
                         </div>

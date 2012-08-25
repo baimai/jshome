@@ -32,7 +32,8 @@
         <script  type="text/javascript">
             function remove(colorId){
                 var param = "colorId="+colorId+"&action=Del";
-                postDataReturnText("colorMaster.do",param,test);
+                alert(param);
+                postDataReturnText("remove.do",param,test);
                 window.location.href='color.jsp';
                 //
             }
@@ -48,7 +49,7 @@
                 jQuery("#rowed1").jqGrid({
                     url:'xmlColorMaster.do?action=fetchData&q=1',
                     datatype: "xml",
-                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id','Edit','Del' ],
+                    colNames:['รหัสสี', 'คำอธิบาย(ไทย)', 'วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Color Id','แก้ไข','ลบ' ],
                     colModel:[                        
                         {name:'colorCode',index:'colorCode', width:120,	editable:true,editoptions:{ size:25},editrules:{required:true}},
                         {name:'colorNameT',index:'colorNameT', width:120,editable:true,editoptions:{size:25},editrules:{required:true}},
@@ -61,7 +62,7 @@
                     ],
                     rowNum:20,
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -115,7 +116,7 @@
                                     <div class="account-create">
                                         <div class="page-title">
                                             <h1>ข้อมูลสีสินค้า</h1>
-                                            <button name="action" value="Add" class="button" onclick="window.location.href='addColor.jsp'"><span><span>เพิ่ม</span></span></button>
+                                            <button name="action" value="Add" class="button" onclick="window.location.href='addColor.jsp?'"><span><span>เพิ่ม</span></span></button>
                                         </div>
 
                                         <center>

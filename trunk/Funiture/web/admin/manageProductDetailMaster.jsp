@@ -37,7 +37,8 @@
             function remove(productDetailId){
                 var param = "productDetailId="+productDetailId+"&action=Del";
                 postDataReturnText("remove.do",param,test);
-                $('#rowed1').trigger("reloadGrid");
+                //$('#rowed1').trigger("reloadGrid");
+                window.location.href='manageProductDetailMaster.jsp'; //ลบเสร็จให้แสดงหน้านี้
             }
             function test(text){
 
@@ -55,17 +56,17 @@
                     jQuery("#rowed1").jqGrid('setGridParam',{url:"xmlProductGroup.do?action=fetchData&q=2&Edit=1&Del=1&productGroupId="+document.getElementById('groupId').value});
                 }
                 jQuery("#rowed1").trigger('reloadGrid');
-                 alret(groupId);
+                alret(groupId);
             }
             jQuery(document).ready(function(){
                 jQuery("#rowed1").jqGrid({        
                     url:'xmlProductGroup.do?action=fetchData&q=2',
                     datatype: "xml",
-                    colNames:['รหัสสินค้าต้นทาง','รหัสสินค้า', 'ชื่อสินค้า(ไทย)', 'ชื่อสินค้า(อังกฤษ)','สถานะสินค้า','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','Edit','Del'],
+                    colNames:['รหัสสินค้าต้นทาง','รหัสสินค้า', 'ชื่อสินค้า(ไทย)', 'ชื่อสินค้า(อังกฤษ)','สถานะสินค้า','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','แก้ไข','ลบ'],
                     colModel:[
                         {name:'productModelCode',index:'productModelCode', width:110,align:"right"},
-                        {name:'productCode',index:'productCode', width:130,align:"right"},
-                        {name:'productDNameT',index:'productDNameT', width:200, align:"left"},
+                        {name:'productCode',index:'productCode', width:130,align:"center"},
+                        {name:'productDNameT',index:'productDNameT', width:200, align:"center"},
                         {name:'productDNameE',index:'productDNameE', width:150, align:"left"},
                         {name:'productDDisplayFlag',index:'productDDisplayFlag', width:90, align:"center"},
                         {name:'createDate',index:'createDate', width:110,editable:false,editoptions:{size:25},formatter:'date', formatoptions:{srcformat:"Y-m-d",newformat:"d/m/Y"},searchoptions:{dataInit:function(el){$(el).datepicker({dateFormat:'dd/mm/yy'});} }},
@@ -78,7 +79,7 @@
                     rowList:[20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     sortname: 'id',
                     viewrecords: true,
                     sortorder: "desc",
@@ -117,18 +118,26 @@
                                                     <button  name="action" value="Add"  class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                                 </form>
                                             </div>
+                                                    
+                                         
                                         </div>
                                         <center>
-                                            <br/>
-                                            <div class="field" align="center"> ประเภทสินค้า
+                                             <img src="images/line.jpg" width="930" height="" alt=""/>
+                                             <br>
+                                            <center>
+                                            <div class="field" align="center" style="float: right">ประเภทสินค้า:
                                                 <select id="groupId" onchange="show()">
                                                     <option value=""> ทั้งหมด </option>
                                                     <c:forEach items="${query3.rows}" var="group">
                                                         <option value="${group.product_group_Id}" >${group.product_g_name_t}</option>
                                                     </c:forEach>
-                                                </select>
-                                                <br/><br/></div>
-                                            <table id="rowed1"></table>
+                                                </select> &nbsp;&nbsp;
+                                            </div>
+                                                <br>
+                                            </center>
+                                            <br/>
+
+                                            <center><table id="rowed1"></table></center>
                                             <br/>
                                             <div id="prowed1"></div>
                                         </center>
