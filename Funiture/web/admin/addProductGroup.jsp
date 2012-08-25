@@ -12,21 +12,9 @@
 
 <c:if test="${param.productGroupId!=null}">
     <sql:query var="query" dataSource="webdb">
-        SELECT 
-        pgm.Product_Group_Code,
-        pgm.product_group_id,
-        pgm.Product_G_Name_T,
-        pgm.Product_G_Name_E,
-        pgm.Product_Pic_Loc,
-        pgm.Product_Icon_Loc,
-        pgm.Product_Remark_T,
-        pgm.Product_Remark_E,
-        pgm.Product_G_Display_Flag,
-        pgm.Create_Date,
-        pgm.Update_Date,
-        pgm.User_Id
+        SELECT *
         FROM product_group_master pgm
-        where pgm.product_group_id =  ${param.productGroupId}
+        where pgm.Product_Group_Id =  ${param.productGroupId}
     </sql:query>
 </c:if>
 
@@ -79,16 +67,15 @@
                                             <h1>ข้อมูลบริษัท</h1>
                                         </div>
 
-                                        <form action="productGroup.do" method="post" id="form-validate"  enctype="multipart/form-data" >
-                                            <%--<div class="warning_box">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-                                            </div>--%>
-                                            <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
-                                            <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
-                                            <c:if test="${param.productGroupId==null}" >
+                                        <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                        <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
+                                        <c:if test="${param.productGroupId==null}" >
+                                            <form action="productGroup.do" method="post" id="form-validate"  enctype="multipart/form-data" >
                                                 <input type="hidden" name="action" value="Add" />
-                                                <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
                                                 <div class="fieldset">
+                                                    <h2 class="legend">เพิ่มกลุ่มสินค้า</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -155,6 +142,8 @@
                                                             </div>
                                                         </li>
 
+                                                        <!--
+                                                        
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
@@ -178,34 +167,40 @@
                                                                     <label for="firstname" >รหัสผู้ใช้ :</label>
                                                                     <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
                                                             </div>
-                                                        </li>
-
-                                                    </ul>
+                                                        </li> -->
+                                                        <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
+                                                           </ul>
                                                 </div>
+                                            </form>
+                                        </c:if>
 
-
-                                            </c:if>
                                             <c:if test="${param.productGroupId!=null}" >
+                                                 <form action="productGroup.do" method="post" id="form-validate"  enctype="multipart/form-data" >
                                                 <c:forEach var="productGroup" items="${query.rows}" >
-                                                    <center></center>
+
                                                     <input type="hidden" name="action" value="Edit" />
-                                                    <input type="hidden" name="productGroupId" value="${productGroup.product_group_id}"/>
-                                                    <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                    <input type="hidden" name="productGroupId" value="${productGroup.Product_Group_Id}"/>
+
                                                     <div class="fieldset">
+
+                                                        <h2 class="legend">แก้ไขกลุ่มสินค้า</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
+
                                                         <ul class="form-list">
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required">รหัสกลุ่มสินค้า <em>*</em>:</label>
-                                                                        <input type="text" name="productGroupCode" value="${productGroup.product_Group_Code}"  class="input-text required-entry " disabled/>
+                                                                        <!-- <label for="firstname" class="required">รหัสกลุ่มสินค้า <em>*</em>:</label> -->
+                                                                        <label for="firstname" >รหัสกลุ่มสินค้า:</label>
+                                                                        <input type="text" name="productGroupCode" value="${productGroup.product_Group_Code}"  class="input-text" readonly/>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >ชื่อกลุ่มสินค้า(ไทย) :</label>
-                                                                        <input type="text" name="productGNameT" value="${productGroup.product_G_Name_T}" class="input-text" /></div>
+                                                                        <label for="firstname" class="required">ชื่อกลุ่มสินค้า(ไทย):<em>*</em></label>
+                                                                        <input type="text" name="productGNameT" value="${productGroup.product_G_Name_T}" class="input-text required-entry" /></div>
                                                                 </div>
                                                             </li>
 
@@ -265,6 +260,8 @@
                                                                 </div>
                                                             </li>
 
+                                                            <!--
+
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
@@ -286,7 +283,8 @@
                                                                         <label for="firstname" >รหัสผู้ใช้ :</label>
                                                                         <input type="text" name="userId" value="${productGroup.User_Id}" class="input-text" readonly="readonly" /></div>
                                                                 </div>
-                                                            </li>
+                                                            </li> -->
+                                                            <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
                                                         </ul>
 
                                                     </c:forEach>
@@ -312,7 +310,7 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 
 </html>

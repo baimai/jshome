@@ -80,7 +80,7 @@
                     rowNum:20,
                     rowList:[20,30,40,80,160,320,500,1000],
                     height: "auto",
-                    width: 1000,
+                    width: 930,
                     pager: '#prowed1',
                     sortname: 'id',
                     viewrecords: true,
@@ -149,30 +149,52 @@
                             <div class="main">
                                 <div class="col-main">
                                     <div class="account-create">
-                                        <div class="page-title">
-                                            <h1>สมาชิก</h1>
-                                        </div>
+
+                                           
+                                                <table class="tableContent1" border="0" cellspacing="0" cellpadding="0" align="" width="60%" >
+                                                    <tr >
+                                                        <td style="float: right">
+                                                            สถานะ :&nbsp;
+                                                        </td>
+                                                        <td style="width: 100px">
+                                                            <select id="status" onchange="show()">
+                                                                <option value=""> ทั้งหมด </option>
+                                                                <option value="N"> สมาชิกใหม่ </option>
+                                                                <option value="Y"> สมาชิกใช้งาน </option>
+                                                                <option value="B"> สมาชิกหยุดใช้งาน </option>
+                                                                <c:forEach items="${query1.rows}" var="member">
+                                                                    <option value="${member.member_status}">${member.status}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td style="float: right">
+                                                            วันที่สมัคร :&nbsp;
+                                                        </td>
+                                                        <td style="width: 100px">
+                                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate" onchange="show();"/>
+                                                        </td>
+                                                    </tr>
+                                                    <br>
+                                                    <br>
+                                                </table>
+                                               
+                                       
+                                        <br>
                                         <center>
-                                            <br/>สถานะ
-                                            <select id="status" onchange="show()">
-                                                <option value=""> ทั้งหมด </option>
-                                                <option value="N"> สมาชิกใหม่ </option>
-                                                <option value="Y"> สมาชิกใช้งาน </option>
-                                                <option value="B"> สมาชิกหยุดใช้งาน </option>
-                                                <c:forEach items="${query1.rows}" var="member">
-                                                    <option value="${member.member_status}">${member.status}</option>
-                                                </c:forEach>
-                                            </select>
-                                            <br/>
-                                            <br/>วันที่สมัคร
-                                            <input type="text" id="datepicker" name="startDate" value="" title="startDate"class="startDate"   onchange="show();"/>
-                                            <br/><br/>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br><br>
+                                        </center>
+                                        <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
-                                            <br />
-                                            <table id="rowed2"></table>
                                         </center>
-                                        <br/>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br> 
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -187,6 +209,6 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 </html>

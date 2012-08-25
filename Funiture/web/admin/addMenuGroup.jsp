@@ -73,6 +73,7 @@
                                         </div>--%>
                                         <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                         <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
                                        <c:if test="${param.menuGroupId==null}" >
                                             <form action="menuGroupMaster.do" method="post" id="form-validate"  >
                                                 <input type="hidden" name="action" value="Add" />
@@ -82,8 +83,8 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div   class="field name-firstname">
-                                                                    <label for="firstname" >ชื่อเมนู(ไทย): </label>
-                                                                    <input type="text" name="menuGNameT" value=""class="input-text  " />
+                                                                    <label for="firstname" class="required"><em>*</em>ชื่อเมนู(ไทย): </label>
+                                                                    <input type="text" name="menuGNameT" value=""class="input-text required-entry" />
                                                                 </div>
                                                             </div>
                                                         </li>

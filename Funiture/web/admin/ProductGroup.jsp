@@ -61,7 +61,7 @@
             }
             function remove(productGroupId){
                 var param = "productGroupId="+productGroupId+"&action=Del";
-                alert(productGroupId);
+                //alert(productGroupId);
                 postDataReturnText("remove.do",param,test);
                 window.location.href='ProductGroup.jsp';
                 //
@@ -82,9 +82,9 @@
                     colModel:[
                        
                         {name:'productGroupCode',index:'productGroupCode', align:"center", width:150,editoptions:{editable:true,size:25},editrules:{number:true,required:true,edithidden:true},formoptions:{/* rowpos:1, label: "productGroupCode",*/ elmprefix:"(*)"}},
-                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:200,editable:true,editoptions:{size:25}},
+                        {name:'productGNameT',index:'productGNameT',  align:"centert",width:220,editable:true,editoptions:{size:25}},
                         {name:'productGNameE',index:'productGNameE', align:"centert", width:200,editable:true,editoptions:{size:25}},
-                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:120,editable:true,editoptions:{size:25},edittype:"file"},
+                        {name:'productGDisplayFlag',index:'productGDisplayFlag', width:170,editable:true,editoptions:{size:25},edittype:"file"},
                         {name:'productIconLoc',index:'productIconLoc',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkT',index:'productRemarkT',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'productRemarkE',index:'productRemarkE',width:80,hidden:true,editrules:{ edithidden:true},editable:true,editoptions:{size:25}},
@@ -101,15 +101,15 @@
                                         dateFormat:'yy-mm-dd',newformat:"dd/mm/yy",
                                         onSelect: function(dateText, inst){ $("#rowed1")[0].triggerToolbar(); }
                                     });} }},
-                        {name:'userId',index:'userId', align:"centert", width:200,editable:false,editoptions:{size:25}},
+                        {name:'userId',index:'userId', align:"centert", width:150,editable:false,editoptions:{size:25}},
                         {name:'productGroupId',index:'productGroupId', align:"centert",hidden:true,editrules:{ edithidden:false},editable:true},
-                         {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
-                         {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Edit',index:'Edit', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"addProductGroup.jsp?productGroupId="+cellvalue+"\"><img src=\"../images/icon/edit-icon.png\" width=\"16\" height=\"16\"/></a>"}},
+                        {name:'Del',index:'Del', width:70,align:"center",editable:false,formatter:function(cellvalue, options, rowObject){return "<a href=\"#\" onclick=\"confirmDelete("+cellvalue+")\"><img src=\"../images/icon/del-icon.png\" width=\"16\" height=\"16\"/></a>"}},
 
                     ],
                     rowNum:20,
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     loadonce:true,
                     pager: '#prowed1',
@@ -120,9 +120,9 @@
                     caption:"ประเภทสินค้า",
                     editurl:"productGroup.do"
                 });
-                 jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+                jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                 {search:true} //options
-              /*  {height:300,width:460,reloadAfterSubmit:false,editData:{action:"Edit"}}, // edit options
+                /*  {height:300,width:460,reloadAfterSubmit:false,editData:{action:"Edit"}}, // edit options
                 {height:300,width:460,reloadAfterSubmit:false,editData:{action:"Add"}}, // add options
                 {reloadAfterSubmit:false,
                     delData:{action:"Del",
@@ -134,24 +134,24 @@
                 {} // search options*/
             );
             });
-               // jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
-               // jQuery("#rowed1").jqGrid('navGrid','#prowed1',
+            // jQuery("#rowed1").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
+            // jQuery("#rowed1").jqGrid('navGrid','#prowed1',
                
-               // {height:290,reloadAfterSubmit:false, jqModal:false, closeOnEscape:true, bottominfo:"Fields marked with (*) are required"}, // edit options
-               //  {height:290,reloadAfterSubmit:false,jqModal:false, closeOnEscape:true,bottominfo:"Fields marked with (*) are required", closeAfterAdd: true}, // add options
-               //  {reloadAfterSubmit:false,jqModal:false, closeOnEscape:true}
+            // {height:290,reloadAfterSubmit:false, jqModal:false, closeOnEscape:true, bottominfo:"Fields marked with (*) are required"}, // edit options
+            //  {height:290,reloadAfterSubmit:false,jqModal:false, closeOnEscape:true,bottominfo:"Fields marked with (*) are required", closeAfterAdd: true}, // add options
+            //  {reloadAfterSubmit:false,jqModal:false, closeOnEscape:true}
              
 
-              //  {reloadAfterSubmit:true,
-               //     delData:{action:"Del",
-                //        productGroupId:function() {
-                //            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
-                 //           var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
-                //            return value;
-                 //       }}
-               // } // del options
+            //  {reloadAfterSubmit:true,
+            //     delData:{action:"Del",
+            //        productGroupId:function() {
+            //            var sel_id = jQuery("#rowed1").jqGrid('getGridParam', 'selrow');
+            //           var value = jQuery("#rowed1").jqGrid('getCell', sel_id, 'productGroupId');
+            //            return value;
+            //       }}
+            // } // del options
 
-                // del options
+            // del options
 
                
             
@@ -172,6 +172,7 @@
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
                     <br><br>
+
                     <div class="wrapper">
                         <div class="page">
                         </div>
@@ -185,9 +186,11 @@
                                                 <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
                                         </div>
+                                        <center>
                                         <table id="rowed1"></table>
+                                          </center>
                                         <div id="prowed1"></div>
-                                        <br /> <br />
+                                        <br > <br >
 
                                         <br/>
                                     </div>
@@ -203,6 +206,6 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 </html>

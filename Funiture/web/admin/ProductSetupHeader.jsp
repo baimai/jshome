@@ -33,8 +33,8 @@
                 jQuery("#rowed1").jqGrid({
                     url:'datagrid.do?action=fetchData&q=2&page=1',
                     datatype: "xml",
-                    colNames:['รหัสชุดการแสดงสินค้า','ชื่อชุดการแสดงสินค้า(ไทย)','ชื่อชุดการแสดงสินค้า(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','','',''],
-                        colModel:[
+                    colNames:['รหัสชุดการแสดงสินค้า','ชื่อชุดการแสดงสินค้า(ไทย)','ชื่อชุดการแสดงสินค้า(อังกฤษ)','วันที่สร้าง','วันที่ปรับปรุง','รหัสผู้ใช้','แก้ไข','จัดลำดับ','ลบ'],
+                    colModel:[
                         {name:'picCode',index:'picCode', align:"center",width:80,editable:true,editoptions:{size:10},editrules:{required:true},search:false},
                         {name:'picNameT',index:'picNameT', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
                         {name:'picNameE',index:'picNameE', width:225, align:"center",editrules:{edithidden:true},editable:true,editoptions:{size:25}},
@@ -48,7 +48,7 @@
                     ,
                     rowNum:20,
                     height: "auto",
-                    width: 950,
+                    width: 930,
                     rowList:[10,20,30,40,80,160,320,500,1000],
                     pager: '#prowed1',
                     sortname: 'id',
@@ -85,7 +85,6 @@
                 <div class="art-sheet-cc"></div>
                 <div class="art-sheet-body">
                     <jsp:include page="header.jsp"/>
-
                     <br><br>
                     <div class="wrapper">
                         <div class="page">
@@ -95,16 +94,21 @@
                                 <div class="col-main">
                                     <div class="account-create">
                                         <div class="page-title">
-                                            <h1>หัวข้อแสดงรูปสินค้า</h1>
+                                            <h1>หัวข้อแสดงรูปสินค้า</h1> 
                                         </div>
-                                        <br/>
-                                        <button onclick="window.location.href='addProductSetup.jsp'" class="button"><span><span> Add</span></span></button>
-                                        <br/><br/>
+                                        <center>
+                                            <div class="button" >
+                                                <button name="action" value="Add" class="button" onclick="window.location.href='addProductSetup.jsp'"><span><span>เพิ่ม</span></span></button>
+                                            </div
+                                            <br>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br>
+                                        </center>
+                                        <br>
                                         <center>
                                             <table id="rowed1"></table>
                                             <div id="prowed1"></div>
                                             <br />
-
                                         </center>
                                         <br/><br/><br/>
                                     </div>
@@ -122,6 +126,6 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 </html>

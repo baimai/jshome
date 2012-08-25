@@ -64,6 +64,7 @@
                                         </div>
                                         <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                         <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
                                         <c:if test="${param.picId == null}" >
                                             <form action="productSetup.do" method="post" id="form-validate" >
                                                 <input type="hidden" name="action" value="Add" />
@@ -95,14 +96,14 @@
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname">หมายเหตุ(ไทย) :</label>
-                                                                    <textarea name="picRemarkT" rows="2" cols="20"  class="input-text" ></textarea></div>
+                                                                    <textarea name="productRemarkT" rows="2" cols="20"  class="input-text" ></textarea></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname"> หมายเหตุ(อังกฤษ) :</label>
-                                                                    <textarea name="picRemarkE" rows="2" cols="20"  class="input-text" ></textarea></div>
+                                                                    <textarea name="productRemarkE" rows="2" cols="20"  class="input-text" ></textarea></div>
                                                             </div>
                                                     </ul>
                                                 </div>
@@ -143,13 +144,16 @@
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname">หมายเหตุ(ไทย) :</label>
+
                                                                     <textarea name="picRemarkT" rows="2" cols="20" value="${productSetup.Pic_Remark_T}" class="input-text" ></textarea></div>
+
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname"> หมายเหตุ(อังกฤษ) :</label>
+
                                                                    <textarea name="picRemarkT" rows="2" cols="20" value="${productSetup.Pic_Remark_T}"  class="input-text" ></textarea></div>
                                                             </div>
                                                         </li>

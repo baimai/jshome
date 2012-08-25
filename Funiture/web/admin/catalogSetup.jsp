@@ -80,75 +80,83 @@
                                         <div class="page-title">
                                             <h1>สร้างแค๊ดตาล็อก</h1>
                                         </div>
-
                                         <form action="testPdf.do">
-                                            <div class="buttons" align="right">
+                                            <div class="buttons" align="center">
                                                 <button name="action" value="Add" class="button"><span><span>บันทึก</span></span></button>
-
                                             </div>
+                                            <br>
+                                            <center>
+                                                <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            </center>
                                             <div class="fieldset">
                                                 <h2 class="legend"></h2>
                                                 <ul class="form-list">
                                                     <li class="fields">
                                                         <div class="customer-name">
-                                                            <input id="c1" name="type" type="radio"   onclick="setCheck()" checked> แสดงตามกลุ่มสินค้า :
-                                                            <select id="productGroup" name="productGroup" onchange="setName()" class="selected">
-                                                                <option value="all">ทั้งหมด</option>
-                                                                <c:forEach var="group" items="${query1.rows}">
-                                                                    <option value="${group.product_group_id}">${group.product_g_name_t}</option>
-                                                                </c:forEach>
-                                                            </select></div>
-                                                        <div class="customer-name">
-                                                            <input id="c2" name="type" type="radio"  onclick="setCheck()"> แสดงตามรายการ   :
-                                                            <select id="picCode" name="picCode" disabled onchange="setName()" class="selected">
-                                                                <option value="all">ทั้งหมด</option>
-                                                                <c:forEach var="menu" items="${query2.rows}">
-                                                                    <option value="${menu.pic_code}">${menu.menu_c_name_t}</option>
-                                                                </c:forEach>
-                                                            </select></div>
 
-                                                        <div class="customer-name" >
-
-                                                            ชื่อ File :
-
-                                                            <input id="fileName" type="text" value="Example" class="input-text" name="fileName" onFocus="clearText(this)" onBlur="clearText(this)">
-
+                                                            <table class="tableContent1" border="0" cellspacing="3" cellpadding="0" align="" width="50%">
+                                                                <tr >
+                                                                    <td style="float: left">
+                                                                        <input id="c1" name="type" type="radio"   onclick="setCheck()" checked> แสดงตามกลุ่มสินค้า :
+                                                                    </td>
+                                                                    <td style="width: 80px">
+                                                                        <select id="productGroup" name="productGroup" onchange="setName()" class="selected">
+                                                                            <option value="all">ทั้งหมด</option>
+                                                                            <c:forEach var="group" items="${query1.rows}">
+                                                                                <option value="${group.product_group_id}">${group.product_g_name_t}</option>
+                                                                            </c:forEach>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="float: left">
+                                                                        <input id="c2" name="type" type="radio"  onclick="setCheck()"> แสดงตามรายการ   :
+                                                                    </td>
+                                                                    <td style="width: 80px">
+                                                                        <select id="picCode" name="picCode" disabled onchange="setName()" class="selected">
+                                                                            <option value="all">ทั้งหมด</option>
+                                                                            <c:forEach var="menu" items="${query2.rows}">
+                                                                                <option value="${menu.pic_code}">${menu.menu_c_name_t}</option>
+                                                                            </c:forEach>
+                                                                        </select>
+                                                                    </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td style="float: left">
+                                                                        ชื่อ File :
+                                                                    </td>
+                                                                    <td style="width: 80px">
+                                                                        <input id="fileName" type="text" value="Example" class="input-text" name="fileName" onFocus="clearText(this)" onBlur="clearText(this)">
+                                                                    </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td style="float: left">
+                                                                        ชื่อ Link :
+                                                                    </td>
+                                                                    <td style="width: 80px">
+                                                                        <input id="linkName" type="text" value="Link-Name" class="input-text" name="linkName" onFocus="clearText(this)" onBlur="clearText(this)">
+                                                                    </td>
+                                                                    </tr>
+                                                            </table>
                                                         </div>
-
-                                                        <div class="customer-name">
-
-                                                            ชื่อ Link :
-
-                                                            <input id="linkName" type="text" value="Link-Name" class="input-text" name="linkName" onFocus="clearText(this)" onBlur="clearText(this)">
-
-                                                        </div>
-
-                                                    </li>
+                                                        </li>
                                                 </ul>
-
                                             </div>
-
                                             <input type="hidden" id="groupName" name="groupName" value="ทั้งหมด" />
-                                            <br/>
-                                            <br/>
-                                            <br/><br/><br/>
+                                            <br><br><br><br><br><br><br>  
                                         </form>
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="cleared"></div>
         </div>
-
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
 </html>

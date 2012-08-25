@@ -122,6 +122,11 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>                                       
                                         <form action="stockMaster.do" >
+                                            
+                                            <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
+
+
                                             <div class="buttons" align="right">                                                 
                                                 <button name="action" value="add" class="button"><span><span>บันทึก</span></span></button>
                                             </div>

@@ -85,7 +85,7 @@
                                             <h1>จัดลำดับสินค้า</h1>
                                         </div>
                                         <form action="seqProductSetup.do" >
-                                            <div class="buttons" align="right">
+                                            <div class="buttons" align="center">
                                                 <input type="hidden" value="${param.picId}" name="picId" />
                                                 <button name="action" type="submit" value="saveSeq" class="button"><span><span>บันทึก</span></span></button>
                                             </div>
@@ -95,31 +95,31 @@
                                                 <table  width="100%"   id="box-table-a">
                                                     <thead>
                                                         <tr>
-                                                            <th width="15%" align="center" scope="col">รหัสชุดแสดง</th>
-                                                            <th width="20%" align="center" scope="col">ชื่อรหัสสินค้า</th>
+                                                            <th width="15%" align="center" scope="col"><center>รหัสชุดแสดง</center></th>
+                                                            <th width="20%" align="center" scope="col"><center>ชื่อรหัสสินค้า</center></th>
                                                             <th width="20%" align="center" scope="col">ชื่อสินค้าไทย</th>
-                                                            <th width="20%" align="center" scope="col">ประเภทสินค้า</th>
-                                                            <th width="10%" align="center" scope="col">Seq No.</th>
+                                                            <th width="20%" align="center" scope="col"><center>ประเภทสินค้า</center></th>
+                                                            <th width="10%" align="center" scope="col"><center>Seq No.</center></th>
                                                             <%--<th width="5%"></th> --%>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach var="pic" items="${picProductList}" varStatus="counter">
                                                             <tr>
-                                                                <td align="center" >
-                                                                <input name="picId" type="text" value="${pic.picId}" style="width:100px;text-align: right;"/>
+                                                                <td align="center">
+                                                                    <center>${pic.picCode}</center>
                                                                 </td>
                                                                 <td align="center" >
-                                                                   <input name="picCode" type="text" value="${pic.picCode}" style="width:100px;text-align: right;"/>
+                                                                    <center>${pic.picProductSetupDetailEntity.productDetailMasterEntity.productCode}</center>
                                                                 </td>
                                                                 <td align="center" >
-                                                                    <input name="picNameT" type="text" value="${pic.picNameT}" style="width:100px;text-align: right;"/>
+                                                                    ${pic.picProductSetupDetailEntity.productDetailMasterEntity.productDNameT}
                                                                 </td>
                                                                 <td align="center" >
-                                                                    <input name="picNameE" type="text" value="${pic.picNameE}" style="width:100px;text-align: right;"/>
+                                                                    <center>${pic.picNameT}</center>
                                                                 </td>
                                                                  <td align="center" >
-                                                                    <input name="picSeq" type="text" value="${pic.picSeq}" style="width:100px;text-align: right;"/>
+                                                                    <input name="picSeq" type="text" value="${pic.picProductSetupDetailEntity.picSeq}" style="width:100%;text-align: right;"/>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
