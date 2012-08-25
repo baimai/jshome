@@ -34,11 +34,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>jshome</title>
         <link rel="stylesheet" href="style_main.css" type="text/css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
+         <link rel="stylesheet" type="text/css" href="css/widgets.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
         <link rel="stylesheet" type="text/css" href="css/custom.css" media="all" />
         <script type="text/javascript" src="ajax/myAjaxFramework.js" ></script>
-        <script type="text/javascript"language="javascript">
+         <script type="text/javascript"language="javascript">
             function showProduct(text){
                 document.getElementById("productList").innerHTML=text;
             }
@@ -65,7 +65,7 @@
             $(document).ready(function() {
             });
         </script>
-        <script type="text/javascript"language="javascript">
+         <script type="text/javascript"language="javascript">
             function showProduct(text){
                 document.getElementById("productList").innerHTML=text;
             }
@@ -94,7 +94,7 @@
         </script>
     </head>
 
-    <body class="  catalog-category-view" onload="setProduct('1','9','1','picId');" >
+   <body class="  catalog-category-view" onload="setProduct('1','9','1','picId');" >
         <div id="art-main">
             <div class="art-sheet">
                 <div class="art-sheet-bl"></div>
@@ -107,58 +107,59 @@
                     <jsp:include page="head.jsp"/>
                     <jsp:include page="slide.jsp"/>
                     <body class="  catalog-category-view" onload="setProduct('1','9','1','picId');" >
-                        <input type="hidden" value="" id="menuId"/>
-                        <input type="hidden" value="9" id="navShow"/>
-                        <input type="hidden" value="1" id="navCurPage"/>
-                        <input type="hidden" value="name" id="navSort"/>
-                        <input type="hidden" value="picId" id="menuType"/>
-                        <input type="hidden" value="" id="menuId"/>
-                        <input type="hidden" value="9" id="navShow"/>
-                        <input type="hidden" value="1" id="navCurPage"/>
-                        <input type="hidden" value="name" id="navSort"/>
-                        <input type="hidden" value="picId" id="menuType"/>
-                        <div class="wrapper">
-                            <div class="page"></div>
-                            <div class="main-container col3-layout">
-                                <div class="main">
-                                    <div class="col-wrapper">
-                                        <div id="productList"></div>
+        <input type="hidden" value="" id="menuId"/>
+        <input type="hidden" value="9" id="navShow"/>
+        <input type="hidden" value="1" id="navCurPage"/>
+        <input type="hidden" value="name" id="navSort"/>
+        <input type="hidden" value="picId" id="menuType"/>
+         <input type="hidden" value="" id="menuId"/>
+        <input type="hidden" value="9" id="navShow"/>
+        <input type="hidden" value="1" id="navCurPage"/>
+        <input type="hidden" value="name" id="navSort"/>
+        <input type="hidden" value="picId" id="menuType"/>
+        <div class="wrapper">
+            <div class="page"></div>
 
-                                        <div class="col-left sidebar">
-                                            <img src="images/P1-2.png" width="180" height="35" alt="P1-2"/>
-                                            <div class="block block-layered-nav">
-                                                <div class="block-content">
-                                                    <ul>
-                                                        <c:forEach var="menu" items="${query.rows}">
-                                                            <li><img src="${menu.Menu_C_Icon_Loc}" /><a href="#" onclick="setProduct('${menu.pic_id}',document.getElementById('navShow').value,'1','picId');">${menu.menu_c_name_t}</a> (${menu.count})</li>
-                                                            </c:forEach>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-left sidebar"><img src="images/P2-2.png" width="180" height="35" alt="P2-2"/>
-                                            <div class="block block-layered-nav">
-                                                <div class="block-content">
-                                                    <ul>
-                                                        <c:forEach var="menu2" items="${query2.rows}">
-                                                            <li>
-                                                                <img src="${menu2.Product_Icon_Loc}" width="30" height="30"/><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
-                                                            </c:forEach>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <jsp:include page="myCart.jsp" />
-                                </div>
-                                <jsp:include page="footer.jsp" />
-                                <br/><br/>
+        <div class="main-container col3-layout">
+            <div class="main">
+                <div class="col-wrapper">
+                    <div id="productList"></div>
+
+                    <div class="col-left sidebar">
+                        <img src="images/P1-2.png" width="180" height="35" alt="P1-2"/>
+                        <div class="block block-layered-nav">
+                            <div class="block-content">
+                                <ul>
+                                    <c:forEach var="menu" items="${query.rows}">
+                                        <li><img src="${menu.Menu_C_Icon_Loc}" /><a href="#" onclick="setProduct('${menu.pic_id}',document.getElementById('navShow').value,'1','picId');">${menu.menu_c_name_t}</a> (${menu.count})</li>
+                                        </c:forEach>
+                                </ul>
                             </div>
                         </div>
-                        <div class="cleared"></div>
+                    </div>
+                    <div class="col-left sidebar"><img src="images/P2-2.png" width="180" height="35" alt="P2-2"/>
+                        <div class="block block-layered-nav">
+                            <div class="block-content">
+                                <ul>
+                                    <c:forEach var="menu2" items="${query2.rows}">
+                                        <li>
+                                            <img src="${menu2.Product_Icon_Loc}" width="30" height="30"/><a href="#" onclick="setProduct('${menu2.product_group_id}',document.getElementById('navShow').value,'1','group');">${menu2.product_g_name_t}</a> (${menu2.count})</li>
+                                        </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="cleared"></div>
-                <p class="art-page-footer"></p>  </div>
+                <jsp:include page="myCart.jsp" />
+            </div>
+                    <jsp:include page="footer.jsp" />
+                    <br/><br/>
+                </div>
+            </div>
+            <div class="cleared"></div>
         </div>
+        <div class="cleared"></div>
+        <p class="art-page-footer"></p>
     </body>
+
 </html>
