@@ -92,7 +92,7 @@
         <script type="text/javascript">
             $(function() {
                 $("#datepicker").datepicker();
-               // $.datepicker.formatDate('yyyy-mm-dd');
+                // $.datepicker.formatDate('yyyy-mm-dd');
 
             });
 
@@ -122,14 +122,12 @@
                                         <div class="page-title">
                                             <h1>ข้อมูลประเภทสินค้า</h1></div>                                       
                                         <form action="stockMaster.do" >
-                                            
+
                                             <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                             <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
 
 
-                                            <div class="buttons" align="right">                                                 
-                                                <button name="action" value="add" class="button"><span><span>บันทึก</span></span></button>
-                                            </div>
+
                                             <div id="dialog-form" title="Search Product">
 
                                                 <script type="text/javascript">
@@ -146,16 +144,17 @@
                                                     </script>
                                                 </div>
                                             </div>
-                                        
+
                                             <c:if test="${param.productDetailId==null}" >
-                                               
+
                                                 <div class="fieldset">
                                                     <h2 class="legend">ตั้งค่า</h2>
+                                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li >
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname" >วันที่นำเข้า</label>
+                                                                    <label for="firstname" >วันที่นำเข้า:</label>
                                                                     <div class="input-box">
                                                                         <input type="text" id="datepicker" name="receiveDate" value="" title="receiveDate"class="startDate"   />
                                                                     </div>
@@ -165,18 +164,17 @@
                                                         <li >
                                                             <div class="customer-name">
                                                                 <div class="field name-firstname">
-                                                                    <label for="firstname" >รหัสสินค้า</label>
+                                                                    <label for="firstname" >รหัสสินค้า:</label>
                                                                     <div  class="input-box">
-                                                                        <input type="text" value="" id="productCode" name="productCode" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a>
+                                                                        <input type="text" value="" id="productCode" name="productCode" class="button" />&nbsp;<a  onclick="$( '#dialog-form' ).dialog( 'open' );">ค้นหา</a>
                                                                     </div>
-
-
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li >
                                                             <div class="field name-lastname">
-                                                                <label for="lastname" >จำนวน</label>
+                                                                <label for="lastname" >จำนวน:</label>
                                                                 <div class="input-box">
                                                                     <input type="text" id="quantity" name="quantity" value="" title="Last Name" class="quantity" />
                                                                 </div>
@@ -186,13 +184,17 @@
                                                         </li>
                                                         <li >
                                                             <div class="field name-lastname">
-                                                                <label for="lastname" >หน่วย</label>
+                                                                <label for="lastname" >หน่วย:</label>
                                                                 <select name="unitId" class="select">
                                                                     <c:forEach  items="${query.rows}" var="unit">
                                                                         <option value="${unit.unit_id}">${unit.unit_name_t}</option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
+                                                        </li>
+                                                        <li>
+                                                            <button name="action" value="add" class="button"><span><span>บันทึก</span></span></button>
+                                                            <button type="button" class="button" onClick="window.location='stockMaster.jsp'" ><span><span>กลับ</span></span></button>
                                                         </li>
                                                     </ul>
                                                     <br/>
@@ -216,6 +218,6 @@
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <br/><br/>
     </body>
 </html>

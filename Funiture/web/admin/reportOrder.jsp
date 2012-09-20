@@ -145,7 +145,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table><br>
-                                            <a href="#" onclick="show();">ค้นหา</a>
+                                           <!-- <a href="#" onclick="show();">ค้นหา</a> -->
                                             <center>
                                                 <img src="images/line.jpg" width="930" height="" alt=""/>
                                             </center>

@@ -12,7 +12,7 @@
 
 <c:if test="${param.menuCodeId!=null}">
     <sql:query var="query" dataSource="webdb">
-      Select pgm.Company_Id,
+        Select pgm.Company_Id,
         pgm.Menu_Group_Id,
         pgm.Menu_C_Name_T,
         pgm.Menu_C_Name_E,
@@ -33,12 +33,12 @@
     </sql:query>
 
 </c:if>
-        <sql:query var="query1" dataSource="webdb">
+<sql:query var="query1" dataSource="webdb">
     SELECT m.Menu_Group_Id,m.Menu_G_Name_T FROM menu_Group_Master m
-        </sql:query>
-          <sql:query var="query2" dataSource="webdb">
+</sql:query>
+<sql:query var="query2" dataSource="webdb">
     SELECT m.Pic_id,m.Pic_Code FROM pic_product_setup m
-        </sql:query>
+</sql:query>
 
 <!DOCTYPE html>
 <html>
@@ -91,24 +91,26 @@
                                         </div>
 
                                         <form action="menuDetailMaster.do" method="post" id="form-validate"  enctype="multipart/form-data" >
-                                           <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
+                                            <c:if test="${param.valid==1}"><div class="success-msg" style="background-color: lightgreen; ">บันทึกข้อมูลเสร็จสิ้น</div></c:if>
                                             <c:if test="${param.error==1}"><div class="messager-error" style="background-color: #EB340A;">ไม่สามารถบันทึกข้อมูลได้</div></c:if>
 
                                             <c:if test="${param.menuCodeId==null}" >
                                                 <input type="hidden" name="action" value="Add" />
-                                                <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
+
                                                 <div class="fieldset">
+                                                    <h2 class="legend">เพิ่มเมนูย่อย</h2>
+                                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div   class="field name-firstname">
                                                                     <label for="firstname" class="required"><em>*</em>รหัสเมนูหลัก: </label>
                                                                     <select name="menuGroupId">
-                                                                            <c:forEach  items="${query1.rows}" var="menu">
-                                                                                <option value="${menu.Menu_Group_Id}">${menu.Menu_G_Name_T}</option>
-                                                                            </c:forEach>
-                                                                     </select>
-                                                                 </div>
+                                                                        <c:forEach  items="${query1.rows}" var="menu">
+                                                                            <option value="${menu.Menu_Group_Id}">${menu.Menu_G_Name_T}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
@@ -130,18 +132,18 @@
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >รหัสชุดการแสดงสินค้า :</label>
-                                                                        <select name="picId">
-                                                                            <c:forEach  items="${query2.rows}" var="menu">
-                                                                                <option value="${menu.Pic_id}">${menu.Pic_Code}</option>
-                                                                            </c:forEach>
-                                                                        </select></div>
+                                                                    <select name="picId">
+                                                                        <c:forEach  items="${query2.rows}" var="menu">
+                                                                            <option value="${menu.Pic_id}">${menu.Pic_Code}</option>
+                                                                        </c:forEach>
+                                                                    </select></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >ลำดับที่: </label>
-                                                                     <input type="text" name="menuSeq" value="" class="input-text"/></div>
+                                                                    <input type="text" name="menuSeq" value="" class="input-text"/></div>
                                                             </div>
                                                         </li>
                                                         <li class="fields">
@@ -162,7 +164,7 @@
                                                                               class="input-text"></textarea></div>
                                                             </div>
                                                         </li>
-                                                       <li class="fields">
+                                                        <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >หมายเหตุ(อังกฤษ) :</label>
@@ -181,7 +183,7 @@
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
                                                                     <label for="firstname" >วันที่สร้าง :</label>
-                                                                <td><input type="text" name="createDate" value="" readonly="readonly" class="input-text"/></div>
+                                                                    <td><input type="text" name="createDate" value="" readonly="readonly" class="input-text"/></div>
                                                             </div>
                                                         </li>
 
@@ -201,147 +203,160 @@
                                                                     <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
                                                             </div>
                                                         </li>
-                                                        </ul>
+                                                        <li>
+                                                            <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
+                                                            <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
+                                                            <button type="button" class="button" onClick="window.location='MenuDetail.jsp'" ><span><span>กลับ</span></span></button>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </form>
-                                            </c:if>
-                                            <c:if test="${param.menuCodeId!=null}" >
-                                                <c:forEach var="menuDetailMaster" items="${query.rows}" >
-                                                    <center></center>
-                                                    <input type="hidden" name="action" value="Edit" />
-                                                    <input type="hidden" name="menuCodeId" value="${menuDetailMaster.Menu_Code_Id}"/>
-                                                    <input type="hidden" name="menuGroupId" value="${menuDetailMaster.Menu_Group_Id}"/>
-                                                    <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
-                                                    <div class="fieldset">
-                                                        <ul class="form-list">
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div class="field name-firstname">
-                                                                       <label for="firstname" class="required"> รหัสเมนูหลัก:<em>*</em></label>
-                                                                       <select name="menuGroupId" class="select required-entry">
-                                                                           <c:forEach items="${query1.rows}" var="menu">
+                                        </c:if>
+                                        <c:if test="${param.menuCodeId!=null}" >
+                                            <c:forEach var="menuDetailMaster" items="${query.rows}" >
+                                                <center></center>
+                                                <input type="hidden" name="action" value="Edit" />
+                                                <input type="hidden" name="menuCodeId" value="${menuDetailMaster.Menu_Code_Id}"/>
+                                                <input type="hidden" name="menuGroupId" value="${menuDetailMaster.Menu_Group_Id}"/>
+                                               
+                                                <div class="fieldset">
+                                                    <ul class="form-list">
+
+                                                        <h2 class="legend">แก้ไขเมนูย่อย</h2>
+                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div class="field name-firstname">
+                                                                    <label for="firstname" class="required"> รหัสเมนูหลัก:<em>*</em></label>
+                                                                    <select name="menuGroupId" class="select required-entry">
+                                                                        <c:forEach items="${query1.rows}" var="menu">
                                                                             <c:if test="${param.menuGroupId == menuDetailMaster.Menu_Group_Id}">
                                                                                 <option value="${menu.Menu_Group_Id}" >${menu.Menu_G_Name_T}</option>
                                                                             </c:if>
                                                                             <c:if test="${param.menuGroupId != menuDetailMaster.Menu_Group_Id}">
                                                                                 <option value="${menu.Menu_Group_Id}" selected>${menu.Menu_G_Name_T}</option>
                                                                             </c:if>
-                                                                           </c:forEach>
-                                                                        </select>
-                                                                    </div>
+                                                                        </c:forEach>
+                                                                    </select>
                                                                 </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div  class="field name-firstname">
-                                                                        <label for="firstname" class="required">ชื่อเมนูย่อย(ไทย) :<em>*</em></label>
-                                                                        <input type="text" name="menuCNameT" value="${menuDetailMaster.Menu_C_Name_T}" class="input-text required-entry"/></div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" class="required">ชื่อเมนูย่อย(อังกฤษ) :<em>*</em></label>
-                                                                        <input type="text" name="menuCNameE" value="${menuDetailMaster.Menu_C_Name_E}" class="input-text required-entry"/></div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >รหัสชุดการแสดงสินค้า :</label>
-                                                                          <select name="picid" class="select required-entry">
-                                                                           <c:forEach items="${query2.rows}" var="menu">
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div  class="field name-firstname">
+                                                                    <label for="firstname" class="required">ชื่อเมนูย่อย(ไทย) :<em>*</em></label>
+                                                                    <input type="text" name="menuCNameT" value="${menuDetailMaster.Menu_C_Name_T}" class="input-text required-entry"/></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" class="required">ชื่อเมนูย่อย(อังกฤษ) :<em>*</em></label>
+                                                                    <input type="text" name="menuCNameE" value="${menuDetailMaster.Menu_C_Name_E}" class="input-text required-entry"/></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >รหัสชุดการแสดงสินค้า :</label>
+                                                                    <select name="picid" class="select required-entry">
+                                                                        <c:forEach items="${query2.rows}" var="menu">
                                                                             <c:if test="${param.picId == menuDetailMaster.Pic_Id}">
                                                                                 <option value="${menu.Pic_id}" >${menu.Pic_Code}</option>
                                                                             </c:if>
                                                                             <c:if test="${param.picId != menuDetailMaster.Pic_Id}">
                                                                                 <option value="${menu.Pic_id}" selected>${menu.Pic_Code}</option>
                                                                             </c:if>
-                                                                           </c:forEach>
-                                                                        </select></div>
+                                                                        </c:forEach>
+                                                                    </select></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >ลำดับที่ :</label>
+                                                                    <input type="text" name="menuSeq" value="${menuDetailMaster.Menu_Seq}" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >แสดงเมนูย่อย:</label>
+                                                                    <select name="showListSts">
+                                                                        <option value="Y"<c:if test="${menuDetailMaster.Show_List_Sts== 'Y'}"> selected</c:if>> Show</option>
+                                                                        <option value="N"<c:if test="${menuDetailMaster.Show_List_Sts== 'N'}"> selected</c:if>> Hidden</option>
+                                                                    </select></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >หมายเหตุ(ไทย) :</label>
+                                                                    <textarea name="menuCRemarkT" rows="4" cols="20">${menuDetailMaster.Menu_C_Remark_T}
+                                                                    </textarea></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >หมายเหตุ(อังกฤษ) :</label>
+                                                                    <textarea name="menuCRemarkE" rows="4" cols="20">${menuDetailMaster.Menu_C_Remark_E}
+                                                                    </textarea></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" > Icon :</label>
+                                                                    <img src="../${menuDetailMaster.Menu_C_Icon_Loc}" class="input-text" /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >Path เก็บรูป Icon</label>
+                                                                    <c:if test="${menuDetailMaster.Menu_C_Icon_Loc!=null&&menuDetailMaster.Menu_C_Icon_Loc!=''}" >
+                                                                    </c:if>
+                                                                    <c:if test="${menuDetailMaster.Menu_C_Icon_Loc==null||menuDetailMaster.Menu_C_Icon_Loc==''}" >
+                                                                        <label for="firstname" >Product Image</label>
+                                                                    </c:if>
+                                                                    <input type="file" name="upload" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >วันที่สร้าง :</label>
+                                                                    <input type="text" name="createDate" value="${menuDetailMaster.Create_Date}" class="input-text" readonly="readonly" />
                                                                 </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >ลำดับที่ :</label>
-                                                                        <input type="text" name="menuSeq" value="${menuDetailMaster.Menu_Seq}" class="input-text"/></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >วันที่ปรับปรุง :</label>
+                                                                    <input type="text" name="updateDate" value="${menuDetailMaster.Update_Date}" class="input-text" readonly="readonly" />
                                                                 </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >แสดงเมนูย่อย:</label>
-                                                                         <select name="showListSts">
-                                                                                <option value="Y"<c:if test="${menuDetailMaster.Show_List_Sts== 'Y'}"> selected</c:if>> Show</option>
-                                                                                <option value="N"<c:if test="${menuDetailMaster.Show_List_Sts== 'N'}"> selected</c:if>> Hidden</option>
-                                                                            </select></div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >หมายเหตุ(ไทย) :</label>
-                                                                        <textarea name="menuCRemarkT" rows="4" cols="20">${menuDetailMaster.Menu_C_Remark_T}
-                                                                        </textarea></div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >หมายเหตุ(อังกฤษ) :</label>
-                                                                        <textarea name="menuCRemarkE" rows="4" cols="20">${menuDetailMaster.Menu_C_Remark_E}
-                                                                        </textarea></div>
-                                                                </div>
-                                                            </li>
-                                                             <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" > Icon :</label>
-                                                                        <img src="../${menuDetailMaster.Menu_C_Icon_Loc}" class="input-text" /></div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >Path เก็บรูป Icon</label>
-                                                                        <c:if test="${menuDetailMaster.Menu_C_Icon_Loc!=null&&menuDetailMaster.Menu_C_Icon_Loc!=''}" >
-                                                                        </c:if>
-                                                                        <c:if test="${menuDetailMaster.Menu_C_Icon_Loc==null||menuDetailMaster.Menu_C_Icon_Loc==''}" >
-                                                                            <label for="firstname" >Product Image</label>
-                                                                        </c:if>
-                                                                        <input type="file" name="upload" class="input-text"/></div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >วันที่สร้าง :</label>
-                                                                        <input type="text" name="createDate" value="${menuDetailMaster.Create_Date}" class="input-text" readonly="readonly" />
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >วันที่ปรับปรุง :</label>
-                                                                        <input type="text" name="updateDate" value="${menuDetailMaster.Update_Date}" class="input-text" readonly="readonly" />
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="fields">
-                                                                <div class="customer-name">
-                                                                    <div   class="field name-firstname">
-                                                                        <label for="firstname" >รหัสผู้ใช้ :</label>
-                                                                        <input type="text" name="userId" value="${menuDetailMaster.User_Id}" class="input-text" readonly="readonly" /></div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="fields">
+                                                            <div class="customer-name">
+                                                                <div   class="field name-firstname">
+                                                                    <label for="firstname" >รหัสผู้ใช้ :</label>
+                                                                    <input type="text" name="userId" value="${menuDetailMaster.User_Id}" class="input-text" readonly="readonly" /></div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
+                                                             <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                             <button type="button" class="button" onClick="window.location='MenuDetail.jsp'" ><span><span>กลับ</span></span></button>
+                                                        </li>
+                                                    </ul>
 
-                                                    </c:forEach>
-                                                </c:if>
+                                                </c:forEach>
+                                            </c:if>
                                         </div>
-                                        
+
                                         <script type="text/javascript">
                                             //<![CDATA[
                                             var dataForm = new VarienForm('form-validate', true);
@@ -362,8 +377,8 @@
 
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
 </html>
 

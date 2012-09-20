@@ -60,7 +60,7 @@
             }
         </style>
     </head>
-    
+
     <body>
 
         <div id="art-main">
@@ -87,51 +87,57 @@
                                         <form action="seqProductSetup.do" >
                                             <div class="buttons" align="center">
                                                 <input type="hidden" value="${param.picId}" name="picId" />
-                                                <button name="action" type="submit" value="saveSeq" class="button"><span><span>บันทึก</span></span></button>
                                             </div>
-
-                                            <center>
-                                                <br/>
-                                                <table  width="100%"   id="box-table-a">
-                                                    <thead>
-                                                        <tr>
-                                                            <th width="15%" align="center" scope="col"><center>รหัสชุดแสดง</center></th>
-                                                            <th width="20%" align="center" scope="col"><center>ชื่อรหัสสินค้า</center></th>
-                                                            <th width="20%" align="center" scope="col">ชื่อสินค้าไทย</th>
-                                                            <th width="20%" align="center" scope="col"><center>ประเภทสินค้า</center></th>
-                                                            <th width="10%" align="center" scope="col"><center>Seq No.</center></th>
-                                                            <%--<th width="5%"></th> --%>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach var="pic" items="${picProductList}" varStatus="counter">
-                                                            <tr>
-                                                                <td align="center">
-                                                                    <center>${pic.picCode}</center>
-                                                                </td>
-                                                                <td align="center" >
-                                                                    <center>${pic.picProductSetupDetailEntity.productDetailMasterEntity.productCode}</center>
-                                                                </td>
-                                                                <td align="center" >
-                                                                    ${pic.picProductSetupDetailEntity.productDetailMasterEntity.productDNameT}
-                                                                </td>
-                                                                <td align="center" >
-                                                                    <center>${pic.picNameT}</center>
-                                                                </td>
-                                                                 <td align="center" >
-                                                                    <input name="picSeq" type="text" value="${pic.picProductSetupDetailEntity.picSeq}" style="width:100%;text-align: right;"/>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
-
-                                                <br/><br/><br/>
-                                            </center>
+                                            <div class="fieldset">
+                                                <h2 class="legend">จัดลำดับชุดการแสดงสินค้า</h2>
+                                                <img src="images/line.jpg" width="580" height="" alt=""/>
+                                                </div>
+                                                <ul class="form-list">
+                                                    <li>
+                                                        <table  width="100%" id="box-table-a">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="10%" align="center" scope="col"><center>รหัสชุดแสดง</center></th>
+                                                                    <th width="15%" align="center" scope="col"><center>ชื่อรหัสสินค้า</center></th>
+                                                                    <th width="20%" align="center" scope="col">ชื่อสินค้าไทย</th>
+                                                                    <th width="10%" align="center" scope="col"><center>ประเภทสินค้า</center></th>
+                                                                    <th width="5%" align="center" scope="col"><center>Seq No.</center></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <c:forEach var="pic" items="${picProductList}" varStatus="counter">
+                                                                    <tr>
+                                                                        <td align="center">
+                                                                            <center>${pic.picCode}</center>
+                                                                        </td>
+                                                                        <td align="center" >
+                                                                            <center>${pic.picProductSetupDetailEntity.productDetailMasterEntity.productCode}</center>
+                                                                        </td>
+                                                                        <td align="center" >
+                                                                            ${pic.picProductSetupDetailEntity.productDetailMasterEntity.productDNameT}
+                                                                        </td>
+                                                                        <td align="center" >
+                                                                            <center>${pic.picNameT}</center>
+                                                                        </td>
+                                                                        <td align="center" >
+                                                                            <input name="picSeq" type="text" value="${pic.picProductSetupDetailEntity.picSeq}" style="width:100%;text-align: right;"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </li>
+                                                    <li>
+                                                        <center>
+                                                            <button name="action" type="submit" value="saveSeq" class="button"><span><span>บันทึก</span></span></button>
+                                                            <button type="button" class="button" onClick="window.location='ProductSetupHeader.jsp'" ><span><span>กลับ</span></span></button>
+                                                        </center>
+                                                    </li>
+                                                    <br><br><br>
+                                                </ul>
                                         </form>
-
                                     </div>
-                                    <br/><br/><br/>
+                                    <br><br><br>
                                 </div>
                             </div>
                         </div>
@@ -143,8 +149,8 @@
         </div>
         <div class="cleared"></div>
         <p class="art-page-footer"></p>
-         <jsp:include page="footer.jsp" />
-                    <br/><br/>
+        <jsp:include page="footer.jsp" />
+        <br/><br/>
     </body>
-    
+
 </html>
