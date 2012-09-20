@@ -75,7 +75,7 @@
                                                 <input type="hidden" name="action" value="Add" />
                                                 <div class="fieldset">
                                                     <h2 class="legend">เพิ่มกลุ่มสินค้า</h2>
-                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
+                                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -143,7 +143,7 @@
                                                         </li>
 
                                                         <!--
-                                                        
+
                                                         <li class="fields">
                                                             <div   class="customer-name">
                                                                 <div  class="field name-firstname">
@@ -168,14 +168,16 @@
                                                                     <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
                                                             </div>
                                                         </li> -->
+                                                        <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                         <button name="action" value="Add" class="button" ><span><span>บันทึก</span></span></button>
-                                                           </ul>
+                                                        <button type="button" class="button" onClick="window.location='ProductGroup.jsp'" ><span><span>กลับ</span></span></button>
+                                                    </ul>
                                                 </div>
                                             </form>
                                         </c:if>
 
-                                            <c:if test="${param.productGroupId!=null}" >
-                                                 <form action="productGroup.do" method="post" id="form-validate"  enctype="multipart/form-data" >
+                                        <c:if test="${param.productGroupId!=null}" >
+                                            <form action="productGroup.do" method="post" id="form-validate"  enctype="multipart/form-data" >
                                                 <c:forEach var="productGroup" items="${query.rows}" >
 
                                                     <input type="hidden" name="action" value="Edit" />
@@ -191,7 +193,7 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <!-- <label for="firstname" class="required">รหัสกลุ่มสินค้า <em>*</em>:</label> -->
-                                                                        <label for="firstname" >รหัสกลุ่มสินค้า:</label>
+                                                                        <label for="firstname" class="required">รหัสกลุ่มสินค้า:<em>*</em></label>
                                                                         <input type="text" name="productGroupCode" value="${productGroup.product_Group_Code}"  class="input-text" readonly/>
                                                                     </div>
                                                                 </div>
@@ -284,7 +286,9 @@
                                                                         <input type="text" name="userId" value="${productGroup.User_Id}" class="input-text" readonly="readonly" /></div>
                                                                 </div>
                                                             </li> -->
+                                                            <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                             <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                        <button type="button" class="button" onClick="window.location='ProductGroup.jsp'" ><span><span>กลับ</span></span></button>
                                                         </ul>
 
                                                     </c:forEach>

@@ -330,8 +330,8 @@
                                                         <li class="fields">
                                                             <div class="customer-name">
                                                                 <div  class="field name-firstname">
-                                                                    <label for="firstname" class="required"><em>*</em> รหัสส่วนลด:</label>
-                                                                    <select name="discountId"  class="select required-entry validate-Login">
+                                                                    <label for="firstname" > รหัสส่วนลด:</label>
+                                                                    <select name="discountId"  class="select  validate-Login">
                                                                         <c:forEach items="${query5.rows}" var="discountId" >
                                                                             <option value="${discountId.discount_id}">${discountId.discount_Name_T}</option>
                                                                         </c:forEach>
@@ -339,10 +339,10 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                        <li class="fields">
-                                                            <p class="required" style="float: left">* ข้อมูลที่จำเปนต้องหรอก</p>
-                                                        <li class="fields">
+                                                        <li>
+                                                            <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                             <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()"><span><span>บันทึก</span></span></button>
+                                                            <button type="button" class="button" onClick="window.location='manageProductDetailMaster.jsp'" ><span><span>กลับ</span></span></button>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -474,7 +474,7 @@
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
                                                                         <!-- <img alt=""  src="../${product.Product_D_Icon_Loc}" width="24" height="24" /> -->
-                                                                        
+
                                                                         <c:if test="${product.Product_D_Icon_Loc!=null&&product.Product_D_Icon_Loc!=''}" >
                                                                             <label for="firstname">รูป Icon:</label>
                                                                         </c:if>
@@ -634,10 +634,9 @@
                                                                 </div>
                                                             </li>
                                                             <li>
-                                                                <p class="required" style="float: left">* ข้อมูลที่จำเปนต้องหรอก</p>
-                                                            </li>
-                                                            <li>
+                                                                <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                                 <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                                <button type="button" class="button" onClick="window.location='manageProductDetailMaster.jsp'" ><span><span>กลับ</span></span></button>
                                                             </li>
                                                         </ul>
                                                     </div>

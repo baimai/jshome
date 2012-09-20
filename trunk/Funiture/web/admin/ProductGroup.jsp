@@ -186,6 +186,10 @@
                                                 <button name="action" value="Add" class="button" onclick="window.location.href='addProductGroup.jsp'"><span><span>เพิ่ม</span></span></button>
                                             </div>
                                         </div>
+                                         <center>
+                                            <img src="images/line.jpg" width="930" height="" alt=""/>
+                                            <br><br>
+                                        </center>
                                         <center>
                                         <table id="rowed1"></table>
                                           </center>

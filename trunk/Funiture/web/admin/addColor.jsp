@@ -71,11 +71,11 @@
                                         <c:if test="${param.colorId==null}" >
                                             <form action="colorMaster.do" method="post" id="form-validate"  >
                                                 <input type="hidden" name="action" value="Add" />
-                                                
+
                                                 <div class="fieldset">
 
                                                     <h2 class="legend">เพิ่มข้อมูลสี</h2>
-                                                        <img src="images/line.jpg" width="580" height="" alt=""/>
+                                                    <img src="images/line.jpg" width="580" height="" alt=""/>
                                                     <ul class="form-list">
                                                         <li class="fields">
                                                             <div class="customer-name">
@@ -202,7 +202,9 @@
                                                                      <input type="text" name="userId" value="" readonly="readonly" class="input-text"/></div>
                                                              </div>
                                                          </li>-->
+                                                        <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                         <button name="action" value="Add" class="button" onclick="return checkBeforeSubmit()" ><span><span>บันทึก</span></span></button>
+                                                        <button type="button" class="button" onClick="window.location='color.jsp'" ><span><span>กลับ</span></span></button>
                                                     </ul>
                                                 </div>
                                             </form>
@@ -223,7 +225,7 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >รหัสสี:</label>
+                                                                        <label for="firstname" class="required"><em>*</em>รหัสสี:</label>
                                                                         <input type="text" name="colorCode" value="${colorCodeMaster.Color_Code}"  class="input-text required-entry " readonly/>
                                                                     </div>
                                                                 </div>
@@ -231,8 +233,8 @@
                                                             <li class="fields">
                                                                 <div class="customer-name">
                                                                     <div   class="field name-firstname">
-                                                                        <label for="firstname" >คำอธิบาย(ไทย):</label>
-                                                                        <input type="text" name="colorNameT" value="${colorCodeMaster.Color_Name_T}" class="input-text" /></div>
+                                                                        <label for="firstname" class="required"><em>*</em>คำอธิบาย(ไทย):</label>
+                                                                        <input type="text" name="colorNameT" value="${colorCodeMaster.Color_Name_T}" class="input-text required-entry " /></div>
                                                                 </div>
                                                             </li>
                                                             <li class="fields">
@@ -296,15 +298,14 @@
                                                                  </div>
                                                              </li>-->
 
+                                                             <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                             <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                            <button type="button" class="button" onClick="window.location='color.jsp'" ><span><span>กลับ</span></span></button>
                                                         </ul>
                                                     </div>
                                                 </c:forEach>
                                             </form>
                                         </c:if>
-
-
-
                                         <script type="text/javascript">
                                             //<![CDATA[
                                             var dataForm = new VarienForm('form-validate', true);

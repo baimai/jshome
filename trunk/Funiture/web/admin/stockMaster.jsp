@@ -115,7 +115,7 @@
                                             <input type="hidden" name="productGroupId" value="${param.productGroupId}" />
                                             <button name="action" value="Add" class="button" onclick="window.location.href='Stock.jsp'"><span><span>เพิ่ม</span></span></button>
                                         </div>
-                                            
+                                         
                                         <center>
                                             <img src="images/line.jpg" width="930" height="" alt=""/>
                                             <br><br>

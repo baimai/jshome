@@ -779,6 +779,7 @@
                                                                 </li>
                                                                 <p class="required" style="text-align: left"> * ข้อมูลที่จำเปนต้องหรอก</p>
                                                                 <button name="action" value="Edit" class="button" onclick="return checkBeforeSubmit()"><span><span>แก้ไข</span></span></button>
+                                                                <button type="button" class="button" onClick="window.location='orderHeader.jsp'" ><span><span>กลับ</span></span></button>
                                                             </ul>
                                                         </div>
                                                     </c:forEach>
